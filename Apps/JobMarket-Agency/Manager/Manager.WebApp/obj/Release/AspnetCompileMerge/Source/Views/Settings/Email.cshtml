@@ -1,0 +1,54 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageEmailSettingsModel
+
+@{
+    var title = ManagerResource.LB_EMAIL_SETTINGS;
+    ViewBag.Title = title;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption pl10">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fa fa-cogs fz-20"></i> @ManagerResource.LB_EMAIL_SETTINGS
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+</div>
+<!--end::Portlet-->
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    using (Html.BeginForm("Email", "Settings", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        <div class="main-form">
+            @Html.Partial("_EmailSettings")
+        </div>
+    }
+    <!--end::Form-->
+}
+
+@section PageInlineStyles{
+
+}
+
+@section PageInlineScripts{
+    <script>
+        $(".setting-pwd").bind("input", function () {
+            //$(this).parent().closest(".setting-change-pwd-flag").remove();
+            $(this).parent().find(".setting-change-pwd-flag").val("true");
+        });
+    </script>
+}
+

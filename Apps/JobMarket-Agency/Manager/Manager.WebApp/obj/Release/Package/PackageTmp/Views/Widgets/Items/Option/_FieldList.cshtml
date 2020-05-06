@@ -1,0 +1,47 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@model List<IdentityField>
+
+@{
+    var hasData = Model.HasData();
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<select class="form-control selectpicker" name="sub_field_id" data-live-search="true" data-size="7">
+    @if (hasData)
+    {
+        var count = 0;
+        foreach (var field in Model)
+        {
+            count++;
+            if (field.Sub_fields.HasData())
+            {
+                var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                if (string.IsNullOrEmpty(fieldName))
+                {
+                    fieldName = field.field;
+                }
+                var countSub = 0;
+                <optgroup label="@fieldName">
+                    @foreach (var sub in field.Sub_fields)
+                    {
+                        var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                        if (string.IsNullOrEmpty(subName))
+                        {
+                            subName = sub.sub_field;
+                        }
+
+                        <option value="@sub.id" @(count == 0 && countSub == 0 ? "selected" : string.Empty)
+                                data-subtext="@fieldName" class="text-muted-hidden">
+                            @subName
+                        </option>
+
+                        countSub++;
+                    }
+                </optgroup>
+            }
+        }
+    }
+</select>

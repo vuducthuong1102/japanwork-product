@@ -1,0 +1,25 @@
+﻿@using SingleSignOn.Resources
+
+@model SingleSignOn.Models.EmailModel
+
+@{
+    Layout = null;
+}
+
+<html>
+<body style="color:grey; font-size:15px;">
+    <font face="Helvetica, Arial, sans-serif" />
+    <div style="background-color: #ece8d4; padding:30px;">
+
+        <h3>@EmailResource.LB_COMMON_TITLE</h3>
+        <p>@EmailResource.LB_ACCOUNT_INFORMATION:</p>
+        <ul>
+            <li>@EmailResource.LB_EMAIL: @Model.Receiver</li>
+            <li>@EmailResource.LB_CONFIRMATION_LINK: @Model.ActiveLink</li>
+        </ul>
+
+        <p>@EmailResource.LB_ACTIVE_ACCOUNT_CLICK_DES</p>
+    </div>
+</body>
+
+</html>

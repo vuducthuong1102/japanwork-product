@@ -1,0 +1,95 @@
+﻿@using Manager.WebApp.Resources
+@using System.Globalization
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.AgencyRegisterModel
+
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>
+        Image Tool
+    </title>
+    <link rel="shortcut icon" href="~/Content/images/favicon-32x32.png" />
+    <link rel="shortcut icon" href="~/Content/images/favicon-32x32.png" type="image/x-icon">
+
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="~/Content/Extensions/imgtool/dist/tui-color-picker.css" rel="stylesheet" />
+    <link href="~/Content/Extensions/imgtool/dist/tui-image-editor.css" rel="stylesheet" />
+
+    <style>
+
+        /*@@import url(http://fonts.googleapis.com/css?family=Noto+Sans);*/
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .left, .right {
+            float: unset;
+        }
+    </style>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<!-- end::Head -->
+<!-- end::Body -->
+<body class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="tui-image-editor-container"  style="min-height:900px"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- begin:: Page -->
+    <!-- end:: Page -->
+    <!--begin::Base Scripts -->
+
+    <script src="~/Content/Extensions/imgtool/fabric.js"></script>
+    <script src="~/Content/Extensions/imgtool/tui-code-snippet.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/tui-color-picker.js"></script>
+    <script src="~/Content/Extensions/imgtool/FileSaver.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/dist/tui-image-editor.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/js/theme/white-theme.js"></script>
+    <script src="~/Content/Extensions/imgtool/js/theme/black-theme.js"></script>
+    <script>
+        // Image editor
+        var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
+            includeUI: {
+                loadImage: {
+                    path: '/Content/Extensions/imgtool/img/sampleImage2.png',
+                    name: 'SampleImage'
+                },
+                theme: blackTheme, // or whiteTheme
+                initMenu: 'filter',
+                menuBarPosition: 'bottom'
+            },
+            cssMaxWidth: 700,
+            cssMaxHeight: 500,
+            usageStatistics: false
+        });
+        window.onresize = function () {
+            imageEditor.ui.resizeEditor();
+        }
+
+        $(".tui-image-editor-header-logo").remove();
+
+        $("body").addClass("m-brand--minimize m-aside-left--minimize");
+        $("#m_aside_left_minimize_toggle").addClass("m-brand__toggler--active");
+        $(".m-subheader").hide();
+        $(".tie-mask-apply").remove();
+    </script>
+
+    <!--end::Page Snippets -->
+</body>
+<!-- end::Body -->
+</html>

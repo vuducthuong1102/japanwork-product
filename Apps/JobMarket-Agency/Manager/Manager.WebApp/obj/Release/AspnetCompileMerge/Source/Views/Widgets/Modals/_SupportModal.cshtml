@@ -1,0 +1,42 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+
+
+<!-- modal placeholder-->
+<div class="modal fade" id="supportModal" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div id='supportModalContent'>
+                <div class="modal-header" style="padding-top:15px;padding-bottom:5px;">
+                    <h5 class="modal-title" id="">
+                        <i class="fa fa-support"></i> @ManagerResource.LB_SUPPORT_REQUEST_WITH_ADMIN
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="modal-body pt5">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="contact">
+                                    <div class="list-contact scroll-box friends-list support-list">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer pt10">
+                        <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal">
+                            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,162 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.InterviewProcessInsertModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_ASSIGNMENT_WORK:
+        &nbsp;
+        @Model.full_name
+    </h5>
+
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        <div class="form-group">
+            <input type="hidden" id="CurrentPage" value="@Model.CurrentPage" name="CurrentPage" />
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.job_seeker_id)
+            @Html.HiddenFor(m => m.type_job_seeker)
+            @Html.HiddenFor(m => m.list_ids)
+            <div class="form-group m-form__group row">
+                <div class="col-md-4 col-sm-12">
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control", @autocomplete = "false" })
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12">
+                    <select id="@Html.IdFor(m => m.company_id)" name="@Html.NameFor(m => m.company_id)" data-live-search="true" class="form-control m-select2 m-input m-input--square">
+                        <option value="0">@ManagerResource.LB_SELECT_COMPANY</option>
+                        @if (Model.ListCompanies != null && Model.ListCompanies.Count > 0)
+                        {
+                            var checkedText = "selected";
+                            foreach (var item in Model.ListCompanies)
+                            {
+                                <option value="@item.Value" @((item.Selected) ? checkedText : "")>
+                                    @item.Text
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-info btn-sm" onclick="JobSearch()">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="job_list" class="content-popup">
+            @Html.Partial("~/Views/Widgets/Items/Option/_JobList.cshtml", Model)
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" onclick='AssignmentWork_Post()' class="btn btn-info">
+            @ManagerResource.LB_ASSIGNMENT_WORK
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            @ManagerResource.LB_CLOSE
+        </button>
+    </div>
+}
+<script>
+    //JobSearch();
+    $(document).ready(function () {
+        $('.datepicker').datetimepicker({
+            format: "yyyy/mm/dd hh:ii"
+        });
+    })
+    $(document).on("keypress", "#Keyword", function (e) {
+        var keycode = event.keyCode || event.which;
+        if (keycode == '13') {
+            JobSearch();
+            return false;
+        }
+
+    })
+    setTimeout(function () {
+        $(".m-select2").select2({ width: 'resolve' });
+    }, 500);
+
+    function JobNextPage(pageNum) {
+        $("#CurrentPage").val(pageNum);
+        JobSearch();
+    }
+
+    function SetCheckBox() {
+        if (list_ids.length > 0) {
+            for (var i = 0; i < list_ids.length; i++) {
+                $(".job-checkbox-item[value=" + list_ids[i] + "]").prop("checked", true);
+            }
+        }
+    }
+
+    function JobSearch() {
+        var frmData = $("#Keyword").closest("form").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/Master/GetJobsByCompany';
+        params['requestType'] = 'POST';
+        params['data'] = frmData;
+        params['showloading'] = true;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (result) {
+            $("#job_list").html(result);
+            SetCheckBox();
+        };
+
+        doAjax(params);
+    }
+
+    function AssignmentWork_Post() {
+        if (list_ids.length > 0) {
+            $("#list_ids").val(list_ids);
+            var frmData = $("#Keyword").closest("form").serialize();
+
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/JobSeeker/AssignmentWork_Post";
+            params['requestType'] = "POST";
+            params['data'] = frmData;
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (data) {
+                var result = JSON.parse(data);
+                if (result.success) {
+                    $.showSuccessMessage(result.title, result.message, function () { return false; });
+                    $("#CurrentPage").val(1);
+                    JobSearch();
+                }
+            };
+
+            doAjax(params);
+        }
+        else {
+            $.showErrorMessage(LanguageDic['LB_NOTIFICATION'], LanguageDic['ERROR_ALEAST_ONE_JOB_SELECT'], null);
+            return false;
+        }
+    }
+
+    var list_ids = [];
+
+    $(document).on("click", ".job-checkbox-item", function () {
+        var id = $(this).val();
+        var index = list_ids.indexOf(id);
+        if ($(this).is(":checked")) {
+            if (index == -1) {
+                list_ids.push(id);
+            }
+        }
+        else {
+            if (index > -1) {
+                list_ids.splice(index, 1);
+            }
+        }
+    })
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

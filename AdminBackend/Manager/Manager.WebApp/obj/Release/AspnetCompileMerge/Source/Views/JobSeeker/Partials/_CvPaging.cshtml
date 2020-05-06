@@ -1,0 +1,87 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageJobSeekerCvModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.LB_CV_LIST
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("CvSearch", "JobSeeker", FormMethod.Post, new { role = "form", @class = "", id= "frmCvPaging" }))
+{
+    <div class="modal-body">       
+        <div class="m-portlet">
+            <!--begin::Form-->
+            @RenderSearchForm()
+            <!--end::Form-->
+        </div>
+    </div>   
+}
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info btn-sm" data-dismiss="modal">
+        <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+    </button>
+</div>
+
+@helper RenderSearchForm()
+{
+    using (Html.BeginForm("CvSearch", "JobSeeker", FormMethod.Post, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed",@id="frmSearch" }))
+    {
+        @Html.HiddenFor(m => m.SearchExec)            
+        @Html.HiddenFor(m => m.CurrentPage)     
+        @Html.HiddenFor(m => m.JobSeekerId)     
+        <input type="hidden" value="" id="SelectedJkIds" />
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">                
+                <div class="col-lg-3 m-form__group--inline">
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input btn-sm", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+                </div>
+
+                <div class="col-lg-2 m-form__group--inline">
+                    <button type="submit" class="btn btn-info btn-sm">
+                      <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="CvList">
+            @Html.Partial("~/Views/JobSeeker/Partials/_CvList.cshtml", Model)
+        </div>
+    }
+}
+
+<script> 
+    $("#frmCvPaging").on("submit", function () {
+        CvSearch();
+        return false;
+    });
+
+    function CvSearchNext(pageNum) {
+        $("#CurrentPage").val(pageNum)
+        CvSearch();
+    }
+
+    function CvSearch() {      
+        var frmData = $("#frmCvPaging").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/JobSeeker/CvSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+        params['context'] = "#frmCvPaging";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#CvList").html(data);
+        };
+
+        doAjax(params);
+    }
+</script>
+  

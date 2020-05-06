@@ -1,0 +1,17 @@
+2020-04-24 23:35:45,257 [1] INFO  MySite.Startup - ======================================================
+2020-04-24 23:35:45,269 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-24 23:35:45,270 [1] INFO  MySite.Startup - ======================================================
+2020-04-24 23:35:45,389 [1] INFO  MySite.Startup - ======================================================
+2020-04-24 23:35:45,390 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-24 23:35:45,390 [1] INFO  MySite.Startup - ======================================================
+2020-04-24 23:35:52,181 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-24 23:35:52,181 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-24 23:35:52,259 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-24 23:35:52,259 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-24 23:36:01,235 [20] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-24 23:36:01,240 [20] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-24 23:36:07,644 [20] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-24 23:36:08,687 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-24 23:36:08,695 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-24 23:48:41,493 [52] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-24 23:48:41,716 [52] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

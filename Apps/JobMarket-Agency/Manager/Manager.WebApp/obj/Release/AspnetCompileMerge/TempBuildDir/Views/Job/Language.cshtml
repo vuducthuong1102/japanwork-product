@@ -1,0 +1,399 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@using System.Linq
+@model Manager.WebApp.Models.JobEditLanguageModel
+@{
+    var title = ManagerResource.LB_UPDATE_INFO;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    @ManagerResource.LB_UPDATE_LANGUAGE
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        <form id="frmUpdateLanguage" enctype="multipart/form-data" action="/Job/Language" class="m-form m-form--fit">
+            @Html.Partial("_Notifications")
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+            @Html.HiddenFor(m => m.company_id)
+            @Html.HiddenFor(m => m.to_language)
+            @Html.HiddenFor(m => m.translate_status)
+            @{
+                var currentLanguage = UserCookieManager.GetCurrentLanguageOrDefault();
+                var langList = LanguagesProvider.GetListLanguages();
+                var infoLanguage = Model.Job_translations.FirstOrDefault(s => s.language_code == Model.from_language);
+
+                if (infoLanguage == null)
+                {
+                    infoLanguage = new ApiJobMarket.DB.Sql.Entities.IdentityJobTranslation();
+                }
+            }
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12 col-sm-12 text-center">
+
+                    @if (langList.HasData())
+                    {
+                        Model.from_language = "ja-JP";
+                        var fromLang = langList.FirstOrDefault(s => s.LanguageCultureName == Model.from_language);
+                        <button type="button" class="m--margin-right-20 p-0 btn m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1" aria-expanded="true">
+                            <a href="#" class="btn m-dropdown__toggle">
+                                <span class="m-nav__link-icon">
+                                    <span class="m-nav__link-icon-wrapper" title="@fromLang.LanguageFullName">
+                                        <img class="image-lang" src="~/Content/images/flags/@(fromLang.LanguageCultureName).png" style="width:30px" /> @fromLang.LanguageFullName
+                                        @*&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i>*@
+                                    </span>
+                                </span>
+                            </a>
+                            @*<div class="m-dropdown__wrapper ul-custom">
+                                    <span class="m-dropdown__arrow m-dropdown_d_arrow--center"></span>
+                                    <div class="m-dropdown__inner">
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__content">
+                                                <ul class="m-menu__subnav">
+                                                    @foreach (var item in langList)
+                                                    {
+                                                        <li class="m-menu__item @((Model.from_language == item.LanguageCultureName) ? "m-menu__item--active" : string.Empty)" aria-haspopup="true">
+                                                            <a href="@((Model.from_language != item.LanguageCultureName) ? "/Job/Language/" + Model.id + "?company_id=" + Model.company_id + "&to_language="+Model.to_language+"&from_language=" + @item.LanguageCultureName : "javascript:;")" class="m-menu__link " style="display:flex">
+                                                                <div class="m-menu__link-icon">
+                                                                    <img class="image-lang" style="width:30px" src="~/Content/images/flags/@(item.LanguageCultureName).png" />
+                                                                </div>
+                                                                <span class="m-menu__link-text" style="padding-left:10px">
+                                                                    @item.LanguageFullName
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </button>
+                    }
+                    <a href="@("/Job/Language/" + Model.id + "?company_id=" + Model.company_id + "&from_language=" + Model.to_language + "&to_language=" + Model.from_language)">
+                        <i class="fa fa-exchange m--icon-font-size-lg2" aria-hidden="true"></i>
+                    </a>
+                    @{
+                        langList.RemoveAll(s => s.LanguageCultureName == infoLanguage.language_code);
+                    }
+                    @if (langList.HasData())
+                    {
+                        var toLang = langList.FirstOrDefault(s => s.LanguageCultureName == "vi-VN");
+                        <button type="button" class="m--margin-left-20 p-0 btn m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1" aria-expanded="true">
+                            <a href="#" class="btn m-dropdown__toggle">
+                                <span class="m-nav__link-icon">
+                                    <span class="m-nav__link-icon-wrapper" title="@toLang.LanguageFullName">
+                                        <img class="image-lang" src="~/Content/images/flags/vi-VN.png" style="width:30px" /> @toLang.LanguageFullName
+                                        @*&nbsp;<i class="fa fa-chevron-down" aria-hidden="true"></i>*@
+                                    </span>
+                                </span>
+                            </a>
+                            @*<div class="m-dropdown__wrapper ul-custom">
+                                    <span class="m-dropdown__arrow m-dropdown_d_arrow--center"></span>
+                                    <div class="m-dropdown__inner">
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__content">
+                                                <ul class="m-menu__subnav">
+
+                                                    @foreach (var item in langList)
+                                                    {
+                                                        <li class="m-menu__item @((Model.to_language == item.LanguageCultureName) ? "m-menu__item--active" : string.Empty)" aria-haspopup="true">
+                                                            <a href="@((Model.to_language != item.LanguageCultureName) ? "/Job/Language/" + Model.id + "?company_id=" + Model.company_id + "&from_language="+Model.from_language+"&to_language=" + @item.LanguageCultureName : "javascript:;")" class="m-menu__link " style="display:flex">
+                                                                <div class="m-menu__link-icon">
+                                                                    <img class="image-lang" style="width:30px" src="~/Content/images/flags/@(item.LanguageCultureName).png" />
+                                                                </div>
+                                                                <span class="m-menu__link-text" style="padding-left:10px">
+                                                                    @item.LanguageFullName
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    }
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </button>
+                    }
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_TITLE
+                    </label>
+                    <textarea class="form-control" autocomplete="off" disabled>@infoLanguage.title</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_TITLE
+                    </label>
+
+                    @Html.TextAreaFor(m => m.title, new { @class = "form-control", @autocomplete = "off" })
+                    @Html.ValidationMessageFor(m => m.title, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_WORK_CONTENT
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.work_content</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_WORK_CONTENT
+                    </label>
+
+                    @Html.TextAreaFor(m => m.work_content, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_REQUIREMENT
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.requirement</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_REQUIREMENT
+                    </label>
+
+                    @Html.TextAreaFor(m => m.requirement, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_PLUS
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.plus</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_PLUS
+                    </label>
+
+                    @Html.TextAreaFor(m => m.plus, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_SUBSIDY
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.subsidy</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_SUBSIDY
+                    </label>
+
+                    @Html.TextAreaFor(m => m.subsidy, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_PAID_HOLIDAY
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.paid_holiday</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_PAID_HOLIDAY
+                    </label>
+
+                    @Html.TextAreaFor(m => m.paid_holiday, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_BONUS
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.bonus</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_BONUS
+                    </label>
+
+                    @Html.TextAreaFor(m => m.bonus, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_CERTIFICATE
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.certificate</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_CERTIFICATE
+                    </label>
+
+                    @Html.TextAreaFor(m => m.certificate, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_WELFARE
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.welfare</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_WELFARE
+                    </label>
+
+                    @Html.TextAreaFor(m => m.welfare, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_TRAINING
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.training</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_TRAINING
+                    </label>
+
+                    @Html.TextAreaFor(m => m.training, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_RECRUIMENT_PROCEDURE
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.recruitment_procedure</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_RECRUIMENT_PROCEDURE
+                    </label>
+
+                    @Html.TextAreaFor(m => m.recruitment_procedure, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_REMARK
+                    </label>
+                    <textarea class="form-control disabled" autocomplete="off" disabled rows="10">@infoLanguage.remark</textarea>
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <label class="text-bold">
+                        @ManagerResource.LB_JOB_REMARK
+                    </label>
+
+                    @Html.TextAreaFor(m => m.remark, new { @class = "form-control", @autocomplete = "off", rows = "10" })
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <a class="btn btn-outline-info btn-back" href="/Job"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+
+                    <button type="submit" class="btn btn-outline-info pull-right m--margin-left-10" onclick="ChangeStatus()">
+                        <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE_TRANSLATED
+                    </button>
+                    @if (Model.translate_status != (int)EnumTranslateStatus.Translated)
+                    {
+                        <button type="submit" class="btn btn-outline-info pull-right">
+                            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+                        </button>
+                    }
+                </div>
+            </div>
+            <!--end::Form-->
+        </form>
+    </div>
+</div>
+@{
+    var detailLink = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = Model.id, company_id = Model.company_id });
+    <input type="hidden" id="hdfDetailLink" value="@detailLink" />
+}
+@section PageInlineStyles{
+    <style>
+        .repeater-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .bootstrap-select .status {
+            padding-left: 15px;
+        }
+
+        .note-editable {
+            height: 150px;
+        }
+
+        .ul-custom {
+            width: 235px !important;
+            margin-left: -115px !important;
+        }
+
+            .ul-custom li {
+                display: flex;
+                padding: 10px;
+            }
+
+            .ul-custom ul li:hover {
+                background-color: #f5f5f5;
+            }
+
+            .ul-custom ul {
+                padding: 0;
+            }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".summernote.disabled").each(function () {
+                $(this).summernote('disable');
+            });
+        })
+        function ChangeStatus() {
+            $("#translate_status").val(1);
+        }
+    </script>
+    <script src="@Url.VersionedContent("~/Scripts/Job/update.js")"></script>
+}

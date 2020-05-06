@@ -1,0 +1,144 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+@model MySite.Models.Account.ProfileModel
+
+@{
+    var isOwner = false;
+    var currentUserId = 0;
+    var currentUser = AccountHelper.GetCurrentUser();
+    if (currentUser != null)
+    {
+        if (currentUser.Id == Model.UserInfo.Id)
+        {
+            isOwner = true;
+            currentUserId = currentUser.Id;
+        }
+    }
+
+}
+
+<input type="hidden" id="CurrentEditorId" value="@currentUserId" />
+
+@if (isOwner)
+{
+    if (Model != null)
+    {
+        if (Model.UserInfo != null)
+        {
+            @RenderEditPage()
+        }
+    }
+}
+
+@helper RenderEditPage()
+{
+    @Html.AntiForgeryToken()
+    <div class="container mt15">
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class=" edit-profile">
+                    <div class="edit-header">
+                        <h4>@UserWebResource.BT_EDIT_PROFILE</h4>
+                    </div>
+                    <div class="edit-content">
+                        <div class="change-photo text-center" id="ChangeAvatar">
+                            <a href="javascript:;" id="btnUploadFile">
+                                @if (!string.IsNullOrEmpty(Model.UserInfo.Avatar))
+                            {
+                            <img class="profile-avatar" src="@CdnHelper.CoreGetFullImgPath(Model.UserInfo.Avatar)" />
+                            }
+                            else
+                            {
+                            <img class="profile-avatar" src="~/Content/themes/default/assets/images/img/avatar-none.png" />
+                            }
+                            </a>
+                        </div>
+                        <div class="row mt10">
+                            <div class="col-md-12">
+                                @Html.Partial("../Account/_Upload")
+                            </div>
+                        </div>
+                        <div class="item" id="email">
+                            <div class="col-md-2 item-label plain">
+                                <span>@UserWebResource.IP_EMAIL</span>
+                            </div>
+                            <div class="col-md-8 item-text plain">
+                                <span>@Model.UserInfo.Email</span>
+                            </div>
+                            <div class="col-md-2 item-control plain">
+                                <a href="javascript:;" class="btn-control" data-control="email" data-label="@UserWebResource.IP_EMAIL">@UserWebResource.BT_MODIFY</a>
+                            </div>
+                        </div>
+                        <div class="item" id="displayname">
+                            <div class="col-md-2 item-label plain">
+                                <span>@UserWebResource.IP_NICKNAME</span>
+                            </div>
+                            <div class="col-md-8 item-text plain">
+                                <span>@Model.UserInfo.DisplayName</span>
+                            </div>
+                            <div class="col-md-2 item-control plain">
+                                <a href="javascript:;" class="btn-control" data-control="displayname" data-label="@UserWebResource.IP_NICKNAME">@UserWebResource.BT_MODIFY</a>
+                            </div>
+                        </div>
+                        <div class="item" id="phonenumber">
+                            <div class="col-md-2 item-label plain">
+                                <span>@UserWebResource.IP_PHONE</span>
+                            </div>
+                            <div class="col-md-8 item-text plain">
+                                <span>@Model.UserInfo.PhoneNumber</span>
+                            </div>
+                            <div class="col-md-2 item-control plain">
+                                <a href="javascript:;" class="btn-control" data-control="phonenumber" data-label="@UserWebResource.IP_PHONE">@UserWebResource.BT_MODIFY</a>
+                            </div>
+                        </div>
+                        <div class="item date" id="birthday">
+                            <div class="col-md-2 item-label plain">
+                                <span>@UserWebResource.IP_BIRTHDAY</span>
+                            </div>
+                            <div class="col-md-8 item-text plain">
+                                <span>@((Model.UserInfo.Birthday.HasValue) ? Model.UserInfo.Birthday.Value.ToString("dd/MM/yyyy") : string.Empty )</span>
+                            </div>
+                            <div class="col-md-2 item-control plain">
+                                <a href="javascript:;" class="btn-control" data-control="birthday" data-label="@UserWebResource.IP_BIRTHDAY">@UserWebResource.BT_MODIFY</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="edit-template hidden">
+                        <div class="edit-form" data-form="">
+                            <form onsubmit="return SaveInfo();">
+                                <div class="item padl0 padr0">
+                                    <div class="col-md-2">
+                                        <span class="edit-label">Emai</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input class="col-md-6 form-control mb0" type="text">
+                                        <span class="error-input text-danger"></span>
+                                    </div>
+                                    <div class="col-md-2 edit-control">
+                                        <button class="btn btn-success btn-sm btn-save" type="submit">@UserWebResource.BT_SAVE</button>&nbsp;
+                                        <button class="btn btn-sm btn-default btn-cancel" onclick="CancelModify();">@UserWebResource.BT_CANCEL</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@section PagePluginScripts{
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/bundles/jcrop")
+    @Scripts.Render("~/bundles/avatar")
+    @Styles.Render("~/Content/jcrop")
+    @Styles.Render("~/Content/avatar")
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/Common/jquery-masked-input.min.js"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Account/editprofile.js")"></script>
+}

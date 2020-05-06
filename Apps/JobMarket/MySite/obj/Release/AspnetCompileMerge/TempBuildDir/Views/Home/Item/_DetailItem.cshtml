@@ -1,0 +1,25 @@
+﻿@using MySite.Helpers;
+@using MySite.Caching;
+@using MySite.Resources;
+@{
+    var userInfo = AccountHelper.GetCurrentUser();
+}
+
+@if (userInfo != null)
+{
+    var displayName = (!string.IsNullOrEmpty(userInfo.DisplayName) ? userInfo.DisplayName : userInfo.UserName);
+
+    <div class="login logined  dropdown hidden-xs">
+        <a href="@AccountHelper.GetUserProfileUrl(userInfo)" title="@userInfo.DisplayName">
+            <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar" />
+        </a>
+        <p class="c-u1 mt5">@displayName</p>
+        <p class="text-grey-02 FollowersCount fz-12 mb0">0 @UserWebResource.LB_FOLLOWER</p>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im-4"></i></a>
+        <ul class="dropdown-menu">
+            <li><a href="/account/editprofile" class="text-black">@UserWebResource.BT_EDIT_PROFILE</a></li>
+            <li><a href="/WebAuth/Logout" class="text-black">@UserWebResource.BT_LOGOUT</a></li>
+        </ul>
+        <div class="clearFix"></div>
+    </div>
+}

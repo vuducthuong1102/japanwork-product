@@ -1,0 +1,654 @@
+﻿@using ApiJobMarket.Helpers
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    @{
+        var baseurl = UrlFriendlyHelpers.GetBaseUrl();
+    }
+
+    <link rel="stylesheet" href="@baseurl/Content/bootstrap.min.css">
+    <style>
+        ul.a {
+            list-style-type: circle;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        li {
+            text-align: justify;
+        }
+
+        h6 {
+            font-weight: bold;
+        }
+
+        .email {
+            color: blue;
+        }
+
+        p {
+            padding-left: 1.8em
+        }
+    </style>
+    <title>ĐIỀU KHOẢN SỬ DỤNG DỊCH VỤ VỚI ỨNG VIÊN JOB MARKET</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h3 class="text-center" style="color: red; font-weight: bold;">ĐIỀU KHOẢN SỬ DỤNG DỊCH VỤ VỚI ỨNG VIÊN</h3>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4>1. ĐIỀU KHOẢN CHUNG</h4>
+                <p>
+                    Bằng cách truy cập hoặc sử dụng trang web và ứng dụng Job Market, các dịch vụ cung
+                    cấp (gọi chung là
+                    "Dịch vụ"), dù truy cập bằng cách nào, bạn đồng ý chịu sự ràng buộc của các điều
+                    khoản sử dụng này
+                    ("Điều khoản sử dụng"). Dịch vụ do Job Market sở hữu hoặc kiểm soát. Các Điều
+                    khoản sử dụng này ảnh
+                    hưởng đến quyền và nghĩa vụ pháp lý của bạn. Nếu bạn không đồng ý chịu sự ràng
+                    buộc của tất cả các
+                    Điều khoản sử dụng này, bạn không truy cập hay sử dụng Dịch vụ. Nếu Bạn có bất
+                    kỳ câu hỏi nào liên
+                    quan đến Điều Khoản này, vui lòng liên hệ chúng tôi tại email: <a href="mailto: contact@job-market.jp">contact@job-market.jp</a>
+                </p>
+                <p>
+                    Chúng tôi có thể cập nhật Điều Khoản này theo thời gian vì các lý do pháp lý hoặc
+                    theo quy định hoặc
+                    để cho phép hoạt động thích hợp của trang ứng dụng Job Market. Mọi thay đổi sẽ
+                    được thông báo tới bạn
+                    bằng một thông báo phù hợp ứng dụng của chúng tôi. Những thay đổi này sẽ áp dụng
+                    cho việc sử dụng
+                    ứng dụng Job Market. Sau khi chúng tôi đã thông báo đến bạn, Nếu bạn không muốn
+                    chấp nhận Điều Khoản
+                    mới, bạn không nên tiếp tục sử dụng trang ứng dụng Job Market. Nếu bạn tiếp tục
+                    sử dụng trang ứng dụng
+                    Job Market kể từ ngày sự thay đổi có hiệu lực, việc sử dụng ứng dụng Job Market
+                    thể hiện bạn đồng ý bị ràng
+                    buộc bởi Điều Khoản mới.
+                </p>
+                <h4>2. ĐỊNH NGHĨA VÀ GIẢI THÍCH</h4>
+                <p>
+                    1. <b>"Cơ sở dữ liệu Job Market"</b> hoặc <b>"Các cơ sở dữ liệu Job Market"</b> bao
+                    gồm tất cả các bài quảng
+                    cáo việc làm đăng trên các ứng dụng cũng như trang web của Job Market và/hoặc
+                    tất cả thông tin của các
+                    ứng viên và/hoặc các nhà tuyển dụng được đăng ký với Job Market.
+                </p>
+                <p>
+                    2. <b>"Cơ sở dữ liệu Hồ sơ Job Market"</b> hoặc <b>"Các cơ sở dữ liệu Hồ sơ"</b> là
+                    hồ sơ ứng viên được
+                    khởi tạo và/hoặc được đăng tại các cơ sở dữ liệu Job Market.
+                </p>
+                <p>
+                    3. <b>"Dịch vụ Job Market"</b> là bất kỳ dịch vụ nào được cung cấp bởi Job Market.
+                </p>
+                <p>4. <b>"Hồ sơ cá nhân"</b> là các thông tin, CV cá nhân được tạo bởi Người dùng.</p>
+                <p>
+                    5. <b>"Văn bản"</b> bao gồm tất cả văn bản trên mọi trang của trang web Job Market,
+                    cho dù là tài liệu có
+                    xác định tác giả, các nội dung tìm kiếm có định hướng hay thông tin hướng dẫn.
+                </p>
+                <p>
+                    6. <b>"Người dùng"</b> đề cập đến bất kỳ cá nhân hoặc tổ chức nào sử dụng bất kỳ khía
+                    cạnh nào của
+                    trang web hay ứng dụng Job Market và/hoặc các Dịch vụ của Job Market.
+                </p>
+                <p>
+                    7. <b>"Nội dung Người dùng"</b> là tất cả thông tin, dữ liệu, văn bản, phần mềm, âm
+                    nhạc, âm thanh,
+                    hình ảnh, đồ họa, video, quảng cáo, tin nhắn hoặc các tài liệu khác được gửi,
+                    đăng hoặc biểu thị bởi
+                    Người dùng trên hoặc thông qua trang web cũng như ứng dụng Job Market.
+                </p>
+                <h4>3. ĐĂNG KÝ</h4>
+                <p>
+                    Để sử dụng Dịch vụ bạn phải tạo một tài khoản theo yêu cầu của Job Market, bạn cam
+                    kết rằng việc sử dụng
+                    tài khoản phải tuân thủ các quy định của Job Market, đồng thời tất cả các thông
+                    tin bạn cung cấp cho
+                    chúng tôi là đúng, chính xác, đầy đủ với tại thời điểm được yêu cầu. Mọi quyền
+                    lợi và nghĩa vụ của
+                    bạn sẽ căn cứ trên thông tin tài khoản bạn đã đăng ký, do đó nếu có bất kỳ thông
+                    tin sai lệch nào
+                    chúng tôi sẽ không chịu trách nhiệm trong trường hợp thông tin đó làm ảnh hưởng
+                    hoặc hạn chế quyền
+                    lợi của bạn.
+                </p>
+
+                <h4>4. MẬT KHẨU VÀ BẢO MẬT</h4>
+                <p>
+                    1. Khi bạn đăng ký sử dụng trang web và ứng dụng Job Market bạn sẽ được yêu cầu khởi
+                    tạo mật khẩu. Để
+                    tránh việc gian lận, bạn phải giữ mật khẩu này bảo mật và không được tiết lộ
+                    hoặc chia sẻ với bất kỳ
+                    người nào.Nếu bạn biết hoặc nghi ngờ người khác biết mật khẩu của bạn, bạn nên
+                    thông báo với chúng
+                    tôi ngay lập tức bằng cách liên hệ với chúng tôi tại email <a href="mailto: contact@job-market.jp">contact@job-market.jp</a>
+                </p>
+                <p>
+                    2. Nếu Job Market có lý do để tin rằng có khả năng có hành vi vi phạm bảo mật hoặc sử
+                    dụng không đúng mục
+                    đích trang web và ứng dụng Job Market, chúng tôi có thể yêu cầu bạn thay đổi mật
+                    khẩu hoặc chúng tôi có
+                    thể tạm dừng tài khoản của bạn.
+                </p>
+                <p>
+                    3. Trường hợp bạn mất Mật khẩu hoặc hoặc sử dụng không đúng mục đích trang web hay
+                    ứng dụng Job Market:
+                </p>
+                <ul class="a">
+                    <li>Bạn phải chịu tất cả sự mất mát hoặc thiệt hại phát sinh;</li>
+                    <li>
+                        Bạn chịu trách nhiệm sẽ bồi thường hoàn toàn cho Job Market trong trường hợp
+                        Job Market có xảy ra mất
+                        mát hoặc thiệt hại.
+                    </li>
+                </ul>
+                <h4>5. QUYỀN TRUY CẬP VÀ THU THẬP THÔNG TIN</h4>
+                <p>
+                    1. Khi sử dụng trang web và ứng dụng của Job Market, bạn thừa nhận rằng chúng tôi có
+                    quyền thu thập các
+                    thông tin sau của bạn:
+                </p>
+                <ul class="a">
+                    <li>
+                        Thông tin cá nhân: bao gồm các thông tin bạn cung cấp cho chúng tôi để tạo
+                        hồ sơ như tên, số
+                        điện thoại, địa chỉ email;…
+                    </li>
+                    <li>
+                        Thông tin chung: như các thông tin về kinh nghiệm làm việc, định hướng nghề
+                        nghiệp, mục tiêu
+                        công việc; trình độ năng lực; thu nhập;…
+                    </li>
+                </ul>
+                <p>
+                    2. Bạn thừa nhận và đồng ý một mình chịu trách nhiệm về hình thức, nội dung và tính
+                    xác thực của bất
+                    kỳ hồ sơ hoăc tài liệu nào do bạn đăng tải trên trang web và ứng dụng của Job
+                    Market, đồng thời đồng ý
+                    một mình chịu trách nhiệm cho bất kỳ hệ quả nào phát sinh từ việc đăng tải này.
+                </p>
+                <p>
+                    3. Job Market có quyền đề xuất đến bạn dịch vụ và sản phẩm của bên thứ ba dựa trên
+                    các mục phù hợp mà bạn
+                    xác định trong khi đăng ký và bất kỳ lúc nào sau đó hoặc khi bạn đã đồng ý tiếp
+                    nhận, các đề xuất
+                    này sẽ được thực hiện bởi Job Market hoặc các bên thứ ba.
+                </p>
+                <p>
+                    4. Job Market được quyền tùy ý tuân theo các yêu cầu pháp lý, các yêu cầu từ cơ quan
+                    thi hành án hoặc yêu
+                    cầu của cơ quan quản lý, thậm chí sự tuân thủ này có thể bao gồm việc công bố
+                    một số thông tin Người
+                    dùng nhất định. Ngoài ra, bên thứ ba được phép giữ lại các bản sao lưu trữ thông
+                    tin Người dùng.
+                </p>
+                <p>
+                    5. Bạn hiểu và thừa nhận rằng tất cả các thông tin do bạn cung cấp, Thông tin cá
+                    nhân, hồ sơ và/hoặc
+                    thông tin tài khoản của bạn, sẽ được công bố cho các Nhà tuyển dụng tiềm năng
+                    trên Job Market.
+                </p>
+                <p>
+                    6. Job Market tôn trọng tuyệt đối quyền bảo mật thông tin của ứng viên. Nếu không
+                    muốn hồ sơ cá nhân của
+                    mình được công khai, bạn vui lòng tắt tính năng "đang tìm việc" & tính năng cho
+                    phép nhà tuyển dụng
+                    xem hồ sơ để tránh bị làm phiền.
+                </p>
+                <p>
+                    7. Bạn hiểu và thừa nhận rằng bạn không có các quyền sở hữu trong tài khoản của bạn
+                    và nếu bạn hủy bỏ
+                    tài khoản trên trang web và ứng dụng của Job Market hoặc tài khoản của bạn bị
+                    chấm dứt, tất cả các thông
+                    tin tài khoản của bạn tại trang web và ứng dụng của Job Market, bao gồm sơ yếu
+                    lý lịch, Thông tin cá
+                    nhân, thư xin việc, các công việc đã lưu, sẽ được đánh dấu là bị xóa và có thể
+                    bị xóa khỏi Cơ sở dữ
+                    liệu Job Market và sẽ được gỡ bỏ từ bất kỳ khu vực chung nào trên trang web và
+                    ứng dụng của Job Market.
+                    Thông tin có thể tiếp tục được hiển thị trong một khoảng thời gian vì các trở
+                    ngại trong khi truyền
+                    tín hiệu xóa thông qua các máy chủ của Job Market hoặc do yêu cầu của các cơ
+                    quan chức năng liên quan.
+                    Ngoài ra, các bên thứ ba được phép giữ lại bản sao thông tin của bạn.
+                </p>
+                <p>
+                    8. Job Market có quyền xỏa tài khoản và tất cả thông tin của bạn sau một thời gian
+                    dài không hoạt động.
+                </p>
+
+                <h4>6. TUYÊN BỐ VỀ QUYỀN SỞ HỮU TRÍ TUỆ</h4>
+                <p>
+                    1. Bạn tuyên bố và đảm bảo rằng: (i) bạn sở hữu Nội dung mà bạn đăng lên hoặc thông
+                    qua Dịch vụ hay
+                    nói cách khác, bạn có quyền cấp các quyền và giấy phép được quy định trong các
+                    Điều khoản sử dụng
+                    này; (ii) việc đăng và sử dụng Nội dung trên hoặc thông qua Dịch vụ không vi
+                    phạm, chiếm đoạt hay
+                    xâm phạm các quyền của bất kỳ bên thứ ba nào, bao gồm nhưng không giới hạn ở
+                    quyền riêng tư, quyền
+                    công khai, bản quyền, nhãn hiệu thương mại và/hoặc quyền sở hữu trí tuệ khác;
+                    (iii) bạn đồng ý thanh
+                    toán tất cả tiền bản quyền tác giả, phí và bất kỳ khoản tiền nào khác còn nợ do
+                    Nội dung mà bạn đăng
+                    lên hoặc thông qua Dịch vụ; và (iv) bạn có quyền và năng lực pháp lý để tham gia
+                    vào các Điều khoản
+                    sử dụng này trong quyền hạn của bạn.
+                </p>
+                <p>
+                    2. Dịch vụ chứa nội dung mà Job Market sở hữu hoặc cấp phép ("Nội dung Job Market ").
+                    Nội dung Job Market được
+                    bảo vệ bởi bản quyền, nhãn hiệu thương mại, bằng sáng chế, bí mật thương mại và
+                    các luật khác, đồng
+                    thời giữa bạn và Job Market , Job Market sở hữu và nắm giữ tất cả các quyền về
+                    Dịch vụ và Nội dung Job Market.
+                    Bạn không được xóa, thay đổi hoặc che giấu bất kỳ thông báo nào về bản quyền,
+                    nhãn hiệu thương mại,
+                    nhãn hiệu dịch vụ hay quyền sở hữu khác được kết hợp với hay đi kèm Nội dung Job
+                    Market và bạn không
+                    được sao chép, sửa đổi, điều chỉnh, chuẩn bị các sản phẩm phái sinh dựa trên,
+                    thực hiện, hiển thị,
+                    xuất bản, phân phối, truyền đi, phát, bán, cấp phép hoặc khai thác Nội dung Job
+                    Market.
+                </p>
+                <p>
+                    3. Logo và tên Job Market là các nhãn hiệu thương mại của Job Market và không được
+                    sao chép, giả mạo hay sử
+                    dụng toàn bộ hoặc một phần khi chưa có sự cho phép trước bằng văn bản của Job
+                    Market. Ngoài ra, tất cả
+                    các tiêu đề trang, đồ họa tùy chỉnh, biểu tượng nút và tập lệnh đều là nhãn hiệu
+                    dịch vụ, nhãn hiệu
+                    thương mại và/hoặc bao bì thương mại của Job Market và không được sao chép, giả
+                    mạo hay sử dụng toàn bộ
+                    hoặc một phần khi chưa có sự cho phép trước bằng văn bản của Job Market.
+                </p>
+                <p>
+                    4. Mặc dù mục đích của Job Market là cung cấp Dịch vụ nhiều nhất có thể nhưng sẽ có
+                    trường hợp Dịch vụ có
+                    thể bị gián đoạn, bao gồm nhưng không giới hạn ở việc gián đoạn để bảo trì hoặc
+                    nâng cấp theo lịch
+                    trình, để sửa chữa khẩn cấp hay do lỗi của thiết bị và/hoặc liên kết viễn thông.
+                    Ngoài ra, Job Market có
+                    quyền xóa bất kỳ Nội dung nào khỏi Dịch vụ vì bất kỳ lý do gì mà theo nhận định
+                    của mình, là vi phạm
+                    Điều Khoản này, vi phạm pháp luật, quy tắc hoặc quy định, có tính chất lăng mạ,
+                    gây rối, xúc phạm
+                    hoặc bất hợp pháp, hoặc vi phạm các quyền, hoặc nguy hại hoặc đe dọa sự an toàn
+                    của Người dủng của
+                    bất kỳ trang web nào thuộc Job Market. Job Market có quyền trục xuất người dùng
+                    và ngăn chặn quyền truy cập
+                    sau đó của họ tới trang web và ứng dụng của Job Market và/hoặc sử dụng các dịch
+                    vụ Job Market khi vi phạm
+                    Điều Khoản này hoặc vi phạm pháp luật, quy tắc hoặc quy định. Job Market được
+                    phép thực hiện bất kỳ hành
+                    động nào liên quan đến Nội dung Người dùng khi tự xét thấy cần thiết hoặc thích
+                    hợp nếu Job Market tin
+                    rằng Nội dung Người dùng có thể tạo ra trách nhiệm pháp lý cho Job Market, gây
+                    thiệt hại đến thương hiệu
+                    Job Market hoặc hình ảnh công cộng, hoặc dẫn đến việc Job Market để mất người
+                    dùng. Nội dung bị xóa khỏi
+                    Dịch vụ có thể tiếp tục được Job Market lưu trữ, bao gồm nhưng không giới hạn ở
+                    việc lưu trữ để tuân thủ
+                    một số nghĩa vụ pháp lý nhất định nhưng có thể không truy xuất được nếu không có
+                    lệnh hợp lệ của tòa
+                    án. Job Market sẽ không chịu trách nhiệm pháp lý với bạn về bất kỳ sửa đổi, tạm
+                    ngừng hay gián đoạn Dịch
+                    vụ nào hoặc việc mất mát bất kỳ Nội dung nào. Bạn cũng xác nhận rằng Internet có
+                    thể không an toàn
+                    và rằng việc gửi Nội dung hoặc thông tin khác có thể không an toàn.
+                </p>
+                <p>
+                    5. Job Market sẽ không chịu trách nhiệm với bất cứ thông tin đăng tải của bên thứ ba
+                    nào, cho dù với lý
+                    do nào, do bất cứ tổ chức nào đăng tải nội dung trên Job Market. Tuy nhiên, Job
+                    Market sẽ cố gắng sử dụng
+                    mọi biện pháp kiểm soát và hạn chế tối đa các trường hợp tin tuyển dụng lừa đảo,
+                    thông tin không
+                    đúng….để bảo vệ Người Dùng. Job Market không đại diện hoặc đảm bảo tính trung
+                    thực, chính xác, hoặc độ
+                    tin cậy của Nội dung Người dùng, các sản phẩm phái sinh từ Nội dung Người dùng,
+                    hoặc bất kỳ thông
+                    tin liên lạc khác được đăng bởi Người dùng cũng như không xác nhận bất kỳ ý kiến
+                    nào được thể hiện
+                    bởi Người dùng. Bạn thừa nhận rằng việc tin tưởng nào vào tài liệu được đăng bởi
+                    Người dùng khác là
+                    rủi ro của riêng bạn.
+                </p>
+
+                <h4>7. TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM</h4>
+                <p>
+                    1. Job Market không tuyên bố hay đảm bảo rằng dịch vụ sẽ không bị lỗi hay không bị
+                    gián đoạn; rằng các
+                    lỗi sẽ được khắc phục; hoặc rằng dịch vụ hoặc máy chủ cung cấp dịch vụ không bị
+                    nhiễm bất kỳ thành
+                    phần có hại nào, bao gồm nhưng không giới hạn ở vi-rút. Job Market không đưa ra
+                    bất kỳ tuyên bố hay đảm
+                    bảo nào rằng thông tin (bao gồm mọi hướng dẫn) về dịch vụ chính xác, đầy đủ hoặc
+                    hữu ích. Bạn xác
+                    nhận rằng bạn tự chịu rủi ro khi sử dụng dịch vụ. Job Market không đảm bảo rằng
+                    việc bạn sử dụng dịch vụ
+                    là hợp pháp trong bất kỳ khu vực pháp lý cụ thể nào và Job Market từ chối đưa ra
+                    các bảo đảm đó một cách
+                    cụ thể. Một số khu vực pháp lý giới hạn hoặc không cho phép tuyên bố miễn trừ
+                    trách nhiệm về bảo đảm
+                    ngụ ý hay các bảo đảm khác, vì vậy tuyên bố miễn trừ trách nhiệm trên có thể
+                    không áp dụng cho bạn
+                    trong phạm vi luật pháp của khu vực pháp lý đó áp dụng cho bạn và các điều khoản
+                    sử dụng này.
+                </p>
+                <p>
+                    2. Bằng cách truy cập hay sử dụng dịch vụ, bạn tuyên bố và bảo đảm rằng hoạt động của
+                    mình là hợp
+                    pháp trong mọi khu vực pháp lý nơi bạn truy cập hay sử dụng dịch vụ.
+                </p>
+                <p>
+                    3. Job Market không xác nhận nội dung và từ chối cụ thể bất kỳ trách nhiệm hay trách
+                    nhiệm pháp lý nào
+                    đối với bất kỳ cá nhân hay tổ chức nào về mọi mất mát, thiệt hại (cho dù thực
+                    sự, do hậu quả, do
+                    trừng phạt hoặc bất kỳ điều gì khác), thương tích, khiếu nại, trách nhiệm pháp
+                    lý hay nguyên nhân
+                    khác dưới mọi hình thức hoặc đặc điểm dựa trên hoặc do bất kỳ nội dung nào.
+                </p>
+
+                <h4>8. GIỚI HẠN TRÁCH NHIỆM PHÁP LÝ</h4>
+                <p>
+                    Trong mọi tình huống, Job Market sẽ không chịu trách nhiệm pháp lý với bạn về bất kỳ
+                    mất mát hay thiệt
+                    hại nào dưới mọi hình thức (bao gồm nhưng không giới hạn ở bất kỳ mất mát hay
+                    thiệt hại trực tiếp,
+                    gián tiếp, kinh tế, cảnh báo, đặc biệt, do trừng phạt, ngẫu nhiên hoặc do hậu
+                    quả nào) có liên quan
+                    trực tiếp hoặc gián tiếp đến: (a) dịch vụ; (b) nội dung Job Market; (c) nội dung
+                    người dùng; (d) việc
+                    bạn sử dụng, không thể sử dụng hoặc hiệu quả của dịch vụ; (e) mọi hành động được
+                    thực hiện có liên
+                    quan đến việc điều tra của Job Market hoặc cơ quan thực thi pháp luật về việc sử
+                    dụng dịch vụ của bạn
+                    hoặc bất kỳ bên nào khác; (f) bất kỳ hành động nào được thực hiện có liên quan
+                    đến chủ sở hữu bản
+                    quyền hoặc quyền sở hữu trí tuệ khác; (g) mọi lỗi hoặc thiếu sót trong hoạt động
+                    của dịch vụ; hoặc
+                    (h) mọi thiệt hại đối với mọi máy tính, thiết bị di động, thiết bị hoặc công
+                    nghệ khác của người
+                    dùng, bao gồm nhưng không giới hạn ở thiệt hại do bất kỳ hành vi vi phạm bảo mật
+                    nào hoặc do bất kỳ
+                    vi-rút, lỗi, giả mạo, gian lận, lỗi, thiếu sót, gián đoạn, khiếm khuyết, trì
+                    hoãn quá trình hoạt
+                    động hoặc truyền đi, lỗi mạng hay dòng máy tính, mọi sự cố kỹ thuật khác hoặc
+                    trục trặc khác, bao
+                    gồm nhưng không giới hạn ở thiệt hại do mất lợi nhuận, mất tín nhiệm, mất dữ
+                    liệu, ngừng việc, độ
+                    chính xác của kết quả hoặc lỗi hay trục trặc máy tính, ngay cả khi có thể dự
+                    đoán được hoặc Job Market
+                    đã được thông báo hay lẽ ra phải biết về khả năng xảy ra các thiệt hại đó, cho
+                    dù theo hợp đồng, do
+                    sơ ý, trách nhiệm pháp lý nghiêm ngặt hoặc sai lầm cá nhân (bao gồm, nhưng không
+                    giới hạn ở nguyên
+                    nhân một phần hoặc toàn bộ do sơ ý, thiên tai, lỗi viễn thông, lấy cắp hay hủy
+                    hoại dịch vụ). Trong
+                    mọi trường hợp, Job Market không chịu trách nhiệm pháp lý với bạn hoặc bất kỳ ai
+                    khác về mất mát, thiệt
+                    hại hoặc thương tích, bao gồm nhưng không giới hạn ở thương tích cá nhân hoặc
+                    tử vong.
+                </p>
+
+                <h4>9. GIẢI QUYẾT TRANH CHẤP</h4>
+                <p>
+                    1. Bất kỳ tranh chấp phát sinh trong quá trình sử dụng dịch vụ của Job Market sẽ được
+                    giải quyết theo
+                    pháp luật hiện hành của nước Cộng hòa xã hội chủ nghĩa Việt Nam.
+                </p>
+                <p>
+                    2. Bất kỳ khiếu nại nào phát sinh trong quá sử dụng sản phẩm phải được gửi đến Job
+                    Market ngay sau khi
+                    xảy ra sự kiện phát sinh khiếu nại:
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Địa chỉ liên lạc:
+                    <br>&nbsp;&nbsp;&nbsp;&nbsp;Điện
+                    thoại:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email:
+                    <a href="mailto: contact@job-market.jp">contact@job-market.jp</a>
+                </p>
+                <p>
+                    3. Job Market sẽ căn cứ từng trường hợp cụ thể để có phương án giải quyết cho phù
+                    hợp. Khi thực hiện
+                    quyền khiếu nại, người khiếu nại có nghĩa vụ cung cấp các giấy tờ, bằng chứng,
+                    căn cứ có liên quan
+                    đến việc khiếu nại và phải chịu trách nhiệm về nội dung khiếu nại, giấy tờ, bằng
+                    chứng, căn cứ do
+                    mình cung cấp theo quy định pháp luật.
+                </p>
+                <p>
+                    4. Job Market chỉ hỗ trợ, giải quyết khiếu nại, tố cáo của Người Dùng trong trường
+                    hợp bạn đã ghi đầy đủ,
+                    trung thực và chính xác thông tin khi đăng ký tài khoản.
+                </p>
+                <p>
+                    5. Đối với tranh chấp giữa Người Dùng với nhau, hoặc tranh chấp với Bên Thứ Ba, có
+                    thể Job Market sẽ gửi
+                    thông tin liên hệ cho các đối tượng tranh chấp để các bên tự giải quyết hoặc Job
+                    Market sẽ căn cứ vào
+                    tình hình thực tế để giải quyết. Theo đó, Job Market sẽ bảo vệ quyền lợi tối đa
+                    có thể cho Người Dùng
+                    hợp pháp và chính đáng.
+                </p>
+                <p>
+                    6. Người Dùng đồng ý bảo vệ, bồi hoàn và loại trừ Job Market khỏi những nghĩa vụ pháp
+                    lý, tố tụng, tổn
+                    thất, chi phí bao gồm nhưng không giới hạn án phí, chi phí luật sư, chuyên gia
+                    tư vấn có liên quan
+                    đến việc giải quyết hoặc phát sinh từ sự vi phạm của Người Dùng trong quá trình
+                    sử dụng sản phẩm.
+                </p>
+                <p>
+                    7. Nếu tranh chấp không được giải quyết trong vòng sáu mươi (60) ngày kể từ ngày một
+                    Bên thông báo
+                    cho Bên còn lại bằng văn bản về việc phát sinh tranh chấp thì một trong các Bên
+                    có quyền đưa vụ việc
+                    ra giải quyết tại tòa án có thẩm quyền tại TP Hà Nội theo quy định của pháp
+                    luật, Bên thua kiện sẽ
+                    phải chịu toàn bộ các chi phí tố tụng tại tòa án.
+                </p>
+
+                <h4>10. HIỆU LỰC THỎA THUẬN CỦA HỢP ĐỒNG</h4>
+                <p>
+                    1. Các điều khoản quy định tại Quy định sử dụng này có thể được cập nhật, chỉnh sửa
+                    bất cứ lúc nào mà
+                    không cần phải thông báo trước tới người sử dụng. Job Market sẽ công bố rõ trên
+                    Website, về những thay
+                    đổi, bổ sung đó.
+                </p>
+                <p>
+                    2. Trong trường hợp một hoặc một số điều khoản Quy định sử dụng này xung đột với các
+                    quy định của
+                    luật pháp và bị Tòa án tuyên là vô hiệu, điều khoản đó sẽ được chỉnh sửa cho phù
+                    hợp với quy định
+                    pháp luật hiện hành, và phần còn lại của Quy định sử dụng vẫn giữ nguyên giá
+                    trị.
+                </p>
+                <p>
+                    3. Thỏa thuận này có giá trị như Hợp Đồng. Người Dùng hiểu rằng, đây là hợp đồng điện
+                    tử, Giá trị
+                    pháp lý của hợp đồng điện tử không thể bị phủ nhận chỉ vì hợp đồng đó được thể
+                    hiện dưới dạng thông
+                    điệp dữ liệu theo Pháp Luật về Giao Dịch Điện Tử. Bằng cách nhấn vào nút "Đồng
+                    ý", Người Dùng hoàn
+                    toàn đồng ý và đã hiểu các điều khoản trong Hợp Đồng này và Hợp Đồng có hiệu lực
+                    kề từ thời điểm
+                    này. Nếu vi phạm các Điều khoản này, bạn đồng ý chịu hoàn toàn trách nhiệm và
+                    bồi thường thiệt hại
+                    (Nếu có) với Job Market.
+                </p>
+
+                <h4>THÔNG TIN LIÊN LẠC</h4>
+                <p>
+                    Nếu bạn có câu hỏi về Điều khoản sử dụng này, vui lòng gửi email tới địa chỉ: <a href="mailto: contact@job-market.jp">contact@job-market.jp</a> để được giải
+                    đáp nhanh nhất.
+                </p>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h3 class="text-center" style="color: red; font-weight: bold;">
+                        QUY ƯỚC SỬ DỤNG DỊCH VỤ (BẢN ANDROID)
+                    </h3>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <h4>Điều 1: Mục đích</h4>
+                <p>
+                    Bản quy ước này quy định các điều khoản đối với khách hàng đang sử dụng dịch vụ Job Market của công ty Jinzai Tech (dưới đây gọi là công ty) cho việc sử dụng dịch vụ in ấn tài liệu (dưới đây gọi là dịch vụ) bằng máy in đa năng của công ty Sharp Marketing đặt tại các doanh nghiệp mà công ty liên kết (dưới đây gọi là doanh nghiệp liên kết) và chuỗi cửa hàng nhượng quyền thương hiệu.
+                </p>
+                <h4>Điều 2: Phạm vi và việc điều chỉnh quy ước</h4>
+                <p>1. Dịch vụ in ấn này chỉ áp dụng đối với khách hàng (dưới đây gọi là người dùng) đang sử dụng dịch vụ Job Market của công ty Jinzai Tech, và đồng ý tuân thủ các điều khoản ghi trong quy ước này. Trong trường hợp người dùng cho phép bên thứ ba sử dụng dịch vụ, bên thứ ba cũng được coi là người sử dụng dịch vụ và người dùng có trách nhiệm đảm bảo bên thứ ba tuân thủ quy ước này. Người dùng có trách nhiệm liên đới trong quá trình sử dụng dịch vụ của bên thứ ba.</p>
+                <p>2. Công ty được phép điều chỉnh quy ước này vào bất cứ thời điểm nào mà không cần thông qua sự đồng ý của người dùng. Trong trường hợp có điều chỉnh, công ty sẽ thông báo đến người dùng nội dung bản quy ước điểu chỉnh theo cách thức ghi tại điều 22.</p>
+                <h4>Điều 3: Định nghĩa</h4>
+                <p>Các thuật ngữ xuất hiện trong quy ước được định nghĩa như sau:</p>
+                <p>1. “Cửa hàng”: dùng để gọi chung những cửa hàng do các doanh nghiệp liên kết kinh doanh, hoặc chuỗi cửa hàng nhượng quyền thương hiệu của các doanh nghiệp liên kết có đặt máy copy đa năng Sharp.</p>
+                <p>2. “Hệ thống dịch vụ”: là hệ thống máy chủ, công cụ, thiết bị, đường truyền có kết nối Internet sử dụng để cung cấp dịch vụ, do công ty hoặc bên thứ ba được công ty ủy thác vận hành dịch vụ theo điều 21 (bao gồm cả bên được bên thứ ba tái ủy thác, dưới đây gọi chung là “đơn vị ủy thác”) vận hành và quản lý.</p>
+                <p>3. “Máy in đa năng Sharp”: là máy in màu kỹ thuật số đa năng của công ty cổ phần Sharp (dưới đây gọi là Sharp) dùng cho dịch vụ in ấn này. Về từng loại máy cụ thể, công ty sẽ có hướng dẫn ở một văn bản khác.</p>
+                <p>4. “Website chuyên dụng”: là website do công ty vận hành để cung cấp dịch vụ (<a href="https://networkprint.ne.jp">https://networkprint.ne.jp</a>).</p>
+                <p>5. “Tài liệu đã đăng ký”: là tài liệu đã được người dùng đăng ký trên hệ thống dịch vụ. Về hình thức, kích thước và những điều khoản khác quy định cho tài liệu có thể đăng ký trên hệ thống dịch vụ, công ty sẽ hướng dẫn ở một văn bản khác.</p>
+                <h4>Điều 4: Nội dung dịch vụ</h4>
+                <p>
+                    Để sử dụng Dịch vụ bạn phải tạo một tài khoản theo yêu cầu của Job Market,
+                    bạn cam kết rằng việc sử dụng
+                    tài khoản phải tuân thủ các quy định của Job Market, đồng thời tất cả
+                    các thông tin bạn cung cấp cho
+                    chúng tôi là đúng, chính xác, đầy đủ với tại thời điểm được yêu cầu. Mọi
+                    quyền lợi và nghĩa vụ của
+                    bạn sẽ căn cứ trên thông tin tài khoản bạn đã đăng ký, do đó nếu có bất
+                    kỳ thông tin sai lệch nào
+                    chúng tôi sẽ không chịu trách nhiệm trong trường hợp thông tin đó làm
+                    ảnh hưởng hoặc hạn chế quyền
+                    lợi của bạn.
+                </p>
+
+                <h4>Điều 5: Điều kiện cung cấp dịch vụ</h4>
+                <p>1. Cùng với sự hợp tác của các doanh nghiệp liên kết, dịch vụ in ấn được cung cấp cho người dùng đang sinh sống tại Nhật Bản, nơi có trang thiết bị cần thiết cho việc sử dụng dịch vụ.</p>
+                <p>2. Nội dung, điều kiện, cách thức và những điều khoản khác của dịch vụ có thể được hạn định dựa trên tính hợp lý và khả năng cung cấp dịch vụ của công ty. </p>
+                <p>3. Công ty có quyền tự quyết xem xét việc bổ sung, thay đổi một phần hoặc toàn bộ dịch vụ mà không cần thông báo trước đến người dùng.</p>
+                <p>4. Công ty có quyền xem xét việc hủy bỏ cung cấp một phần hoặc toàn bộ dịch vụ sau khi đã thông báo trước đến người dùng theo cách thức ghi tại điều 22.</p>
+
+                <h4>Điều 6: Quy trình sử dụng dịch vụ</h4>
+                <p>Người dùng sử dụng dịch vụ theo những bước sau:</p>
+                <p>1. Đầu tiên, người dùng đăng ký trên hệ thống dịch vụ tài liệu dự định in tại cửa hàng theo như quy định trong hướng dẫn sử dụng dịch vụ Job Market của công ty Jinzai Tech. Sau khi hoàn tất các bước theo quy định sẽ có một tin nhắn thông báo hoàn thành đăng ký được gửi đến thiết bị di động đầu cuối iOS của người dùng, khi đó từng loại tài liệu coi như đã được hoàn tất đăng ký. Hình thức, kích cỡ và những điều khoản khác về tài liệu có thể đăng ký được quy định tại mục 5, điều 3. </p>
+                <p>2. Trong khoảng thời gian quy định tại mục 4 điều 10, người dùng nhập mã số sử dụng vào máy in đa năng Sharp đặt tại cửa hàng theo như các bước mà công ty hoặc doanh nghiệp liên kết hướng dẫn riêng, trả phí theo quy định tại điều 8, sau đó có thể in tài liệu đã đăng ký tương ứng với mã số đó. Người dùng tự có trách nhiệm kiểm tra trước khi in đảm bảo tài liệu cần in đúng với mã số vừa nhập. </p>
+
+                <h4>Điều 7: Quản lý mã số sử dụng</h4>
+                <p>1. Người dùng tự có trách nhiệm quản lý và sử dụng mã số sử dụng.</p>
+                <p>2. Công ty không chịu trách nhiệm cho những trường hợp người dùng gây lỗi, quản lý không chặt chẽ mã số sử dụng, làm rò rỉ thông tin mã số sử dụng trong quá trình sử dụng, hay trường hợp mã số sử dụng bị bên thứ ba dùng bất hợp pháp. Những trường hợp kể trên được coi như là hành vi sử dụng có ý thức của người dùng. Công ty cũng không chịu trách nhiệm cho những thiệt hại mà người dùng hoặc bên thứ ba gây ra với nguyên nhân không thể quy về trách nhiệm của công ty.</p>
+                <p>3. Khi mã số sử dụng bị đánh cắp, rò rỉ hay bị bên thứ ba sử dụng bất hợp pháp hoặc có những nguy cơ đó, người dùng phải ngay lập tức thông báo đến công ty. Tuy nhiên người dùng vẫn phải chịu trách nhiệm cho vấn đề này theo mục 2 ghi ở trên.</p>
+
+                <h4>Điều 8: Phí sử dụng dịch vụ</h4>
+                <p>Người dùng khi in tài liệu đã đăng ký theo quy định tại mục 2 điều 6, phải trả phí sử dụng bằng cách bỏ tiền vào máy bỏ xu gắn kèm với máy in đa năng Sharp đặt tại cửa hàng của doanh nghiệp liên kết. Phí sử dụng được quy định riêng tại từng doanh nghiệp liên kết.</p>
+
+                <h4>Điều 9: Chuẩn bị thiết bị và điều kiện cần thiết cho việc sử dụng dịch vụ</h4>
+                <p>1. Người dùng tự có trách nhiệm và tự bỏ phí để chuẩn bị thiết bị đầu cuối iOS, thiết bị truyền tin, phần mềm, và những thiết bị kèm theo khác cần thiết cho việc sử dụng dịch vụ, tự đăng ký với nhà cung cấp và đơn vị truyền phát để sử dụng mạng Internet. </p>
+                <p>2. Người dùng tự có trách nhiệm và tự bỏ phí để duy trì quản lý thiết bị, đảm bảo điều kiện cần thiết cho việc sử dụng dịch vụ thông suốt và chính xác.</p>
+                <p>3. Công ty không chịu trách nhiệm cho những tổn thất mà người dùng hoặc bên thứ ba phải chịu do người dùng vi phạm điều ghi ở mục 2. </p>
+
+                <h4>Điều 10: Về tài liệu đã được đăng ký</h4>
+                <p>1. Trong quá trình vận hành và cung cấp dịch vụ, công ty sẽ không công khai cho bên thứ ba thông tin tài liệu đã đăng ký của người dùng, trừ những trường hợp ghi dưới đây: </p>
+                <p>(1) Khi người dùng đồng ý công khai tài liệu đã đăng ký.</p>
+                <p>(2) Trong phạm vi cần thiết do yêu cầu của chính quyền và luật pháp phải mở công khai tài liệu đã đăng ký. </p>
+                <p>(3) Trong trường hợp phải mở công khai tài liệu đã đăng ký cho doanh nghiệp liên kết hoặc đơn vị ủy thác. Tuy nhiên, theo hợp đồng ký kết với doanh nghiệp liên kết và đơn vị ủy thác, công ty nhận trách nhiệm quản lý tài liệu đã đăng ký của người dùng nên tài liệu sẽ chỉ được công khai trong phạm vi cần thiết. </p>
+                <p>2. Trừ những trường hợp ở mục 5, công ty có những biện pháp phòng tránh việc xóa bỏ, gây mất mát, gây hư hại, sửa đổi, làm lộ, làm rò rỉ (dưới đây ghi là “xóa”) trên hệ thống dịch vụ và website chuyên dụng, công ty cũng có trách nhiệm đảm bảo đơn vị ủy thác có những biện pháp tương tự. Trong trường hợp tài liệu đã đăng ký bị xóa kể cả khi công ty đã có những biện pháp phòng chống, công ty sẽ không áp dụng quy định ở điều 19 về việc chịu trách nhiệm đối với bất kì tổn thất trực tiếp hay gián tiếp nào gây ra bởi người dùng hoặc bên thứ ba.</p>
+                <p>3. Trong quá trình vận hành, cung cấp dịch vụ, để xử lý lỗi hỏng trên hệ thống dịch vụ và website chuyên dụng, công ty có thể khôi phục, lưu trữ, hoặc yêu cầu đơn vị ủy thác khôi phục, lưu trữ tài liệu đã được đăng ký của người dùng. Tuy nhiên công ty và đơn vị ủy thác không có nghĩa vụ bắt buộc phải khôi phục và lưu trữ tài liệu đã được đăng ký của người dùng.</p>
+                <p>4. Về tài liệu đăng ký trên hệ thống dịch vụ, công ty sẽ xóa bỏ toàn bộ tài liệu đã đăng ký mà không cần thông báo đến người dùng sau 8 ngày kể từ thời gian đăng ký. </p>
+                <p>5. Trong trường hợp xem xét đến mức độ cần thiết cho việc vận hành và cung cấp dịch vụ, công ty sẽ có thông báo đến người dùng theo cách thức quy định tại điều 22 sau đó xóa bỏ một phần hoặc toàn bộ tài liệu đã đăng ký. </p>
+                <p>6. Công ty không chịu trách nhiệm cho những tổn thất người dùng hoặc bên thứ ba phải chịu với những nguyên nhân ghi ở mục 2.</p>
+
+                <h4>Điều 11: Bảo mật thông tin cá nhân</h4>
+                <p>
+                    Những thông tin cá nhân (thông tin có thể dùng để nhận diện được một cá nhân xác định) liên quan đến người dùng, được đảm bảo theo mục “Về thông tin cá nhân” đăng trên homepage của công ty. (<a href="http://www.sharp-sbs.co.jp/contact/networkprint/index.html">http://www.sharp-sbs.co.jp/contact/networkprint/index.html</a>)
+                </p>
+
+                <h4>Điều 12: Ngừng cung cấp và giới hạn cung cấp dịch vụ</h4>
+                <p>1. Công ty có quyền ngừng vận hành và cung cấp một phần hoặc toàn bộ dịch vụ với cách thức mà công ty đánh giá là phù hợp để bảo trì, kiểm tra, sửa chữa, cập nhật hệ thống dịch vụ và website chuyên dụng sau khi đã thông báo đến người dùng với cách thức thông báo quy định tại điều 22.</p>
+                <p>2. Với mỗi trường hợp như ở dưới đây, công ty có quyền ngừng hoặc giới hạn vận hành và cung cấp một phần hoặc toàn bộ dịch vụ mà không cần thông báo trước đến người dùng.</p>
+                <p>(1) Trường hợp người dùng có vi phạm hoặc có hành vi dẫn đến vi phạm những điều ghi trong mục 1 điều 13.</p>
+                <p>(2) Bản thân người dùng hoặc máy tính, thiết bị truyền phát viễn thông, phần mềm của người dùng gây ra lỗi truy cập, lỗi truyền tín hiệu, tấn công hoặc làm hư hại cho hệ thống dịch vụ, website chuyên dụng, kể cả do cố ý hay không.</p>
+                <p>(3) Trường hợp người dùng và công ty cùng nhất trí hủy hoặc ngừng cung cấp và sử dụng dịch vụ.</p>
+                <p>(4) Phát sinh hoặc có nguy cơ phát sinh thiên tai, chiến tranh, bạo động, nội loạn, quy định sửa đổi luật, thực thi lệch của toàn án và chính quyền, biểu tình, ngắt điện (kể cả trường hợp ngắt điện theo lịch) và những sự việc khẩn cấp khác.</p>
+                <p>(5) Phát sinh hoặc có nguy cơ phát sinh hư hại trên hệ thống dịch vụ, website chuyên dụng, đường truyền tín hiệu hoặc các thiết bị khác.</p>
+                <p>(6) Trường hợp đơn vị truyền phát tín hiệu điện ngừng cung cấp dịch vụ truyền tín hiệu điện cho đường dây kết nối mạng Internet dùng trong vận hành, cung cấp và sử dụng dịch vụ. </p>
+                <p>(7) Trường hợp bắt buộc phải ngừng cung cấp dịch vụ với lí do yêu cầu tính hệ thống và khẩn cấp về vận hành và kỹ thuật.</p>
+                <p>(8) Trường hợp phát sinh những nguyên nhân không thể quy trách nhiệm về phía công ty.</p>
+                <p>2. Trừ những trường hợp ở mục 5, công ty có những biện pháp phòng tránh việc xóa bỏ, gây mất mát, gây hư hại, sửa đổi, làm lộ, làm rò rỉ (dưới đây ghi là “xóa”) trên hệ thống dịch vụ và website chuyên dụng, công ty cũng có trách nhiệm đảm bảo đơn vị ủy thác có những biện pháp tương tự. Trong trường hợp tài liệu đã đăng ký bị xóa kể cả khi công ty đã có những biện pháp phòng chống, công ty sẽ không áp dụng quy định ở điều 19 về việc chịu trách nhiệm đối với bất kì tổn thất trực tiếp hay gián tiếp nào gây ra bởi người dùng hoặc bên thứ ba.</p>
+                <p>3. Trong quá trình vận hành, cung cấp dịch vụ, để xử lý lỗi hỏng trên hệ thống dịch vụ và website chuyên dụng, công ty có thể khôi phục, lưu trữ, hoặc yêu cầu đơn vị ủy thác khôi phục, lưu trữ tài liệu đã được đăng ký của người dùng. Tuy nhiên công ty và đơn vị ủy thác không có nghĩa vụ bắt buộc phải khôi phục và lưu trữ tài liệu đã được đăng ký của người dùng.</p>
+                <p>4. Về tài liệu đăng ký trên hệ thống dịch vụ, công ty sẽ xóa bỏ toàn bộ tài liệu đã đăng ký mà không cần thông báo đến người dùng sau 8 ngày kể từ thời gian đăng ký. </p>
+                <p>5. Trong trường hợp xem xét đến mức độ cần thiết cho việc vận hành và cung cấp dịch vụ, công ty sẽ có thông báo đến người dùng theo cách thức quy định tại điều 22 sau đó xóa bỏ một phần hoặc toàn bộ tài liệu đã đăng ký. </p>
+                <p>6. Công ty không chịu trách nhiệm cho những tổn thất người dùng hoặc bên thứ ba phải chịu với những nguyên nhân ghi ở mục 2.</p>
+
+                <h4>Điều 13: Nghĩa vụ của người dùng</h4>
+                <p>1. Người dùng không được phép vi phạm hoặc có hành vi dẫn đến vi phạm những điều dưới đây trong quá trình sử dụng dịch vụ. Trong trường hợp người dùng vi phạm hoặc có hành vi dẫn đến vi phạm những điều dưới đây, và trường hợp công ty nhận thấy nguy cơ vi phạm của người dùng, công ty có quyền thực hiện các biện pháp xử lí thích hợp mà không cần thông báo trước hay cảnh báo đến người dùng.</p>
+                <p>(1) Sử dụng, cung cấp hay truyền dẫn chương trình nhiễm vi-rút.</p>
+                <p>(2) Gây thiệt hại cho công ty hoặc cho người dùng khác. </p>
+                <p>(3) Xóa bỏ, gây mất mát, gây hư hại, sửa đổi, làm lộ, làm rò rỉ thông tin của công ty hoặc của người dùng khác.</p>
+                <p>(4) Phân biệt, vu khống, làm tổn hại đến uy tín và danh dự của công ty hoặc của người dùng khác.</p>
+                <p>(5) Xâm hại đời tư cá nhân và quyền bảo vệ hình ảnh cá nhân của người dùng khác. </p>
+                <p>(6) Xâm hại tài sản của công ty hoặc của người dùng khác (bao gồm cả quyền sở hữu trí tuệ).</p>
+                <p>(7) Có hành vi trái với thuần phong mỹ tục. </p>
+                <p>(8) Có hành vi phạm tội hoặc hành vi dẫn đến phạm tội.</p>
+                <p>(9) Gây quá tải, gây trở ngại nghiêm trọng cho hệ thống dịch vụ hoặc website chuyên dụng (không chỉ riêng đối với hành vi phá hoại dữ liệu lưu trữ trên hệ thống và website), gây trở ngại cho việc vận hành và cung cấp dịch vụ.</p>
+                <p>(10) Sử dụng cho mục đích bán ý tưởng và nội dung của dịch vụ.</p>
+                <p>(11) Vi phạm điều khoản ghi trong quy ước.</p>
+                <p>(12) Vi phạm những quy định khác của pháp luật.</p>
+                <p>(13) Có hành vi mà công ty đánh giá là không phù hợp.</p>
+                <p>2. Người dùng chịu hoàn toàn trách nhiệm về quá trình sử dụng dịch vụ và kết quả in, nếu người dùng gây thiệt hại cho công ty và người dùng khác trong quá trình sử dụng dịch vụ sẽ phải bồi thường tương ứng.</p>
+
+                <h4>Điều 14: Tuân thủ quy định xuất khẩu</h4>
+                <p>Người dùng sử dụng dịch vụ từ các chi nhánh, văn phòng, trụ sở kinh doanh hay cơ sở khác ngoài Nhật Bản (cơ sở thường trú hoặc tạm trú), địa điểm tạm trú khi đi công tác, người dùng đăng ký tài liệu trên hệ thống dịch vụ từ các địa điểm ngoài Nhật Bản phải nắm rõ trách nhiệm của bản thân về việc quản lý xuất khẩu, phải tuân thủ những quy định về xuất khẩu áp dụng cho việc sử dụng dịch vụ (ngoại hối, luật thương mại, quy định tái xuất khẩu của Mỹ và quy định về xuất khẩu của các nước khác).</p>
+
+                <h4>Điều 15: Tư cách sử dụng và mất tư cách sử dụng</h4>
+                <p>Khi người dùng vi phạm hoặc có hành vi dẫn đến vi phạm điều ghi tại mục 1 điều 13, công ty có quyền đình chỉ tạm thời việc sử dụng dịch vụ của người dùng hoặc tước tư cách sử dụng của người dùng mà không cần thông báo hoặc cảnh báo trước. Người dùng buộc phải dừng việc sử dụng dịch vụ ngay sau thời điểm bị mất tư cách sử dụng. </p>
+
+                <h4>Điều 16: Quyền tác giả</h4>
+                <p>1. Thông qua việc sử dụng dịch vụ, người dùng không được phép sử dụng những tài liệu thuộc phạm vi ngoài sự cho phép sử dụng của tác giả hoặc người có quyền tác giả và phạm vi ngoài sự cho phép sử dụng của luật định.</p>
+                <p>2. Thông qua việc sử dụng dịch vụ, người dùng không được phép cho người thứ ba sử dụng những tài liệu kể trên, trừ trường hợp được tác giả hoặc người có quyền tác giả cho phép.</p>
+                <p>3. Công ty không chịu trách nhiệm đối với các vấn đề phát sinh khi người dùng vi phạm các quy định trong quy ước này, trong trường hợp công ty phải chịu tổn thất gây ra bởi những vi phạm của người dùng, người dùng phải chịu trách nhiệm bồi thường.</p>
+
+                <h4>Điều 17: Giải đáp thắc mắc liên quan đến dịch vụ</h4>
+                <p>Trong trường hợp xuất hiện vấn đề và những điểm không rõ ràng về dịch vụ, trừ trường hợp được công ty quy định riêng, người dùng gửi thư điện tử đến địa chỉ thư điện tử của công ty (<a href="mailto:networkprint-support@networkprint.ne.jp">networkprint-support@networkprint.ne.jp</a>), hoặc điền vào các mục cần thiết trong mẫu đăng tải trên website chuyên dụng cố định của công ty. Công ty chỉ giải đáp các thắc mắc của người dùng thông qua hai kênh thông tin này. Những thắc mắc của khách hàng sẽ được công ty hồi đáp trong khoảng thời gian 9 giờ sáng đến 5 giờ 40 phút chiều (giờ Nhật Bản) từ thứ hai đến thứ sáu (trừ ngày nghỉ lễ, ngày nghỉ đầu và cuối năm theo quy định của công ty). </p>
+
+                <h4>Điều 18: Miễn trách nhiệm</h4>
+                <p>1. Theo nghĩa vụ của công ty được quy định trong quy ước này, trong trường hợp tổn thất gây ra cho người dùng bởi những lý do thuộc về trách nhiệm của công ty, công ty sẽ bồi thường những thiệt hại trực tiếp và thông thường mà trên thực tế người dùng phải chịu. Tuy nhiên, trách nhiệm bồi thường thiệt hại của công ty không phụ thuộc vào lí do yêu cầu bồi thường và có mức cao nhất là 10.000 Yên. Những tổn thất, tổn hại lợi ích, yêu cầu bồi thường thiệt hại từ bên thứ ba phát sinh trong các tình huống đặc biệt sẽ không được công ty chịu trách nhiệm.</p>
+                <p>2. Sau 1 năm kể từ ngày công ty bắt đầu tiếp nhận yêu cầu bồi thường của người dùng mà người dùng không gửi yêu cầu bồi thường thì người dùng sẽ bị mất quyền đòi bồi thường.</p>
+
+                <h4>Điều 20: Nghiêm cấm chuyển nhượng quyền lợi và nghĩa vụ</h4>
+                <p>Trừ những điều quy định trong quy ước, người dùng không được chuyển nhượng, cho phép thừa kế hay thế chấp một phần hoặc toàn bộ quyền lợi và nghĩa vụ ghi trong quy ước này cho bên thứ ba.</p>
+
+                <h4>Điều 21: Ủy thác cho bên thứ ba</h4>
+                <p>Công ty có quyền ủy thác hoặc để bên thứ ba thực hiện một phần hoặc toàn bộ nghĩa vụ của công ty quy định trong quy ước này.</p>
+
+                <h4>Điều 22: Cách thức liên lạc với người dùng</h4>
+                <p>Trừ những quy định riêng biệt, việc liên lạc và thông báo từ công ty đến người dùng sẽ thực hiện công khai trên website chuyên dụng. Việc liên lạc và thông báo coi như đã hoàn thành khi được đăng công khai trên website chuyên dụng của công ty. </p>
+
+                <h4>Điều 23: Luật định cơ sở</h4>
+                <p>Việc thành lập, thực thi, biên dịch và hiệu lực của quy ước này đều dựa trên cơ sở áp dụng luật pháp Nhật Bản.</p>
+
+                <h4>Điều 24: Giải quyết mâu thuẫn</h4>
+                <p>1. Những điều khoản không được quy định trong quy ước và những vấn đề phát sinh do sai sót trong dịch thuật các mục của quy ước sẽ được thống nhất trên tinh thần giải đáp, tháo gỡ thắc mắc. </p>
+                <p>2. Những mâu thuẫn liên quan đến quy ước sẽ được xử lí dựa trên quyết định của tòa án có thẩm quyền cao nhất là tòa án Tokyo và tòa án Osaka.</p>
+                <p class="text-right">Hết.</p>
+            </div>
+        </div>
+</body>
+
+
+
+</html>

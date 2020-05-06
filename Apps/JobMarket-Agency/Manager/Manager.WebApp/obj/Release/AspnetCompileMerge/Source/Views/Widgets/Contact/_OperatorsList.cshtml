@@ -1,0 +1,43 @@
+﻿@using MsSql.AspNet.Identity.Entities
+@using Manager.WebApp.Resources
+@model List<BaseOnlineUserIdentity>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        var displayName = !string.IsNullOrEmpty(item.DisplayName) ? item.DisplayName : item.UserName;
+        <div class="item cr-private-msg pointer mb10 ml20" id="contact-@item.Id" data-userid="@item.Id" data-t="@((int)EnumMessengerObjectType.Admin)">
+            <div class="contact-item padr0">
+                <div class="avatar float-left">
+                    <img src="@item.Avatar" class="border-round-img" alt="@displayName" title="@displayName" width="40" height="40">
+                    @*<i class="online @((item.IsOnline)? "": "hidden")"></i>*@
+                </div>
+                <div class="mb0 float-left" style="margin:10px;" title="@displayName">@displayName (@item.UserName)</div>
+            </div>
+            @*<div class="col-xs-3 folow text-right">
+                    @if (item.IsOnline)
+                    {
+                        <span class="online-text">@UserWebResource.LB_ONLINE</span>
+                    }
+                    else
+                    {
+                        var timeTitle = (item.LastOnline != null) ? item.LastOnline.Value.ToString("dd/MM/yyyy HH:mm") : string.Empty;
+                        if (item.LastOnline != null)
+                        {
+                            <span class="online-text livetimestamp-title" title="@timeTitle" data-utime="@EpochTime.GetIntDate(item.LastOnline.Value)">@DateHelpers.FormatToOnlineStringTitle(item.LastOnline.Value)</span>
+                        }
+                        else
+                        {
+                            <span class="online-text livetimestamp-title"></span>
+                        }
+                    }
+                </div>*@
+            <div class="clearfix"></div>
+
+            <div class="hidden contact-minifier-@item.Id">
+                <div class="display-name minifier-item" data-userid="@item.Id">@displayName</div>
+            </div>
+        </div>
+    }
+}

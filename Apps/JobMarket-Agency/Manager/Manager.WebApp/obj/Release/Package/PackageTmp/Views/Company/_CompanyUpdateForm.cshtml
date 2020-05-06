@@ -1,0 +1,288 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.CompanyEditModel
+
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+@Html.AntiForgeryToken()
+
+<input type="hidden" id="CurrentCountry" value="@(Model.Address.country_id)" />
+<input type="hidden" id="CurrentRegion" value="@(Model.Address.region_id)" />
+<input type="hidden" id="CurrentPrefecture" value="@(Model.Address.prefecture_id)" />
+<input type="hidden" id="CurrentCity" value="@(Model.Address.city_id)" />
+<input type="hidden" id="CountrySelectCounter" value="0" />
+<input type="hidden" id="RegionSelectCounter" value="0" />
+<input type="hidden" id="PrefectureSelectCounter" value="0" />
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-3 col-sm-12" title="@ManagerResource.LB_COVER_IMAGE">
+        <div class="form-group">
+            <div class="upload-portfolio mb10">
+                <div class="uploadbox" id="uploadbox">
+                    <img class="file-upload-btn thumbImg img-full-center pointer @((string.IsNullOrEmpty(Model.logo_full_path)) ? "hidden" : string.Empty)" src="@Model.logo_full_path" />
+                    <label for="file-upload" class="custom-file-upload file-upload-icon @((!string.IsNullOrEmpty(Model.logo_full_path)) ? "hidden" : string.Empty)">
+                        <i class="la la-cloud-upload"></i> <span>@ManagerResource.LB_UPLOAD_COMPANY_LOGO</span>
+                    </label>
+                    @Html.HiddenFor(m => m.logo_path)
+                    <input id="file-upload" class="file-upload-storage hidden" name="@Html.NameFor(m=>m.image_file_upload)" type="file" data-preview="uploadbox">
+                </div>
+            </div>
+            @*@Html.Partial("../Widgets/FormControls/_MediaBrowser", new MediaFileViewModel { FieldName = "image_file_upload", FieldValue = Model.logo_path, StorageElementName = "logo_path", FullPath = Model.logo_full_path })*@
+        </div>
+    </div>
+
+    <div class="col-lg-9 col-sm-12">
+        <div class="row">
+            <div class="col-lg-12 form-group">
+                <label class="">
+                    @ManagerResource.LB_COMPANY_NAME (<span class="required-input">*</span>)
+                </label>
+
+                @Html.TextBoxFor(m => m.company_name, new { @class = "form-control", @autocomplete = "off" })
+                @Html.ValidationMessageFor(m => m.company_name, null, new { @class = "text-danger" })
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-12 form-group">
+                        <label class="">
+                            @ManagerResource.LB_ESTABLISHED_YEAR
+                        </label>
+
+                        @Html.TextBoxFor(m => m.establish_year, new { @class = "form-control", @autocomplete = "off", length = 4 })
+                        @Html.ValidationMessageFor(m => m.establish_year, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12 form-group">
+                        <label class="">
+                            @ManagerResource.LB_COMPANY_SIZE
+                        </label>
+
+                        <select class="form-control m-select2 select-company-size" name="@Html.NameFor(m=>m.company_size_id)">
+                            @if (Model.CompanySizes.HasData())
+                            {
+                                foreach (var item in Model.CompanySizes)
+                                {
+                                    <option value="@item.id" @(item.id == Model.company_size_id ? "selected" : string.Empty)> @item.size @ManagerResource.LB_EMPLOYEES</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 form-group">
+                        <label>@ManagerResource.LB_JOB_INDUSTRY</label>
+                        <select class="form-control selectpicker select-industry" name="@Html.NameFor(m=>m.sub_industry_id)" data-live-search="true" data-size="7">
+                            @if (Model.Industries.HasData())
+                            {
+                                foreach (var industry in Model.Industries)
+                                {
+                                    if (industry.Sub_industries.HasData())
+                                    {
+                                        var industryName = industry.LangList.Where(x => x.language_code == currentLang).Select(x => x.industry).FirstOrDefault();
+                                        if (string.IsNullOrEmpty(industryName))
+                                        {
+                                            industryName = industry.industry;
+                                        }
+                                        <optgroup label="@industryName">
+                                            @foreach (var sub in industry.Sub_industries)
+                                            {
+                                                var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_industry).FirstOrDefault();
+                                                if (string.IsNullOrEmpty(subName))
+                                                {
+                                                    subName = sub.sub_industry;
+                                                }
+                                                <option value="@sub.id" @(sub.id == Model.sub_industry_id ? "selected" : "")
+                                                        data-subtext="@industryName" class="text-muted-hidden">
+                                                    @subName
+                                                </option>
+                                            }
+                                        </optgroup>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_EMAIL
+        </label>
+
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.email, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_WEBSITE
+        </label>
+
+        @Html.TextBoxFor(m => m.website, new { @class = "form-control", @autocomplete = "off" })
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_PHONE
+        </label>
+
+        @Html.TextBoxFor(m => m.phone, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.phone, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_FAX
+        </label>
+
+        @Html.TextBoxFor(m => m.fax, new { @class = "form-control", @autocomplete = "off" })
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_RESIDENCE_COUNTRY
+        </label>
+
+        <select class="form-control m-select2 select-country" name="@Html.NameFor(m=>m.Address.country_id)">
+            @if (Model.Countries.HasData())
+            {
+                <option value="0">@ManagerResource.LB_SELECT_COUNTRY</option>
+                foreach (var item in Model.Countries)
+                {
+                    <option value="@item.id" @(item.id == Model.Address.country_id ? "selected" : string.Empty)> @item.country</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_REGION
+        </label>
+
+        <select class="form-control m-select2 select-region" name="@Html.NameFor(m=>m.Address.region_id)">
+            <option value="0">@ManagerResource.LB_SELECT_REGION</option>
+            @*@if (Model.Regions.HasData())
+                {
+                    <option value="0">--- @ManagerResource.LB_SELECT_REGION ---</option>
+                    foreach (var item in Model.Regions)
+                    {
+                        <option value="@item.id" @(item.id == Model.Address.region_id ? "selected" : string.Empty)> @item.furigana (@item.region)</option>
+                    }
+                }*@
+        </select>
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_PREFECTURE
+        </label>
+
+        <select class="form-control m-select2 select-prefecture" name="@Html.NameFor(m=>m.Address.prefecture_id)">
+            <option value="0">@ManagerResource.LB_SELECT_PREFECTURE</option>
+        </select>
+    </div>
+
+    <div class="col-lg-3 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_CITY
+        </label>
+
+        <select class="form-control m-select2 select-city" name="@Html.NameFor(m=>m.Address.city_id)">
+            <option value="0">@ManagerResource.LB_SELECT_CITY</option>
+        </select>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_ADDRESS_DETAIL
+        </label>
+
+        @Html.TextBoxFor(m => m.address_detail, new { @class = "form-control", @autocomplete = "off" })
+    </div>
+
+    @*<div class="col-lg-6 col-sm-12">
+            <label class="">
+                @ManagerResource.LB_ADDRESS_FURIGANA
+            </label>
+
+            @Html.TextBoxFor(m => m.address_furigana, new { @class = "form-control", @autocomplete = "off" })
+        </div>*@
+</div>
+
+<div class="form-group m-form__group row">
+
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_OTHER_INFO
+        </label>
+
+        @Html.TextAreaFor(m => m.description, new { @class = "form-control", @autocomplete = "off", rows = "5" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_PERSON_CHARGE
+        </label>
+        @RenderUser()
+    </div>
+</div>
+@*<div class="form-group m-form__group row">
+        <label class="col-form-label col-lg-1 col-sm-12">
+            @ManagerResource.LB_STATUS
+        </label>
+        <div class="col-lg-3 col-md-3 col-sm-12">
+            <select name="@Html.NameFor(m => m.Status)" id="@Html.IdFor(m => m.Status)" class="form-control btn-white">
+                @foreach (var item in Enum.GetValues(typeof(EnumStatus)))
+                {
+                    var chkItem = (int)item;
+                    var chkStr = string.Empty;
+                    if (chkItem == Model.Status)
+                    {
+                        chkStr = "selected";
+                    }
+                    <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                }
+            </select>
+        </div>
+    </div>*@
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <a class="btn btn-outline-info btn-back" @*data-back="@Url.Action("Index", "Company")"*@ href="@Url.Action("Index", "Company")"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+
+        <button type="submit" class="btn btn-outline-info pull-right">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+    </div>
+</div>
+@helper RenderUser()
+{
+    var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+    if (ListUser != null && ListUser.Count > 0)
+    {
+        var checkedText = "selected";
+        <select id="@Html.IdFor(m=>m.pic_id)" name="@Html.NameFor(m=>m.pic_id)" data-live-search="true" class="form-control m-select2 m-input m-input--square">
+            @foreach (var item in ListUser)
+            {
+                <option value="@item.StaffId" @((item.StaffId == Model.pic_id) ? checkedText : "")>
+                    @item.FullName
+                </option>
+            }
+        </select>
+    }
+}

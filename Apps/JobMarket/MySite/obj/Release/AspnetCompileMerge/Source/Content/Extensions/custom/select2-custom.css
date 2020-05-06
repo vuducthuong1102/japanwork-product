@@ -1,0 +1,12 @@
+﻿.select2-selection__rendered{white-space:normal;word-break:break-all}
+.select2-container .select2-selection--multiple{max-height:61px}
+.select2-container .select2-search--inline .select2-search__field{padding:0 70px 0 25px !important;margin-top:unset!important}
+.select2-results__option{margin-bottom:0}
+.select2-container{border:2px solid #e8ecec;border-radius:8px}
+.select2-selection__rendered{line-height:31px!important;padding:14px 45px 14px 0;font-size:13px}
+.select2-container--default .select2-selection--single .select2-selection__rendered{color:#888!important;padding-left:10px}
+.select2-selection__rendered > span{color:#888!important;padding-left:10px}
+.select2-container--default .select2-selection--single{border:0 none!important}
+.select2-container .select2-selection--single{height:56px!important;border:0 none!important}
+.select2-selection__arrow{height:56px!important}
+.select2-results__message{font-size:13px;color:#888}

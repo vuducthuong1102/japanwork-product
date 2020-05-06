@@ -1,0 +1,17 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@model List<IdentityPrefecture>
+
+@{
+    var hasData = Model.HasData();
+}
+
+<option value="0">--- @ManagerResource.LB_SELECT_PREFECTURE ---</option>
+@if (hasData)
+{
+    foreach (var item in Model)
+    {
+        <option value="@item.id">@item.furigana (@item.prefecture)</option>
+    }
+}

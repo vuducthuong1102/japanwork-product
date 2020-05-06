@@ -1,0 +1,240 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.JobInfoModel
+
+@{    
+    var title = string.Empty;
+    var slug = string.Empty;
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+    if (Model.Job_translations.HasData())
+    {
+        title = Model.Job_translations[0].title;
+        slug = Model.Job_translations[0].friendly_url;
+        if (string.IsNullOrEmpty(slug))
+        {
+            slug = UrlFriendly.ConvertToUrlFriendly(Model.Job_translations[0].title);
+        }
+    }
+
+    var detailLink = SecurityHelper.GenerateSecureLink("job", "detail", new { lr = slug, id = Model.id });
+}
+@*<div class="job-listing wtabs pb0">
+    <div class="job-title-sec">
+        <div class="c-logo">
+            <a href="@detailLink" class="company-logo">
+                @if (Model.company_info != null)
+                {
+                    if (!string.IsNullOrEmpty(Model.company_info.logo_full_path))
+                    {
+                        <img src="@Model.company_info.logo_full_path" title="@Model.company_info.company_name" style="width:98px;height:100%;object-fit:cover" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                    }
+                    else
+                    {
+                        <img src="@defaultComLogo" title="@Model.company_info.company_name" style="width:98px;object-fit:cover" />
+                    }
+                }
+                else
+                {
+                    <img src="@defaultComLogo" alt="" style="width:98px;object-fit:cover" />
+                }
+            </a>            
+        </div>
+        <h3><a href="@detailLink" title="@UserWebResource.LB_VIEW_DETAIL">@title</a></h3>
+        <a href="@detailLink">
+            @if (Model.salary_min == 0 && Model.salary_max == 0)
+            {
+                <span class="text-info">@UserWebResource.LB_SALARY: @UserWebResource.LB_SALARY_COMPOSITION</span>
+            }
+            else
+            {                
+                <span class="text-info">@UserWebResource.LB_SALARY: @Model.salary_min.FormatWithComma() - @Model.salary_max.FormatWithComma() @Model.employment_type_calculate_label</span>
+            }
+        </a>
+        <div class="job-lctn">
+            @{
+                if (Model.Addresses.HasData())
+                {
+                    var workStations = (Model.Addresses.HasData()) ? Model.Addresses[0].Stations : null;
+                    var stationDetail = string.Empty;
+
+                    var totalAddress = Model.Addresses.Count();
+                    var workAddress = Model.Addresses[0];
+                    var addressDetail = FrontendHelpers.RenderJobWorkingAddress(workAddress, Model.view_company);
+                    <div title="@UserWebResource.LB_ADDRESSES">
+                        <i class="la la-map-marker"></i>
+                        @if (!string.IsNullOrEmpty(addressDetail))
+                        {
+                            if (totalAddress > 1)
+                            {
+                                <span>@addressDetail - </span><span class="text-danger"><b>(@totalAddress @UserWebResource.LB_ADDRESSES.ToLower())</b></span>
+                            }
+                            else
+                            {
+                                @addressDetail
+                            }
+                        }
+                        else
+                        {
+                            @("---")
+                        }
+                    </div>
+
+                    if (Model.employment_type_show_trains)
+                    {
+                        if (workStations.HasData())
+                        {
+                            stationDetail = string.Join(", ", workStations.Select(x => x.furigana));
+                            <div title="@UserWebResource.LB_STATIONS">
+                                <i class="la la-train"></i>
+                                @if (!string.IsNullOrEmpty(stationDetail))
+                                {
+                                    @stationDetail
+                                }
+                                else
+                                {
+                                    @("---")
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="transparent">
+                            <i class="la la-train"></i>
+                            @("---")
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div title="@UserWebResource.LB_ADDRESSES">
+                        <i class="la la-map-marker"></i>
+                        ---
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="job-style-bx pt0" style="bottom: 56%;">
+        <span class="fav-job @((User.Identity.IsAuthenticated) ? "btn-save-job" : "unauthorized") fz-30" data-id="@Model.id" title="@UserWebResource.LB_SAVE_THIS_JOB"><i class="la @((Model.Extensions.is_saved) ? "la-heart text-danger": "la-heart la-heart-o")"></i></span>
+        @if (Model.created_at != null)
+        {
+            <i title="@Model.created_at.Value">
+                @DateHelpers.FormatToStringTitle(Model.created_at.Value)
+            </i>
+        }
+    </div>
+</div>*@
+
+<div class="row job-list-item" style="margin: 10px 0px 10px 0px;">
+    <div class="col-md-2 mb10">
+        <a href="@detailLink" class="company-logo" style="margin:0 auto;">
+            @if (Model.company_info != null)
+            {
+                if (!string.IsNullOrEmpty(Model.company_info.logo_full_path))
+                {
+                    <img class="lazy" src="@defaultComLogo" data-original="@Model.company_info.logo_full_path" width="640" heigh="480" title="@Model.company_info.company_name" style="width:98px;height:100%;object-fit:contain" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                }
+                else
+                {
+                    <img src="@defaultComLogo" title="@Model.company_info.company_name" style="width:98px;object-fit:contain" />
+                }
+            }
+            else
+            {
+                <img src="@defaultComLogo" alt="" style="width:98px;object-fit:contain" />
+            }
+        </a>
+    </div>
+    <div class="col-md-8">
+        <div class="fz-15 mb5">
+            <a href="@detailLink" title="@UserWebResource.LB_VIEW_DETAIL">
+                <b style="color:#555">@title</b>
+            </a>
+        </div>
+        <div class="text-info fz-13 mb5">
+            <a href="@detailLink">
+                @if (Model.salary_min == 0 && Model.salary_max == 0)
+                {
+                    <i class="fa fa-money fz-15"></i> <span>@UserWebResource.LB_SALARY: @UserWebResource.LB_SALARY_COMPOSITION</span>
+                }
+                else
+                {
+                    <i class="fa fa-money fz-15"></i> <span>@UserWebResource.LB_SALARY: @Model.salary_min.FormatWithComma() - @Model.salary_max.FormatWithComma() @Model.employment_type_calculate_label</span>
+                }
+            </a>            
+        </div>
+
+        @{
+            if (Model.Addresses.HasData())
+            {
+                var workStations = (Model.Addresses.HasData()) ? Model.Addresses[0].Stations : null;
+                var stationDetail = string.Empty;
+
+                var totalAddress = Model.Addresses.Count();
+                var workAddress = Model.Addresses[0];
+                var addressDetail = FrontendHelpers.RenderJobWorkingAddress(workAddress, Model.view_company);
+
+                <div title="@UserWebResource.LB_ADDRESSES" class="fz-13 mb5">
+                    <i class="la la-map-marker fz-15"></i>
+                    @if (!string.IsNullOrEmpty(addressDetail))
+                    {
+                        if (totalAddress > 1)
+                        {
+                            <span>@addressDetail - </span><span class="text-danger"><b>(@totalAddress @UserWebResource.LB_ADDRESSES.ToLower())</b></span>
+                        }
+                        else
+                        {
+                            @addressDetail
+                        }
+                    }
+                    else
+                    {
+                        @("---")
+                    }
+                </div>
+
+                if (Model.employment_type_show_trains)
+                {
+                    if (workStations.HasData())
+                    {
+                        stationDetail = string.Join(", ", workStations.Select(x => x.furigana));
+
+                        <div title="@UserWebResource.LB_STATIONS" class="fz-13">
+                            <i class="la la-train fz-15"></i>
+                            @if (!string.IsNullOrEmpty(stationDetail))
+                            {
+                                @stationDetail
+                            }
+                            else
+                            {
+                                @("---")
+                            }
+                        </div>                        
+                    }
+                }
+                else
+                {
+                    <div title="@UserWebResource.LB_STATIONS" class="transparent fz-13">
+                        <i class="la la-train"></i>
+                        @("---")
+                    </div>
+                }
+            }
+            else
+            {
+                <div title="@UserWebResource.LB_ADDRESSES" class="fz-13 mb5">
+                    <i class="la la-map-marker"></i>
+                    ---
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-2 text-center">
+        <div class="pointer @((User.Identity.IsAuthenticated) ? "btn-save-job" : "unauthorized") fz-30" data-id="@Model.id" title="@UserWebResource.LB_SAVE_THIS_JOB"><i class="la @((Model.Extensions.is_saved) ? "la-heart text-danger": "la-heart la-heart-o")"></i></div>
+        @if (Model.created_at != null)
+        {
+            <span class="fz-13" style="color:#888888"><i title="@Model.created_at.Value"></i> @DateHelpers.FormatToStringTitle(Model.created_at.Value)</span>
+        }
+    </div>
+</div>

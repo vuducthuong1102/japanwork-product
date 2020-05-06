@@ -1,0 +1,175 @@
+2020-01-18 11:17:12,956 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 11:17:12,968 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-18 11:17:12,968 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 11:17:13,079 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 11:17:13,080 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-18 11:17:13,081 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 11:17:19,918 [7] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:17:19,918 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:17:19,937 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:17:19,937 [7] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:17:27,129 [12] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 11:17:27,137 [12] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 11:17:30,494 [12] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 11:17:36,348 [11] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 11:17:36,350 [11] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 11:17:36,366 [11] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 11:17:38,477 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:17:38,485 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:17:56,498 [20] DEBUG MySite.Controllers.WebAuthController - Begin REGISTER-WEB request
+2020-01-18 11:17:56,503 [20] DEBUG MySite.Controllers.WebAuthController - REGISTER-WEB Model encrypted = {"UserName":"vuducthuong1102@gmail.com","Email":null,"Birthday":null,"Sex":null,"Address":null,"Full_Name":null,"Display_Name":null,"CMTND":null,"Phone":null,"Note":null,"HaveReadTerm":false}
+2020-01-18 11:17:56,650 [10] DEBUG MySite.Controllers.WebAuthController - Ended REGISTER-WEB request
+2020-01-18 11:18:07,742 [17] DEBUG MySite.Controllers.WebAuthController - Begin REGISTER-WEB request
+2020-01-18 11:18:07,743 [17] DEBUG MySite.Controllers.WebAuthController - REGISTER-WEB Model encrypted = {"UserName":"vuducthuong1103@gmail.com","Email":null,"Birthday":null,"Sex":null,"Address":null,"Full_Name":null,"Display_Name":null,"CMTND":null,"Phone":null,"Note":null,"HaveReadTerm":false}
+2020-01-18 11:18:09,802 [7] DEBUG MySite.Controllers.WebAuthController - Ended REGISTER-WEB request
+2020-01-18 11:19:08,300 [8] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 11:19:08,302 [8] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 11:19:08,416 [8] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 11:19:10,158 [35] ERROR MySite.WebApiApplication - Application Error: The provided anti-forgery token was meant for user "", but the current user is "{"Id":1,"UserName":"bangkhmt3@gmail.com","Email":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=/JobSeekers/1/resource_1576483068.png","PhoneNumber":"0966722466","CreatedDateUtc":null,"TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","TokenCreatedDate":"2020-01-18T11:19:08.3334861+07:00","TokenExpiredDate":"2020-01-19T03:59:08.3334861+07:00","LoginDurations":1000,"OTPType":""}".
+System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for user "", but the current user is "{"Id":1,"UserName":"bangkhmt3@gmail.com","Email":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=/JobSeekers/1/resource_1576483068.png","PhoneNumber":"0966722466","CreatedDateUtc":null,"TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","TokenCreatedDate":"2020-01-18T11:19:08.3334861+07:00","TokenExpiredDate":"2020-01-19T03:59:08.3334861+07:00","LoginDurations":1000,"OTPType":""}".
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at MySite.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in C:\Project\Apps\JobMarket\MySite\Controllers\BaseController.cs:line 25
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-01-18 11:19:23,040 [21] ERROR MySite.WebApiApplication - Application Error: The provided anti-forgery token was meant for user "", but the current user is "{"Id":1,"UserName":"bangkhmt3@gmail.com","Email":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=/JobSeekers/1/resource_1576483068.png","PhoneNumber":"0966722466","CreatedDateUtc":null,"TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","TokenCreatedDate":"2020-01-18T11:19:08.3334861+07:00","TokenExpiredDate":"2020-01-19T03:59:08.3334861+07:00","LoginDurations":1000,"OTPType":""}".
+System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for user "", but the current user is "{"Id":1,"UserName":"bangkhmt3@gmail.com","Email":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=/JobSeekers/1/resource_1576483068.png","PhoneNumber":"0966722466","CreatedDateUtc":null,"TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","TokenCreatedDate":"2020-01-18T11:19:08.3334861+07:00","TokenExpiredDate":"2020-01-19T03:59:08.3334861+07:00","LoginDurations":1000,"OTPType":""}".
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at MySite.Controllers.BaseController.BeginExecuteCore(AsyncCallback callback, Object state) in C:\Project\Apps\JobMarket\MySite\Controllers\BaseController.cs:line 25
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-01-18 11:19:39,003 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:19:39,008 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:22:04,653 [67] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:22:04,658 [67] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:22:11,739 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:22:11,743 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 11:22:23,957 [67] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 11:22:23,962 [67] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 13:49:22,854 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 13:49:22,866 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-18 13:49:22,867 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 13:49:23,008 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 13:49:23,008 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-18 13:49:23,009 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 13:49:27,583 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 13:49:27,591 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 14:55:49,385 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 14:55:49,387 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-18 14:55:49,388 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 14:55:49,498 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 14:55:49,499 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-18 14:55:49,500 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 14:55:51,451 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 14:55:51,467 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 14:56:10,213 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 14:56:10,221 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 14:56:41,567 [5] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 14:56:41,573 [5] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 14:56:43,982 [5] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 14:56:48,630 [34] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 14:56:48,631 [34] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 14:56:48,653 [34] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 14:56:50,378 [9] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 14:56:50,380 [9] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 14:56:50,393 [9] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 14:56:51,992 [29] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 14:56:51,998 [29] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 14:59:21,630 [34] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 14:59:21,631 [34] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 14:59:21,656 [34] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 15:00:03,140 [41] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-18 15:00:03,141 [41] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-18 15:00:03,223 [41] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-18 15:05:10,014 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:05:10,022 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:05:16,252 [46] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:05:16,258 [46] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:05:36,233 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:05:36,242 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:05:43,570 [59] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:05:43,575 [59] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:05:52,514 [68] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:05:52,520 [68] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:06:02,961 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:06:02,967 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:06:11,004 [68] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:06:11,010 [68] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 15:57:41,876 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 15:57:41,878 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-18 15:57:41,879 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 15:57:41,974 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 15:57:41,975 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-18 15:57:41,976 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 15:57:44,770 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-18 15:57:44,783 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-18 17:55:43,586 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 17:55:43,588 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-18 17:55:43,588 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 17:55:43,682 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 17:55:43,683 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-18 17:55:43,683 [1] INFO  MySite.Startup - ======================================================
+2020-01-18 17:55:50,463 [9] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Shared\_Layout.cshtml(31): error CS0117: 'MySite.Helpers.UrlFriendly' does not contain a definition for 'GetBaseUrl'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Shared\_Layout.cshtml(31): error CS0117: 'MySite.Helpers.UrlFriendly' does not contain a definition for 'GetBaseUrl'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.CreateInstanceFromVirtualPath(VirtualPath virtualPath, Type requiredBaseType, HttpContext context, Boolean allowCrossApp)
+   at System.Web.WebPages.BuildManagerWrapper.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.VirtualPathFactoryManager.CreateInstanceOfType[T](String virtualPath)
+   at System.Web.WebPages.WebPageBase.CreatePageFromVirtualPath(String virtualPath, HttpContextBase httpContext, Func`2 virtualPathExists, DisplayModeProvider displayModeProvider, IDisplayMode displayMode)
+   at System.Web.WebPages.WebPageBase.<>c__DisplayClass3.<RenderPageCore>b__2(TextWriter writer)
+   at System.Web.WebPages.WebPageBase.Write(HelperResult result)
+   at System.Web.WebPages.WebPageBase.RenderSurrounding(String partialViewName, Action`1 body)
+   at System.Web.WebPages.WebPageBase.PopContext()
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

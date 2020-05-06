@@ -1,0 +1,48 @@
+﻿@using ApiMySiteMessenger.DB.Sql.Entities
+@using MySite.Helpers
+@using MySite.Models
+@model List<IdentityConversationReply>
+
+@{
+    var userInfo = AccountHelper.GetCurrentUser();
+}
+
+@*@if (userInfo != null && Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        var itemModel = new MessageItemModel();
+        itemModel.CurrentUserId = userInfo.Id;
+        item.UserOneInfo = Model[0].UserOneInfo;
+        item.UserTwoInfo = Model[0].UserTwoInfo;
+        itemModel.MessageItem = item;
+
+        if (userInfo.Id == item.UserId)
+        {
+            @Html.Partial("../Messenger/Partials/ChatBox/_MessageMine", itemModel)
+        }
+        else
+        {
+            @Html.Partial("../Messenger/Partials/ChatBox/_MessageGuest", itemModel)
+        }
+    }
+}*@
+
+@{
+    var listMessageModel = MessengerHelper.GroupListMessageModel(Model, userInfo.Id);
+    if (listMessageModel != null && listMessageModel.Count > 0)
+    {
+        foreach (var item in listMessageModel)
+        {
+            if (item.MessageItem.UserId == userInfo.Id)
+            {
+                @Html.Partial("../Messenger/Partials/ChatBox/_MessageMine", item)
+            }
+            else
+            {
+                @Html.Partial("../Messenger/Partials/ChatBox/_MessageGuest", item)
+            }
+        }
+    }
+
+}

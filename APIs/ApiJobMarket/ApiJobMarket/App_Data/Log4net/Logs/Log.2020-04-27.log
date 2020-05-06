@@ -1,0 +1,84 @@
+2020-04-27 00:13:38,253 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 00:13:38,268 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-27 00:13:38,269 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 00:13:38,410 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 00:13:38,411 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-27 00:13:38,412 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 14:13:13,366 [211] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 14:13:13,379 [211] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-27 14:13:13,380 [211] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 14:13:13,506 [211] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 14:13:13,507 [211] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-27 14:13:13,507 [211] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 15:34:42,048 [174] ERROR ApiJobMarket.Helpers.AgencyNotificationHelper - Failed to SendNotifSignToStaffs because: System.AggregateException: One or more errors occurred. ---> System.AggregateException: One or more errors occurred. ---> Microsoft.AspNet.SignalR.Client.HttpClientException: StatusCode: 500, ReasonPhrase: 'Internal Server Error', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:
+{
+  Transfer-Encoding: chunked
+  Cache-Control: private
+  Date: Mon, 27 Apr 2020 08:34:42 GMT
+  Server: Microsoft-IIS/10.0
+  X-AspNet-Version: 4.0.30319
+  X-Powered-By: ASP.NET
+  Content-Type: text/html; charset=utf-8
+}
+   at Microsoft.AspNet.SignalR.Client.Http.DefaultHttpClient.<>c__DisplayClass5_0.<Get>b__1(HttpResponseMessage responseMessage)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at ApiJobMarket.SignalrConnection.<.ctor>b__5_0() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Startup.cs:line 240
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at ApiJobMarket.SignalrConnection..ctor() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Startup.cs:line 245
+   at ApiJobMarket.SignalrConnection.<>c.<.cctor>b__13_0() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Startup.cs:line 220
+   at System.Lazy`1.CreateValue()
+   at System.Lazy`1.LazyInitValue()
+   at ApiJobMarket.Helpers.AgencyNotificationHelper.SendNotifSignToStaffs(String staffIds, Int32 notifId) in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Helpers\Notification\AgencyNotificationHelper.cs:line 23
+---> (Inner Exception #0) System.AggregateException: One or more errors occurred. ---> Microsoft.AspNet.SignalR.Client.HttpClientException: StatusCode: 500, ReasonPhrase: 'Internal Server Error', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:
+{
+  Transfer-Encoding: chunked
+  Cache-Control: private
+  Date: Mon, 27 Apr 2020 08:34:42 GMT
+  Server: Microsoft-IIS/10.0
+  X-AspNet-Version: 4.0.30319
+  X-Powered-By: ASP.NET
+  Content-Type: text/html; charset=utf-8
+}
+   at Microsoft.AspNet.SignalR.Client.Http.DefaultHttpClient.<>c__DisplayClass5_0.<Get>b__1(HttpResponseMessage responseMessage)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   at ApiJobMarket.SignalrConnection.<.ctor>b__5_0() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Startup.cs:line 240
+   at Microsoft.AspNet.SignalR.Client.Connection.OnClosed()
+   at Microsoft.AspNet.SignalR.Client.Connection.Disconnect()
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.<>c__DisplayClass19_1.<ContinueWithNotComplete>b__0(Task t)
+---> (Inner Exception #0) Microsoft.AspNet.SignalR.Client.HttpClientException: StatusCode: 500, ReasonPhrase: 'Internal Server Error', Version: 1.1, Content: System.Net.Http.StreamContent, Headers:
+{
+  Transfer-Encoding: chunked
+  Cache-Control: private
+  Date: Mon, 27 Apr 2020 08:34:42 GMT
+  Server: Microsoft-IIS/10.0
+  X-AspNet-Version: 4.0.30319
+  X-Powered-By: ASP.NET
+  Content-Type: text/html; charset=utf-8
+}
+   at Microsoft.AspNet.SignalR.Client.Http.DefaultHttpClient.<>c__DisplayClass5_0.<Get>b__1(HttpResponseMessage responseMessage)
+   at Microsoft.AspNet.SignalR.TaskAsyncHelper.TaskRunners`2.<>c__DisplayClass3_0.<RunTask>b__0(Task`1 t)<---
+<---
+
+2020-04-27 21:02:41,503 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:02:41,515 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-27 21:02:41,516 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:02:41,652 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:02:41,653 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-27 21:02:41,654 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:28:26,821 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:28:26,823 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-27 21:28:26,825 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:28:26,924 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-27 21:28:26,926 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-27 21:28:26,928 [1] INFO  ApiJobMarket.Startup - ======================================================

@@ -1,0 +1,235 @@
+﻿@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageCvPreviewModel
+
+@{ 
+    var avatarUrl = string.Empty;
+    if(Model.CvInfo != null && Model.CvInfo.jobseeker != null)
+    {
+        if(Model.CvInfo.jobseeker.Extensions != null)
+        {
+            if (MyObjectExtensions.PropertyExists(Model.CvInfo.jobseeker.Extensions, "image_full"))
+            {
+                 avatarUrl = Model.CvInfo.jobseeker.Extensions.image_full;
+            }
+        }
+    }
+
+    if (string.IsNullOrEmpty(avatarUrl))
+    {
+        avatarUrl = "/assets/app/media/img/users/default-avatar.jpg";
+    }
+}
+
+<table width="100%" style="border:0">
+    <tbody>
+        <tr>
+            <td style="padding:  0;border:0"><h2 style="margin: 0;">履歴書</h2></td>
+            <td style="padding:  0;border:0;text-align:right;padding-right:20%">@(Model.CvInfo.date.Value.Year + "年" + Model.CvInfo.date.Value.Month + "月" + Model.CvInfo.date.Value.Day + "日")</td>
+        </tr>
+    <tbody>
+</table>
+
+<table width="100%" style="margin-bottom:25px;font-size: 12px">
+    <tbody>
+        <tr>
+            <td width="10%" style="border-bottom: 1px dotted #000;border-right: 0;border-top: 1px solid #000;">フリガナ</td>
+            <td colspan="4" style="border-bottom: 1px dotted #000;border-left: 0;border-top: 1px solid #000;border-right: 1px solid #000;">@Model.CvInfo.fullname_furigana</td>
+
+            <td rowspan="4" width="20%" class="td123">
+                <div style="width:113.4px;height:151.2px;">
+                    <img style="width:113.4px;height:151.2px;object-fit: cover;"
+                         src="@avatarUrl"
+                         onerror="this.onerror=null;this.src='/Content/Avatars/profile-pic.jpg';">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border-top: 0;border-bottom: 1px solid #000;border-right: 1px solid #000;font-family: msmincho">
+                氏名
+                <br>
+                <h2 style="text-align: center;margin: 10px 0 20px; font-family:Times New Roman ">@Model.CvInfo.fullname</h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-top:0;">生年月日</td>
+            <td colspan="3" width="60%" style="border-top: 0;border-left:0 ;text-align: center">
+                @{
+                    var birthday = Model.CvInfo.birthday;
+
+                }
+                @(birthday.Value.Year + "年" + birthday.Value.Month + "月" + birthday.Value.Day + "日生")　（満0歳）
+            </td>
+            <td style="text-align: center;border-top: 0; border-left:0">
+                <span class="@(Model.CvInfo.gender == 1 ? "circle" : "")">男</span>・<span class="@(Model.CvInfo.gender == 0 ? "circle" : "")">女</span>
+            </td>
+        </tr>
+        <tr style="text-align: center;">
+            <td style="border-top:0">携帯電話</td>
+            <td width="25%" style="border-top:0;border-left:0;">
+                <div style="
+                                height: 20px;
+                                overflow: hidden;
+                                "> @Model.CvInfo.phone</div>
+                            </td>
+                            <td width="10%" style="border-top:0;border-left:0;">E-MAIL</td>
+                            <td colspan="2" style="border-top:0;border-left:0;">
+                                <div style="
+                    height: 20px;
+                    overflow: hidden;
+                    ">  @Model.CvInfo.email</div>
+                </td>
+
+            </tr>
+            <tr>
+                <td colspan="5" rowspan="2" style="border-top: 0;border-top:0;">
+                    <div style="height:20px;overflow: hidden;">
+                        @if (Model.address_contact != null)
+                        {
+                            if (Model.address.AddressInfo != null)
+                            {
+                                @("現住所〒" + Model.address.AddressInfo.detail)
+                            }
+                        }
+                    </div>
+                    <div style="height:30px;overflow: hidden;">
+                        @if (Model.address_contact != null)
+                        {
+                            @("青森県青森市" + FrontendHelpers.GenerateCvDetailAddressPrint(Model.address))
+                        }
+                    </div>
+                </td>
+                <td style="border-top: 0;border-left:0; border-bottom:0">FAX</td>
+
+            </tr>
+            <tr>
+                <td style="border-top:0;border-left: 0;"></td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 0;border-top:0" colspan="5">フリガナ @FrontendHelpers.GenerateCvDetailAddressPrintFurigana(Model.address)</td>
+                <td style="border-bottom: 0;border-top:0;border-left:0">電話</td>
+            </tr>
+            <tr>
+                <td colspan="5" rowspan="2">
+                    <div style="height:20px;overflow: hidden; ">
+                        @if (Model.address_contact != null)
+                        {
+                            if (Model.address_contact.AddressInfo != null)
+                            {
+                                @("連絡先〒" + Model.address_contact.AddressInfo.detail)
+                            }
+                        }
+                    </div>
+                    <div style="height:20px;overflow: hidden;">
+                        @if (Model.address_contact != null)
+                        {
+                            @("青森県青森市" + FrontendHelpers.GenerateCvDetailAddressPrint(Model.address_contact))
+                        }
+                    </div>
+                </td>
+                <td style="border-left:0; border-bottom:0">FAX</td>
+            </tr>
+            <tr>
+                <td style="border-top: 0; border-left:0"></td>
+            </tr>
+
+        </tbody>
+    </table>
+    @{
+        var countRow = 13;
+    }
+    <table width="100%" border="1" style="margin-bottom:50px;">
+        <tbody>
+            <tr style="text-align: center;">
+                <td style="border-right: 1px dashed #000;width:15%">西暦</td>
+                <td style="border-left: 0;width:8%"> 月</td>
+                <td colspan="2" style="border-left: 0;border-right:0;"> 学歴･職歴（各項目ごとにまとめて書く）</td>
+            </tr>
+            <tr style="text-align: center;">
+                <td style="border-right: 1px dashed #000;border-top:0"></td>
+                <td style="border-left: 0;border-top:0"> </td>
+                <td colspan="2" style="border-left: 0;border-top:0;border-right:0;">学歴</td>
+            </tr>
+            @{
+                var listEduHistory = Model.CvInfo.edu_history;
+                var listWordHistory = Model.CvInfo.work_history;
+            }
+            @if (listEduHistory != null && listEduHistory.Count > 0)
+            {
+                foreach (var item in listEduHistory)
+                {
+                    countRow--;
+                    <tr>
+                        <td style="border-right: 1px dashed #000;border-top:0;width:15%;text-align: center;">@item.start_date.DateTimeQuestToString("yyyy")</td>
+                        <td style="border-left: 0;border-top:0;width:8%;text-align: center;">@item.start_date.DateTimeQuestToString("MM")</td>
+                        <td style="border-right:0;border-top:0;border-left: 0">
+                            <div style="overflow:hidden;line-height:20px;height:20px">
+                                @item.school
+                            </div>
+                        </td>
+                        <td style="width:20%;border-left:0;border-top:0;border-right:0;">
+                            <div style="overflow:hidden;line-height:20px;height:20px">
+                                @item.address
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+            <tr style="text-align: center;">
+                <td style="border-right: 1px dashed #000;border-top:0"></td>
+                <td style="border-left: 0;border-top:0"> </td>
+                <td colspan="2" style="border-left: 0;border-top:0;border-right:0;"></td>
+            </tr>
+
+            <tr style="text-align: center;">
+                <td style="border-right: 1px dashed #000;border-top:0"></td>
+                <td style="border-left: 0;border-top:0"> </td>
+                <td colspan="2" style="border-left: 0;border-top:0;border-right:0">職歴</td>
+            </tr>
+            @if (listWordHistory != null && listWordHistory.Count > 0)
+            {
+                foreach (var item in listWordHistory)
+                {
+                    countRow--;
+                    <tr style="text-align: center;">
+                        <td style="border-right: 1px dashed #000;border-top:0">@item.start_date.DateTimeQuestToString("yyyy")</td>
+                        <td style="border-left: 0;border-top:0">@item.start_date.DateTimeQuestToString("MM")</td>
+                        <td colspan="2" style="border-left: 0;border-top:0;border-right:0;">
+                            <div style="line-height:20px;text-align: left">
+                                @item.company　契約社員　入社（@item.content_work）
+                            </div>
+                        </td>
+                    </tr>
+                    if (item.updated_at != null)
+                    {
+                        countRow--;
+                        <tr style="text-align: center;">
+                            <td style="border-right: 1px dashed #000;border-top:0">@item.updated_at.DateTimeQuestToString("yyyy")</td>
+                            <td style="border-left: 0;border-top:0">@item.updated_at.DateTimeQuestToString("MM")</td>
+                            <td colspan="2" style="border-left: 0;border-top:0;border-right:0;">
+                                <div style="line-height:20px;text-align: left">
+                                    @item.company　退職
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+            <tr>
+                <td style="border-right: 1px dashed #000;border-top:0"></td>
+                <td style="border-left: 0;border-top:0"> </td>
+                <td style="border-right:0; border-top:0;border-left: 0"></td>
+                <td style="width:20%; border-left:0; border-right:0;border-top:0">以上</td>
+            </tr>
+            @if (countRow > 0)
+            {
+                for (int i = 0; i < countRow; i++)
+                {
+                    <tr>
+                        <td style="border-right: 1px dashed #000;border-top:0"></td>
+                        <td style="border-left: 0;border-top:0"> </td>
+                        <td colspan="2" style="text-align:right;border-right:none;border-left: 0;border-top:0"></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>

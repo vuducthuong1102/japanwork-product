@@ -1,0 +1,20 @@
+﻿.custom-scrollbar{max-height:100%}
+.selection-area-container{background-color:#fff3f3;padding:5px}
+.item-col{padding-right:-15px}
+ul{list-style:none;padding:0;margin:0}
+.item-col ul li{font-size:11pt;font-weight:700;cursor:pointer;margin-bottom:0;padding:5px 10px 10px}
+.selection-area{height:300px;border-radius:5px;border:1px solid #ccc;background-color:#fff}
+.item-col ul.item-region > li,.item-col ul.item-prefecture > li{border-bottom:1px solid #ccc;font-weight:700;cursor:pointer}
+.item-col ul li.active{background-color:#f2f9ff}
+.item-col ul li a{color:#212121;text-decoration:none}
+.item-col ul li.hover-color:hover{background-color:#f2f9ff}
+.item-col-title{margin:10px 0;font-weight:700;font-size:16px;text-align:center}
+.sub-child{border-radius:0!important;border:0 none!important}
+.item-station li{padding-bottom:5px!important}
+.sub-child.has-child li{padding-bottom:0}
+.item-station label{font-weight:400}
+.item-train-line{padding-top:10px}
+.item-col-default{text-align:center;margin-top:10px}
+.btn-area-choose{color:#7474ab;font-size:25px}
+.btn-area-choose i{vertical-align:top}
+.selection-area-container .item-col-content ul{width:100%}

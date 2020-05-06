@@ -1,0 +1,168 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@model MySite.Models.CvCreationMethodModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-pencil-square-o fz-16"></i> @UserWebResource.LB_CREATE_CV
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("ConfirmCvCreationMethod", "Cv", FormMethod.Post, new { @id = "frmConfirmCvCreationMethod" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.cv_id, new { id =  "SelectedCv"})
+    @Html.HiddenFor(m => m.form, new { id = "CvType"})
+<div class="modal-body">
+    <div class="form-group row">
+        @*<div class="col-md-3">
+            <label class="base-label">@UserWebResource.LB_CREATE_CV_METHOD</label>
+        </div>*@
+        <div class="col-md-12">
+            <input type="radio" class="rdMethod" @((Model.creation_method == 0) ? "checked" : string.Empty) name="creation_method" value="0" id="0_@Html.IdFor(m=>m.creation_method)" /> <label class="fz-13" for="0_@Html.IdFor(m=>m.creation_method)"> @UserWebResource.BT_CREATE_NEW</label>
+            <input type="radio" class="rdMethod" @((Model.creation_method == 1) ? "checked" : string.Empty) name="creation_method" value="1" id="1_@Html.IdFor(m=>m.creation_method)" /> <label class="fz-13" for="1_@Html.IdFor(m=>m.creation_method)"> @UserWebResource.BT_CREATE_CV_METHOD_CLONE</label>
+        </div>
+    </div>
+
+    <div class="form-group row" id="ChooseCvArea">
+        @*<div class="col-md-3">
+            <label class="base-label">@UserWebResource.LB_CHOOSE_CV</label>
+        </div>*@
+        <div class="col-md-12">            
+            <select class="chosen-cv form-control" id="ddlCv" name="@Html.NameFor(m=>m.cv_id)"> 
+
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row" id="ChooseCvTypeArea">
+        @*<div class="col-md-3"></div>*@
+        <div class="col-md-12">
+            <a data-value="0" class="btn btn-sm btn-outline-info btn-outline-danger btnCvType"> <i class="fa fa-check type-check"></i> @UserWebResource.LB_MAIN_CV</a>
+            <a data-value="1" class="btn btn-sm btn-outline-info btnCvType"> <i class="fa fa-check type-check hidden"></i> @UserWebResource.LB_PARTIME_CV</a>
+        </div>
+    </div>
+</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-check"></i> @UserWebResource.BT_CONFIRM
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(".btnCvType").click(function () {
+        $(".btnCvType").find(".type-check").addClass("hidden");
+        $(".btnCvType").removeClass("btn-outline-danger");
+        $(this).addClass("btn-outline-danger");
+        $(this).find(".type-check").removeClass("hidden");
+
+        $("#CvType").val($(this).data("value"));
+    });
+
+    $(".rdMethod").change(function () {        
+        var method = parseInt($('input[name="creation_method"]:checked').val());
+        if (method == 0) {
+            //default
+            $("#ChooseCvArea").addClass("hidden");
+            $("#ChooseCvTypeArea").removeClass("hidden");
+        } else {
+            //clonse
+            $("#ChooseCvArea").removeClass("hidden");
+            $("#ChooseCvTypeArea").addClass("hidden");
+        }
+    });
+
+    $("#ddlCv").change(function () {
+        var cv_id = $(this).find(':selected').val();
+        $("#SelectedCv").val(cv_id);
+    });
+
+    $(function () {
+        $(".rdMethod").change();
+        $("#ddlCv").change();
+
+        $('.chosen-cv').select2({
+            placeholder: LanguageDic['LB_CHOOSE_CV'],
+            width: '100%',
+            language: {
+                searching: function () {
+                    return LanguageDic['LB_SEARCHING'];
+                }
+            },
+            ajax: {
+                url: '/Cv/GetSuggestionCvs',
+                type: 'POST',
+                data: function (params) {
+                    var query = {
+                        query: params.term,
+                        page: params.page || 1,
+                        __RequestVerificationToken: $('input[name = "__RequestVerificationToken"]').val()
+                    };
+
+                    // Query parameters will be ?search=[term]&page=[page]
+                    return query;
+                },
+                processResults: function (data, page) {
+                    return {
+                        results: data.data.map(function (item) {
+                            return {
+                                id: item.id,
+                                text: item.cv_title
+                            };
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    });
+
+    //$("#frmConfirmCreateCv").submit(function (ev) {
+    //    ev.preventDefault();       
+    //    if ($("#frmConfirmCreateCv").valid()) {
+    //        var data = new FormData(this);
+    //        var params = $.extend({}, doAjax_params_default);
+    //        params['url'] = '/Cv/ConfirmCreateCv';
+    //        params['requestType'] = 'POST';
+    //        params['data'] = data;
+    //        params['processData'] = false;
+    //        params['contentType'] = false;
+    //        params['dataType'] = "json";
+    //        params['context'] = "#frmConfirmCreateCv";
+
+    //        params['successCallbackFunction'] = function (result) {
+    //            if (result) {
+    //                if (result.success) {
+    //                    $('#myModal').modal('hide');
+
+    //                    //if (currentWorkHistoryId > 0) {
+    //                    //    new MemberGlobalObj().getWorkHistories();
+    //                    //} else {
+    //                    //    if (result.html) {
+    //                    //        $("#WorkHistories").append(result.html);
+    //                    //    }
+    //                    //}
+    //                } else {
+    //                    CatchAjaxResponseWithNotif(result);
+    //                }
+    //            }
+    //        };
+    //        doAjax(params);
+    //    }
+    //    return false;
+    //});
+</script>

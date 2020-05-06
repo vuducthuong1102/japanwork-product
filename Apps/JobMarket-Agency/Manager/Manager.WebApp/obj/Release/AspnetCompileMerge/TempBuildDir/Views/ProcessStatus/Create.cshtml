@@ -1,0 +1,60 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ProcessStatusEditModel
+@using (Html.BeginForm("Create", "ProcessStatus", FormMethod.Post, new { role = "form", @id = "FormProcess", @onkeydown="return event.key !='Enter';" }))
+{
+    <div class="modal-body">
+        <div class="form-group">
+            <label>@ManagerResource.LB_PROCESS_NAME</label>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.status_name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.status_name)
+            </div>
+        </div>
+        @*<div class="form-group">
+            <label>@ManagerResource.LB_ORDER_DISPLAY</label>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.order, new { @class = "form-control", @type = "number" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label>@ManagerResource.LB_DESCRIPTION</label>
+            <div class="form-group">
+                @Html.TextAreaFor(m => m.description, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="m-checkbox-inline">
+                <label class="m-checkbox">
+                    @Html.CheckBoxFor(m => m.status)
+                    @ManagerResource.LB_PRIMARY_PROCESS
+                    <span></span>
+                </label>
+            </div>
+        </div>*@
+    </div>
+    <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-info btn-sm pull-left" onclick="SaveCreate()" data-id="@Model.id" id="btnApprove"><i class="fa fa-download"></i> @ManagerResource.LB_SAVE</button>
+        <button class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE</button>
+    </div>
+}
+<script>
+    function SaveCreate() {
+        $.ajax({
+            url: 'ProcessStatus/SaveCreate',
+            data: $("#FormProcess").serialize(),
+            success: function (result) {
+                if (result) {
+                    if (result.Success == true) {
+                        $.showSuccessMessage('Success notice', result.Message, function () { location.reload() });
+                    } else {
+                        $.showErrorMessage('Error notice', result.Message, function () { return false; });
+                    }
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                var responseTitle = "Error encountered"
+                $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), function () { });
+            }
+        });
+    }
+</script>

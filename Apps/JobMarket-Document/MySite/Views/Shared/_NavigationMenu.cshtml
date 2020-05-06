@@ -1,0 +1,166 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.Models
+
+@{ 
+    var loggedIn = AccountHelper.HasLoggedIn();
+    var userInfo = AccountHelper.GetCurrentUser();
+}
+
+<div class="wt-rightarea">
+    <nav id="wt-nav" class="wt-nav navbar-expand-lg" style="display: none;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr lnr-menu"></i>
+        </button>
+        <div class="collapse navbar-collapse wt-navigation" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="menu-item-has-children page_item_has_children">
+                    <a href="javascript:void(0);">Main</a>
+                    <ul class="sub-menu">
+                        <li class="menu-item-has-children page_item_has_children wt-notificationicon">
+                            <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                            <a href="javascript:void(0);">Home</a>
+                            <ul class="sub-menu">
+                                <li><a href="index.html">Home v1</a></li>
+                                <li class="wt-newnoti"><a href="indexvtwo.html">Home v2<em>without login</em></a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children page_item_has_children">
+                            <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                            <a href="javascript:void(0);">Article</a>
+                            <ul class="sub-menu">
+                                <li><a href="articlelist.html">Article List</a></li>
+                                <li><a href="articlegrid.html">Article Grid</a></li>
+                                <li><a href="articlesingle.html">Article Single</a></li>
+                                <li><a href="articleclassic.html">Article Classic</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children page_item_has_children">
+                            <span class="wt-dropdowarrow"><i class="lnr lnr-chevron-right"></i></span>
+                            <a href="javascript:void(0);">Company</a>
+                            <ul class="sub-menu">
+                                <li><a href="companygrid.html">Company Grid</a></li>
+                                <li><a href="companysigle.html">Company Sigle</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="about.html">About</a>
+                        </li>
+                        <li>
+                            <a href="privacypolicy.html">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="comingsoon.html">Coming Soon</a>
+                        </li>
+                        <li>
+                            <a href="404page.html">404page</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="howitworks.html">How It Works</a>
+                </li>
+                <li class="menu-item-has-children page_item_has_children">
+                    <a href="javascript:void(0);">Browse Jobs</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="joblisting.html">Job Listing</a>
+                        </li>
+                        <li class="current-menu-item">
+                            <a href="jobsingle.html">Job Single</a>
+                        </li>
+                        <li>
+                            <a href="jobproposal.html">Job Proposal</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-item-has-children page_item_has_children">
+                    <a href="javascript:void(0);">View Freelancers</a>
+                    <ul class="sub-menu">
+                        <li>
+                            <a href="userlisting.html">User Listing</a>
+                        </li>
+                        <li class="current-menu-item">
+                            <a href="usersingle.html">User Single</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    @if (!loggedIn)
+    {
+        <div class="wt-loginarea">
+            <figure class="wt-userimg">
+                <img src="~/Content/themes/default/images/user-login.png" alt="img description">
+            </figure>
+            <div class="wt-loginoption">
+                <a href="javascript:void(0);" id="wt-loginbtn" class="wt-loginbtn">Đăng nhập</a>
+                <div class="wt-loginformhold">
+                    <div class="wt-loginheader">
+                        <span>Đăng nhập</span>
+                        <a href="javascript:;"><i class="fa fa-times"></i></a>
+                    </div>
+                    
+                    @Html.Partial("../WebAuth/_LoginForm", new WebAuthLoginViewModel())
+
+                    <form class="wt-formtheme wt-loginform do-forgot-password-form wt-hide-form">
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control get_password" placeholder="Email">
+                            </div>
+
+                            <div class="wt-logininfo">
+                                <a href="javascript:;" class="wt-btn do-get-password">Quên password</a>
+                            </div>
+                        </fieldset>
+                        <div class="wt-loginfooterinfo">
+                            <a href="javascript:void(0);" class="wt-show-login">Đăng nhập</a>
+                            <a href="http://shop.pfood.vn">Đăng ký</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <a href="http://shop.pfood.vn" class="wt-btn">Đăng ký</a>
+        </div>
+    }
+    
+
+    @if(loggedIn)
+    {
+        <div class="wt-userlogedin" style="display:block;">
+            <figure class="wt-userimg">
+                <img src="@userInfo.Avatar" alt="image description">
+            </figure>
+            <div class="wt-username">
+                <h3>@userInfo.DisplayName</h3>
+            </div>
+            <nav class="wt-usernav">
+                <ul>
+                    <li>
+                        <a href="http://shop.pfood.vn?ReturnUrl=/ReportBoom" target="_blank">
+                            <span>Tố cáo Boom hàng</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <span>@UserWebResource.BT_VIEW_PROFILE</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span>@UserWebResource.LB_Setting</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/WebAuth/Logout">
+                            <span>@UserWebResource.BT_LOGOUT</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
+</div>

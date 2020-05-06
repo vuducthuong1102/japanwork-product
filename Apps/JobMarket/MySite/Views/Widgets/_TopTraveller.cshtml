@@ -1,0 +1,56 @@
+﻿@using MySite.Helpers;
+@using MySite.Resources;
+@using MySite.Caching;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@model List<IdentityUser>
+
+@if (Model != null && Model.Count > 0)
+{
+    <p class="fz-18 ml15 mb15 text-bold">@UserWebResource.LB_TOP_TRAVELER</p>
+    @RenderListTravellers()
+}
+
+@helper RenderListTravellers()
+    {
+        var hasLoggedIn = false;
+        if (UserCookieManager.IsAuthenticated())
+        {
+            hasLoggedIn = true;
+        }
+
+        foreach (var item in Model)
+        {
+            @RenderTravellerItem(item, hasLoggedIn)
+        }
+    @*<a href="javascript:void(0)" class="flr text-bold text-blue mr10">@UserWebResource.LB_VIEWMORE</a>*@
+    <div class="clearfix"></div>
+}
+
+@helper RenderTravellerItem(IdentityUser item, bool hasLoggedIn)
+    {
+        var displayName = (!string.IsNullOrEmpty(item.DisplayName) ? item.DisplayName : item.UserName);
+        var fullName = displayName;
+        displayName = AccountHelper.GetShortDisplayName(displayName, 20);
+        var profileUrl = AccountHelper.GetUserProfileUrl(item);
+        <div class="item traverler padr0">
+                <a href="@profileUrl" title="@fullName">
+                    <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar" />
+                </a>
+                <a href="@profileUrl" title="@fullName">
+                    <span class="text-bold lh-12">@displayName</span>                    
+                </a>
+                <span class="icon icon-check fz-12 mt5 ml5 mr10"></span>
+                <span class="cl01 fz-12 mb0">@NumberHelpers.NumberReformat(item.MetaData.PostCount) @UserWebResource.LB_POST</span>
+                <br />
+                @if (hasLoggedIn)
+                {
+                    <a href="javascript:;" onclick="follow(this)" data-user="@item.Id" class="btn btn-none btn-follow fz-14 text-bold fc01">@UserWebResource.BT_FOLLOW</a>
+                }
+                else
+                {
+                    <a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" class="btn btn-none btn-follow fz-14 text-bold fc01">@UserWebResource.BT_FOLLOW</a>
+                }
+            @*<a href="javascript:void(0)" class="close-follow"><span class="icon icon-clear2"></span></a>*@
+            <div class="clearfix"></div>
+        </div>
+}

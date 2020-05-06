@@ -1,0 +1,76 @@
+﻿@using Manager.WebApp.Resources;
+@model Manager.WebApp.Models.UpdateUserProfileModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_UPDATE_INFO;
+}
+
+<input type="hidden" id="CurrentEditorId" value="@Model.UserId" />
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 list">
+                @if (Model != null)
+                {
+                    @Html.HiddenFor(m => m.UserId, new { @id = "ProfileId" })
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="tab_1_2" data-toggle="tab" href="#1_2" role="tab" aria-controls="1_2" aria-selected="false">
+                               <i class="fa fa-image"></i> @ManagerResource.LB_AVATAR
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="1_2" role="tabpanel" aria-labelledby="1_2-tab">
+                            <div class="row">
+                                <div class="col-12 list">
+                                    <form enctype="multipart/form-data" class="avatar" id="frmChangeAvatar">
+                                        <div class="" style="width:250px; height:250px; float:left">
+                                            <div class="slim" data-label="Kéo thả ảnh hoặc bấm vào đây" data-status-no-support="Your browser does not support image cropping." data-label-loading="Đang tải hình ảnh..." data-button-edit-label="Sửa" data-button-remove-label="Xóa" data-button-upload-label="Tải lên" data-button-cancel-label="Hủy bỏ" data-button-confirm-label="Xác nhận" data-button-download-label="Tải xuống" data-max-file-size="2" data-status-file-size="Ảnh quá lớn, kích thước tối đa: $0 MB" data-status-upload-success="Tải ảnh thành công" data-download="true" data-fetcher="fetch.php" data-size="250,250" data-ratio="1:1">
+                                                <input type="file" name="slim[]" required id="fileUpload" />
+                                                @if (!string.IsNullOrEmpty(Model.Avatar))
+                                                {
+                                                    <img src="@SocialCdnHelper.GetFullImgPath(Model.Avatar)" alt="" onerror="this.onerror=null;this.src='~/Content/Avatars/profile-pic.jpg';"/>
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/Content/Avatars/profile-pic.jpg" alt="" />
+                                                }
+                                            </div>
+                                        </div>
+                                        <div style="float:left; margin-left: 10px;">
+                                            <input type="hidden" id="ChangingDetected" name="ChangingDetected" />
+                                            <button type="button" id="btnUpload" class="btn btn-danger">Cập nhật</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section PagePluginStyles{
+    <link href="~/Scripts/Plugins/slim/slim.min.css" rel="stylesheet" />
+    <style>
+        .slim-result img{border:1px solid #ccc;}
+    </style>
+}
+
+@section PagePluginScripts{
+
+<script src="~/Scripts/Plugins/slim/slim.kickstart.min.js"></script>
+}
+
+@section PageInlineScripts{
+    <script>
+        var _MaxFileSizeUpload = 1024;
+    </script>
+    <script src="@Url.VersionedContent("~/Scripts/Account/editprofile.js")"></script>
+}

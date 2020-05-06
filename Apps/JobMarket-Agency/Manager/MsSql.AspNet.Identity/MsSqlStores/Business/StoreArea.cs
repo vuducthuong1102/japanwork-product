@@ -1,0 +1,205 @@
+﻿//using System;
+//using System.Collections.Generic;
+//using MsSql.AspNet.Identity.Entities;
+//using MsSql.AspNet.Identity.Repositories;
+//using System.Configuration;
+
+//namespace MsSql.AspNet.Identity.MsSqlStores
+//{
+//    public interface IStoreArea
+//    {
+//        #region Area
+
+//        bool Area_Insert(IdentityArea identity);
+//        bool Area_Update(IdentityArea identity);
+//        IdentityArea Area_GetById(int id);
+//        bool Area_Delete(int id);
+//        List<IdentityArea> Area_GetList();
+
+//        #endregion
+
+//        #region Country
+
+//        bool Country_Insert(IdentityCountry identity);
+//        bool Country_Update(IdentityCountry identity);
+//        IdentityCountry Country_GetById(int id);
+//        bool Country_Delete(int id);
+//        List<IdentityCountry> Country_GetList();
+
+//        List<IdentityCountry> Country_GetByArea(int areaId);
+
+//        #endregion
+
+//        #region Province
+
+//        bool Province_Insert(IdentityProvince identity);
+//        bool Province_Update(IdentityProvince identity);
+//        IdentityProvince Province_GetById(int id);
+//        bool Province_Delete(int id);
+//        List<IdentityProvince> Province_GetList();
+
+//        List<IdentityProvince> Province_GetByCountry(int countryId);
+
+//        #endregion
+
+//        #region District
+
+//        bool District_Insert(IdentityDistrict identity);
+//        bool District_Update(IdentityDistrict identity);
+//        IdentityDistrict District_GetById(int id);
+//        bool District_Delete(int id);
+//        List<IdentityDistrict> District_GetList();
+
+//        List<IdentityDistrict> District_GetByProvince(int provinceId);
+
+//        #endregion
+//    }
+
+//    public class StoreArea : IStoreArea
+//    {
+//        private readonly string _connectionString;
+//        private RpsArea r;
+
+//        public StoreArea() : this("PfoodDBConnection")
+//        {
+
+//        }
+
+//        public StoreArea(string connectionStringName)
+//        {
+//            _connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
+//            r = new RpsArea(_connectionString);
+//        }
+
+//        #region Area
+
+//        public bool Area_Insert(IdentityArea identity)
+//        {
+//            return r.Area_Insert(identity);
+//        }
+
+//        public bool Area_Update(IdentityArea identity)
+//        {
+//            return r.Area_Update(identity);
+//        }
+
+//        public IdentityArea Area_GetById(int Id)
+//        {
+//            return r.Area_GetById(Id);
+//        }
+
+//        public bool Area_Delete(int Id)
+//        {
+//            return r.Area_Delete(Id);
+//        }
+
+//        public List<IdentityArea> Area_GetList()
+//        {
+//            return r.Area_GetList();
+//        }
+
+//        #endregion
+
+//        #region Country
+
+//        public bool Country_Insert(IdentityCountry identity)
+//        {
+//            return r.Country_Insert(identity);
+//        }
+
+//        public bool Country_Update(IdentityCountry identity)
+//        {
+//            return r.Country_Update(identity);
+//        }
+
+//        public IdentityCountry Country_GetById(int Id)
+//        {
+//            return r.Country_GetById(Id);
+//        }
+
+//        public bool Country_Delete(int Id)
+//        {
+//            return r.Country_Delete(Id);
+//        }
+
+//        public List<IdentityCountry> Country_GetList()
+//        {
+//            return r.Country_GetList();
+//        }
+
+//        public List<IdentityCountry> Country_GetByArea(int areaId)
+//        {
+//            return r.Country_GetByArea(areaId);
+//        }
+
+//        #endregion
+
+//        #region Province
+
+//        public bool Province_Insert(IdentityProvince identity)
+//        {
+//            return r.Province_Insert(identity);
+//        }
+
+//        public bool Province_Update(IdentityProvince identity)
+//        {
+//            return r.Province_Update(identity);
+//        }
+
+//        public IdentityProvince Province_GetById(int Id)
+//        {
+//            return r.Province_GetById(Id);
+//        }
+
+//        public bool Province_Delete(int Id)
+//        {
+//            return r.Province_Delete(Id);
+//        }
+
+//        public List<IdentityProvince> Province_GetList()
+//        {
+//            return r.Province_GetList();
+//        }
+
+//        public List<IdentityProvince> Province_GetByCountry(int countryId)
+//        {
+//            return r.Province_GetByCountry(countryId);
+//        }
+
+//        #endregion
+
+//        #region District
+
+//        public bool District_Insert(IdentityDistrict identity)
+//        {
+//            return r.District_Insert(identity);
+//        }
+
+//        public bool District_Update(IdentityDistrict identity)
+//        {
+//            return r.District_Update(identity);
+//        }
+
+//        public IdentityDistrict District_GetById(int Id)
+//        {
+//            return r.District_GetById(Id);
+//        }
+
+//        public bool District_Delete(int Id)
+//        {
+//            return r.District_Delete(Id);
+//        }
+
+//        public List<IdentityDistrict> District_GetList()
+//        {
+//            return r.District_GetList();
+//        }
+
+//        public List<IdentityDistrict> District_GetByProvince(int provinceId)
+//        {
+//            return r.District_GetByProvince(provinceId);
+//        }
+
+//        #endregion
+//    }
+//}

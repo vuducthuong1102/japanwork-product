@@ -1,0 +1,772 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobSeekerUpdateProfileModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var listVisas = CommonHelpers.GetListVisas();
+}
+<div>
+    <input type="hidden" id="address_country_id" value="@((Model.address != null) ? Model.address.country_id : 0)" />
+    <input type="hidden" id="address_region_id" value="@((Model.address != null) ? Model.address.region_id : 0)" />
+    <input type="hidden" id="address_prefecture_id" value="@((Model.address != null) ? Model.address.prefecture_id : 0)" />
+    <input type="hidden" id="address_city_id" value="@((Model.address != null) ? Model.address.city_id : 0)" />
+    <input type="hidden" id="address_train_line_id" value="@((Model.address != null) ? Model.address.train_line_id : 0)" />
+    <input type="hidden" id="address_station_id" value="@((Model.address != null) ? Model.address.station_id : 0)" />
+
+    <input type="hidden" id="address_contact_country_id" value="@((Model.address_contact != null) ? Model.address_contact.country_id : 0)" />
+    <input type="hidden" id="address_contact_region_id" value="@((Model.address_contact != null) ? Model.address_contact.region_id : 0)" />
+    <input type="hidden" id="address_contact_prefecture_id" value="@((Model.address_contact != null) ? Model.address_contact.prefecture_id : 0)" />
+    <input type="hidden" id="address_contact_city_id" value="@((Model.address_contact != null) ? Model.address_contact.city_id : 0)" />
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_IMAGE
+            </label>
+            @{
+                var currentImgFullPath = string.Empty;
+                if (Model.Extensions != null && !string.IsNullOrEmpty(Model.image))
+                {
+                    currentImgFullPath = Model.Extensions.image_full.ToString();
+                }
+            }
+            <div class="upload-portfolio mb10">
+                <div class="uploadbox" id="uploadbox">
+                    <img class="file-upload-btn thumbImg img-full-center pointer @((string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)" src="@currentImgFullPath" />
+                    <label for="file-upload" class="custom-file-upload file-upload-icon @((!string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)">
+                        <i class="la la-cloud-upload"></i> <span>@ManagerResource.BT_UPLOAD_PHOTO</span>
+                    </label>
+                    @Html.HiddenFor(m => m.image)
+                    <input id="file-upload" class="file-upload-storage hidden" name="@Html.NameFor(m=>m.image_file_upload)" type="file" data-preview="uploadbox">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9">
+            <div class="row">
+                <div class="col-lg-12">
+                    <label>
+                        @ManagerResource.LB_FULL_NAME (<span class="required-input">*</span>) 
+                    </label>
+                    @Html.TextBoxFor(m => m.fullname, null, new { placeholder = "Nguyen Van A", @class = "form-control m-input mb5" })
+                    @Html.ValidationMessageFor(m => m.fullname, null, new { @class = "text-danger" })
+                </div>
+
+                <div class="col-lg-12 mt10">
+                    <div class="row">
+                        <div class="col-lg-9">
+                            <label>
+                                @ManagerResource.LB_FULL_NAME_FURIGANA
+                            </label>
+                            @Html.TextBoxFor(m => m.fullname_furigana, null, new
+                            {
+                                @class = "form-control m-input",
+                           placeholder = "グエン　バン　エイ"
+                            })
+                        </div>
+                        <div class="col-lg-3">
+                            <label>
+                                @ManagerResource.LB_GENDER
+                            </label>
+                            <div class="m-radio-inline">
+                                <label class="m-radio">
+                                    <input type="radio" @((Model.gender == 1) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.gender)" value="1" id="1_@Html.IdFor(m=>m.gender)" />
+                                    @ManagerResource.LB_MALE
+                                    <span></span>
+                                </label>
+                                <label class="m-radio">
+                                    <input type="radio" @((Model.gender == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.gender)" value="0" id="0_@Html.IdFor(m=>m.gender)" />
+                                    @ManagerResource.LB_WOMEN
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_BIRTHDAY (<span class="required-input">*</span>)
+            </label>
+            @Html.TextBoxFor(m => m.birthday, null, new { placeholder = "dd/MM/yyyy", @class = "form-control datepicker" })
+            @Html.ValidationMessageFor(m => m.birthday, null, new { @class = "text-danger" })
+
+        </div>
+
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_PHONE
+            </label>
+            @Html.TextBoxFor(m => m.phone, null, new { @class = "form-control m-input" })
+            @Html.ValidationMessageFor(m => m.phone, null, new { @class = "text-danger" })
+        </div>
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_EMAIL
+            </label>
+            @Html.TextBoxFor(m => m.email, null, new { placeholder = "xxxx@yourmail.com", @class = "form-control m-input" })
+            @Html.ValidationMessageFor(m => m.email, null, new { @class = "text-danger" })
+        </div>
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_MARRIAGE_STATUS
+            </label>
+            <div class="m-radio-inline">
+                <label class="m-radio">
+                    <input type="radio" @((Model.marriage == 1) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.marriage)" value="1" id="1_@Html.IdFor(m=>m.marriage)" />
+                    @ManagerResource.LB_MARRIAGE_MARRIED
+                    <span></span>
+                </label>
+                <label class="m-radio">
+                    <input type="radio" @((Model.marriage == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.marriage)" value="0" id="0_@Html.IdFor(m=>m.marriage)" />
+                    @ManagerResource.LB_MARRIAGE_SINGLE
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-3">
+            <label class="pf-title">@ManagerResource.LB_JAPANESE_LEVEL</label>
+            <select class="form-control selectpicker select-employment-type" data-live-search="true" name="@Html.NameFor(m=>m.japanese_level_number)">
+                @if (Model.JapaneseLevels.HasData())
+                {
+                    foreach (var item in Model.JapaneseLevels)
+                    {
+                        <option value="@item.level_number" @(item.level_number == Model.japanese_level_number ? "selected" : string.Empty)> @item.level</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_QUALIFICATION
+            </label>
+            <select class="form-control selectpicker" name="@Html.NameFor(m=>m.qualification_id)" data-live-search="true">
+                @if (Model.Qualifications.HasData())
+                {
+                    foreach (var qualification in Model.Qualifications)
+                    {
+                        var currentQualifiName = string.Empty;
+                        if (qualification.LangList.HasData())
+                        {
+                            currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                        }
+                        else
+                        {
+                            currentQualifiName = qualification.qualification;
+                        }
+                        <option value="@qualification.id" @((Model.qualification_id == qualification.id) ? "selected" : "")>@currentQualifiName</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_DEPENDENT_NUM
+            </label>
+            @Html.TextBoxFor(m => m.dependent_num, null, new { placeholder = "", @class = "form-control m-input text-right" })
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-3">
+            <label class="pf-title">@ManagerResource.LB_NATIONALITY</label>
+            <select data-live-search="true" class="selectpicker form-control" name="@Html.NameFor(m=>m.nationality_id)" id="nationality_id">
+                <option value="0">@ManagerResource.LB_SELECT_NATIONALITY</option>
+                @if (Model.Countries.HasData())
+                {
+                    foreach (var country in Model.Countries)
+                    {
+                        string lbCountry = country.furigana;
+                        if (currentLang == "ja-JP")
+                        {
+                            lbCountry = country.country;
+                        }
+                        var selected = "";
+                        if (Model.nationality_id == country.id)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@country.id" @selected>@lbCountry</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label class="pf-title">@ManagerResource.LB_VISA</label>
+            <select data-live-search="true" class="selectpicker form-control" name="@Html.NameFor(m=>m.visa_id)" data-size="7">
+                <option value="0">@ManagerResource.LB_SELECT_VISA</option>
+                @if (listVisas.HasData())
+                {
+                    foreach (var item in listVisas)
+                    {
+                        string lbItem = item.visa;
+                        if (item.LangList.HasData())
+                        {
+                            var langItem = item.LangList.FirstOrDefault(s => s.language_code == currentLang);
+                            if (langItem != null)
+                            {
+                                lbItem = langItem.visa;
+                            }
+                        }
+
+                        if (string.IsNullOrEmpty(lbItem))
+                        {
+                            lbItem = item.visa;
+                        }
+                        var selected = "";
+                        if (Model.visa_id == item.id)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@item.id" @selected>@lbItem</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-lg-3">
+            <label class="pf-title">@ManagerResource.LB_DURATION_VISA</label>
+            @Html.TextBoxFor(m => m.duration_visa, null, new { placeholder = "dd-MM-yyyy", @class = "datepicker form-control" })
+        </div>
+        <div class="col-lg-3">
+            <label class="pf-title">@ManagerResource.LB_RELIGION</label>
+            @*<div class="pf-field input-group-custom">
+                    <input type="checkbox" id="religion" @(Model.religion ? "checked" : string.Empty) name="@Html.NameFor(m=>m.religion)" value="true" /> <label for="religion" class="checkbox"></label>
+                    @Html.TextBoxFor(m => m.religion_detail, null, new { })
+                </div>*@
+            @Html.TextBoxFor(m => m.religion_detail, null, new { @class = "form-control" })
+        </div>
+    </div>
+
+    @*<hr />
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <h4 class="m-form__heading-title">
+                    @ManagerResource.LB_OTHER_INFO:
+                </h4>
+            </div>
+
+            <div class="col-lg-6 text-right">
+                <a href="javascript:;" data-href="@Url.Action("AddCustomField", "Master")" data-size="default" data-modal-direct="" class="btn btn-sm btn-info btnAddField"><i class="fa fa-plus"></i> @ManagerResource.LB_CUSTOMFIELD_ADD</a>
+            </div>
+        </div>*@
+
+    <div class="customFieldsList mt10">
+        @if (Model.metadata.HasData())
+        {
+            foreach (var item in Model.metadata)
+            {
+                @Html.Partial("../Widgets/FormControls/CustomField/_CustomFieldInfo", item);
+            }
+        }
+
+    </div>
+    <hr />
+    <div class="form-group m-form__group row">
+        <div class="col-lg-6">
+            <h4 class="m-form__heading-title">
+                @ManagerResource.LB_WISH
+            </h4>
+        </div>
+    </div>
+    @if (Model.WishModel != null)
+    {
+        <div class="form-group m-form__group row">
+            <div class="col-lg-12 col-sm-12">
+                <select id="DefaultCountry" class="hidden"></select>
+                <input type="hidden" value="@Model.SelectedWishModel" name="SelectedWishModel" class="hdSelectedWishModel" />
+                <div class="WishModel">
+                    <div data-repeater-list="WishModel">
+                        @if (Model.WishModel.HasData())
+                        {
+                            for (int i = 0; i < Model.WishModel.Count; i++)
+                            {
+                                var currentWish = Model.WishModel[i];
+
+                                <div data-repeater-item class="m--margin-bottom-10 repeater-item new-rpt">
+                                    <input type="hidden" value="@currentWish.id" name="id" class="hdCurrentWishId" />
+                                    <div class="row mb10">
+                                        <div class="col-lg-9">
+                                            <label><i style="vertical-align:top;" class="la la-plus"></i> @ManagerResource.LB_WISH : <span class="wish-idx">@(i + 1)</span></label>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only pull-right">
+                                                <i class="la la-remove"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <label>@ManagerResource.LB_JOB_EMPLOYMENT_TYPE</label>
+                                                <select title="@ManagerResource.LB_SELECT_EMPLOYMENT_TYPE"
+                                                        class="form-control select-employment-id"
+                                                        data-size="5"
+                                                        name="employment_type_id">
+                                                    @if (Model.EmploymentTypes.HasData())
+                                                    {
+                                                        var emTypeCount = 0;
+                                                        foreach (var emType in Model.EmploymentTypes)
+                                                        {
+                                                            var subName = string.Empty;
+                                                            if (emType.LangList.HasData())
+                                                            {
+                                                                subName = emType.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                                                            }
+
+                                                            if (string.IsNullOrEmpty(subName))
+                                                            {
+                                                                subName = emType.employment_type;
+                                                            }
+                                                            var selected = string.Empty;
+                                                            if (currentWish.employment_type_id == 0 && emTypeCount == 0)
+                                                            {
+                                                                selected = "selected";
+                                                            }
+                                                            else if (currentWish.employment_type_id == emType.id)
+                                                            {
+                                                                selected = "selected";
+                                                            }
+                                                            <option value="@emType.id" @selected>
+                                                                @subName
+                                                            </option>
+
+                                                            emTypeCount++;
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <label>@ManagerResource.LB_JOB_FIELD</label>
+                                                <select class="form-control select-fields"
+                                                        data-live-search="true"
+                                                        multiple
+                                                        title="@ManagerResource.LB_SELECT_SUB_FIELD"
+                                                        data-size="7" data-max-options="5"
+                                                        name="sub_field_ids">
+                                                    @if (Model.Fields.HasData())
+                                                    {
+                                                        foreach (var field in Model.Fields)
+                                                        {
+                                                            if (field.Sub_fields.HasData())
+                                                            {
+                                                                var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                                                                if (string.IsNullOrEmpty(fieldName))
+                                                                {
+                                                                    fieldName = field.field;
+                                                                }
+
+                                                                <optgroup label="@fieldName">
+                                                                    @foreach (var sub in field.Sub_fields)
+                                                                    {
+                                                                        var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                                                                        var selected = "";
+                                                                        if (string.IsNullOrEmpty(subName))
+                                                                        {
+                                                                            subName = sub.sub_field;
+                                                                        }
+                                                                        if (currentWish.sub_field_ids.HasData() && currentWish.sub_field_ids.FirstOrDefault(s => s == sub.id) > 0)
+                                                                        {
+                                                                            selected = "selected";
+                                                                        }
+                                                                        <option value="@sub.id" @selected
+                                                                                data-subtext="@fieldName" class="text-muted-hidden">
+                                                                            @subName
+                                                                        </option>
+                                                                    }
+                                                                </optgroup>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <label>@ManagerResource.LB_SALARY</label>
+                                                <div class="input-group">
+                                                    <input class="form-control number-format select-salary-min" style="max-width:120px;" name="salary_min" />
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            ~
+                                                        </span>
+                                                    </div>
+                                                    <input class="form-control number-format select-salary-max" style="max-width:120px;" name="salary_max" />
+                                                    <div class="m-checkbox-inline pl-2">
+                                                        @ManagerResource.LB_YEN
+                                                    </div>
+                                                </div>
+                                                @Html.ValidationMessageFor(m => m.WishModel[i].salary_min, null, new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(m => m.WishModel[i].salary_max, null, new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 form-group">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <label class="">@ManagerResource.LB_WORK_PLACE</label>
+                                                <select class="form-control select-work-place"
+                                                        data-live-search="true"
+                                                        multiple
+                                                        title="@ManagerResource.LB_SELECT_WORK_PLACE"
+                                                        data-size="5"
+                                                        data-max-options="5"
+                                                        name="prefecture_ids">
+                                                    @if (Model.Regions.HasData())
+                                                    {
+                                                        foreach (var region in Model.Regions)
+                                                        {
+                                                            if (region.Prefectures.HasData())
+                                                            {
+                                                                var regionName = region.region;
+
+                                                                if (currentLang != "ja-JP")
+                                                                {
+                                                                    regionName = region.furigana;
+                                                                }
+
+                                                                <optgroup label="@regionName">
+                                                                    @foreach (var pre in region.Prefectures)
+                                                                    {
+                                                                        var prefectureName = pre.prefecture;
+
+                                                                        if (currentLang != "ja-JP")
+                                                                        {
+                                                                            prefectureName = pre.furigana;
+                                                                        }
+                                                                        var selected = "";
+
+                                                                        if (currentWish.prefecture_ids.HasData() && currentWish.prefecture_ids.FirstOrDefault(s => s == pre.id) > 0)
+                                                                        {
+                                                                            selected = "selected";
+                                                                        }
+                                                                        <option value="@pre.id" @selected>
+                                                                            @prefectureName
+                                                                        </option>
+                                                                    }
+                                                                </optgroup>
+                                                            }
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <label>@ManagerResource.IP_START_DATE</label>
+                                                <input class="datepicker form-control select-start-date" name="start_date" placeholder="dd-MM-yyyy" autocomplete="false" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div data-repeater-create="" class="btn btn btn-info m-btn m-btn--icon btn-repeater-add">
+                                <span>
+                                    <i class="la la-plus"></i>
+                                    <span>
+                                        @ManagerResource.LB_ADD_NEW
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <hr />
+    <div class="form-group m-form__group row">
+        @Html.HiddenFor(m => m.address.id)
+        <div class="col-lg-6">
+            <h4 class="m-form__heading-title">
+                @ManagerResource.LB_ADDRESS:
+            </h4>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_COUNTRY
+            </label>
+            <select placeholder="@ManagerResource.LB_SELECT_COUNTRY" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address.country_id)" id="Address_Country">
+                <option value="0">@ManagerResource.LB_SELECT_COUNTRY</option>
+                @if (Model.Countries.HasData())
+                {
+                    foreach (var country in Model.Countries)
+                    {
+                        string lbCountry = country.furigana;
+                        if (currentLang == "ja-JP")
+                        {
+                            lbCountry = country.country;
+                        }
+                        <option value="@country.id" @((Model.address.country_id == country.id) ? "selected" : "")>@lbCountry</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_POSTAL_CODE
+            </label>
+            @Html.TextBoxFor(m => m.address.postal_code, new { @class = "form-control m-input", @id = "Address_Postal_Code", @maxlength = 8 })
+        </div>
+
+        <div class="col-lg-6">
+            <label>
+                @ManagerResource.LB_REGION
+            </label>
+            <select placeholder="@ManagerResource.LB_SELECT_REGION" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address.region_id)" id="Address_Region">
+                <option value="0">@ManagerResource.LB_SELECT_REGION</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-6">
+            <label>
+                @ManagerResource.LB_PREFECTURE
+            </label>
+            <select placeholder="@ManagerResource.LB_SELECT_PREFECTURE" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address.prefecture_id)" id="Address_Prefecture">
+                <option value="0">@ManagerResource.LB_SELECT_PREFECTURE</option>
+            </select>
+        </div>
+
+        <div class="col-lg-6 Address_City_Dropdown">
+            <label>
+                @ManagerResource.LB_CITY
+            </label>
+            <select placeholder="@ManagerResource.LB_SELECT_CITY" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address.city_id)" id="Address_City">
+                <option value="0">@ManagerResource.LB_SELECT_CITY</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-12">
+            <label>
+                @ManagerResource.LB_ADDRESS_DETAIL
+            </label>
+            @Html.TextBoxFor(m => m.address.detail, new { @class = "form-control m-input", @id = "Address_Detail" })
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-lg-12">
+            <label>
+                @ManagerResource.LB_ADDRESS_FURIGANA
+            </label>
+            @Html.TextBoxFor(m => m.address.furigana, new { @class = "form-control m-input", @id = "Address_Furigana" })
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        @{
+            string train_line = "";
+            if (Model.address.train_line_id > 0)
+            {
+                if (currentLang == "ja-JP")
+                {
+                    train_line = Model.address.train_line;
+                }
+                else
+                {
+                    train_line = Model.address.train_line_furigana;
+                }
+            }
+        }
+        <div class="col-lg-6 Address_TrainLine_Dropdown">
+            <label>
+                @ManagerResource.LB_TRAIN_LINE
+            </label>
+            <div class="m-typeahead">
+                <input type="text" class="form-control m-input select-train-line" counter="0" value="@train_line" />
+                <input type="hidden" class="train-line-selected" name="@Html.NameFor(m=>m.address.train_line_id)" data-current="@Model.address.train_line_id" value="@Model.address.train_line_id" />
+            </div>
+            @*<select class="Address_TrainLine selectpicker" name="@Html.NameFor(m=>m.address.train_line_id)" id="Address_TrainLine">
+                    <option value="0">@ManagerResource.LB_SELECT_TRAIN_LINE</option>
+                </select>*@
+        </div>
+
+        <div class="col-lg-6 Address_Station_Dropdown">
+            <label>
+                @ManagerResource.LB_NEAREST_STATION
+            </label>
+            <select class="Address_Station selectpicker select-station form-control" name="@Html.NameFor(m=>m.address.station_id)" data-size="5" data-live-search="true" data-current="@Model.address.station_id" id="Address_Station">
+                <option value="0">@ManagerResource.LB_SELECT_STATION</option>
+            </select>
+        </div>
+    </div>
+
+    @if (Model.exclude_ct_add == 0)
+    {
+        <hr />
+
+        <div class="form-group m-form__group row">
+            @Html.HiddenFor(m => m.address_contact.id)
+            <div class="col-lg-6">
+                <h4 class="m-form__heading-title">
+                    @ManagerResource.LB_ADDRESS_CONTACT:
+                </h4>
+            </div>
+            <div class="col-lg-6 cbx-same-address text-right">
+                <label class="m-checkbox">
+                    <input type="checkbox" id="same_address" value="true">
+                    <b>@ManagerResource.LB_SAME_ABOVE</b>
+                    <span></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-3">
+                <label>
+                    @ManagerResource.LB_COUNTRY
+                </label>
+                <select placeholder="@ManagerResource.LB_SELECT_COUNTRY" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address_contact.country_id)" id="Address_Contact_Country">
+                    <option value="0">@ManagerResource.LB_SELECT_COUNTRY</option>
+                    @if (Model.Countries.HasData())
+                    {
+                        foreach (var country in Model.Countries)
+                        {
+                            string lbCountry = country.furigana;
+                            if (currentLang == "ja-JP")
+                            {
+                                lbCountry = country.country;
+                            }
+                            <option value="@country.id" @((Model.address_contact.country_id == country.id) ? "selected" : "")>@lbCountry</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="col-lg-3">
+                <label>
+                    @ManagerResource.LB_POSTAL_CODE
+                </label>
+                @Html.TextBoxFor(m => m.address_contact.postal_code, new { @class = "form-control m-input", @id = "Address_Contact_Postal_Code", @maxlength = 8 })
+            </div>
+
+            <div class="col-lg-6">
+                <label>
+                    @ManagerResource.LB_REGION
+                </label>
+                <select placeholder="@ManagerResource.LB_SELECT_REGION" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address_contact.region_id)" id="Address_Contact_Region">
+                    <option value="0">@ManagerResource.LB_SELECT_REGION</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-6">
+                <label>
+                    @ManagerResource.LB_PREFECTURE
+                </label>
+                <select placeholder="@ManagerResource.LB_SELECT_PREFECTURE" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address_contact.prefecture_id)" id="Address_Contact_Prefecture">
+                    <option value="0">@ManagerResource.LB_SELECT_PREFECTURE</option>
+                </select>
+            </div>
+
+            <div class="col-lg-6 Address_Contact_City_Dropdown">
+                <label>
+                    @ManagerResource.LB_CITY
+                </label>
+                <select placeholder="@ManagerResource.LB_SELECT_CITY" data-live-search="true" class="form-control selectpicker" name="@Html.NameFor(m=>m.address_contact.city_id)" id="Address_Contact_City">
+                    <option value="0">@ManagerResource.LB_SELECT_CITY</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-12">
+                <label>
+                    @ManagerResource.LB_ADDRESS_DETAIL
+                </label>
+                @Html.TextBoxFor(m => m.address_contact.detail, new { @class = "form-control m-input", @id = "Address_Contact_Detail" })
+            </div>
+        </div>
+
+        <div class="form-group m-form__group row">
+            <div class="col-lg-12">
+                <label>
+                    @ManagerResource.LB_ADDRESS_FURIGANA
+                </label>
+                @Html.TextBoxFor(m => m.address_contact.furigana, new { @class = "form-control m-input", @id = "Address_Contact_Furigana" })
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group m-form__group row">
+            <div class="col-lg-12">
+                <h4 class="m-form__heading-title">
+                    @ManagerResource.LB_OTHER_INFO:
+                </h4>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <div class="col-lg-3">
+                <label class="pf-title">@ManagerResource.LB_PERSON_CHARGE</label>
+                @RenderUser()
+            </div>
+        </div>
+    }
+
+    @*<div class="form-group m-form__group row hidden" id="btnControls">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <button type="submit" class="btn btn-outline-info pull-right">
+                    <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+                </button>
+            </div>
+        </div>*@
+
+    @helper RenderUser()
+    {
+        var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+        if (ListUser != null && ListUser.Count > 0)
+        {
+            var checkedText = "selected";
+            <select id="@Html.IdFor(m=>m.pic_id)" name="@Html.NameFor(m=>m.pic_id)" class="form-control selectpicker m-input m-input--square">
+                <option value="0">@ManagerResource.SELECT_MEMBER</option>
+                @foreach (var item in ListUser)
+                {
+                    <option value="@item.StaffId" @((item.StaffId == Model.pic_id) ? checkedText : "")>
+                        @item.FullName
+                    </option>
+                }
+            </select>
+        }
+    }
+</div>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    //setTimeout(function () {
+    //    $(".m-selectpicker").selectpicker({ width: 'resolve' });
+    //}, 500);
+    $(".selectpicker").selectpicker();
+    $(".m-scrollable").each(function () {
+        var t = $(this);
+        var height = window.innerHeight;
+        var width = window.innerWidth;
+        if (width > 768) {
+            t.data("original-height", t.data("max-height")), t.css("height", (height - 220) + "px"), t.css("max-height", (height - 220) + "px"), mApp.initScroller(t, {});
+        }
+    });
+</script>
+@*<script src="~/Scripts/JobSeeker/profile.js"></script>*@
+
+<script src="@Url.VersionedContent("~/Scripts/JobSeeker/profile.js")"></script>

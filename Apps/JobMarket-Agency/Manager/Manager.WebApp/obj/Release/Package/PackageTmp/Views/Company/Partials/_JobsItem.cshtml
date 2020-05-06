@@ -1,0 +1,267 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.CompanyClearDataModel
+@{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    var hasSubFields = Model.SubFields.HasData();
+    var companyName = string.Empty;
+    if (Model.CompanyIno != null && Model.CompanyIno.LangList.HasData())
+    {
+        var nameByLang = Model.CompanyIno.LangList.Where(x => x.language_code == currentLang).Select(x => x.company_name).FirstOrDefault();
+        if (!string.IsNullOrEmpty(nameByLang))
+        {
+            companyName = nameByLang;
+        }
+
+        if (string.IsNullOrEmpty(companyName))
+        {
+            companyName = Model.CompanyIno.company_name;
+        }
+    }
+    var canDelete = PermissionHelper.CheckPermission("Delete", "Job");
+    var canClose = PermissionHelper.CheckPermission("Close", "Job");
+}
+<div class="m-section__content table-responsive">
+
+    @if (Model.Jobs.HasData())
+    {
+        <table id="sample-table-1" class="tbl-row-hover table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox custom-label">
+            <thead>
+                <tr>
+                    <th class="text-center align-middle text-info" colspan="4">@ManagerResource.LB_INFORMATION_JOB</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    var stt = 0;
+                    foreach (var record in Model.Jobs)
+                    {
+                        stt++;
+                        var jobName = string.Empty;
+                        if (record.Job_translations.HasData())
+                        {
+                            jobName = record.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                            if (string.IsNullOrEmpty(jobName))
+                            {
+                                jobName = record.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                            }
+                        }
+                        var detailLink = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = record.id, company_id = record.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword });
+
+                        var isExpired = true;
+                        if (record.closed_time != null && record.closed_time.Value > DateTime.Now)
+                        {
+                            isExpired = false;
+                        }
+                        if (isExpired)
+                        {
+                            record.status = 4;
+                        }
+                        <tr>
+                            <td rowspan="3" class="width-3">
+                                <div class="display-flex">
+                                    @if (record.company_info != null)
+                                    {
+                                        <div class="float-left" title="@record.company_info.company_name">
+                                            <a href="@detailLink" class="logo-sm ml10 p-0" style="width:90px;height:60px;display:flex">
+                                                <img src="@record.company_info.logo_full_path" />
+                                            </a>
+                                        </div>
+                                    }
+                                    <a class="float-left ml10" href="@detailLink">
+                                        <div class="job--name" title="@ManagerResource.LB_CLICK_VIEW_DETAIL">
+                                            @jobName
+                                        </div>
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="width-1-5">
+                                <label>@ManagerResource.LB_CODE</label>
+                                <span class="job--code" title="@ManagerResource.LB_JOB_CODE">@record.job_code</span>
+                            </td>
+                            <td class="width-1-5">
+                                <label>@ManagerResource.LB_APPLICATION_COUNT</label>
+                                <span class="number-css">
+                                    @if (record.Extensions.application_count > 0)
+                                    {
+                                        var currentApplication = (int)record.Extensions.application_count;
+                                        var detailActiveAppication = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = record.id, company_id = record.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword, tab = "application" });
+                                        <a href="@detailActiveAppication" target="_blank">@currentApplication.FormatWithComma()</a>
+                                    }
+                                    else
+                                    {
+                                        <span>0</span>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                <label>@ManagerResource.LB_COMPANY</label>
+                                @{
+                                    var detailCompany = SecurityHelper.GenerateSecureLink("Company", "Detail", new { id = record.company_id });
+                                }
+                                <a href="@detailCompany">
+                                    <span class="company-name"> @companyName </span>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                @if (Model.Staffs.HasData())
+                                {
+                                    var picInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                    if (picInfo != null)
+                                    {
+                                        @picInfo.FullName
+                                    }
+                                }
+                            </td>
+                            <td>
+                                <label>@ManagerResource.LB_INVITED_COUNT</label>
+                                <span class="number-css">
+                                    @if (record.Extensions.invited_count > 0)
+                                    {
+                                        var currentInvited = (int)record.Extensions.invited_count;
+                                        var detailActiveInvited = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = record.id, company_id = record.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword, tab = "invited" });
+                                        <a href="@detailActiveInvited" target="_blank">@currentInvited.FormatWithComma()</a>
+                                    }
+                                    else
+                                    {
+                                        <span>0</span>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                <label>@ManagerResource.LB_JOB_FIELD</label>
+                                @if (hasSubFields)
+                                {
+                                    var subFieldName = string.Empty;
+                                    var sub = Model.SubFields.Where(x => x.id == record.sub_field_id).FirstOrDefault();
+                                    if (sub != null)
+                                    {
+                                        if (sub.LangList.HasData())
+                                        {
+                                            subFieldName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+
+                                        }
+                                        if (string.IsNullOrEmpty(subFieldName))
+                                        {
+                                            subFieldName = sub.sub_field;
+                                        }
+                                    }
+                                    @subFieldName
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>@ManagerResource.LB_EXPIRATION_DATE</label>
+                                @if (record.closed_time.Value < DateTime.Now)
+                                {
+                                    <span class="job--expired">
+                                        @record.closed_time.DateTimeQuestToLocaleString(currentLang)
+                                    </span>
+                                }
+                                else
+                                {
+                                    @record.closed_time.DateTimeQuestToLocaleString(currentLang)
+                                }
+                            </td>
+                            <td>
+                                <label>@ManagerResource.LB_INTRODUCE_COUNT</label>
+                                <span class="number-css">
+                                    @if (record.Extensions.introduce_count > 0)
+                                    {
+                                        var currentIntroduce = (int)record.Extensions.introduce_count;
+                                        var detailActiveIntroduce = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = record.id, company_id = record.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword, tab = "introduce" });
+                                        <a href="@detailActiveIntroduce" target="_blank">@currentIntroduce.FormatWithComma()</a>
+                                    }
+                                    else
+                                    {
+                                        <span>0</span>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                <label>@ManagerResource.LB_STATUS</label>
+                                @Html.Partial("../Job/Partials/_Status", record.status)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="custom-td row-control row-control-@record.id">
+                                @{
+                                    var editLink = SecurityHelper.GenerateSecureLink("Job", "Edit", new { id = record.id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword });
+                                    var inviteLink = SecurityHelper.GenerateSecureLink("Job", "CvInvite", new { job_id = record.id });
+                                    var hasPic = PermissionHelper.CheckIsPic(record.staff_id);
+                                    var hasCompanyPic = PermissionHelper.CheckIsPic(record.company_pic_id);
+                                }
+
+                                @if (canDelete && (record.status == (int)EnumJobStatus.Saved || record.status == (int)EnumJobStatus.Draft || record.status == (int)EnumJobStatus.Canceled || isExpired))
+                                {
+                                    var tk = SecurityHelper.GenerateUrlToken("Job", "Delete", new { id = record.id });
+                                    if (hasPic || hasCompanyPic)
+                                    {
+                                        <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" data-href="@Url.Action("Delete", "Job", new { id = record.id, tk = tk })" data-size="default" href="javascript:;" data-link="@Url.Action("Delete", "Job")" data-modal="" title="@ManagerResource.LB_DELETE">
+                                            <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" href="javascript:;" title="@ManagerResource.LB_DELETE">
+                                            <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                        </a>
+                                    }
+
+                                }
+                                @if (canClose && (record.status == (int)EnumJobStatus.Published) && !isExpired)
+                                {
+                                    if (hasPic || hasCompanyPic)
+                                    {
+                                        <a class="btn btn-white btn-warning m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" data-href="@Url.Action("Close", "Job", new { id = record.id })" data-size="default" href="javascript:;" data-link="@Url.Action("Close", "Job")" data-modal="" title="@ManagerResource.BT_JOB_CLOSE">
+                                            <i class="fa fa-close"></i> @ManagerResource.BT_JOB_CLOSE
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-white btn-warning m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" href="javascript:;" title="@ManagerResource.BT_JOB_CLOSE">
+                                            <i class="fa fa-close"></i> @ManagerResource.BT_JOB_CLOSE
+                                        </a>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        @ManagerResource.COMPANY_DELETE_NO_JOB
+    }
+</div>
+@RenderPaging()
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                    Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "JobForDeleteSearchNext")
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.Jobs.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}

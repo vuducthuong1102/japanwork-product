@@ -1,0 +1,672 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageInterviewProcessModel
+@{
+    //ViewBag.Title = ManagerResource.LB_LIST_INTERVIEW_PROCESS;
+    var typeList = TypeJobSeekerProvider.GetLists();
+}
+
+
+<div class="m-portlet m-portlet--mobile">
+    @Html.Partial("../Widgets/Modals/_LargeModal")
+    <div class="m-portlet__body">
+        <!--begin: Search Form -->
+        @*<div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                <div class="row align-items-center">
+                    <div class="col-xl-12 order-2 order-xl-1">
+                        <div class="form-group m-form__group row align-items-center">
+                            <div class="col-md-3 m-form__group--inline">
+                                <div class="m-input-icon m-input-icon--left">
+                                    <input type="text" class="form-control m-input filter-search" placeholder="@ManagerResource.LB_KEYWORD" id="generalSearch">
+                                    <span class="m-input-icon__icon m-input-icon__icon--left">
+                                        <span>
+                                            <i class="la la-search"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 m-form__group--inline">
+                                <select class="filter-search form-control company-picker btn-white" id="@Html.IdFor(m=>m.type_job_seeker)" name="@Html.NameFor(m=>m.type_job_seeker)">
+                                    <option value="-1">
+                                        @ManagerResource.LB_SELECT_TYPE_JOB_SEEKER
+                                    </option>
+                                    @if (typeList.HasData())
+                                    {
+                                        foreach (var item in typeList)
+                                        {
+                                            var selected = "selected";
+                                            if (item.Id != Model.type_job_seeker)
+                                            {
+                                                selected = "";
+                                            }
+                                            <option value="@item.Id" @selected>@item.TypeName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-2 m-form__group--inline">
+                                <select class="filter-search form-control japanese-level-picker btn-white" id="@Html.IdFor(m=>m.japanese_level)" name="@Html.NameFor(m=>m.japanese_level)">
+                                    <option value="-1">
+                                        @ManagerResource.LB_SELECT_JAPANESE_LEVEL
+                                    </option>
+                                    @if (Model.ListJapaneseLevels.HasData())
+                                    {
+                                        foreach (var item in Model.ListJapaneseLevels)
+                                        {
+                                            var selected = "selected";
+                                            if (item.id != Model.japanese_level)
+                                            {
+                                                selected = "";
+                                            }
+                                            <option value="@item.id" @selected>@item.level</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 m-form__group--inline">
+                                <select id="@Html.IdFor(m=>m.status_id)" name="@Html.NameFor(m=>m.status_id)" data-live-search="true" class="filter-search form-control m-select2 m-input m-input--square">
+                                    <option value="0"> @ManagerResource.LB_SELECT__PROCESS_STATUS</option>
+                                    @if (Model.ProcessStatuses.HasData())
+                                    {
+                                        foreach (var item in Model.ProcessStatuses)
+                                        {
+                                            <option value="@item.id">
+                                                @item.status_name
+                                            </option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-2 m-form__group--inline">
+                                @RenderUser()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <!--end: Search Form -->
+        <!--begin: Datatable -->
+        <div class="m_datatable" id="job_seeker_child_data_ajax"></div>
+
+        <div class="col-md-12 mt-4">
+            <div>
+                ※ 求職者の行をクリックすると、求人別ステータス情報が表示されます。
+            </div>
+            <div>
+                ※ ステータス情報を右にスクロールして、ステータス変更したいセルをクリックすることで、ステータスを更新することができます。
+            </div>
+        </div>
+        <!--end: Datatable -->
+    </div>
+</div>
+@helper RenderUser()
+{
+    var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+
+    <select id="@Html.IdFor(m=>m.staff_id)" name="@Html.NameFor(m=>m.staff_id)" data-live-search="true" class="filter-search form-control m-select2 m-input m-input--square">
+        <option value="0">@ManagerResource.LB_SELECT_PIC</option>
+        @if (ListUser != null && ListUser.Count > 0)
+        {
+            foreach (var item in ListUser)
+            {
+                <option value="@item.StaffId">
+                    @item.FullName
+                </option>
+            }
+        }
+    </select>
+}
+
+@section PageInlineStyles{
+    <style>
+
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable {
+            max-width: 100%;
+            overflow: auto;
+            display: grid;
+        }
+
+        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span {
+            overflow: unset;
+        }
+
+        .m-datatable__subtable .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell {
+            background: #36a3ca !important;
+        }
+
+            .m-datatable__subtable .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell * {
+                color: #fff !important;
+            }
+
+        /*.m-datatable__cell.pointer :hover {border:1px solid #ccc !important;}*/
+    </style>
+    <link href="~/Content/Timeline/timeline.css" rel="stylesheet" />
+    <style>
+        #myModal .modal-dialog {
+            float: right;
+            margin-top: 70px;
+        }
+
+        .content-custom {
+            height: 100%;
+        }
+
+
+
+        .td-click {
+            cursor: pointer;
+        }
+
+        /* Smartphones (portrait and landscape) ----------- */
+        @@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+            /* Styles */
+            #myModal .modal-dialog {
+                width: 88vw;
+            }
+        }
+
+        /* Smartphones (landscape) ----------- */
+        @@media only screen and (min-width : 321px) {
+
+            #myModal .modal-dialog {
+                width: 88vw;
+            }
+        }
+
+        /* Smartphones (portrait) ----------- */
+        @@media only screen and (max-width : 320px) {
+            #myModal .modal-dialog {
+                width: 88vw;
+            }
+        }
+
+        /* iPads (portrait and landscape) ----------- */
+        @@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+            #myModal .modal-dialog {
+                width: 50vw;
+            }
+        }
+
+        /* iPads (landscape) ----------- */
+        @@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+            #myModal .modal-dialog {
+                width: 50vw;
+            }
+        }
+
+        /* iPads (portrait) ----------- */
+        @@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+            #myModal .modal-dialog {
+                width: 50vw;
+            }
+        }
+
+        /* Desktops and laptops ----------- */
+        @@media only screen and (min-width : 1224px) {
+            #myModal .modal-dialog {
+                width: 50vw;
+            }
+        }
+
+        /* Large screens ----------- */
+        @@media only screen and (min-width : 1824px) {
+            #myModal .modal-dialog {
+                width: 60vw;
+            }
+        }
+
+        /* iPhone 4 ----------- */
+        @@media only screen and (-webkit-min-device-pixel-ratio : 1.5), only screen and (min-device-pixel-ratio : 1.5) {
+            #myModal .modal-dialog {
+                width: 88vw;
+            }
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+        $(document).on("click", ".btn-search", function () {
+            $("#job_seeker_child_data_ajax").mDatatable().search();
+        });
+    </script>
+    <script>
+        var subTableColumns = [];
+        var statusLoaded = false;
+        let company_name = {
+            field: "company_name",
+            class: "full-text",
+            title: "@ManagerResource.LB_COMPANY_NAME",
+            width: 250,
+            class:"full-text prefix-width",
+            sortable: !1,
+            template: function (t) {
+                var companyName = "";
+                 t.forEach(function (item) {
+                     if (item.Key == 'company_name') {
+                         companyName = item.Value;
+                         return false;
+                    }
+                });
+                return "<span class='company_name'>" + companyName + "</span>";
+            }
+        };
+        let job_code = {
+            field: "job_code",
+            title: "@ManagerResource.LB_JOB_CODE",
+            width: 70,
+            class:"full-text prefix-width m-datatable__cell--center",
+            sortable: !1,
+            textAlign: "center",
+            template: function (t) {
+                var jobCode = "";
+                 t.forEach(function (item) {
+                     if (item.Key == 'job_code') {
+                         jobCode = item.Value;
+                         return false;
+                    }
+                 });
+                return "<span class='job_code'>" + jobCode + "</span>";
+            }
+        };
+        let sub_field_name = {
+            field: "sub_field_name",
+            title: "@ManagerResource.LB_JOB_FIELD",
+            width: 200,
+            class:"full-text prefix-width",
+            sortable: !1,
+            template: function (t) {
+                var subFieldName = "";
+                 t.forEach(function (item) {
+                     if (item.Key == 'sub_field_name') {
+                         subFieldName = item.Value;
+                         return false;
+                    }
+                 });
+                return "<span class='sub_field_name'>" + subFieldName + "</span>";
+            }
+        };
+        let pic_name = {
+            field: "pic_name",
+            title: "@ManagerResource.LB_PERSON_CHARGE",
+            width: 115,
+            class:"full-text prefix-width",
+            sortable: !1,
+            template: function (t) {
+                var picName = "";
+                 t.forEach(function (item) {
+                     if (item.Key == 'pic_name') {
+                         picName = item.Value;
+                         return false;
+                    }
+                 });
+                return "<span class='pic_name'>" + picName + "</span>";
+            }
+        };
+        let last_status = {
+            field: "last_status",
+            title: "@ManagerResource.LB_LAST_PROCESS",
+            width: 115,
+            class:"full-text prefix-width",
+            sortable: !1,
+            textAlign: "center",
+            template: function (t) {
+                var last_status = "";
+                var id = "";
+                 var last_time = "";
+                 var fc_show = false;
+                 t.forEach(function (item) {
+                     if (item.Key == 'last_status') {
+                         last_status = item.Value;
+                     }
+                     if (item.Key == 'id') {
+                         id = item.Value;
+                     }
+                     if (item.Key == 'last_time') {
+                         last_time = item.Value;
+                     }
+                     if (item.Key == 'fc_show') {
+                         if (item.Value == "1") {
+                             fc_show = true;
+                         }
+                    }
+                 });
+                if (last_status != "") {
+                    if (fc_show) {
+                        return '<div class="last_status_'+id+'"><a href="javascript:;" style="text-decoration:underline !important" onclick="ShowInterviewProcess(' + id + ')">' + last_status + '</a></div>'
+                    }
+                    else {
+                        return '<div class="last_status_'+id+'"><span>' + last_status + '</span></div>'
+                    }
+                }
+                else {
+                     return "";
+                }
+            }
+        };
+        subTableColumns.push(company_name);
+        subTableColumns.push(job_code);
+        subTableColumns.push(sub_field_name);
+        subTableColumns.push(pic_name);
+        subTableColumns.push(last_status);
+        var JobRemoteData = {
+    init: function() {
+                var t;
+        t = $(".m_datatable").mDatatable({
+            data: {
+                type: "remote",
+                source: {
+                    read: {
+                        url: "/Process/LoadDataJobSeeker", map: function (t) {
+                            var e = t;
+                            return void 0 !== t.data && (e = t.data), e
+                        },
+                        params: {
+						    query: {
+							    type_job_seeker: function () {
+								    return $("#type_job_seeker").val();
+                                },
+                                status_id: function () {
+								    return $("#status_id").val();
+                                },
+                                staff_id: function () {
+								    return $("#staff_id").val();
+                                },
+                                 japanese_level_number: function () {
+								    return $("#japanese_level_number").val();
+                                },
+                                 generalSearch: function () {
+								    return $(".input-search").val();
+                                }
+						    }
+					    }
+                    },
+                }
+                , pageSize: 10, serverPaging: !0, serverFiltering: !0, serverSorting: !0
+            },
+            layout: {
+                theme: "default",
+                scroll: !1,
+                height: null,
+                footer: !1,
+                smoothScroll: {
+                    scrollbarShown: !0
+                },
+            },
+            sortable: !0,
+            pagination: !0,
+            detail: {
+                title: "@ManagerResource.LB_VIEW_DETAIL",
+                content: function (t) {
+                    if (!statusLoaded) {
+                        if (t.data.StatusList != null && t.data.StatusList.length > 0) {
+                            t.data.StatusList.forEach(function (item) {
+                                let stItem = {
+                                    field: "status_" + item.id,
+                                    title: item.status_name,
+                                    sortable: !1,
+                                    class: "pointer full-text prefix-width td-click m-datatable__cell--center status_" + t.data.id + "_" + item.id,
+                                     width: 115,
+                                    template: function (t) {
+                                        var myValue = "";
+                                        var id = "";
+                                        var fc_create = 0;
+                                        t.forEach(function (data) {
+                                            if (data.Key == "status_" + item.id) {
+                                                 myValue = data.Value;
+                                            }
+                                             if (data.Key == "fc_create") {
+                                                if (data.Value == "1") {
+                                                    fc_create = 1;
+                                                 }
+                                                 else if (data.Value == "-1") {
+                                                    fc_create = -1;
+                                                }
+                                            }
+                                            if (data.Key == "id") {
+                                                 id = data.Value;
+                                            }
+                                        });
+                                        if (myValue == "") {
+                                            if (fc_create == "1") {
+                                                return '<div class="status_' + id + '_' + item.id + '"><a data-href="/Process/Create?candidate_id=' + id + '&status_id=' + item.id + '" data-modal="" data-backdrop="false" class="add-new"></a></div>';
+                                            }
+                                            else if (fc_create == "0") {
+                                                return '<div class="status_' + id + '_' + item.id + '"><a class="add-new btn-no-permission-to-use"></a></div>';
+                                            }
+                                            else {
+                                                return '<div class="status_' + id + '_' + item.id + '"><a class="add-new btn-process-end"></a></div>';
+                                            }
+                                        }
+                                        else {
+                                            return '<a href="javascript:;" style="text-decoration:underline !important" onclick="ShowInterviewProcess(' + id + ')">' + myValue + '</a>'
+                                        }
+                                    }
+                                };
+
+                                subTableColumns.push(stItem);
+                            });
+
+                            statusLoaded = true;
+                        }
+                    }
+
+                    $("<div/>").attr("id", "job_seeker_child_data_ajax_" + t.data.id).appendTo(t.detailCell).mDatatable({
+                        data: {
+                            type: "remote",
+                            source: {
+                                read: {
+                                    url: "/Process/GetDetailJobSeekers",
+                                    headers: {
+                                        "x-my-custom-header": "some value",
+                                        "x-test-header": "the value"
+                                    },
+                                    params: {
+                                        query: {
+                                            id: t.data.id,
+                                            type_job_seeker: function () {
+								                    return $("#type_job_seeker").val();
+                                                },
+                                            status_id: function () {
+								                return $("#status_id").val();
+                                            },
+                                             staff_id: function () {
+								                return $("#staff_id").val();
+                                            },
+                                            generalSearch: function () {
+								                return $(".input-search").val();
+                                            }
+                                            }
+                                    }
+                                }
+                            },
+                            pageSize: 10,
+                            serverPaging: !0,
+                            serverFiltering: !1,
+                            serverSorting: !0
+                        },
+                        layout: {
+                            theme: "default",
+                            smoothScroll: {
+                                scrollbarShown: !0
+                            },
+                            scroll: !0,
+                            //height: 300,
+                            footer: !1,
+                            spinner: {
+                                type: 1,
+                                theme: "default"
+                            },
+                            icons: {
+                                rowDetail: {
+                                    expand: "fa fa-caret-down",
+                                    collapse: "fa fa-caret-right"
+                                }
+                            },
+                            class: "table table-bordered"
+                        },
+                         translate: {
+                records: {
+                    processing: LanguageDic["LB_LOADING"] + "...",
+                    noRecords: LanguageDic["LB_PROCESS_HAS_NO_JOB"]
+                },
+                        toolbar: {
+                            pagination: {
+                                items: {
+                                    default: {
+                                        first: "First",
+                                        prev: "Previous",
+                                        next: "Next",
+                                        last: "Last",
+                                        more: "More pages",
+                                        input: "Page number",
+                                        select: "Select page size"
+                                    },
+                                    info: "@ManagerResource.LB_RECORDS_ALL {{total}} @ManagerResource.LB_RECORDS" + " {{start}} 〜 {{end}} " + "@ManagerResource.LB_RECORDS_DISPLAY"
+                                }
+                            }
+                        }
+                    },
+                        sortable: !0,
+                        columns: subTableColumns
+                    })
+                }
+            },
+            translate: {
+                records: {
+                    processing: LanguageDic["LB_LOADING"] + "...",
+                    noRecords: LanguageDic["LB_PROCESS_HAS_NO_JOBSEEKER"]
+                },
+                toolbar: {
+                    pagination: {
+                        items: {
+                            default: {
+                                first: "First",
+                                prev: "Previous",
+                                next: "Next",
+                                last: "Last",
+                                more: "More pages",
+                                input: "Page number",
+                                select: "Select page size"
+                            },
+                            info: "@ManagerResource.LB_RECORDS_ALL {{total}} @ManagerResource.LB_RECORDS" + " {{start}} 〜 {{end}} " + "@ManagerResource.LB_RECORDS_DISPLAY"
+                        }
+                    }
+                }
+            },
+            search: {
+                input: $("#generalSearch")
+            },
+            columns: [{
+                field: "id",
+                title: "",
+                sortable: !1,
+                width: 0,
+                textAlign: "center"
+            },
+            {
+            field: "full_name",
+            title: "@ManagerResource.LB_APPLICANT",
+            sortable: !1,
+            class:"detail-row"
+            },
+            {
+                field: "code",
+                title: "@ManagerResource.LB_CODE",
+                sortable: !1,
+                class:"full-text detail-row",
+                width: 7
+            },
+            {
+                field: "process_lastest",
+                title: "@ManagerResource.LB_PROCESS_LASTEST",
+                sortable: !1,
+                class:"full-text detail-row",
+                width: 20
+            }, {
+                field: "company_count",
+                title: "@ManagerResource.LB_NUMBER_COMPANIES_APPLYING",
+                width: 12,
+                sortable: !1,
+                class: "full-text detail-row"
+                }
+            , {
+                field: "visa_name",
+                title: "@ManagerResource.LB_VISA",
+                width: 20,
+                sortable: !1,
+                class: "full-text detail-row"
+                }
+            , {
+                field: "japanese_level",
+                title: "@ManagerResource.LB_LANGUAGE_LEVEL",
+                sortable: !1,
+                width: 14,
+                class: "full-text detail-row",
+                }
+            ]
+        })
+    }
+};
+        setTimeout(function () {
+            JobRemoteData.init();
+             $(".m-select2").select2({ width: 'resolve' });
+        }, 500);
+         $(document).on("click", ".detail-row", function () {
+            $(this).closest("tr").find("a:first").click();
+        })
+        $(document).on("click", ".td-click", function () {
+            $(this).find("a.add-new").click();
+        })
+        function ProcessDetail(id, modified_at, status, status_name) {
+
+            if (status == 27) {
+                ClearSomeLocalStorage("job_seeker_child_data_ajax");
+                ClearSomeLocalStorage("job_child_data_ajax");
+                window.location.reload();
+            }
+            else {
+                var content = '<a href="javascript:;" style="text-decoration:underline !important" onclick="ShowInterviewProcess(' + id + ')">' + modified_at + '</a>';
+                var content_last_status = '<a href="javascript:;" style="text-decoration:underline !important" onclick="ShowInterviewProcess(' + id + ')">' + status_name + '</a>'
+                $("div.status_" + id + "_"+status).html(content);
+                $("div.last_status_" + id).html(content_last_status);
+                $("div.last_status_" + id).closest("table").closest("tr").prev().find("td[data-field=process_lastest]").find("span").html(status_name);
+                ShowInterviewProcess(id);
+            }
+        }
+        function ShowInterviewProcess(id) {
+            $.ajax({
+                url: '/Process/ShowInterviewProcess',
+                data: {
+                    id: id
+                },
+                success: function (result) {
+                    if (result) {
+                        $("#myModalContent").html(result);
+                        $('body').addClass('modal-open');
+
+                        $('#myModal').modal('show');
+                        $('#myModal').addClass("custom-modal");
+                        $('.modal-backdrop').hide();
+                       $(".select2-update").select2({ width: 'resolve' });
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), function () { });
+                }
+            });
+        }
+         function ChangeStatus() {
+            $("#btn-add").attr('data-href', '/Process/Create?candidate_id=' + $("#Id").val() + '&status_id=' + $("#select-status").val());
+        }
+        $(document).on("click", ".detail-row", function () {
+            var target = $(this).closest("tr");
+            $(".m-datatable__row--subtable-expanded").each(function () {
+                $(this).find("a:first").click();
+            });
+            target.find("a:first").click();
+        })
+    </script>
+}

@@ -1,0 +1,140 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var userName = string.Empty;
+    if (currentUser != null)
+    {
+        userName = AccountHelper.ShowDisplayName(currentUser);
+    }
+}
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <h3>@UserWebResource.LB_WELCOME @userName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column border-right hidden-sm-down">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            @Html.Partial("~/Views/Widgets/Items/Profile/_LeftMenu.cshtml", "cv")
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9 column">
+                    <div class="row mt40">
+                        <div class="col-lg-12 text-right">
+                            <a data-href="/Cv/CvCreationMethod" data-modal-direct="" class="btn btn-info"><i class="fa fa-pencil-square-o"></i> @UserWebResource.BT_CREATE_NEW</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 manage-jobs-sec addscroll member-cvs" id="MyCVs">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div id='myDetailModal' class='modal fade in'>
+    <div class="modal-dialog" style="max-width:918px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fz-16" id="exampleModalLabel">
+                    @UserWebResource.LB_CV_INFO
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                </button>
+            </div>
+            <div id='myModalContent' class="pt5" style="padding:50px;">
+                <div id="printContent">
+                </div>
+                <div id="editor"></div>
+                <div class="text-center modal-footer mt20" style="padding: 10px 0px 10px 10px;">
+                    <button id="btn-print" class="btn btn-info">
+                        <i class="fa fa-print" aria-hidden="true"></i> @UserWebResource.BT_PRINT
+                    </button>
+                    <a id="btn-export-pdf" class="btn btn-success" href="#">
+                        <i class="fa fa-file-pdf-o" aria-hidden="true"></i> @UserWebResource.BT_EXPORT_PDF
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/scrollbar/scrollbar.css" rel="stylesheet" />
+    <style>
+        .content-print {
+            max-height: 75vh;
+            overflow: hidden;
+            overflow-y: scroll;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Content/Extensions/scrollbar/jquery.scrollbar.js"></script>
+    <script>
+        $(document).on('show.bs.modal', '#myDetailModal', function () {
+            setTimeout(function () {
+                $('.content-print').scrollbar();
+            }, 100);
+        });
+
+        $("body").on("click", ".btn-view-detail", function () {
+            var id = $(this).attr("data-id");
+            $("#btn-export-pdf").attr("href", "/Member/PrintPDF/" + id);
+            $.get($(this).data("href"), function (data) {
+                $("#printContent").html(data);
+            });
+            $("#myDetailModal").modal('show');
+        });
+
+        $("body").on("click", ".btn-preview-cv", function () {
+            showLoading();
+            var id = $(this).attr("data-id");
+            $("#btn-export-pdf").attr("href", "/Member/PrintPDF/" + id);
+            $.get($(this).data("href"), function (data) {
+                $("#printContent").html(data);
+            }).always(function () {
+                hideLoading();
+            });
+            $("#myDetailModal").modal('show');
+        });
+
+        $('#btn-print').click(function () {
+            var divToPrint = document.getElementById('printContent');
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+            newWin.document.close();
+            setTimeout(function () { newWin.close(); }, 10);
+        });
+    </script>
+    <script src="@Url.VersionedContent("~/Scripts/Pages/Member/cv.js")"></script>
+}

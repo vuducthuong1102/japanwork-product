@@ -1,0 +1,48 @@
+﻿@using MySite.Helpers;
+@using MySite.Caching;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPost
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var typecss = "edit";
+
+    if (string.IsNullOrEmpty(Model.ShortDescription))
+    {
+        typecss = "";
+    }
+}
+@if (Model != null)
+{
+    if (hasLoggedIn)
+    {
+        <div class="box-comment padl10 padr10">
+            <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar">
+            <div class="input-group">
+                <div class="cmt-box">
+                    @if (string.IsNullOrEmpty(Model.ShortDescription))
+                    {
+                        <div contenteditable="true" class="notranslate _5rpu text-comment-@Model.Id comment comment-add" data-id="@Model.Id"></div>
+                    }
+                    else
+                    {
+                        <div contenteditable="true" class="notranslate _5rpu  comment comment-edit" data-id="@Model.Id">@Html.Raw(Model.ShortDescription)</div>
+                    }
+                    <div class="cmt-attach">
+                        <a href="javascript:;"><i class="icon icon-emoji"></i></a>
+                        <a href="javascript:;"><i class="icon icon-image"></i></a>
+                    </div>
+                </div>
+            </div>
+            @if (string.IsNullOrEmpty(Model.ShortDescription))
+            {
+                @Html.Partial("~/Views/Widgets/Post/Score/_ScoreItem.cshtml", (int)Model.UserRating)
+            }
+            <div class="clearfix"></div>
+        </div>
+    }
+}
+

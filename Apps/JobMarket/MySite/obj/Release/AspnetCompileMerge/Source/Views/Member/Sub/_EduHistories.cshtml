@@ -1,0 +1,64 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Models
+
+@model List<JobSeekerEduHistoryModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @RenderEduHistoryItem(item)
+    }
+}
+else {
+    <div class="edu-history">
+        <i class="la la-graduation-cap"></i>
+        <div class="edu-hisinfo">
+            <h3>@UserWebResource.LB_NOT_UPDATED</h3>           
+        </div>
+    </div>
+}
+
+@helper RenderEduHistoryItem(JobSeekerEduHistoryModel item)
+{
+    <div class="edu-history mb5">
+        <i class="la la-graduation-cap"></i>
+        <div class="edu-hisinfo">
+            <h3>@item.qualification_label</h3>
+            <i>@FrontendHelpers.RenderRangeYear(item.start_date, item.end_date)</i>
+            <span>
+                @item.school
+                @if (!string.IsNullOrEmpty(item.major_label))
+                {
+                    <i>@item.major_label</i>
+                }
+                else
+                {
+                    if (item.major_id == 0)
+                    {
+                        <i>@item.major_custom</i>
+                    }
+                }
+            </span>
+            @*@if (!string.IsNullOrEmpty(item.address))
+            {
+                <p>@UserWebResource.LB_ADDRESSES: @item.address</p>
+            }*@
+             @foreach (var myEnum in Enum.GetValues(typeof(EnumEducationStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var chkStr = string.Empty;
+                if (chkItem == item.status)
+                {
+                    chkStr = "selected";
+                     <p>@EnumExtensions.GetEnumDescription((Enum)myEnum)</p>
+                }
+            }
+        </div>
+        <ul class="action_job">
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal="" data-href="@Url.Action("UpdateEduHistory","Member", new { id = item.id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-href="@Url.Action("DeleteEduHistory","Member", new { id = item.id })" title=""><i class="la la-trash-o"></i></a></li>
+        </ul>
+    </div>
+}

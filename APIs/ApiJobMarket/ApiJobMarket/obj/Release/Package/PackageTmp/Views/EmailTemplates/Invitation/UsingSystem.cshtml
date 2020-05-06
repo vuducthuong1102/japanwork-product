@@ -1,0 +1,346 @@
+﻿@using ApiJobMarket.Resources
+@using ApiJobMarket.Helpers
+@model ApiJobMarket.Models.EmailModel
+
+@{
+    var baseUrl = UrlFriendlyHelpers.GetBaseUrl();
+}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+        <o:AllowPNG/>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="format-detection" content="date=no" />
+    <meta name="format-detection" content="address=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <!--[if !mso]><!-->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,400i,700,700i" rel="stylesheet" />
+    <!--<![endif]-->
+    <title>Japan Work</title>
+    <!--[if gte mso 9]>
+    <style type="text/css" media="all">
+        sup { font-size: 100% !important; }
+    </style>
+    <![endif]-->
+
+
+    <style type="text/css" media="screen">
+        /* Linked Styles */
+        body {
+            padding: 0 !important;
+            margin: 0 !important;
+            display: block !important;
+            min-width: 100% !important;
+            width: 100% !important;
+            background: #f4f4f4;
+            -webkit-text-size-adjust: none
+        }
+
+        a {
+            color: #66c7ff;
+            text-decoration: none
+        }
+
+        p {
+            padding: 0 !important;
+            margin: 0 !important
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic; /* Allow smoother rendering of resized image in Internet Explorer */
+        }
+
+        .mcnPreviewText {
+            display: none !important;
+        }
+
+
+        /* Mobile styles */
+        @@media only screen and (max-device-width: 480px), only screen and (max-width: 480px) {
+            .mobile-shell {
+                width: 100% !important;
+                min-width: 100% !important;
+            }
+
+            .bg {
+                background-size: 100% auto !important;
+                -webkit-background-size: 100% auto !important;
+            }
+
+            .text-header,
+            .m-center {
+                text-align: center !important;
+            }
+
+            .center {
+                margin: 0 auto !important;
+            }
+
+            .container {
+                padding: 20px 10px !important
+            }
+
+            .td {
+                width: 100% !important;
+                min-width: 100% !important;
+            }
+
+            .m-br-15 {
+                height: 15px !important;
+            }
+
+            .p30-15 {
+                padding: 30px 15px !important;
+            }
+
+            .p40 {
+                padding: 20px !important;
+            }
+
+            .m-td,
+            .m-hide {
+                display: none !important;
+                width: 0 !important;
+                height: 0 !important;
+                font-size: 0 !important;
+                line-height: 0 !important;
+                min-height: 0 !important;
+            }
+
+            .m-block {
+                display: block !important;
+            }
+
+            .fluid-img img {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+
+            .column,
+            .column-top,
+            .column-empty,
+            .column-empty2,
+            .column-dir-top {
+                float: left !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .column-empty {
+                padding-bottom: 10px !important;
+            }
+
+            .column-empty2 {
+                padding-bottom: 20px !important;
+            }
+
+            .content-spacing {
+                width: 15px !important;
+            }
+        }
+    </style>
+</head>
+<body class="body" style="padding:0 !important; margin:0 !important; display:block !important; min-width:100% !important; width:100% !important; background:#f4f4f4; -webkit-text-size-adjust:none;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f4f4f4">
+        <tr>
+            <td align="center" valign="top">
+                <table width="650" border="0" cellspacing="0" cellpadding="0" class="mobile-shell">
+                    <tr>
+                        <td class="td container" style="width:650px; min-width:650px; font-size:0pt; line-height:0pt; margin:0; font-weight:normal; padding:55px 0px;">
+                            <!-- Header -->
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td style="padding-bottom: 20px;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td class="p30-15" style="padding: 25px 30px 25px 30px;" bgcolor="#ffffff">
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <th class="column-top" width="145" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td class="img m-center" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="https://japan-work.vn/Content/images/job_market-dark.png" width="120" editable="true" border="0" alt="" /></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </th>
+                                                            <th class="column-empty" width="1" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal; vertical-align:top;"></th>
+                                                            @*<th class="column" style="font-size:0pt; line-height:0pt; padding:0; margin:0; font-weight:normal;">
+                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                    <tr>
+                                                                        <td class="text-header" style="color:#999999; font-family:'Noto Sans', Arial,sans-serif; font-size:12px; line-height:16px; text-align:right; text-transform:uppercase;"><multiline><webversion class="link2" style="color:#999999; text-decoration:none;">Open in your browser</webversion></multiline></td>
+                                                                    </tr>
+                                                                </table>
+                                                            </th>*@
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!-- END Header -->
+
+                            <repeater>
+                                <!-- Intro -->
+                                <layout label='Intro'>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="padding-bottom: 20px;">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td background="https://japan-work.vn/Content/images/job-market-app-600x600.png" bgcolor="#fffff" valign="top" height="366" class="bg" style="background-size:cover !important; -webkit-background-size:cover !important; background-repeat:none;">
+                                                            <!--[if gte mso 9]>
+                                                            <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:650px; height: 366px">
+                                                                <v:fill type="frame" src="images/t8_bg.jpg" color="#114490" />
+                                                                <v:textbox inset="0,0,0,0">
+                                                            <![endif]-->
+                                                            @*<div>
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tr>
+                                                                            <td class="content-spacing" width="30" height="366" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+                                                                            <td style="padding: 30px 0px;">
+                                                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                    <tr>
+                                                                                        <td class="h1 center pb25" style="color:#ffffff; font-family:'Noto Sans', Arial,sans-serif; font-size:40px; line-height:46px; text-align:center; padding-bottom:25px;"><multiline>Web Design Services</multiline></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <td class="text-center" style="color:#ffffff; font-family:'Noto Sans', Arial,sans-serif; font-size:16px; line-height:30px; text-align:center;"><multiline>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</multiline></td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                            </td>
+                                                                            <td class="content-spacing" width="30" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                </div>*@
+                                                            <!--[if gte mso 9]>
+                                                                </v:textbox>
+                                                                </v:rect>
+                                                            <![endif]-->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </layout>
+                                <!-- END Intro -->
+                                <!-- Article / Title + Copy + Button -->
+                                <layout label=''>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td style="padding-bottom: 20px;">
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ffffff">
+                                                    <tr>
+                                                        <td class="p30-15" style="padding: 50px 30px;">
+                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                <tr>
+                                                                    <td class="h3 pb20" style="color:#114490; font-family:'Noto Sans', Arial,sans-serif; font-size:24px; line-height:32px; text-align:left; padding-bottom:5px;"><multiline>Japan Work - @EmailResource.EMAIL_BUSINIESS_SLOGAN</multiline></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="h3 pb20" style="color:#114490; font-family:'Noto Sans', Arial,sans-serif; font-size:20px; line-height:32px; text-align:left; padding-bottom:17px;"><multiline>@EmailResource.EMAIL_USING_SYSTEM_DES_1</multiline></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="text pb20" style="color:#777777; font-family:'Noto Sans', Arial,sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:20px;">
+                                                                        <multiline>
+                                                                            @{
+                                                                                var senderName = Model.SenderName;
+                                                                                if (!string.IsNullOrEmpty(Model.SenderName))
+                                                                                {
+                                                                                    senderName = string.Format("<b>{0}</b> ({1})", Model.SenderName, Model.SenderEmail);
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    senderName = Model.SenderEmail;
+                                                                                }
+                                                                            }
+
+                                                                            @Html.Raw(string.Format(EmailResource.EMAIL_USING_SYSTEM_DES_FORMAT, senderName))
+
+                                                                            @if (!string.IsNullOrEmpty(Model.Note))
+                                                                            {
+                                                                                <div style="padding-top:10px;">
+                                                                                    <b>@EmailResource.EMAIL_MESSAGE_NOTE: </b>
+                                                                                    <br />
+                                                                                    <p>
+                                                                                        @Html.RawHtmlCustom(Model.Note)
+                                                                                    </p>
+                                                                                </div>
+                                                                            }
+                                                                        </multiline>
+
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- Button -->
+                                                                <tr>
+                                                                    <td align="left">
+                                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                                            <tr>
+                                                                                <td class="text-button" style="background:#114490; color:#ffffff; font-family:'Noto Sans', Arial,sans-serif; font-size:14px; line-height:18px; padding:12px 20px; text-align:center; border-radius:6px;"><multiline><a href="@Model.ActiveLink" target="_blank" class="link-white" style="color:#ffffff; text-decoration:none;"><span class="link-white" style="color:#ffffff; text-decoration:none;">@EmailResource.BT_ALLOW</span></a></multiline></td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- END Button -->
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </layout>
+                                <!-- END Article / Title + Copy + Button -->
+                            </repeater>
+
+                            <!-- Footer -->
+                            @*<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td class="p30-15" style="padding: 50px 30px;" bgcolor="#ffffff">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td align="center" style="padding-bottom: 30px;">
+                                                    <table border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="images/t8_ico_facebook.jpg" width="38" height="38" editable="true" border="0" alt="" /></a></td>
+                                                            <td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="images/t8_ico_twitter.jpg" width="38" height="38" editable="true" border="0" alt="" /></a></td>
+                                                            <td class="img" width="55" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="images/t8_ico_instagram.jpg" width="38" height="38" editable="true" border="0" alt="" /></a></td>
+                                                            <td class="img" width="38" style="font-size:0pt; line-height:0pt; text-align:left;"><a href="#" target="_blank"><img src="images/t8_ico_linkedin.jpg" width="38" height="38" editable="true" border="0" alt="" /></a></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-footer1 pb10" style="color:#999999; font-family:'Noto Sans', Arial,sans-serif; font-size:16px; line-height:20px; text-align:center; padding-bottom:10px;"><multiline>Webweaver - Free HTML Email Template</multiline></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-footer2 pb30" style="color:#999999; font-family:'Noto Sans', Arial,sans-serif; font-size:12px; line-height:26px; text-align:center; padding-bottom:30px;"><multiline>East Pixel Bld. 99, Creative City 9000, Republic of Design</multiline></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-footer3" style="color:#c0c0c0; font-family:'Noto Sans', Arial,sans-serif; font-size:12px; line-height:18px; text-align:center;"><unsubscribe class="link3" style="color:#c0c0c0; text-decoration:none;"><span class="link3-u" style="color:#c0c0c0; text-decoration:underline;">Unsubscribe</span> from this mailing list.</unsubscribe></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>*@
+                            <!-- END Footer -->
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

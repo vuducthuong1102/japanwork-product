@@ -1,0 +1,66 @@
+﻿@using MySite.Helpers;
+@using MySite.Caching;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPost
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var typecss = "edit";
+
+    if (string.IsNullOrEmpty(Model.ShortDescription))
+    {
+        typecss = "";
+    }
+}
+@if (Model != null)
+{
+    if (hasLoggedIn)
+    {
+<div class="box-comment ip-comment UFIRow _4oep UFIAddComment UFIAddCommentWithPhotoAttacher _2o9m @typecss" data-id="@Model.Id">
+    <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar avatar-comment">
+    <div class="UFIMentionsInputWrap UFIStickersEnabledInput UFIGifEnabledInput clearfix">
+        <div>
+            <div class="UFIImageBlockContent _42ef _8u">
+                <div class="UFICommentContainer">
+                    <div class="_fmi _613v UFIInputContainer">
+                        <div class="_2xwx _289c">
+                            <div class="UFIAddCommentInput _1osb _2xww _5yk1">
+                                <div class="_5yk2">
+                                    <div class="_5rp7">
+                                        <div class="_5rpb">
+                                            @if (string.IsNullOrEmpty(Model.ShortDescription))
+                                            {
+                                                <div contenteditable="true" class="notranslate _5rpu text-comment-@Model.Id comment comment-add" data-id="@Model.Id"></div>
+                                            }
+                                            else
+                                            {
+                                                <div contenteditable="true" class="notranslate _5rpu  comment comment-edit" data-id="@Model.Id">@Html.Raw(Model.ShortDescription)</div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="_fmk UFICommentAttachmentButtons _5op2 _15i7 _2kwm">
+                            <a href="javascript:;"><i class="i1 iaf"></i></a>
+                            <a href="javascript:;"><i class="i1 id"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    @if (string.IsNullOrEmpty(Model.ShortDescription))
+    {
+        @Html.Partial("~/Views/Widgets/Post/Score/_ScoreItem.cshtml", (int)Model.UserRating)
+    }
+    <div class="clearfix"></div>
+</div>
+    }
+}
+

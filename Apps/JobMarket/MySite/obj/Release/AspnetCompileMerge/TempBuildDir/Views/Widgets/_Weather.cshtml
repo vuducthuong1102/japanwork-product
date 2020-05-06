@@ -1,0 +1,184 @@
+﻿@using MySite.Models.External.OpenWeather;
+@using MySite.Resources;
+@using System.Globalization;
+@using System.Linq;
+@using MySite.Services;
+@using MySite.Helpers;
+@model  MySite.Models.External.OpenWeather.ShowWeatherModel
+
+@{
+    var rd = new Random();
+}
+
+@if (Model != null)
+{
+    if (Model.ListData != null && Model.ListData.Count > 0)
+    {
+        var currentLabel = string.Empty;
+        var icon = string.Empty;
+        var currentTemp = OpenWeatherService.GetTempWithCurrentDate(Model.ListData, ref currentLabel, ref icon);
+        <div class="weather">
+            <table>
+                <tr>
+                    <td>
+                        <p class="fz-51">@currentTemp°C</p>
+                        <p class="fz-16 text-bold">
+                            @Model.city
+                            <i class="icon icon-discover pointer ml5 fz-18" data-toggle="collapse" data-target="#weather-details"></i>
+                        </p>
+                        <p>@UserWebResource.LB_TODAY, <span id="myclock">@DateTime.Now.ToString("HH:mm:ss")</span></p>
+                    </td>                    
+                    <td class="lg-icon">@GetIconSvg(icon)</td>
+                </tr>
+            </table>
+            <form id="frmWeather" onsubmit="GetWeather(); return false;" method="POST" action="">
+                <div id="weather-details" class="collapse">
+                    <div class="input-group">
+                        <input type="text" id="txtCity" class="form-control" value="@Model.city" placeholder="@UserWebResource.LB_WEATHER_SEARCH">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default search-weather glyphicon glyphicon-search" type="submit"></button>
+                        </span>
+                        @*<button class="btn btn-default text-white right" type="reset">@UserWebResource.BT_CANCEL</button>*@
+                    </div>
+                    <table>
+                        <tr>
+                            @foreach (var item in Model.ListData)
+                            {
+                                <td>@item.CurrentDate.ToString("ddd", CultureInfo.CurrentUICulture)</td>
+                            }
+                        </tr>
+                        <tr>
+                            @foreach (var item in Model.ListData)
+                            {
+                                @GetIcon(item, rd)
+                            }
+                        <tr>
+                            @foreach (var item in Model.ListData)
+                            {
+                                @GetTemp(item, rd)
+                            }
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+@helper GetTemp(WeatherItem weatherToday, Random rd)
+{
+if (weatherToday != null)
+{
+    var dtNow = DateTime.Now;
+    if (weatherToday.DailyData != null && weatherToday.DailyData.Count > 0)
+    {
+        foreach (var item in weatherToday.DailyData)
+        {
+            var currentTime = EpochTime.DateTime(item.dt);
+            if (dtNow <= currentTime)
+            {
+                var currentTemp = (int)(item.main.temp - 273.15);
+
+                    <td>@currentTemp <span>o</span></td>
+
+                break;
+            }
+        }
+    }
+    else
+    {
+        var mynum = (int)(rd.NextDouble() * (35 - 24) + 24);
+            <td>@string.Format("{0:N0}", mynum) <span>o</span></td>
+    }
+}
+}
+
+@helper GetIcon(WeatherItem weatherToday, Random rd)
+{
+if (weatherToday != null)
+{
+    var dtNow = DateTime.Now;
+    if (weatherToday.DailyData != null && weatherToday.DailyData.Count > 0)
+    {
+        foreach (var item in weatherToday.DailyData)
+        {
+            var currentTime = EpochTime.DateTime(item.dt);
+            if (dtNow <= currentTime)
+            {
+                var currentTemp = (int)(item.main.temp - 273.15);
+                    <td>
+                        @GetIconSvg(item.weather[0].icon)
+                    </td>
+                break;
+            }
+        }
+    }
+    else
+    {
+        var myValues = new int[] { 1, 2, 3, 4, 9, 10, 11, 13, 50 }; // Will work with array or list
+        var randomValues = Enumerable.Range(0, 1)
+            .Select(e => myValues[rd.Next(myValues.Length)]).FirstOrDefault();
+        var strRd = randomValues.ToString();
+        if (randomValues < 10)
+        {
+            strRd = string.Format("0{0}", randomValues.ToString());
+        }
+        <td>
+            @GetIconSvg(strRd)
+        </td>
+    }
+}
+}
+
+@helper GetIconSvg(string icon)
+{
+if (string.IsNullOrEmpty(icon))
+{
+        <span class="icon icon-02"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+}
+else
+{
+    icon = icon ?? icon.Replace("d", "").Replace("n", "");
+    if (icon == "01")
+    {
+            <span class="icon icon-01"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span><span class="path15"></span><span class="path16"></span><span class="path17"></span><span class="path18"></span><span class="path19"></span></span>
+    }
+    else if (icon == "02")
+    {
+            <span class="icon icon-02"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+    }
+    else if (icon == "03")
+    {
+            <span class="icon icon-03"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+    }
+    else if (icon == "04")
+    {
+            <span class="icon icon-04"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+    }
+    else if (icon == "09")
+    {
+            <span class="icon icon-09"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span></span>
+    }
+    else if (icon == "10")
+    {
+            <span class="icon icon-10"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span></span>
+    }
+    else if (icon == "11")
+    {
+            <span class="icon icon-11"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+    }
+    else if (icon == "13")
+    {
+            <span class="icon icon-13"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span><span class="path8"></span><span class="path9"></span><span class="path10"></span><span class="path11"></span><span class="path12"></span><span class="path13"></span><span class="path14"></span></span>
+    }
+    else if (icon == "50")
+    {
+            <span class="icon icon-50"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span></span>
+    }
+    else
+    {
+            <span class="icon icon-02"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></span>
+    }
+}
+
+}

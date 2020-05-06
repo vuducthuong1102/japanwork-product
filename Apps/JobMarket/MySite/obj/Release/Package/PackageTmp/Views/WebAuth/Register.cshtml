@@ -1,0 +1,84 @@
+﻿@model MySite.Models.WebAccountRegisterModel
+@using MySite.Resources;
+@*@using reCAPTCHA.MVC*@
+@using CaptchaMvc.HtmlHelpers;
+
+@{
+    ViewBag.GadientHeader = true;
+    ViewBag.Title = UserWebResource.LB_SINGLE_SIGN_ON_REGISTER;
+
+    var catpcha = Html.Captcha(UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON, "", 5, UserWebResource.TEXT_CAPTCHA_NULL, true);
+}
+
+<section>
+    <div class="block remove-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="account-popup-area signin-popup-box static">
+                        <div class="account-popup">
+                            <h3>@UserWebResource.LB_SINGLE_SIGN_ON_REGISTER</h3>
+
+                            @using (Html.BeginForm("Register", "WebAuth", null, FormMethod.Post, new { role = "form", id = "" }))
+                            {
+                                @Html.Partial("_Notifications")
+
+                                @Html.AntiForgeryToken()
+                                <div class="cfield">
+                                    @Html.TextBoxFor(m => m.UserName, new { @id = "", @class = "form-control", placeholder = UserWebResource.IP_EMAIL })
+                                    <i class="la la-user"></i>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%" })
+                                <div class="cfield">
+                                    @Html.TextBoxFor(m => m.Password, new { @id = "", @type = "password", @class = "form-control", placeholder = UserWebResource.IP_PASSWORD })
+                                    <i class="la la-key"></i>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%;" })
+
+                                <div class="cfield">
+                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @id = "", @type = "password", @class = "form-control", placeholder = UserWebResource.IP_CONFIRM_PASSWORD })
+                                    <i class="la la-key"></i>
+                                </div>
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%;" })
+                                
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    @*@Html.Recaptcha()*@
+
+                                    <div class="col-lg-12" id="recaptcha-wrapper">
+                                        @*@Html.Recaptcha()*@
+                                        <div class="text-left captcha-container">
+                                            @catpcha
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<p class="remember-label">
+                                        <input type="checkbox" name="@Html.IdFor(m=>m.RememberMe)" @((Model.RememberMe) ? "checked" : string.Empty) value="true" id="@Html.IdFor(m=>m.RememberMe)"><label for="@Html.IdFor(m=>m.RememberMe)">@UserWebResource.LB_REMEMBER_ME</label>
+                                    </p>
+                                    <a href="javascript:;" title="">@UserWebResource.LB_FORGOT_PASSWORD</a>*@
+                                <button type="submit">@UserWebResource.BT_REGISTER</button>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section PagePluginScripts{
+    @catpcha.RenderScript()
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var refreshBtn = $('a[href="#CaptchaImage"]');
+            refreshBtn.html('<a class="btn btn-outline-info btn-sm ml20"><span class="fa fa-repeat" ></span > @UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON</a >');
+            refreshBtn.prev("br").remove();
+            $("#CaptchaInputText").addClass("form-control");
+            $('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            $('span[data-valmsg-for="CaptchaInputText"]').prev("br").remove();
+            $('#CaptchaImage').prev("br").remove();
+        });
+    </script>
+}

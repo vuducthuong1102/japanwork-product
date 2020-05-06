@@ -1,0 +1,19 @@
+2020-04-23 23:56:17,391 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:56:17,402 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:56:17,402 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:56:17,426 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:56:17,427 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:56:17,428 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:57:06,429 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:57:06,442 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:57:06,442 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:57:06,469 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:57:06,471 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:57:06,471 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:58:09,438 [7] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-04-23 23:58:09,665 [7] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-04-23 23:58:09,666 [7] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2020-04-23 23:58:09,779 [7] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2020-04-23 23:58:09,795 [7] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2020-04-23 23:58:09,796 [7] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2020-04-23 23:58:09,831 [7] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids

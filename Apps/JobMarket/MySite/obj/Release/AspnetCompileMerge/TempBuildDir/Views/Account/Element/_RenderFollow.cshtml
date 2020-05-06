@@ -1,0 +1,33 @@
+﻿@using MySite.Resources;
+@using MySite.Models.Account;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@model ProfileModel
+
+@if (Model != null && Model.UserInfo != null)
+{
+    @RenderFollow(Model);
+}
+
+@helper RenderFollow(ProfileModel model)
+{
+
+    if (model.UserInfo.IsFollow)
+    {
+        @*<a href="javascript:;" class="btn btn-none btn-mini btn-primary-hl btn-follow">@UserWebResource.BT_UNFOLLOW</a>*@
+        <div class="dropdown" style="height:35px">
+            <a href="javascript:;" class="dropdown-toggle btn btn-none btn-mini btn-primary-hl btn-follow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <span class="txt-menu">@UserWebResource.LB_FOLLOWING</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="lang dropdown dropdown-submenu">
+                    <a href="#" class="btn-unfollow" data-id="@Model.UserInfo.Id">@UserWebResource.BT_UNFOLLOW</a>
+                </li>
+            </ul>
+            <div class="clearFix"></div>
+        </div>
+    }
+    else
+    {
+        <a href="javascript:;" class="btn btn-none btn-mini btn-primary-hl btn-follow" data-id="@Model.UserInfo.Id">@UserWebResource.BT_FOLLOW</a>
+    }
+}

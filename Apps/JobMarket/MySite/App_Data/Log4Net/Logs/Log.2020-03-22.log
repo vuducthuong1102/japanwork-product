@@ -1,0 +1,109 @@
+2020-03-22 13:44:03,707 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 13:44:03,718 [1] INFO  MySite.Startup - MySite is starting up
+2020-03-22 13:44:03,719 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 13:44:03,838 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 13:44:03,838 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-03-22 13:44:03,839 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 13:44:15,479 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:44:15,481 [13] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:44:15,555 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 13:44:15,555 [13] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 13:44:20,592 [5] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-03-22 13:44:20,601 [5] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-03-22 13:44:25,963 [5] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-03-22 13:44:27,216 [7] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:44:27,223 [7] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 13:44:58,121 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:44:58,125 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 13:45:05,309 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:45:05,314 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 13:45:19,176 [32] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 13:45:19,186 [32] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:13:58,300 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:13:58,314 [1] INFO  MySite.Startup - MySite is starting up
+2020-03-22 14:13:58,315 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:13:58,458 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:13:58,458 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-03-22 14:13:58,459 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:14:07,050 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:14:07,129 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:15:20,697 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:15:20,710 [1] INFO  MySite.Startup - MySite is starting up
+2020-03-22 14:15:20,711 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:15:20,862 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:15:20,862 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-03-22 14:15:20,863 [1] INFO  MySite.Startup - ======================================================
+2020-03-22 14:24:25,542 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:24:25,722 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:31:32,977 [52] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:31:32,991 [52] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:31:54,686 [61] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-03-22 14:31:54,696 [61] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-03-22 14:31:58,978 [61] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-03-22 14:32:00,099 [53] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:32:00,111 [53] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:32:13,308 [56] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:32:13,319 [56] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:32:26,857 [53] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:32:26,865 [53] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:33:53,528 [52] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:33:53,543 [52] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:34:03,157 [56] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:34:03,166 [56] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:34:10,744 [56] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:34:10,754 [56] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:35:44,831 [57] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:35:45,006 [57] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:36:08,387 [73] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:36:08,517 [73] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:36:20,457 [75] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:36:20,466 [75] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:40:14,021 [91] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:40:14,036 [91] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:41:32,433 [101] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:41:32,446 [101] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:42:55,968 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:42:55,980 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:45:05,867 [101] ERROR MySite.Services.JobServices - Failed when calling api GetDetailAsync - http://localhost:3333/api/jobs/detail because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.JobServices.<GetDetailAsync>d__7.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\JobServices.cs:line 416
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-03-22 14:45:05,950 [101] ERROR MySite.Controllers.JobController - Failed when trying get Detail because: MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.JobServices.<GetDetailAsync>d__7.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\JobServices.cs:line 430
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySite.Controllers.JobController.<Detail>d__6.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\JobController.cs:line 457
+2020-03-22 14:53:19,095 [101] ERROR MySite.WebApiApplication - Application Error: Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at ASP._Page_Views_Job_Detail_cshtml.Execute() in c:\Project\Apps\JobMarket\MySite\Views\Job\Detail.cshtml:line 13
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-03-22 14:53:24,083 [101] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:53:57,921 [101] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:54:01,567 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:54:01,581 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-03-22 14:54:32,511 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-03-22 14:54:32,521 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

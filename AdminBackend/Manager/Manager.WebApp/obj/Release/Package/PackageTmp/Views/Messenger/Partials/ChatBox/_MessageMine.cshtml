@@ -1,0 +1,39 @@
+﻿@using MsSql.AspNet.Identity.Entities
+@model Manager.WebApp.Models.MessageItemModel
+
+@if (Model != null)
+{
+    @RenderMessageDetail(Model.MessageItem.UserOneInfo)
+}
+
+@helper RenderMessageDetail(BaseOnlineUserIdentity owner)
+{
+    <div class="item right-item message-item message-mine">
+        @*<div class="avatar">
+            <img src="@owner.Avatar" class="border-round-img" alt="avatar" title="@owner.DisplayName">
+        </div>*@
+        <div class="content">
+            <div class="content-item">
+                <p class="chat-content">@Html.Raw(Model.MessageItem.Content)</p>
+                <span class="time-content">@((Model.MessageItem.CreatedDate != null) ? Model.MessageItem.CreatedDate.Value.ToString("HH:mm") : DateTime.Now.ToString("HH:mm"))</span>
+                <div class="clearfix"></div>
+            </div>
+            @if (Model.NextMessages != null && Model.NextMessages.Count > 0)
+            {
+                foreach (var item in Model.NextMessages)
+                {
+                    if (Model.MessageItem.Id == item.Id)
+                    {
+                        continue;
+                    }
+
+                    <div class="content-item">
+                        <p class="chat-content">@item.Content</p>
+                        @*<span class="time-content">@((item.CreatedDate != null) ? item.CreatedDate.Value.ToString("HH:mm") : DateTime.Now.ToString("HH:mm"))</span>*@
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

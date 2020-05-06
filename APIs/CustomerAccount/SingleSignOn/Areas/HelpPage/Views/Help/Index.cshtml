@@ -1,0 +1,83 @@
+@using System.Web.Http
+@using System.Web.Http.Controllers
+@using System.Web.Http.Description
+@using System.Collections.ObjectModel
+@using SingleSignOn.Areas.HelpPage.Models
+@model Collection<ApiDescription>
+
+@{
+    ViewBag.Title = "ASP.NET Web API Help Page";
+
+    // Group APIs by controller
+    ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = Model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+}
+
+<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+<header class="help-page">
+    <div class="content-wrapper">
+        <div class="float-left">
+            <h1>@ViewBag.Title</h1>
+        </div>
+    </div>
+</header>
+<div id="body" class="help-page">
+    <section class="featured">
+        <div class="content-wrapper">
+            <h2>Introduction</h2>
+            <p>
+                Provide a general description of your APIs here.
+            </p>
+        </div>
+    </section>
+    <section class="content-wrapper main-content clear-fix">
+        @foreach (var group in apiGroups)
+        {
+            @Html.DisplayFor(m => group, "ApiGroup")
+        }        
+    </section>  
+    
+    <br />
+    <fieldset>
+        <legend>Details</legend>
+        <div class="alert alert-success">
+            <ul style="padding-left: 15px;">
+                <li>
+                    <a href="/help/apilogin">Login api</a>
+                </li>
+                <li>
+                    <a href="/help/refreshtoken">Refresh Token api</a>
+                </li>
+                <li>
+                    <a href="/help/otp">Create/Verify OTP</a>
+                </li>
+                <li>
+                    <a href="/help/register">Register</a>
+                </li>
+                <li>
+                    <a href="/help/changepassword">Change Password</a>
+                </li>
+                <li>
+                    <a href="/help/changeauthmethod">Change Auth Method</a>
+                </li>
+                <li>
+                    <a href="/help/updateprofile">Update Profile</a>
+                </li>
+                <li>
+                    <a href="/help/logout">Logout</a>
+                </li>
+                <li>
+                    <a href="/help/checkuserexists">Check UseExists</a>
+                </li>
+                <li>
+                    <a href="/help/checkpwd2isvalid">Check Pwd2 Is Valid</a>
+                </li>
+                <li>
+                    <a href="/help/getinfo">Get User Info</a>
+                </li>
+                <li>
+                    <a href="/help/recoverpassword">Recover Password</a>
+                </li>
+            </ul>
+        </div>
+    </fieldset>
+</div>

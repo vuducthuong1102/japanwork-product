@@ -1,0 +1,30 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageFooterModel
+
+@{
+    var title = ManagerResource.LB_ADD_NEW;
+    ViewBag.Title = title;
+    var currentController = HttpContext.Current.Request.RequestContext.RouteData.Values["controller"].ToString();
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @using (Html.BeginForm("Index", currentController, FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.Partial("_ComposerForm")
+    }
+
+    <!--end::Form-->
+</div>
+<!--end::Portlet-->
+
+
+@section PageInlineScripts{
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/Footer/composer.js"></script>
+    <script src="~/Scripts/Common/common.mediaselect.js"></script>
+}

@@ -1,0 +1,22 @@
+2019-12-23 09:32:34,163 [1] INFO  MySite.Startup - ======================================================
+2019-12-23 09:32:34,174 [1] INFO  MySite.Startup - MySite is starting up
+2019-12-23 09:32:34,175 [1] INFO  MySite.Startup - ======================================================
+2019-12-23 09:32:34,310 [1] INFO  MySite.Startup - ======================================================
+2019-12-23 09:32:34,311 [1] INFO  MySite.Startup - MySite is successfully configured
+2019-12-23 09:32:34,312 [1] INFO  MySite.Startup - ======================================================
+2019-12-23 09:32:40,880 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:32:40,956 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:34:12,647 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:34:12,722 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:35:57,185 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:35:57,191 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:36:09,969 [13] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:36:09,975 [13] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:36:26,282 [36] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:36:26,289 [36] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:36:47,036 [13] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:36:47,044 [13] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:36:55,105 [19] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:36:55,110 [19] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-23 09:36:58,574 [32] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-23 09:36:58,579 [32] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

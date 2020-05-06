@@ -1,0 +1,9 @@
+{
+  "Receiver": "registeronly12891@gmail.com",
+  "Subject": "Test email consoler",
+  "Body": "Test",
+  "AttachmentLinks": [
+	"https://job-market.jp/Content/images/job_market-dark.png",
+	"https://cdn.job-market.jp/Content/Media?url=/JobSeekers/1/a3-1-4_1568344382.png",
+  ]
+}

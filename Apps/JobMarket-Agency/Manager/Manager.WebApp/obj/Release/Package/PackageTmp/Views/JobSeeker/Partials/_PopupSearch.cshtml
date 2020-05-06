@@ -1,0 +1,303 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageJobSeekerModel
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var typeList = TypeJobSeekerProvider.GetLists();
+}
+<div class="form-group m-form__group row">
+    <input type="hidden" class="title-search" value="@ManagerResource.PH_SEARCH_JOB_SEEKER" />
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search btn-white change-type" id="@Html.IdFor(m=>m.type_job_seeker)" name="@Html.NameFor(m=>m.type_job_seeker)">
+            @if (typeList.HasData())
+            {
+                foreach (var item in typeList)
+                {
+                    var selected = "";
+                    if (item.Id == Model.type_job_seeker)
+                    {
+                        selected = "selected";
+                    }
+                    var action = "/JobSeeker/Index";
+                    if (item.Id == 0)
+                    {
+                        action = "/Application/Index";
+                    }
+                    <option value="@item.Id" @selected data-action="@action">@item.TypeName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search btn-white" id="@Html.IdFor(m=>m.gender)" name="@Html.NameFor(m=>m.gender)">
+            <option value="-1" @(Model.gender == -1 ? "selected" : "")>@ManagerResource.LB_SELECT_GENDER</option>
+            <option value="0" @(Model.gender == 0 ? "selected" : "")>@ManagerResource.LB_FEMALE</option>
+            <option value="1" @(Model.gender == 1 ? "selected" : "")>@ManagerResource.LB_MALE</option>
+        </select>
+    </div>
+</div>
+<div class="form-group row check-status @(Model.type_job_seeker==1?"hidden":"")">
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)">
+            <option value="-99">
+                @ManagerResource.LB_SELECT_STATUS
+            </option>
+            @foreach (var item in Enum.GetValues(typeof(EnumApplicationStatus)))
+            {
+                var chkItem = (int)item;
+                var chkStr = string.Empty;
+                if (chkItem == Model.Status)
+                {
+                    chkStr = "selected";
+                }
+                <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search btn-white" id="@Html.IdFor(m=>m.major_id)" name="@Html.NameFor(m=>m.major_id)" data-size="7" data-live-search="true">
+            @if (Model.Majors.HasData())
+            {
+                <option value="-1" @(Model.major_id == -1 ? "selected" : "")>@ManagerResource.LB_SELECT_MAJOR</option>
+                foreach (var major in Model.Majors)
+                {
+                    var currentMajorName = string.Empty;
+                    if (major.LangList.HasData())
+                    {
+                        currentMajorName = major.LangList.Where(x => x.language_code == currentLang).Select(x => x.major).FirstOrDefault();
+                    }
+                    else
+                    {
+                        currentMajorName = major.major;
+                    }
+                    <option value="@major.id" @((Model.major_id == major.id) ? "selected" : "")>@currentMajorName</option>
+                }
+            }
+
+            <option value="0" @((Model.major_id == 0) ? "selected" : "")>@ManagerResource.LB_MAJOR_OTHER</option>
+        </select>
+    </div>
+    <div class="col-md-6">
+        <select class="form-control selectpicker-search" name="@Html.NameFor(m=>m.japanese_level_number)">
+            <option value="0">@ManagerResource.LB_SELECT_JAPANESE_LEVEL</option>
+            @if (Model.JapaneseLevels.HasData())
+            {
+                foreach (var item in Model.JapaneseLevels)
+                {
+                    <option value="@item.level_number" @(item.level_number == Model.japanese_level_number ? "selected" : string.Empty)> @item.level</option>
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-6">
+        <select class="form-control m-bootstrap-select selectpicker-search" name="@Html.NameFor(m=>m.qualification_id)">
+            <option value="0">@ManagerResource.LB_SELECT_QUALIFICATION</option>
+            @if (Model.Qualifications.HasData())
+            {
+                foreach (var qualification in Model.Qualifications)
+                {
+                    var currentQualifiName = string.Empty;
+                    if (qualification.LangList.HasData())
+                    {
+                        currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                    }
+                    else
+                    {
+                        currentQualifiName = qualification.qualification;
+                    }
+                    <option value="@qualification.id" @((Model.qualification_id == qualification.id) ? "selected" : "")>@currentQualifiName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-6">
+        <select id="staff_id" name="staff_id" class="m-bootstrap-select form-control selectpicker-search">
+            <option value="0">@ManagerResource.LB_SELECT_PIC</option>
+            @if (Model.Staffs != null && Model.Staffs.Count > 0)
+            {
+                foreach (var item in Model.Staffs)
+                {
+                    <option value="@item.StaffId" @(Model.staff_id == item.StaffId ? "selected" : "")>
+                        @item.FullName
+                    </option>
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-6">
+        <select onchange="handleEmploymentTypeChange(this)" class="form-control selectpicker-search select-employment-type" name="@Html.NameFor(m=>m.employment_type_id)">
+            <option value="0" @(Model.employment_type_id == 0 ? "selected" : "")>@ManagerResource.LB_SELECT_EMPLOYMENT_TYPE</option>
+            @if (Model.EmploymentTypes.HasData())
+            {
+                foreach (var item in Model.EmploymentTypes)
+                {
+                    var calculateLabel = string.Empty;
+                    var typeName = string.Empty;
+                    if (item.calculate_by == (int)EnumEmploymentCalculateBy.Month)
+                    {
+                        calculateLabel = ManagerResource.LB_SALARY_BY_MONTH;
+                    }
+                    else
+                    {
+                        calculateLabel = ManagerResource.LB_SALARY_BY_HOUR;
+                    }
+
+                    if (item.LangList.HasData())
+                    {
+                        typeName = item.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                    }
+
+                    if (string.IsNullOrEmpty(typeName))
+                    {
+                        typeName = item.employment_type;
+                    }
+
+                    <option value="@item.id" data-calculate="@calculateLabel" @(item.id == Model.employment_type_id ? "selected" : string.Empty)> @typeName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-6">
+        <select class="form-control m-select2-search" name="prefecture_id" data-size="7">
+            <option value="0">@ManagerResource.LB_SELECT_WORK_PLACE</option>
+            @if (Model.Regions.HasData())
+            {
+                foreach (var item in Model.Regions)
+                {
+                    if (item.Prefectures.HasData())
+                    {
+                        var regionName = item.furigana;
+                        if (currentLang == "ja-JP")
+                        {
+                            regionName = item.region;
+                        }
+                        <optgroup label="@regionName">
+                            @foreach (var subItem in item.Prefectures)
+                            {
+                                var prefectureName = subItem.furigana;
+                                if (currentLang == "ja-JP")
+                                {
+                                    prefectureName = subItem.prefecture;
+                                }
+                                <option value="@subItem.id" @(Model.prefecture_id == subItem.id ? "selected" : "")>
+                                    @prefectureName
+                                </option>
+                            }
+                        </optgroup>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-6 select-field">
+        <select class="form-control selectpicker-search select_sub_field" name="sub_field_id" data-size="7" data-live-search="true">
+            <option value="0">@ManagerResource.LB_SELECT_SUB_FIELD</option>
+            @if (Model.Fields.HasData() && Model.employment_type_id > 0)
+            {
+                foreach (var field in Model.Fields)
+                {
+                    if (field.Sub_fields.HasData())
+                    {
+                        var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                        if (string.IsNullOrEmpty(fieldName))
+                        {
+                            fieldName = field.field;
+                        }
+
+                        <optgroup label="@fieldName">
+                            @foreach (var sub in field.Sub_fields)
+                            {
+                                var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                                if (string.IsNullOrEmpty(subName))
+                                {
+                                    subName = sub.sub_field;
+                                }
+
+                                <option value="@sub.id" @(Model.sub_field_id == sub.id ? "selected" : "")
+                                        data-subtext="@fieldName" class="text-muted-hidden">
+                                    @subName
+                                </option>
+                            }
+                        </optgroup>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-6">
+        <select data-live-search="true" class="selectpicker-search form-control" name="@Html.NameFor(m=>m.visa_id)" data-size="7">
+            <option value="0">@ManagerResource.LB_SELECT_VISA</option>
+            @if (Model.Visas.HasData())
+            {
+                foreach (var item in Model.Visas)
+                {
+                    string lbItem = item.visa;
+                    if (item.LangList.HasData())
+                    {
+                        var langItem = item.LangList.FirstOrDefault(s => s.language_code == currentLang);
+                        if (langItem != null)
+                        {
+                            lbItem = langItem.visa;
+                        }
+                    }
+
+                    if (string.IsNullOrEmpty(lbItem))
+                    {
+                        lbItem = item.visa;
+                    }
+                    var selected = "";
+                    if (Model.visa_id == item.id)
+                    {
+                        selected = "selected";
+                    }
+                    <option value="@item.id" @selected>@lbItem</option>
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group row">
+    <div class="col-md-6">
+        <div class="input-group">
+            <label for="salary_min" class="lb-filter">
+                @ManagerResource.LB_JOB_AGE_RANGE
+            </label>
+            <input type="text" style="max-width:100px;" class="form-control m-input text-right number" name="age_min" value="@Model.age_min" />
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ~
+                </span>
+            </div>
+            <input type="text" style="max-width:100px;" class="form-control m-input text-right number" name="age_max" value="@Model.age_max" />
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="m-checkbox-inline filter-check">
+            <label class="m-checkbox">
+                <input type="checkbox" @(Model.has_process ? "checked" : string.Empty) name="@Html.NameFor(m=>m.has_process)" value="true">
+                @ManagerResource.LB_HAS_PROCESS
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info float-right btn-sm">
+            <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+        </button>
+        <button type="button" class="btn btn-warning float-left btn-sm mr-3 reset-btn">
+            <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+        </button>
+    </div>
+</div>

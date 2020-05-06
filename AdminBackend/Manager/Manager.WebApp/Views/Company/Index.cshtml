@@ -1,0 +1,239 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageCompanyModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_COMPANY_MANAGEMENT;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @RenderSearchForm()
+    <!--end::Form-->
+</div>
+
+
+@helper RenderSearchForm()
+{
+    using (Html.BeginForm("Index", "Company", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+    {
+        @Html.HiddenFor(m => m.SearchExec)
+        <div class="m-portlet__body">
+            <div class="form-group row">
+                <div class="col-md-2 m-form__group--inline">
+                    <label>@ManagerResource.LB_KEYWORD</label>
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input" })
+                </div>
+                @*<div class="col-md-2 m-form__group--inline">
+                        @Html.LabelFor(m => m.Status, new { @class = "form-control-label" })
+                        <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
+                            <option value="-1">
+                                @ManagerResource.LB_ALL
+                            </option>
+                            @foreach (var item in Enum.GetValues(typeof(EnumStatus)))
+                            {
+                                var chkItem = (int)item;
+                                var chkStr = string.Empty;
+                                if (chkItem == Model.Status)
+                                {
+                                    chkStr = "selected";
+                                }
+                                <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                            }
+                        </select>
+                    </div>*@
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12">
+
+                    <button type="submit" class="btn btn-info" style="margin-right:10px;">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+
+                    <button type="button" class="btn btn-info reset-btn">
+                        <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            @*<div class="m-portlet__head">
+                    <div class="clearfix pull-right m--padding-10">
+                        <a class="btn btn-white btn-info" href="@Url.Action("Create", "Company")" title="@ManagerResource.LB_ADDNEW">
+                            <i class="fa fa-plus"></i> @ManagerResource.LB_ADDNEW
+                        </a>
+                    </div>
+                </div>*@
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50">#</th>
+                                    <th class="text-center">@ManagerResource.LB_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_ADDRESS</th>
+                                    <th class="text-center">@ManagerResource.LB_INDUSTRY_LABEL</th>
+                                    @*<th class="text-center">@ManagerResource.LB_CREATED_DATE</th>*@
+                                    <th class="text-center">@ManagerResource.LB_APPLICATION_COUNT</th>
+                                    <th class="text-center">@ManagerResource.LB_APPLICATION_COUNT</th>
+                                    <th class="text-center">@ManagerResource.LB_ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        stt++;
+                                        var companyName = record.company_name;
+                                        if (record.LangList.HasData())
+                                        {
+                                            var nameByLang = record.LangList.Where(x => x.language_code == currentLang).Select(x => x.company_name).FirstOrDefault();
+                                            if (!string.IsNullOrEmpty(nameByLang))
+                                            {
+                                                companyName = nameByLang;
+                                            }
+                                        }
+                                        <tr>
+                                            <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                            <td>
+                                                <a class="" href="@Url.Action("Index", "Job", new { company_id = record.id })" title="@ManagerResource.LB_MANAGE_JOB">
+                                                    @if (!string.IsNullOrEmpty(record.logo_full_path))
+                                                    {
+                                                        <img class="avatar-img" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" src="@record.logo_full_path" title="" />
+                                                    }
+
+                                                    <span style="margin-left:10px;">@companyName</span>
+                                                </a>
+
+                                            </td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td class="text-right">
+                                                @record.application_count.FormatWithComma()
+                                            </td>
+                                            @*<td class="text-center">@(record.created_at.DateTimeQuestToString("HH:mm dd/MM/yyyy"))</td>*@
+                                            @*<td class="text-center">
+                                                    @Html.Partial("../Widgets/_Status", record.status)
+                                                </td>*@
+                                            <td class="text-center">
+                                                @{
+                                                    var newModel = Model;
+                                                    newModel.Id = record.id;
+                                                    newModel.SearchExec = "Y";
+                                                }
+                                                @*<a target="_blank" class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@FrontendHelpers.GenerateCompanyDetailLink(record, langCode)" title="@ManagerResource.LB_PREVIEW">
+                                                        <i class="la la-eye"></i>
+                                                    </a>*@
+
+                                                @*<a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Index", "Job", new { company_id = record.id })" title="@ManagerResource.LB_MANAGE_JOB">
+                                                        <i class="la la-file-word-o"></i>
+                                                    </a>*@
+                                                <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Edit", "Company", new { id = record.id,SearchExec = 'Y',Page = Model.CurrentPage,Keyword = Model.Keyword,Status=Model.Status })" title="@ManagerResource.LB_EDIT">
+                                                    <i class="la la-pencil"></i>
+                                                </a>
+                                                <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("ClearData", "Company", new { id = record.id })" title="@ManagerResource.LB_DELETE">
+                                                    <i class="la la-trash"></i>
+                                                </a>
+                                                @*<a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-href="@Url.Action("Delete", "Company", new { id = record.id })" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                        <i class="la la-trash"></i>
+                                                    </a>*@
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @RenderPaging()
+                    </div>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Company",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_DISPLAYING @Model.StartCount() @ManagerResource.LB_TO @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_OF @Model.TotalCount @ManagerResource.LB_RECORDS
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@section PageInlineScripts{
+    <script type="text/javascript">
+        var BootstrapDatepicker = {
+            init: function () {
+                $(".datepicker-input").datepicker({
+                    todayBtn: "linked",
+                    clearBtn: !0,
+                    todayHighlight: !0,
+                    format: 'dd/mm/yyyy',
+                    templates: {
+                        leftArrow: '<i class="la la-angle-left"></i>',
+                        rightArrow: '<i class="la la-angle-right"></i>'
+                    }
+                })
+            }
+        };
+        jQuery(document).ready(function () {
+            BootstrapDatepicker.init()
+        });
+    </script>
+}

@@ -1,0 +1,128 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Helpers
+@model Manager.WebApp.Models.RegisterViewModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_ADDNEW;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title">
+                        <span class="m-portlet__head-icon m--hide">
+                            <i class="la la-gear"></i>
+                        </span>
+                        <h3 class="m-portlet__head-text">
+                            @ManagerResource.LB_ADDNEW
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            @using (Html.BeginForm("Create", "UsersAdmin", FormMethod.Post, new { @class = "m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.Partial("_Notifications")
+                <div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.UserName, new { @class = "form-control-label" })
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m=>m.UserName,"", new { @class="text-danger"})
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.FullName, new { @class = "form-control-label" })
+                            @Html.TextBoxFor(m => m.FullName, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+                        </div>
+                        @*<div class="col-lg-4">
+                            @Html.LabelFor(m => m.Email, new { @class = "form-control-label" })
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.PhoneNumber, new { @class = "form-control-label" })
+                            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control form-control-warning m-input" })
+                        </div>*@
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.Password, new { @class = "form-control-label" })
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-4">
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "form-control-label" })
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control form-control-warning m-input" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="m-form__group form-group">
+                        <label for="">
+                            @ManagerResource.LB_ROLES_ASSIGNED:
+                        </label>
+                        <div class="m-checkbox-inline">
+                            @if (Model.RolesList != null && Model.RolesList.Count() > 0)
+                            {
+                                var isAdmin = AccountHelper.CurrentUserIsAdmin();
+                                foreach (var item in Model.RolesList)
+                                {
+                                    if (item.Value.ToLower() == "admin")
+                                    {
+                                        <label class="m-checkbox" style="@((!isAdmin)? "color:#ccc" : string.Empty)">
+                                            <input type="checkbox" value="@item.Value" name="SelectedRole" checked="@item.Selected" @((!isAdmin) ? "disabled" : string.Empty)>
+                                            @item.Value
+                                            <span></span>
+                                        </label>
+                                    }
+                                    else
+                                    {
+                                        <label class="m-checkbox">
+                                            <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected">
+                                            @item.Value
+                                            <span></span>
+                                        </label>
+                                    }
+                                }
+                            }
+                        </div>
+                    </div>
+
+
+
+                    <div class="row m-form__group">
+                        <div class="col-lg-6">                            
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa fa-download"></i> @ManagerResource.LB_SAVE
+                            </button>
+                            <a class="btn btn-secondary" href="@Url.Action("Index", "UsersAdmin")"><i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL</a>
+                        </div>
+                        <div class="col-lg-6 m--align-right">
+                            <button type="button" class="btn btn-info reset-btn">
+                                <i class="fa fa-eraser"></i> @ManagerResource.LB_RESET
+                            </button>
+                        </div>
+                    </div>
+                </div>                
+            }
+            <!--end::Form-->
+        </div>
+        <!--end::Portlet-->
+    </div>
+</div>
+
+@section PagePluginStyles
+{
+
+}
+
+@section PagePluginScripts
+ {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

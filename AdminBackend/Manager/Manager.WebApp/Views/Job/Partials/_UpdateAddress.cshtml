@@ -1,0 +1,144 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobUpdateAddressModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;">
+        <i class="fa fa-sign-in fz-20"></i> @ManagerResource.LB_UPDATE_INFO
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+            @Html.HiddenFor(m => m.country_id)
+            @Html.HiddenFor(m => m.region_id)
+            @Html.HiddenFor(m => m.prefecture_id)
+            @Html.HiddenFor(m => m.city_id)
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label">
+                    @ManagerResource.LB_ITEM_CODE
+                </label>
+                <div class="col-lg-6">
+                    <select class="form-control select-country" name="@Html.NameFor(m=>m.country_id)">
+                        <option value="0" @(Model.country_id == 0 ? "selected" : string.Empty)>--- @ManagerResource.LB_SELECT_REGION ---</option>
+                        @if (Model.Countries.HasData())
+                        {
+                            foreach (var item in Model.Countries)
+                            {
+                                <option value="@item.id" @(Model.country_id == item.id ? "selected" : string.Empty)> @item.country</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label">
+                    @ManagerResource.LB_ITEM_CODE
+                </label>
+                <div class="col-lg-6">
+                    <select class="form-control select-region" name="@Html.NameFor(m=>m.region_id)">
+                        <option value="0" @(Model.region_id == 0 ? "selected" : string.Empty)>--- @ManagerResource.LB_SELECT_REGION ---</option>
+                        @if (Model.Regions.HasData())
+                        {
+                            foreach (var item in Model.Regions)
+                            {
+                                <option value="@item.id" @(Model.region_id == item.id ? "selected" : string.Empty)> @item.region</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label">
+                    Detail
+                </label>
+                <div class="col-lg-6">
+                    @Html.TextBoxFor(m => m.detail, new { @class = "form-control m-input" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="display:block;">
+        <button type="submit" class="btn btn-info pull-left">
+            <i class="fa fa-download"></i> @ManagerResource.LB_SAVE
+        </button>
+        <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+        <br />
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+
+    $(function () {    
+
+        $("#btnSearchProduct").click(function () {
+            OpenChoosenProduct("ProductChooseForReceipt");
+        });
+
+        $('#prdModalSelect').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
+            $('.modal-backdrop').show();
+            $('#myModal').modal('show');
+        });
+    });
+
+     $('#ItemCode').typeahead({
+            highlight: true,
+            minLength: 1,
+            hint: false,
+            delay: 2000
+        },
+        {
+            source: function (query, process) {
+                var params = $.extend({}, doAjax_params_default);
+                params['url'] = '/Product/GetListProductInDropdown';
+                params['requestType'] = 'POST';
+                params['data'] = { query: query };
+                params['dataType'] = "json";
+                params['async'] = false;
+                params['showloading'] = false;
+
+                params['successCallbackFunction'] = function (result) {
+                    process(result.data);
+                };
+                doAjax(params);
+            },
+            display: 'Code',
+            templates: {
+                // empty always shows up...
+                //empty: "no places found yet",
+                // and "suggestion" never does, even though my source function works fine!!
+                suggestion: function (data) {
+                    return "<div class='ac-shop-item' data-id='"+ data.Id +"'><i class='fa fa-cubes'></i> "+ data.Name + '(' + data.Code +')' +"</div>";
+                }
+            }
+        });
+
+    $("#ItemCode").on('typeahead:selected', function (evt, item) {
+        $("#ProductId").val(item.Id);
+        $("#ItemCode").val(item.Code);
+        $("#ItemName").val(item.Name);
+        $("#CurrentQTY").val(item.WarehouseNum);
+        if (item.UnitName) {
+            $("#UnitName").val(item.UnitName);
+        }       
+
+        $(".current-qty").removeClass("hidden");
+    });
+</script>

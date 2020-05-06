@@ -1,0 +1,550 @@
+﻿@using Manager.WebApp.Resources
+@{
+    ViewBag.Title = "My Email";
+}
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet m-portlet--mobile" id="myBlockUIPortlet">
+    <div class="m-portlet__body">
+        <!--begin: Search Form -->
+        <div class="m-form m-form--label-align-right m--margin-top-20">
+            <div class="row align-items-center">
+                <div class="col-xl-8 order-2 order-xl-1">
+                    <div class="form-group m-form__group row align-items-center">
+                        <div class="col-md-4">
+                            <div class="m-input-icon m-input-icon--left">
+                                <input type="text" class="form-control m-input" placeholder="@ManagerResource.LB_KEYWORD_SEARCH" id="generalSearch">
+                                <span class="m-input-icon__icon m-input-icon__icon--left">
+                                    <span>
+                                        <i class="la la-search"></i>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end: Search Form -->
+        <div class="row mb10">
+            <div class="col-md-12">
+                <a class="btn btn-info btn-sm btn-sync pull-right" href="javascript:;" title="@ManagerResource.LB_SYNC_EMAIL_DATA">
+                    <i class="fa fa-refresh"></i> @ManagerResource.LB_SYNC_EMAIL_DATA
+                </a>
+            </div>
+        </div>
+        <!--begin: Datatable -->
+        <div class="m_datatable" id="email_child_data_ajax"></div>
+        <!--end: Datatable -->
+    </div>
+</div>
+
+<!-- modal placeholder-->
+<div class="modal fade" id="emailModal" role="dialog" aria-labelledby="" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog modal-lg" style="max-width: 1024px;" role="document">
+        <div class="modal-content">
+            <div id='emailModalContent'></div>
+        </div>
+    </div>
+</div>
+
+@section PageInlineStyles{
+    <style>
+        .m-datatable.m-datatable--default.m-datatable--subtable > .m-datatable__table > .m-datatable__body .m-datatable__row-subtable {
+            max-width: 100%;
+            overflow: auto;
+            display: grid;
+        }
+
+        .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__foot .m-datatable__row > .m-datatable__cell > span, .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__head .m-datatable__row > .m-datatable__cell > span {
+            overflow: unset;
+        }
+
+        .m-datatable__subtable .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell {
+            background: #36a3ca !important;
+        }
+
+            .m-datatable__subtable .m-datatable.m-datatable--default > .m-datatable__table > .m-datatable__body .m-datatable__row.m-datatable__row--hover:not(.m-datatable__row--active) > .m-datatable__cell * {
+                color: #fff !important;
+            }
+
+        /*.m-datatable__cell.pointer :hover {border:1px solid #ccc !important;}*/
+
+        .text-bold {
+            font-weight: bold
+        }
+        
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+    var tMailBox = null; 
+    var TableRemoteData = {
+        init: function () {
+            tMailBox = $(".m_datatable").mDatatable({
+                //data: {
+                //    type: "remote",
+                //    source: {
+                //        read: {
+                //            url: "/MyEmail/LoadData"
+                //        }
+                //    },
+                //    pageSize: 10,
+                //    serverPaging: !0,
+                //    serverFiltering: !1,
+                //    serverSorting: !0
+                //},
+                data: {
+                    type: "remote", source: {
+                        read: {
+                            url: "/MyEmail/LoadData", map: function (t) {
+                                var e = t;
+
+                                return void 0 !== t.data && (e = t.data), e
+                            },
+                            params: {
+                                query: {
+                                    
+                                }
+                            }
+                        }
+                    }
+                    , pageSize: 10, serverPaging: !0, serverFiltering: !0, serverSorting: !0
+                },
+                layout: {
+                    theme: "default",
+                    scroll: !1,
+                    height: null,
+                    footer: !1,
+                    smoothScroll: {
+                        scrollbarShown: !0
+                    },
+                    icons: {
+                        rowDetail: {
+                            expand: "fa fa-chevron-circle-down",
+                            collapse: "fa fa-chevron-circle-right"
+                        }
+                    },
+                },
+                sortable: !0,
+                pagination: !0,
+                detail: {
+                    title: "@ManagerResource.LB_CLICK_VIEW_DETAIL",
+                    content: function (t) {   
+                        $("<div/>").attr("id", "email_child_data_ajax_" + t.data.IdHash).appendTo(t.detailCell).mDatatable({
+                            data: {
+                                type: "remote",
+                                source: {
+                                    read: {
+                                        url: "/MyEmail/GetMessageParts",
+                                        headers: {
+                                            "x-my-custom-header": "some value",
+                                            "x-test-header": "the value"
+                                        },
+                                        params: {
+                                            query: {
+                                                generalSearch: "",
+                                                Id: t.data.IdHash
+                                            }
+                                        }
+                                    }
+                                },
+                                pageSize: 10,
+                                serverPaging: !0,
+                                serverFiltering: !1,
+                                serverSorting: !0
+                            },
+                            layout: {
+                                theme: "default",
+                                smoothScroll: {
+                                    scrollbarShown: !0
+                                },
+                                scroll: !0,
+                                height: 300,
+                                footer: !1,
+                                spinner: {
+                                    type: 1,
+                                    theme: "default"
+                                },
+                                class: "table table-bordered"
+                            },
+                            translate: {
+                                records: {
+                                    processing: LanguageDic["LB_LOADING"] + "...",
+                                    noRecords: LanguageDic["LB_NO_RECORD"]
+                                },
+                                toolbar: {
+                                    pagination: {
+                                        items: {
+                                            default: {
+                                                first: "First",
+                                                prev: "Previous",
+                                                next: "Next",
+                                                last: "Last",
+                                                more: "More pages",
+                                                input: "Page number",
+                                                select: "Select page size"
+                                            },
+                                            info: "@ManagerResource.LB_RECORDS_ALL {{total}}" + "@ManagerResource.LB_RECORDS  {{start}} - {{end}}  " + "@ManagerResource.LB_RECORDS_DISPLAY"
+                                        }
+                                    }
+                                }
+                            },
+                            sortable: !0,
+                            columns: [
+                                {
+                                    field: "Subject",
+                                    title: LanguageDic["LB_TITLE"],
+                                    sortable: !1,
+                                    class: "full-text pointer",
+                                    textAlign: "center",
+                                    template: function (t) {
+                                        var textClass = "email-part-item";
+                                        if (!t.IsRead) {
+                                            textClass += " text-bold";
+                                        }
+
+                                        //return "<span class='" + textClass + " message-part-" + t.Id + "'>" + t.Subject + "</span>";
+                                        return "<span data-link='" + t.DetailTk + "' data-id='" + t.Id + "' class='" + textClass + "' id='" + "message-part-" + t.Id + "'>" + t.Subject + "</span>";
+                                    }
+                                },
+                                {
+                                    field: "From",
+                                    title: "@ManagerResource.LB_SENDER",
+                                    sortable: !1,
+                                    class: "full-text pointer text-center",
+                                    textAlign: "center",
+                                    template: function (t) {
+                                        var senderHtml = "";
+                                        var textClass = "email-part-item email-add-list";
+
+                                        if (t.Sender !== null) {
+                                            senderHtml = "<a href='javascript:;' data-id='" + t.Id + "' class='" + textClass + "'>" + t.Sender.Address + "</a>";
+                                        }
+
+                                        return senderHtml;
+                                    }
+                                },
+                                {
+                                    field: "To",
+                                    title: "@ManagerResource.LB_RECEIVER",
+                                    sortable: !1,
+                                    class: "full-text pointer",
+                                    textAlign: "center",
+                                    template: function (t) {
+                                        var receiverHtml = "";
+                                        var textClass = "email-add-list email-part-item";
+
+                                        if (t.Receiver !== null) {
+                                            receiverHtml = "<ul data-id='" + t.Id + "' class='" + textClass + "'>";
+                                            t.Receiver.forEach(function (item) {
+                                                // receiverHtml += "<li><span>" + item.DisplayName + "</span>( <a href='javascript:;'>" + item.Address + "</a>) </li>";
+                                                receiverHtml += "<li><a href='javascript:;'>" + item.Address + "</a></li>";
+                                            });
+
+                                            receiverHtml += "</ul>";
+                                        }
+
+                                        return receiverHtml;
+                                    }
+                                },
+                                {
+                                    field: "ShortMessage",
+                                    title: "@ManagerResource.LB_CONTENT",
+                                    sortable: !1,
+                                    class: "full-text pointer",
+                                    textAlign: "center",
+                                    template: function (t) {
+                                        if (t.ShortMessage == null) {
+                                            return "";
+                                        }
+                                        var shortMsgHtml = "";
+                                        var textClass = "fz-14 email-part-item";
+                                        var shortMsg = t.ShortMessage;
+                                        if (t.ShortMessage.length > 30)
+                                            shortMsg = t.ShortMessage.substring(0, 30) + "...";
+                                        else
+                                            shortMsg = t.ShortMessage + "...";
+
+                                        shortMsgHtml = "<div data-id='" + t.Id + "' class='" + textClass + "'><span>" + shortMsg + "</span>";
+                                        if (t.TotalAttachments > 0) {
+                                            shortMsgHtml += "<br /><span class='fa fa-file-archive-o text-info mt5'> " + LanguageDic["LB_ATTACHMENT_FILE"] + ": " + t.TotalAttachments + "</span>";
+                                        }
+
+                                        shortMsgHtml += "</div>";
+                                        return shortMsgHtml;
+                                    }
+                                },
+                                {
+                                    field: "CreatedDate",
+                                    title: "@ManagerResource.LB_RECEIVED_DATE",
+                                    sortable: !0,
+                                    class: "full-text pointer text-center",
+                                    textAlign: "center",
+                                    template: function (t) {
+                                        return "<span class='email-part-item' data-id='" + t.Id + "'>" + t.CreatedDateStr + "</span>";
+                                    }
+                                },
+                            ]
+                        })
+                    }
+                },
+                translate: {
+                    records: {
+                        processing: LanguageDic["LB_LOADING"] + "...",
+                        noRecords: LanguageDic["LB_NO_RECORD"]
+                    },
+                    toolbar: {
+                        pagination: {
+                            items: {
+                                default: {
+                                    first: "First",
+                                    prev: "Previous",
+                                    next: "Next",
+                                    last: "Last",
+                                    more: "More pages",
+                                    input: "Page number",
+                                    select: "Select page size"
+                                },
+                                info: "@ManagerResource.LB_RECORDS_ALL {{total}} " + "@ManagerResource.LB_RECORDS  {{start}} - {{end}}" + "@ManagerResource.LB_RECORDS_DISPLAY"
+                            }
+                        }
+                    }
+                },
+                search: {
+                    input: $("#generalSearch")
+                },
+                columns: [
+                    {
+                        field: "TotalChilds",
+                        title: "",
+                        sortable: !1,
+                        width: 0,
+                        class: "pointer",
+                        textAlign: "center",
+                        template: function (t) {                            
+                            var totalChild = "";
+                            totalChild = "<a href='javascript:;' data-id='" + t.Id + "'>" + t.TotalChilds + "</a>";
+                            return totalChild;
+                        },
+                    },
+                    {
+                        field: "MessageIdHash",
+                        title: "",
+                        sortable: !1,
+                        width: 3,
+                        class: "pointer m-datatable__cell--center",
+                        textAlign: "center",
+                        selector: {
+                            class: "m-checkbox--solid m-checkbox--brand"
+                        }
+                    },
+                    {
+                        field: "Subject",
+                        title: "@ManagerResource.LB_TITLE",
+                        sortable: !1,
+                        class: "full-text pointer",
+                        textAlign: "center",
+                        template: function (t) {
+                            var textClass = "email-item email-tk";
+                            if (!t.IsRead) {
+                                textClass += " text-bold";
+                            }
+
+                            return "<span data-link='" + t.DetailTk + "' data-id='" + t.Id + "' class='" + textClass + "' id='" + "message-" + t.Id + "'>" + t.Subject + "</span>";
+                        }
+                    }, 
+                    @*{
+                        field: "To",
+                        title: "@ManagerResource.LB_RECEIVER",
+                        sortable: !1,
+                        width: 10,
+                        class: "full-text pointer",
+                        textAlign: "center",
+                        template: function (t) {
+                            var receiverHtml = "";
+                            var textClass = "email-item email-add-list";
+
+                            if (t.Receiver !== null) {
+                                receiverHtml = "<ul data-id='" + t.Id + "' class='" + textClass + "'>";
+                                t.Receiver.forEach(function (item) {
+                                    //receiverHtml += "<li><span>" + item.DisplayName + "</span>( <a href='javascript:;'>" + item.Address + "</a>) </li>";
+                                    receiverHtml += "<li><a href='javascript:;'>" + item.Address + "</a></li>";
+                                });
+
+                                receiverHtml += "</ul>";
+                            }
+
+                            return receiverHtml;
+                        }
+                    },*@
+                    {
+                        field: "ShortMessage",
+                        title: "@ManagerResource.LB_CONTENT",
+                        sortable: !1,
+                        class: "full-text pointer",
+                        textAlign: "center",
+                        template: function (t) {
+                            if (t.ShortMessage == null) {
+                                return "";
+                            }
+                            var shortMsgHtml = "";
+                            var textClass = "email-item fz-14";
+                            var shortMsg = t.ShortMessage;
+                            if (t.ShortMessage.length > 30)
+                                shortMsg = t.ShortMessage.substring(0, 30) + "...";
+                            else
+                                shortMsg = t.ShortMessage;
+
+                            shortMsgHtml = "<div data-id='" + t.Id + "' class='" + textClass + "'><span>" + shortMsg + "</span>";
+                            if (t.TotalAttachments > 0) {
+                                shortMsgHtml += "<br /><span class='fa fa-file-archive-o text-info mt5'> " + LanguageDic["LB_ATTACHMENT_FILE"] + ": " + t.TotalAttachments + "</span>";
+                            }
+
+                            shortMsgHtml += "</div>";
+                            return shortMsgHtml;
+                        }
+                    },
+                     {
+                        field: "Sender",
+                        title: "@ManagerResource.LB_SENDER",
+                        sortable: !1,
+                        width: 20,
+                        class: "full-text pointer",
+                        textAlign: "center",
+                        template: function (t) {
+                            var senderHtml = "";
+                            var textClass = "email-item email-add-list";
+
+                            if (t.Sender !== null) {
+                                senderHtml = "<a href='javascript:;' data-id='" + t.Id + "' class='" + textClass + "'>" + t.Sender.Address + "</a>";
+                            }
+
+                            return senderHtml;
+                        }
+                    },
+                    {
+                        field: "CreatedDate",
+                        title: "@ManagerResource.LB_RECEIVED_DATE",
+                        sortable: !0,
+                        width: 10,
+                        class: "full-text pointer text-center",
+                        textAlign: "center",
+                        template: function (t) {
+                            var textClass = "email-item";
+                            return "<span data-id='" + t.Id + "' class='" + textClass + "'>" + t.CreatedDateStr + "</span>";
+                        }
+                    },
+                ]
+            })
+    }
+};
+jQuery(document).ready(function() {
+    TableRemoteData.init();
+
+    $(".m_datatable").on("m-datatable--on-layout-updated", function () {
+        $(".m-datatable__toggle-subtable").each(function () {
+            if ($(this).data("value") == "0") {
+                $(this).css("opacity", "0");
+                $(this).off();
+            }
+        });
+    });    
+});
+
+function FetchEmailBox() {
+    var params = $.extend({}, doAjax_params_default);
+    params['url'] = '/MyEmail/FetchMailBox';
+    params['requestType'] = 'POST';
+    params['data'] = {  };
+    params['showloading'] = false;
+    params['dataType'] = "json";
+
+    params['successCallbackFunction'] = function (result) {        
+        if (result) {
+            if (result.message) {
+                $.showErrorMessage(LanguageDic['LB_ERROR_OCCURED'], result.message, null);
+            }
+
+            if (result.hasData) {
+                $(".m_datatable").mDatatable().search();
+            }
+        }
+        
+        setTimeout(function () { mApp.unblock("#myBlockUIPortlet") }, 1000);
+    };
+
+    doAjax(params);
+}
+
+function GetEmailDetail(id) {
+    var dtLink = $("#message-" + id).data("link");
+    var params = $.extend({}, doAjax_params_default);
+    params['url'] = dtLink;
+    params['requestType'] = 'GET';
+    params['data'] = {};
+    params['showloading'] = true;
+    params['dataType'] = "html";
+
+    params['successCallbackFunction'] = function (result) {
+        $("#emailModalContent").html(result);
+        $("#emailModal").modal("show");
+
+        $("#message-" + id).removeClass("text-bold");
+    };
+
+    doAjax(params);
+}
+
+$("body").on("click", ".email-item", function () {
+    var id = $(this).data("id");
+    GetEmailDetail(id);
+});
+
+function GetEmailPartDetail(id) {
+    var dtLink = $("#message-part-" + id).data("link");
+    var params = $.extend({}, doAjax_params_default);
+    params['url'] = dtLink;
+    params['requestType'] = 'GET';
+    params['data'] = {};
+    params['showloading'] = true;
+    params['dataType'] = "html";
+
+    params['successCallbackFunction'] = function (result) {
+        $("#emailModalContent").html(result);
+        $("#emailModal").modal("show");
+
+        $("#message-part-" + id).removeClass("text-bold");
+    };
+
+    doAjax(params);
+}
+
+$("body").on("click", ".email-part-item", function () {
+    var id = $(this).data("id");
+    GetEmailPartDetail(id);
+    });
+
+    $("body").on("click", ".quote-btn", function () {
+        var currentQuote = $(this).closest(".email-content").find("blockquote").first();
+        var parentQuote = currentQuote.parent();
+        if (!parentQuote.hasClass("hidden")) {
+            parentQuote.addClass("hidden");
+            $(this).html('"@ManagerResource.LB_SHOW_QUOTE"');
+        } else {
+            parentQuote.removeClass("hidden");
+            $(this).html('"@ManagerResource.LB_HIDE_QUOTE"');
+        }
+    });
+
+    $(".btn-sync").click(function () {
+        mApp.block("#myBlockUIPortlet", {
+            overlayColor: "#000000", type: "loader", state: "primary", message: LanguageDic['LB_EMAIL_SYNC_IN_PROGRESS'] + "..."
+        })
+
+        FetchEmailBox();
+    });
+</script>
+}

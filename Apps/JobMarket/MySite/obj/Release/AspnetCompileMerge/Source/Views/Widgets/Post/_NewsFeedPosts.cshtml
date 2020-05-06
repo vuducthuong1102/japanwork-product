@@ -1,0 +1,14 @@
+﻿@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities
+@model List<IdentityPost>
+
+@if (Model != null)
+{
+    if (Model != null && Model.Count > 0)
+    {
+        foreach (var post in Model)
+        {
+            @Html.Partial("~/Views/Widgets/Post/_PostItem.cshtml", post)
+        }
+    }
+}

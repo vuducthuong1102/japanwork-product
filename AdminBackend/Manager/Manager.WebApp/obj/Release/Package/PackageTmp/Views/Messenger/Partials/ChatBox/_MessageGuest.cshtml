@@ -1,0 +1,56 @@
+﻿@using MsSql.AspNet.Identity.Entities
+@model Manager.WebApp.Models.MessageItemModel
+
+@if (Model != null)
+{
+    if (Model.CurrentUserId == Model.MessageItem.UserOneInfo.Id)
+    {
+        if (Model.MessageItem.UserTwoInfo != null && Model.MessageItem.UserTwoInfo.Id > 0)
+        {
+            @RenderMessageDetail(Model.MessageItem.UserTwoInfo)
+        }
+        else
+        {
+            @RenderMessageDetail(Model.MessageItem.UserOneInfo)
+        }
+    }
+    else if (Model.MessageItem.UserTwoInfo != null)
+    {
+        if (Model.CurrentUserId == Model.MessageItem.UserTwoInfo.Id)
+        {
+            @RenderMessageDetail(Model.MessageItem.UserOneInfo)
+        }
+    }
+}
+
+@helper RenderMessageDetail(BaseOnlineUserIdentity owner)
+{
+    <div class="item left-item message-item message-guest">
+        <div class="avatar">
+            <img src="@owner.Avatar" class="border-round-img" alt="avatar" title="@owner.DisplayName">
+        </div>
+        <div class="content">
+            <div class="content-item">
+                <p class="chat-content">@Html.Raw(Model.MessageItem.Content)</p>
+                <span class="time-content">@((Model.MessageItem.CreatedDate != null) ? Model.MessageItem.CreatedDate.Value.ToString("HH:mm") : DateTime.Now.ToString("HH:mm"))</span>
+                <div class="clearfix"></div>
+            </div>
+            @if (Model.NextMessages != null && Model.NextMessages.Count > 0)
+            {
+                foreach (var item in Model.NextMessages)
+                {
+                    if (Model.MessageItem.Id == item.Id)
+                    {
+                        continue;
+                    }
+
+                    <div class="content-item">
+                        <p class="chat-content">@item.Content</p>
+                        @*<span class="time-content">@((item.CreatedDate != null) ? item.CreatedDate.Value.ToString("HH:mm") : DateTime.Now.ToString("HH:mm"))</span>*@
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+}

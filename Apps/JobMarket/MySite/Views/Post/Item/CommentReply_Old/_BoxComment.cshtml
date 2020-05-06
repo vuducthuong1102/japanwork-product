@@ -1,0 +1,67 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityComment
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var item = Model;
+}
+@if (Model != null)
+{
+    if (hasLoggedIn)
+    {
+
+        if (item.Comment_Count > 0)
+        {
+            <a href="javascript:;" class="load-more reply-load-more" data-id="@item.Id" data-page="1">@UserWebResource.BT_Load_More_Comment <i class="icon icon-arrow_down2"></i></a>
+        }
+        <div class="box-comment reply-comment @(item.PostId>0? "hidden":"")" data-id="@item.Id">
+            <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar avatar-comment-reply">
+            <div class=" UFIRow _4oep UFIAddComment UFIAddCommentWithPhotoAttacher _2o9m ">
+                <div class="UFIMentionsInputWrap UFIStickersEnabledInput UFIGifEnabledInput clearfix">
+                    <div class="lfloat">
+                    </div>
+                    <div>
+                        <div class="UFIImageBlockContent _42ef _8u">
+                            <div class="UFICommentContainer">
+                                <div class="_fmi _613v UFIInputContainer">
+                                    <div class="_2xwx _289c">
+                                        <div class="UFIAddCommentInput _1osb _2xww _5yk1">
+                                            <div class="_5yk2">
+                                                <div class="_5rp7">
+                                                    <div class="_5rpb">
+                                                        @if (item.PostId > 0)
+                                                        {
+                                                            <div contenteditable="true" class="notranslate _5rpu text-comment-reply-@item.Id comment-reply comment-reply-add" data-owner="@item.UserId" data-id="@item.Id" data-post="@item.PostId"></div>
+                                                        }
+                                                        else
+                                                        {
+                                                            <div contenteditable="true" class="notranslate _5rpu  comment-reply comment-reply-edit" data-id="@item.Id">@Html.Raw(item.Content)</div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="_fmk UFICommentAttachmentButtons _5op2 _15i7 _2kwm">
+                                        <a href="javascript:;"><i class="i1 iaf"></i></a>
+                                        <a href="javascript:;"><i class="i1 id"></i></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+

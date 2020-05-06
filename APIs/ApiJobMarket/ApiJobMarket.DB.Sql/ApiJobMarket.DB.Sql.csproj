@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A6E67CB5-3B14-4962-86E1-D8BAB1A2A250}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ApiJobMarket.DB.Sql</RootNamespace>
+    <AssemblyName>ApiJobMarket.DB.Sql</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="MimeKit, Version=2.6.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
+      <HintPath>..\packages\MimeKit.2.6.0\lib\net45\MimeKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionHelper\ManageConnection.cs" />
+    <Compile Include="ConnectionHelper\MsSqlHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Master\RpsAgencyCompany.cs" />
+    <Compile Include="Repositories\Master\RpsAgencyNotification.cs" />
+    <Compile Include="Repositories\Master\RpsJobSeekerWish.cs" />
+    <Compile Include="Repositories\Master\RpsFooter.cs" />
+    <Compile Include="Repositories\Master\RpsFriendInvitation.cs" />
+    <Compile Include="Repositories\Master\RpsJobSeekerNote.cs" />
+    <Compile Include="Repositories\Master\RpsCompanyNote.cs" />
+    <Compile Include="Repositories\Master\RpsVisa.cs" />
+    <Compile Include="Repositories\Master\RpsSchedule.cs" />
+    <Compile Include="Repositories\Master\RpsCs.cs" />
+    <Compile Include="Repositories\Master\RpsProcessStatus.cs" />
+    <Compile Include="Repositories\Master\RpsInterviewProcess.cs" />
+    <Compile Include="Repositories\Master\RpsInvitation.cs" />
+    <Compile Include="Repositories\Master\RpsCountry.cs" />
+    <Compile Include="Repositories\Master\RpsCertificate.cs" />
+    <Compile Include="Repositories\Master\RpsCompanySize.cs" />
+    <Compile Include="Repositories\Master\RpsNavigation.cs" />
+    <Compile Include="Repositories\Master\RpsDevice.cs" />
+    <Compile Include="Repositories\Master\RpsSalaryFilter.cs" />
+    <Compile Include="Repositories\Master\RpsReport.cs" />
+    <Compile Include="Repositories\Master\RpsTag.cs" />
+    <Compile Include="Repositories\Master\RpsSuggest.cs" />
+    <Compile Include="Repositories\Master\RpsTypeSuggest.cs" />
+    <Compile Include="Repositories\Master\RpsWorkHistory.cs" />
+    <Compile Include="Repositories\Master\RpsEduHistory.cs" />
+    <Compile Include="Repositories\Master\RpsAgency.cs" />
+    <Compile Include="Repositories\Master\RpsCandidate.cs" />
+    <Compile Include="Repositories\Master\RpsMajor.cs" />
+    <Compile Include="Repositories\Master\RpsSearchPlace.cs" />
+    <Compile Include="Repositories\Master\RpsNotification.cs" />
+    <Compile Include="Repositories\Master\RpsApplication.cs" />
+    <Compile Include="Repositories\Master\RpsAddress.cs" />
+    <Compile Include="Repositories\Master\RpsCv.cs" />
+    <Compile Include="Repositories\Master\RpsJobSeeker.cs" />
+    <Compile Include="Repositories\Master\RpsJob.cs" />
+    <Compile Include="Repositories\Master\RpsCompany.cs" />
+    <Compile Include="Repositories\Master\RpsIndustry.cs" />
+    <Compile Include="Repositories\Master\RpsJapaneseLevel.cs" />
+    <Compile Include="Repositories\Master\RpsQualification.cs" />
+    <Compile Include="Repositories\Master\RpsField.cs" />
+    <Compile Include="Repositories\Master\RpsSubIndustry.cs" />
+    <Compile Include="Repositories\Master\RpsSubField.cs" />
+    <Compile Include="Repositories\Master\RpsSalaryType.cs" />
+    <Compile Include="Repositories\Master\RpsEmploymentType.cs" />
+    <Compile Include="Repositories\Master\RpsTrainLine.cs" />
+    <Compile Include="Repositories\Master\RpsStation.cs" />
+    <Compile Include="Repositories\Master\RpsPrefecture.cs" />
+    <Compile Include="Repositories\Master\RpsCity.cs" />
+    <Compile Include="Repositories\Master\RpsRegion.cs" />
+    <Compile Include="Repositories\RpsConversation.cs" />
+    <Compile Include="Repositories\RpsConversationReply.cs" />
+    <Compile Include="Repositories\RpsDocumentApi.cs" />
+    <Compile Include="Repositories\RpsGoogleMap.cs" />
+    <Compile Include="Repositories\RpsSearch.cs" />
+    <Compile Include="Repositories\RpsPost.cs" />
+    <Compile Include="Repositories\RpsUser.cs" />
+    <Compile Include="Stores\Master\StoreAgencyNotification.cs" />
+    <Compile Include="Stores\Master\StoreJobSeekerWish.cs" />
+    <Compile Include="Stores\Master\StoreFooter.cs" />
+    <Compile Include="Stores\Master\StoreFriendInvitation.cs" />
+    <Compile Include="Stores\Master\StoreJobSeekerNote.cs" />
+    <Compile Include="Stores\Master\StoreCompanyNote.cs" />
+    <Compile Include="Stores\Master\StoreVisa.cs" />
+    <Compile Include="Stores\Master\StoreReport.cs" />
+    <Compile Include="Stores\Master\StoreSubField.cs" />
+    <Compile Include="Stores\Master\StoreSchedule.cs" />
+    <Compile Include="Stores\Master\StoreCs.cs" />
+    <Compile Include="Stores\Master\StoreProcessStatus.cs" />
+    <Compile Include="Stores\Master\StoreInterviewProcess.cs" />
+    <Compile Include="Stores\Master\StoreInvitation.cs" />
+    <Compile Include="Stores\Master\StoreNavigation.cs" />
+    <Compile Include="Stores\Master\StoreAgencyCompany.cs" />
+    <Compile Include="Stores\Master\StoreCountry.cs" />
+    <Compile Include="Stores\Master\StoreCertificate.cs" />
+    <Compile Include="Stores\Master\StoreCompanySize.cs" />
+    <Compile Include="Stores\Master\StoreDevice.cs" />
+    <Compile Include="Stores\Master\StoreSalaryFilter.cs" />
+    <Compile Include="Stores\Master\StoreTag.cs" />
+    <Compile Include="Stores\Master\StoreSuggest.cs" />
+    <Compile Include="Stores\Master\StoreTypeSuggest.cs" />
+    <Compile Include="Stores\Master\StoreWorkHistory.cs" />
+    <Compile Include="Stores\Master\StoreEduHistory.cs" />
+    <Compile Include="Stores\Master\StoreAgency.cs" />
+    <Compile Include="Stores\Master\StoreCandidate.cs" />
+    <Compile Include="Stores\Master\StoreMajor.cs" />
+    <Compile Include="Stores\Master\StoreSearchPlace.cs" />
+    <Compile Include="Stores\Master\StoreNotification.cs" />
+    <Compile Include="Stores\Master\StoreApplication.cs" />
+    <Compile Include="Stores\Master\StoreCv.cs" />
+    <Compile Include="Stores\Master\StoreJobSeeker.cs" />
+    <Compile Include="Stores\Master\StoreJob.cs" />
+    <Compile Include="Stores\Master\StoreCompany.cs" />
+    <Compile Include="Stores\Master\StoreIndustry.cs" />
+    <Compile Include="Stores\Master\StoreJapaneseLevel.cs" />
+    <Compile Include="Stores\Master\StoreQualification.cs" />
+    <Compile Include="Stores\Master\StoreField.cs" />
+    <Compile Include="Stores\Master\StoreSalaryType.cs" />
+    <Compile Include="Stores\Master\StoreEmploymentType.cs" />
+    <Compile Include="Stores\Master\StoreTrainLine.cs" />
+    <Compile Include="Stores\Master\StoreStation.cs" />
+    <Compile Include="Stores\Master\StorePrefecture.cs" />
+    <Compile Include="Stores\Master\StoreCity.cs" />
+    <Compile Include="Stores\Master\StoreRegion.cs" />
+    <Compile Include="Stores\StoreConversation.cs" />
+    <Compile Include="Stores\StoreConversationReply.cs" />
+    <Compile Include="Stores\StoreDocumentApi.cs" />
+    <Compile Include="Stores\StorePlace.cs" />
+    <Compile Include="Stores\StoreGoogleMap.cs" />
+    <Compile Include="Stores\StoreNotification.cs" />
+    <Compile Include="Stores\StoreSearch.cs" />
+    <Compile Include="Stores\StorePost.cs" />
+    <Compile Include="Stores\StoreUser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ApiJobMarket.DB.Sql.Entities\ApiJobMarket.DB.Sql.Entities.csproj">
+      <Project>{4ac5399a-a431-47fb-b535-e094abcf33d8}</Project>
+      <Name>ApiJobMarket.DB.Sql.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApiJobMarket.ShareLibs\ApiJobMarket.ShareLibs.csproj">
+      <Project>{d598a2d6-4147-4bf0-bbb7-6bb39eae5c4a}</Project>
+      <Name>ApiJobMarket.ShareLibs</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

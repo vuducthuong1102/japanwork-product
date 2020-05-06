@@ -1,0 +1,55 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.JobEditModel
+
+@{
+    var title = ManagerResource.LB_ADDNEW;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    @*<div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    <span class="text-danger"> @(!string.IsNullOrEmpty(ViewBag.CompanyName) ? ViewBag.CompanyName + ": " : string.Empty)</span> @ManagerResource.LB_ADD_NEW_JOB
+                </h3>
+            </div>
+        </div>
+    </div>*@
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    <form id="frmCreateJob" action="/Job/Create" class="m-form m-form--fit" method="post">
+        @Html.Partial("_Notifications")
+        @Html.Partial("_JobUpdateForm", Model)
+    </form>
+    <!--end::Form-->
+}
+
+
+@section PageInlineStyles{
+    <style>
+        .repeater-item {border: 1px solid #ccc;border-radius: 5px;padding: 10px;}
+        .bootstrap-select .status{padding-left:15px;}
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+
+    <script src="@Url.VersionedContent("~/Scripts/Job/update.js")"></script>   
+}

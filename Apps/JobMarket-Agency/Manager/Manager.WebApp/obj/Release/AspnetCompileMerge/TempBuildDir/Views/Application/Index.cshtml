@@ -1,0 +1,455 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageApplicationModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_APPLICATION_LIST;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var canAccept = PermissionHelper.CheckPermission("Accept", "Application");
+    var canIgnore = PermissionHelper.CheckPermission("Ignore", "Application");
+    var canDelete = PermissionHelper.CheckPermission("Delete", "Application");
+    var hasJapaneseLevels = Model.JapaneseLevels.HasData();
+    var hasStaffs = Model.Staffs.HasData();
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="space"></div>
+<div class="m-portlet">
+    <div class="m-portlet__body">
+        <!--end::Section-->
+        <!--begin::Section-->
+        <div class="m-section">
+            <div class="m-section__content table-responsive">
+                <table id="sample-table-1" class="tbl-row-hover table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox custom-label">
+                    <thead>
+                        <tr>
+                            <th class="text-center text-info" colspan="3">@ManagerResource.LB_INFORMATION_CANDIDATE</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.SearchResults.HasData())
+                        {
+                            var stt = 0;
+                            foreach (var record in Model.SearchResults)
+                            {
+                                stt++;
+                                var jobName = string.Empty;
+
+                                var jobInfo = record.job_info;
+                                if (jobInfo == null)
+                                {
+                                    continue;
+                                }
+
+                                if (jobInfo != null && jobInfo.Job_translations.HasData())
+                                {
+                                    jobName = jobInfo.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                                    if (string.IsNullOrEmpty(jobName))
+                                    {
+                                        jobName = jobInfo.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                                    }
+                                }
+                                var target = "target='_blank'";
+                                <tr data-id="@record.id">
+                                    <td rowspan="3" class="width-4">
+                                        <div class="display-flex">
+                                            @{
+                                                int show_more = 0;
+                                                if (record.is_show_info)
+                                                {
+                                                    show_more = 1;
+                                                }
+                                                var previewLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = record.cv_id, status = record.status, show_more = show_more, ctl_active = "Application", act_active = "Index" });
+                                                <a class="" href="@previewLink" @target title="@record.fullname">
+                                                    <span class="ml10">@record.fullname</span>
+                                                    <div class="fz-13 job--code ml-2">@record.code</div>
+                                                </a>
+                                            }
+                                        </div>
+                                    </td>
+                                    <td class="width-2">
+                                        <label>@ManagerResource.LB_JOB_CODE</label>
+                                        @if (jobInfo != null)
+                                        {
+                                            var detailLink = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = jobInfo.id,ctl_active = "Application", act_active = "Index" });
+                                            <a class="" href="@detailLink" @target title="@jobInfo.job_code">
+                                                @jobInfo.job_code
+                                            </a>
+                                        }
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_MAJOR</label>
+                                        @record.major
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td>
+                                        <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                        @if (hasStaffs)
+                                        {
+                                            var staffInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                            if (staffInfo != null)
+                                            {
+                                                <span>@staffInfo.FullName</span>
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_JAPANESE_LEVEL</label>
+                                        @if (hasJapaneseLevels)
+                                        {
+                                            foreach (var item in Model.JapaneseLevels)
+                                            {
+                                                if (item.level_number == record.japanese_level_number)
+                                                {
+                                                    @item.level
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td>
+                                        <label>@ManagerResource.LB_APPLIED_DATE</label>
+                                        @record.created_at.DateTimeQuestToLocaleString(currentLang)
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_CORRESPONDING_STATUS</label>
+                                        @Html.Partial("Partials/_Status", record.status)
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td colspan="3" class="row-control row-control-@record.id" style="opacity:0;">
+                                        @{
+                                            var sendMailLink = string.Empty;
+                                            if (!string.IsNullOrEmpty(record.email) && Utility.IsEmail(record.email))
+                                            {
+                                                sendMailLink = SecurityHelper.GenerateSecureLink("Application", "SendEmail", new { job_seeker_id = record.job_seeker_id, receiver = record.email, is_online = 1 });
+                                            }
+                                            var noteLink = SecurityHelper.GenerateSecureLink("JobSeeker", "ShowNote", new { job_seeker_id = record.job_seeker_id, type_job_seeker = 0 });
+                                            var full_name_Undercode = HttpUtility.UrlEncode(record.fullname);
+                                            var assignmentLink = SecurityHelper.GenerateSecureLink("JobSeeker", "AssignmentWork", new { id = record.job_seeker_id, type_job_seeker = 0, full_name = full_name_Undercode });
+                                            var hasPic = PermissionHelper.CheckIsPic(record.pic_id);
+                                            if (!hasPic)
+                                            {
+                                                hasPic = PermissionHelper.CheckIsPic(record.job_pic_id);
+                                            }
+                                        }
+                                        @if (record.status == (int)EnumApplicationStatus.Interview || record.status == (int)EnumApplicationStatus.Invited)
+                                        {
+                                            <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@record.job_seeker_id" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="@ManagerResource.LB_ADD_NOTE">
+                                                <i class="la la-plus"></i> @ManagerResource.LB_ADD_NOTE
+                                            </a>
+
+                                            if (!string.IsNullOrEmpty(sendMailLink))
+                                            {
+                                                <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@sendMailLink" data-modal="" title="@ManagerResource.LB_SEND_EMAIL">
+                                                    <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="javascript:;" class="m-portlet__nav-link btn-email-invalid btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="@ManagerResource.LB_SEND_EMAIL">
+                                                    <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                                </a>
+                                            }
+
+                                            @*if (PermissionHelper.CheckPermission("AssignmentWork", "JobSeeker"))
+                                                   {
+                                                    <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@assignmentLink" data-modal="" title="@ManagerResource.LB_ASSIGNMENT_WORK_DESCRIPTION">
+                                                        <i class="la la-plus"></i>&nbsp;@ManagerResource.LB_INVITATION_TO_APPLY
+                                                    </a>
+                                                }*@
+                                        }
+
+                                        @if (record.status == (int)EnumApplicationStatus.Applied)
+                                        {
+                                            if (canAccept)
+                                            {
+                                                if (hasPic)
+                                                {
+                                                    <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-modal="" data-href="@Url.Action("Accept", "Application", new { id = record.id, cv_id = record.cv_id, pic_id = record.pic_id })" title="@ManagerResource.BT_APPLICATION_ACCEPT">
+                                                        <i class="fa fa-check"></i> @ManagerResource.BT_APPLICATION_ACCEPT
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" title="@ManagerResource.BT_APPLICATION_ACCEPT">
+                                                        <i class="fa fa-check"></i> @ManagerResource.BT_APPLICATION_ACCEPT
+                                                    </a>
+                                                }
+                                            }
+
+                                            if (canIgnore)
+                                            {
+                                                if (hasPic)
+                                                {
+                                                    <a class="m-portlet__nav-link btn btn-danger btn-sm m-btn m-btn m-btn--icon" href="javascript:;" data-modal="" data-href="@Url.Action("Ignore", "Application", new { id = record.id, cv_id = record.cv_id })" title="@ManagerResource.BT_APPLICATION_IGNORE">
+                                                        <i class="fa fa-hand-stop-o"></i> @ManagerResource.BT_APPLICATION_IGNORE
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a class="m-portlet__nav-link btn btn-danger btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" href="javascript:;" title="@ManagerResource.BT_APPLICATION_IGNORE">
+                                                        <i class="fa fa-hand-stop-o"></i> @ManagerResource.BT_APPLICATION_IGNORE
+                                                    </a>
+                                                }
+                                            }
+                                        }
+
+                                        @if (canDelete)
+                                        {
+                                            var is_ignore = 0;
+                                            if (record.status == (int)EnumApplicationStatus.Applied)
+                                            {
+                                                is_ignore = 1;
+                                            }
+                                            if (hasPic)
+                                            {
+                                                <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="javascript:;" data-href="@Url.Action("Delete", "Application", new { id = record.id, type = Model.type_job_seeker, is_ignore = is_ignore, job_seeker_id = record.job_seeker_id })" data-size="default" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" href="javascript:;" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="11">
+                                    @ManagerResource.LB_HAS_NO_APPLICATION
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @RenderPaging()
+        </div>
+        <div class="col-md-12">
+            <!--<div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="この求職者に仕事を紹介する">
+                    <i class="la la-plus"></i>&nbsp;スカウト
+                </a> : Japan-Workに登録した優秀な人材をスカウトします。
+            </div>-->
+            <div class="separator">ボタンの説明</div>
+            <div class="mb-1 pt-3">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="この応募を承認します">
+                    <i class="fa fa-check"></i>&nbsp;承認する
+                </a>：応募承認が応募者に通知される。応募者のステータスが「面接待ち」に変更され、当該求職者情報が進捗状況に表示されます。
+            </div>
+            <div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-danger btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="この応募を否認します">
+                    <i class="fa fa-hand-stop-o"></i>&nbsp;否認する
+                </a>：応募否認が応募者に通知される。応募者のステータスが「否認済み」に変更されます。
+            </div>
+            <div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="メールする">
+                    <i class="fa fa-envelope"></i> メールする
+                </a>：設定したメールで求職者に連絡することができます。
+            </div>
+            <div class="mb-1">
+                ※<a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="対応を確認/追加">
+                    <i class="la la-plus"></i> 対応を確認/追加
+                </a>：求職者とのやり取りをメモして頂けます。
+            </div>
+            <div class="mb-1">
+                ※<a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="この応募を削除">
+                    <i class="fa fa-trash"></i> 削除
+                </a>：登録した求職者の情報を削除することができます。
+            </div>
+        </div>
+    </div>
+    <!--end::Form-->
+</div>
+
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Application",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status,
+                         //Type = Model.employment_type_id,
+                         type_job_seeker = Model.type_job_seeker,
+                         staff_id = Model.staff_id,
+                         gender = Model.gender,
+                         major_id = Model.major_id,
+                         has_process = Model.has_process,
+                         employment_type_id = Model.employment_type_id,
+                         sub_field_id = Model.sub_field_id,
+                         qualification_id = Model.qualification_id,
+                         prefecture_id = Model.prefecture_id,
+                         age_min = Model.age_min,
+                         age_max = Model.age_max,
+                         japanese_level_number = Model.japanese_level_number,
+                         visa_id = Model.visa_id
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+<div id='frmUsers' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">
+                        @ManagerResource.LB_PERSON_IN_CHARGE
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("UpdatePic", "Application", FormMethod.Post, new { role = "form" }))
+                {
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 m-form__group--inline">
+                                <input id="job_seeker_id" value="0" name="job_seeker_id" type="hidden" />
+                                <div class="form-group">
+                                    <label class="form-control-label" for="pic_id">@ManagerResource.LB_MEMBER</label>
+                                    <select class="form-control selectpicker btn-white" id="pic_id" name="pic_id" data-live-search="true" title="@ManagerResource.SELECT_MEMBER">
+                                        @if (Model.Staffs.HasData())
+                                        {
+                                            foreach (var item in Model.Staffs)
+                                            {
+                                                <option value="@item.StaffId"> @item.FullName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-danger" type="submit" value="@ManagerResource.LB_SAVE" />
+                        <button class="btn" data-dismiss="modal">@ManagerResource.LB_CANCEL</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PageInlineScripts{
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script>
+        $("body").on("click", ".btn-email-invalid", function () {
+            $.showErrorMessage(LanguageDic["LB_NOTIFICATION"], LanguageDic["ERROR_EMAIL_IS_EMPTY"]);
+        });
+
+        function mouseInHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "1");
+        };
+
+        function mouseOutHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "0");
+        };
+
+        $('.tbl-row-hover tr').hover(mouseInHandler, mouseOutHandler);
+
+        $(function () {
+            InitCompanyPicker();
+        });
+        function ShowNote(id) {
+            $(".show-note").each(function () {
+                if ($(this).data("id") == id) {
+                    $(this).click();
+                }
+            })
+        }
+        function InitCompanyPicker() {
+            $('.company-picker').selectpicker({
+                actionsBox: true,
+                selectAllText: LanguageDic["LB_SELECT_ALL"],
+                deselectAllText: LanguageDic["LB_DESELECT_ALL"]
+            }).ajaxSelectPicker({
+                ajax: {
+                    // data source
+                    url: '/Master/GetSuggestionCompanies',
+                    // ajax type
+                    type: 'POST',
+                    // data type
+                    dataType: 'json',
+                    // Use "{{{q}}}" as a placeholder and Ajax Bootstrap Select will
+                    // automatically replace it with the value of the search query.
+                    data: {
+                        query: '{{{q}}}',
+                        __RequestVerificationToken: $('input[name = "__RequestVerificationToken"]').val()
+                    }
+                },
+                locale: {
+                    emptyTitle: LanguageDic["LB_KEYWORD_SEARCH"],
+                    statusInitialized: "",
+                    statusSearching: LanguageDic["LB_SEARCHING"],
+                    statusNoResults: LanguageDic["LB_NO_RESULTS_FOUND"]
+                },
+                // function to preprocess JSON data
+                preprocessData: function (data) {
+                    var result = data.data;
+                    var i, l = result.length, array = [];
+                    if (l) {
+                        for (i = 0; i < l; i++) {
+                            array.push($.extend(true, result[i], {
+                                text: result[i].company_name ,
+                                value: result[i].id
+                                //data: {
+                                //    subtext: data[i].station
+                                //}
+                            }));
+                        }
+                    }
+                    return array;
+                }
+
+            });
+        }
+        function SetStaffManager(job_seeker_id,pic_id) {
+            $("#job_seeker_id").val(job_seeker_id);
+            $("#pic_id").val(pic_id);
+            $("#pic_id").selectpicker("refresh");
+            $('#frmUsers').modal('show');
+        }
+    </script>
+}

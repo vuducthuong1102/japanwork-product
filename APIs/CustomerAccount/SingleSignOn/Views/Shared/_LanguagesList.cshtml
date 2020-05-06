@@ -1,0 +1,55 @@
+﻿@using SingleSignOn.Resources
+
+@{ 
+    string lang = null;
+    HttpCookie langCookie = Request.Cookies["culture"];
+    if (langCookie != null)
+    {
+        lang = langCookie.Value;
+    }
+    else
+    {
+        var userLanguage = Request.UserLanguages;
+        var userLang = userLanguage != null ? userLanguage[0] : "";
+        if (userLang != "")
+        {
+            lang = userLang;
+        }
+        else
+        {
+            lang = LanguagesProvider._defaultLang;
+        }
+    }
+}
+
+<ul class="loginbar pull-right">
+    <li class="hoverSelector">
+        <i class="fa fa-globe"></i>
+        <a>@UserWebResource.TEXT_LANGUAGE</a>
+        <ul class="languages hoverSelectorBlock">
+            @foreach (var item in SingleSignOn.LanguagesProvider.GetListLanguages())
+            {
+                @*<li class="active">
+					<a href="#">English <i class="fa fa-check"></i></a>
+				</li>*@
+                var className = string.Empty;
+                if(item.LanguageCultureName == lang)
+                {
+                    className = "active";
+                }
+                <li class="@className">
+                    <a href="/home/changelanguage?lang=@item.LanguageCultureName">@item.LanguageFullName
+                    
+                    @if (!string.IsNullOrEmpty(className))
+                    {
+                        <i class="fa fa-check"></i>
+                    }
+                    </a>
+                </li>
+            }
+
+        </ul>
+    </li>
+    <li class="topbar-devider"></li>
+    <li><a href="page_faq.html">@UserWebResource.TEXT_HELP</a></li>
+</ul>

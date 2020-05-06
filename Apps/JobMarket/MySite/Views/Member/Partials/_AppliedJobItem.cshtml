@@ -1,0 +1,156 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.ApplicationInfoModel
+
+@{
+    var title = string.Empty;
+    var shortTitle = string.Empty;
+    var slug = string.Empty;
+    var job_info = Model.job_info;
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+    var isExpried = false;
+    if (job_info.Job_translations.HasData())
+    {
+        title = job_info.Job_translations[0].title;
+        slug = job_info.Job_translations[0].friendly_url;
+        shortTitle = HtmlHelpers.ShowHtmlTextByLimit(title, 30);
+
+        if (job_info.status == (int)EnumJobStatus.Closed || job_info.closed_time <= DateTime.UtcNow)
+        {
+            isExpried = true;
+        }
+    }
+
+    var hasAddress = job_info.Addresses.HasData();
+
+    var detailLink = SecurityHelper.GenerateSecureLink("job", "detail", new { lr = slug, id = job_info.id });
+}
+
+<tr>
+    <td class="pt10">
+        @if (job_info.company_info != null)
+        {
+            <div class="table-list-title">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@detailLink" target="_blank" class="company-logo" style="width:80px;height:60px">
+                            @if (!string.IsNullOrEmpty(job_info.company_info.logo_full_path))
+                            {
+                                <img src="@job_info.company_info.logo_full_path" title="@job_info.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                            }
+                            else
+                            {
+                                <img src="@defaultComLogo" title="@job_info.company_info.company_name" alt="" />
+                            }
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <a href="@detailLink" title="@job_info.company_info.company_name" target="_blank"><i class="job-company-name">@job_info.company_info.company_name</i></a><br>
+                        <div class="job-company-address" title="@UserWebResource.LB_WORKING_ADDRESS">
+                            @{
+                                if (hasAddress)
+                                {
+                                    var totalAddress = job_info.Addresses.Count();
+                                    var workAddress = (job_info.Addresses.HasData()) ? job_info.Addresses[0] : null;
+                                    var workStations = (job_info.Addresses.HasData()) ? job_info.Addresses[0].Stations : null;
+                                    var addressDetail = FrontendHelpers.RenderJobWorkingAddress(workAddress, job_info.view_company);
+                                    var stationDetail = string.Empty;
+                                    <div>
+                                        <i class="la la-map-marker"></i>
+                                        @if (!string.IsNullOrEmpty(addressDetail))
+                                        {
+                                            if (totalAddress > 1)
+                                            {
+                                                <span>@addressDetail - </span><span><b class="text-danger">(@totalAddress @UserWebResource.LB_ADDRESSES.ToLower())</b></span>
+                                            }
+                                            else
+                                            {
+                                                @addressDetail
+                                            }
+                                        }
+                                        else
+                                        {
+                                            @("---")
+                                        }
+                                    </div>
+
+                                    if (Model.employment_type_show_trains)
+                                    {
+                                        if (workStations.HasData())
+                                        {
+                                            stationDetail = string.Join(", ", workStations.Select(x => x.furigana));
+                                            <div>
+                                                <i class="la la-train"></i>
+                                                @if (!string.IsNullOrEmpty(stationDetail))
+                                                {
+                                                    @stationDetail
+                                                }
+                                                else
+                                                {
+                                                    @("---")
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="la la-map-marker">---</i>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </td>
+    <td class="pt0">
+        <div class="table-list-title">
+            <h3>
+                <a href="@detailLink" target="_blank" title="@title">
+                    @shortTitle <br />
+                    @if (!string.IsNullOrEmpty(Model.employment_type_label))
+                    {
+                        <i class="fz-13">(@Model.employment_type_label)</i>
+                    }
+                </a>
+            </h3>
+        </div>
+    </td>
+    <td class="pt0 text-center">
+        <div>
+            <span class="fz-14" title="@DateHelpers.FormatToStringTitle(Model.created_at.Value)">@Model.created_at.DateTimeQuestToString()</span>
+            @if (!string.IsNullOrEmpty(Model.status_label))
+            {
+                var statusClass = "default";
+                if (Model.status == (int)EnumApplicationStatus.Applied)
+                {
+                    statusClass = "info";
+                }
+                else if (Model.status == (int)EnumApplicationStatus.Interview)
+                {
+                    statusClass = "success";
+                }
+                else
+                {
+                    statusClass = "danger";
+                }
+
+                <br />
+                if (isExpried)
+                {
+                    <span title="@UserWebResource.LB_STATUS" class="fz-12 job-application-status badge badge-danger">@UserWebResource.LB_JOB_EXPIRED</span>
+                }
+                else
+                {
+                    <span title="@UserWebResource.LB_STATUS" class="fz-12 job-application-status badge badge-@statusClass">@Model.status_label</span>
+                }
+            }
+        </div>
+    </td>
+    <td class="text-center pt0">
+        <ul class="dp-flex">
+            <li><a class="btn-danger fz-15 btn-sm" href="javascript:;" title="@UserWebResource.BT_DELETE" data-modal="" data-href="@Url.Action("CancelApplication","Member", new { id = Model.id, job_id = Model.job_id })"><i class="fa fa-trash-o"></i></a></li>
+        </ul>
+    </td>
+</tr>

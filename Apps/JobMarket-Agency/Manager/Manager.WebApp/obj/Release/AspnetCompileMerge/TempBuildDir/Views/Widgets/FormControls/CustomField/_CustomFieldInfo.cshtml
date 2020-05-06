@@ -1,0 +1,13 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@model CommonCustomFieldModel
+
+<div class="form-group m-form__group row customFieldGroup">
+    <div class="col-lg-3">
+        <label style="width:100%;">@Model.Name <a href="javascript:;" class="text-danger float-right customFieldRemove"><i class="fa fa-remove"></i> @ManagerResource.LB_DELETE</a></label>
+        <input type="hidden" name="metadata[@Model.Idx][name]" value="@Model.Name" data-prop="name" class="customFieldInput" />
+        <input type="hidden" name="metadata[@Model.Idx][key]" value="@Model.Key" data-prop="key" class="customFieldInput" />
+        <input type="hidden" name="metadata[@Model.Idx][type]" value="@Model.Type" data-prop="type" class="customFieldInput" />
+        <input type="text" name="metadata[@Model.Idx][value]" value="@Model.Value" data-prop="value" class="form-control m-input customFieldInput" />
+    </div>
+</div>

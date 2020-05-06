@@ -1,0 +1,98 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.Caching
+@model MySite.Models.JobSeekerUpdateProfileModel
+
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var userName = string.Empty;
+    if (currentUser != null)
+    {
+        userName = AccountHelper.ShowDisplayName(currentUser);
+    }
+}
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header" style="padding-top: 150px;">
+                        <h3>@UserWebResource.LB_WELCOME @userName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column border-right hidden-sm-down">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            @Html.Partial("~/Views/Widgets/Items/Profile/_LeftMenu.cshtml", "wish")
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9 column">
+                    <div class="padding-left mb40">
+                        @*@Html.Partial("Sub/_Profile", Model)*@
+                        <form id="frmProfile">
+                            @Html.AntiForgeryToken()
+                            <div id="MemberSubContainer" data-current="profile">
+
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <div class="row">
+                                <div class="col-lg-12 hidden" id="btnSave">
+                                    <button type="button" class="btn-danger-custom" id="btnSaveWish"><i class="fa fa-floppy-o"></i> @UserWebResource.BT_SAVE</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/select/bootstrap-select.css" rel="stylesheet" />
+}
+@section PageInlineScripts{
+    <script src="~/Content/Extensions/select/bootstrap-select.min.js"></script>
+    <script>
+        $(function () {
+            showItemLoading("#MemberSubContainer");
+            setTimeout(function () {
+                $('#MemberSubContainer').load("/Member/MyWish", function (response, status, xhr) {
+                    hideItemLoading("#MemberSubContainer");
+                    $("#btnSave").removeClass("hidden");
+                });
+            }, 300);
+        });
+        $(document).on("click", "#btnSaveWish", function () {
+            SaveWish();
+        });
+        function SaveWish() {
+            var frmData = $("#frmProfile").serialize();
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/member/UpdateWish";
+            params['requestType'] = "POST";
+            params['data'] = frmData;
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (data) {
+                var obj = JSON.parse(data);
+                console.log(obj.title);
+                $.showSuccessMessage(obj.title, obj.message, function () { });
+            };
+
+            doAjax(params);
+        }
+    </script>
+}

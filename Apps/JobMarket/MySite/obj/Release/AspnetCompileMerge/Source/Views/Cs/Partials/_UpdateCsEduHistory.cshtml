@@ -1,0 +1,225 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@model MySite.Models.CsEduHistoryModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-graduation-cap fz-16"></i> @UserWebResource.LB_UPDATE_EDUCATION
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("UpdateCsEduHistory","Cs", FormMethod.Post, new { @id="frmUpdateCsEduHistory" }))
+{
+@Html.AntiForgeryToken()
+@Html.HiddenFor(m => m.id, new { id = "currentEduHistoryId"})
+@Html.HiddenFor(m => m.cs_id)
+<div class="modal-body">
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@UserWebResource.LB_QUALIFICATION</label>
+        </div>
+        <div class="col-md-8">
+            <select data-placeholder="@UserWebResource.LB_QUALIFICATION" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.qualification_id)" id="Qualification">
+                @if (Model.Qualifications.HasData())
+                {
+                    foreach (var qualification in Model.Qualifications)
+                    {
+                        var currentQualifiName = string.Empty;
+                        if (qualification.LangList.HasData())
+                        {
+                            currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                        }
+                        else
+                        {
+                            currentQualifiName = qualification.qualification;
+                        }
+                        <option value="@qualification.id" data-major="@qualification.show_major" @((Model.qualification_id == qualification.id) ? "selected" : "")>@currentQualifiName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div id="MajorArea">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_MAJOR</label>
+            </div>
+            <div class="col-md-8">
+                <select data-placeholder="@UserWebResource.LB_MAJOR" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.major_id)" id="Major">
+                    @if (Model.Majors.HasData())
+                    {
+                        foreach (var major in Model.Majors)
+                        {
+                            var currentMajorName = string.Empty;
+                            if (major.LangList.HasData())
+                            {
+                                currentMajorName = major.LangList.Where(x => x.language_code == currentLang).Select(x => x.major).FirstOrDefault();
+                            }
+                            else
+                            {
+                                currentMajorName = major.major;
+                            }
+                            <option value="@major.id" @((Model.major_id == major.id) ? "selected" : "")>@currentMajorName</option>
+                        }
+                    }
+
+                    <option value="0" @((Model.major_id == 0) ? "selected" : "")>@UserWebResource.LB_MAJOR_OTHER</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="MajorCustom" class="hidden">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label class="base-label">@UserWebResource.LB_MAJOR_OTHER_NAME</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.major_custom, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@UserWebResource.LB_SCHOOL_NAME</label>
+        </div>
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.school, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.school, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@UserWebResource.LB_EDUCATION_STATUS</label>
+        </div>
+        <div class="col-md-8">
+            <select data-placeholder="@UserWebResource.LB_EDUCATION_STATUS" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.status)">
+                @foreach (var item in Enum.GetValues(typeof(EnumEducationStatus)))
+                {
+                    var chkItem = (int)item;
+                    var chkStr = string.Empty;
+                    if (chkItem == Model.status)
+                    {
+                        chkStr = "selected";
+                    }
+                    <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@UserWebResource.LB_FROM_DATE</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.start_date_str, new { @class = "form-control datepicker" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@UserWebResource.LB_TO_DATE</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.end_date_str, new { @class = "form-control datepicker" })
+        </div>
+    </div>
+</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-floppy-o"></i> @UserWebResource.BT_SAVE
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $('.select2').select2({
+        width: '100%'
+    });
+
+    $(".datepicker").mask("99-99-9999");
+    $(".datepicker").datepicker({
+        format: "dd-mm-yyyy"
+    });
+
+    $("#Qualification").change(function () {        
+        var showMajor = $('#Qualification option:selected').attr('data-major');
+        if (showMajor == "True") {
+            $("#MajorArea").removeClass("hidden");
+        } else {
+            $("#MajorArea").addClass("hidden");
+            $("#Major").val("0");
+            $("#Major").change();
+        }
+    });
+
+    $("#Major").change(function () {
+        var id = parseInt($("#Major").val());
+        if (id == 0) {
+            $("#MajorCustom").removeClass("hidden");
+        } else {
+            $("#MajorCustom").addClass("hidden");
+        }
+    });
+
+    $(function () {
+        $("#Qualification").change();
+        $("#Major").change();
+    });
+
+    $("#frmUpdateCsEduHistory").submit(function (ev) {
+        var currentEduHistoryId = parseInt($("#currentEduHistoryId").val());
+
+        ev.preventDefault();
+        if ($("#frmUpdateCsEduHistory").valid()) {
+            var data = new FormData(this);
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Cs/UpdateCsEduHistory';
+            params['requestType'] = 'POST';
+            params['data'] = data;
+            params['processData'] = false;
+            params['contentType'] = false;
+            params['dataType'] = "json";
+            params['context'] = "#frmUpdateCsEduHistory";
+            params['successCallbackFunction'] = function (result) {
+                if (result) {
+                    if (result.success) {
+                        $('#myModal').modal('hide');
+                        if (currentEduHistoryId > 0) {
+                            MemberGlobal.eduHistories();
+                        } else {
+                            if (result.html) {
+                                $("#EduHistories").append(result.html);
+                            }                            
+                        }                        
+                    } else {
+                        CatchAjaxResponseWithNotif(result);
+                    }
+                }
+            };
+            doAjax(params);
+        }
+        return false;
+    });
+</script>

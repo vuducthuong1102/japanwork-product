@@ -1,0 +1,27 @@
+﻿@using Manager.WebApp.Resources
+@model int
+
+@if (Model == (int)(EnumJobStatus.Draft))
+{
+    <span class="m-badge m-badge--wide m-badge--danger status-job"><i class="fa fa-lock"></i> @ManagerResource.LB_AWAITING_APPROVAL</span>
+}
+else if (Model == (int)(EnumJobStatus.Closed))
+{
+    <span class="m-badge m-badge--wide m-badge--warning status-job"><i class="fa fa-close"></i> @ManagerResource.LB_CLOSED_JOB</span>
+}
+else if (Model == (int)(EnumJobStatus.Published))
+{
+    <span class="m-badge m-badge--wide m-badge--success status-job"><i class="fa fa-check"></i> @ManagerResource.LB_ACTIVE</span>
+}
+else if (Model == (int)(EnumJobStatus.Saved))
+{
+    <span class="m-badge m-badge--wide m-badge--metal status-job"><i class="fa fa-file"></i> @ManagerResource.LB_SAVED</span>
+}
+else if (Model == (int)(EnumJobStatus.Expired))
+{
+    <span class="m-badge m-badge--wide m-badge--danger status-job"><i class="fa fa-hourglass-half"></i> @ManagerResource.LB_EXPRIRED</span>
+}
+else if (Model == (int)(EnumJobStatus.Canceled))
+{
+    <span class="m-badge m-badge--wide m-badge--danger status-job"><i class="fa fa-close"></i> @ManagerResource.LB_CANCELED</span>
+}

@@ -1,0 +1,46 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CvSearchResultModel
+
+@Html.HiddenFor(m=>m.CurrentPage)
+
+<table class="pkges-table mb20 mt20">
+    <thead>
+        <tr>
+            <td>@UserWebResource.LB_TITLE</td>
+            <td>@UserWebResource.LB_CREATED_DATE</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.CvList.HasData())
+        {
+            foreach (var item in Model.CvList)
+            {
+                @Html.Partial("Partials/_CvItem", item)
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="20">
+                    @UserWebResource.LB_HAS_NO_CV
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@RenderPaging()
+
+@helper RenderPaging()
+{
+    if (Model.WasOverRecordsInPage())
+    {
+        <div class="pagination mb10">
+            @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                         Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "CvSearchNext")
+        </div>
+    }
+}

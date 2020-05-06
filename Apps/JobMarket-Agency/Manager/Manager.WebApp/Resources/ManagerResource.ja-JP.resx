@@ -1,0 +1,2437 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BT_ADD" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="BT_ALLOW" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="BT_APPLICATION_ACCEPT" xml:space="preserve">
+    <value>承認する</value>
+  </data>
+  <data name="BT_APPLICATION_ACCEPTED" xml:space="preserve">
+    <value>承認済み</value>
+  </data>
+  <data name="BT_APPLICATION_IGNORE" xml:space="preserve">
+    <value>否認する</value>
+  </data>
+  <data name="BT_CANCEL" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="BT_CHOOSE_FILE" xml:space="preserve">
+    <value>参照</value>
+  </data>
+  <data name="BT_CHOOSE_PRODUCT" xml:space="preserve">
+    <value>アイテム選択</value>
+  </data>
+  <data name="BT_CLEAR" xml:space="preserve">
+    <value>クリア</value>
+  </data>
+  <data name="BT_CLICK_HERE" xml:space="preserve">
+    <value>ここに</value>
+  </data>
+  <data name="BT_EXPORT_PDF" xml:space="preserve">
+    <value>PDFファイルをエクスポートする</value>
+    <comment>X</comment>
+  </data>
+  <data name="BT_INVITE_JOBSEEKER" xml:space="preserve">
+    <value>スカウト</value>
+  </data>
+  <data name="BT_JOB_CLOSE" xml:space="preserve">
+    <value>非公開</value>
+  </data>
+  <data name="BT_NEXT" xml:space="preserve">
+    <value>次へ</value>
+  </data>
+  <data name="BT_OUTPUT_CSV" xml:space="preserve">
+    <value>CSVファイルに出力</value>
+  </data>
+  <data name="BT_PRINT" xml:space="preserve">
+    <value>CVを印刷する</value>
+  </data>
+  <data name="BT_REGISTER" xml:space="preserve">
+    <value>登録</value>
+  </data>
+  <data name="BT_RESET" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="BT_SEND" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="BT_UPDATE" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="BT_UPLOAD_PHOTO" xml:space="preserve">
+    <value>顔写真をアップロード</value>
+  </data>
+  <data name="CERTIFICATE_STATUS_NOT_PASSED" xml:space="preserve">
+    <value>合格</value>
+  </data>
+  <data name="CERTIFICATE_STATUS_PASSED" xml:space="preserve">
+    <value>習得</value>
+  </data>
+  <data name="CK_IS_ACTIVED" xml:space="preserve">
+    <value>アカウントを有効化します。</value>
+  </data>
+  <data name="COMMON_ERROR_ACCOUNT_BY_EMAIL_NOT_FOUND" xml:space="preserve">
+    <value>このメールアドレスにはまだアカウントが登録されていません</value>
+  </data>
+  <data name="COMMON_ERROR_AGE_MUST_NUMBERIC" xml:space="preserve">
+    <value>２桁の半額の数字を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_DATA_INVALID" xml:space="preserve">
+    <value>データが無効です</value>
+  </data>
+  <data name="COMMON_ERROR_EMAIL_MAX_LENGTH" xml:space="preserve">
+    <value>メールアドレスが　{1} 文字以内に入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_ESTABLISH_YEAR_LENGTH" xml:space="preserve">
+    <value>{1}桁を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_ESTABLISH_YEAR_MUST_NUMBERIC" xml:space="preserve">
+    <value>４桁の半額の数字を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_EXTERNALSERVICE_TIMEOUT" xml:space="preserve">
+    <value>システムは今処理中です。後でもう一度やり直して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_FULL_NAME_MAX_LENGTH" xml:space="preserve">
+    <value>名前は{1} 文字以内に入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_INACTIVE_ACCOUNT" xml:space="preserve">
+    <value>あなたのアカウントはアクティベートされていません</value>
+  </data>
+  <data name="COMMON_ERROR_JOBSEEKER_NAME_NULL" xml:space="preserve">
+    <value>名前を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_NULL_VALUE" xml:space="preserve">
+    <value>空白のままにしないでください</value>
+  </data>
+  <data name="COMMON_ERROR_PHONE_MAX_LENGTH" xml:space="preserve">
+    <value>電話番ごは{1}文字以内に入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_PROBATION_DURATION_MUST_NUMBERIC" xml:space="preserve">
+    <value>12以下の半額の数字を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_QUANTITY_MUST_NUMBERIC" xml:space="preserve">
+    <value>３桁以下の半額の数字を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_SALARY_MUST_NUMBERIC" xml:space="preserve">
+    <value>8桁の半額の数字を入力して下さい</value>
+  </data>
+  <data name="COMMON_ERROR_SCHOOL_NAME_NULL" xml:space="preserve">
+    <value>学校名を入力して下さい</value>
+  </data>
+  <data name="COMPANY_DELETE_ERROR" xml:space="preserve">
+    <value>会社の削除中にエラーが発生しました</value>
+  </data>
+  <data name="COMPANY_DELETE_NO_JOB" xml:space="preserve">
+    <value>登録された求人は０件です</value>
+  </data>
+  <data name="COMPANY_DELETE_WARNING" xml:space="preserve">
+    <value>会社を削除する前に「公開中」の求人を「非公開」にし、「終了」と「下書き」と「承認待ち」の求人を削除して下さい</value>
+  </data>
+  <data name="CONFIRM_CLOSE_JOB" xml:space="preserve">
+    <value>この求人を非公開にしてもよろしいでしょうか ？</value>
+  </data>
+  <data name="CONFIRM_DELETE" xml:space="preserve">
+    <value>削除してもよろしいでしょうか？</value>
+  </data>
+  <data name="CONFIRM_DELETE_JOB" xml:space="preserve">
+    <value>この求人を削除すると進捗状況に非表示されてもよろしいでしょうか？</value>
+  </data>
+  <data name="CONFIRM_UPDATE_SCHEDULE" xml:space="preserve">
+    <value>スケジュールが変更されてもよろしいでしょうか？</value>
+  </data>
+  <data name="EDUCATION_STATUS_FLUNKED_OUT" xml:space="preserve">
+    <value>中退</value>
+  </data>
+  <data name="EDUCATION_STATUS_GRADUATED" xml:space="preserve">
+    <value>卒業</value>
+  </data>
+  <data name="EDUCATION_STATUS_STUDYING" xml:space="preserve">
+    <value>在学</value>
+  </data>
+  <data name="ERROR_ACCOUNT_DUPLICATED" xml:space="preserve">
+    <value>既に使われているアカウントです。別のアカウントでお使いください</value>
+  </data>
+  <data name="ERROR_ACTION_DENNIED" xml:space="preserve">
+    <value>この機能を利用する権限がありません</value>
+  </data>
+  <data name="ERROR_ACTION_DENNIED_EDIT" xml:space="preserve">
+    <value>編集する権限がありません</value>
+  </data>
+  <data name="ERROR_ALEAST_ONE_APPLICANT_SELECT" xml:space="preserve">
+    <value>招待する候補者を選択して下さい</value>
+  </data>
+  <data name="ERROR_ALEAST_ONE_JOB_SELECT" xml:space="preserve">
+    <value>求人を選択して下さい</value>
+  </data>
+  <data name="ERROR_ALEAST_ONE_PIC_SELECT" xml:space="preserve">
+    <value>担当者を選択して下さい</value>
+  </data>
+  <data name="ERROR_CONFRIM_PASSWORD_NOT_MATCH" xml:space="preserve">
+    <value>新パスワードと再入力パスワードが一致しません</value>
+  </data>
+  <data name="ERROR_COULD_NOT_CREATE_CHAT" xml:space="preserve">
+    <value>チャットセッションを開始できませんでした</value>
+  </data>
+  <data name="ERROR_DATE_RANGE_IN_PAST" xml:space="preserve">
+    <value>開始時間は終了時間の後にあることが出来ません</value>
+  </data>
+  <data name="ERROR_EMAIL_INVALID" xml:space="preserve">
+    <value>メールアドレスが無効です</value>
+  </data>
+  <data name="ERROR_EMAIL_IS_EMPTY" xml:space="preserve">
+    <value>メールアドレスが未入力！</value>
+  </data>
+  <data name="ERROR_EMAIL_NOT_NULL" xml:space="preserve">
+    <value>登録したメールアドレス入力して下さい</value>
+  </data>
+  <data name="ERROR_ENUMVALUE_EXISTED" xml:space="preserve">
+    <value>既にある値です。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_EXISTS_ROLE" xml:space="preserve">
+    <value>権利グループ名は既に存在します</value>
+  </data>
+  <data name="ERROR_GOODS_ISSUE_NOT_ENOUGH_FORMAT" xml:space="preserve">
+    <value>出庫する為の在庫数が不足しています[{0}]。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_INCORRECT_USER" xml:space="preserve">
+    <value>他のユーザが担当している情報はこの機能を使っていただけません！</value>
+  </data>
+  <data name="ERROR_INVALID_LOGIN" xml:space="preserve">
+    <value>アカウントまたはパスワードが正しくありません</value>
+  </data>
+  <data name="ERROR_INVITATION_OVER" xml:space="preserve">
+    <value>アプリケーションの招待制限を超えました</value>
+  </data>
+  <data name="ERROR_ITEM_CODE_EXISTED" xml:space="preserve">
+    <value>既にあるアイテムコードです。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_ITEM_DUPLICATED_ON_LIST" xml:space="preserve">
+    <value>アイテムが重複されています</value>
+  </data>
+  <data name="ERROR_ITEM_LIST_EMPTY" xml:space="preserve">
+    <value>アイテムリストが空リストとなっています。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_JOB_UPDATE" xml:space="preserve">
+    <value>アプリケーションは状態{0}であり、変更できません。もう一度確認して下さい</value>
+  </data>
+  <data name="ERROR_LOGIN_SESSION_ENDED" xml:space="preserve">
+    <value>ログインセッションの有効期限が切れました。再度ログインして下さい</value>
+  </data>
+  <data name="ERROR_NOT_NULL_REQUIRED" xml:space="preserve">
+    <value>入力必須です</value>
+  </data>
+  <data name="ERROR_NOT_SELECT_APPLICANT" xml:space="preserve">
+    <value>求職者を選択して下さい</value>
+  </data>
+  <data name="ERROR_NOT_SELECT_ITEM" xml:space="preserve">
+    <value>アイテムをお選びください</value>
+  </data>
+  <data name="ERROR_NOT_SELECT_MEMBER" xml:space="preserve">
+    <value>メンバーをお選びください</value>
+  </data>
+  <data name="ERROR_NUMBER_INPUT_ONLY" xml:space="preserve">
+    <value>数値のみ入力可能です</value>
+  </data>
+  <data name="ERROR_NUMBER_MIN_0" xml:space="preserve">
+    <value>0を超える値をご入力ください</value>
+  </data>
+  <data name="ERROR_PAGE_NOT_FOUND" xml:space="preserve">
+    <value>ページが見つかりません</value>
+  </data>
+  <data name="ERROR_PASSWORD_NOT_NULL" xml:space="preserve">
+    <value>パスワードを入力して下さい</value>
+  </data>
+  <data name="ERROR_PERMISSION_DENNIED" xml:space="preserve">
+    <value>この機能を利用する権限がありません</value>
+  </data>
+  <data name="ERROR_PHONE_INVALID" xml:space="preserve">
+    <value>無効な電話番号です</value>
+  </data>
+  <data name="ERROR_PROCESS_END" xml:space="preserve">
+    <value>Tiến độ đã kết thúc không thể thêm tiến độ mới</value>
+  </data>
+  <data name="ERROR_PRODUCT_ITEM_CODE_NOTFOUND_FORMAT" xml:space="preserve">
+    <value> [{0}]アイテムが見つかりません。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_PRODUCT_ITEM_NOTFOUND" xml:space="preserve">
+    <value>アイテムが見つかりません。再度ご確認ください</value>
+  </data>
+  <data name="ERROR_QTY_MUST_LARGE_THAN_0" xml:space="preserve">
+    <value>0を超える数量をご入力ください</value>
+  </data>
+  <data name="ERROR_SELECTION_LIMITED" xml:space="preserve">
+    <value>選択数が制限を超えました</value>
+  </data>
+  <data name="ERROR_SELECT_SUB_FIELD_EMPTY" xml:space="preserve">
+    <value>雇用形態を先に選択して下さい</value>
+  </data>
+  <data name="ERROR_SYSTEM_PERIOD_MIN_0_MAX_24" xml:space="preserve">
+    <value>1ヵ月～24ヵ月の範囲内でないといけません</value>
+  </data>
+  <data name="ERROR_THIS_ITEM_DONT_NEED_REFLECT" xml:space="preserve">
+    <value>このアイテムの棚卸反映が完了しました</value>
+  </data>
+  <data name="ERROR_USERNAME_EXISTED" xml:space="preserve">
+    <value>既にあるユーザーコードです</value>
+  </data>
+  <data name="INVITATION_STATUS_ACCEPTED" xml:space="preserve">
+    <value>承認済み</value>
+  </data>
+  <data name="INVITATION_STATUS_AWAITING" xml:space="preserve">
+    <value>承認待ち</value>
+  </data>
+  <data name="INVITATION_STATUS_IGNORED" xml:space="preserve">
+    <value>否認済み</value>
+  </data>
+  <data name="IP_START_DATE" xml:space="preserve">
+    <value>勤務開始日</value>
+  </data>
+  <data name="JOB_DELETE_ERROR" xml:space="preserve">
+    <value>Xảy ra lỗi khi xóa đơn tuyển</value>
+  </data>
+  <data name="JOB_DELETE_MATCHING" xml:space="preserve">
+    <value>マッチング数：{0}件</value>
+  </data>
+  <data name="JOB_DELETE_WARNING" xml:space="preserve">
+    <value>この求人を削除すると進捗状況に非表示されてもよろしいでしょうか。</value>
+  </data>
+  <data name="JOB_SEEKER_DELETE_WARNING" xml:space="preserve">
+    <value>進捗数: {0}</value>
+  </data>
+  <data name="LANGUAGE" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LB_ACCEPTED_DATE" xml:space="preserve">
+    <value>承認日</value>
+  </data>
+  <data name="LB_ACCOUNT_LOCKED" xml:space="preserve">
+    <value>ユーザーがロックされました</value>
+  </data>
+  <data name="LB_ACCOUNT_NOT_LOCKED" xml:space="preserve">
+    <value>アカウントが有効化されています。</value>
+  </data>
+  <data name="LB_ACCOUNT_WAS_LOCKED" xml:space="preserve">
+    <value>アカウントがロックされました。</value>
+  </data>
+  <data name="LB_ACTION" xml:space="preserve">
+    <value>アクション</value>
+  </data>
+  <data name="LB_ACTIVATED" xml:space="preserve">
+    <value>有効化されました</value>
+  </data>
+  <data name="LB_ACTIVE" xml:space="preserve">
+    <value>公開中</value>
+  </data>
+  <data name="LB_ACTIVE_MAIL_SERVER" xml:space="preserve">
+    <value>有効化します</value>
+  </data>
+  <data name="LB_ADDRESS" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="LB_ADDRESS_CONTACT" xml:space="preserve">
+    <value>連絡先</value>
+  </data>
+  <data name="LB_ADDRESS_DETAIL" xml:space="preserve">
+    <value>住所の詳細</value>
+  </data>
+  <data name="LB_ADDRESS_FURIGANA" xml:space="preserve">
+    <value>フリガナ</value>
+  </data>
+  <data name="LB_ADD_CANDIDATE" xml:space="preserve">
+    <value>候補者を追加</value>
+  </data>
+  <data name="LB_ADD_CERTIFICATE" xml:space="preserve">
+    <value>資格・免許を追加</value>
+  </data>
+  <data name="LB_ADD_EDUCATION" xml:space="preserve">
+    <value>学歴を追加</value>
+  </data>
+  <data name="LB_ADD_INTERVIEW_PROCESS" xml:space="preserve">
+    <value>進捗を追加</value>
+  </data>
+  <data name="LB_ADD_JOB" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="LB_ADD_NEW" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="LB_ADD_NEW_EMAIL_SERVER" xml:space="preserve">
+    <value>メールサーバーを追加する</value>
+  </data>
+  <data name="LB_ADD_NEW_JOB" xml:space="preserve">
+    <value>新しい仕事を追加</value>
+  </data>
+  <data name="LB_ADD_NEW_POST" xml:space="preserve">
+    <value>文書追加</value>
+  </data>
+  <data name="LB_ADD_NOTE" xml:space="preserve">
+    <value>対応を確認/追加</value>
+  </data>
+  <data name="LB_ADD_USER_MANAGER" xml:space="preserve">
+    <value>マネージャースタッフを追加する</value>
+  </data>
+  <data name="LB_ADD_WORKING_ADDRESS" xml:space="preserve">
+    <value>勤務地追加</value>
+  </data>
+  <data name="LB_ADD_WORKING_EXPERIENCE" xml:space="preserve">
+    <value>職務歴を追加</value>
+  </data>
+  <data name="LB_AGE" xml:space="preserve">
+    <value>年齢</value>
+  </data>
+  <data name="LB_AGENCY_MANAGER" xml:space="preserve">
+    <value>取引先一覧</value>
+  </data>
+  <data name="LB_AGENCY_REGISTER_LABEL" xml:space="preserve">
+    <value>会員登録</value>
+  </data>
+  <data name="LB_ALL" xml:space="preserve">
+    <value>全て</value>
+  </data>
+  <data name="LB_ALLOW_SHOW_FILTER" xml:space="preserve">
+    <value>フィルターに表示</value>
+  </data>
+  <data name="LB_ALL_APPLICATION_STATUS" xml:space="preserve">
+    <value>すべてのステータス</value>
+  </data>
+  <data name="LB_ANSWERED_DATE" xml:space="preserve">
+    <value>返事日</value>
+  </data>
+  <data name="LB_APPLICANT" xml:space="preserve">
+    <value>求職者</value>
+  </data>
+  <data name="LB_APPLICANT_LIST" xml:space="preserve">
+    <value>応募者一覧</value>
+  </data>
+  <data name="LB_APPLICATION_ACCEPT_SUCCESS" xml:space="preserve">
+    <value>成功したアプリケーションを閲覧する</value>
+  </data>
+  <data name="LB_APPLICATION_CONFIRM_ACCEPT" xml:space="preserve">
+    <value>応募を承認します</value>
+  </data>
+  <data name="LB_APPLICATION_CONFIRM_IGNORE" xml:space="preserve">
+    <value>応募をを否認してもよろしいでしょうか？</value>
+  </data>
+  <data name="LB_APPLICATION_COUNT" xml:space="preserve">
+    <value>応募数</value>
+  </data>
+  <data name="LB_APPLICATION_IGNORE_SUCCESS" xml:space="preserve">
+    <value>否認終了</value>
+  </data>
+  <data name="LB_APPLICATION_INVITATION" xml:space="preserve">
+    <value>招待する</value>
+  </data>
+  <data name="LB_APPLICATION_INVITATION_DESCIPTION" xml:space="preserve">
+    <value>この求人に合う人材を探します</value>
+  </data>
+  <data name="LB_APPLICATION_INVITATION_SUCCESS" xml:space="preserve">
+    <value>招待状を送信しました</value>
+  </data>
+  <data name="LB_APPLICATION_LIST" xml:space="preserve">
+    <value>アプリケーションのリスト</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_AGENCY_IGNORED" xml:space="preserve">
+    <value>否認済み</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_APPROVED" xml:space="preserve">
+    <value>承認済み</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_AWAITING" xml:space="preserve">
+    <value>承認待ち</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_AWAITING_INTERVIEW" xml:space="preserve">
+    <value>面接待ち</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_CANCELED" xml:space="preserve">
+    <value>キャンセル済み</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_IGNORE" xml:space="preserve">
+    <value>否認済み</value>
+  </data>
+  <data name="LB_APPLICATION_STATUS_INVITED" xml:space="preserve">
+    <value>スカウト済み</value>
+  </data>
+  <data name="LB_APPLIED_DATE" xml:space="preserve">
+    <value>応募日</value>
+  </data>
+  <data name="LB_APPROVED_DATE" xml:space="preserve">
+    <value>対応日</value>
+  </data>
+  <data name="LB_ASSIGNED_USER" xml:space="preserve">
+    <value>オペラレーターリスト</value>
+  </data>
+  <data name="LB_ASSIGNMENT_WORK" xml:space="preserve">
+    <value>マッチング(自社)</value>
+  </data>
+  <data name="LB_ASSIGNMENT_WORK_DESCRIPTION" xml:space="preserve">
+    <value>この人材に仕事を紹介する</value>
+  </data>
+  <data name="LB_ASSIGN_CATEGORY" xml:space="preserve">
+    <value>分類</value>
+  </data>
+  <data name="LB_ASSIGN_TO_USER" xml:space="preserve">
+    <value>オペレーターの追加</value>
+  </data>
+  <data name="LB_ATTACHMENT_FILE" xml:space="preserve">
+    <value>添付ファイル</value>
+  </data>
+  <data name="LB_AVATAR" xml:space="preserve">
+    <value>アバター</value>
+  </data>
+  <data name="LB_AWAITING_APPROVAL" xml:space="preserve">
+    <value>承認待ち</value>
+  </data>
+  <data name="LB_BEGIN" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="LB_BIRTHDAY" xml:space="preserve">
+    <value>生年月日</value>
+  </data>
+  <data name="LB_BY_HOUR" xml:space="preserve">
+    <value>時間ごとに</value>
+  </data>
+  <data name="LB_BY_MONTH" xml:space="preserve">
+    <value>月ごと</value>
+  </data>
+  <data name="LB_CANCEL" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="LB_CANCELED" xml:space="preserve">
+    <value>否認済み</value>
+  </data>
+  <data name="LB_CANDIDATE" xml:space="preserve">
+    <value>求職者</value>
+  </data>
+  <data name="LB_CANDIDATE_COUNT" xml:space="preserve">
+    <value>候補者の総数</value>
+  </data>
+  <data name="LB_CANDIDATE_INTERVIEW" xml:space="preserve">
+    <value>応募者は面接中</value>
+  </data>
+  <data name="LB_CANDIDATE_INTRODUCE" xml:space="preserve">
+    <value>マッチング(自社)リスト</value>
+  </data>
+  <data name="LB_CANDIDATE_INVITED" xml:space="preserve">
+    <value>スカウトリスト</value>
+  </data>
+  <data name="LB_CANDIDATE_OFFLINE" xml:space="preserve">
+    <value>自社登録した求職者</value>
+  </data>
+  <data name="LB_CANDIDATE_ONLINE" xml:space="preserve">
+    <value>Japan Work応募者</value>
+  </data>
+  <data name="LB_CANDIDATE_RECRUITED" xml:space="preserve">
+    <value>採用リスト</value>
+  </data>
+  <data name="LB_CANDIDATE_RECRUITMENTS" xml:space="preserve">
+    <value>JW応募者リスト</value>
+  </data>
+  <data name="LB_CATEGORY_MANAGE" xml:space="preserve">
+    <value>マスター管理</value>
+  </data>
+  <data name="LB_CERTIFICATE" xml:space="preserve">
+    <value>資格・免許</value>
+  </data>
+  <data name="LB_CERTIFICATE_NAME" xml:space="preserve">
+    <value>資格・免許名</value>
+  </data>
+  <data name="LB_CHANGE" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="LB_CHANGE_PWD" xml:space="preserve">
+    <value>パスワード変更</value>
+  </data>
+  <data name="LB_CHANGE_PWD_SUCCESS" xml:space="preserve">
+    <value>パスワード変更完了</value>
+  </data>
+  <data name="LB_CHANGE_STATUS_PROCESS" xml:space="preserve">
+    <value>進捗ステータスを更新します</value>
+  </data>
+  <data name="LB_CHECK_VALID_LINK" xml:space="preserve">
+    <value>アクセスパスを再度ご確認ください</value>
+  </data>
+  <data name="LB_CHECK_YOUR_PEMISSIONS" xml:space="preserve">
+    <value>権限を再度ご確認ください</value>
+  </data>
+  <data name="LB_CHOOSE_FILE" xml:space="preserve">
+    <value>ファイル選択</value>
+  </data>
+  <data name="LB_CITY" xml:space="preserve">
+    <value>市区町村</value>
+  </data>
+  <data name="LB_CLICK_VIEW_DETAIL" xml:space="preserve">
+    <value>詳細を見るにはクリックして下さい</value>
+  </data>
+  <data name="LB_CLIENT" xml:space="preserve">
+    <value>お客様名</value>
+  </data>
+  <data name="LB_CLOSE" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="LB_CLOSED" xml:space="preserve">
+    <value>クローズ</value>
+  </data>
+  <data name="LB_CLOSED_JOB" xml:space="preserve">
+    <value>非公開</value>
+  </data>
+  <data name="LB_CLOSE_TAB" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
+  <data name="LB_CODE" xml:space="preserve">
+    <value>コード</value>
+  </data>
+  <data name="LB_CODE_MAX_LENGTH" xml:space="preserve">
+    <value>コードの長さ</value>
+  </data>
+  <data name="LB_COLLAPSE" xml:space="preserve">
+    <value>折りたたみ</value>
+  </data>
+  <data name="LB_COMPANY" xml:space="preserve">
+    <value>会社</value>
+  </data>
+  <data name="LB_COMPANY_CODE" xml:space="preserve">
+    <value>会社コード</value>
+  </data>
+  <data name="LB_COMPANY_CREATE" xml:space="preserve">
+    <value>求人会社を登録</value>
+  </data>
+  <data name="LB_COMPANY_DETAIL" xml:space="preserve">
+    <value>会社情報</value>
+  </data>
+  <data name="LB_COMPANY_EDIT" xml:space="preserve">
+    <value>求人会社情報を編集</value>
+  </data>
+  <data name="LB_COMPANY_EMPTY_WARNING_MESSAGE_BEGIN" xml:space="preserve">
+    <value>求人会社が登録されていない、</value>
+  </data>
+  <data name="LB_COMPANY_EMPTY_WARNING_MESSAGE_END" xml:space="preserve">
+    <value>クリックして先に求人会社を登録しましょう！</value>
+  </data>
+  <data name="LB_COMPANY_MANAGEMENT" xml:space="preserve">
+    <value>お客様一覧</value>
+  </data>
+  <data name="LB_COMPANY_NAME" xml:space="preserve">
+    <value>会社名</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_EMAIL" xml:space="preserve">
+    <value>メール</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_MEETING" xml:space="preserve">
+    <value>打ち合わせ</value>
+  </data>
+  <data name="LB_COMPANY_NOTE_PHONE" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="LB_COMPANY_SIZE" xml:space="preserve">
+    <value>会社の規模</value>
+  </data>
+  <data name="LB_CONFIRM_PASSWORD" xml:space="preserve">
+    <value>パスワード(確認)</value>
+  </data>
+  <data name="LB_CONFIRM_REFLECT_STOCK_TAKE" xml:space="preserve">
+    <value>在庫数が棚卸数に置き換えられますが、よろしいでしょうか？</value>
+  </data>
+  <data name="LB_CONFIRM_RESET_PWD" xml:space="preserve">
+    <value>初期パスワードに変わりますが、パスワードをリセットしますか？</value>
+  </data>
+  <data name="LB_CONFIRM_STOCK_QTY" xml:space="preserve">
+    <value>棚卸反映</value>
+  </data>
+  <data name="LB_CONTACT_FORM" xml:space="preserve">
+    <value>カテゴリ</value>
+  </data>
+  <data name="LB_CONTENT" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="LB_CORRESPONDING_STATUS" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="LB_COUNTRY" xml:space="preserve">
+    <value>居住国</value>
+  </data>
+  <data name="LB_COVER" xml:space="preserve">
+    <value>カバー写真</value>
+  </data>
+  <data name="LB_COVER_IMAGE" xml:space="preserve">
+    <value>カバー写真</value>
+  </data>
+  <data name="LB_CREATED_BY" xml:space="preserve">
+    <value>作成者</value>
+  </data>
+  <data name="LB_CREATED_DATE" xml:space="preserve">
+    <value>作成日</value>
+  </data>
+  <data name="LB_CREATE_NEW_FUNCTION" xml:space="preserve">
+    <value>新機能追加</value>
+  </data>
+  <data name="LB_CREATE_PERSON" xml:space="preserve">
+    <value>登録者</value>
+  </data>
+  <data name="LB_CURRENT_QTY" xml:space="preserve">
+    <value>現数</value>
+  </data>
+  <data name="LB_CUSTOMER" xml:space="preserve">
+    <value>お客様名</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_ADD" xml:space="preserve">
+    <value>プロパティを追加する</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_KEY" xml:space="preserve">
+    <value>キー</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_KEY_DES" xml:space="preserve">
+    <value>プロパティキーは、必要に応じてデータをフィルタリングするために使用されます</value>
+  </data>
+  <data name="LB_CUSTOMFIELD_NAME" xml:space="preserve">
+    <value>表示名</value>
+  </data>
+  <data name="LB_CV_ASPIRATION" xml:space="preserve">
+    <value>本人希望記入欄</value>
+  </data>
+  <data name="LB_CV_CERTIFICATE" xml:space="preserve">
+    <value>免許・資格</value>
+  </data>
+  <data name="LB_CV_EDUCATION" xml:space="preserve">
+    <value>学歴</value>
+  </data>
+  <data name="LB_CV_HOBBIES_SKILLS" xml:space="preserve">
+    <value>得意な分野・特技・趣味</value>
+  </data>
+  <data name="LB_CV_INFORMATION" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="LB_CV_OTHER_INFO" xml:space="preserve">
+    <value>追加の情報</value>
+  </data>
+  <data name="LB_CV_PR_YOURSELF" xml:space="preserve">
+    <value>自己PR</value>
+  </data>
+  <data name="LB_CV_REASON_FOR_APPLYING" xml:space="preserve">
+    <value>志望動機</value>
+  </data>
+  <data name="LB_CV_TIME_CAN_WORK" xml:space="preserve">
+    <value>時間はうまくいくかもしれない</value>
+  </data>
+  <data name="LB_CV_WORKING_EXPERIENCE" xml:space="preserve">
+    <value>職歴</value>
+  </data>
+  <data name="LB_CV_WORKING_TIME" xml:space="preserve">
+    <value>勤務時間</value>
+  </data>
+  <data name="LB_DASHBOARD" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="LB_DASHBOARD_WELCOME_SLOGAN" xml:space="preserve">
+    <value>フレンドリーなインターフェイスで多機能で使いやすい</value>
+  </data>
+  <data name="LB_DASHBOARD_WELCOME_TO" xml:space="preserve">
+    <value>を使用中です</value>
+  </data>
+  <data name="LB_DATA_DAILY_UPDATE_AUTO" xml:space="preserve">
+    <value>データは毎日自動的に統計されます</value>
+  </data>
+  <data name="LB_DATA_TYPE" xml:space="preserve">
+    <value>データ・タイプ</value>
+  </data>
+  <data name="LB_DATE_FRIDAY" xml:space="preserve">
+    <value>金曜日</value>
+  </data>
+  <data name="LB_DATE_MONDAY" xml:space="preserve">
+    <value>月曜</value>
+  </data>
+  <data name="LB_DATE_OF_LICENSE" xml:space="preserve">
+    <value>日付</value>
+  </data>
+  <data name="LB_DATE_SATURDAY" xml:space="preserve">
+    <value>土曜日</value>
+  </data>
+  <data name="LB_DATE_SUNDAY" xml:space="preserve">
+    <value>日曜日</value>
+  </data>
+  <data name="LB_DATE_THUSDAY" xml:space="preserve">
+    <value>木曜日</value>
+  </data>
+  <data name="LB_DATE_TIME" xml:space="preserve">
+    <value>日時</value>
+  </data>
+  <data name="LB_DATE_TUESDAY" xml:space="preserve">
+    <value>火曜日</value>
+  </data>
+  <data name="LB_DATE_WEDNESDAY" xml:space="preserve">
+    <value>水曜日</value>
+  </data>
+  <data name="LB_DEFAULT" xml:space="preserve">
+    <value>デフォルト</value>
+  </data>
+  <data name="LB_DELAYTIME" xml:space="preserve">
+    <value>延滞時間</value>
+  </data>
+  <data name="LB_DELETE" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="LB_DELETED" xml:space="preserve">
+    <value>削除済み</value>
+  </data>
+  <data name="LB_DELETE_SUCCESS" xml:space="preserve">
+    <value>削除完了</value>
+  </data>
+  <data name="LB_DEPENDENT_NUM" xml:space="preserve">
+    <value>扶養家族</value>
+  </data>
+  <data name="LB_DEPEND_NUM" xml:space="preserve">
+    <value>給付を必要とする人々の数</value>
+  </data>
+  <data name="LB_DESCRIPTION" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="LB_DESELECT_ALL" xml:space="preserve">
+    <value>選択解除</value>
+  </data>
+  <data name="LB_DETAIL" xml:space="preserve">
+    <value>詳細</value>
+  </data>
+  <data name="LB_DETAIL_PROCESS" xml:space="preserve">
+    <value>進捗詳細</value>
+  </data>
+  <data name="LB_DEVELOPMENT_EXAMPLE" xml:space="preserve">
+    <value>開発事例</value>
+  </data>
+  <data name="LB_DEVICE" xml:space="preserve">
+    <value>デバイス</value>
+  </data>
+  <data name="LB_DEVICE_ID" xml:space="preserve">
+    <value>デバイスID</value>
+  </data>
+  <data name="LB_DEVICE_NAME" xml:space="preserve">
+    <value>デバイス名</value>
+  </data>
+  <data name="LB_DISCUSS" xml:space="preserve">
+    <value>面談</value>
+  </data>
+  <data name="LB_DISPLAY" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="LB_DISPLAYING" xml:space="preserve">
+    <value>表示中</value>
+  </data>
+  <data name="LB_DISPLAYNAME" xml:space="preserve">
+    <value>表示名</value>
+  </data>
+  <data name="LB_DOCUMENTATION" xml:space="preserve">
+    <value>使用説明書</value>
+  </data>
+  <data name="LB_DONT_HAVE_ACCOUNT_YET" xml:space="preserve">
+    <value>アカウントを持っていないのですか</value>
+  </data>
+  <data name="LB_DUPLICATE_DATA" xml:space="preserve">
+    <value>既にあるデータです。再度ご確認ください</value>
+  </data>
+  <data name="LB_DURATION_VISA" xml:space="preserve">
+    <value>在留資格期限</value>
+  </data>
+  <data name="LB_EDIT" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="LB_EDIT_POST" xml:space="preserve">
+    <value>文書の編集</value>
+  </data>
+  <data name="LB_EDUCATION_END" xml:space="preserve">
+    <value>卒業見込日</value>
+  </data>
+  <data name="LB_EDUCATION_FLUNKED_DATE" xml:space="preserve">
+    <value>退学日</value>
+  </data>
+  <data name="LB_EDUCATION_GRADUATED_DATE" xml:space="preserve">
+    <value>卒業日</value>
+  </data>
+  <data name="LB_EDUCATION_HISTORY" xml:space="preserve">
+    <value>学歴</value>
+  </data>
+  <data name="LB_EDUCATION_START" xml:space="preserve">
+    <value>入学日</value>
+  </data>
+  <data name="LB_EDUCATION_STATUS" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="LB_EMAIL" xml:space="preserve">
+    <value>メールアドレス</value>
+  </data>
+  <data name="LB_EMAIL_CONTENT" xml:space="preserve">
+    <value>本文</value>
+  </data>
+  <data name="LB_EMAIL_INCOMING_SETTINGS" xml:space="preserve">
+    <value>送信メール</value>
+  </data>
+  <data name="LB_EMAIL_LOGIN" xml:space="preserve">
+    <value>メールアドレス</value>
+  </data>
+  <data name="LB_EMAIL_OUTGOING_SETTINGS" xml:space="preserve">
+    <value>受信メール</value>
+  </data>
+  <data name="LB_EMAIL_RECEIVING_CONFIG" xml:space="preserve">
+    <value>受信メール情報</value>
+  </data>
+  <data name="LB_EMAIL_SENDING_CONFIG" xml:space="preserve">
+    <value>送信メール情報</value>
+  </data>
+  <data name="LB_EMAIL_SENT_SUCCESS" xml:space="preserve">
+    <value>メールが正常に送信されました</value>
+  </data>
+  <data name="LB_EMAIL_SETTINGS" xml:space="preserve">
+    <value>メール設定</value>
+  </data>
+  <data name="LB_EMAIL_SYNC_IN_PROGRESS" xml:space="preserve">
+    <value>サーバーからのデータの同期</value>
+  </data>
+  <data name="LB_EMAIL_TITLE" xml:space="preserve">
+    <value>件名</value>
+  </data>
+  <data name="LB_EMAIL_TYPE" xml:space="preserve">
+    <value>メールサーバー</value>
+  </data>
+  <data name="LB_EMPLOYEES" xml:space="preserve">
+    <value>人</value>
+  </data>
+  <data name="LB_END" xml:space="preserve">
+    <value>終わり</value>
+  </data>
+  <data name="LB_ENUM_VALUE" xml:space="preserve">
+    <value>列挙値</value>
+  </data>
+  <data name="LB_ERROR_OCCURED" xml:space="preserve">
+    <value>エラーが発生しました</value>
+  </data>
+  <data name="LB_ESTABLISHED_YEAR" xml:space="preserve">
+    <value>設立年</value>
+  </data>
+  <data name="LB_EVENT_ACTIVITY" xml:space="preserve">
+    <value>イベント</value>
+  </data>
+  <data name="LB_EXPIRATION_DATE" xml:space="preserve">
+    <value>期限</value>
+  </data>
+  <data name="LB_EXPRIRED" xml:space="preserve">
+    <value>終了</value>
+  </data>
+  <data name="LB_FAX" xml:space="preserve">
+    <value>FAX</value>
+  </data>
+  <data name="LB_FEMALE" xml:space="preserve">
+    <value>女</value>
+  </data>
+  <data name="LB_FILTER_ON_MAP" xml:space="preserve">
+    <value>フィルター</value>
+  </data>
+  <data name="LB_FINISH" xml:space="preserve">
+    <value>終了日</value>
+  </data>
+  <data name="LB_FIRST_PAGE" xml:space="preserve">
+    <value>最初ページ</value>
+  </data>
+  <data name="LB_FOOTER_MANAGE" xml:space="preserve">
+    <value>フッター管理</value>
+  </data>
+  <data name="LB_FOR_GOT_PASSWORD" xml:space="preserve">
+    <value>パスワード忘れ</value>
+  </data>
+  <data name="LB_FRAMEWORK" xml:space="preserve">
+    <value>フレームワーク</value>
+  </data>
+  <data name="LB_FROM" xml:space="preserve">
+    <value>から</value>
+  </data>
+  <data name="LB_FROM_DATE" xml:space="preserve">
+    <value>開始日</value>
+  </data>
+  <data name="LB_FULL_NAME" xml:space="preserve">
+    <value>氏名</value>
+  </data>
+  <data name="LB_FULL_NAME_FURIGANA" xml:space="preserve">
+    <value>フリガナ</value>
+  </data>
+  <data name="LB_GENDER" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="LB_GENERAL" xml:space="preserve">
+    <value>全般</value>
+  </data>
+  <data name="LB_GOBACK" xml:space="preserve">
+    <value>戻る</value>
+  </data>
+  <data name="LB_GOODS_ISSUE" xml:space="preserve">
+    <value>出庫</value>
+  </data>
+  <data name="LB_GOODS_ISSUE_SUCCESS" xml:space="preserve">
+    <value>出庫完了！</value>
+  </data>
+  <data name="LB_GOODS_RECEIPT" xml:space="preserve">
+    <value>入庫</value>
+  </data>
+  <data name="LB_GOODS_RECEIPT_SUCCESS" xml:space="preserve">
+    <value>入庫完了！</value>
+  </data>
+  <data name="LB_GOODS_REFLECT_STOCK_TAKE_SUCCESS" xml:space="preserve">
+    <value>棚卸反映完了！</value>
+  </data>
+  <data name="LB_GRANT_PERMISSION" xml:space="preserve">
+    <value>権限設定</value>
+  </data>
+  <data name="LB_GRANT_PERMISSION_TO_ROLE" xml:space="preserve">
+    <value>グループの権限設定</value>
+  </data>
+  <data name="LB_GROUP" xml:space="preserve">
+    <value>グループ</value>
+  </data>
+  <data name="LB_HAS_NO_APPLICATION" xml:space="preserve">
+    <value>この条件に合った応募は０件。</value>
+  </data>
+  <data name="LB_HAS_NO_ASSIGNED_USER" xml:space="preserve">
+    <value>オペレーターがありません</value>
+  </data>
+  <data name="LB_HAS_NO_DATA" xml:space="preserve">
+    <value>データがありません</value>
+  </data>
+  <data name="LB_HAS_NO_JOB" xml:space="preserve">
+    <value>この条件に合った求人は０件。</value>
+  </data>
+  <data name="LB_HAS_NO_JOBSEEKER_MATCHED" xml:space="preserve">
+    <value>この条件に合った求職者は０件。</value>
+  </data>
+  <data name="LB_HAS_NO_NOTIFICATION" xml:space="preserve">
+    <value>発表はありません</value>
+  </data>
+  <data name="LB_HAS_NO_TODAY_TASK" xml:space="preserve">
+    <value>今日の登録されたスケジュールはありません。</value>
+  </data>
+  <data name="LB_HAS_PROCESS" xml:space="preserve">
+    <value>進捗あり</value>
+  </data>
+  <data name="LB_HAS_READ" xml:space="preserve">
+    <value>読んだ</value>
+  </data>
+  <data name="LB_HAS_UNREAD" xml:space="preserve">
+    <value>未読</value>
+  </data>
+  <data name="LB_HAS_VIEWED" xml:space="preserve">
+    <value>見てきた</value>
+  </data>
+  <data name="LB_HAVE_ACCOUNT_YET" xml:space="preserve">
+    <value>すでにアカウントを持っています</value>
+  </data>
+  <data name="LB_HAVE_NOT_RECEIVED_EMAIL_ACTIVE" xml:space="preserve">
+    <value>アカウント有効化メールを受信して​​いません</value>
+  </data>
+  <data name="LB_HIDE_COMPANY_INFO" xml:space="preserve">
+    <value>企業情報を非表示する</value>
+  </data>
+  <data name="LB_HIDE_COMPANY_INFO_DES" xml:space="preserve">
+    <value>※Japan Work求人サイトに求人会社の情報が隠され、自社の登録済みの住所とロゴが表示されます。</value>
+  </data>
+  <data name="LB_HIDE_QUOTE" xml:space="preserve">
+    <value>引用符を隠す</value>
+  </data>
+  <data name="LB_HT_DEFAULT_SETTING" xml:space="preserve">
+    <value>ハンデイターミナルの初期仕様</value>
+  </data>
+  <data name="LB_ICON" xml:space="preserve">
+    <value>アイコン</value>
+  </data>
+  <data name="LB_IMAGE" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="LB_INDUSTRY_LABEL" xml:space="preserve">
+    <value>職種</value>
+  </data>
+  <data name="LB_INFORMATION" xml:space="preserve">
+    <value>情報</value>
+  </data>
+  <data name="LB_INFORMATION_CANDIDATE" xml:space="preserve">
+    <value>応募者情報</value>
+  </data>
+  <data name="LB_INFORMATION_COMPANY" xml:space="preserve">
+    <value>会社情報</value>
+  </data>
+  <data name="LB_INFORMATION_JOB" xml:space="preserve">
+    <value>求人情報</value>
+  </data>
+  <data name="LB_INFORMATION_JOB_SEEKER" xml:space="preserve">
+    <value>求職者情報</value>
+  </data>
+  <data name="LB_INFO_NOT_UPDATED" xml:space="preserve">
+    <value>更新されていません</value>
+  </data>
+  <data name="LB_INPUT_EMAIL_FOR_ACTIVATION" xml:space="preserve">
+    <value>メールアドレスを入力してアカウントを有効にします</value>
+  </data>
+  <data name="LB_INPUT_EMAIL_FOR_PASSWORD_RECOVERY" xml:space="preserve">
+    <value>メールアドレスを入力してパスワード回復を実行します</value>
+  </data>
+  <data name="LB_INPUT_KEYWORD_TO_SEARCH" xml:space="preserve">
+    <value>検索するキーワードを入力して下さい</value>
+  </data>
+  <data name="LB_INPUT_MESSAGE" xml:space="preserve">
+    <value>メッセージを入力して下さい</value>
+  </data>
+  <data name="LB_INPUT_STATION_NAME" xml:space="preserve">
+    <value>駅名を入力して下さい</value>
+  </data>
+  <data name="LB_INPUT_TRAIN_LINE_NAME" xml:space="preserve">
+    <value>電車の路線名を入力して下さい</value>
+  </data>
+  <data name="LB_INSERT_SUCCESS" xml:space="preserve">
+    <value>新規追加完了</value>
+  </data>
+  <data name="LB_INTRODUCE_COUNT" xml:space="preserve">
+    <value>マッチング(自社)数</value>
+  </data>
+  <data name="LB_INVITATION_ACCEPTED" xml:space="preserve">
+    <value>承認した</value>
+  </data>
+  <data name="LB_INVITATION_CANCELED" xml:space="preserve">
+    <value>否認した</value>
+  </data>
+  <data name="LB_INVITATION_CONFIRM" xml:space="preserve">
+    <value>承認待ち</value>
+  </data>
+  <data name="LB_INVITATION_DATE" xml:space="preserve">
+    <value>スカウト日</value>
+  </data>
+  <data name="LB_INVITATION_HISTORY" xml:space="preserve">
+    <value>お申し込みの履歴</value>
+  </data>
+  <data name="LB_INVITATION_SEND" xml:space="preserve">
+    <value>送信</value>
+  </data>
+  <data name="LB_INVITATION_SENT" xml:space="preserve">
+    <value>すでに招待されています</value>
+  </data>
+  <data name="LB_INVITATION_TO_APPLY" xml:space="preserve">
+    <value>マッチング(JW)</value>
+  </data>
+  <data name="LB_INVITED_COUNT" xml:space="preserve">
+    <value>スカウト数</value>
+  </data>
+  <data name="LB_INVITE_DATE" xml:space="preserve">
+    <value>マッチング日</value>
+  </data>
+  <data name="LB_INVITE_ONLINE_CANDIDATE" xml:space="preserve">
+    <value>Japan Workに登録した求職者をスカウトする</value>
+  </data>
+  <data name="LB_IS_HIRING" xml:space="preserve">
+    <value>募集中</value>
+  </data>
+  <data name="LB_IS_LOCKED" xml:space="preserve">
+    <value>ロック済み</value>
+  </data>
+  <data name="LB_IS_OWNER" xml:space="preserve">
+    <value>所有者であります</value>
+  </data>
+  <data name="LB_ITEMS_COUNT" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="LB_ITEM_CODE" xml:space="preserve">
+    <value>アイテムコード</value>
+  </data>
+  <data name="LB_ITEM_NAME" xml:space="preserve">
+    <value>アイテム名</value>
+  </data>
+  <data name="LB_ITEM_REMAINS_IN_WAREHOUSE" xml:space="preserve">
+    <value>在工数</value>
+  </data>
+  <data name="LB_JAPANESE_LEVEL" xml:space="preserve">
+    <value>日本語レベル</value>
+  </data>
+  <data name="LB_JOB" xml:space="preserve">
+    <value>求人</value>
+  </data>
+  <data name="LB_JOBSEEKER_BASIC_INFORMATION" xml:space="preserve">
+    <value>基本情報</value>
+  </data>
+  <data name="LB_JOBSEEKER_NOTE_DISCUSSION" xml:space="preserve">
+    <value>面談</value>
+  </data>
+  <data name="LB_JOBSEEKER_NOTE_EMAIL" xml:space="preserve">
+    <value>メール</value>
+  </data>
+  <data name="LB_JOBSEEKER_NOTE_PHONE" xml:space="preserve">
+    <value>電話</value>
+  </data>
+  <data name="LB_JOB_AGE_RANGE" xml:space="preserve">
+    <value>年齢</value>
+  </data>
+  <data name="LB_JOB_APPLICATION_DURATION" xml:space="preserve">
+    <value>応募期限</value>
+  </data>
+  <data name="LB_JOB_BONUS" xml:space="preserve">
+    <value>賞与</value>
+  </data>
+  <data name="LB_JOB_CERTIFICATE" xml:space="preserve">
+    <value>資格・免許</value>
+  </data>
+  <data name="LB_JOB_CODE" xml:space="preserve">
+    <value>求人番号</value>
+  </data>
+  <data name="LB_JOB_COUNT" xml:space="preserve">
+    <value>求人数</value>
+  </data>
+  <data name="LB_JOB_CREATE" xml:space="preserve">
+    <value>求人情報を登録</value>
+  </data>
+  <data name="LB_JOB_CV_APPLICATION" xml:space="preserve">
+    <value>応募情報</value>
+  </data>
+  <data name="LB_JOB_CV_APPLICATION_CV" xml:space="preserve">
+    <value>履歴書のみでOK</value>
+  </data>
+  <data name="LB_JOB_CV_APPLICATION_WORK_HISTORY" xml:space="preserve">
+    <value>履歴書と職務経歴必須</value>
+  </data>
+  <data name="LB_JOB_DESCRIPTION" xml:space="preserve">
+    <value>作品の内容</value>
+  </data>
+  <data name="LB_JOB_DETAIL" xml:space="preserve">
+    <value>求人情報</value>
+  </data>
+  <data name="LB_JOB_EDIT" xml:space="preserve">
+    <value>人材情報を編集</value>
+  </data>
+  <data name="LB_JOB_EDUCATON" xml:space="preserve">
+    <value>学位</value>
+  </data>
+  <data name="LB_JOB_EMPLOYMENT_TYPE" xml:space="preserve">
+    <value>雇用形態</value>
+  </data>
+  <data name="LB_JOB_EXPERIENCE" xml:space="preserve">
+    <value>体験</value>
+  </data>
+  <data name="LB_JOB_FIELD" xml:space="preserve">
+    <value>職種</value>
+  </data>
+  <data name="LB_JOB_FLEXIBLE_TIME" xml:space="preserve">
+    <value>フレックス</value>
+  </data>
+  <data name="LB_JOB_INDUSTRY" xml:space="preserve">
+    <value>業種</value>
+  </data>
+  <data name="LB_JOB_INTRODUCTION" xml:space="preserve">
+    <value>マッチング(自社)</value>
+  </data>
+  <data name="LB_JOB_JAPANESE_ONLY" xml:space="preserve">
+    <value>日本人労働者のみを募集</value>
+  </data>
+  <data name="LB_JOB_LIST" xml:space="preserve">
+    <value>求人一覧</value>
+  </data>
+  <data name="LB_JOB_NAME" xml:space="preserve">
+    <value>求人</value>
+  </data>
+  <data name="LB_JOB_OVERVIEW" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="LB_JOB_PAID_HOLIDAY" xml:space="preserve">
+    <value>休日</value>
+  </data>
+  <data name="LB_JOB_PLUS" xml:space="preserve">
+    <value>できれば 必要な資 格 経験</value>
+  </data>
+  <data name="LB_JOB_PRIORITY" xml:space="preserve">
+    <value>優先オブジェクト</value>
+  </data>
+  <data name="LB_JOB_PROBATION_DURATION" xml:space="preserve">
+    <value>試用期間</value>
+  </data>
+  <data name="LB_JOB_PROCESS_LIST" xml:space="preserve">
+    <value>To Doリストとスケジュール</value>
+  </data>
+  <data name="LB_JOB_QUALIFICATION" xml:space="preserve">
+    <value>学歴</value>
+  </data>
+  <data name="LB_JOB_QUALIFICATION_REQUIRED" xml:space="preserve">
+    <value>アカデミック要件</value>
+  </data>
+  <data name="LB_JOB_QUANTITY" xml:space="preserve">
+    <value>人数</value>
+  </data>
+  <data name="LB_JOB_RECRUIMENT_PROCEDURE" xml:space="preserve">
+    <value>選考</value>
+  </data>
+  <data name="LB_JOB_REMARK" xml:space="preserve">
+    <value>備考</value>
+  </data>
+  <data name="LB_JOB_REQUIREMENT" xml:space="preserve">
+    <value>対象となる方</value>
+  </data>
+  <data name="LB_JOB_SEEKER" xml:space="preserve">
+    <value>人材</value>
+  </data>
+  <data name="LB_JOB_SEEKER_CREATE" xml:space="preserve">
+    <value>求職者を登録</value>
+  </data>
+  <data name="LB_JOB_SEEKER_DETAIL" xml:space="preserve">
+    <value>人材情報</value>
+  </data>
+  <data name="LB_JOB_SEEKER_EDIT" xml:space="preserve">
+    <value>求職者情報を編集</value>
+  </data>
+  <data name="LB_JOB_SEEKER_LIST" xml:space="preserve">
+    <value>求職者のリスト</value>
+  </data>
+  <data name="LB_JOB_SEEKER_OFFLINE" xml:space="preserve">
+    <value>自社</value>
+  </data>
+  <data name="LB_JOB_SEEKER_ONLINE" xml:space="preserve">
+    <value>外部から</value>
+  </data>
+  <data name="LB_JOB_STATUS_PROCESSING" xml:space="preserve">
+    <value>進行中</value>
+  </data>
+  <data name="LB_JOB_STATUS_PUBLIC" xml:space="preserve">
+    <value>処理済み</value>
+  </data>
+  <data name="LB_JOB_STATUS_UNPROCESSED" xml:space="preserve">
+    <value>処理を待つ</value>
+  </data>
+  <data name="LB_JOB_SUBSIDY" xml:space="preserve">
+    <value>手当</value>
+  </data>
+  <data name="LB_JOB_TRAINING" xml:space="preserve">
+    <value>研修制度</value>
+  </data>
+  <data name="LB_JOB_VIEW_TIMES" xml:space="preserve">
+    <value>閲覧数</value>
+  </data>
+  <data name="LB_JOB_WELFARE" xml:space="preserve">
+    <value>福利厚生</value>
+  </data>
+  <data name="LB_JOB_WORKING_TIME" xml:space="preserve">
+    <value>勤務時間</value>
+  </data>
+  <data name="LB_JOB_WORK_CONTENT" xml:space="preserve">
+    <value>仕事内容</value>
+  </data>
+  <data name="LB_JOOBSEEKER_NOTE" xml:space="preserve">
+    <value>対応を確認／追加します</value>
+  </data>
+  <data name="LB_KEYWORD" xml:space="preserve">
+    <value>キーワード</value>
+  </data>
+  <data name="LB_KEYWORD_CAT_PLACEHOLDER" xml:space="preserve">
+    <value>マスター名、マスターコード</value>
+  </data>
+  <data name="LB_KEYWORD_INVITATION_SEARCH" xml:space="preserve">
+    <value>求職者の名前で検索</value>
+  </data>
+  <data name="LB_KEYWORD_ITEMNAME_ITEMCODE" xml:space="preserve">
+    <value>アイテムコード、アイテム名</value>
+  </data>
+  <data name="LB_KEYWORD_SEARCH" xml:space="preserve">
+    <value>検索キーワード</value>
+  </data>
+  <data name="LB_LABEL_PRINT" xml:space="preserve">
+    <value>ラベル印刷</value>
+  </data>
+  <data name="LB_LANGUAGE" xml:space="preserve">
+    <value>言語</value>
+  </data>
+  <data name="LB_LANGUAGE_LEVEL" xml:space="preserve">
+    <value>日本語レベル</value>
+  </data>
+  <data name="LB_LANG_ENGLISH" xml:space="preserve">
+    <value>英語</value>
+  </data>
+  <data name="LB_LANG_JAPANESE" xml:space="preserve">
+    <value>日本語</value>
+  </data>
+  <data name="LB_LANG_VIETNAMESE" xml:space="preserve">
+    <value>ベトナム語</value>
+  </data>
+  <data name="LB_LAST_PAGE" xml:space="preserve">
+    <value>最後ページ</value>
+  </data>
+  <data name="LB_LAST_PROCESS" xml:space="preserve">
+    <value>最終進捗</value>
+  </data>
+  <data name="LB_LAST_SCHOOL" xml:space="preserve">
+    <value>学校名</value>
+  </data>
+  <data name="LB_LAST_STATUS" xml:space="preserve">
+    <value>最終進捗</value>
+  </data>
+  <data name="LB_LATEST_ARTICLE" xml:space="preserve">
+    <value>最新情報</value>
+  </data>
+  <data name="LB_LINK" xml:space="preserve">
+    <value>パス</value>
+  </data>
+  <data name="LB_LIST" xml:space="preserve">
+    <value>リスト</value>
+  </data>
+  <data name="LB_LIST_INTERVIEW_PROCESS" xml:space="preserve">
+    <value>求職者リストとスケジュール</value>
+  </data>
+  <data name="LB_LIST_USER_MANAGER" xml:space="preserve">
+    <value>管理スタッフのリスト</value>
+  </data>
+  <data name="LB_LOADING" xml:space="preserve">
+    <value>ロード中</value>
+  </data>
+  <data name="LB_LOCK" xml:space="preserve">
+    <value>無効化</value>
+  </data>
+  <data name="LB_LOCKED" xml:space="preserve">
+    <value>ロック済み</value>
+  </data>
+  <data name="LB_LOGIN" xml:space="preserve">
+    <value>ログイン</value>
+  </data>
+  <data name="LB_LOGO" xml:space="preserve">
+    <value>ロゴ</value>
+  </data>
+  <data name="LB_LOGOUT" xml:space="preserve">
+    <value>ログアウト</value>
+  </data>
+  <data name="LB_MAJOR" xml:space="preserve">
+    <value>専攻</value>
+  </data>
+  <data name="LB_MAJOR_OTHER" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="LB_MAJOR_OTHER_NAME" xml:space="preserve">
+    <value>その他の専攻</value>
+  </data>
+  <data name="LB_MALE" xml:space="preserve">
+    <value>男</value>
+  </data>
+  <data name="LB_MANAGEMENT_ASSIGNED_COMPANIES" xml:space="preserve">
+    <value>担当している会社</value>
+  </data>
+  <data name="LB_MANAGER" xml:space="preserve">
+    <value>人事担当</value>
+  </data>
+  <data name="LB_MANAGER_COMPANY" xml:space="preserve">
+    <value>担当会社</value>
+  </data>
+  <data name="LB_MANAGE_JOB" xml:space="preserve">
+    <value>ジョブ管理</value>
+  </data>
+  <data name="LB_MANAGE_SLIDE_ITEM" xml:space="preserve">
+    <value>スライド内のアイテム管理</value>
+  </data>
+  <data name="LB_MARK_HIGHLIGHTS" xml:space="preserve">
+    <value>強調表示</value>
+  </data>
+  <data name="LB_MARRIAGE" xml:space="preserve">
+    <value>配偶者</value>
+  </data>
+  <data name="LB_MARRIAGE_MARRIED" xml:space="preserve">
+    <value>有</value>
+  </data>
+  <data name="LB_MARRIAGE_SINGLE" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="LB_MARRIAGE_STATUS" xml:space="preserve">
+    <value>結婚</value>
+  </data>
+  <data name="LB_MAXIMUM" xml:space="preserve">
+    <value>上限</value>
+  </data>
+  <data name="LB_MEMBER" xml:space="preserve">
+    <value>スタッフ</value>
+  </data>
+  <data name="LB_MESSAGE" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="LB_MESSAGE_NOTE" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="LB_MINIMUM" xml:space="preserve">
+    <value>下限</value>
+  </data>
+  <data name="LB_MIN_INVENTORY" xml:space="preserve">
+    <value>発注点</value>
+  </data>
+  <data name="LB_MONTHS" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="LB_MONTH_1" xml:space="preserve">
+    <value>1月</value>
+  </data>
+  <data name="LB_MONTH_10" xml:space="preserve">
+    <value>10月</value>
+  </data>
+  <data name="LB_MONTH_11" xml:space="preserve">
+    <value>11月</value>
+  </data>
+  <data name="LB_MONTH_12" xml:space="preserve">
+    <value>12月</value>
+  </data>
+  <data name="LB_MONTH_2" xml:space="preserve">
+    <value>2月</value>
+  </data>
+  <data name="LB_MONTH_3" xml:space="preserve">
+    <value>3月</value>
+  </data>
+  <data name="LB_MONTH_4" xml:space="preserve">
+    <value>4月</value>
+  </data>
+  <data name="LB_MONTH_5" xml:space="preserve">
+    <value>5月</value>
+  </data>
+  <data name="LB_MONTH_6" xml:space="preserve">
+    <value>6月</value>
+  </data>
+  <data name="LB_MONTH_7" xml:space="preserve">
+    <value>7月</value>
+  </data>
+  <data name="LB_MONTH_8" xml:space="preserve">
+    <value>8月</value>
+  </data>
+  <data name="LB_MONTH_9" xml:space="preserve">
+    <value>9月</value>
+  </data>
+  <data name="LB_MULTI_LANGUAGES" xml:space="preserve">
+    <value>多言語</value>
+  </data>
+  <data name="LB_MYPROFILE" xml:space="preserve">
+    <value>マイプロフィール</value>
+  </data>
+  <data name="LB_NAME" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="LB_NATIONALITY" xml:space="preserve">
+    <value>国籍</value>
+  </data>
+  <data name="LB_NEAREST_STATION" xml:space="preserve">
+    <value>最寄駅</value>
+  </data>
+  <data name="LB_NEW_ACTIVITY" xml:space="preserve">
+    <value>ニュース・活動</value>
+  </data>
+  <data name="LB_NEW_PASSWORD" xml:space="preserve">
+    <value>新規パスワード</value>
+  </data>
+  <data name="LB_NEXT_PAGE" xml:space="preserve">
+    <value>次のページ</value>
+  </data>
+  <data name="LB_NEXT_STEP" xml:space="preserve">
+    <value>進捗ステータス</value>
+  </data>
+  <data name="LB_NO" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="LB_NOTE" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="LB_NOTE_MULTILANG_NULL" xml:space="preserve">
+    <value>多言語のデータがない場合、システムはデフォルトのデータにします</value>
+  </data>
+  <data name="LB_NOTIFICATION" xml:space="preserve">
+    <value>お知らせ</value>
+  </data>
+  <data name="LB_NOT_GET_HOUR" xml:space="preserve">
+    <value>時間を指定しない</value>
+  </data>
+  <data name="LB_NOT_TRANSLATED_YET" xml:space="preserve">
+    <value>未翻訳</value>
+  </data>
+  <data name="LB_NOT_UPDATED" xml:space="preserve">
+    <value>未登録</value>
+  </data>
+  <data name="LB_NO_RECORD" xml:space="preserve">
+    <value>レコードが見つかりません</value>
+  </data>
+  <data name="LB_NO_RESULTS_FOUND" xml:space="preserve">
+    <value>結果がありません</value>
+  </data>
+  <data name="LB_NUMBER_APPLICANTS" xml:space="preserve">
+    <value>応募者数</value>
+  </data>
+  <data name="LB_NUMBER_CODE" xml:space="preserve">
+    <value>コード</value>
+  </data>
+  <data name="LB_NUMBER_COMPANIES_APPLYING" xml:space="preserve">
+    <value>応募数</value>
+  </data>
+  <data name="LB_NUMBER_OF_CHARACTERS" xml:space="preserve">
+    <value>桁数</value>
+  </data>
+  <data name="LB_NUMBER_RECRUITMENT" xml:space="preserve">
+    <value>募集する人数</value>
+  </data>
+  <data name="LB_OF" xml:space="preserve">
+    <value>の</value>
+  </data>
+  <data name="LB_OLD_PASSWORD" xml:space="preserve">
+    <value>旧パスワード</value>
+  </data>
+  <data name="LB_OPERATION_DATE" xml:space="preserve">
+    <value>実施日</value>
+  </data>
+  <data name="LB_OPERATION_NAME" xml:space="preserve">
+    <value>機能名</value>
+  </data>
+  <data name="LB_OPERATION_SUCCESS" xml:space="preserve">
+    <value>作業完了</value>
+  </data>
+  <data name="LB_ORDER" xml:space="preserve">
+    <value>ソート順</value>
+  </data>
+  <data name="LB_ORDER_DISPLAY" xml:space="preserve">
+    <value>表示順</value>
+  </data>
+  <data name="LB_OTHER_INFO" xml:space="preserve">
+    <value>追加情報</value>
+  </data>
+  <data name="LB_PAID_HOLIDAY" xml:space="preserve">
+    <value>休日</value>
+  </data>
+  <data name="LB_PARENT_CATEGORY" xml:space="preserve">
+    <value>親カテゴリ</value>
+  </data>
+  <data name="LB_PASSWORD" xml:space="preserve">
+    <value>パスワード</value>
+  </data>
+  <data name="LB_PASSWORD_RESET_SUCCESS" xml:space="preserve">
+    <value>初期パスワードに変更されました</value>
+  </data>
+  <data name="LB_PERSON_CHARGE" xml:space="preserve">
+    <value>担当者</value>
+  </data>
+  <data name="LB_PERSON_CHARGE_APPLICATION" xml:space="preserve">
+    <value>自社求人担当</value>
+  </data>
+  <data name="LB_PERSON_CHARGE_HUMANITIES" xml:space="preserve">
+    <value>自社人材担当</value>
+  </data>
+  <data name="LB_PERSON_INCHARGE_NAME" xml:space="preserve">
+    <value>担当</value>
+  </data>
+  <data name="LB_PERSON_IN_CHARGE" xml:space="preserve">
+    <value>担当者</value>
+  </data>
+  <data name="LB_PHONE" xml:space="preserve">
+    <value>電話番号</value>
+  </data>
+  <data name="LB_PLEASE_SELECT_COMPANY_FOR_NEW_JOB" xml:space="preserve">
+    <value>受け入れ企業を選択して下さい</value>
+  </data>
+  <data name="LB_POINT" xml:space="preserve">
+    <value>点数</value>
+  </data>
+  <data name="LB_POP_SERVER" xml:space="preserve">
+    <value>POP server</value>
+  </data>
+  <data name="LB_PORT_SERVER" xml:space="preserve">
+    <value>Port</value>
+  </data>
+  <data name="LB_POSTAL_CODE" xml:space="preserve">
+    <value>郵便番号</value>
+  </data>
+  <data name="LB_POSTER" xml:space="preserve">
+    <value>投稿者</value>
+  </data>
+  <data name="LB_POST_HIGHLIGHTS" xml:space="preserve">
+    <value>強調表示の文書</value>
+  </data>
+  <data name="LB_POST_TYPE" xml:space="preserve">
+    <value>文書の種類</value>
+  </data>
+  <data name="LB_PREFECTURE" xml:space="preserve">
+    <value>都道府県</value>
+  </data>
+  <data name="LB_PREVIEW" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="LB_PREVIOUS_PAGE" xml:space="preserve">
+    <value>前のページ</value>
+  </data>
+  <data name="LB_PRIMARY_PROCESS" xml:space="preserve">
+    <value>Tiến độ chính</value>
+  </data>
+  <data name="LB_PROCESS_HAS_NO_JOB" xml:space="preserve">
+    <value>この条件に合った求人は０件。</value>
+  </data>
+  <data name="LB_PROCESS_HAS_NO_JOBSEEKER" xml:space="preserve">
+    <value>この条件に合った求職者は０件。</value>
+  </data>
+  <data name="LB_PROCESS_LASTEST" xml:space="preserve">
+    <value>最後の対応</value>
+  </data>
+  <data name="LB_PROCESS_NAME" xml:space="preserve">
+    <value>ステータス名</value>
+  </data>
+  <data name="LB_PRODUCT_CATEGORY" xml:space="preserve">
+    <value>アイテムカテゴリ</value>
+  </data>
+  <data name="LB_PRODUCT_MANAGE" xml:space="preserve">
+    <value>アイテム管理</value>
+  </data>
+  <data name="LB_PRODUCT_SERVICE" xml:space="preserve">
+    <value>開発事例</value>
+  </data>
+  <data name="LB_PROFILE" xml:space="preserve">
+    <value>プロフィール</value>
+  </data>
+  <data name="LB_PROJECTS" xml:space="preserve">
+    <value>開発事例</value>
+  </data>
+  <data name="LB_PROJECT_INFO" xml:space="preserve">
+    <value>案件の情報</value>
+  </data>
+  <data name="LB_PROPERTIES" xml:space="preserve">
+    <value>プロパティ</value>
+  </data>
+  <data name="LB_PROPERTY" xml:space="preserve">
+    <value>プロパティ</value>
+  </data>
+  <data name="LB_PROPERTY_CATEGORY" xml:space="preserve">
+    <value>プロパティカテゴリ</value>
+  </data>
+  <data name="LB_PROPERTY_VALUES" xml:space="preserve">
+    <value>プロパティの項目</value>
+  </data>
+  <data name="LB_PROVIDER" xml:space="preserve">
+    <value>サプライヤー</value>
+  </data>
+  <data name="LB_PROVIDER_MANAGE" xml:space="preserve">
+    <value>サプライヤー管理</value>
+  </data>
+  <data name="LB_PROVIDER_NAME" xml:space="preserve">
+    <value>サプライヤー名</value>
+  </data>
+  <data name="LB_QTY" xml:space="preserve">
+    <value>数量</value>
+  </data>
+  <data name="LB_QUALIFICATION" xml:space="preserve">
+    <value>学歴</value>
+  </data>
+  <data name="LB_READ_AND_AGREE" xml:space="preserve">
+    <value>私はすでに読んで同意します</value>
+  </data>
+  <data name="LB_READ_MORE" xml:space="preserve">
+    <value>もっと見る</value>
+  </data>
+  <data name="LB_RECEIVED_DATE" xml:space="preserve">
+    <value>受信日</value>
+  </data>
+  <data name="LB_RECEIVER" xml:space="preserve">
+    <value>宛先</value>
+  </data>
+  <data name="LB_RECEIVER_COUNT" xml:space="preserve">
+    <value>スカウト数</value>
+  </data>
+  <data name="LB_RECORD" xml:space="preserve">
+    <value>レコード</value>
+  </data>
+  <data name="LB_RECORDS" xml:space="preserve">
+    <value>件中</value>
+  </data>
+  <data name="LB_RECORDS_ALL" xml:space="preserve">
+    <value>全</value>
+  </data>
+  <data name="LB_RECORDS_COUNT" xml:space="preserve">
+    <value>レコード数</value>
+  </data>
+  <data name="LB_RECORDS_DISPLAY" xml:space="preserve">
+    <value>件を表示中</value>
+  </data>
+  <data name="LB_RECRUITED_DATE" xml:space="preserve">
+    <value>採用日</value>
+  </data>
+  <data name="LB_REFLECT_STOCK_TAKE" xml:space="preserve">
+    <value>棚卸</value>
+  </data>
+  <data name="LB_REGION" xml:space="preserve">
+    <value>地域</value>
+  </data>
+  <data name="LB_REGISTER_NEW_ACCOUNT" xml:space="preserve">
+    <value>会員登録</value>
+  </data>
+  <data name="LB_RELATED_ARTICLES" xml:space="preserve">
+    <value>関連情報</value>
+  </data>
+  <data name="LB_RELATED_PROJECTS" xml:space="preserve">
+    <value>関連案件</value>
+  </data>
+  <data name="LB_RELIGION" xml:space="preserve">
+    <value>宗教</value>
+  </data>
+  <data name="LB_REMEMBER_LOGIN" xml:space="preserve">
+    <value>次回から入力を省略</value>
+  </data>
+  <data name="LB_REORDER_POINT" xml:space="preserve">
+    <value>発注点</value>
+  </data>
+  <data name="LB_RESEND_EMAIL_ACTIVE_ACCOUNT" xml:space="preserve">
+    <value>アカウント有効化メールを再送信</value>
+  </data>
+  <data name="LB_RESET" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="LB_RESET_PASSWORD" xml:space="preserve">
+    <value>パスワードをリセット</value>
+  </data>
+  <data name="LB_RESET_PASSWORD_SUCCESS" xml:space="preserve">
+    <value>パスワードのリセットが完了しました</value>
+  </data>
+  <data name="LB_RESIDENCE_COUNTRY" xml:space="preserve">
+    <value>所在国</value>
+  </data>
+  <data name="LB_ROLE" xml:space="preserve">
+    <value>役割</value>
+  </data>
+  <data name="LB_ROLES_ASSIGNED" xml:space="preserve">
+    <value>役割名</value>
+  </data>
+  <data name="LB_ROLE_NAME" xml:space="preserve">
+    <value>役割名</value>
+  </data>
+  <data name="LB_SALARY" xml:space="preserve">
+    <value>給料</value>
+  </data>
+  <data name="LB_SALARY_BY_HOUR" xml:space="preserve">
+    <value>時給</value>
+  </data>
+  <data name="LB_SALARY_BY_MONTH" xml:space="preserve">
+    <value>月給</value>
+  </data>
+  <data name="LB_SAME_ABOVE" xml:space="preserve">
+    <value>住所と同じ</value>
+  </data>
+  <data name="LB_SAVE" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="LB_SAVED" xml:space="preserve">
+    <value>下書き</value>
+  </data>
+  <data name="LB_SAVE_AND_CONTINUE" xml:space="preserve">
+    <value>保存して次へ</value>
+  </data>
+  <data name="LB_SAVE_SEND_ADMIN" xml:space="preserve">
+    <value>公開申請する</value>
+  </data>
+  <data name="LB_SAVE_TRANSLATED" xml:space="preserve">
+    <value>翻訳が完了しました</value>
+  </data>
+  <data name="LB_SCHEDULE_ADD_NEW" xml:space="preserve">
+    <value>スケジュール新規登録</value>
+  </data>
+  <data name="LB_SCHEDULE_CAT" xml:space="preserve">
+    <value>カテゴリー</value>
+  </data>
+  <data name="LB_SCHEDULE_MYSELF" xml:space="preserve">
+    <value>自分のスケジュール</value>
+  </data>
+  <data name="LB_SCHEDULE_UPDATE" xml:space="preserve">
+    <value>更新スケジュール</value>
+  </data>
+  <data name="LB_SCHOOL_NAME" xml:space="preserve">
+    <value>学校名</value>
+  </data>
+  <data name="LB_SEARCH" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="LB_SEARCHING" xml:space="preserve">
+    <value>検索中</value>
+  </data>
+  <data name="LB_SEARCH_FILTER" xml:space="preserve">
+    <value>検索フィルター</value>
+  </data>
+  <data name="LB_SELECT _PROCESS_STATUS" xml:space="preserve">
+    <value>ステータスを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT _SUB_INDUSTRY" xml:space="preserve">
+    <value>業種を選択して下さい</value>
+  </data>
+  <data name="LB_SELECTED" xml:space="preserve">
+    <value>選択済み</value>
+  </data>
+  <data name="LB_SELECT_ALL" xml:space="preserve">
+    <value>すべて選択</value>
+  </data>
+  <data name="LB_SELECT_ALL_EMPLOYMENT_TYPE" xml:space="preserve">
+    <value>全ての雇用形態</value>
+  </data>
+  <data name="LB_SELECT_CITY" xml:space="preserve">
+    <value>都市を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_COMPANY" xml:space="preserve">
+    <value>会社を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_COUNTRY" xml:space="preserve">
+    <value>国を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_DATA_TYPE" xml:space="preserve">
+    <value>データタイプを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_EMPLOYMENT_TYPE" xml:space="preserve">
+    <value>雇用形態を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_GENDER" xml:space="preserve">
+    <value>性別</value>
+  </data>
+  <data name="LB_SELECT_INVITATION_STATUS" xml:space="preserve">
+    <value>全て→ステータスを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_JAPANESE_LEVEL" xml:space="preserve">
+    <value>日本語レベルを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_JOB" xml:space="preserve">
+    <value>求人を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_MAJOR" xml:space="preserve">
+    <value>専攻を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_MEMBER" xml:space="preserve">
+    <value>メンバー選択</value>
+  </data>
+  <data name="LB_SELECT_NATIONALITY" xml:space="preserve">
+    <value>国籍を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_PIC" xml:space="preserve">
+    <value>担当者を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_PREFECTURE" xml:space="preserve">
+    <value>都道府県を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_PRODUCT_CATEGORY" xml:space="preserve">
+    <value>アイテムカテゴリの選択</value>
+  </data>
+  <data name="LB_SELECT_PROPERTY" xml:space="preserve">
+    <value>プロパティの選択</value>
+  </data>
+  <data name="LB_SELECT_PROPERTY_CATEGORY" xml:space="preserve">
+    <value>プロパティカテゴリの選択</value>
+  </data>
+  <data name="LB_SELECT_PROVIDER" xml:space="preserve">
+    <value>サプライヤーの選択</value>
+  </data>
+  <data name="LB_SELECT_QUALIFICATION" xml:space="preserve">
+    <value>学歴を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_REGION" xml:space="preserve">
+    <value>地域を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_ROLE" xml:space="preserve">
+    <value>役割を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_STATION" xml:space="preserve">
+    <value>駅を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_STATUS" xml:space="preserve">
+    <value>ステータスを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_SUB_FIELD" xml:space="preserve">
+    <value>職種を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_TRAIN_LINE" xml:space="preserve">
+    <value>路線を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_TRANSLATE_STATUS" xml:space="preserve">
+    <value>翻訳ステータスを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_TYPE_JOB_SEEKER" xml:space="preserve">
+    <value>人材リソースを選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_VISA" xml:space="preserve">
+    <value>在留資格を選択して下さい</value>
+  </data>
+  <data name="LB_SELECT_WORK_PLACE" xml:space="preserve">
+    <value>地域を選択して下さい</value>
+  </data>
+  <data name="LB_SENDER" xml:space="preserve">
+    <value>送信者</value>
+  </data>
+  <data name="LB_SEND_EMAIL" xml:space="preserve">
+    <value>メールする</value>
+  </data>
+  <data name="LB_SENT_DATE" xml:space="preserve">
+    <value>スカウト日</value>
+  </data>
+  <data name="LB_SETTINGS" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="LB_SHORTAGE" xml:space="preserve">
+    <value>不足分</value>
+  </data>
+  <data name="LB_SHOW_QUOTE" xml:space="preserve">
+    <value>引用を参照</value>
+  </data>
+  <data name="LB_SMTP_SERVER" xml:space="preserve">
+    <value>SMTP server</value>
+  </data>
+  <data name="LB_SOURCE_CANDIDATE" xml:space="preserve">
+    <value>応募者</value>
+  </data>
+  <data name="LB_SPECIALIZE" xml:space="preserve">
+    <value>専攻</value>
+  </data>
+  <data name="LB_SSL_REQUIRED" xml:space="preserve">
+    <value>SSLを使用</value>
+  </data>
+  <data name="LB_STAFF" xml:space="preserve">
+    <value>ユーザー</value>
+  </data>
+  <data name="LB_STAR" xml:space="preserve">
+    <value>星</value>
+  </data>
+  <data name="LB_START" xml:space="preserve">
+    <value>開始</value>
+  </data>
+  <data name="LB_START_END_TIME_REQUIRED" xml:space="preserve">
+    <value>開始時間と終了時間を入力して下さい</value>
+  </data>
+  <data name="LB_START_LARGE_END_TIME_ERROR" xml:space="preserve">
+    <value>終了時刻を過去にすることはできません</value>
+  </data>
+  <data name="LB_START_POSITION" xml:space="preserve">
+    <value>スタート時点</value>
+  </data>
+  <data name="LB_STATISTICS" xml:space="preserve">
+    <value>統計</value>
+  </data>
+  <data name="LB_STATISTICS_APP_IN_WEEK" xml:space="preserve">
+    <value>今週の応募の統計</value>
+  </data>
+  <data name="LB_STATISTICS_BY_YEAR_FORMAT" xml:space="preserve">
+    <value>{0}年の統計</value>
+  </data>
+  <data name="LB_STATISTICS_IN_WEEK" xml:space="preserve">
+    <value>今週の求人の統計</value>
+  </data>
+  <data name="LB_STATISTICS_JOB_BY_MONTH" xml:space="preserve">
+    <value>月ごとのジョブの統計</value>
+  </data>
+  <data name="LB_STATISTICS_JOB_IN_WEEK" xml:space="preserve">
+    <value>今週の仕事の統計</value>
+  </data>
+  <data name="LB_STATUS" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="LB_STOCK_OUT" xml:space="preserve">
+    <value>在庫切れ</value>
+  </data>
+  <data name="LB_STOCK_QTY" xml:space="preserve">
+    <value>在庫数</value>
+  </data>
+  <data name="LB_STOCK_TAKE_QTY" xml:space="preserve">
+    <value>棚卸数</value>
+  </data>
+  <data name="LB_STORAGE_HISTORY_PERIOD_TIME" xml:space="preserve">
+    <value>履歴保存期間（ヵ月）</value>
+  </data>
+  <data name="LB_STORAGE_HISTORY_PERIOD_TIME_DES" xml:space="preserve">
+    <value>作業履歴の保存期間（xヶ月後、自動的に削除されます）</value>
+  </data>
+  <data name="LB_SUPPORT" xml:space="preserve">
+    <value>サポート</value>
+  </data>
+  <data name="LB_SUPPORT_REQUEST_WITH_ADMIN" xml:space="preserve">
+    <value>管理者とチャットする</value>
+  </data>
+  <data name="LB_SYNC_EMAIL_DATA" xml:space="preserve">
+    <value>メールを同期</value>
+  </data>
+  <data name="LB_SYSTEM_BUSY" xml:space="preserve">
+    <value>システムは今処理中です。後でもう一度やり直すか、アドミンまでお問い合わせください</value>
+  </data>
+  <data name="LB_SYTEM_SETTING" xml:space="preserve">
+    <value>システムの設定</value>
+  </data>
+  <data name="LB_TAGS" xml:space="preserve">
+    <value>タッグ</value>
+  </data>
+  <data name="LB_TELL_ADMIN_ABOUTIT" xml:space="preserve">
+    <value>アドミンまでお問い合わせください</value>
+  </data>
+  <data name="LB_TERMS_AND_CONDITIONS" xml:space="preserve">
+    <value>一般利用規約</value>
+  </data>
+  <data name="LB_TERMS_AND_CONDTION_CHECK_FIRST" xml:space="preserve">
+    <value>規約を読んで同意したことを確認して下さい</value>
+  </data>
+  <data name="LB_TEST" xml:space="preserve">
+    <value>チェックアウト</value>
+  </data>
+  <data name="LB_TEST_DONE" xml:space="preserve">
+    <value>すでにチェック済み</value>
+  </data>
+  <data name="LB_TEXT" xml:space="preserve">
+    <value>テキスト</value>
+  </data>
+  <data name="LB_THE_LATEST_HISTORY" xml:space="preserve">
+    <value>新着履歴</value>
+  </data>
+  <data name="LB_THIS_ACCOUNT_ALREADY_ACTIVED" xml:space="preserve">
+    <value>このアカウントは有効化されています</value>
+  </data>
+  <data name="LB_TIME_PROCESS" xml:space="preserve">
+    <value>進捗日</value>
+  </data>
+  <data name="LB_TITLE" xml:space="preserve">
+    <value>タイトル</value>
+  </data>
+  <data name="LB_TO" xml:space="preserve">
+    <value>〜</value>
+  </data>
+  <data name="LB_TOTAL" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="LB_TO_DATE" xml:space="preserve">
+    <value>終了日</value>
+  </data>
+  <data name="LB_TRAIN_LINE" xml:space="preserve">
+    <value>路線</value>
+  </data>
+  <data name="LB_TRANSLATED" xml:space="preserve">
+    <value>翻訳済み</value>
+  </data>
+  <data name="LB_TRANSLATE_BY" xml:space="preserve">
+    <value>翻訳者</value>
+  </data>
+  <data name="LB_TRANSLATE_JOB" xml:space="preserve">
+    <value>言語翻訳</value>
+  </data>
+  <data name="LB_TRANSLATE_STATUS" xml:space="preserve">
+    <value>翻訳</value>
+  </data>
+  <data name="LB_TRY_ONE_FOLLOWING" xml:space="preserve">
+    <value>次のどれかでお試しください</value>
+  </data>
+  <data name="LB_TYPE_USER_SEARCH" xml:space="preserve">
+    <value>住所、メールアドレス、電話番号を入力する</value>
+  </data>
+  <data name="LB_UNIT" xml:space="preserve">
+    <value>単位</value>
+  </data>
+  <data name="LB_UNIT_MASTER" xml:space="preserve">
+    <value>単位マスター</value>
+  </data>
+  <data name="LB_UNIT_SELECT" xml:space="preserve">
+    <value>単位</value>
+  </data>
+  <data name="LB_UNLOCK" xml:space="preserve">
+    <value>ロック解除</value>
+  </data>
+  <data name="LB_UPDATE_CAREER_SHEET" xml:space="preserve">
+    <value>更新されたキャリアテーブル</value>
+  </data>
+  <data name="LB_UPDATE_CERTIFICATE" xml:space="preserve">
+    <value>資格・免許</value>
+  </data>
+  <data name="LB_UPDATE_CV" xml:space="preserve">
+    <value>更新されたCV</value>
+  </data>
+  <data name="LB_UPDATE_EDUCATION" xml:space="preserve">
+    <value>学歴</value>
+  </data>
+  <data name="LB_UPDATE_EMAIL_SERVER" xml:space="preserve">
+    <value>メールサーバーの情報を編集する</value>
+  </data>
+  <data name="LB_UPDATE_INFO" xml:space="preserve">
+    <value>編集中</value>
+  </data>
+  <data name="LB_UPDATE_LANGUAGE" xml:space="preserve">
+    <value>言語を更新する</value>
+  </data>
+  <data name="LB_UPDATE_ROLE" xml:space="preserve">
+    <value>役割を変更/追加</value>
+  </data>
+  <data name="LB_UPDATE_SUCCESS" xml:space="preserve">
+    <value>更新完了</value>
+  </data>
+  <data name="LB_UPDATE_WORK_EXPERIENCE" xml:space="preserve">
+    <value>職歴</value>
+  </data>
+  <data name="LB_UPLOAD_AVATAR" xml:space="preserve">
+    <value>顔写真をアップロード</value>
+  </data>
+  <data name="LB_UPLOAD_COMPANY_LOGO" xml:space="preserve">
+    <value>会社ロゴをアップロード</value>
+  </data>
+  <data name="LB_UPLOAD_IMAGE" xml:space="preserve">
+    <value>顔写真をアップロード</value>
+  </data>
+  <data name="LB_UPLOAD_LOGO" xml:space="preserve">
+    <value>ロゴをアップロードする</value>
+  </data>
+  <data name="LB_USERNAME" xml:space="preserve">
+    <value>メール</value>
+  </data>
+  <data name="LB_USER_CODE" xml:space="preserve">
+    <value>メールログイン</value>
+  </data>
+  <data name="LB_USER_CREATE" xml:space="preserve">
+    <value>ユーザを登録</value>
+  </data>
+  <data name="LB_USER_EDIT" xml:space="preserve">
+    <value>ユーザ情報を編集</value>
+  </data>
+  <data name="LB_USER_MANAGE" xml:space="preserve">
+    <value>ユーザー管理</value>
+  </data>
+  <data name="LB_VERIFY_REGISTRATION_EMAIL" xml:space="preserve">
+    <value>メール登録を確認する</value>
+  </data>
+  <data name="LB_VIEW_ASSIGNED_USER" xml:space="preserve">
+    <value>オペレーターリストの確認</value>
+  </data>
+  <data name="LB_VIEW_DETAIL" xml:space="preserve">
+    <value>詳細を見る</value>
+  </data>
+  <data name="LB_VIEW_MESSAGE_NOTE" xml:space="preserve">
+    <value>メッセージを見る</value>
+  </data>
+  <data name="LB_VIEW_PROFILE" xml:space="preserve">
+    <value>プロフィール確認</value>
+  </data>
+  <data name="LB_VISA" xml:space="preserve">
+    <value>在留資格</value>
+  </data>
+  <data name="LB_WAGE" xml:space="preserve">
+    <value>給料</value>
+  </data>
+  <data name="LB_WAREHOUSE_HISTORY" xml:space="preserve">
+    <value>作業履歴</value>
+  </data>
+  <data name="LB_WAREHOUSE_MANAGE" xml:space="preserve">
+    <value>在庫管理</value>
+  </data>
+  <data name="LB_WAREHOUSE_STATUS" xml:space="preserve">
+    <value>在庫</value>
+  </data>
+  <data name="LB_WARNING_SPAM_REQUEST" xml:space="preserve">
+    <value>操作が無効です。スパムしないでください</value>
+  </data>
+  <data name="LB_WARN_DEL_RELATED" xml:space="preserve">
+    <value>削除をする前に、関連するのデータをすべて確認して削除して下さい</value>
+  </data>
+  <data name="LB_WEBSITE" xml:space="preserve">
+    <value>ホームページ</value>
+  </data>
+  <data name="LB_WHAT_WE_DO" xml:space="preserve">
+    <value>開発事例</value>
+  </data>
+  <data name="LB_WISH" xml:space="preserve">
+    <value>希望</value>
+  </data>
+  <data name="LB_WOMEN" xml:space="preserve">
+    <value>女</value>
+  </data>
+  <data name="LB_WORKING_ADDRESS" xml:space="preserve">
+    <value>勤務地</value>
+  </data>
+  <data name="LB_WORKING_EXPERIENCE" xml:space="preserve">
+    <value>職歴</value>
+  </data>
+  <data name="LB_WORKING_FLUNKED_DATE" xml:space="preserve">
+    <value>退職日</value>
+  </data>
+  <data name="LB_WORKING_JOINED_DATE" xml:space="preserve">
+    <value>入社日</value>
+  </data>
+  <data name="LB_WORKING_SCHEDULE" xml:space="preserve">
+    <value>スケジュール</value>
+  </data>
+  <data name="LB_WORK_CONTENT" xml:space="preserve">
+    <value>仕事内容</value>
+  </data>
+  <data name="LB_WORK_PLACE" xml:space="preserve">
+    <value>地域</value>
+  </data>
+  <data name="LB_WORK_STATUS" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="LB_YEN" xml:space="preserve">
+    <value>円</value>
+  </data>
+  <data name="LB_YES" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="NOTIF_INVITATION_ACCEPT" xml:space="preserve">
+    <value>スカウトが承認されました。</value>
+  </data>
+  <data name="NOTIF_INVITATION_REJECT" xml:space="preserve">
+    <value>スカウトが否認されました。</value>
+  </data>
+  <data name="NOTIF_JOB_APPLICATION_CANCEL" xml:space="preserve">
+    <value>求人の公開申請が否認されました。</value>
+  </data>
+  <data name="NOTIF_JOB_APPLY" xml:space="preserve">
+    <value>応募が届いています。</value>
+  </data>
+  <data name="NOTIF_JOB_PUBLIC_ACCEPTED" xml:space="preserve">
+    <value>求人公開申請が承認された。</value>
+  </data>
+  <data name="NOTIF_JOB_PUBLIC_CANCELED" xml:space="preserve">
+    <value>求人公開申請が否認されました。</value>
+  </data>
+  <data name="PH_JOB_PROCESS_SEARCH" xml:space="preserve">
+    <value>会社名・会社コード・求人タイトル・求人番号を入力</value>
+  </data>
+  <data name="PH_JOB_SEEKER_PROCESS_SEARCH" xml:space="preserve">
+    <value>求職者名・求職者コードを入力</value>
+  </data>
+  <data name="PH_SEARCH_COMPANY" xml:space="preserve">
+    <value>会社名・会社コードを入力</value>
+  </data>
+  <data name="PH_SEARCH_JOB" xml:space="preserve">
+    <value>求人タイトル・求人コードを入力</value>
+  </data>
+  <data name="PH_SEARCH_JOB_SEEKER" xml:space="preserve">
+    <value>名前・人材コードを入力</value>
+  </data>
+  <data name="PH_USER_SEARCH" xml:space="preserve">
+    <value>メール・氏名を入力</value>
+  </data>
+  <data name="SCHEDULE_CAT_GUEST" xml:space="preserve">
+    <value>来客</value>
+  </data>
+  <data name="SCHEDULE_CAT_MEETING" xml:space="preserve">
+    <value>会議</value>
+  </data>
+  <data name="SCHEDULE_CAT_OTHERS" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="SCHEDULE_CAT_SALES" xml:space="preserve">
+    <value>営業</value>
+  </data>
+  <data name="SCHEDULE_CONTENT" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="SEARCH_TITLE_CONTENT" xml:space="preserve">
+    <value>タイトル、項目等</value>
+  </data>
+  <data name="SELECT_MEMBER" xml:space="preserve">
+    <value>担当者を選択して下さい</value>
+  </data>
+  <data name="SUCCESS_ACCOUNT_ACTIVATED" xml:space="preserve">
+    <value>あなたのアカウントは正常にアクティベートされました</value>
+  </data>
+  <data name="WORK_STATUS_RESIGN" xml:space="preserve">
+    <value>退職</value>
+  </data>
+  <data name="WORK_STATUS_WORKING" xml:space="preserve">
+    <value>在職</value>
+  </data>
+</root>

@@ -1,0 +1,43 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.JobSeekerWorkHistoryModel
+
+<div class="edu-history style2 work-history work-history-item">
+    <i></i>
+    <div class="edu-hisinfo">
+        <h3>
+            <input type="hidden" class="work-prop" name="" data-prop="id" value="@Model.id" />
+            <input type="hidden" class="work-prop" name="" data-prop="company" value="@Model.company" />
+            <input type="hidden" class="work-prop" name="" data-prop="address" value="@Model.address" />
+            <input type="hidden" class="work-prop" name="" data-prop="content_work" value="@Model.content_work" />
+            <input type="hidden" class="work-prop" name="" data-prop="start_date_str" value="@Model.start_date.DateTimeQuestToString("yyyy-MM-dd")" />
+            <input type="hidden" class="work-prop" name="" data-prop="end_date_str" value="@Model.end_date.DateTimeQuestToString("yyyy-MM-dd")" />
+            <input type="hidden" class="work-prop" name="" data-prop="status" value="@Model.status" />
+
+            @Model.company
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumWorkStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var chkStr = string.Empty;
+                if (chkItem == Model.status)
+                {
+                    chkStr = "selected";
+                    <span class="work-history-status">@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+            }
+        </h3>
+        <i>@FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)</i>
+        <p>@Model.content_work</p>
+    </div>
+    @*<ul class="action_job float-right">
+        @if (Model.isDefault)
+        {
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal-direct="" data-href="@Url.Action("UpdateCvWorkHistory","Cv", new { id = Model.id, cv_id = Model.cv_id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-href="@Url.Action("DeleteCvWorkHistory","Cv", new { id = Model.id, cv_id = Model.cv_id })" title=""><i class="la la-trash-o"></i></a></li>
+        }
+        else
+        {
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" class="dl-cv-work fz-20" title=""><i class="la la-trash-o"></i></a></li>
+        }        
+    </ul>*@
+</div>

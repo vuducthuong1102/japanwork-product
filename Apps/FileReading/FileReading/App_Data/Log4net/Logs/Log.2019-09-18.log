@@ -1,0 +1,42 @@
+2019-09-18 08:22:20,376 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 08:22:20,405 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-09-18 08:22:20,406 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 08:22:20,414 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 08:22:20,414 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-09-18 08:22:20,415 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 12:28:55,091 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 12:28:55,129 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-09-18 12:28:55,131 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 12:28:55,141 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 12:28:55,142 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-09-18 12:28:55,153 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 13:08:14,084 [94] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.ArgumentException: Parameter is not valid.
+   at System.Drawing.Image.FromStream(Stream stream, Boolean useEmbeddedColorManagement, Boolean validateImageData)
+   at FileReading.Helpers.FileUploadHelper.UploadPostedFile(HttpPostedFile file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 237
+2019-09-18 13:08:43,963 [73] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.ArgumentException: Parameter is not valid.
+   at System.Drawing.Image.FromStream(Stream stream, Boolean useEmbeddedColorManagement, Boolean validateImageData)
+   at FileReading.Helpers.FileUploadHelper.UploadPostedFile(HttpPostedFile file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 237
+2019-09-18 13:51:16,223 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 13:51:16,285 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-09-18 13:51:16,286 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 13:51:16,294 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 13:51:16,294 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-09-18 13:51:16,295 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 13:58:20,128 [8] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.ArgumentException: Parameter is not valid.
+   at System.Drawing.Image.FromStream(Stream stream, Boolean useEmbeddedColorManagement, Boolean validateImageData)
+   at FileReading.Helpers.FileUploadHelper.UploadPostedFile(HttpPostedFile file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 237
+2019-09-18 13:58:42,662 [30] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.ArgumentException: Parameter is not valid.
+   at System.Drawing.Image.FromStream(Stream stream, Boolean useEmbeddedColorManagement, Boolean validateImageData)
+   at FileReading.Helpers.FileUploadHelper.UploadPostedFile(HttpPostedFile file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 237
+2019-09-18 14:00:59,681 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 14:00:59,694 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-09-18 14:00:59,695 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 14:00:59,705 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 14:00:59,706 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-09-18 14:00:59,708 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 16:18:03,159 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 16:18:03,210 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-09-18 16:18:03,211 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 16:18:03,219 [1] INFO  FileReading.Startup - ======================================================
+2019-09-18 16:18:03,220 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-09-18 16:18:03,221 [1] INFO  FileReading.Startup - ======================================================

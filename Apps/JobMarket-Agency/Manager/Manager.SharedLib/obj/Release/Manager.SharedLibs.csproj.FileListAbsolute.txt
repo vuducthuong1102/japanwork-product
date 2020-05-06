@@ -1,0 +1,12 @@
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Manager.SharedLib.dll
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Manager.SharedLib.pdb
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Autofac.dll
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Newtonsoft.Json.dll
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\StackExchange.Redis.dll
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Autofac.xml
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\Newtonsoft.Json.xml
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\bin\Release\StackExchange.Redis.xml
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\obj\Release\Manager.SharedLibs.csprojAssemblyReference.cache
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\obj\Release\Manager.SharedLibs.csproj.CopyComplete
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\obj\Release\Manager.SharedLib.dll
+C:\Project\Apps\JobMarket-Agency\Manager\Manager.SharedLib\obj\Release\Manager.SharedLib.pdb

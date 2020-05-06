@@ -1,0 +1,124 @@
+﻿@using MySite.Helpers
+@{
+    var errorList = Html.GetNotifications(NotificationType.ERROR);
+    var warningList = Html.GetNotifications(NotificationType.WARNING);
+    var successList = Html.GetNotifications(NotificationType.SUCCESS);
+    var infoList = Html.GetNotifications(NotificationType.INFO);
+    var hasMessage = false;
+}
+
+<!-- display errors -->
+@if (errorList != null)
+{
+    hasMessage = true;
+    <div class="alert alert-danger text-left">        
+        <a href="javascript:;" class="close" data-dismiss="alert">
+            <span class="la la-remove"></span>
+        </a>        
+        @if (errorList.Count() > 1)
+        {
+            @*<strong><span class="la la-remove"></span> There are @errorList.Count() errors: </strong>*@
+            <ul>
+                @foreach (String message in errorList)
+                {
+                    <li>@Html.Raw(message)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            @*<strong><span class="la la-remove"></span> Error: </strong>*@
+            @Html.Raw(errorList.First())
+        }
+    </div>
+}
+
+<!-- display warnings -->
+@if (warningList != null)
+{
+    hasMessage = true;
+    <div class="alert alert-warning text-left">        
+        <a href="javascript:;" class="close" data-dismiss="alert">
+            <span class="la la-remove"></span>
+        </a> 
+        @if (warningList.Count() > 1)
+        {
+            @*<strong><span class="la la-warning-sign"></span> There are @warningList.Count() warnings: </strong>*@
+            <ul>
+                @foreach (String message in warningList)
+                {
+                    <li>@Html.Raw(message)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            @*<strong><span class="la la-warning-sign"></span> Warning: </strong>*@
+            @Html.Raw(warningList.First())
+        }
+    </div>
+}
+
+<!-- display success -->
+@if (successList != null)
+{
+    hasMessage = true;
+    <div class="alert alert-success text-left">        
+        <a href="javascript:;" class="close" data-dismiss="alert">
+            <span class="la la-remove"></span>
+        </a> 
+        @if (successList.Count() > 1)
+        {
+            @*<strong><span class="la la-ok"></span> There are @successList.Count() successful notifications: </strong>*@
+            <ul>
+                @foreach (String message in successList)
+                {
+                    <li>@Html.Raw(message)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            @*<strong><span class="la la-ok"></span> Success! </strong>*@
+            @Html.Raw(successList.First())
+        }
+    </div>
+}
+
+<!-- display success -->
+@if (infoList != null)
+{
+    hasMessage = true;
+    <div class="alert alert-info text-left">        
+        <a href="javascript:;" class="close" data-dismiss="alert">
+            <span class="la la-remove"></span>
+        </a> 
+        @if (infoList.Count() > 1)
+        {
+            @*<strong><span class="la la-info-sign"></span> There are @infoList.Count() notifications: </strong>*@
+            <ul>
+                @foreach (String message in infoList)
+                {
+                    <li>@Html.Raw(message)</li>
+                }
+            </ul>
+        }
+        else
+        {
+            @*<strong><span class="la la-info-sign"></span> </strong>*@
+            @Html.Raw(infoList.First())
+        }
+    </div>
+}
+
+@if (!hasMessage)
+{
+    <div class="summary-notification text-left mb10 hidden">
+        <a class="close" href="javascript:;" style="font-size:20px" data-dismiss="alert" onclick='$(".summary-notification").addClass("hidden")'>
+            <span class="la la-remove"></span>
+        </a>
+        <div class="alert-message">
+
+        </div>
+    </div>
+}

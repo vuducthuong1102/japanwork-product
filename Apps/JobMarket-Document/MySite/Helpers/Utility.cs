@@ -1,0 +1,330 @@
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using MySite.Settings;
+using System.IO;
+using MySite.Logging;
+using System.Web;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+
+namespace MySite.Helpers
+{
+    public class Utility
+    {
+        private static readonly ILog logger = LogProvider.For<Utility>();
+
+        public static string GetRandomPasswordUsingGUID(int length)
+        {
+            string guidResult = System.Guid.NewGuid().ToString();
+            guidResult = guidResult.Replace("-", string.Empty);
+            if (length <= 0 || length > guidResult.Length)
+                throw new ArgumentException("Length must be between 1 and " + guidResult.Length);
+            return guidResult.Substring(0, length);
+        }
+
+        public static string Md5HashingData(string rawStr)
+        {
+            StringBuilder hash = new StringBuilder();
+            if (!string.IsNullOrEmpty(rawStr))
+            {
+                MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+                byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(rawStr));
+
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    hash.Append(bytes[i].ToString("x2"));
+                }
+            }           
+
+            return hash.ToString();
+        }
+
+        public static string GenerateRedisKeyWithPrefixAndSurfix(string prefix, string surfix)
+        {
+            var md5Surfix = Md5HashingData(surfix);
+            return string.Format("{0}_{1}", prefix, md5Surfix);
+        }
+
+        //public string GenerateStringByFormat
+        public static string GenerateStringByFormat(string format, params object[] paramList)
+        {
+            return string.Format(format, paramList);
+        }
+
+        public static string GenerateOTPCode()
+        {
+           Random random = new Random();
+           return new string(Enumerable.Repeat(MySiteSettings.CharactersOfOTPCode, MySiteSettings.NumberCharactersOfOTPCode)
+            .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public static string TripleDESEncrypt(string key, string data)
+        {
+            data = data.Trim();
+            byte[] keydata = Encoding.ASCII.GetBytes(key);
+            string md5String = BitConverter.ToString(new
+            MD5CryptoServiceProvider().ComputeHash(keydata)).Replace("-", "").ToLower(); byte[] tripleDesKey = Encoding.ASCII.GetBytes(md5String.Substring(0, 24)); TripleDES tripdes = TripleDESCryptoServiceProvider.Create();
+            tripdes.Mode = CipherMode.ECB;
+            tripdes.Key = tripleDesKey;
+            tripdes.GenerateIV();
+            MemoryStream ms = new MemoryStream();
+            CryptoStream encStream = new CryptoStream(ms, tripdes.CreateEncryptor(), CryptoStreamMode.Write);
+            encStream.Write(Encoding.ASCII.GetBytes(data), 0, Encoding.ASCII.GetByteCount(data));
+            encStream.FlushFinalBlock();
+            byte[] cryptoByte = ms.ToArray();
+            ms.Close();
+            encStream.Close();
+            return Convert.ToBase64String(cryptoByte, 0,
+            cryptoByte.GetLength(0)).Trim();
+        }
+
+        public static string TripleDESDecrypt(string key, string data)
+        {
+            byte[] keydata = Encoding.ASCII.GetBytes(key);
+            string md5String = BitConverter.ToString(new
+            MD5CryptoServiceProvider().ComputeHash(keydata)).Replace("-", "").ToLower();
+            byte[] tripleDesKey = Encoding.ASCII.GetBytes(md5String.Substring(0, 24));
+            TripleDES tripdes = TripleDESCryptoServiceProvider.Create();
+            tripdes.Mode = CipherMode.ECB;
+            tripdes.Key = tripleDesKey;
+            byte[] cryptByte = Convert.FromBase64String(data);
+            MemoryStream ms = new MemoryStream(cryptByte, 0, cryptByte.Length);
+            ICryptoTransform cryptoTransform = tripdes.CreateDecryptor();
+            CryptoStream decStream = new CryptoStream(ms, cryptoTransform, CryptoStreamMode.Read);
+            StreamReader read = new StreamReader(decStream);
+            return (read.ReadToEnd());
+        }
+
+        public static string GenTranIdWithPrefix(string prefix)
+        {
+            var tranId = "{0}{1}";
+            var surfix = DateTime.Now.ToString("yyyyMMddHHmmss") + "_" + GetRandomPasswordUsingGUID(5);
+            tranId = string.Format(tranId,prefix, surfix);
+
+            return tranId;
+        }
+
+        public static string Base64Encode(string plainText)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
+
+        public static string Base64Decode(string base64EncodedData)
+        {
+            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+        }
+
+        public static byte[] AES_Encrypt(byte[] bytesToBeEncrypted, byte[] passwordBytes)
+        {
+            byte[] encryptedBytes = null;
+
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeEncrypted, 0, bytesToBeEncrypted.Length);
+                        cs.Close();
+                    }
+                    encryptedBytes = ms.ToArray();
+                }
+            }
+
+            return encryptedBytes;
+        }
+
+        public static byte[] AES_Decrypt(byte[] bytesToBeDecrypted, byte[] passwordBytes)
+        {
+            byte[] decryptedBytes = null;
+
+            // Set your salt here, change it to meet your flavor:
+            // The salt bytes must be at least 8 bytes.
+            byte[] saltBytes = new byte[] { 1, 2, 3, 4, 5, 6, 7, 8 };
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                using (RijndaelManaged AES = new RijndaelManaged())
+                {
+                    AES.KeySize = 256;
+                    AES.BlockSize = 128;
+
+                    var key = new Rfc2898DeriveBytes(passwordBytes, saltBytes, 1000);
+                    AES.Key = key.GetBytes(AES.KeySize / 8);
+                    AES.IV = key.GetBytes(AES.BlockSize / 8);
+
+                    AES.Mode = CipherMode.CBC;
+
+                    using (var cs = new CryptoStream(ms, AES.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(bytesToBeDecrypted, 0, bytesToBeDecrypted.Length);
+                        cs.Close();
+                    }
+                    decryptedBytes = ms.ToArray();
+                }
+            }
+
+            return decryptedBytes;
+        }
+
+        public static string EncryptText(string input, string password)
+        {
+            //// Get the bytes of the string
+            //byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
+            //byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+
+            //// Hash the password with SHA256
+            //passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            //byte[] bytesEncrypted = AES_Encrypt(bytesToBeEncrypted, passwordBytes);
+
+            //string result = Convert.ToBase64String(bytesEncrypted);
+
+            byte[] bytesToBeEncrypted = Encoding.UTF8.GetBytes(input);
+            string result = Convert.ToBase64String(bytesToBeEncrypted);
+
+            return result;
+        }
+
+        public static string DecryptText(string input, string password)
+        {
+            // Get the bytes of the string
+            //byte[] bytesToBeDecrypted = Convert.FromBase64String(input);
+            //byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            //passwordBytes = SHA256.Create().ComputeHash(passwordBytes);
+
+            //byte[] bytesDecrypted = AES_Decrypt(bytesToBeDecrypted, passwordBytes);
+
+            //string result = Encoding.UTF8.GetString(bytesDecrypted);
+
+            byte[] bytesToBeDecrypted = Convert.FromBase64String(input);
+            string result = Encoding.UTF8.GetString(bytesToBeDecrypted);
+
+            return result;
+        }
+
+        public static string KeepSomeCharactersInWords(string rawStr, bool isHidden = true, string replaceCharacter = "x", int lengthOfStringToKeep = 4)
+        {
+            if (!isHidden)
+                return rawStr;
+
+            var totalChars = rawStr.Length;
+            var returnStr = string.Empty;
+            if (totalChars <= 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                if (totalChars > lengthOfStringToKeep)
+                {
+                    returnStr = Regex.Replace(rawStr.Substring(0, totalChars - lengthOfStringToKeep), @"\w", replaceCharacter);
+                    var lastCharacters = rawStr.Substring(rawStr.Length - lengthOfStringToKeep, lengthOfStringToKeep);
+                    returnStr += lastCharacters;
+                }
+                else
+                {
+                    returnStr = Regex.Replace(rawStr, @"\w", replaceCharacter);
+                }
+            }
+
+            return returnStr;
+        }
+
+        public static string KeepSomeWordsInSentense(string rawStr, bool isHidden = true, string replaceCharacter = "x", int numberOfWordsToKeep = 1)
+        {
+            if (!isHidden)
+                return rawStr;
+
+            if (string.IsNullOrEmpty(rawStr))
+                return string.Empty;
+
+            rawStr = rawStr.Trim();
+            var totalWords = 0;
+            
+            string[] allWords = null;
+            char[] delimiters = new char[] { ' ', '\r', '\n' };
+
+            allWords = rawStr.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            totalWords = allWords.Length;
+
+            List<string> myReturnWords = new List<string>();
+            if (totalWords <= 0)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                if (totalWords > numberOfWordsToKeep)
+                {
+                    var beginWords = allWords.Take(totalWords - numberOfWordsToKeep).Select(s=> Regex.Replace(s, @"\w", replaceCharacter)).ToList();
+
+                    var lastWords = allWords.Skip(totalWords - numberOfWordsToKeep).Take(numberOfWordsToKeep).ToList();
+
+                    myReturnWords.AddRange(beginWords);
+                    myReturnWords.AddRange(lastWords);
+                }
+                else
+                {
+                    var beginWords = allWords.Select(s => Regex.Replace(s, @"\w", replaceCharacter)).ToList();
+                    myReturnWords.AddRange(beginWords);
+                }
+            }
+
+            if(myReturnWords.HasData())
+                return myReturnWords.Aggregate((x, y) => x + " " + y);
+
+            return string.Empty;
+        }
+    }
+
+    public static class HttpExtensions
+    {
+        // update : 5/April/2018
+        static Regex MobileCheck = new Regex(@"(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
+        static Regex MobileVersionCheck = new Regex(@"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-", RegexOptions.IgnoreCase | RegexOptions.Multiline | RegexOptions.Compiled);
+
+        public static bool fBrowserIsMobile()
+        {
+            try
+            {
+                Debug.Assert(HttpContext.Current != null);
+
+                if (HttpContext.Current.Request != null && HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"] != null)
+                {
+                    var u = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"].ToString();
+
+                    if (u.Length < 4)
+                        return false;
+
+                    if (MobileCheck.IsMatch(u) || MobileVersionCheck.IsMatch(u.Substring(0, 4)))
+                        return true;
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
+}

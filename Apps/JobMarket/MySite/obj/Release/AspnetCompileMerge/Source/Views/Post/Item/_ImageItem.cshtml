@@ -1,0 +1,80 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+
+@model List<ApiMySiteSocial.DB.Sql.Entities.IdentityImage>
+
+@{
+    var maxcount = 4;
+    if (Model != null && Model.Count > 0)
+    {
+        var imageCount = Model.Count;
+
+        if (maxcount > imageCount)
+        {
+            maxcount = imageCount;
+        }
+        if (maxcount == 1)
+        {
+            var img = Model[0];
+            <div class="gallery">
+                <div class="content-gallery">
+                    <div class="item">
+                        <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" alt="" class="lazy content-popup-detail" />
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="gallery gallery-@maxcount">
+                <div class="content-gallery">
+                    @{
+                        var img = Model[0];
+                        var className = "img-100";
+                    }
+                    <div class="item @className">
+                        <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" class="lazy content-popup-detail" alt="" />
+                    </div>
+                    @for (int i = 1; i < imageCount; i++)
+                    {
+                        img = Model[i];
+                        if (maxcount == 2)
+                        {
+                            className = "img-100";
+                        }
+                        else if (maxcount == 3)
+                        {
+                            className = "img-50";
+                        }
+                        else if (maxcount == 4)
+                        {
+                            className = "img-30";
+                        }
+
+                        <div class="item @className">
+                            <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" class="lazy content-popup-detail" alt="" />
+                            @if (i == 3)
+                            {
+                                @RenderMoreImage()
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    }
+}
+@helper RenderMoreImage()
+{
+
+if (Model != null && Model.Count() > 4)
+{
+        <div class="more-image">
+            <h3>
+                @(Model.Count() - 4)+
+            </h3>
+        </div>
+}
+}

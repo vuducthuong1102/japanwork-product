@@ -1,0 +1,40 @@
+﻿@using MySite.Resources
+@model MySite.Models.WebAuthLoginViewModel
+@{ 
+    ViewBag.GadientHeader = true;
+    ViewBag.Title = UserWebResource.LB_SINGLE_SIGN_ON_LOGIN;
+}
+
+@*<section>
+    <div class="block no-padding gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner2">
+                        <div class="inner-title2 text-center">
+                            <h3>@UserWebResource.BT_LOGIN</h3>
+                        </div>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+<section>
+    <div class="block remove-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="account-popup-area signin-popup-box static">
+                        <div class="account-popup">
+                            <h3>@UserWebResource.LB_SINGLE_SIGN_ON_LOGIN</h3>
+
+                            @Html.Partial("_LoginForm", Model)
+                        </div>
+                    </div><!-- LOGIN POPUP -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

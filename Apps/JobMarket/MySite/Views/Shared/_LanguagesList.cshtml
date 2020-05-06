@@ -1,0 +1,42 @@
+﻿@using MySite.Resources
+
+@{
+    string lang = null;
+    HttpCookie langCookie = Request.Cookies["culture"];
+    if (langCookie != null)
+    {
+        lang = langCookie.Value;
+    }
+    else
+    {
+        var userLanguage = Request.UserLanguages;
+        var userLang = userLanguage != null ? userLanguage[0] : "";
+        if (userLang != "")
+        {
+            lang = userLang;
+        }
+        else
+        {
+            lang = LanguagesProvider._defaultLang;
+        }
+    }
+}
+
+
+<a href="#">@UserWebResource.BT_LANGUAGE</a>
+
+@foreach (var item in MySite.LanguagesProvider.GetListLanguages())
+{
+    if (item.LanguageCultureName == lang)
+    {
+        <a class="select-lang dropdown-toggle" data-toggle="dropdown">@item.LanguageFullName <i class="i1 ic"></i></a>
+        break;
+    }
+}
+
+<ul class="dropdown-menu">
+    @foreach (var item in MySite.LanguagesProvider.GetListLanguages())
+    {
+        <li><a href="/home/index?lang=@item.LanguageCultureName"><i class="@item.Icon"></i> @item.LanguageFullName </a></li>
+    }
+</ul>

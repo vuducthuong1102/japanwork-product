@@ -1,0 +1,273 @@
+﻿@using MySite.Helpers
+@using ApiJobMarket.DB.Sql.Entities
+@using System.Text.RegularExpressions;
+
+@model MySite.Models.Cv.ManageCvPreviewModel
+<style>
+    .content-print table {
+        margin: auto;
+        border-spacing: 0;
+        font-family: msmincho;
+        font-size: 12px;
+    }
+
+    .content-print td {
+        padding: 3px 5px;
+        height: 30px;
+        border: 1px #000 solid;
+        vertical-align: middle;
+    }
+
+    .content-print .td123 {
+        border-right: none;
+        border-top: none;
+        border-left: 0;
+        padding-left: 15px;
+    }
+
+    .content-print body {
+        padding-top: 10px;
+        padding-left: 30px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        word-break: break-all;
+        word-wrap: break-word;
+        line-height: 20px;
+    }
+
+    .circle {
+        border-radius: 50%;
+        border: 1px solid #000;
+        padding: 2px 3px;
+    }
+
+    .content-print .table123 {
+        border-right: 1px #000 solid;
+        border-top: 1px #000 solid;
+    }
+
+    .content-print .one-line {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .content-print .gender-check,
+    .content-print .marriage-check {
+        border-radius: 50%;
+        border: 0.5px solid #000;
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+@if (Model != null && Model.CvInfo != null)
+{
+    <div class="content-print scrollbar-outer">
+        @Html.Partial("~/Views/Member/Career/_InfoCv.cshtml", Model)
+        @Html.Partial("~/Views/Member/Career/_EduAndWorkHistory.cshtml", Model)
+        @{
+            IdentityStation station = null;
+            if (Model.address != null && Model.address.Stations != null && Model.address.Stations.Count > 0)
+            {
+                station = Model.address.Stations.FirstOrDefault();
+            }
+        }
+
+        <p style="page-break-before: always"></p>
+        <div style="height: 75; width=" 100%"">
+        </div>
+
+        <table width="100%" style="margin-bottom:25px;margin-top:20px;">
+            <tbody>
+                <tr style="text-align: center;">
+                    <td style="border-right: 0.5px dashed #000;width:15%">西暦</td>
+                    <td style="border-left: 0;border-right: 0;width:8%"> 月</td>
+                    <td colspan="2">免許・資格</td>
+                </tr>
+                @{
+                    var listCertification = Model.CvInfo.certification;
+                    if (!listCertification.HasData())
+                    {
+                        listCertification = new List<IdentityJobSeekerCertificate>();
+                    }
+
+                    if (listCertification.Count > 6)
+                    {
+                        listCertification = listCertification.GetRange(0, 6);
+                    }
+                    if (Model.CvInfo.check_ceti)
+                    {
+                        listCertification.Clear();
+                    }
+                }
+                @if (!Model.CvInfo.check_ceti && listCertification != null && listCertification.Count > 0)
+                {
+                    foreach (var item in listCertification)
+                    {
+                        var name = item.name.Length > 30 ? (item.name.Substring(0, 30) + "...") : item.name;
+                        var point = item.point.Length > 9 ? (item.point.Substring(0, 9) + "..") : item.point;
+
+
+                        <tr>
+                            <td style="border-right:0.5px dashed #000;border-top:0;text-align: center;width:15%;">@item.start_date.Value.Year</td>
+                            <td style="border-top:0; width: 7%; border-right:0;border-left:0;text-align: center;width:8%;">@item.start_date.Value.Month</td>
+                            <td style="border-right:0;border-top:0">
+                                <div style="overflow:hidden;line-height:20px;height:20px">
+                                    @name
+                                </div>
+                            </td>
+                            <td style="width:20%;border-left:0;border-top:0">
+                                <div style="overflow:hidden;line-height:20px;height:20px">
+                                    @(item.pass == 1 ? point + "点" : "習得")
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                @if (Model.CvInfo.check_ceti || listCertification.Count < 6)
+                {
+                    for (int i = listCertification.Count; i < 6; i++)
+                    {
+                        if (i == listCertification.Count)
+                        {
+                            <tr>
+                                <td style="width:12%;border-top:0; border-right:0.5px dashed #000;width:15%"> </td>
+                                <td style="border-top:0;border-right:0;border-left:0;width:8%"> </td>
+                                <td colspan="2" style="text-align: center;border-top:0;">なし</td>
+                            </tr>
+
+                        }
+                        else
+                        {
+                            <tr>
+                                <td style="width:12%;border-top:0;border-right:0.5px dashed #000;width:15%"> </td>
+                                <td style="border-top:0;border-right:0;border-left:0;width:8%"> </td>
+                                <td colspan="2" style="border-top:0;"> </td>
+                            </tr>
+                        }
+
+                    }
+                }
+            </tbody>
+        </table>
+
+        <table width="100%" style="margin-bottom:25px;">
+            <tbody>
+                <tr>
+                    <td style="width:35% ;word-break: break-all; overflow: hidden;border-bottom:0.5px dashed #000;border-right:0.5px">最寄り駅</td>
+                    <td style="width:28% ;border-bottom: 0px solid #000; border-right:0px solid #000">扶養家族数</td>
+                    <td style="width:16% ;border-bottom: 0px solid #000; border-right:0px solid #000">配偶者</td>
+                    <td style="width:21% ;border-bottom: 0">配偶者の扶養義務</td>
+                </tr>
+                <tr>
+                    <td style="border-top: 0; border-right:0px">
+                        <div style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                            @(station != null && !String.IsNullOrEmpty(station.station) ? station.station + "駅" : "")
+                        </div>
+                    </td>
+                    <td style="border-top: 0; border-right:0px">（配偶者を除く）<span style="margin-left: 25px;">@Model.CvInfo.dependent_num 人</span></td>
+                    <td style="border-top: 0; border-right:0px">
+                        <span style="text-align: center;">
+                            <span class="@(Model.CvInfo.marriage ? "marriage-check" : "" )">有</span>
+                            ・ <span class="@(!Model.CvInfo.marriage ? "marriage-check" : "" )">無</span>
+                        </span>
+                    </td>
+                    <td style="border-top: 0">
+                        <span style="text-align: center;">
+                            <span>有</span> ・ <span class="marriage-check">無</span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        @{
+            var hobby_skills_text = "";
+            if (!string.IsNullOrEmpty(Model.CvInfo.hobby_skills))
+            {
+                hobby_skills_text = Regex.Replace(Model.CvInfo.hobby_skills, @"\r\n?|\n", "<br />");
+
+                if (hobby_skills_text.Length > 250)
+                {
+                    hobby_skills_text = hobby_skills_text.Substring(0, 250);
+                }
+            }
+
+            var pr_text = "";
+            if (!string.IsNullOrEmpty(Model.CvInfo.pr))
+            {
+                pr_text = Regex.Replace(Model.CvInfo.pr, @"\r\n?|\n", "<br />");
+
+                if (pr_text.Length > 400)
+                {
+                    pr_text = pr_text.Substring(0, 400);
+                }
+            }
+
+            var reason_text = "";
+            if (!string.IsNullOrEmpty(Model.CvInfo.reason))
+            {
+                reason_text = Regex.Replace(Model.CvInfo.reason, @"\r\n?|\n", "<br />");
+
+                if (reason_text.Length > 400)
+                {
+                    reason_text = reason_text.Substring(0, 400);
+                }
+            }
+
+        }
+
+        <table width="100%" style="margin-bottom:25px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="height: 120px; overflow:hidden;line-height: 20px">
+                            得意な分野・特技・趣味<br>
+                            <div style="display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;">
+                                @hobby_skills_text
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="100%" style="margin-bottom:25px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="height: 200px; overflow:hidden;line-height: 20px">
+                            自己ＰＲ<br>
+                            <div style="display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;">
+                                @pr_text
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="100%" style="margin-bottom:5px;">
+            <tbody>
+                <tr>
+                    <td>
+                        <div style="height: 200px; overflow:hidden;line-height: 20px">
+                            志望動機<br>
+                            <div style="display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;">
+                                @reason_text
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div style="height:50px; text-align:right">
+            上記内容は事実と相違ございません。
+        </div>
+    </div>
+}

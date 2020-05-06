@@ -1,0 +1,135 @@
+﻿@using MySite.Helpers
+@using MySite.Settings
+@using System.Resources
+@using MySite.Resources
+@using System.Globalization
+@using System.Text
+
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" itemprop="inLanguage" content="vi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.OgDescription" />
+    <meta name="keywords" content="mysite" />
+    <meta name="news_keywords" content="mysite" />
+    <meta name="robots" content="index,follow,noodp" />
+    <meta name="robots" content="noarchive">
+    <meta name="google-site-verification" content="93vjwTB71-KI0zOVd6fiZCjoTYCHZ7hkdFBEC-cx2go" />
+
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? UserWebResource.LB_HOME_SLOGAN_TITLE_2 : ViewBag.Title)</title>
+
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="fb:app_id" content="@SocialSettings.FBAppId" />
+    <meta name="pubdate" itemprop="datePublished" content="@ViewBag.DatePublished" />
+    <meta itemprop="dateModified" content="@ViewBag.DatePublished" />
+
+    <meta property="og:url" content="@((string.IsNullOrEmpty(ViewBag.OgUrl)? UrlFriendly.GetBaseUrl(): ViewBag.OgUrl))" />
+    <meta property="og:type" content="@((string.IsNullOrEmpty(ViewBag.OgType)? "Website": ViewBag.OgType))" />
+    <meta property="og:title" content="@((string.IsNullOrEmpty(ViewBag.OgTitle)? UserWebResource.LB_MYSITE_TITLE : ViewBag.OgTitle))" />
+    <meta property="og:description" content="@((string.IsNullOrEmpty(ViewBag.OgDescription)? UserWebResource.LB_MYSITE_TITLE : ViewBag.OgDescription))" />
+
+    <meta property="og:image" content="@ViewBag.OgImage" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+    <link rel="SHORTCUT ICON" href="~/favicon-32x32.png" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="~/Content/themes/default/css/style.css" />
+
+    @Styles.Render("~/headerstyles")
+
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Site.css")" />
+
+    @RenderSection("PageInlineStyles", required: false)
+
+    @Scripts.Render("~/bundles/headerscripts")
+</head>
+<body>
+    <div class="page-loading">
+        <img src="~/Content/themes/default/images/loader.gif" alt="" />
+    </div>
+
+    <div class="common-loading">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    <div class="common-loading-item">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    <div class="theme-layout" id="scrollup">
+        <!--Header-->
+        @Html.Partial("_Header")
+        <!--End header-->
+        <!--Body-->
+        <div class="content-wrapper">
+            @RenderBody()
+        </div>
+        <!--End body-->
+
+        @Html.Partial("_QuickLoginForm", new MySite.Models.WebAuthLoginViewModel())
+        <!-- LOGIN POPUP -->
+        <!--Footer-->
+        @Html.Partial("_Footer")
+        <!--Footer-->
+    </div>
+
+    <script class="RemovalScripts">
+        var LanguageDic = [];
+        var CurrentVersion = "1.0.1";
+        var CurrentLang = "@CultureInfo.CurrentUICulture";
+    </script>
+
+    <script src="~/bundles/bootstrap.bundle.js"></script>
+
+    @Scripts.Render("~/bundles/pagescripts")
+
+    <script src="@Url.VersionedContent("~/Scripts/Common/core.js")"></script>
+
+    <script src="@Url.VersionedContent("~/Scripts/Common/site-global.js")"></script>
+
+    @RenderSection("PagePluginScripts", required: false)
+
+    @RenderSection("PageInlineScripts", required: false)
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        var userInfo = AccountHelper.GetCurrentUser();
+        <script src="~/Scripts/Common/jquery.signalR-2.2.2.min.js"></script>
+        <script>
+            var _myCloudServer = '@MyCloudSettings.MyCloudServer';
+            var _currentUserInfo = {
+                id: "@userInfo.Id.ToString()",
+                user_name: "@userInfo.UserName"
+            };
+
+            @*setTimeout(function () {
+                $.getScript('@MyCloudSettings.MyCloudServer/signalr/hubs/', function () {
+                    $.getScript('@Url.VersionedContent("~/Scripts/Common/mycloud.js")');
+                });
+            }, 1000);*@
+
+            $(function () {
+                AuthenticatedGlobal.getNotifCounter();
+            });
+        </script>
+        <script src="@MyCloudSettings.MyCloudServer/signalr/hubs/"></script>
+        <script src="@Url.VersionedContent("~/Scripts/Common/mycloud.js")"></script>
+    }
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71251472-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-71251472-4');
+    </script>
+</body>
+</html>

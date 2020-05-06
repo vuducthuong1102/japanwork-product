@@ -1,0 +1,13 @@
+﻿@model ApiMySiteMessenger.DB.Sql.Entities.IdentityConversationReply
+
+@if (Model != null)
+{
+    <div class="chat-box-item chat_message_wrapper_mine">
+        <ul class="chat_message">
+            <li>
+                <p>@Html.Raw(Model.Content)</p>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+}

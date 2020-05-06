@@ -1,0 +1,447 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.Caching
+@using MySite.ShareLibs.Extensions
+@model MySite.Models.JobSeekerUpdateProfileModel
+
+@{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    var disableProp = (Model.read_only)? "readonly" : string.Empty;
+}
+
+@if (!Model.read_only)
+{
+    <input type="hidden" id="address_country_id" value="@((Model.address != null) ? Model.address.country_id : 0)" />
+    <input type="hidden" id="address_region_id" value="@((Model.address != null) ? Model.address.region_id : 0)" />
+    <input type="hidden" id="address_prefecture_id" value="@((Model.address != null) ? Model.address.prefecture_id : 0)" />
+    <input type="hidden" id="address_city_id" value="@((Model.address != null) ? Model.address.city_id : 0)" />
+    <input type="hidden" id="address_train_line_id" value="@((Model.address != null) ? Model.address.train_line_id : 0)" />
+    <input type="hidden" id="address_station_id" value="@((Model.address != null) ? Model.address.station_id : 0)" />
+
+    <input type="hidden" id="address_contact_country_id" value="@((Model.address_contact != null) ? Model.address_contact.country_id : 0)" />
+    <input type="hidden" id="address_contact_region_id" value="@((Model.address_contact != null) ? Model.address_contact.region_id : 0)" />
+    <input type="hidden" id="address_contact_prefecture_id" value="@((Model.address_contact != null) ? Model.address_contact.prefecture_id : 0)" />
+    <input type="hidden" id="address_contact_city_id" value="@((Model.address_contact != null) ? Model.address_contact.city_id : 0)" />
+}
+
+<div class="profile-title">
+    <h3 class="pl30">@UserWebResource.LB_MY_PROFILE</h3>
+    @if (Model.read_only)
+    {
+        <div class="row pt10">
+            <div class="col-md-12 text-center">
+                <a class="text-danger" href="/Member/MyProfile" title=""><i class="fa fa-pencil btn-icon-danger"></i> @UserWebResource.LB_UPDATE</a>
+            </div>
+        </div>
+    }
+    <div class="row pl30 pt30">
+        <div class="col-lg-3">
+            @*<div class="upload-img-bar mt0">
+                    <div class="cv-image">
+                        <img src="~/Content/themes/default/images/resource/bl1.jpg" class="full-width" alt="" />
+                    </div>
+                    <button type="button" class="btn btn-outline-info btn-sm float-left full-width mt5">@UserWebResource.LB_CHOOSE_IMAGE</button>
+                </div>*@
+
+            @{
+                var currentImgFullPath = string.Empty;
+                if (Model.Extensions != null && !string.IsNullOrEmpty(Model.image))
+                {
+                    if (MyObjectExtensions.PropertyExists(Model.Extensions, "image_full"))
+                    {
+                        currentImgFullPath = Model.Extensions.image_full.ToString();
+                    }
+                }
+            }
+            <div class="upload-portfolio mb10">
+                <div class="uploadbox" id="uploadbox">
+                    <img class="@(!Model.read_only ? "file-upload-btn" : string.Empty) thumbImg img-full-center pointer @((string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)" src="@currentImgFullPath" style="border:0;" />
+                    <label for="file-upload" class="custom-file-upload file-upload-icon @((!string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)">
+                        <i class="la la-cloud-upload"></i> <span>@UserWebResource.BT_UPLOAD_PHOTO</span>
+                    </label>
+                    @Html.HiddenFor(m => m.image)
+                    <input id="file-upload" class="file-upload-storage hidden" name="@Html.NameFor(m=>m.image_file_upload)" type="file" data-preview="uploadbox">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div>
+                <span class="pf-title mt0">@UserWebResource.LB_FULL_NAME</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.fullname, null, new { placeholder = "Nguyen Van A", @class = "mb0 " + disableProp })
+                    @Html.ValidationMessageFor(m => m.fullname, null, new { @class = "text-danger fz-13" })
+                </div>
+            </div>
+            <div class="mt20">
+                <span class="pf-title">@UserWebResource.LB_FULL_NAME_FURIGANA</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.fullname_furigana, null, new { placeholder = "グエン　バン　エイ", @class = disableProp })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-form-edit">
+        <div class="row pl30">
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.IP_BIRTHDAY</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.birthday, null, new { placeholder = "dd-MM-yyyy", @class = "datepicker " + disableProp })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.IP_PHONE</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.phone, null, new { placeholder = "", @class = disableProp })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_GENDER</span>
+                <div class="pf-field mt15">
+                    <input class="@disableProp" type="radio" @((Model.gender == 1) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.gender)" value="1" id="1_@Html.IdFor(m=>m.gender)" /> <label class="fz-13" for="1_@Html.IdFor(m=>m.gender)"> @UserWebResource.LB_MEN</label>
+                    <input class="@disableProp" type="radio" @((Model.gender == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.gender)" value="0" id="0_@Html.IdFor(m=>m.gender)" /> <label class="fz-13" for="0_@Html.IdFor(m=>m.gender)"> @UserWebResource.LB_WOMEN</label>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_MARRIAGE_STATUS</span>
+                <div class="pf-field mt15">
+                    <input class="@disableProp" type="radio" @((Model.marriage == 1) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.marriage)" value="1" id="1_@Html.IdFor(m=>m.marriage)" /> <label class="fz-13" for="1_@Html.IdFor(m=>m.marriage)"> @UserWebResource.LB_MARRIAGE_MARRIED</label>
+                    <input class="@disableProp" type="radio" @((Model.marriage == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.marriage)" value="0" id="0_@Html.IdFor(m=>m.marriage)" /> <label class="fz-13" for="0_@Html.IdFor(m=>m.marriage)"> @UserWebResource.LB_MARRIAGE_SINGLE</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <span class="pf-title">@UserWebResource.IP_EMAIL</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.email, null, new { placeholder = "xxx@yourmail.com", @class = disableProp })
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <span class="pf-title">@UserWebResource.LB_JAPANESE_LEVEL</span>
+                <div class="pf-field">
+                    <select class="form-control select2 select-employment-type @disableProp" data-live-search="true" name="@Html.NameFor(m=>m.japanese_level_number)">
+                        @if (Model.JapaneseLevels.HasData())
+                        {
+                            foreach (var item in Model.JapaneseLevels)
+                            {
+                                <option value="@item.level_number" @(item.level_number == Model.japanese_level_number ? "selected" : string.Empty)> @item.level</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_QUALIFICATION</span>
+                <div class="pf-field">
+                    <select data-placeholder="@UserWebResource.LB_QUALIFICATION" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.qualification_id)">
+                        @if (Model.Qualifications.HasData())
+                        {
+                            foreach (var qualification in Model.Qualifications)
+                            {
+                                var currentQualifiName = string.Empty;
+                                if (qualification.LangList.HasData())
+                                {
+                                    currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                                }
+                                else
+                                {
+                                    currentQualifiName = qualification.qualification;
+                                }
+                                <option value="@qualification.id" @((Model.qualification_id == qualification.id) ? "selected" : "")>@currentQualifiName</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_DEPENDENT_NUM</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.dependent_num, null, new { placeholder = "", @class = disableProp })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_NATIONALITY</span>
+                <div class="pf-field">
+                    <select data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.nationality_id)" id="nationality_id">
+                        <option value="0">@UserWebResource.LB_SELECT_NATIONALITY</option>
+                        @if (Model.Countries.HasData())
+                        {
+                            foreach (var country in Model.Countries)
+                            {
+                                string lbCountry = country.country;
+                                if (currentLang == "ja-JP")
+                                {
+                                    lbCountry = country.furigana;
+                                }
+                                var selected = "";
+                                if (Model.nationality_id == country.id)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@country.id" @selected>@lbCountry</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_VISA</span>
+                <div class="pf-field">
+                    <select data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.visa_id)" id="visa_id">
+                        <option value="0">@UserWebResource.LB_SELECT_VISA</option>
+                        @if (Model.Visas.HasData())
+                        {
+                            foreach (var item in Model.Visas)
+                            {
+                                string lbItem = item.visa;
+                                if (item.LangList.HasData())
+                                {
+                                    var langItem = item.LangList.FirstOrDefault(s => s.language_code == currentLang);
+                                    if (langItem != null)
+                                    {
+                                        lbItem = langItem.visa;
+                                    }
+                                }
+
+                                if (string.IsNullOrEmpty(lbItem))
+                                {
+                                    lbItem = item.visa;
+                                }
+                                var selected = "";
+                                if (Model.visa_id == item.id)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@item.id" @selected>@lbItem</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_DURATION_VISA</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.duration_visa, null, new { placeholder = "dd-MM-yyyy", @class = "datepicker " + disableProp })
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_RELIGION</span>
+                @*<div class="pf-field input-group-custom">
+                        <input type="checkbox" id="religion" @(Model.religion ? "checked" : string.Empty) name="@Html.NameFor(m=>m.religion)" value="true" /> <label for="religion" class="checkbox"></label>
+                        @Html.TextBoxFor(m => m.religion_detail, null, new { })
+                    </div>*@
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.religion_detail, null, new { @class = disableProp })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="social-edit">
+    <h3 class="pl30">@UserWebResource.LB_ADDRESSES</h3>
+    @Html.HiddenFor(m => m.address.id)
+    <div class="row pl30 @(Model.exclude_ct_add == 0 ? "mb10": string.Empty)">
+        <div class="col-lg-3">
+            <span class="pf-title">@UserWebResource.LB_COUNTRY</span>
+            <div class="pf-field">
+                <select data-placeholder="@UserWebResource.LB_SELECT_COUNTRY" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address.country_id)" id="Address_Country">
+                    @if (Model.Countries.HasData())
+                    {
+                        foreach (var country in Model.Countries)
+                        {
+                            <option value="@country.id">@country.country</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <span class="pf-title">@UserWebResource.LB_POSTAL_CODE</span>
+            <div class="pf-field">
+                @Html.TextBoxFor(m => m.address.postal_code, new { @id = "Address_Postal_Code", @class = disableProp })
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <span class="pf-title">@UserWebResource.LB_REGION</span>
+            <div class="pf-field">
+                <select data-placeholder="@UserWebResource.LB_SELECT_REGION" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address.region_id)" id="Address_Region">
+                    <option value="0">@UserWebResource.LB_SELECT_REGION</option>
+
+                    @*@if (Model.Regions.HasData())
+                        {
+                            foreach (var region in Model.Regions)
+                            {
+                                <option value="@region.id">@region.furigana (@region.region)</option>
+                            }
+                        }*@
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <span class="pf-title">@UserWebResource.LB_PREFECTURE</span>
+            <div class="pf-field">
+                <select data-placeholder="@UserWebResource.LB_SELECT_PREFECTURE" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address.prefecture_id)" id="Address_Prefecture">
+                    <option value="0">@UserWebResource.LB_SELECT_PREFECTURE</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6" id="Address_City_Dropdown">
+            <span class="pf-title">@UserWebResource.LB_CITY</span>
+            <div class="pf-field">
+                <select data-placeholder="@UserWebResource.LB_SELECT_CITY" class="select2 @disableProp" name="@Html.NameFor(m=>m.address.city_id)" id="Address_City">
+                    <option value="0">@UserWebResource.LB_SELECT_CITY</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <span class="pf-title">@UserWebResource.LB_ADDRESS_DETAIL</span>
+            <div class="pf-field">
+                <input class="@disableProp" type="text" placeholder="" value="@Model.address.detail" name="@Html.NameFor(m=>m.address.detail)" id="Address_Detail" />
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <span class="pf-title">@UserWebResource.LB_ADDRESS_FURIGANA</span>
+            <div class="pf-field">
+                <input class="@disableProp" type="text" placeholder="" value="@Model.address.furigana" name="@Html.NameFor(m=>m.address.furigana)" id="Address_Furigana" />
+            </div>
+        </div>
+        <div class="col-lg-6" id="Address_TrainLine_Dropdown">
+            <span class="pf-title">@UserWebResource.LB_TRAIN_LINE</span>
+            <div class="pf-field">
+                <div class="m-typeahead">
+                    @{
+                        string train_line = Model.address.train_line_furigana;
+                        if (currentLang == "ja-JP")
+                        {
+                            train_line = Model.address.train_line;
+                        }
+                    }
+                    <input type="text" class="form-control m-input select-train-line @disableProp" counter="0" value="@train_line" />
+                    <input type="hidden" class="train-line-selected" name="@Html.NameFor(m=>m.address.train_line_id)" data-current="@Model.address.train_line_id" value="@Model.address.train_line_id" />
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6" id="Address_Station_Dropdown">
+            <span class="pf-title">@UserWebResource.LB_NEAREST_STATION</span>
+            <div class="pf-field">
+                <select class="Address_Station select2 @disableProp" name="@Html.NameFor(m=>m.address.station_id)" data-current="@Model.address.station_id" id="Address_Station">
+                    @if (Model.station_info != null)
+                    {
+                        <option value="@Model.station_info.id" selected>
+                            @if (!string.IsNullOrEmpty(Model.station_info.furigana))
+                            {
+                                @(string.Format("{0} ({1})", Model.station_info.furigana, Model.station_info.station))
+                            }
+                            else
+                            {
+                                @Model.station_info.station
+                            }
+                        </option>
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model.exclude_ct_add == 0)
+{
+    <div class="social-edit contact-address">
+        <div class="pf-line-border float-left mt40 full-width">
+            <h3 class="float-left pl30">@UserWebResource.LB_CONTACT_ADDRESS</h3>
+            @if (!Model.read_only)
+            {
+                <div class="float-left text-right cbx-same-address" style="width:50%">
+                    <input type="checkbox" id="same_address" value="true"> <label for="same_address">@UserWebResource.LB_SAME_ABOVE</label>
+                </div>
+            }
+        </div>
+        <div class="row pl30">
+            @Html.HiddenFor(m => m.address_contact.id)
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_COUNTRY</span>
+                <div class="pf-field">
+                    <select data-placeholder="@UserWebResource.LB_SELECT_COUNTRY" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address_contact.country_id)" id="Address_Contact_Country">
+                        @if (Model.Countries.HasData())
+                        {
+                            foreach (var country in Model.Countries)
+                            {
+                                <option value="@country.id">@country.country</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <span class="pf-title">@UserWebResource.LB_POSTAL_CODE</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.address_contact.postal_code, new { @id = "Address_Contact_Postal_Code", @class = disableProp })
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <span class="pf-title">@UserWebResource.LB_REGION</span>
+                <div class="pf-field">
+                    <select data-placeholder="@UserWebResource.LB_SELECT_REGION" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address_contact.region_id)" id="Address_Contact_Region">
+                        <option value="0">@UserWebResource.LB_SELECT_REGION</option>
+                        @*@if (Model.Regions.HasData())
+                            {
+                                foreach (var region in Model.Regions)
+                                {
+                                    <option value="@region.id">@region.furigana (@region.region)</option>
+                                }
+                            }*@
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <span class="pf-title">@UserWebResource.LB_PREFECTURE</span>
+                <div class="pf-field">
+                    <select data-placeholder="@UserWebResource.LB_SELECT_PREFECTURE" data-live-search="true" class="select2 @disableProp" name="@Html.NameFor(m=>m.address_contact.prefecture_id)" id="Address_Contact_Prefecture">
+                        <option value="0">@UserWebResource.LB_SELECT_PREFECTURE</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6" id="Address_Contact_City_Dropdown">
+                <span class="pf-title">@UserWebResource.LB_CITY</span>
+                <div class="pf-field">
+                    <select data-placeholder="@UserWebResource.LB_SELECT_CITY" class="select2 @disableProp" id="Address_Contact_City" name="@Html.NameFor(m=>m.address_contact.city_id)">
+                        <option value="0">@UserWebResource.LB_SELECT_CITY</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <span class="pf-title">@UserWebResource.LB_ADDRESS_DETAIL</span>
+                <div class="pf-field">
+                    <input class="@disableProp" type="text" placeholder="" value="@Model.address_contact.detail" name="@Html.NameFor(m=>m.address_contact.detail)" id="Address_Contact_Detail" />
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <span class="pf-title">@UserWebResource.LB_ADDRESS_FURIGANA</span>
+                <div class="pf-field">
+                    <input class="@disableProp" type="text" placeholder="" value="@Model.address_contact.furigana" name="@Html.NameFor(m=>m.address_contact.furigana)" id="Address_Contact_Furigana" />
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    CheckReligion();
+
+    $(document).on("change", "#religion_id", function () {
+        CheckReligion();
+    });
+
+    function CheckReligion() {
+        if ($("#religion_id").is(":checked")) {
+            $("#religion_value").removeAttr("disabled");
+        }
+        else {
+            $("#religion_value").attr("disabled", true);
+        }
+    }
+
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/typeahead.bundle.min.js"></script>
+<script src="@Url.VersionedContent("~/Scripts/Pages/Member/profile.js")"></script>

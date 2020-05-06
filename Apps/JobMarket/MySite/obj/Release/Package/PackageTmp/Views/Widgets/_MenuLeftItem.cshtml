@@ -1,0 +1,70 @@
+﻿@using MySite.Caching;
+@using MySite.Resources;
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+<div id="sidebar">
+    <div class="mySticky sidebar__inner">
+        <div>
+            @if (!hasLoggedIn)
+            {
+                @Html.Partial("~/Views/Widgets/_NewsFeedLoginBox.cshtml")
+            }
+            else
+            {
+                @Html.Partial("~/Views/Home/Item/_DetailItem.cshtml")
+            }
+        </div>
+        <div>
+            <div class="widget-overlay">
+                @Html.Partial("_ElementLoading")
+            </div>
+            <div class="weather hidden"></div>
+        </div>
+        @*@if (hasLoggedIn)
+        {
+            <div>
+                <div class="widget-overlay">
+                    @Html.Partial("_ElementLoading")
+                </div>
+
+                <div class="list-contact contact hidden">
+                    <div class="col-xs-4"><span class="fz-18 mb15 text-bold">@UserWebResource.LB_FRIEND_LIST</span></div>
+                    <div class="col-xs-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="ip-search-friend" placeholder="@UserWebResource.LB_SEARCH_FRIEND" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="btn-search"><i class="i1 ii tophead-search-icon"></i></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="clearfix mb10"></div>
+                    <div class="list-contact scroll-box friends-list">
+
+                    </div>
+                </div>
+            </div>
+        }*@
+
+
+        @if (hasLoggedIn)
+        {
+            <div>
+                <div class="widget-overlay">
+                    @Html.Partial("_WidgetLoading")
+                </div>
+                <div class="recent-post hidden"></div>
+            </div>
+        }
+        <div>
+            <div class="widget-overlay">
+                @Html.Partial("_WidgetLoading")
+            </div>
+            <div class="top-travel hidden"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Models
+
+@model List<CsWorkHistoryModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("Partials/_CsWorkHistoryItem", item)
+    }
+}

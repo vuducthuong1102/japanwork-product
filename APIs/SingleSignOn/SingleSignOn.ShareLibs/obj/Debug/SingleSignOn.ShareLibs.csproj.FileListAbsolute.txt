@@ -1,0 +1,11 @@
+E:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.dll
+E:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.pdb
+E:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.dll
+E:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.pdb
+E:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csprojAssemblyReference.cache
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.dll
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.pdb
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csprojAssemblyReference.cache
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csproj.CoreCompileInputs.cache
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.dll
+C:\Users\Shironeko\Desktop\ForGitOnly\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.pdb

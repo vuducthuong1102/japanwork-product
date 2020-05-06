@@ -1,0 +1,22 @@
+﻿@using MySite.Helpers
+@model MySite.Models.JobSearchResultModel
+
+@if (Model.JobsList.HasData())
+{
+    <div class="job-listings-sec no-border">
+        @foreach (var item in Model.JobsList)
+        {
+            @Html.Partial("_JobResultItem", item)
+        }
+    </div>
+}
+
+@*@RenderPaging()
+
+@helper RenderPaging()
+{
+    <div class="pagination">
+        @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "JobSearchNext")
+    </div>
+}*@

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+  </configSections>
+  <appSettings>   
+    <add key="System:UsingProxy" value="true" />
+    <add key="System:DeleteFileAfterSent" value="true" />
+    
+    <add key="System:NotifSentFolder" value="D:\Working\MyCloud\MyCloud\App_Data\Notifications\Sent\" />
+    <add key="System:NotifToSendFolder" value="D:\Working\MyCloud\MyCloud\App_Data\Notifications\ToSend\" />
+    <add key="System:NotifFailedFolder" value="D:\Working\MyCloud\MyCloud\App_Data\Notifications\Failed\" />
+    
+    <add key="System:MetadataBuilderSpeedMS" value="5000" />
+    <add key="System:FileCreatorSpeedMS" value="10000" />
+    <add key="System:FileSenderSpeedMS" value="3000" />
+
+    <!--Services default timeout in seconds -->
+    <add key="System:ExternalServiceTimeout" value="30" />
+
+    <!--<add key ="Notification:SendNotifUrl" value="http://14.225.3.174:8081/api/notification/sendnoti"/>-->
+    <add key ="Notification:SendNotifUrl" value="http://192.168.2.114:50800/api/notification/sendnoti"/>
+  </appSettings>
+  <connectionStrings>
+    <add name="DefaultDB" connectionString="server=localhost;user id=sa;password=abcd1234;database=test;charset=utf8;pooling=true;ConnectionTimeout=300; DefaultCommandTimeout=300;maxpoolsize=70;minpoolsize=5" providerName="MySql.Data.MySqlClient" />
+  </connectionStrings>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+  </startup>
+  <system.data>
+    <DbProviderFactories>
+      <remove invariant="MySql.Data.MySqlClient" />
+      <add name="MySQL Data Provider" invariant="MySql.Data.MySqlClient" description=".Net Framework Data Provider for MySQL" type="MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d" />
+    </DbProviderFactories>
+  </system.data>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+</configuration>

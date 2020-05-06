@@ -1,0 +1,35 @@
+﻿@using MySite.Helpers;
+@using MySite.Settings;
+@using MySite.Resources;
+@model  ApiMySiteSocial.DB.Sql.Entities.IdentityPost
+
+<span class="rate">
+    @{
+        decimal ratingScore = 0;
+        int ratingCount = 0;
+        int starnumber = PostHelper.GetStarOfPost(Model, ref ratingScore, ref ratingCount);
+        bool checkHalfStart = false;
+        for (int i = 1; i <= MySiteSettings.MaxOfRatingScore; i++)
+        {
+            if (i <= starnumber)
+            {
+                <i class="i1 iab"></i>
+            }
+            else
+            {
+                if (ratingScore - starnumber != 0 && !checkHalfStart)
+                {
+                    <i class="i1 iab-1"></i>
+                    checkHalfStart = true;
+                }
+                else
+                {
+                    <i class="i1 iab-2"></i>
+                }
+            }
+        }
+    }
+</span>
+<span>(@ratingScore.ToString() @UserWebResource.LB_SHORT_POINT/@ratingCount.ToString() @UserWebResource.LB_VOTES)</span>
+
+

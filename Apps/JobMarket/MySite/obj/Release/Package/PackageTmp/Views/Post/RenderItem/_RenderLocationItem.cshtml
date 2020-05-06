@@ -1,0 +1,14 @@
+﻿
+@using MySite.Helpers;
+@using MySite.Models;
+@model LocationModel
+
+@if (Model != null)
+{
+<div class="tag-item">
+    <a href="@Model.url" target="_blank" class="place-item" data-place_id="@Model.place_id" data-id="0" title="@Model.formatted_address">
+        <span>@Model.name</span>
+        <span class="tag-close">x</span>
+    </a>
+</div>
+}

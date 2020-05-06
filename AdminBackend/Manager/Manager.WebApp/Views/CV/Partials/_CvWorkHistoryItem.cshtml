@@ -1,0 +1,38 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+
+@model Manager.WebApp.Models.CvWorkHistoryModel
+
+<div class="m-widget1__item">
+    <div class="row m-row--no-padding align-items-center">
+        <div class="col-3">
+            <h3 class="m-widget1__title text-info fz-16">
+                <i class="fa fa-black-tie fz-16"></i> @Model.company
+            </h3>
+
+            @if (Model.start_date != null)
+            {
+                <div class="">
+                    @ManagerResource.LB_CV_WORKING_TIME: @FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)
+                </div>
+            }
+
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumWorkStatus)))
+            {
+                var chkItem = (int)myEnum;
+                if (chkItem == Model.status)
+                {
+                    <span class="fz-15">@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+            }
+        </div>
+        <div class="col-6 m--align-left">
+            <div class="">
+                @if (!string.IsNullOrEmpty(Model.content_work))
+                {
+                    @Html.RawHtmlCustom(Model.content_work)
+                }
+            </div>           
+        </div>
+    </div>
+</div>

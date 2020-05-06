@@ -1,0 +1,105 @@
+﻿@using MySite.Models;
+@using MySite.Resources;
+@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@model MySite.Models.Account.ProfileModel
+<style>
+    body {
+        overflow: scroll !important
+    }
+</style>
+@{
+    var hasLoggedIn = false;
+    var isOwner = false;
+    var currentUser = AccountHelper.GetCurrentUser();
+    if (currentUser != null)
+    {
+        hasLoggedIn = true;
+        if (currentUser.Id == Model.UserInfo.Id)
+        {
+            isOwner = true;
+        }
+    }
+}
+@Html.AntiForgeryToken()
+@if (Model != null)
+{
+    if (Model.UserInfo != null)
+    {
+        <div class="feed-actions hidden nodisplay">
+            @Html.Partial("~/Views/Widgets/_NewsFeedActions.cshtml", new PostModel())
+        </div>
+
+        ViewBag.Title = Model.UserInfo.DisplayName;
+        @Html.Partial("../Account/Element/_UserInfo", Model)
+
+        if (isOwner)
+        {
+            @RenderChangePwdForm()
+        }
+        @Html.Partial("../Account/_ProfileMeta", Model)
+    }
+}
+
+@helper RenderChangePwdForm()
+{
+    <div id="change-password" class="modal fade profile-modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="change-photo">
+                        <img src="@CdnHelper.CoreGetFullImgPath(Model.UserInfo.Avatar)" />
+                    </div>
+                    @using (Html.BeginForm("ChangePwd", "Account", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", id = "FrmChangePwd" }))
+                    {
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.OldPassword)
+                            @Html.TextBoxFor(m => m.OldPassword, new { @type = "password" })
+                            @Html.ValidationMessageFor(m => m.OldPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.NewPassword)
+                            @Html.TextBoxFor(m => m.NewPassword, new { @type = "password" })
+                            @Html.ValidationMessageFor(m => m.NewPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.ConfirmNewPassword)
+                            @Html.TextBoxFor(m => m.ConfirmNewPassword, new { @type = "password" })
+                            @Html.ValidationMessageFor(m => m.ConfirmNewPassword, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="text-center mb30">
+                            <button type="button" class="btn btn-grey btn-none" data-dismiss="modal">@UserWebResource.BT_CANCEL</button>
+                            <button type="submit" class="btn btn-primary-hl">@UserWebResource.BT_SAVE</button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div id="myModal" class="modal post-detail" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@section PagePluginScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Account/profile.js")"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Account/events.js")"></script>
+
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+}
+
+@section PageInlineScripts{
+    @if (hasLoggedIn)
+    {
+        var googleLangParams = LanguagesProvider.GetGoogleMapLanguage();
+        var googleMapApi = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHSvvX38mMDYdNTaUheYyb0-AW2BgOG3M&libraries=places&callback=initLocationAutoComplete" + googleLangParams;
+        <script src="@googleMapApi"
+                async defer></script>
+    }
+    <script src="@Url.VersionedContent("~/Scripts/Common/features-right.js")"></script>
+}

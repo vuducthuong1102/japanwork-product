@@ -1,0 +1,17 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using MySite.Helpers
+@using MySite.Resources
+@model List<IdentityStation>
+
+@{
+    var hasData = Model.HasData();
+}
+
+<option value="0">@UserWebResource.LB_SELECT_STATION</option>
+@if (hasData)
+{
+    foreach (var item in Model)
+    {
+        <option value="@item.id">@item.furigana (@item.station)</option>
+    }
+}

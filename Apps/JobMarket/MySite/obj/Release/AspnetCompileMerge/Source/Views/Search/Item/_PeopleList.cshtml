@@ -1,0 +1,49 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Resources;
+@using MySite.Caching;
+@using MySite.Helpers;
+@model List<IdentityUser>
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <a href="@AccountHelper.GetUserProfileUrl(item)" title="@item.DisplayName" class="_2ait">
+            <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar">
+        </a>
+        <div class="_6dc _2anb">
+            <div class="_2anb">
+                <a href="@AccountHelper.GetUserProfileUrl(item)" title="@item.DisplayName" class="_2ana">
+                    @item.DisplayName
+                </a>
+                <div class="float-right">
+                    @if (hasLoggedIn)
+                    {
+                        if (!item.IsFollow)
+                        {
+                            <a href="javascript:;" data-user="@item.Id" class="btn sm btn-none btn-follow fz-12 bo fc01 follow">@UserWebResource.BT_FOLLOW</a>
+                        }
+                        else
+                        {
+                            <a href="javascript:;" data-user="@item.Id" class="btn sm btn-none btn-follow fz-12 bo fc01 unfollow">@UserWebResource.BT_UNFOLLOW</a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" class="btn sm btn-none btn-follow fz-12 bo fc01">@UserWebResource.BT_FOLLOW</a>
+                    }
+                </div>
+            </div>
+            <span class="fz-13">
+                <a href="/account/follower/@item.Id" class="text-dark"><span class="follower text-grey-03" data-number="@item.MetaData.FollowerCount"><span id="FollowersCount">@item.MetaData.FollowerCount</span>  @UserWebResource.LB_FOLLOWER.ToLower()</span></a>
+            </span>
+        </div>
+    </div>
+}
+

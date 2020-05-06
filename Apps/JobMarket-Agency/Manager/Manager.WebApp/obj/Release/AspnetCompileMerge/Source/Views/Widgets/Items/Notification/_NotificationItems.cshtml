@@ -1,0 +1,160 @@
+﻿@using Manager.WebApp.Models
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@model List<AgencyNotificationModel>
+
+@{
+    var hasData = Model.HasData();
+    var defaultAvatar = "/assets/app/media/img/users/default-avatar.jpg";
+}
+    <ul>
+        @if (hasData)
+        {
+            foreach (var item in Model)
+            {
+                if (item.NotifInfo != null)
+                {
+                    var notifMsg = string.Empty;
+                    var cssColor = "info";
+                    if (item.NotifInfo.target_type == (int)EnumNotifTargetType.Cv)
+                    {
+                        if (item.CvInfo != null)
+                        {
+
+                            if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Application_Apply)
+                            {
+                                notifMsg = ManagerResource.NOTIF_JOB_APPLY;
+                            }
+                            else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Application_Cancel)
+                            {
+                                cssColor = "danger";
+                                notifMsg = ManagerResource.NOTIF_JOB_APPLICATION_CANCEL;
+                            }
+                            else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Invitation_Accepted)
+                            {
+                                notifMsg = ManagerResource.NOTIF_INVITATION_ACCEPT;
+                            }
+                            else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Invitation_Canceled)
+                            {
+                                cssColor = "danger";
+                                notifMsg = ManagerResource.NOTIF_INVITATION_REJECT;
+                            }
+
+                            <li class="box-noti-item @(item.NotifInfo.is_read ? "read" : "unread") @cssColor">
+                                @{
+                                    var dtLink = SecurityHelper.GenerateSecureLink("AuthedGlobal", "ReadNotif", new { id = item.NotifInfo.notification_id });
+                                    var title = string.Empty;
+                                    if (item.CvInfo != null)
+                                    {
+                                        title = item.CvInfo.fullname + ": " + notifMsg;
+                                    }
+                                }
+                                <a href="@dtLink">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="notif-img">
+                                                @if (item.CvInfo != null)
+                                                {
+                                                    if (!string.IsNullOrEmpty(item.CvInfo.image_full_path))
+                                                    {
+                                                        <img src="@item.CvInfo.image_full_path" title="@item.CvInfo.fullname" onerror="this.onerror=null;this.src='@defaultAvatar';" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="@defaultAvatar" title="@item.CvInfo.fullname" />
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10 notif-content">
+                                            <div class="notif-title float-left full-width">
+                                                @notifMsg
+                                            </div>
+                                            <div class="notif-time float-left full-width text-right">
+                                                <div class="fz-13">
+                                                    <i class="fa fa-clock-o"></i>
+                                                    @{
+                                                        var localTime = item.NotifInfo.created_at != null ? item.NotifInfo.created_at.Value.ToLocalTime() : DateTime.UtcNow.ToLocalTime();
+                                                    }
+                                                    <span>@localTime.ToString("HH:mm yyyy/MM/dd")</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @*<a href="@dtLink" target="_blank">
+                                            <span class="box-noti-item-title">@title</span>
+                                            <p class="notif-msg @cssColor">
+                                                @notifMsg
+                                            </p>
+                                            <hr>
+                                            @{
+                                                var localTime = item.NotifInfo.created_at != null ? item.NotifInfo.created_at.Value.ToLocalTime() : DateTime.UtcNow.ToLocalTime();
+                                            }
+                                            <p class="time" title="@localTime.ToString("HH:mm dd/MM/yyyy")">@DateHelpers.FormatToStringTitle(localTime, false)</p>
+                                        </a>*@
+                                    </div>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                    if (item.NotifInfo.target_type == (int)EnumNotifTargetType.Job)
+                    {
+                        if (item.NotifInfo.action_type == (int)EnumNotifJob.Accepted)
+                        {
+                            notifMsg = ManagerResource.NOTIF_JOB_PUBLIC_ACCEPTED;
+                        }
+                        else if (item.NotifInfo.action_type == (int)EnumNotifJob.Canceled)
+                        {
+                            cssColor = "danger";
+                            notifMsg = ManagerResource.NOTIF_JOB_PUBLIC_CANCELED;
+                        }
+                       
+                        <li class="box-noti-item @(item.NotifInfo.is_read ? "read" : "unread") @cssColor">
+                            @{
+                                var dtLink = SecurityHelper.GenerateSecureLink("AuthedGlobal", "ReadNotif", new { id = item.NotifInfo.notification_id });
+                            }
+                            <a href="@dtLink">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="notif-img">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-10 notif-content">
+                                        <div class="notif-title float-left full-width">
+                                            @notifMsg
+                                        </div>
+                                        <div class="notif-time float-left full-width text-right">
+                                            <div class="fz-13">
+                                                <i class="fa fa-clock-o"></i>
+                                                @{
+                                                    var localTime = item.NotifInfo.created_at != null ? item.NotifInfo.created_at.Value.ToLocalTime() : DateTime.UtcNow.ToLocalTime();
+                                                }
+                                                <span>@localTime.ToString("HH:mm yyyy/MM/dd")</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<a href="@dtLink" target="_blank">
+                                        <span class="box-noti-item-title">@title</span>
+                                        <p class="notif-msg @cssColor">
+                                            @notifMsg
+                                        </p>
+                                        <hr>
+                                        @{
+                                            var localTime = item.NotifInfo.created_at != null ? item.NotifInfo.created_at.Value.ToLocalTime() : DateTime.UtcNow.ToLocalTime();
+                                        }
+                                        <p class="time" title="@localTime.ToString("HH:mm dd/MM/yyyy")">@DateHelpers.FormatToStringTitle(localTime, false)</p>
+                                    </a>*@
+                                </div>
+                            </a>
+                        </li>
+                    }
+                }
+
+            }
+        }
+        else
+        {
+            <li class="text-center text-danger">@ManagerResource.LB_HAS_NO_NOTIFICATION</li>
+        }
+    </ul>
+

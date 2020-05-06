@@ -1,0 +1,145 @@
+﻿@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@model List<AgencyNotificationModel>
+
+@{
+    var hasData = Model.HasData();
+    var defaultAvatar = "/assets/app/media/img/users/default-avatar.jpg";
+}
+
+@if (hasData)
+{
+    foreach (var item in Model)
+    {
+        if (item.NotifInfo != null)
+        {
+            var notifMsg = string.Empty;
+            var cssColor = "info";
+            if (item.NotifInfo.target_type == (int)EnumNotifTargetType.Cv)
+            {
+                if (item.CvInfo != null)
+                {
+
+                    if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Application_Apply)
+                    {
+                        notifMsg = ManagerResource.NOTIF_JOB_APPLY;
+                    }
+                    else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Application_Cancel)
+                    {
+                        cssColor = "danger";
+                        notifMsg = ManagerResource.NOTIF_JOB_APPLICATION_CANCEL;
+                    }
+                    else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Invitation_Accepted)
+                    {
+                        notifMsg = ManagerResource.NOTIF_INVITATION_ACCEPT;
+                    }
+                    else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForAgency.Invitation_Canceled)
+                    {
+                        cssColor = "danger";
+                        notifMsg = ManagerResource.NOTIF_INVITATION_REJECT;
+                    }
+
+                    <div class="m-widget3__item widget-noti-item mb0 @(item.NotifInfo.is_read ? "read" : "unread") @cssColor">
+                        @{
+                            var dtLink = SecurityHelper.GenerateSecureLink("AuthedGlobal", "ReadNotif", new { id = item.NotifInfo.notification_id });
+                            var title = string.Empty;
+                            var userName = string.Empty;
+                            if (item.CvInfo != null)
+                            {
+                                userName = !string.IsNullOrEmpty(item.CvInfo.fullname) ? item.CvInfo.fullname : item.CvInfo.email;
+                                title = item.CvInfo.fullname + ": " + notifMsg;
+                            }
+                        }
+                        <a href="@dtLink">
+                            <div class="m-widget3__header">
+                                <div class="m-widget3__user-img">
+                                    @if (item.CvInfo != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(item.CvInfo.image_full_path))
+                                        {
+                                            <img style="height: 40px;width: 50px;object-fit: contain;border: 1px solid #ccc;border-radius:0;" class="m-widget3__img" src="@item.CvInfo.image_full_path" title="@item.CvInfo.fullname" onerror="this.onerror=null;this.src='@defaultAvatar';" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@defaultAvatar" style="height: 40px;width: 50px;object-fit: contain;border: 1px solid #ccc;border-radius:0;" title="@item.CvInfo.fullname" />
+                                        }
+                                    }
+                                </div>
+                                <div class="m-widget3__info">
+                                    <span class="m-widget3__username">
+                                        @title
+                                    </span>
+                                    <br>
+
+                                    @{
+                                        var localTime = item.NotifInfo.created_at.DateTimeQuestToLocaleStringNow();
+                                    }
+                                    <span class="m-widget3__time" title="@localTime">@localTime</span>
+                                </div>
+                                @*<span class="m-widget3__status m--font-@cssColor">
+
+                                    </span>*@
+                            </div>
+                            @*<div class="m-widget3__body">
+                                    <p class="m-widget3__text">
+                                        @notifMsg
+                                    </p>
+                                </div>*@
+                        </a>
+                    </div>
+                }
+            }
+
+            if (item.NotifInfo.target_type == (int)EnumNotifTargetType.Job)
+            {
+                if (item.NotifInfo.action_type == (int)EnumNotifJob.Accepted)
+                {
+                    notifMsg = ManagerResource.NOTIF_JOB_PUBLIC_ACCEPTED;
+                }
+                else if (item.NotifInfo.action_type == (int)EnumNotifJob.Canceled)
+                {
+                    cssColor = "danger";
+                    notifMsg = ManagerResource.NOTIF_JOB_PUBLIC_CANCELED;
+                }
+
+                <div class="m-widget3__item widget-noti-item mb0 @(item.NotifInfo.is_read ? "read" : "unread") @cssColor">
+                    @{
+                        var dtLink = SecurityHelper.GenerateSecureLink("AuthedGlobal", "ReadNotif", new { id = item.NotifInfo.notification_id });
+                        var title = string.Empty;
+
+                    }
+                    <a href="@dtLink">
+                        <div class="m-widget3__header">
+                            <div class="m-widget3__user-img">
+                               
+                            </div>
+                            <div class="m-widget3__info">
+                                <span class="m-widget3__username">
+                                    @notifMsg
+                                </span>
+                                <br>
+                                @{
+                                    var localTime = item.NotifInfo.created_at.DateTimeQuestToLocaleStringNow();
+                                }
+                                <span class="m-widget3__time" title="@localTime">@localTime</span>
+                            </div>
+                            @*<span class="m-widget3__status m--font-@cssColor">
+
+                                </span>*@
+                        </div>
+                        @*<div class="m-widget3__body">
+                                <p class="m-widget3__text">
+                                    @notifMsg
+                                </p>
+                            </div>*@
+                    </a>
+                </div>
+            }
+        }
+    }
+}
+else
+{
+    <div class="pb10"><i class="fa fa-info-circle"></i> @ManagerResource.LB_HAS_NO_NOTIFICATION</div>
+}

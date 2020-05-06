@@ -1,0 +1,16 @@
+.policy_text_content p {
+  margin-bottom: 24px; }
+.policy_text_content dt {
+  margin-bottom: 8px; }
+.policy_text_content dd {
+  margin-bottom: 24px; }
+.policy_text_content ul {
+  list-style: none; }
+
+.policy_selection_date {
+  margin-top: 40px;
+  text-align: right; }
+  .policy_selection_date li {
+    margin-bottom: 8px; }
+
+/*# sourceMappingURL=policy.css.map */

@@ -1,0 +1,66 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.CompanyEditModel
+
+@{
+    var title = ManagerResource.LB_COMPANY_CREATE;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                   <i class="fa fa-building fz-20"></i> @ManagerResource.LB_COMPANY_CREATE
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+}
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    using (Html.BeginForm("Create", "Company", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data", @onkeydown="return event.key !='Enter';" }))
+    {
+        @Html.HiddenFor(m => m.id)
+        <div class="main-form">
+            @Html.Partial("_CompanyUpdateForm")
+        </div>
+    }
+
+    <!--end::Form-->
+}
+
+@section PagePluginStyles
+{
+    <link href="@Url.VersionedContent("~/Content/Page/Company/main.css")" rel="stylesheet" />
+}
+
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Company/update.js")"></script>
+    <script>
+        $(function () {
+            $(".file-upload-storage").change(function () {
+                PreviewImageFromBrowseDialog(this);
+            });
+        });
+    </script>
+}
+

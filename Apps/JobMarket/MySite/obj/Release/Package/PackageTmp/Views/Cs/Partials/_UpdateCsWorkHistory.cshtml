@@ -1,0 +1,355 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@model MySite.Models.CsWorkHistoryModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-train fz-16"></i> @UserWebResource.LB_UPDATE_WORK_EXPERIENCE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("UpdateCsWorkHistory", "Cs", FormMethod.Post, new { @id = "frmUpdateCsWorkHistory" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id, new { id = "currentWorkHistoryId" })
+    @Html.HiddenFor(m => m.cs_id)
+    @Html.HiddenFor(m=>m.idx)
+<div class="modal-body">
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_COMPANY</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.company, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.company, null, new { @class = "text-danger" })
+        </div>
+
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_EMPLOYEES_NUMBER</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.employees_number, new { @class = "form-control text-right" })
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_EMPLOYMENT_TYPE</label>
+        </div>
+        <div class="col-md-4">
+            <select data-placeholder="@UserWebResource.LB_EMPLOYMENT_TYPE" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.employment_type_id)">
+                @if (Model.EmploymentTypes.HasData())
+                {
+                    foreach (var emType in Model.EmploymentTypes)
+                    {
+                        var subName = string.Empty;
+                        if (emType.LangList.HasData())
+                        {
+                            subName = emType.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                        }
+
+                        if (string.IsNullOrEmpty(subName))
+                        {
+                            subName = emType.employment_type;
+                        }
+
+                        <option value="@emType.id" @(emType.id == Model.employment_type_id ? "selected" : string.Empty)>
+                            @subName
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_FIELD_FILTER</label>
+        </div>
+        <div class="col-md-4">
+            <select data-placeholder="@UserWebResource.LB_FIELD_FILTER" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.sub_field_id)">
+                @if (Model.Fields.HasData())
+                {
+                    foreach (var field in Model.Fields)
+                    {
+                        if (field.Sub_fields.HasData())
+                        {
+                            var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                            if (string.IsNullOrEmpty(fieldName))
+                            {
+                                fieldName = field.field;
+                            }
+
+                            <optgroup label="@fieldName">
+                                @foreach (var sub in field.Sub_fields)
+                                {
+                                    var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                                    if (string.IsNullOrEmpty(subName))
+                                    {
+                                        subName = sub.sub_field;
+                                    }
+
+                                    <option value="@sub.id" @(sub.id == Model.sub_field_id ? "selected" : string.Empty)>
+                                        @subName
+                                    </option>
+                                }
+                            </optgroup>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_INDUSTRY</label>
+        </div>
+        <div class="col-md-4">
+            <select data-placeholder="@UserWebResource.LB_INDUSTRY" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.sub_industry_id)">
+                @if (Model.Industries.HasData())
+                {
+                    foreach (var industry in Model.Industries)
+                    {
+                        if (industry.Sub_industries.HasData())
+                        {
+                            var industryName = industry.LangList.Where(x => x.language_code == currentLang).Select(x => x.industry).FirstOrDefault();
+                            if (string.IsNullOrEmpty(industryName))
+                            {
+                                industryName = industry.industry;
+                            }
+
+                            <optgroup label="@industryName">
+                                @foreach (var sub in industry.Sub_industries)
+                                {
+                                    var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_industry).FirstOrDefault();
+                                    if (string.IsNullOrEmpty(subName))
+                                    {
+                                        subName = sub.sub_industry;
+                                    }
+
+                                    <option value="@sub.id" @(sub.id == Model.sub_industry_id ? "selected" : string.Empty)>
+                                        @subName
+                                    </option>
+                                }
+                            </optgroup>
+                        }
+                    }
+                }
+            </select>
+        </div>
+
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_WORK_STATUS</label>
+        </div>
+        <div class="col-md-4">
+            <select data-placeholder="@UserWebResource.LB_WORK_STATUS" data-live-search="true" class="select2" id="WorkStatus" name="@Html.NameFor(m=>m.status)">
+                @foreach (var item in Enum.GetValues(typeof(EnumWorkStatus)))
+                {
+                    var chkItem = (int)item;
+                    var chkStr = string.Empty;
+                    if (chkItem == Model.status)
+                    {
+                        chkStr = "selected";
+                    }
+                    <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_ADDRESSES</label>
+        </div>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.address, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group row" id="ResignReasonArea">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_RESIGN_REASON</label>
+        </div>
+        <div class="col-md-10">
+            @Html.TextAreaFor(m => m.resign_reason, new { @class = "form-control", @rows = "3", @style="min-height:unset;" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_START</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.start_date_str, new { @class = "form-control datepicker pl10" })
+        </div>
+
+        <div class="col-md-2">
+            <label class="base-label">@UserWebResource.LB_FINISH</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.end_date_str, new { @class = "form-control datepicker pl10" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="Details">
+                <div data-repeater-list="Details">
+                    @if (Model.Details.HasData())
+                    {
+                        for (int i = 0; i < Model.Details.Count; i++)
+                        {
+                            var currentItem = Model.Details[i];
+
+                            <div data-repeater-item class="mb10 repeater-item new-rpt">
+                                <input type="hidden" value="@currentItem.id" name="id" class="hdCurrentDetailId" />
+                                <div class="row mb10">
+                                    <div class="col-lg-11">
+                                        <div><i class="la la-plus"></i> @UserWebResource.LB_STAGE : <span class="work-detail-idx">@(i + 1)</span></div>
+                                    </div>
+                                    <div class="col-lg-1 text-right">
+                                        <div data-repeater-delete="" class="btn btn-danger btn-sm" title="@UserWebResource.BT_DELETE">
+                                            <i class="la la-remove"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt10">
+                                    <div class="col-lg-2">
+                                        <div class="mb5">@UserWebResource.LB_FROM_DATE</div>
+                                        <input type="text" class="form-control datepicker pl10" name="start_date" value="@currentItem.start_date">
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="mb5">@UserWebResource.LB_TO_DATE</div>
+                                        <input type="text" class="form-control datepicker pl10" name="end_date" value="@currentItem.end_date">
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="mb5">@UserWebResource.LB_DEPARTMENT</div>
+                                        <input type="text" class="form-control" name="department" value="@currentItem.department">
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="mb5">@UserWebResource.LB_POSITION</div>
+                                        <input type="text" class="form-control" name="position" value="@currentItem.position">
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="mb5">@UserWebResource.LB_SALARY</div>
+                                        <input type="text" class="form-control text-right" name="salary" value="@currentItem.salary">
+                                    </div>
+                                </div>
+
+                                <div class="row mt10">
+                                    <div class="col-lg-12">
+                                        <textarea style="min-height:unset" class="form-control" placeholder="@UserWebResource.LB_JOB_DESCRIPTION" rows="3" name="content_work">@Html.RawHtmlCustom(currentItem.content_work)</textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div data-repeater-create="" class="btn btn btn-info btn-sm btn-repeater-add">
+                            <span>
+                                <i class="la la-plus"></i>
+                                <span>
+                                    @UserWebResource.BT_ADD_STAGE
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-floppy-o"></i> @UserWebResource.BT_SAVE
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>   
+    $("#frmUpdateCsWorkHistory").submit(function (ev) {
+        ev.preventDefault();
+        var currentWorkHistoryId = parseInt($("#currentWorkHistoryId").val());
+
+        if ($("#frmUpdateCsWorkHistory").valid()) {
+            var data = new FormData(this);
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = $(this).attr("action");
+            params['requestType'] = 'POST';
+            params['data'] = data;
+            params['processData'] = false;
+            params['contentType'] = false;
+            params['dataType'] = "json";
+            params['context'] = "#frmUpdateCsWorkHistory";
+
+            params['successCallbackFunction'] = function (result) {
+                if (result) {
+                    if (result.success) {
+                        $('#myModal').modal('hide');
+
+                        if (!$("#frmUpdateCsWorkHistory").hasClass("new-work-frm")) {
+                            if (currentWorkHistoryId > 0) {
+                                MemberGlobal.workHistories();
+                            } else {
+                                if (result.html) {
+                                    $("#WorkHistories").append(result.html);
+                                }
+                            }
+                        } else {                         
+                            var idx = $("#idx").val();
+                            $("#work_history_item_" + idx).after(result.html).remove();
+                        }
+                        
+                    } else {
+                        CatchAjaxResponseWithNotif(result);
+                    }
+                }
+            };
+            doAjax(params);
+        }
+        return false;
+    });
+
+    $("#WorkStatus").change(function () {
+        var id = parseInt($("#WorkStatus").val());
+        if (id == -1) {
+            $("#ResignReasonArea").removeClass("hidden");
+        } else {
+            $("#ResignReasonArea").addClass("hidden");
+        }
+    });
+
+    $(function () {
+        $("#WorkStatus").change();
+        $(".datepicker").datepicker({
+            format: "dd-mm-yyyy",
+            showButtonPanel: true,
+            closeText: LanguageDic['BT_DELETE'],
+        });
+        FormEvents.repeaterBinding();
+        FormEvents.eventBinding();
+    });
+</script>

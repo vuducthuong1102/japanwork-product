@@ -1,0 +1,280 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+
+@model Manager.WebApp.Models.CvInviteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;">
+       <i class="la la-user-plus fz-20"></i> @ManagerResource.LB_APPLICATION_INVITATION
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="CurrentJob" name="@Html.NameFor(m=>m.job_id)" value="@Model.job_id" />
+            <input type="hidden" id="InvitationLmt" value="@Model.invitation_limit" name="@Html.NameFor(m=>m.invitation_limit)" />
+
+            @if (!string.IsNullOrEmpty(Model.job_name))
+            {
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-2">
+                        @ManagerResource.LB_JOB_NAME
+                    </label>
+                    <div class="col-lg-6">
+                        <b>@Model.job_name (<span class="text-danger" id="">@ManagerResource.LB_INVITATION_SENT :<span id="InvitedCounter"> @Model.invited_count</span> / <span>@Model.invitation_limit</span></span>)</b>                         
+                    </div>
+                </div>
+            }
+
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label">
+                    @ManagerResource.LB_SEARCH
+                </label>
+                <div class="col-lg-6 m-typeahead">
+                    <input type="text" class="form-control m-input" id="JkSearch" />
+                    <input type="hidden" id="applicant" value="" name="applicant" />
+                    @*@Html.ValidationMessageFor(m => m.applicant, "", new { @class = "m-form__help m--font-danger" })*@
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-warning form-control" type="button" id="btnSearch">
+                        <i class="fa fa-icon-search-plus"></i> @ManagerResource.LB_APPLICANT_LIST
+                    </button>
+                </div>
+            </div>
+            <div class="form-group m-form__group row hidden" id="SelectedArea">
+                <label class="col-lg-2 col-form-label">
+                    @ManagerResource.LB_APPLICANT_LIST
+                </label>
+                <div class="col-lg-6 m-typeahead">
+                    <div class="mb5" id="">@ManagerResource.LB_SELECTED :<span id="SelectedCounter"> 0</span> / <span>@Model.invitation_limit</span></div>
+                    <div class="form-control m-input" id="SelectedApplicants"></div>
+
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label">
+                    @ManagerResource.LB_MESSAGE
+                </label>
+                <div class="col-lg-6">
+                    @Html.TextAreaFor(m => m.note, new { @class = "form-control m-input", @rows = "10" })
+                    @Html.ValidationMessageFor(m => m.note, "", new { @class = "m-form__help m--font-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="display:block;">
+        <button type="submit" class="btn btn-info pull-left">
+            <i class="fa fa-send"></i> @ManagerResource.LB_INVITATION_SEND
+        </button>
+        <button type="button" class="btn btn-outline-info pull-right" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+        <br />
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        if (!$("#myModal").hasClass("re-show")) {
+            $('#JkSearch').focus();
+            $(".tt-menu").hide();
+        } else {
+            $('#JkSearch').blur();
+        }
+    });    
+
+    $("body").on("click", ".jk-remove", function () {
+        var id = $(this).data("id");
+        $("#jk-item-" + id).remove();     
+
+        RefreshSelectedJk();
+    });
+
+    function OpenChoosenCv(callback) {
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Master/ChoosenCv";
+        params['requestType'] = "GET";
+        params['data'] = { job_id: $("#CurrentJob").val(), callbackfunction: callback };
+        params['dataType'] = "html";
+        params['showloading'] = true;
+
+        params['successCallbackFunction'] = function (data) {
+            $("#jkModalSelectContent").html(data);
+            $('body').addClass('modal-open');
+            $('.modal-backdrop').show();
+            $('#jkModalSelect').modal('show');
+            $('#myModal').modal('hide');
+
+            return false;
+        };
+        doAjax(params);
+    }
+
+    function ValidInvitation(addPendNums) {
+        var limitCount = parseInt($("#InvitationLmt").val());
+        var checkedTempCount = 0;
+        $(".jk-item").each(function () {
+            checkedTempCount++;
+        });
+
+        var totalTempCount = checkedTempCount + addPendNums;
+        if (totalTempCount > limitCount) {
+            $.showErrorMessage(LanguageDic['LB_NOTIFICATION'], LanguageDic['ERROR_SELECTION_LIMITED'], function () {
+                $('#jkModalSelect').modal('hide');
+                $('#myModal').modal('show');
+
+                return false;
+            });
+
+            return false;
+        }
+
+        return true;
+    }
+
+    function CvChooseForInvitation(selectedItems) {       
+        var appendNums = selectedItems.length;
+        if (selectedItems != null && appendNums > 0) {
+            if (ValidInvitation(appendNums))
+            {
+                $('#jkModalSelect').modal('hide');
+                $('#myModal').modal('show');               
+
+                for (var key in selectedItems) {
+                    var matched = false;
+                    $(".jk-item").each(function () {
+                        var jkId = parseInt($(this).data("id"));
+                        if (jkId == selectedItems[key]["id"]) {
+                            matched = true;
+                        }
+                    });
+
+                    if (!matched) {
+                        var itemHtml = RenderSelectedJkElement(selectedItems[key]["id"], selectedItems[key]["job_seeker_id"] , selectedItems[key]["text"]);
+                        $('#SelectedApplicants').append(itemHtml);
+                    }
+                }
+            }            
+        }  
+
+        RefreshSelectedJk();
+    }
+
+    $(function () {
+        $("#btnSearch").click(function () {
+            OpenChoosenCv("CvChooseForInvitation");
+        });
+
+        $('#jkModalSelect').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
+            $('.modal-backdrop').show();
+            $('#myModal').modal('show');
+        });
+    });
+
+    $('#JkSearch').typeahead({
+            highlight: true,
+            minLength: 1,
+            hint: false,
+            delay: 2000
+        },
+        {
+            source: function (query, process) {
+                var params = $.extend({}, doAjax_params_default);
+                params['url'] = '/Master/GetListCvInDropdown';
+                params['requestType'] = 'POST';
+                params['data'] = { query: query, job_id: $("#CurrentJob").val() };
+                params['dataType'] = "json";
+                params['async'] = false;
+                params['showloading'] = false;
+
+                params['successCallbackFunction'] = function (result) {
+                    process(result.data);
+                };
+                doAjax(params);
+            },
+            display: 'fullname',
+            templates: {
+                suggestion: function (data) {
+                    var nameStr = data.fullname;
+                    if (data.fullname_furigana != '') {
+                        nameStr += ' (' + data.fullname_furigana + ')';
+                    }
+
+                    if (data.is_invited) {
+                        nameStr += " - <span class='text-danger'>" + LanguageDic["LB_INVITATION_SENT"] + "</span>";
+                    }
+
+                    return "<div class='ac-item' data-jobseeker='" + data.job_seeker_id + "' data-id='" + data.id + "'><i class='fa fa-user'></i> " + nameStr + "</div>";
+                }
+            }            
+        });
+
+    function RefreshSelectedJk() {       
+        var arrSelectedJk = []; 
+        $(".jk-item").each(function () {
+            var jkId = $(this).data("id");
+            var jobSeekerId = $(this).data("jobseeker");
+            let itemData = {
+                id: jkId,
+                job_seeker_id: jobSeekerId
+            };
+
+            arrSelectedJk.push(itemData); 
+        });
+
+        if (arrSelectedJk.length > 0) {
+            var jsonSelected = JSON.stringify(arrSelectedJk);
+
+            $("#applicant").val(jsonSelected);
+
+            $("#SelectedArea").removeClass("hidden");
+        } else {
+            $("#applicant").val("");
+            $("#SelectedArea").addClass("hidden");
+        } 
+
+        $("#SelectedCounter").html(arrSelectedJk.length);
+    }
+
+    function RenderSelectedJkElement(id,job_seeker_id, text) {
+
+        var itemHtml = "<div class='jk-item' data-jobseeker='" + job_seeker_id +"' data-id='" + id + "' id='jk-item-" + id + "'><div class='jk-item-info'>" + text + "</div><span class='jk-remove ml5 pointer text-danger' data-id='" + id + "'><i class='fa fa-remove'></span></div>";
+        return itemHtml;
+    }
+
+    $("#JkSearch").on('typeahead:selected', function (evt, item) {
+        if (item.is_invited) {
+            $("#JkSearch").typeahead('val', '');
+            return false;
+        }
+
+        var arrSelectedJk = [];
+
+        $(".jk-item").each(function () {
+            var jkId = $(this).data("id");
+            arrSelectedJk.push(jkId);      
+        });
+
+        if (!arrSelectedJk.includes(item.id)) {
+            if (ValidInvitation(1)) {
+                var itemHtml = RenderSelectedJkElement(item.id, item.job_seeker_id, item.fullname);
+                $('#SelectedApplicants').append(itemHtml);                
+            }    
+        }   
+
+        RefreshSelectedJk();
+
+        $("#JkSearch").typeahead('val', '');
+    });
+</script>

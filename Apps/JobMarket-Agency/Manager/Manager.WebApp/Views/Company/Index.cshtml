@@ -1,0 +1,472 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageCompanyModel
+
+@{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    var hasIndustries = Model.Industries.HasData();
+    var canEdit = PermissionHelper.CheckPermission("Edit", "Company");
+    var canDelete = PermissionHelper.CheckPermission("Delete", "Company");
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+@helper RenderUser()
+{
+    if (Model.Staffs.HasData())
+    {
+        <div class="col-md-2">
+            <select id="@Html.IdFor(m => m.staff_id)" name="@Html.NameFor(m => m.staff_id)" data-live-search="true" class="filter-search form-control m-select2 m-input m-input--square">
+                <option value="0">@ManagerResource.LB_SELECT_PIC</option>
+                @foreach (var item in Model.Staffs)
+                {
+                    <option value="@item.StaffId" @(Model.staff_id == item.StaffId ? "selected" : "")>
+                        @item.FullName
+                    </option>
+                }
+            </select>
+        </div>
+    }
+}
+<div class="space"></div>
+
+<div class="m-portlet">
+    <div class="col-lg-12">
+        <div class="clearfix d-flex operation">
+            @if (PermissionHelper.CheckPermission("Create", "Company"))
+            {
+                <a class="btn btn-white btn-sm btn-info" href="/Company/Create" title="@ManagerResource.BT_ADD"><i class="fa fa-plus"></i> @ManagerResource.BT_ADD</a>
+
+            }
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--end::Section-->
+        <!--begin::Section-->
+        <div class="m-section">
+            <div class="m-section__content table-responsive">
+                <table id="sample-table-1" class="tbl-row-hover table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox custom-label">
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="text-center text-info">@ManagerResource.LB_INFORMATION_COMPANY</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                        {
+                            var stt = 0;
+                            foreach (var record in Model.SearchResults)
+                            {
+                                stt++;
+                                var companyName = record.company_name;
+                                if (record.LangList.HasData())
+                                {
+                                    var nameByLang = record.LangList.Where(x => x.language_code == currentLang).Select(x => x.company_name).FirstOrDefault();
+                                    if (!string.IsNullOrEmpty(nameByLang))
+                                    {
+                                        companyName = nameByLang;
+                                    }
+                                }
+                                <tr data-id="@record.id">
+                                    @*<td rowspan="4" class="text-center">
+                                            <span style="width: 50px;">
+                                                <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                                    <input type="checkbox" value="1" class="m-checkbox-item" id="@record.id"><span></span>
+                                                </label>
+                                            </span>
+                                        </td>*@
+                                    <td rowspan="3" class="width-4">
+                                        <div class="display-flex">
+                                            @{
+                                                var detailLink = SecurityHelper.GenerateSecureLink("Company", "Detail", new { id = record.id });
+                                            }
+                                            <div class="float-left">
+                                                <a href="@detailLink" class="logo-sm ml10" style="width:90px;height:60px;display:flex">
+                                                    <img src="@record.logo_full_path" />
+                                                </a>
+                                            </div>
+                                            <div class="float-left ml-2">
+                                                <a href="@detailLink" title="@ManagerResource.LB_COMPANY_DETAIL">
+                                                    @companyName
+                                                </a>
+                                                <div class="job--code" title="@ManagerResource.LB_NUMBER_CODE">@record.company_code</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_APPLICATION_COUNT</label>
+                                        @if (record.application_count > 0)
+                                        {
+
+                                            <a href="@Url.Action("Index", "Application", new { company_id = record.id })">
+                                                @record.application_count.FormatWithComma()
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <span>0</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_JOB_INDUSTRY</label>
+                                        @if (hasIndustries)
+                                        {
+                                            var subIndustryName = string.Empty;
+                                            foreach (var item in Model.Industries)
+                                            {
+                                                if (item.Sub_industries != null)
+                                                {
+                                                    var sub = item.Sub_industries.Where(x => x.id == record.sub_industry_id).FirstOrDefault();
+                                                    if (sub != null)
+                                                    {
+                                                        if (sub.LangList.HasData())
+                                                        {
+                                                            subIndustryName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_industry).FirstOrDefault();
+
+                                                        }
+                                                        if (string.IsNullOrEmpty(subIndustryName))
+                                                        {
+                                                            subIndustryName = sub.sub_industry;
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            @subIndustryName
+                                        }
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td class="width-2">
+                                        <label>@ManagerResource.LB_JOB_COUNT</label>
+                                        @record.job_count
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                        @if (record.pic_id > 0 && Model.Staffs.HasData())
+                                        {
+                                            var picInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                            if (picInfo != null)
+                                            {
+                                                <span>@picInfo.FullName</span>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td class="width-2">
+                                        <label>@ManagerResource.LB_PHONE</label>
+                                        @record.phone
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_ADDRESS</label>
+                                        @FrontendHelpers.SubstringBracket(FrontendHelpers.GenerateCompanyAddress(record, currentLang))
+                                    </td>
+                                </tr>
+                                <tr data-id="@record.id">
+                                    <td colspan="3" class="row-control row-control-@record.id" style="opacity:0;">
+                                        @{
+                                            var editLink = SecurityHelper.GenerateSecureLink("Company", "Edit", new { Id = record.id, SearchExec = "Y", CurrentPage = Model.CurrentPage, Keyword = Model.Keyword, Status = Model.Status });
+                                            var delLink = SecurityHelper.GenerateSecureLink("Company", "Delete", new { id = record.id });
+                                            var sendMailLink = string.Empty;
+                                            if (!string.IsNullOrEmpty(record.email) && Utility.IsEmail(record.email))
+                                            {
+                                                sendMailLink = SecurityHelper.GenerateSecureLink("Company", "SendEmail", new { company_id = record.id, receiver = record.email });
+                                            }
+                                            var noteLink = SecurityHelper.GenerateSecureLink("Company", "ShowNote", new { id = record.id });
+                                            var hasPic = PermissionHelper.CheckIsPic(record.pic_id);
+                                        }
+
+                                        @if (canEdit)
+                                        {
+                                            if (hasPic)
+                                            {
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="@editLink" title="@ManagerResource.LB_EDIT">
+                                                    <i class="la la-pencil"></i> @ManagerResource.LB_EDIT
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" href="javacript:;" title="@ManagerResource.LB_EDIT">
+                                                    <i class="la la-pencil"></i> @ManagerResource.LB_EDIT
+                                                </a>
+                                            }
+                                        }
+
+                                        <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@record.id" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="@ManagerResource.LB_ADD_NOTE">
+                                            <i class="la la-plus"></i> @ManagerResource.LB_ADD_NOTE
+                                        </a>
+
+                                        @if (!string.IsNullOrEmpty(sendMailLink))
+                                        {
+                                            <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@sendMailLink" data-modal="" title="@ManagerResource.LB_SEND_EMAIL">
+                                                <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:;" class="m-portlet__nav-link btn-email-invalid btn btn-warning btn-sm m-btn m-btn m-btn--icon btn-error-no-email" title="@ManagerResource.LB_SEND_EMAIL">
+                                                <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                            </a>
+                                        }
+
+                                        @if (canDelete)
+                                        {
+                                            if (hasPic)
+                                            {
+                                                <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="@delLink" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon  btn-error-incorrect-user" href="javacrip:;" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+
+                                        }
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="11">
+                                    @ManagerResource.LB_NO_RECORD
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @RenderPaging()
+        </div>
+        <div class="col-md-12">
+            <div class="separator">ボタンの説明</div>
+            <div class="mb-1 pt-3">
+                ※<a class="btn btn-white btn-sm btn-info" href="javascript:;" title="追加"><i class="fa fa-plus"></i> 追加</a>：新たな求人会社を追加します。
+            </div>
+            <div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="編集">
+                    <i class="la la-pencil"></i>&nbsp;編集
+                </a>：登録した求人会社の情報を編集/更新します。
+            </div>
+            <div class="mb-1">
+                ※<a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="対応を確認/追加">
+                    <i class="la la-plus"></i> 対応を確認/追加
+                </a> : 求人会社とのやり取りをメモして頂けます。
+            </div>
+            <div class="mb-1">
+                ※<a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="メールする">
+                    <i class="la la-envelope"></i> メールする
+                </a>：設定したメールで求人会社に連絡することができます。
+            </div>
+            <div class="mb-1">
+                ※<a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="削除">
+                    <i class="fa fa-trash"></i> 削除
+                </a>：登録した求人会社の情報を削除することができます。
+            </div>
+        </div>
+        <!--end::Section-->
+    </div>
+</div>
+
+
+<div id='frmUsers' class='modal fade in'>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">
+                        @ManagerResource.LB_LIST_USER_MANAGER
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("UpdateUser", "Company", FormMethod.Post, new { role = "form" }))
+                {
+                    <div class="modal-body">
+                        <input id="company_id" name="company_id" value="0" type="hidden" />
+                        <div class="row">
+                            <div class="col-md-12 m-form__group--inline">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="selectUser">@ManagerResource.LB_MEMBER</label>
+                                    <select class="form-control selectpicker btn-white" id="selectUser" name="selectUser" data-live-search="true" title="@ManagerResource.SELECT_MEMBER" multiple></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="btn btn-danger" type="submit" value="@ManagerResource.LB_SAVE" />
+                        <button class="btn" data-dismiss="modal">@ManagerResource.LB_CANCEL</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Company",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         ishiring = Model.ishiring,
+                         sub_industry_id = Model.sub_industry_id,
+                         staff_id = Model.staff_id,
+                         prefecture_id = Model.prefecture_id
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@section PageInlineScripts{
+    <script type="text/javascript">
+        $("body").on("click", ".btn-email-invalid", function () {
+            $.showErrorMessage(LanguageDic["LB_NOTIFICATION"], LanguageDic["ERROR_EMAIL_IS_EMPTY"]);
+        });
+
+        function mouseInHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "1");
+        };
+
+        function mouseOutHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "0");
+        };
+
+        $('.tbl-row-hover tr').hover(mouseInHandler, mouseOutHandler);
+
+        $(".m-select2").select2({});
+
+        var BootstrapDatepicker = {
+            init: function () {
+                $(".datepicker-input").datepicker({
+                    todayBtn: "linked",
+                    clearBtn: !0,
+                    todayHighlight: !0,
+                    format: 'yyyy/mm/dd',
+                    templates: {
+                        leftArrow: '<i class="la la-angle-left"></i>',
+                        rightArrow: '<i class="la la-angle-right"></i>'
+                    }
+                })
+            }
+        };
+        jQuery(document).ready(function () {
+            BootstrapDatepicker.init()
+        });
+
+        function GetUserManagers(company_id) {
+            $("#company_id").val(company_id);
+            $.ajax({
+                url: 'Company/GetUserManagers',
+                data: {
+                    id: company_id
+                },
+                success: function (result) {
+                    var myData = result.data;
+                    $("#selectUser").empty();
+                    if (myData) {
+                        for (var i = 0; i < myData.length; i++) {
+                            if (myData[i].Selected) {
+                                $("#selectUser").append("<option value='" + myData[i].Value + "' selected>" + myData[i].Text + "</option>")
+                            }
+                            else {
+                                $("#selectUser").append("<option value='" + myData[i].Value + "'>" + myData[i].Text + "</option>")
+                            }
+                        }
+                        $('#frmUsers').modal('show');
+                        $(".selectpicker").selectpicker('refresh');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), null);
+                }
+            });
+        }
+        function ShowNote(id) {
+            $.ajax({
+                url: 'Company/ShowNote',
+                data: {
+                    id: id
+                },
+                success: function (result) {
+                    if (result) {
+                        $("#myModalContent").html(result);
+                        $('body').addClass('modal-open');
+
+                        $('#myModal').modal('show');
+                        $("#myModalContent").closest(".modal-dialog").attr('style', 'max-width:1024px');
+                        $(".m-select2").select2();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), function () { });
+                }
+            });
+        }
+        function AfterDelete() {
+            location.reload();
+        }
+
+        $("#Address_Country").change(function () {
+            var id = parseInt($(this).val());
+            if (id > 0) {
+                var params = $.extend({}, doAjax_params_default);
+                params['url'] = '/Master/GetRegionsByCountry';
+                params['requestType'] = 'POST';
+                params['data'] = { id: id };
+                params['showloading'] = false;
+                params['dataType'] = "html";
+
+                params['successCallbackFunction'] = function (result) {
+                    $("#Address_Region").html(result);
+
+                    if ($("#Address_Region option[value='" + $("#address_region_id").val() + "']").length > 0) {
+                        $("#Address_Region").val($("#address_region_id").val());
+                    } else {
+                        $("#Address_Region").val("0");
+                    }
+
+                    $("#Address_Region").change();
+                };
+                doAjax(params);
+            }
+            $("#Address_Region").find('option').not(':first').remove();
+        });
+    </script>
+}

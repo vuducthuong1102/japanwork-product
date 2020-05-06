@@ -1,0 +1,59 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.CommonNotificationModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    ViewBag.Title = ManagerResource.LB_VERIFY_REGISTRATION_EMAIL;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title" style="margin:0 auto;">
+                        <h3 class="m-portlet__head-text" style="font-size:24px;"><b>@ManagerResource.LB_VERIFY_REGISTRATION_EMAIL</b></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-success">
+                            <div class="panel-body">
+                                <div class="notif-msg">
+                                    @if (Model.IsSuccess)
+                                    {
+                                        <div class="text-info" style="font-size: 18px;color: #212121;">
+                                            <i class="fa fa-check"></i> @Model.Message
+                                        </div>
+                                        <br />
+                                        <div>
+                                            <a href="@Url.Action("Login","Account")" class="btn btn-sm btn-info">
+                                                <i class="fa fa-sign-in"></i>
+                                                @ManagerResource.LB_LOGIN
+                                            </a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="text-danger" style="font-size: 18px;">
+                                            <i class="fa fa-warning"></i> @Model.Message
+                                        </div>
+                                        <br />
+                                        <a href="@Url.Action("Index","Home")" class="btn btn-sm btn-info">
+                                            <i class="fa fa-home"></i>
+                                            @ManagerResource.LB_DASHBOARD
+                                        </a>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

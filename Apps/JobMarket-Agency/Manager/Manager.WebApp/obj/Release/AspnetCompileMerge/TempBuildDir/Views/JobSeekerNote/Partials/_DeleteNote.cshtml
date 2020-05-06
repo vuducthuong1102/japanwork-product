@@ -1,0 +1,33 @@
+﻿@using Manager.WebApp.Models
+@using Manager.WebApp.Resources
+
+@model Manager.WebApp.Models.JobSeekerNoteDeleteModel
+
+@{
+    var noteLink = SecurityHelper.GenerateSecureLink("JobSeeker", "ShowNote", new { job_seeker_id = Model.job_seeker_id, type_job_seeker = Model.type_job_seeker });
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm("DeleteNote", "JobSeekerNote", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id)
+    @Html.HiddenFor(m => m.job_seeker_id)
+
+    <div class="modal-footer">
+        <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@Model.job_seeker_id" class="btn btn-secondary">
+            @ManagerResource.LB_NO
+        </a>
+        <button type="submit" class="btn btn-primary">
+            @ManagerResource.LB_YES
+        </button>
+    </div>
+}

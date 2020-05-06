@@ -1,0 +1,16 @@
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\MsSql.AspNet.Identity.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\MsSql.AspNet.Identity.pdb
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\ApiJobMarket.DB.Sql.Entities.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Manager.SharedLib.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Newtonsoft.Json.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\StackExchange.Redis.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Manager.SharedLib.pdb
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\ApiJobMarket.DB.Sql.Entities.pdb
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\Newtonsoft.Json.xml
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\bin\Debug\StackExchange.Redis.xml
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.csprojAssemblyReference.cache
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.csproj.CopyComplete
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.dll
+C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.pdb

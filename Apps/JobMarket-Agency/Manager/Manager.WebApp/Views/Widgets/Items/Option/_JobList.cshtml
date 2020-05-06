@@ -1,0 +1,211 @@
+﻿@using System.Globalization
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.InterviewProcessInsertModel
+@{
+    var currentLang = CultureInfo.CurrentCulture.ToString();
+    var hasCompanies = Model.Companies.HasData();
+    var hasSubFields = Model.SubFields.HasData();
+}
+<div class="m-portlet__body">
+    <!--end::Section-->
+    <!--begin::Section-->
+    <div class="m-section">
+        <div class="m-section__content table-responsive">
+            <table id="sample-table-1" class="tbl-row-hover table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox custom-label">
+                <thead>
+                    <tr>
+                        @*<th class="text-center align-middle" width="50">
+                                @if (Model.TotalCount > 0)
+                                {
+                                    <span style="width: 50px;">
+                                        <label class="m-checkbox m-checkbox--single m-checkbox-custom-all m-checkbox--all m-checkbox--solid m-checkbox--brand">
+                                            <input type="checkbox" /><span></span>
+                                        </label>
+                                    </span>
+                                }
+                            </th>*@
+                        <th class="text-center align-middle text-info" colspan="5">@ManagerResource.LB_INFORMATION_JOB</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model.SearchResults.HasData())
+                    {
+                        var stt = 0;
+                        foreach (var record in Model.SearchResults)
+                        {
+                            stt++;
+                            var jobName = string.Empty;
+                            if (record.Job_translations.HasData())
+                            {
+                                jobName = record.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                                if (string.IsNullOrEmpty(jobName))
+                                {
+                                    jobName = record.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                                }
+                            }
+                            var detailLink = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = record.id, company_id = record.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword });
+                            <tr data-id="@record.id">
+                                <td rowspan="3" class="text-center">
+                                        <span style="width: 50px;">
+                                            <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                                <input type="checkbox" value="@record.id" class="job-checkbox-item"><span></span>
+                                            </label>
+                                        </span>
+                                    </td>
+                                <td rowspan="3" class="width-4">
+                                    <div class="display-flex">
+                                        @if (record.company_info != null)
+                                        {
+                                            <div class="float-left" title="@record.company_info.company_name">
+                                                <a href="@detailLink" class="logo-sm ml10 mb5" style="width:90px;height:60px;display:flex">
+                                                    <img src="@record.company_info.logo_full_path" />
+                                                </a>
+                                            </div>
+                                        }
+                                        <a class="float-left ml10" href="@detailLink">
+                                            <div class="job--name" title="@ManagerResource.LB_CLICK_VIEW_DETAIL">
+                                                @jobName
+                                            </div>
+                                            <div class="job--code" title="@ManagerResource.LB_JOB_CODE">@record.job_code</div>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td class="width-2">
+                                    <label>@ManagerResource.LB_EXPIRATION_DATE</label>
+                                    @if (record.closed_time.Value < DateTime.Now)
+                                    {
+                                        <span class="job--expired">
+                                            @record.closed_time.DateTimeQuestToLocaleString(currentLang)
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        @record.closed_time.DateTimeQuestToLocaleString(currentLang)
+                                    }
+                                </td>
+                                <td>
+                                    <label>@ManagerResource.LB_COMPANY</label>
+                                    @if (hasCompanies)
+                                    {
+                                        var companyName = string.Empty;
+                                        var companyInfo = Model.Companies.Where(x => x.id == record.company_id).FirstOrDefault();
+                                        if (companyInfo != null)
+                                        {
+                                            companyName = companyInfo.company_name;
+                                            if (companyInfo.LangList.HasData())
+                                            {
+                                                var companyLang = companyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+                                                if (companyLang == null)
+                                                {
+                                                    companyLang = companyInfo.LangList[0];
+                                                }
+
+                                                if (companyLang != null)
+                                                {
+                                                    companyName = companyLang.company_name;
+                                                }
+                                            }
+                                        }
+
+                                        @companyName
+                                    }
+                                    else
+                                    {
+                                        @Model.company_name
+                                    }
+                                </td>
+                            </tr>
+                            <tr data-id="@record.id">
+                                <td>
+                                    <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                    @if (Model.Staffs.HasData())
+                                    {
+                                        var picInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                        if (picInfo != null)
+                                        {
+                                            @picInfo.FullName
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    <label>@ManagerResource.LB_JOB_FIELD</label>
+                                    @if (hasSubFields)
+                                    {
+                                        var subFieldName = string.Empty;
+                                        var sub = Model.SubFields.Where(x => x.id == record.sub_field_id).FirstOrDefault();
+                                        if (sub != null)
+                                        {
+                                            if (sub.LangList.HasData())
+                                            {
+                                                subFieldName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+
+                                            }
+                                            if (string.IsNullOrEmpty(subFieldName))
+                                            {
+                                                subFieldName = sub.sub_field;
+                                            }
+                                        }
+                                        @subFieldName
+                                    }
+                                </td>
+                            </tr>
+                            <tr data-id="@record.id">
+                                <td>
+                                    <label>@ManagerResource.LB_APPLICATION_COUNT</label>
+                                    @if (record.Extensions.application_count > 0)
+                                    {
+                                        var currentApplications = (int)record.Extensions.application_count;
+                                        @currentApplications.FormatWithComma()
+                                    }
+                                    else
+                                    {
+                                        <span>0</span>
+                                    }
+                                </td>
+                                <td>
+                                    <label>@ManagerResource.LB_STATUS</label>
+                                    @Html.Partial("~/Views/Job/Partials/_Status.cshtml", record.status)
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="11">
+                                @ManagerResource.LB_HAS_NO_JOB
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        @RenderPaging()
+    </div>
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                                   Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "JobNextPage")
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}

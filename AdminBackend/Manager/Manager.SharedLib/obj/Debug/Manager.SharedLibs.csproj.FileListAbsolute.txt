@@ -1,0 +1,12 @@
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Manager.SharedLib.dll
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Manager.SharedLib.pdb
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Autofac.dll
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Newtonsoft.Json.dll
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\StackExchange.Redis.dll
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Autofac.xml
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\Newtonsoft.Json.xml
+C:\Project\AdminBackend\Manager\Manager.SharedLib\bin\Debug\StackExchange.Redis.xml
+C:\Project\AdminBackend\Manager\Manager.SharedLib\obj\Debug\Manager.SharedLibs.csprojAssemblyReference.cache
+C:\Project\AdminBackend\Manager\Manager.SharedLib\obj\Debug\Manager.SharedLibs.csproj.CopyComplete
+C:\Project\AdminBackend\Manager\Manager.SharedLib\obj\Debug\Manager.SharedLib.dll
+C:\Project\AdminBackend\Manager\Manager.SharedLib\obj\Debug\Manager.SharedLib.pdb

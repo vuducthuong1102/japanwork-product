@@ -1,0 +1,43 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@model MySite.Models.JobSeekerInviteResendModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-17" id="exampleModalLabel">
+        <i class="fa fa-user-plus fz-17"></i> @UserWebResource.LB_CONFIRM_OPERATION
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("InvitationResend", "Member", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.invite_id)
+    @Html.HiddenFor(m=>m.job_id)
+    <input type="hidden" name="token" value="@Model.token" />
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@UserWebResource.IP_EMAIL</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m=>m.email, new { @class="form-control", @readonly = "readonly" })                
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-paper-plane"></i> @UserWebResource.BT_RESEND
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

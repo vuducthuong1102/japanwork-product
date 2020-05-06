@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Image Tool";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div id="tui-image-editor-container" style="min-height:850px;"></div>
+    </div>
+</div>
+
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/imgtool/dist/tui-color-picker.css" rel="stylesheet" />
+    <link href="~/Content/Extensions/imgtool/dist/tui-image-editor.css" rel="stylesheet" />
+    <style>
+
+        /*@@import url(http://fonts.googleapis.com/css?family=Noto+Sans);*/
+
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .left,.right{float:unset;}
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Content/Extensions/imgtool/fabric.js"></script>
+    <script src="~/Content/Extensions/imgtool/tui-code-snippet.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/tui-color-picker.js"></script>
+    <script src="~/Content/Extensions/imgtool/FileSaver.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/dist/tui-image-editor.min.js"></script>
+    <script src="~/Content/Extensions/imgtool/js/theme/white-theme.js"></script>
+    <script src="~/Content/Extensions/imgtool/js/theme/black-theme.js"></script>
+    <script>
+        // Image editor
+        var imageEditor = new tui.ImageEditor('#tui-image-editor-container', {
+            includeUI: {
+                loadImage: {
+                    path: '/Content/Extensions/imgtool/img/sampleImage2.png',
+                    name: 'SampleImage'
+                },
+                theme: blackTheme, // or whiteTheme
+                initMenu: 'filter',
+                menuBarPosition: 'bottom'
+            },
+            cssMaxWidth: 700,
+            cssMaxHeight: 500,
+            usageStatistics: false
+        });
+        window.onresize = function () {
+            imageEditor.ui.resizeEditor();
+        }
+
+        $(".tui-image-editor-header-logo").remove();
+
+         $("body").addClass("m-brand--minimize m-aside-left--minimize");
+        $("#m_aside_left_minimize_toggle").addClass("m-brand__toggler--active");
+        $(".m-subheader").hide();
+        $(".tie-mask-apply").remove();
+    </script>
+}

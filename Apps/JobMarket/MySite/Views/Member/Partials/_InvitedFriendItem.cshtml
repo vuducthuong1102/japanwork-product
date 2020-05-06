@@ -1,0 +1,113 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.Models
+@model MySite.Models.InvitedFriendInfoModel
+
+@{    
+    var title = string.Empty;
+    var slug = string.Empty;
+    var shortTitle = string.Empty;
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+}
+
+    <tr>
+        <td class="pt0">
+            <div class="">
+                <a href="javascript:;"><i class="fa fa-envelope fz-13"></i> @Model.receiver_email</a>
+                <br />
+                @if (Model.job_info != null)
+                {
+                    <i class="fz-13 text-info">@UserWebResource.LB_INVITE_FRIEND_APPLY_JOB</i>
+                }
+                else
+                {
+                    <i class="fz-13 text-info">@UserWebResource.LB_INVITE_FRIEND_USING_SYSTEM</i>
+                }
+            </div>
+        </td>
+        <td class="pt0">
+            @if (Model.job_info != null && Model.job_info.company_info != null)
+            {
+                var job_info = Model.job_info;
+                var detailLink = SecurityHelper.GenerateSecureLink("job", "detail", new { lr = slug, id = job_info.id });
+                if (job_info != null && job_info.Job_translations.HasData())
+                {
+                    title = job_info.Job_translations[0].title;
+                    slug = job_info.Job_translations[0].friendly_url;
+                    shortTitle = HtmlHelpers.ShowHtmlTextByLimit(title, 30);
+                }
+                <div class="table-list-title">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a href="@detailLink" target="_blank" class="company-logo" style="width:80px;height:60px">
+                                @if (!string.IsNullOrEmpty(job_info.company_info.logo_full_path))
+                                {
+                                    <img src="@job_info.company_info.logo_full_path" title="@job_info.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                                }
+                                else
+                                {
+                                    <img src="@defaultComLogo" title="@job_info.company_info.company_name" alt="" />
+                                }
+                            </a>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="table-list-title">
+                                <h3 class="fz-14">
+                                    <a href="@detailLink" target="_blank" title="@title">
+                                        @shortTitle <br />
+                                        @if (!string.IsNullOrEmpty(Model.employment_type_label))
+                                        {
+                                            <i class="fz-13">(@Model.employment_type_label)</i>
+                                        }
+                                    </a>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </td>
+        <td class="pt0 text-center">
+            <div>
+                @{
+                    var statusClass = "default";
+                    var statusStr = string.Empty;
+                    if (!Model.visited)
+                    {
+                        statusClass = "danger";
+                        statusStr = EnumExtensions.GetEnumDescription((Enum)EnumApplicationInvitationStatus.Awating);
+                    }
+                    else
+                    {
+                        statusClass = "info";
+                        statusStr = EnumExtensions.GetEnumDescription((Enum)EnumApplicationInvitationStatus.Accepted);
+                    }
+
+                    <span title="@UserWebResource.LB_STATUS" class="fz-12 job-application-status badge badge-@statusClass">@statusStr</span>
+                }
+            </div>
+        </td>
+        <td class="text-center">
+            <ul class="dp-flex">
+                @if (!string.IsNullOrEmpty(Model.note))
+                {
+                    <li class="invite-msg" data-id="@Model.id">
+                        <div class="hidden" id="invite-note-@Model.id">
+                            @Html.RawHtmlCustom(Model.note)
+                        </div>
+
+                        <a class="btn-info fz-15 btn-sm mr5" href="javascript:;" data-id="@Model.id" title="@UserWebResource.LB_VIEW_MESSAGE_NOTE"><i class="fa fa-wechat"></i></a>
+                    </li>
+                }
+
+                @if (!Model.visited)
+                {
+                    var resendLink = SecurityHelper.GenerateSecureLink("Member", "InvitationResend", new { invite_id = Model.invite_id, email = Model.receiver_email, job_id = Model.job_id });
+                    <li>
+                        <a title="@UserWebResource.BT_RESEND" class="btn-info fz-15 btn-sm mr5" href="javascript:;" data-modal="" data-size="default" data-href="@resendLink"><i class="fa fa-envelope"></i></a>
+                    </li>
+                }
+
+            </ul>
+        </td>
+    </tr>

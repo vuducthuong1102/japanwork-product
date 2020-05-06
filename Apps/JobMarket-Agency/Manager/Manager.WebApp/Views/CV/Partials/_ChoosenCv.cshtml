@@ -1,0 +1,251 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.CvChoosenModel
+
+@using (Html.BeginForm("ChoosenCvSearch", "Master", FormMethod.Post, new { role = "form", @class = "", id = "frmChoosenCv" }))
+{
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;">
+            @ManagerResource.LB_APPLICANT_LIST
+        </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">
+                ×
+            </span>
+        </button>
+    </div>
+    <div class="modal-body">
+        @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+        {
+            <!--begin::Form-->
+            @RenderSearchForm()
+            <!--end::Form-->
+        }
+        else
+        {
+            @ManagerResource.LB_NO_RESULTS_FOUND
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" onclick="AllowChoosenCv();">
+            <i class="fa fa-check"></i> @ManagerResource.BT_ALLOW
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}
+
+@helper RenderSearchForm()
+{
+    <div class="m-portlet mb-0">
+        @using (Html.BeginForm("ChoosenCv", "Master", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed", @id = "frmSearch" }))
+        {
+            @Html.HiddenFor(m => m.SearchExec)
+            @Html.HiddenFor(m => m.CallbackFunction)
+            @Html.HiddenFor(m => m.CurrentPage)
+            @Html.HiddenFor(m => m.job_id)
+            <input type="hidden" value="" id="SelectedJkIds" />
+            @*<div class="m-portlet__body">
+                    <div class="form-group m-form__group row">
+                        <div class="col-lg-3 m-form__group--inline">
+                            @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+                        </div>
+
+                        <div class="col-lg-2 m-form__group--inline">
+                            <button type="submit" class="btn btn-info">
+                                <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                            </button>
+                        </div>
+                    </div>
+                </div>*@
+
+            <div id="CvChoosenList">
+                @Html.Partial("~/Views/Cv/Partials/_ChoosenCvList.cshtml", Model)
+            </div>
+
+        }
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $("#frmChoosenCv").on("submit", function () {
+        ChoosenCvSearch();
+        return false;
+    });
+
+    function ChoosenCvSearchNext(pageNum) {
+        $("#CurrentPage").val(pageNum)
+        ChoosenCvSearch();
+    }
+
+    function ChoosenCvSearch() {
+        var frmData = $("#frmChoosenCv").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Master/ChoosenCvSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#CvChoosenList").html(data);
+            InitCbxJkItem();
+
+            MarkCheckedJk();
+        };
+
+        doAjax(params);
+    }
+
+    function MarkCheckedJk() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+
+        var hasCheckedData = (selectedJkIds.length > 0);
+
+        $(".cbxJkItem").each(function () {
+            var jkId = parseInt($(this).val());
+            if (hasCheckedData) {
+                for (var key in selectedJkIds) {
+                    if (selectedJkIds[key]["id"] == jkId) {
+                        $(this).prop("checked", true);
+                    }
+                }
+            }
+        });
+    }
+
+    function ReflectCheckedJkItem() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+        var hasCheckedData = (selectedJkIds.length > 0);
+
+        $(".cbxJkItem").each(function () {
+            var jkId = parseInt($(this).val());
+            var jobSeekerId = parseInt($(this).data("jobseeker"));
+            let itemData = {
+                id: jkId,
+                text: $(this).data("text"),
+                job_seeker_id: jobSeekerId
+            };
+
+            if ($(this).is(":checked")) {
+                if (hasCheckedData) {
+                    var matched = false;
+                    for (var key in selectedJkIds) {
+                        if (selectedJkIds[key]["id"] == jkId) {
+                            matched = true;
+
+                            break;
+                        }
+                    }
+                    if (!matched) {
+                        selectedJkIds.push(itemData);
+                    }
+                }
+                else {
+                    selectedJkIds.push(itemData);
+                }
+            } else {
+                if (hasCheckedData) {
+                    for (var key in selectedJkIds) {
+                        if (selectedJkIds[key]["id"] == jkId) {
+                            selectedJkIds.splice(key, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#SelectedJkIds").val(JSON.stringify(selectedJkIds));
+    }
+
+    function InitCbxJkItem() {
+        $(".cbxJkItem").on('click', function () {
+            ReflectCheckedJkItem();
+            //var selectedStr = $("#SelectedJkIds").val();
+            //var selectedJkIds = [];
+            //if (selectedStr.length > 0) {
+            //    selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+            //}
+            //var hasCheckedData = (selectedJkIds.length > 0);
+
+            //var jkId = parseInt($(this).val());
+            //let itemData = {
+            //    id: jkId,
+            //    text: $(this).data("text")
+            //};
+
+            //if ($(this).is(":checked")) {
+            //    if (hasCheckedData) {
+            //        var matched = false;
+            //        for (var key in selectedJkIds) {
+            //            if (selectedJkIds[key]["id"] == jkId) {
+            //                matched = true;
+            //                break;
+            //            }
+            //        }
+            //        if (!matched) {
+            //            selectedJkIds.push(itemData);
+            //        }
+            //    }
+            //    else {
+            //        selectedJkIds.push(itemData);
+            //    }
+            //} else {
+            //    if (hasCheckedData) {
+            //        for (var key in selectedJkIds) {
+            //            if (selectedJkIds[key]["id"] == jkId) {
+            //                selectedJkIds.splice(key, 1);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+
+            //$("#SelectedJkIds").val(JSON.stringify(selectedJkIds));
+        });
+
+        $("#cbxJkAll").on("click", function () {
+            $(".cbxJkItem").prop("checked", false);
+            if ($(this).is(":checked")) {
+                $(".cbxJkItem").prop("checked", true);
+            }
+
+            ReflectCheckedJkItem();
+        });
+    }
+
+    function AllowChoosenCv() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+
+        var callbackFn = $("#CallbackFunction").val();
+        if (callbackFn != "") {
+            // find object
+            var fn = window[callbackFn];
+            // is object a function?
+            if (typeof fn === "function") {
+                window[callbackFn](selectedJkIds);
+            }
+        } else {
+            alert("Please define CallbackFunction");
+        }
+    }
+
+    $(function () {
+        InitCbxJkItem();
+    });
+</script>

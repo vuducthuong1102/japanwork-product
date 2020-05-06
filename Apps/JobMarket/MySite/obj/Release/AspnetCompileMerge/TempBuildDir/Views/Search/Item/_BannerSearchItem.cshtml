@@ -1,0 +1,58 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Resources;
+@using MySite.Caching;
+@using MySite.Helpers;
+@model MySite.Models.BannerSearchModel
+
+<input type="hidden" id="hd-search" value="@Model.Keyword" />
+<div class="banner-search">
+    <div class="container">
+        <nav class="navbar">
+            <ul class="_43o4 _4470 nav navbar-nav" role="tablist" width="1012px" style="width: 1012px;">
+                <li data-edge="keywords_search"  data-url="/search/top" class="_5vwz _5vwy _45hc @(Model.TabActive=="top"?"_1hqh":"") tab-control" role="presentation">
+                    <a href="#" role="tab" tabindex="0" class="_3m1v _468f" aria-selected="true">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_ALL</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+
+                <li data-edge="keywords_users" data-url="/search/people" class="_5vwz _45hc @(Model.TabActive=="people"?"_1hqh":"") tab-control" role="presentation">
+                    <a href="#" role="tab" tabindex="-1" class="_3m1v _468f" aria-selected="false">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_People</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+                <li data-edge="keywords_category" data-url="/search/category" class="_5vwz _45hc @(Model.TabActive=="category"?"_1hqh":"") tab-control" role="presentation">
+                    <a href="#" role="tab" tabindex="-1" class="_3m1v _468f" aria-selected="false">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_Category</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+                <li data-edge="keywords_destination" data-url="/search/destination" class="_5vwz _45hc @(Model.TabActive=="destination"?"_1hqh":"") tab-control" role="presentation">
+                    <a href="#" role="tab" tabindex="-1" class="_3m1v _468f" aria-selected="false">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_Destination</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+                <li data-edge="keywords_place" data-url="/search/place" class="_5vwz _45hc @(Model.TabActive=="place"?"_1hqh":"") tab-control" role="presentation">
+                    <a  href="#" role="tab" tabindex="-1" class="_3m1v _468f" aria-selected="false">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_PLACE</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+                <li data-edge="keywords_post" data-url="/search/post" class="_5vwz _45hc @(Model.TabActive=="post"?"_1hqh":"") tab-control" role="presentation">
+                    <a href="#" role="tab" tabindex="-1" class="_3m1v _468f" aria-selected="false">
+                        <div class="_4jq5">
+                            <div class="_4xjz">@UserWebResource.LB_POST</div>
+                        </div><span class="_13xf"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

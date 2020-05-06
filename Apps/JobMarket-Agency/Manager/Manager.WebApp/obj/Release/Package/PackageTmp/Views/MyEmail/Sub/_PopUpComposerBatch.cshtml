@@ -1,0 +1,156 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using Newtonsoft.Json
+@model Manager.WebApp.Models.ManageEmailBatchSendingModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-envelope fz-16"></i> @ManagerResource.LB_SEND_EMAIL
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("BatchSendEmail", "MyEmail", FormMethod.Post, new { @enctype = "multipart/form-data", id="frmBatchSendEmail" }))
+{
+    @Html.AntiForgeryToken() 
+    @Html.HiddenFor(m => m.controller_name)
+    @Html.HiddenFor(m => m.action_name)
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_RECEIVER</label>
+            </div>
+            <div class="col-md-10">
+                <input type="hidden" value="@JsonConvert.SerializeObject(Model.SelectedObjects)" id="SelectedObjects" name="ReceiversJsonList" />
+                <input type="hidden"name="@Html.NameFor(m=>m.target_type)" value="@Model.target_type" />
+                <input type="hidden" name="@Html.NameFor(m=>m.is_online)" value="@Model.is_online" />
+                @*<input type="text" class="form-control" readonly name="@Html.NameFor(m=>m.receiver)" value="@Model.receiver" />*@
+            <div id="ReceiversList">
+                @if (Model.SelectedObjects.HasData())
+                {
+                    foreach (var item in Model.SelectedObjects)
+                    {
+                        <div class="jk-item" data-id="@item.object_id" title="@item.email" id="jk-item-@item.object_id"><div class="jk-item-info">@item.display_name</div>
+                            @*<span class="jk-remove ml5 pointer text-danger" data-id="@item.object_id"><i class="fa fa-remove"></i></span>*@
+                        </div>
+                    }
+                }
+            </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_EMAIL_TITLE</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.subject, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_ATTACHMENT_FILE</label>
+            </div>
+            <div class="col-md-10">
+                <input type="file" class="hidden" multiple name="@Html.NameFor(m=>m.attachments)" id="EmailComposeAttachments" />
+                <a href="javascript:;" id="btnChooseAttachFiles" class="btn btn-sm btn-info"><i class="fa fa-file-archive-o"></i> @ManagerResource.BT_CHOOSE_FILE</a>
+                <span id="lbSelectedFiles"></span>
+            </div>
+        </div>*@
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_EMAIL_CONTENT</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.TextAreaFor(m => m.body, new { @class = "summernote" })
+                @Html.ValidationMessageFor(m => m.body, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+
+        <button type="button" class="btn btn-info " id="btnBatchSend">
+            <i class="fa fa-paper-plane"></i> @ManagerResource.LB_SEND_EMAIL
+        </button>
+
+    </div>
+}
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".summernote").summernote({ height: 300, dialogsInBody: true, });
+        $(".modal").each(function () {
+            if (!$(this).hasClass("fade")) {
+                $(this).find(".modal-header").css("display", "block");
+            }            
+        });
+
+        var imageUploadDiv = $('div.note-group-select-from-files');
+        if (imageUploadDiv.length) {
+            imageUploadDiv.remove();
+        }
+
+        var jkCount = 0;
+        $(".jk-remove").each(function () {
+            jkCount++;
+        });
+
+        if (jkCount <= 1) {
+            $(".jk-remove").remove();
+            return false;
+        }
+    });
+
+    //$("#btnChooseAttachFiles").click(function () {
+    //    $("#EmailComposeAttachments").click();
+    //});
+
+    //$("#EmailComposeAttachments").change(function () {
+    //    var files = $(this)[0].files;
+
+    //    $("#lbSelectedFiles").html(LanguageDic["LB_SELECTED"] + ": " + files.length);
+    //});
+    $("#frmBatchSendEmail").on("submit", function () {
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/MyEmail/BatchSendEmail';
+        params['requestType'] = 'POST';
+        params['data'] = $("#frmBatchSendEmail").serialize();
+
+        params['successCallbackFunction'] = function (result) {
+            if (result.success) {
+                $.showSuccessMessage(result.title, result.message, function () { $("#myModal").modal("hide") });
+            } else {
+                $.showErrorMessage(result.title, result.message, null);
+            }
+        };
+
+        doAjax(params);
+
+        return false;
+    });
+
+    $("#btnBatchSend").on("click", function () {
+         if ($("#frmBatchSendEmail").validate().valid()) {
+           $("#frmBatchSendEmail").submit();
+        }
+        
+        return false;
+    });
+</script>

@@ -1,0 +1,16 @@
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\MsSql.AspNet.Identity.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\MsSql.AspNet.Identity.pdb
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\ApiJobMarket.DB.Sql.Entities.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Manager.SharedLib.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Newtonsoft.Json.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\StackExchange.Redis.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Manager.SharedLib.pdb
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\ApiJobMarket.DB.Sql.Entities.pdb
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\Newtonsoft.Json.xml
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\bin\Debug\StackExchange.Redis.xml
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.csprojAssemblyReference.cache
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.csproj.CopyComplete
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.dll
+C:\Project\Apps\JobMarket-Agency\Manager\MsSql.AspNet.Identity\obj\Debug\MsSql.AspNet.Identity.pdb

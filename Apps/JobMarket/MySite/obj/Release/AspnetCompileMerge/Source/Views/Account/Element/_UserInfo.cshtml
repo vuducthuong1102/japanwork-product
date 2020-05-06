@@ -1,0 +1,78 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@model MySite.Models.Account.ProfileModel
+
+@{
+    /**/
+
+    var isOwner = false;
+    var currentUser = AccountHelper.GetCurrentUser();
+    if (currentUser != null)
+    {
+        if (currentUser.Id == Model.UserInfo.Id)
+        {
+            isOwner = true;
+        }
+    }
+
+}
+@if (Model != null && Model.UserInfo != null)
+{
+    @Html.HiddenFor(m => m.UserInfo.Id, new { @id = "ProfileId" })
+    <div class="profile banner">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="avatar">
+                            <a href="@AccountHelper.GetUserProfileUrl(Model.UserInfo)" title="@Model.UserInfo.DisplayName">
+                                <img src="@CdnHelper.CoreGetFullImgPath(Model.UserInfo.Avatar)" />
+                            </a>
+                        </div>
+                        <div class="infomation">
+                            <p class="fz-18 text-medium">@Model.UserInfo.DisplayName </p>
+                            @*@if (!isOwner && currentUser != null)
+                            {
+                            <div class="fz-16">
+                                <div class="friend-render dlib fll">
+                                    @Html.Partial("../Account/Element/_RenderFriend", Model)
+                                </div>
+                                <div class="follow-render dlib">
+                                    @Html.Partial("../Account/Element/_RenderFollow", Model)
+                                </div>
+                            </div>
+                            }*@
+                            <p class="fz-16 mt5">
+                                <a href="/account/follower/@Model.UserInfo.Id" class="text-dark"><span class="follower text-grey-03 fz-15"><span id="FollowersCount">0</span> @UserWebResource.LB_FOLLOWER.ToLower()</span></a>
+                                <a href="/account/following/@Model.UserInfo.Id" class="text-dark"><span class="following text-grey-03 fz-15"><span id="FollowingsCount">0</span> @UserWebResource.LB_FOLLOWING.ToLower()</span></a>
+                            </p>
+                        </div>
+                    </div>
+
+                    @if (isOwner)
+                    {
+
+                        <div class="col-md-4 text-right">
+                            <div class="dlib dropdown">
+                                <a href="/account/editprofile" class="btn btn-grey btn-none pad10">@UserWebResource.BT_EDIT_PROFILE</a>
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon icon-setting"></i></a>
+                                <ul class="dropdown-menu">
+                                    @if (currentUser != null)
+                                    {
+                                        if (currentUser.SocialProviderId == 0)
+                                        {
+                                            <li><a data-toggle="modal" class="pointer" data-target="#change-password">@UserWebResource.BT_CHANGE_PWD</a></li>
+                                        }
+                                    }
+
+                                    <li><a href="/WebAuth/Logout">@UserWebResource.BT_LOGOUT</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}

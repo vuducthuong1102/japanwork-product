@@ -1,0 +1,103 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageEmailSendingModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-envelope fz-16"></i> @ManagerResource.LB_SEND_EMAIL
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("SendEmail", "MyEmail", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.job_seeker_id)
+    @Html.HiddenFor(m => m.is_online)
+    @Html.HiddenFor(m => m.company_id)
+    @Html.HiddenFor(m => m.tk)
+    @Html.HiddenFor(m => m.controller_name)
+    @Html.HiddenFor(m => m.action_name)
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_RECEIVER</label>
+            </div>
+            <div class="col-md-10">
+                <input type="text" class="form-control" readonly name="@Html.NameFor(m=>m.receiver)" value="@Model.receiver" />
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_EMAIL_TITLE</label>
+            </div>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.subject, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.subject, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_ATTACHMENT_FILE</label>
+            </div>
+            <div class="col-md-10">
+                <input type="file" class="hidden" multiple name="@Html.NameFor(m=>m.attachments)" id="EmailComposeAttachments" />
+                <a href="javascript:;" id="btnChooseAttachFiles" class="btn btn-sm btn-info"><i class="fa fa-file-archive-o"></i> @ManagerResource.BT_CHOOSE_FILE</a>
+                <span id="lbSelectedFiles"></span>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label">@ManagerResource.LB_EMAIL_CONTENT</label>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-12">
+                @Html.TextAreaFor(m => m.body, new { @class = "summernote" })
+                @Html.ValidationMessageFor(m => m.body, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+
+        <button type="submit" class="btn btn-info ">
+            <i class="fa fa-paper-plane"></i> @ManagerResource.LB_SEND_EMAIL
+        </button>
+
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".summernote").summernote({ height: 300 });
+
+        var imageUploadDiv = $('div.note-group-select-from-files');
+        if (imageUploadDiv.length) {
+            imageUploadDiv.remove();
+        }
+    });
+
+    $("#btnChooseAttachFiles").click(function () {
+        $("#EmailComposeAttachments").click();
+    });
+
+    $("#EmailComposeAttachments").change(function () {
+        var files = $(this)[0].files;
+
+        $("#lbSelectedFiles").html(LanguageDic["LB_SELECTED"] + ": " + files.length);
+    });
+</script>

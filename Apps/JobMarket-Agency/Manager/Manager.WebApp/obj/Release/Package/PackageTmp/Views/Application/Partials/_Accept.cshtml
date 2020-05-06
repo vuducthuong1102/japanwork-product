@@ -1,0 +1,70 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs;
+
+@model Manager.WebApp.Models.ApplicationAcceptModel
+
+<div class="modal-header">
+    <h5 class="modal-title text-info" id="">
+        <i class="fa fa-check"></i> @ManagerResource.LB_APPLICATION_CONFIRM_ACCEPT
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 m-form__group--inline">
+                @Html.HiddenFor(m => m.id)
+                @Html.HiddenFor(m => m.cv_id)
+                <div class="form-group row">
+                    <div class="col-md-4">
+                        <label class="form-control-label" for="pic_id">@ManagerResource.LB_PERSON_IN_CHARGE</label>
+                    </div>
+                    <div class="col-md-8">
+                        <select class="form-control selectpicker btn-white" id="pic_id" name="pic_id" data-live-search="true" title="@ManagerResource.LB_SELECT_PIC">
+                            @if (Model.ListStaffs.HasData())
+                            {
+                                <option value="0"> @ManagerResource.LB_SELECT_PIC</option>
+                                foreach (var item in Model.ListStaffs)
+                                {
+
+                                    <option value="@item.StaffId" @(Model.pic_id == item.StaffId ? "selected" : "")> @item.FullName</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info" onclick="return checkBeforeSubmit();">
+            <i class="fa fa-check"></i> @ManagerResource.LB_YES
+        </button>
+        <button type="button" class="btn btn-outline-info" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_NO
+        </button>
+    </div>
+}
+<script>
+    function checkBeforeSubmit() {
+        if ($("#pic_id").val() == "0"||$("#pic_id").val() == "") {
+            $.showErrorMessage(LanguageDic['LB_NOTIFICATION'], LanguageDic['ERROR_ALEAST_ONE_PIC_SELECT'], null);
+            setTimeout(function () {
+                $(".btn-loading").removeClass("btn-loading");
+            }, 500)
+            
+            return false;
+        }
+        return true;
+    }
+
+    $(function () {
+        $(".selectpicker").selectpicker();
+    })
+</script>

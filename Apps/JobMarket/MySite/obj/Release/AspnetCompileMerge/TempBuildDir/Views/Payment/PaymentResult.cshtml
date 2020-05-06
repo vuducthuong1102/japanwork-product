@@ -1,0 +1,153 @@
+﻿@{
+    ViewBag.Title = "Kết quả giao dịch";
+}
+
+<!-- Header Start -->
+<header id="wt-header" class="wt-header wt-haslayout">
+    <div class="wt-navigationarea">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <strong class="wt-logo">
+                        <a href="/">
+                            <img width="200" src="/Content/themes/default/images/logo.svg" alt="Pfood" class="wt-logo__img">
+                            <img width="40" src="/Content/themes/default/images/logo_m.svg" alt="Pfood" class="wt-logo__img wt-logo__img--xs">
+                        </a>
+                    </strong>
+
+                    @Html.AntiForgeryToken()
+                    @using (Html.BeginForm("search", "reportboom", null, FormMethod.Get, new { role = "form", @class = "wt-formtheme wt-formbanner wt-formbannervtwo", @id = "form-search" }))
+                    {
+                        <fieldset>
+                            <div class="form-group">
+                                <input type="text" name="Keyword" value="" id="search-boom" class="form-control" placeholder="Nhập số điện thoại/tên">
+                                <div class="wt-formoptions">
+                                    <button type="submit" class="wt-searchbtn"><i class="lnr lnr-magnifier"></i></button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    }
+                    <a href="javascript:;" class="btn-search-xs"><i class="fa fa-search"></i></a>
+
+                    @Html.Partial("_NavigationMenu")
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!--Header End-->
+<!--Inner Home Banner Start-->
+<div class="wt-haslayout wt-innerbannerholder" style="background-image: url(/Content/themes/default/images/bannerimg/banner-img.jpg)">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12">
+                <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>Kết quả giao dịch</h2></div>
+                    <ol class="wt-breadcrumb">
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="wt-active">Kết quả giao dịch</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Inner Home End-->
+
+<!--Main Start-->
+<main id="wt-main" class="wt-main wt-haslayout wt-innerbgcolor">
+    <div class="wt-main-section wt-paddingtopnull wt-haslayout">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+                    <div class="wt-checkoutformhold">
+                        <div class="wt-checkoutformmain">
+                            <div class="wt-joinforms">
+                                <form class="wt-formtheme wt-formcheckout">
+                                    <fieldset class="wt-checkoutformgroup wt-checkoutformgroup--step1">
+                                        <h4 class="wt-formcheckout__title">
+                                            Chi tiết giao dịch
+                                        </h4>
+
+                                        <div class="form-confirm">
+                                            <div>
+                                                <table>
+                                                    <tr>
+                                                        <td>Hình thức</td>
+                                                        <td>Thanh toán Momo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mức nạp</td>
+                                                        <td>Vip Bạc 200K</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="o-payment-notice o-payment-notice--process hidden">
+                                                <h5 class="o-payment-notice__title">
+                                                    <i class="fa fa-sync-alt fa-w-16 fa-spin"></i>
+                                                    <span>Chúng tôi đang xử lý giao dịch, xin vui lòng chờ!</span>
+                                                </h5>
+                                            </div> 
+                                        </div>                                           
+
+                                        <div class="o-payment-notice o-payment-notice--success hidden">
+                                            <h3 class="o-payment-notice__title">
+                                                <i class="fa fa-check-circle"></i>
+                                                <span>Giao dịch thành công!</span>
+                                            </h3>
+                                        </div>
+                                        <div class="o-payment-notice o-payment-notice--fail hidden">
+                                            <h3 class="o-payment-notice__title">
+                                                <i class="fa fa-exclamation-circle"></i>
+                                                <span>Giao dịch thất bại!</span>
+                                            </h3>
+                                            <em>Lý do: Thông tin giao dịch không hợp lệ, vui lòng kiểm tra lại!</em>
+                                        </div>                                       
+                                                                               
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main End-->
+
+
+@section PageInlineStyles{
+    <style>
+        .popup-processing {
+            position: fixed;
+            width: 45%;
+            padding: 20px;
+            background-color: #fff;
+            margin: 5% auto;
+            left: 0;
+            top: 25%;
+            right: 0;
+            z-index: 999999999;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+        $(function () {
+            ScrollToElement($(".form-confirm"));
+
+            showLoading();
+            var processContainer = $(".o-payment-notice--process");
+            processContainer.addClass("popup-processing").removeClass("hidden");
+            var title = processContainer.find(".o-payment-notice__title");
+
+            setTimeout(function () {
+                hideLoading();
+                processContainer.addClass("hidden");
+                $(".o-payment-notice--success").removeClass("hidden");
+            }, 3000)            
+        });
+</script>
+}

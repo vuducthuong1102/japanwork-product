@@ -1,0 +1,56 @@
+2020-04-25 09:07:30,481 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:07:30,492 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-25 09:07:30,493 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:07:30,632 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:07:30,633 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-25 09:07:30,633 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:10:50,464 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:10:50,541 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:11:04,693 [15] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:11:04,704 [15] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:11:11,025 [15] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-25 09:11:11,034 [15] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-25 09:11:16,588 [15] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-25 09:11:17,669 [24] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:11:17,677 [24] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:11:49,960 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:11:49,970 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:12:14,814 [12] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-04-25 09:14:14,880 [12] ERROR MySite.Services.ApplicationServices - Failed when calling api SendCvAsync - http://localhost:3333/api/applications/send_cv because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 105
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-25 09:14:14,926 [12] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-04-25 09:14:14,966 [12] ERROR MySite.Controllers.JobController - Failed to exec ApplyJob because: MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySite.Controllers.JobController.<ApplyJob>d__10.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\JobController.cs:line 758
+2020-04-25 09:41:17,559 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:41:17,560 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-25 09:41:17,561 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:41:17,657 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:41:17,658 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-25 09:41:17,658 [1] INFO  MySite.Startup - ======================================================
+2020-04-25 09:41:23,547 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:41:23,622 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:44:24,652 [14] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:44:24,664 [14] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:44:32,766 [25] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-25 09:44:32,772 [25] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-25 09:44:35,198 [25] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-25 09:44:40,581 [10] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-25 09:44:40,581 [10] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-25 09:44:40,793 [10] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-25 09:44:41,830 [35] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:44:41,836 [35] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:44:51,311 [15] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:44:51,317 [15] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-25 09:45:02,159 [10] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-04-25 09:45:07,867 [10] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-04-25 09:45:10,831 [23] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-25 09:45:10,837 [23] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

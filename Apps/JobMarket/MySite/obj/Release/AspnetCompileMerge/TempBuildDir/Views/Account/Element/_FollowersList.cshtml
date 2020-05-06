@@ -1,0 +1,61 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Caching;
+@model List<IdentityUser>
+
+@if (Model != null && Model.Count > 0)
+{
+    @RenderFollower()
+}
+
+@helper RenderFollower()
+    {
+        var hasLoggedIn = false;
+        var userInfo = AccountHelper.GetCurrentUser();
+        if (userInfo != null)
+        {
+            hasLoggedIn = true;
+        }
+
+        foreach (var item in Model)
+        {
+            var displayName = (!string.IsNullOrEmpty(item.DisplayName) ? item.DisplayName : item.UserName);
+            var profileURL = AccountHelper.GetUserProfileUrl(item);
+            <div class="col-md-6">
+                <div class="item dltable">
+                    <div class="dltable-cell avatar">
+                        <a href="@profileURL" title="@displayName">
+                            <img src="@item.Avatar">
+                        </a>
+                    </div>
+                    <div class="content dltable-cell">
+                        <p class="text-medium mb0">
+                            <a href="@profileURL" title="@displayName">
+                                @AccountHelper.ParseUserDisplayName(item)
+                            </a>
+                        </p>
+                        <p class="text-grey-02 mb0">Location user: Hà Nội, Việt Nam</p>
+                    </div>
+
+                    @if (!hasLoggedIn)
+                    {
+                        <div class="dltable-cell">
+                            <a href="javascript:;" class="btn btn-none btn-follow btn-primary-hl" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')">@UserWebResource.BT_FOLLOW</a>
+                        </div>
+                    }
+                    else
+                    {
+                        if (!item.IsFollow && item.Id != userInfo.Id)
+                        {
+                            <div class="dltable-cell">
+                                <a href="javascript:;" class="btn btn-none btn-follow btn-primary-hl" onclick="follow(this);" data-user="@item.Id">@UserWebResource.BT_FOLLOW</a>
+                            </div>
+                        }
+                    }
+
+                </div>
+            </div>
+        }
+
+}

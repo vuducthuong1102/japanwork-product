@@ -1,0 +1,75 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@model MySite.Models.JobApplyModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-20" id="exampleModalLabel">
+        <i class="fa fa-paper-plane fz-20"></i> @UserWebResource.LB_JOB_APPLY
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("ApplyJob", "Job", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id)
+    @Html.HiddenFor(m => m.is_invitation)
+    @Html.HiddenFor(m => m.token)
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label class="base-label" style="line-height:30px">@UserWebResource.LB_CHOOSE_CV : </label>
+            </div>
+            @if (Model.Cvs.HasData())
+            {
+                var counter = 0;
+                @*<div class="row">
+                        <div class="col-md-12">
+                            <input type="radio" name="@Html.IdFor(m=>m.cv_id)" id="Cv_@cv.id" value="@cv.id" @((counter == 0) ? "checked" : string.Empty ) /> <label for="Cv_@cv.id">@cv.cv_title</label>
+                            <a href="javascript:;" target="_blank"><i class="fa fa-eye text-info" title="@UserWebResource.LB_VIEW_DETAIL"></i></a>
+                        </div>
+                    </div>*@
+                <div class="col-md-5">
+                    <select class="form-control select2" data-live-search="true" name="@Html.IdFor(m=>m.cv_id)" id="@Html.IdFor(m=>m.cv_id)">
+                        @foreach (var cv in Model.Cvs)
+                        {
+                            <option value="@cv.id">@cv.cv_title</option>
+                            counter++;
+                        }
+                    </select>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-10">
+                    <span>@UserWebResource.LB_HAS_NO_CV_QUEST</span> <a href="@Url.Action("CreateCV","CV")" class="btn btn-sm btn-outline-info"><i class="fa fa-file"> </i> @UserWebResource.LB_CREATE_CV</a>
+                </div>
+            }
+
+        </div>
+
+        @*<div class="form-group row">
+                <div class="col-md-2">
+                    <label class="base-label">@UserWebResource.LB_NOTE</label>
+                </div>
+                <div class="col-md-10">
+                    <textarea class="form-control" name="@Html.IdFor(m=>m.note)"></textarea>
+                </div>
+            </div>*@
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-paper-plane"></i> @UserWebResource.BT_APPLY_JOB
+        </button>
+    </div>
+}
+
+@*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@

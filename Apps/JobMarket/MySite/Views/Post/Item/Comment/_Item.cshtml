@@ -1,0 +1,110 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityComment
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var currentId = AccountHelper.GetCurrentUserId();
+    var hasNoti = false;
+    if (Model.CommentReplys != null && Model.CommentReplys.Count > 0)
+    {
+        hasNoti = true;
+    }
+}
+@if (Model != null)
+{
+    var item = Model;
+    <div class="content">
+        <a href="@AccountHelper.GetUserProfileUrl(item)">
+            <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar">
+        </a>
+        <div class="">
+            <input type="hidden" name="comment-id" value="@item.Id" />
+            <span class="text-bold">
+                <a href="@AccountHelper.GetUserProfileUrl(item)">
+                    @item.DisplayName
+                </a>
+            </span>
+            <span class="time livetimestamp" title="@DateHelpers.FormatToString(item.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(item.CreatedDate)">
+                @DateHelpers.FormatToString(item.CreatedDate)
+            </span>
+            <div class="counter counter-in-cmt">
+                <ul>
+                    @if (hasLoggedIn)
+                    {
+                        var IsActive = "";
+                        var dataislike = 0;
+                        var IsLikeClass = "icon-heart-1";
+                        if (item.IsLike)
+                        {
+                            IsActive = "active";
+                            dataislike = 1;
+                            IsLikeClass = "icon-heart_active";
+                        }
+
+                        <li><a href="javascript:;" class="comment-reply comment-reply-count" data-id="@item.Id" data-count="@item.Comment_Count">@item.Comment_Count<i class="icon icon-rep-cmt"></i></a></li>
+                        <li><a href="javascript:;" class="like-comment @IsActive" data-id="@item.Id" data-like="@item.Like_Count" data-islike="@dataislike"><span>@item.Like_Count</span><i class="icon @IsLikeClass"></i></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;">@item.Comment_Count<i class="icon icon-rep-cmt"></i></a></li>
+                        <li><a href="javascript:;">@item.Like_Count<i class="icon icon-heart-1"></i></a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <p class="cmt-text">@Html.Raw(item.Content)</p>
+
+        @if (item.UserId == currentId)
+        {
+            <div class="action-comment dropdown op">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-edit" role="menuitem">@(UserWebResource.BT_EDIT)...</a></li>
+                    <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-delete" role="menuitem">@(UserWebResource.BT_DELETE)...</a></li>
+                </ul>
+            </div>
+        }
+        <div class="box-load-cmt">
+            @if (item.Comment_Count > 0 && hasLoggedIn)
+            {
+                if (hasNoti)
+                {
+                    <a href="javascript:;" class="load-more reply-load-more show-comment hidden" data-id="@item.Id" data-page="1">@UserWebResource.LB_SHOW_REPLIES <i class="icon icon-arrow-down"></i></a>
+                    if (Model.CommentReplys[0].PrevCount > 0)
+                    {
+                        <a href="javascript:;" class="load-prev load-more reply-noti-prev" data-id="@item.Id" data-page="2">@UserWebResource.LB_VIEW_PREV_REPLIES</a>
+                    }
+                    <a href="javascript:;" class="hide-cmt">@UserWebResource.LB_HIDE_REPLIES <i class="icon icon-arrow-up"></i></a>
+                }
+                else
+                {
+                    <a href="javascript:;" class="load-more reply-load-more show-comment" data-id="@item.Id" data-page="1">@UserWebResource.LB_SHOW_REPLIES <i class="icon icon-arrow-down"></i></a>
+                    @*<a href="javascript:;" class="load-more reply-load-more" data-id="@item.Id" data-page="1">@UserWebResource.BT_Load_More_Comment <span class="icon icon-arrow-down"></span></a>*@
+                    <a href="javascript:;" class="load-prev load-more reply-load-more hidden" data-id="@item.Id" data-page="1">@UserWebResource.LB_VIEW_MORE_REPLIES</a>
+                    <a href="javascript:;" class="hide-cmt hidden">@UserWebResource.LB_HIDE_REPLIES <i class="icon icon-arrow-up"></i></a>
+                }
+            }
+        </div>
+        @*<a href="#" class="load-more">Tải thêm bình luận<i class="icon icon-arrow_down2"></i></a>*@
+        <div class="clearfix"></div>
+    </div>
+    if (hasNoti)
+    {
+        @Html.Partial("../Post/Item/CommentReply/_ListItem", Model.CommentReplys);
+        if (Model.CommentReplys[0].NextCount > 0)
+        {
+            <div>
+                <a href="javascript:;" class="load-prev load-more reply-noti-next" data-id="@item.Id" data-page="1">@UserWebResource.LB_VIEW_MORE_REPLIES</a>
+            </div>
+            <div class="clearfix"></div>
+        }
+    }
+}
+

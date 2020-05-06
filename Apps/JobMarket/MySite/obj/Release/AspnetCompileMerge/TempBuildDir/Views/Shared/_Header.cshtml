@@ -1,0 +1,386 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@using ApiJobMarket.DB.Sql.Entities
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var displayName = AccountHelper.ShowDisplayName(currentUser);
+    var gadientHeader = (ViewBag.GadientHeader != null) ? "gradient" : string.Empty;
+    var navList = FrontendHelpers.GetAllNavigations();
+    var navListByLang = FrontendHelpers.GetCurrentNavigationByLang(navList);
+}
+
+@if (currentUser != null)
+{
+    <div class="profile-sidebar">
+        <span class="close-profile"><i class="la la-close"></i></span>
+        <div class="can-detail-s">
+            <div class="cst"><img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar" /></div>
+            <h3>@displayName</h3>
+            @if (!string.IsNullOrEmpty(currentUser.Email))
+            {
+                <p>
+                    @currentUser.Email
+                </p>
+            }
+
+            <p>@currentUser.Birthday.DateTimeQuestToString("dd/MM/yyyy")</p>
+            @* <p><i class="la la-map-marker"></i>Istanbul / Turkey</p>*@
+        </div>
+        <div class="tree_widget-sec">
+            <ul>
+                @RenderMemberMenuItems()
+            </ul>
+        </div>
+    </div><!-- Profile Sidebar -->
+}
+
+<div class="responsive-header">
+    <div class="responsive-menubar">
+        <div class="res-logo">
+            <a href="/" title="">
+                <img src="~/Content/images/job_market-light.png" alt="" style="width:12em;" />
+            </a>
+        </div>
+        <div class="menu-resaction">
+            <div class="res-openmenu">
+                <img src="~/Content/themes/default/images/icon.png" alt="" /> Menu
+            </div>
+            <div class="res-closemenu">
+                <img src="~/Content/themes/default/images/icon2.png" alt="" /> Close
+            </div>
+        </div>
+    </div>
+    <div class="responsive-opensec custom-scrollbar" style="height:620px;max-height:unset;">
+        @if (currentUser == null)
+        {
+            <div class="btn-extars">
+                @* <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>@UserWebResource.LB_POST_JOB</a>*@
+                <ul class="account-btns">
+                    @*<li class=""><a title="" href="/WebAuth/Register"><i class="la la-key"></i> @UserWebResource.BT_REGISTER</a></li>*@
+                    <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> @UserWebResource.BT_LOGIN</a></li>
+                </ul>
+            </div><!-- Btn Extras -->
+        }
+        else
+        {
+            <div class="my-profiles-sec mb10" title="@displayName">
+                <div>
+                    <img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar">
+                    @displayName
+                </div>
+            </div>
+
+            @*@RenderNotifDropDown()*@
+
+            <div class="btn-extars res-mode">
+                <ul class="account-btns res-mode">
+                    @RenderMemberMenuItems()
+                </ul>
+            </div><!-- Btn Extras -->
+        }
+        @*<form class="res-search">
+                <input type="text" placeholder="Job title, keywords or company name" />
+                <button type="submit"><i class="la la-search"></i></button>
+            </form>*@
+        <div class="responsivemenu">
+            <ul>
+                @RenderMenu(navListByLang)
+
+                @*<li class="">
+                        <a href="/" title="">@UserWebResource.LB_HOME_PAGE</a>
+                    </li>
+                    <li class="">
+                        <a href="/" title="">Blog</a>
+                    </li>*@
+
+                @RenderLanguagesDropdown()
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<header class="@gadientHeader @(string.IsNullOrEmpty(gadientHeader) ? "stick-top forsticky" : "")">
+    <div class="menu-sec">
+        <div class="container">
+            <div class="logo">
+                <a href="/" title="">
+                    @*<img class="hidesticky" src="~/Content/themes/default/images/resource/logo.png" alt="" />
+                        <img class="showsticky" src="~/Content/themes/default/images/resource/logo10.png" alt="" />*@
+
+                    <img class="hidesticky ml15" src="~/Content/images/job_market-light.png" style="width:12em;" alt="" />
+                    <img class="showsticky ml15" src="~/Content/images/job_market-dark.png" style="width:12em;" alt="" />
+                </a>
+            </div><!-- Logo -->
+
+            @if (currentUser == null)
+            {
+                <div class="btn-extars">
+                    @*<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>@UserWebResource.LB_POST_JOB</a>*@
+
+                    <ul class="account-btns">
+                        @*<li class=""><a title="" href="/WebAuth/Register"><i class="la la-key"></i> @UserWebResource.BT_REGISTER</a></li>*@
+                        <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> @UserWebResource.BT_LOGIN</a></li>
+                    </ul>
+                </div><!-- Btn Extras -->
+            }
+            else
+            {
+                <div class="my-profiles-sec" title="@displayName">
+                    <span>
+                        <img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar">
+                        @*@displayName*@
+                        <i class="la la-bars"></i>
+                    </span>
+                </div>
+
+                @RenderNotifDropDown()
+
+                @*<div class="wishlist-dropsec">
+                        <span class="notif-icon"><i class="fa fa-bell"></i><strong class="count-noti hidden">0</strong></span>
+                        <div class="wishlist-dropdown" style="display: none;">
+                            <ul class="scrollbar ss-container box-noti">
+
+                            </ul>
+                        </div>
+                    </div>*@
+            }
+
+            <nav>
+                <ul>
+                    @RenderMenu(navListByLang)
+
+                    @*<li class="">
+                            <a href="/" title="">@UserWebResource.LB_HOME_PAGE</a>
+                        </li>
+                        <li class="">
+                            <a href="/" title="">Blog</a>
+                        </li>*@
+
+                    @RenderLanguagesDropdown()
+                </ul>
+            </nav><!-- Menus -->
+        </div>
+    </div>
+</header>
+
+@helper RenderMemberMenuItems()
+{
+    /**/
+    <li><a href="/member/myprofile" title=""><i class="la la-file-text"></i>@UserWebResource.LB_MY_PROFILE</a></li>
+    <li><a href="/member/wish" title=""><i class="la la-trophy"></i>@UserWebResource.LB_MY_WISH</a></li>
+    <li><a href="/member/resume" title=""><i class="la la-briefcase"></i>@UserWebResource.LB_MY_RESUME</a></li>
+    <li><a href="/member/applied" title=""><i class="la la-paper-plane"></i>@UserWebResource.LB_APPLIED_JOBS</a></li>
+    <li><a href="/member/invitations" title=""><i class="la la-map-o"></i>@UserWebResource.LB_APPLICATION_INVITATION</a></li>
+    @*<li><a href="/member/jobalert" title=""><i class="la la-user"></i>@UserWebResource.LB_JOB_ALERTS</a></li>*@
+    <li> <a href="/member/invitedfriends" title=""><i class="la la-user-plus"></i>@UserWebResource.LB_INVITED_FRIENDS</a></li>
+    <li><a href="/member/mycv" title=""><i class="la la-file-text"></i>@UserWebResource.LB_CV_AND_COVER_LETTER</a></li>
+    <li><a href="/member/mycs" title=""><i class="la la-train"></i>@UserWebResource.LB_CAREER_SHEET</a></li>
+    <li><a href="/member/changepwd" title=""><i class="la la-flash"></i>@UserWebResource.BT_CHANGE_PWD</a></li>
+    <li><a href="/WebAuth/Logout" title=""><i class="la la-sign-out"></i>@UserWebResource.BT_LOGOUT</a></li>
+}
+
+@helper RenderLanguagesDropdown()
+{
+    /**/
+    <li class="nav-item dropdown">
+        @{
+            var langList = LanguagesProvider.GetListLanguages();
+            var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+            var hasLangData = langList.HasData();
+        }
+
+        <a class="nav-link dropdown-toggle pl0" href="javascript:;" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            @if (hasLangData)
+            {
+                foreach (var item in langList)
+                {
+                    if ((currentLang == item.LanguageCultureName))
+                    {
+                        <img class="lang-item-flag" src="~/Content/images/flags/@(item.LanguageCultureName).png" /> @item.LanguageFullName
+                    }
+                }
+            }
+        </a>
+
+        <div class="dropdown-menu dropdown-lang" aria-labelledby="dropdownlang">
+            @{
+                if (hasLangData)
+                {
+                    foreach (var item in langList)
+                    {
+                        <a class="lang-item @((currentLang == item.LanguageCultureName)? "active": string.Empty)" style="@((currentLang == item.LanguageCultureName)? "color:#fff !important": string.Empty)" href="@((currentLang != item.LanguageCultureName) ? "/home/changelanguage?lang=" + item.LanguageCultureName: "javascript:;")">
+                            <img class="lang-item-flag" src="~/Content/images/flags/@(item.LanguageCultureName).png" /> @item.LanguageFullName
+                        </a>
+                    }
+                }
+            }
+
+        </div>
+    </li>
+}
+
+@helper RenderMenu(List<IdentityNavigation> navListByLang)
+{
+
+    if (navListByLang.HasData())
+    {
+        foreach (var mi in navListByLang)
+        {
+            if (mi.Visible)
+            {
+                @RenderTopMenuItem(mi);
+            }
+        }
+    }
+}
+
+@helper RenderTopMenuItem(IdentityNavigation mi)
+{
+    var absoluteUrl = mi.CurrentAbsoluteUriLang.ToAbsoluteUrl();
+    var active = (FrontendHelpers.CheckCurrentAction(mi) || ViewBag.AbsolutePath == absoluteUrl) ? "active" : "";
+    var itemUrl = string.Empty;
+    if (mi.HasVisbleChildren)
+    {
+        itemUrl = "javascript:;";
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(mi.CurrentAbsoluteUriLang))
+        {
+            itemUrl = mi.CurrentAbsoluteUriLang;
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(mi.CurrentAbsoluteUriLang))
+            {
+                itemUrl = mi.CurrentAbsoluteUriLang;
+            }
+            else
+            {
+                itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ? Url.Action(mi.Action, mi.Controller) : "javascript:;";
+            }
+        }
+    }
+
+    var loginRequired = (mi.CssClass.Contains("unauthorized") && !User.Identity.IsAuthenticated);
+    var itemClass = mi.CssClass;
+    if (loginRequired)
+    {
+        itemUrl = "javascript:;";
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(mi.CssClass))
+        {
+            itemClass = mi.CssClass.Replace("unauthorized", "");
+        }
+    }
+    <li class="@active" id="nav-item-@mi.Id">
+        <a href="@itemUrl" class="@itemClass">
+            <div>@mi.CurrentTitleLang</div>
+        </a>
+
+        @if (mi.HasVisbleChildren)
+        {
+            <ul>
+                @foreach (var smi in mi.SubNavigation)
+                {
+                    if (smi.Visible)
+                    {
+                        @RenderSubMenuItem(smi);
+                    }
+                }
+            </ul>
+        }
+    </li>
+}
+
+@helper RenderSubMenuItem(IdentityNavigation mi)
+{
+    var absoluteUrl = mi.CurrentAbsoluteUriLang.ToAbsoluteUrl();
+
+    var active = (FrontendHelpers.CheckCurrentAction(mi) || ViewBag.AbsolutePath == absoluteUrl) ? "active" : "";
+    var itemUrl = string.Empty;
+    if (mi.HasVisbleChildren)
+    {
+        itemUrl = "javascript:;";
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(mi.CurrentAbsoluteUriLang))
+        {
+            itemUrl = mi.CurrentAbsoluteUriLang;
+        }
+        else
+        {
+            if (!string.IsNullOrEmpty(mi.CurrentAbsoluteUriLang))
+            {
+                itemUrl = mi.CurrentAbsoluteUriLang;
+            }
+            else
+            {
+                itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ? Url.Action(mi.Action, mi.Controller) : "javascript:;";
+            }
+        }
+    }
+
+    var loginRequired = (mi.CssClass.Contains("unauthorized") && !User.Identity.IsAuthenticated);
+    var itemClass = mi.CssClass;
+    if (loginRequired)
+    {
+        itemUrl = "javascript:;";
+    }
+    else
+    {
+        if (!string.IsNullOrEmpty(mi.CssClass))
+        {
+            itemClass = mi.CssClass.Replace("unauthorized", "");
+        }
+    }
+    <li class="sub-menu-item @active" data-parent="@mi.ParentId">
+        <a href="@itemUrl" class="@itemClass"><div>@mi.CurrentTitleLang</div></a>
+        @if (mi.HasVisbleChildren)
+        {
+            <ul>
+                @foreach (var smi in mi.SubNavigation)
+                {
+                    if (smi.Visible)
+                    {
+                        @RenderSubMenuItem(smi);
+                    }
+                }
+            </ul>
+        }
+    </li>
+}
+
+@helper RenderNotifDropDown()
+{
+    <div class="notif-dropdown">
+        <div class="dropdown">
+            <a href="#" class="dropdown-toggle notif-icon" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class=""><i class="fa fa-bell"></i></span>
+                <div class="count-noti count-noti-str hidden">0</div>
+            </a>
+            <ul class="dropdown-menu notify-drop">
+                <span class="dropdown-menu-arrow"></span>
+                <div class="notify-drop-title">
+                    <div class="row">
+                        <div class="col-md-12 text-center text-info"><i class="fa fa-bell"></i> @UserWebResource.LB_NOTIFICATION</div>
+                        @*<div class="col-md-6 col-sm-6 col-xs-6 text-right"><a href="" class="rIcon allRead" data-tooltip="tooltip" data-placement="bottom" title="tümü okundu."><i class="fa fa-dot-circle-o"></i></a></div>*@
+                    </div>
+                </div>
+                <!-- end notify title -->
+                <!-- notify content -->
+                <div class="drop-content box-noti"></div>
+                <div class="notify-drop-footer text-center">
+                    @*<a href=""><i class="fa fa-eye"></i> @UserWebResource.LB_VIEW_ALL</a>*@
+                </div>
+            </ul>
+        </div>
+    </div>
+}

@@ -1,0 +1,328 @@
+﻿@using MySite.Helpers;
+@using MySite.ShareLibs;
+@using MySite.Settings;
+@using MySite.Resources;
+@using MySite.Caching;
+
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPost
+
+@if (Model != null)
+{
+    var locStr = PostHelper.ParseTitleMetaFromPost(Model);
+    var userInfo = AccountHelper.GetCurrentUser();
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+
+    var relativePath = baseUrl + PostHelper.GetFriendlyUrl(Model);
+    //var shareFbUrl = string.Format("https://www.facebook.com/sharer/sharer.php?u={0}", HttpUtility.UrlEncode(relativePath));
+    //var shareFbUrl = string.Format("https://www.facebook.com/sharer/sharer.php?u={0}", "https://haloplan.com/le-anh-dung-12/post/deo-15-tang-o-cao-bang.20180824696");
+    var friendlyUrl = PostHelper.GetFriendlyUrl(Model);
+
+    <div class="item post-item-@Model.Id">
+        <div class="head dropdown">
+            @{
+                var displayName = (!string.IsNullOrEmpty(Model.DisplayName) ? Model.DisplayName : Model.UserName);
+                var userName = PostHelper.ParsePostOwnerInfo(Model);
+                var profileURL = AccountHelper.GetUserProfileUrl(Model);
+            }
+            <div class="col-xs-6 owner">
+                <a href="@profileURL" title="@displayName">
+                    <img src="@CdnHelper.CoreGetFullImgPath(Model.Avatar)" alt="avatar" class="avatar" />
+                </a>
+                <a href="@profileURL" title="@displayName">
+                    <p class="name">
+                        @userName
+                    </p>
+                </a>
+                <a href="@friendlyUrl">
+                    <p class="time livetimestamp-title" title="@DateHelpers.FormatToString(Model.CreatedDate,EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(Model.CreatedDate)">
+                        @DateHelpers.FormatToStringTitle(Model.CreatedDate)
+                    </p>
+                </a>
+            </div>
+            <div class="col-xs-6 text-right padt20">
+                @if (userInfo != null)
+                {
+                    if (userInfo.Id == Model.UserId)
+                    {
+                        <a href="#" class="dropdown-toggle mr5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im-4"></i></a>
+                        <ul class="dropdown-menu">
+                            @if (userInfo != null)
+                            {
+                                if (userInfo.Id == Model.UserId)
+                                {
+                                    <li class="text-center"><a href="javascript:;" class="modify-post" data-id="@Model.Id" title="@UserWebResource.BT_MODIFY">@UserWebResource.BT_MODIFY</a></li>
+                                    <li class="text-center"><a href="javascript:;" class="remove-post" data-id="@Model.Id" title="@UserWebResource.BT_DELETE_POST">@UserWebResource.BT_DELETE_POST</a></li>
+                                }
+                            }
+                        </ul>
+                    }
+                }
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="content" data-id="@Model.Id">
+            <a href="@friendlyUrl">
+                <p class="text-center text-bold fz-16 mb0">@Model.Title</p>
+            </a>
+            <p class="text-center fz-16 text-semibold mb5">
+                @locStr
+                @if (Model.RatingScore > 0)
+                {
+                    <span class="sp-rate-core">
+                        - @Model.RatingScore <span class="icon icon-star fz-16"></span>
+                    </span>
+                }
+            </p>
+            @if (Model.ListLocations != null && Model.ListLocations.Count > 0)
+            {
+
+                <p>
+                    <span class="icon icon-location fz-14 ml10"></span>
+                    <span class="text-grey-03"> - @userName @UserWebResource.LB_VISITED: </span>
+                    @for (int i = 0; i < Model.ListLocations.Count; i++)
+                    {
+                        var item = Model.ListLocations[i];
+                        var urlfriendly = "/destination/";
+                        urlfriendly += item.GName.ConvertToUrlFriendly() + "." + item.Id;
+
+                        if (i == 0)
+                        {
+                            <a href="@urlfriendly" target="_blank" class="text-blue" title="@item.GFullName">@item.GName</a>
+                        }
+                        else
+                        {
+                            <span>, </span><a href="@urlfriendly" target="_blank" class="text-blue" title="@item.GFullName">@item.GName</a>
+                        }
+                    }
+
+                </p>
+            }
+
+            @RenderImages()
+            <div class="desc word-break pad15 text-semibold">
+                @*@Html.Raw(PostHelper.ParseDescriptionFromPost(Model))*@
+
+                @Html.Raw(HtmlRemoval.RemoveTags(HtmlHelpers.ShowHtmlTextByLimit(Model.Description, 220)))
+
+                @if (Model.Description.Length >= 220)
+                {
+                    <a href="/post/getinfo/@Model.Id" class="post-viewmore" target="_blank"> @UserWebResource.LB_VIEWMORE</a>
+                }
+
+            </div>
+            @*<div class="opacity content-popup-detail" data-id="@Model.Id">
+                    <div class="content">
+                        <p class="title word-break">@Model.Title</p>
+                        <p class="sub-title word-break">
+                            <img src="~/Content/themes/default/assets/images/img/clock-white.png" class="icon-clock-white" />
+
+                            @if (!string.IsNullOrEmpty(locStr))
+                            {
+                                <span class="fz-16 uppercase fll">@locStr - </span>
+                            }
+
+                            <span class="sp-rate-core">
+                                @Html.Partial("~/Views/Post/Item/_RatetingScoreItem.cshtml", Model)
+                            </span>
+
+                        </p>
+
+                    </div>
+                </div>*@
+
+        </div>
+        <div class="footer">
+            @*@{
+                    var displayName = (!string.IsNullOrEmpty(Model.DisplayName) ? Model.DisplayName : Model.UserName);
+                    var userName = PostHelper.ParsePostOwnerInfo(Model);
+                    var profileURL = AccountHelper.GetUserProfileUrl(Model.UserId);
+                }*@
+            @{
+                var hasLoggedIn = false;
+                if (UserCookieManager.IsAuthenticated())
+                {
+                    hasLoggedIn = true;
+                }
+
+                var ClassLike = "icon icon-heart-1 fz-18";
+                var IsActive = "";
+                var dataislike = 0;
+                if (Model.IsLike)
+                {
+                    ClassLike = "icon icon-heart_active fz-18 active";
+                    IsActive = "active";
+                    dataislike = 1;
+                }
+            }
+            <div class="col-md-6 counter">
+                @*<a href="@profileURL" title="@displayName">
+                        <img src="@CdnHelper.CoreGetFullImgPath(Model.Avatar)" alt="avatar" class="avatar" />
+                    </a>
+                    <a href="@profileURL" title="@displayName">
+                        <p class="name">
+                            @userName
+                        </p>
+                    </a>
+                    <p class="time livetimestamp-title" title="@DateHelpers.FormatToString(Model.CreatedDate,EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(Model.CreatedDate)">
+                        @DateHelpers.FormatToStringTitle(Model.CreatedDate)
+                    </p>*@
+                <ul class="fll">
+                    @if (hasLoggedIn)
+                    {
+                        <li class="ml0">
+                            <a href="@friendlyUrl" title="@UserWebResource.LB_COMMENT" class="" target="_blank" data-count="@Model.Comment_Count">
+                                <i class="icon icon-comment fz-18"></i>
+                                @NumberHelpers.NumberReformat(Model.Comment_Count)
+                            </a>
+                        </li>
+
+                    }
+                    else
+                    {
+                        <li class="ml0">
+                            <a href="@friendlyUrl" title="@UserWebResource.LB_COMMENT" class="" target="_blank" data-count="@Model.Comment_Count">
+                                <i class="icon icon-comment fz-18"></i>
+                                @NumberHelpers.NumberReformat(Model.Comment_Count)
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="col-md-6 counter">
+                <ul>
+                    @if (hasLoggedIn)
+                    {
+                        <li><a href="javascript:;" class="like-post @IsActive" title="@UserWebResource.LB_LIKE" data-id="@Model.Id" data-like="@Model.Like_Count" data-islike="@dataislike">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+                        <li class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle" title="@UserWebResource.LB_SHARE_SOCIAL" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span class="share_count">@NumberHelpers.NumberReformat(Model.Share_Count)</span>
+                                <i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span>
+                            </a>
+                            <ul class="dropdown-menu share">
+                                <li class="text-center"><a href="javascript:;" title="@UserWebResource.LB_SHARE_SOCIAL">@UserWebResource.LB_SHARE_SOCIAL</a></li>
+                                <li class="share text-center">
+                                     <a data-link="@relativePath" title="@UserWebResource.LB_SHARE_ON_FB" class="share-social share_fb pointer" data-id="@Model.Id">
+                                        <i class="i1 iag"></i>
+                                    </a>
+                                    <a href="https://plus.google.com/share?url=@HttpUtility.UrlEncode(relativePath)" class="share-social" title="@UserWebResource.LB_SHARE_ON_GOOGLE" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                        <i class="i1 iz"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="@UserWebResource.LB_SAVED" role="button" aria-haspopup="true" aria-expanded="false">
+                                @NumberHelpers.NumberReformat(Model.Saved_Count)
+                                <i class="icon icon-share"></i>
+                                <span class="icon icon-arrow-down2"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:;" data-id="@Model.Id" title="@UserWebResource.BT_SAVEPOST" class="action-save-post">@UserWebResource.BT_SAVEPOST</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_LIKE">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+                        <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_SHARE_SOCIAL">@NumberHelpers.NumberReformat(Model.Share_Count)<i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span></a></li>
+                        <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_SAVED">@NumberHelpers.NumberReformat(Model.Saved_Count)<i class="icon icon-share"></i><span class="icon icon-arrow-down2"></span></a></li>
+                    }
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+}
+@helper RenderMoreImage()
+    {
+
+        if (Model.Images != null && Model.Images.Count() > 4)
+        {
+            <div class="more-image">
+                <h3>
+                    @(Model.Images.Count() - 4)+
+                </h3>
+            </div>
+        }
+}
+@helper RenderImages()
+    {
+        var maxcount = 4;
+        if (Model.Images != null && Model.Images.Count > 0)
+        {
+            var imageCount = Model.Images.Count;
+
+            if (maxcount > imageCount)
+            {
+                maxcount = imageCount;
+            }
+            if (maxcount == 1)
+            {
+                var img = Model.Images[0];
+                <div class="gallery">
+                    <div class="content-gallery">
+                        <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" alt="@Model.Title" class="lazy content-popup-detail" data-id="@Model.Id" />
+                    </div>
+                    @RenderCate()
+                </div>
+            }
+            else
+            {
+                <div class="gallery gallery-@maxcount">
+                    <div class="content-gallery">
+                        @{
+                            var img = Model.Images[0];
+                            var className = "img-100";
+                        }
+                        <div class="item @className">
+                            <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" class="lazy content-popup-detail" alt="@Model.Title" data-id="@Model.Id" />
+                        </div>
+                        @for (int i = 1; i < maxcount; i++)
+                        {
+                            img = Model.Images[i];
+                            if (maxcount == 2)
+                            {
+                                className = "img-100";
+                            }
+                            else if (maxcount == 3)
+                            {
+                                className = "img-50";
+                            }
+                            else if (maxcount == 4)
+                            {
+                                className = "img-30";
+                            }
+
+                            <div class="item @className">
+                                <img data-src="@CdnHelper.SocialGetFullImgPath(img.Url)" src="@CdnHelper.SocialGetFullImgPath(img.Url)" class="lazy content-popup-detail" alt="@Model.Title" data-id="@Model.Id" />
+                                @if (i == 3)
+                                {
+                                    @RenderMoreImage()
+                                }
+                            </div>
+                        }
+                    </div>
+                    @RenderCate()
+
+                </div>
+            }
+
+        }
+}
+
+@helper RenderCate()
+    {
+        if (!string.IsNullOrEmpty(Model.CategoryName))
+        {
+            if (!string.IsNullOrEmpty(Model.CategoryFriendlyUrl))
+            {
+                <a class="post-cat" href="/discover/@Model.CategoryFriendlyUrl" title="@Model.CategoryName">
+                    <span class="category">@Model.CategoryName</span>
+                </a>
+            }
+            else
+            {
+                <span class="category">@Model.CategoryName</span>
+            }
+        }
+}

@@ -1,0 +1,97 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@model CommonCustomFieldModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+       <i class="fa fa-plus fz-20"></i> @ManagerResource.LB_CUSTOMFIELD_ADD
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { id = "frmAddCustomField" }))
+{
+    @Html.AntiForgeryToken()
+<div class="modal-body pt5">
+    <div class="row">
+        <div class="col-md-12 m-form__group--inline">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control m-form-input mb5" })
+                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 m-form__group--inline">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Key, new { @class = "form-control-label" })
+                @Html.TextBoxFor(m => m.Key, new { @class = "form-control m-form-input mb5" })
+                @Html.ValidationMessageFor(m => m.Key, null, new { @class = "text-danger" })
+                <br />
+                <i>*** @ManagerResource.LB_CUSTOMFIELD_KEY_DES</i>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 m-form__group--inline">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Type, new { @class = "form-control-label" })
+                <select id="@Html.IdFor(m=>m.Type)" name="@Html.NameFor(m=>m.Type)" title="@ManagerResource.LB_SELECT_DATA_TYPE" style="width:100%" class="form-control " data-live-search="true">
+                    <option value="text">@ManagerResource.LB_TEXT</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="modal-footer pt10">
+        <button type="button" class="btn btn-sm btn-info" id="btnAllowAddField"><i class="fa fa-check"></i> @ManagerResource.BT_ALLOW </button>
+        <button type="button" class="btn btn-outline-info btn-sm" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+        </button>
+    </div>
+}
+
+<script src="/Scripts/jquery.validate.min.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    $(function () {
+        $(".selectpicker").selectpicker();
+        $("#frmAddCustomField").on("submit", function () {
+            if (!$(this).valid()) {
+                return false;
+            }
+
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Master/AddCustomField';
+            params['requestType'] = 'POST';
+            params['data'] = $(this).serialize();
+            params['dataType'] = "json";
+            params['successCallbackFunction'] = function (result) {
+                if (result) {
+                    if (result.html) {
+                        var container = $(".customFieldsList");                        
+                        container.append(result.html);
+
+                        ReflectCustomField();
+                    }
+                }
+
+                $("#myModal").modal("hide");
+            };
+
+            doAjax(params);
+
+            return false;
+        });
+
+        $("#btnAllowAddField").click(function () {
+            $("#frmAddCustomField").submit();
+        });
+    });
+</script>

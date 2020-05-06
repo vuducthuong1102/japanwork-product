@@ -1,0 +1,47 @@
+2020-01-15 10:51:18,205 [1] INFO  MySite.Startup - ======================================================
+2020-01-15 10:51:18,216 [1] INFO  MySite.Startup - MySite is starting up
+2020-01-15 10:51:18,217 [1] INFO  MySite.Startup - ======================================================
+2020-01-15 10:51:18,330 [1] INFO  MySite.Startup - ======================================================
+2020-01-15 10:51:18,331 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-01-15 10:51:18,332 [1] INFO  MySite.Startup - ======================================================
+2020-01-15 10:51:24,641 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:51:24,641 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:51:24,656 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:51:24,656 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:51:34,195 [11] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-15 10:51:34,201 [11] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-15 10:51:36,340 [11] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-15 10:51:40,649 [5] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-15 10:51:40,650 [5] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-15 10:51:40,662 [5] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-15 10:51:44,758 [11] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-01-15 10:51:44,759 [11] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-01-15 10:51:44,857 [11] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-01-15 10:51:45,900 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:51:45,907 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:51:52,375 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:51:52,380 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:51:58,749 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:51:58,754 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:56:01,239 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:56:01,244 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:56:12,147 [48] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:56:12,151 [48] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:59:02,271 [55] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:59:02,276 [55] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:59:08,584 [56] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:59:08,589 [56] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 10:59:17,017 [49] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 10:59:17,021 [49] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:02:55,014 [62] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:02:55,018 [62] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:06:45,443 [53] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:06:45,454 [53] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:06:59,034 [72] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:06:59,039 [72] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:07:09,630 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:07:09,636 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:07:19,079 [74] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:07:19,084 [74] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-01-15 11:07:28,367 [74] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-01-15 11:07:28,373 [74] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="APPLICATION_STATUS_ACTIVE" xml:space="preserve">
+    <value>Applied</value>
+  </data>
+  <data name="APPLICATION_STATUS_CANCEL" xml:space="preserve">
+    <value>Cancelled</value>
+  </data>
+  <data name="APPLICATION_STATUS_IGNORE" xml:space="preserve">
+    <value>Ignore</value>
+  </data>
+  <data name="APPLICATION_STATUS_INTERVIEW" xml:space="preserve">
+    <value>Waiting for the interview</value>
+  </data>
+  <data name="COMMON_AUTH_SUCCESS" xml:space="preserve">
+    <value>Authenticate successfully</value>
+  </data>
+  <data name="COMMON_CHANGEPWD_SUCCESS" xml:space="preserve">
+    <value>Password is changed successfully</value>
+  </data>
+  <data name="COMMON_ERROR_CONFIRMPWD_INCORRECT" xml:space="preserve">
+    <value>Confirm password doesn't match. Type again</value>
+  </data>
+  <data name="COMMON_ERROR_EMAIL_NULL" xml:space="preserve">
+    <value>Email could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_HASH_INCORRECT" xml:space="preserve">
+    <value>Your HashingData is incorrect</value>
+  </data>
+  <data name="COMMON_ERROR_HASH_NULL" xml:space="preserve">
+    <value>Hash data could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_INACTIVE_ACCOUNT" xml:space="preserve">
+    <value>Your account hasn't been activated</value>
+  </data>
+  <data name="COMMON_ERROR_INPUT_DATA_NULL" xml:space="preserve">
+    <value>The input data could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_LESS_6_CHARACTERS" xml:space="preserve">
+    <value>This field could not be less than 6 characters</value>
+  </data>
+  <data name="COMMON_ERROR_LIMIT_PAGE_INDEX" xml:space="preserve">
+    <value>The page index must between 1-50</value>
+  </data>
+  <data name="COMMON_ERROR_LIMIT_PAGE_SIZE" xml:space="preserve">
+    <value>The page size must between 1-50</value>
+  </data>
+  <data name="COMMON_ERROR_NULL_VALUE" xml:space="preserve">
+    <value>is required</value>
+  </data>
+  <data name="COMMON_ERROR_NUMBER_INT" xml:space="preserve">
+    <value>Please enter valid integer Number</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD1_NOTCORRECT" xml:space="preserve">
+    <value>Your old password 1 is not correct</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD2_NOTCORRECT" xml:space="preserve">
+    <value>Your old password 2 is not correct</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD_EQUAL_NEWPWD" xml:space="preserve">
+    <value>The new password matches with the old password</value>
+  </data>
+  <data name="COMMON_ERROR_OTPACTION_NULL" xml:space="preserve">
+    <value>OTPAction could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_OTPCODE_NULL" xml:space="preserve">
+    <value>OTPCode could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_OTPTYPE_INVALID" xml:space="preserve">
+    <value>OTPType is ivalid</value>
+  </data>
+  <data name="COMMON_ERROR_OTPTYPE_NULL" xml:space="preserve">
+    <value>OTPType  could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_OVER_1000_CHARACTERS" xml:space="preserve">
+    <value>This field could not be more than 1000 characters</value>
+  </data>
+  <data name="COMMON_ERROR_OVER_50_CHARACTERS" xml:space="preserve">
+    <value>This field could not be more than 50 characters</value>
+  </data>
+  <data name="COMMON_ERROR_PASSWORD_NULL" xml:space="preserve">
+    <value>Password could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_PHONENUMBER_NULL" xml:space="preserve">
+    <value>Phone could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_PHONE_INVALID" xml:space="preserve">
+    <value>Your phone is invalid</value>
+  </data>
+  <data name="COMMON_ERROR_POST_ACTION_NOTFOUND" xml:space="preserve">
+    <value>Not found post action</value>
+  </data>
+  <data name="COMMON_ERROR_PWDTYPE_INVALID" xml:space="preserve">
+    <value>Your PwdType is invalid. Correct value are: 'level1' or 'level2'</value>
+  </data>
+  <data name="COMMON_ERROR_PWDTYPE_NULL" xml:space="preserve">
+    <value>PasswordType could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_RECOVERPWD_METHOD_INVALID" xml:space="preserve">
+    <value>The recover password method is invalid</value>
+  </data>
+  <data name="COMMON_ERROR_SYSTEM" xml:space="preserve">
+    <value>System is busy now. Please try again later.</value>
+  </data>
+  <data name="COMMON_ERROR_TIME_INVALID" xml:space="preserve">
+    <value>Your Time is invalid</value>
+  </data>
+  <data name="COMMON_ERROR_TIME_NULL" xml:space="preserve">
+    <value>Time could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_TOKEN_INVALID" xml:space="preserve">
+    <value>Your token is invalid</value>
+  </data>
+  <data name="COMMON_ERROR_TOKEN_NULL" xml:space="preserve">
+    <value>TokenKey could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_UPLOAD_FILES" xml:space="preserve">
+    <value>An error has been occurred when trying to upload files</value>
+  </data>
+  <data name="COMMON_ERROR_USERID_NULL" xml:space="preserve">
+    <value>UserId could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_USERNAME_NULL" xml:space="preserve">
+    <value>Username could not be null</value>
+  </data>
+  <data name="COMMON_ERROR_USERTOKEN_NOTFOUND" xml:space="preserve">
+    <value>The session has expired. Please sign in and try again</value>
+  </data>
+  <data name="COMMON_INFO_NOTFOUND" xml:space="preserve">
+    <value>The info was not found</value>
+  </data>
+  <data name="COMMON_OTPCODE_FORMAT" xml:space="preserve">
+    <value>[Api] Your OTP code is {0}</value>
+  </data>
+  <data name="COMMON_SUCCESS" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="COMMON_SUCCESS_CHANGEPWD2" xml:space="preserve">
+    <value>Your password2 has been changed successfully</value>
+  </data>
+  <data name="COMMON_SUCCESS_OTPCODE_SENT" xml:space="preserve">
+    <value>A new OTP code has sent to your phone [{0}]. Please verify this code.</value>
+  </data>
+  <data name="COMMON_USERNAME_EXISTED" xml:space="preserve">
+    <value>UserName existed</value>
+  </data>
+  <data name="COMMON_USERNAME_NOT_EXISTED" xml:space="preserve">
+    <value>UserName not exists</value>
+  </data>
+  <data name="DELETE_SUCCESS" xml:space="preserve">
+    <value>Deleted successfully</value>
+  </data>
+  <data name="ERROR_E000101" xml:space="preserve">
+    <value>Error when connect to server</value>
+  </data>
+  <data name="ERROR_E000102" xml:space="preserve">
+    <value>Internal server error</value>
+  </data>
+  <data name="ERROR_E000103" xml:space="preserve">
+    <value>Token invalid</value>
+  </data>
+  <data name="ERROR_E000104" xml:space="preserve">
+    <value>No permission</value>
+  </data>
+  <data name="ERROR_E000105" xml:space="preserve">
+    <value>User not found</value>
+  </data>
+  <data name="ERROR_E000106" xml:space="preserve">
+    <value>Unsuccessfully</value>
+  </data>
+  <data name="ERROR_E000107" xml:space="preserve">
+    <value>Bad request</value>
+  </data>
+  <data name="ERROR_E000108" xml:space="preserve">
+    <value>Foreign key does not exist</value>
+  </data>
+  <data name="ERROR_E000109" xml:space="preserve">
+    <value>Wrong data type or range</value>
+  </data>
+  <data name="ERROR_E000110" xml:space="preserve">
+    <value>Lack of searching conditions</value>
+  </data>
+  <data name="ERROR_E000111" xml:space="preserve">
+    <value>Lack of data fields</value>
+  </data>
+  <data name="ERROR_E000112" xml:space="preserve">
+    <value>This data does not exists</value>
+  </data>
+  <data name="ERROR_E010101" xml:space="preserve">
+    <value>Wrong email or password</value>
+  </data>
+  <data name="ERROR_E010102" xml:space="preserve">
+    <value>Account is not active</value>
+  </data>
+  <data name="ERROR_E010103" xml:space="preserve">
+    <value>Do not have admin pemission for login</value>
+  </data>
+  <data name="ERROR_E010104" xml:space="preserve">
+    <value>Do not have permission to access email of Facebook account</value>
+  </data>
+  <data name="ERROR_E010105" xml:space="preserve">
+    <value>Do not have permission to access email of Google account</value>
+  </data>
+  <data name="ERROR_E010201" xml:space="preserve">
+    <value>Wrong email format</value>
+  </data>
+  <data name="ERROR_E010202" xml:space="preserve">
+    <value>Email already existed</value>
+  </data>
+  <data name="ERROR_E010203" xml:space="preserve">
+    <value>Could not send activation email</value>
+  </data>
+  <data name="ERROR_E010301" xml:space="preserve">
+    <value>Incorrect authentication code please check the link</value>
+  </data>
+  <data name="ERROR_E010302" xml:space="preserve">
+    <value>This account already activated</value>
+  </data>
+  <data name="ERROR_E010303" xml:space="preserve">
+    <value>Your account has been successfully activated. Please log in again on the app</value>
+  </data>
+  <data name="ERROR_E010401" xml:space="preserve">
+    <value>You have already changed your password</value>
+  </data>
+  <data name="ERROR_E010402" xml:space="preserve">
+    <value>Incorrect authentication code please check the link</value>
+  </data>
+  <data name="ERROR_E010403" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="ERROR_E010501" xml:space="preserve">
+    <value>This account is not exist</value>
+  </data>
+  <data name="ERROR_E010502" xml:space="preserve">
+    <value>This account has not been activated yet</value>
+  </data>
+  <data name="ERROR_E010503" xml:space="preserve">
+    <value>Error sending email</value>
+  </data>
+  <data name="ERROR_E010504" xml:space="preserve">
+    <value>Email was sent successfully please check your mailbox again</value>
+  </data>
+  <data name="ERROR_E010601" xml:space="preserve">
+    <value>Email format is incorrect, please check again</value>
+  </data>
+  <data name="ERROR_E010602" xml:space="preserve">
+    <value>Authentication was sent, please check your mailbox</value>
+  </data>
+  <data name="ERROR_E020101" xml:space="preserve">
+    <value>Description already existed</value>
+  </data>
+  <data name="ERROR_E030101" xml:space="preserve">
+    <value>This CV is not exists</value>
+  </data>
+  <data name="ERROR_E030102" xml:space="preserve">
+    <value>code_id already existed</value>
+  </data>
+  <data name="ERROR_E030103" xml:space="preserve">
+    <value>code_id has been saved</value>
+  </data>
+  <data name="ERROR_E030104" xml:space="preserve">
+    <value>code_id is not exists</value>
+  </data>
+  <data name="ERROR_E030105" xml:space="preserve">
+    <value>Image file size does not exceed 50MB</value>
+  </data>
+  <data name="ERROR_E040101" xml:space="preserve">
+    <value>Wrong user_id or work_status</value>
+  </data>
+  <data name="ERROR_E050101" xml:space="preserve">
+    <value>This job is not exists</value>
+  </data>
+  <data name="ERROR_E050102" xml:space="preserve">
+    <value>This job already applied</value>
+  </data>
+  <data name="ERROR_E050103" xml:space="preserve">
+    <value>This job already saved</value>
+  </data>
+  <data name="ERROR_E060101" xml:space="preserve">
+    <value>This company is not exists</value>
+  </data>
+  <data name="ERROR_E070101" xml:space="preserve">
+    <value>Career sheet not found</value>
+  </data>
+  <data name="ERROR_FIELD_NOT_NULL_REQUIRED" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="ERROR_INVITATION_LIMIT_FORMAT" xml:space="preserve">
+    <value>You can only send up to {0} invitations each job</value>
+  </data>
+  <data name="ERROR_PWD2_INCORRECT" xml:space="preserve">
+    <value>Password2 is incorrect</value>
+  </data>
+  <data name="ERROR_VIDEO_UPLOAD_LIMIT_FORMAT" xml:space="preserve">
+    <value>The maximum video length could not be large than {0} MB</value>
+  </data>
+  <data name="INVITATION_STATUS_ACCEPTED" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="INVITATION_STATUS_AWAITING" xml:space="preserve">
+    <value>Awating</value>
+  </data>
+  <data name="INVITATION_STATUS_IGNORED" xml:space="preserve">
+    <value>Ignored</value>
+  </data>
+  <data name="JOB_STATUS_CANCELED" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="JOB_STATUS_CLOSED" xml:space="preserve">
+    <value>Closed</value>
+  </data>
+  <data name="JOB_STATUS_DRAFT" xml:space="preserve">
+    <value>Draft</value>
+  </data>
+  <data name="JOB_STATUS_PUBLISHED" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="JOB_STATUS_SAVED" xml:space="preserve">
+    <value>Saved</value>
+  </data>
+  <data name="LOGIN_ERROR_INFO_INVALID" xml:space="preserve">
+    <value>Your Username or Password are incorrect</value>
+  </data>
+  <data name="LOGIN_ERROR_TIME_INVALID" xml:space="preserve">
+    <value>Your Time is invalid</value>
+  </data>
+  <data name="LOGIN_FAILED" xml:space="preserve">
+    <value>Login failed</value>
+  </data>
+  <data name="LOGIN_SUCCESS" xml:space="preserve">
+    <value>Login successfully</value>
+  </data>
+  <data name="NOTIF_COMMENT" xml:space="preserve">
+    <value>{0} commented on post</value>
+  </data>
+  <data name="NOTIF_LIKE" xml:space="preserve">
+    <value>{0} liked your post</value>
+  </data>
+  <data name="OTP_ERROR_OTPCODE_EXPIRED" xml:space="preserve">
+    <value>The OTPCode has been expired</value>
+  </data>
+  <data name="OTP_ERROR_OTPCODE_NOTEXISTS_ORUSED" xml:space="preserve">
+    <value>OTPCode is not exists or already used</value>
+  </data>
+  <data name="OTP_SUCCESS_CREATE" xml:space="preserve">
+    <value>Created new OTP successfully</value>
+  </data>
+  <data name="OTP_SUCCESS_VERIFY" xml:space="preserve">
+    <value>OTPCode was verified successfully</value>
+  </data>
+  <data name="REFRESHTOKEN_ERROR" xml:space="preserve">
+    <value>Renewal TokenKey error</value>
+  </data>
+  <data name="REFRESHTOKEN_SUCCESS" xml:space="preserve">
+    <value>Renewal token key successfully</value>
+  </data>
+  <data name="REGISTER_ERROR_BIRTHDAY_INVALID" xml:space="preserve">
+    <value>Birhday format is not correct. The correct format is: dd/mm/yyyy</value>
+  </data>
+  <data name="REGISTER_ERROR_EMAIL_USED" xml:space="preserve">
+    <value>Email already used</value>
+  </data>
+  <data name="REGISTER_ERROR_IDCARD_USED" xml:space="preserve">
+    <value>IDCard already used</value>
+  </data>
+  <data name="REGISTER_ERROR_PHONE_USED" xml:space="preserve">
+    <value>PhoneNumber already used</value>
+  </data>
+  <data name="REGISTER_ERROR_USERNAME_USED" xml:space="preserve">
+    <value>UserName already used</value>
+  </data>
+  <data name="REGISTER_SUCCESS" xml:space="preserve">
+    <value>Register successfully</value>
+  </data>
+  <data name="SUCCESS_APPLICATION_ACCEPT_INTERVIEW" xml:space="preserve">
+    <value>Application accepted to interview successfully</value>
+  </data>
+  <data name="SUCCESS_APPLICATION_IGNORED" xml:space="preserve">
+    <value>Application has been ignored</value>
+  </data>
+  <data name="SUCCESS_APPLICATION_SEND_CV" xml:space="preserve">
+    <value>Application send CV successfully</value>
+  </data>
+  <data name="SUCCESS_CS_CREATED" xml:space="preserve">
+    <value>Career sheet created successfully</value>
+  </data>
+  <data name="SUCCESS_CS_UPDATED" xml:space="preserve">
+    <value>Career sheet updated successfully</value>
+  </data>
+  <data name="SUCCESS_CV_CREATED" xml:space="preserve">
+    <value>CV was created successfully</value>
+  </data>
+  <data name="SUCCESS_CV_UPDATED" xml:space="preserve">
+    <value>CV was updated successfully</value>
+  </data>
+  <data name="SUCCESS_INVITATION_ACCEPTED" xml:space="preserve">
+    <value>Invitation has been accepted</value>
+  </data>
+  <data name="SUCCESS_INVITATION_IGNORED" xml:space="preserve">
+    <value>Invitation has been ignored</value>
+  </data>
+  <data name="SUCCESS_JOB_APPLY" xml:space="preserve">
+    <value>Job applied successfully</value>
+  </data>
+  <data name="SUCCESS_JOB_CANCEL" xml:space="preserve">
+    <value>Job cancelled successfully</value>
+  </data>
+  <data name="SUCCESS_JOB_SAVE" xml:space="preserve">
+    <value>Job saved successfully</value>
+  </data>
+  <data name="SUCCESS_PWD2_CORRECT" xml:space="preserve">
+    <value>Password2 is correct</value>
+  </data>
+  <data name="SUCCESS_SAVED" xml:space="preserve">
+    <value>Saved successfully</value>
+  </data>
+  <data name="UPDATE_INFO_SUCCESS" xml:space="preserve">
+    <value>Info updated successfully</value>
+  </data>
+  <data name="UPDATE_PROFILE_SUCCESS" xml:space="preserve">
+    <value>Profile updated successfully</value>
+  </data>
+</root>

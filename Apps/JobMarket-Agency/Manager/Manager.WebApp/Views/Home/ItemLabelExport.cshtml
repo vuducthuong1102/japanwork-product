@@ -1,0 +1,91 @@
+﻿
+<div class="row">
+    <div class="col-md-12">
+        <button id="btnExport" class="btn btn-info btn-sm">
+            <i class="fa fa-file-excel-o"> Excel export</i>
+        </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet">
+
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <div class="col-md-4">
+                            <table id="dynamic-table" class="table m-table m-table--head-bg-brand table-bordered dataTable">
+                                <tbody>
+                                    <tr>
+                                        <th style="text-align:left;"><b>Item</b></th>
+                                        <td colspan="2">ABCD1234</td>
+                                        <th style="text-align:left;"><b>Expire</b></th>
+                                        <td colspan="2">20/05/2019</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align:left;"><b>Lot No</b></th>
+                                        <td colspan="2">XE2341</td>
+                                        <th style="text-align:left;"><b>Color</b></th>
+                                        <td colspan="2">Red</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="text-align:left;" rowspan="2"><b>Stock QTY</b></th>
+                                        <td colspan="2" rowspan="2" style="text-align:left;vertical-align:middle;">380 PCS</td>
+                                        <th style="text-align:left;" rowspan="2"><b>Available</b></th>
+                                        <td colspan="2">Yes</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>                       
+
+                    </div>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+        
+    </div>
+</div>
+
+
+@section PageInlineScripts{    
+    <script>
+        $("#btnExport").click(function () {
+            //var _length = $("[name='dynamic-table_length']").val();
+            //table.page.len(-1).draw();
+            var title = '';
+            //info += '<center><b>Tài khoản doanh thu:</b></center>';
+            var info = "";
+            //info += '<center><b>Đối tượng:All</b></center>';
+            var footer = "<table> ";
+            footer += "            <tr height=17 style='height:12.75pt'>                             ";
+            footer += "  <td height=17 colspan=4 style='height:12.75pt;mso-ignore:colspan'></td>     ";
+            footer += " </tr>                                                                        ";
+            footer += " <tr height=19 style='height:14.4pt'>                                         ";
+            footer += "  <td height=19 style='height:14.4pt'></td>                                    ";
+            footer += "  <td class=xl72 width=92 style='width:69pt;font-weight:700;'>Thủ quỹ</td>                      ";
+            footer += "  <td colspan=2 style='mso-ignore:colspan'></td>                               ";
+            footer += "  <td class=xl65 colspan=2 style='mso-ignore:colspan; font-weight:700;'>Kế toán trưởng</td>       ";
+            footer += "  <td></td>                                                                     ";
+            footer += "  <td class=xl65 style='mso-ignore:colspan; font-weight:700;'>Giám đốc</td>                                                  ";
+            footer += "  <td></td>                                                                     ";
+            footer += " </tr>                                                                          ";
+            footer += " <tr height=22 style='mso-height-source:userset;height:16.2pt'>                    ";
+            footer += "  <td height=22 style='height:16.2pt'></td>                                        ";
+            footer += "  <td class=xl71 width=92 style='width:69pt;font-size:10.0pt;white-space:normal;'>(Ký, Họ tên)</td>                     ";
+            footer += "  <td colspan=2 style='mso-ignore:colspan'></td>                                   ";
+            footer += "  <td class=xl71 width=72 style='width:54pt;font-size:10.0pt;white-space:normal;''>(Ký, Họ tên)</td>                         ";
+            footer += "  <td colspan=2 style='mso-ignore:colspan'></td>                                       ";
+            footer += "  <td class=xl71 width=136 style='width:102pt;font-size:10.0pt;white-space:normal;''>(Ký, Họ tên, đóng dấu)</td>             ";
+            footer += "  <td></td>                                                                            ";
+            footer += " </tr>";
+            footer += " </table>";
+            tableToExcel('dynamic-table', 'item_label', 'item_label', title, info, "");
+            //table.page.len(_length).draw();
+        });
+    </script>    
+}

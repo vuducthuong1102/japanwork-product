@@ -1,0 +1,70 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Helpers
+@model Manager.WebApp.Models.ManageNavigationLangModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.LB_UPDATE_INFO @((Model.NavigationInfo != null ? " - [" + Model.NavigationInfo.Title + "]" : string.Empty))
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("UpdateLang", "Navigation", FormMethod.Post, new { role = "form", @id = "FormMenu" }))
+{
+    <div class="modal-body">
+        @Html.HiddenFor(m=>m.NavigationId)
+        @Html.HiddenFor(m=>m.Id)
+        <div class="row">
+            <div class="col-md-12">
+                <div class="clearfix pull-right">
+                    <a class="btn btn-white btn-info btn-sm" data-modal="" data-href="@Url.Action("UpdateLang", "Navigation", new { NavigationId = Model.NavigationId })" title="@ManagerResource.LB_ADDNEW">
+                        <i class="la la-plus"></i> @ManagerResource.LB_ADDNEW
+                    </a>
+                </div>
+
+                <table class="table m-table m-table--head-bg-brand table-bordered">
+                    <thead>
+                        <tr>                            
+                            <th class="text-center">@ManagerResource.LB_CODE</th>
+                            <th class="text-center">@ManagerResource.LB_TITLE</th>
+                            <th class="text-center">@ManagerResource.LB_URL</th>
+                            <th class="text-center">@ManagerResource.LB_ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            if (Model.NavigationInfo != null && Model.NavigationInfo.LangList!=null&&Model.NavigationInfo.LangList.Count>0)
+                            {
+                                foreach (var item in Model.NavigationInfo.LangList)
+                                {
+                                    <tr>
+                                        <td class="text-center">@item.LangCode</td>
+                                        <td>@item.Title</td>
+                                        <th class="text-center">@item.AbsoluteUri</th>
+                                        <td class="text-center">
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="/Navigation/UpdateLang?id=@item.Id&NavigationId=@item.NavigationId" title="@ManagerResource.LB_EDIT">
+                                                <i class="la la-pencil"></i>
+                                            </a>
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-href="/Navigation/DeleteLang?id=@item.Id&NavigationId=@item.NavigationId" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                <i class="la la-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+
+    </div>
+    <div class="modal-footer">
+        @*<button data-dismiss="modal" class="btn btn-danger pull-left btn-sm" onclick="UpdateLang()" data-id="@Model.MenuId" id="btnApprove"><i class="fa fa-floppy-o"></i>  @ManagerResource.LB_SAVE</button>*@
+        <button class="btn btn-info btn-sm" data-dismiss="modal"><i class="la la-remove"></i> @ManagerResource.LB_CLOSE</button>
+    </div>
+}

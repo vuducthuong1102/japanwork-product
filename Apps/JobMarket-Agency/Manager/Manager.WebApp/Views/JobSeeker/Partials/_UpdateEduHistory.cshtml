@@ -1,0 +1,205 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobSeekerEduHistoryModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-graduation-cap fz-16"></i> @ManagerResource.LB_UPDATE_EDUCATION
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id)
+    @Html.HiddenFor(m => m.job_seeker_id)
+<div class="modal-body">
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@ManagerResource.LB_QUALIFICATION</label>
+        </div>
+        <div class="col-md-8">
+            <select data-placeholder="@ManagerResource.LB_QUALIFICATION" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.qualification_id)" id="Qualification">
+                @if (Model.Qualifications.HasData())
+                {
+                    foreach (var qualification in Model.Qualifications)
+                    {
+                        var currentQualifiName = string.Empty;
+                        if (qualification.LangList.HasData())
+                        {
+                            currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                        }
+                        else
+                        {
+                            currentQualifiName = qualification.qualification;
+                        }
+                        <option value="@qualification.id" data-major="@qualification.show_major" @((Model.qualification_id == qualification.id) ? "selected" : "")>@currentQualifiName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    <div id="MajorArea">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@ManagerResource.LB_MAJOR</label>
+            </div>
+            <div class="col-md-8">
+                <select data-placeholder="@ManagerResource.LB_MAJOR" data-live-search="true" class="selectpicker" data-size="7" name="@Html.NameFor(m=>m.major_id)" id="Major">
+                    <option value="-1" @((Model.major_id == -1) ? "selected" : "")>@ManagerResource.LB_SELECT_MAJOR</option>
+                    @if (Model.Majors.HasData())
+                    {
+                        foreach (var major in Model.Majors)
+                        {
+                            var currentMajorName = string.Empty;
+                            if (major.LangList.HasData())
+                            {
+                                currentMajorName = major.LangList.Where(x => x.language_code == currentLang).Select(x => x.major).FirstOrDefault();
+                            }
+                            else
+                            {
+                                currentMajorName = major.major;
+                            }
+                            <option value="@major.id" @((Model.major_id == major.id) ? "selected" : "")>@currentMajorName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div id="MajorCustom" class="hidden">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label class="base-label">@ManagerResource.LB_MAJOR_OTHER_NAME</label>
+                </div>
+                <div class="col-md-8">
+                    @Html.TextBoxFor(m => m.major_custom, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@ManagerResource.LB_SCHOOL_NAME</label>
+        </div>
+        <div class="col-md-8">
+            @Html.TextBoxFor(m => m.school, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.school, null, new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@ManagerResource.LB_EDUCATION_STATUS</label>
+        </div>
+        <div class="col-md-8">
+            <select data-placeholder="@ManagerResource.LB_EDUCATION_STATUS" data-live-search="true" class="select2" id="ddlEduStatus" name="@Html.NameFor(m=>m.status)">
+                @foreach (var item in Enum.GetValues(typeof(EnumEducationStatus)))
+                {
+                    var chkItem = (int)item;
+                    var chkStr = string.Empty;
+                    if (chkItem == Model.status)
+                    {
+                        chkStr = "selected";
+                    }
+                    <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-4">
+            <label class="base-label">@ManagerResource.LB_EDUCATION_START</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.start_date_str, new { @class = "form-control datepicker" })
+        </div>
+    </div>
+
+    <div class="form-group row" id="eduEnd">
+        <div class="col-md-4">
+            <label class="base-label" id="lbEducationEnd">@ManagerResource.LB_EDUCATION_END</label>
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.end_date_str, new { @class = "form-control datepicker" })
+        </div>
+    </div>
+</div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $('.select2').select2({
+        width: '100%'
+    });
+    $('.selectpicker').selectpicker({
+        width: '100%'
+    });
+    $('.select2').trigger("change.select2");
+    $(".datepicker").inputmask("99-9999");
+    $(".datepicker").datepicker({
+        format: "mm-yyyy"
+    });
+
+    $("#ddlEduStatus").change(function () {
+        var st = parseInt($(this).val());
+        if (st === 0) {
+            $("#lbEducationEnd").html(LanguageDic["LB_EDUCATION_END"]);            
+        } else if (st === 1) {
+            $("#lbEducationEnd").html(LanguageDic["LB_EDUCATION_GRADUATED_DATE"]);
+        } else if (st === -1) {
+            $("#lbEducationEnd").html(LanguageDic["LB_EDUCATION_FLUNKED_DATE"]);            
+        }         
+    });
+
+    $("#Qualification").change(function () {        
+        var showMajor = $('#Qualification option:selected').attr('data-major');
+        if (showMajor == "True") {
+            $("#MajorArea").removeClass("hidden");
+        } else {
+            $("#MajorArea").addClass("hidden");
+            $("#Major").val("-1");
+            $("#Major").change();
+        }
+    });
+
+    $("#Major").change(function () {
+        var id = parseInt($("#Major").val());
+        if (id == 0) {
+            $("#MajorCustom").removeClass("hidden");
+        } else {
+            $("#MajorCustom").addClass("hidden");
+        }
+    });
+
+    $(function () {
+        $("#Qualification").change();
+        $("#Major").change();
+
+        $("#ddlEduStatus").change();
+    });
+</script>

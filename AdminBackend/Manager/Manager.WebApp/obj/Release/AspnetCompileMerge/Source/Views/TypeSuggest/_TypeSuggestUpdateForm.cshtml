@@ -1,0 +1,71 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.TypeSuggestEditModel
+
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+@Html.AntiForgeryToken()
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_TYPESUGGEST
+        </label>
+
+        @Html.TextBoxFor(m => m.type, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.type, null, new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_FORM
+        </label>
+        <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.form_id)" name="@Html.NameFor(m=>m.form_id)" data-live-search="true">
+            @foreach (var item in Enum.GetValues(typeof(EnumFormCv)))
+            {
+                var chkItem = (int)item;
+                var chkStr = string.Empty;
+                if (chkItem == Model.form_id)
+                {
+                    chkStr = "selected";
+                }
+                <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_DESCRIPTION
+        </label>
+
+        @Html.TextAreaFor(m => m.description, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.description, null, new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_ICON
+        </label>
+        @Html.TextBoxFor(m => m.icon, new { @class = "form-control", @autocomplete = "off" })
+    </div>
+</div>
+
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <a class="btn btn-outline-info btn-back" href="@Url.Action("Index", "TypeSuggest")"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+
+        <button type="submit" class="btn btn-outline-info pull-right">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@using MySite.Helpers;
+@model int
+<span class="rate rate-score" data-score="@Model">
+    @for (int i = 0; i < 5; i++)
+    {
+        var class_star = "iab-2";
+        if (i + 1 <= Model)
+        {
+            class_star = "iab";
+
+        }
+        <i data-score="@(i+1)" class="star-item i1 @class_star"></i>
+    }
+</span>
+
+

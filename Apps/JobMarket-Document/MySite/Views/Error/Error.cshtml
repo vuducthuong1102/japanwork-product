@@ -1,0 +1,26 @@
+﻿@using MySite.Resources;
+@{ 
+    Layout = "~/Views/Shared/_LayoutError.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">          
+            <div class="error-template">
+                <h1 class="text-danger">
+                    @UserWebResource.LB_ERROR
+                </h1>
+                <div class="error-details">
+                    <h4>
+                        @Html.Partial("_Notifications")
+                    </h4>
+                </div>
+                <div class="error-actions">
+                    <a href="/" class="btn btn-info">
+                        <span class="fa fa-home"></span>
+                        @UserWebResource.LB_HOME_PAGE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

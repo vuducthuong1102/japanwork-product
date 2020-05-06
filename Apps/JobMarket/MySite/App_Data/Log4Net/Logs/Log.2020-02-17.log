@@ -1,0 +1,336 @@
+2020-02-17 11:33:11,443 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:33:11,455 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 11:33:11,455 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:33:11,560 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:33:11,561 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 11:33:11,561 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:33:18,013 [7] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 11:33:18,093 [7] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 11:33:21,283 [8] DEBUG MySite.Controllers.WebAuthController - Begin LOGIN-WEB request
+2020-02-17 11:33:21,290 [8] DEBUG MySite.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-02-17 11:33:24,570 [8] DEBUG MySite.Controllers.WebAuthController - Ended LOGIN-WEB request
+2020-02-17 11:57:47,972 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:57:47,988 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 11:57:47,989 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:57:48,152 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:57:48,154 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 11:57:48,156 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 11:57:52,336 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 11:57:52,407 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 12:05:14,301 [48] ERROR MySite.WebApiApplication - Application Error: The controller for path '/Content/Avatars/profile-pic.jpg' was not found or does not implement IController.
+System.Web.HttpException (0x80004005): The controller for path '/Content/Avatars/profile-pic.jpg' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 12:05:29,982 [33] ERROR MySite.WebApiApplication - Application Error: The controller for path '/Content/Avatars/profile-pic.jpg' was not found or does not implement IController.
+System.Web.HttpException (0x80004005): The controller for path '/Content/Avatars/profile-pic.jpg' was not found or does not implement IController.
+   at System.Web.Mvc.DefaultControllerFactory.GetControllerInstance(RequestContext requestContext, Type controllerType)
+   at System.Web.Mvc.DefaultControllerFactory.CreateController(RequestContext requestContext, String controllerName)
+   at System.Web.Mvc.MvcHandler.ProcessRequestInit(HttpContextBase httpContext, IController& controller, IControllerFactory& factory)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 14:04:41,118 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:04:41,121 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 14:04:41,121 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:04:41,203 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:04:41,204 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 14:04:41,205 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:04:46,537 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:04:46,538 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:04:46,623 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:04:46,623 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:05:14,089 [27] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:05:14,095 [27] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:27:34,915 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:27:34,917 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 14:27:34,918 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:27:35,005 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:27:35,006 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 14:27:35,007 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:27:38,812 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:27:38,886 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:28:15,406 [26] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:28:15,411 [26] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:30:42,572 [20] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:30:42,576 [20] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:30:47,927 [27] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(154): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_NATIONALITY'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(154): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_NATIONALITY'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 14:41:58,673 [61] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:41:58,680 [61] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:56:07,272 [81] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 14:56:07,341 [81] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 14:56:13,666 [90] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(154): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_NATIONALITY'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(154): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_NATIONALITY'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 14:56:30,995 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:56:31,008 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 14:56:31,008 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:56:31,119 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 14:56:31,120 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 14:56:31,121 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 15:03:52,686 [24] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(156): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_NATIONALITY'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(156): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_NATIONALITY'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 15:04:56,025 [73] INFO  MySite.Startup - ======================================================
+2020-02-17 15:04:56,037 [73] INFO  MySite.Startup - MySite is starting up
+2020-02-17 15:04:56,038 [73] INFO  MySite.Startup - ======================================================
+2020-02-17 15:04:56,166 [73] INFO  MySite.Startup - ======================================================
+2020-02-17 15:04:56,167 [73] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 15:04:56,167 [73] INFO  MySite.Startup - ======================================================
+2020-02-17 15:38:25,719 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 15:38:25,730 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 15:38:25,731 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 15:38:25,842 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 15:38:25,843 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 15:38:25,843 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 15:38:36,712 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 15:38:36,788 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 15:50:58,072 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 15:50:58,080 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 15:51:03,496 [10] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(177): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_VISA'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_Profile.cshtml(177): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_VISA'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 15:51:20,481 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:51:20,494 [56] INFO  MySite.Startup - MySite is starting up
+2020-02-17 15:51:20,495 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:51:20,614 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:51:20,615 [56] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 15:51:20,616 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:58:24,300 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:58:24,311 [56] INFO  MySite.Startup - MySite is starting up
+2020-02-17 15:58:24,312 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:58:24,415 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 15:58:24,415 [56] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 15:58:24,416 [56] INFO  MySite.Startup - ======================================================
+2020-02-17 16:16:29,884 [57] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 16:16:29,957 [57] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 16:27:26,338 [40] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 16:27:26,343 [40] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 16:32:18,449 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 16:32:18,460 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 16:32:18,461 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 16:32:18,583 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 16:32:18,584 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 16:32:18,584 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 16:37:37,246 [59] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 16:37:37,315 [59] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:02:53,922 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:02:53,935 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:02:53,936 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:02:54,075 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:02:54,076 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:02:54,077 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:03:06,090 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:03:06,168 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:03:26,083 [10] ERROR MySite.Services.JobSeekerServices - Return code: InternalServerError, message: http://localhost:3333/api/job_seekers/update_profile
+2020-02-17 17:04:55,347 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:04:55,358 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:04:55,359 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:04:55,464 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:04:55,465 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:04:55,466 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:05:10,236 [31] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:05:10,257 [31] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:09:16,845 [55] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:09:16,858 [55] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:11:16,231 [16] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:11:16,242 [16] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:13:48,951 [74] INFO  MySite.Startup - ======================================================
+2020-02-17 17:13:48,961 [74] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:13:48,962 [74] INFO  MySite.Startup - ======================================================
+2020-02-17 17:13:49,061 [74] INFO  MySite.Startup - ======================================================
+2020-02-17 17:13:49,062 [74] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:13:49,062 [74] INFO  MySite.Startup - ======================================================
+2020-02-17 17:16:28,139 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:16:28,150 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:16:28,151 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:16:28,280 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:16:28,281 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:16:28,282 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:17:20,907 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:17:20,908 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:17:20,909 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:17:21,004 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:17:21,005 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:17:21,006 [1] INFO  MySite.Startup - ======================================================
+2020-02-17 17:21:43,034 [31] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:21:43,042 [31] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:22:45,280 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:22:45,291 [58] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:22:45,292 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:22:45,411 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:22:45,412 [58] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:22:45,413 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:28:53,545 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:28:53,557 [58] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:28:53,557 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:28:53,720 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:28:53,721 [58] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:28:53,722 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:34:54,301 [56] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:34:54,311 [56] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:48:47,770 [127] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:48:47,775 [127] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-17 17:48:57,077 [144] ERROR MySite.WebApiApplication - Application Error: A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+System.Web.HttpException (0x80004005): A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 17:49:00,026 [148] ERROR MySite.WebApiApplication - Application Error: A public action method 'GetSuggestionStationByTrainLines' was not found on controller 'MySite.Controllers.MasterController'.
+System.Web.HttpException (0x80004005): A public action method 'GetSuggestionStationByTrainLines' was not found on controller 'MySite.Controllers.MasterController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 17:50:42,912 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:50:42,923 [58] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:50:42,924 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:50:43,038 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:50:43,039 [58] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:50:43,040 [58] INFO  MySite.Startup - ======================================================
+2020-02-17 17:50:58,456 [149] ERROR MySite.WebApiApplication - Application Error: A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+System.Web.HttpException (0x80004005): A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-17 17:54:29,914 [142] INFO  MySite.Startup - ======================================================
+2020-02-17 17:54:29,925 [142] INFO  MySite.Startup - MySite is starting up
+2020-02-17 17:54:29,927 [142] INFO  MySite.Startup - ======================================================
+2020-02-17 17:54:30,033 [142] INFO  MySite.Startup - ======================================================
+2020-02-17 17:54:30,034 [142] INFO  MySite.Startup - MySite is successfully configured
+2020-02-17 17:54:30,035 [142] INFO  MySite.Startup - ======================================================
+2020-02-17 17:59:37,379 [148] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-17 17:59:37,385 [148] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

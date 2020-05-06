@@ -1,0 +1,76 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.AgencyEditModel
+
+@{
+    var title = ManagerResource.LB_UPDATE_INFO;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    @ManagerResource.LB_UPDATE_INFO
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+    
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+<link href="~/Content/Extensions/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+    <style>
+        /* Three image containers (use 25% for four, and 50% for two, etc) */
+        .img-column {
+            float: left;
+            width: 20%;
+            padding: 5px;
+        }
+
+        .dropzone {
+            padding:5px;
+        }
+
+
+        /* Clear floats after image containers */
+        .img-row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .img-row img {
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+    </style>
+}
+
+@helper RenderBaseForm(){
+     <!--begin::Form-->
+    using (Html.BeginForm("Edit", "Agency", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.Partial("_AgencyComposerForm")
+    }
+
+    <!--end::Form-->
+}
+
+@section PageInlineScripts{
+
+}

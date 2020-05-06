@@ -1,0 +1,118 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+@model MySite.Models.Account.ProfileModel
+
+@{
+    var isOwner = false;
+    var currentUser = AccountHelper.GetCurrentUser();
+    var tabClass = "two-columns";
+    if (Model.UserInfo != null)
+    {
+        if (currentUser != null)
+        {
+            if (currentUser.Id == Model.UserInfo.Id)
+            {
+                isOwner = true;
+                tabClass = "three-columns";
+            }
+        }
+    }
+}
+
+<div class="container mt15">
+    <div class="row">
+        <div class="col-md-8 col-sm-7">
+            <ul class="nav nav-tabs tab-profile">
+                <li class="active @tabClass"><a data-toggle="tab" href="#trip-post-profile"><span id="PostsCount">0</span> <br />@UserWebResource.LB_TRIP_POST</a></li>
+                <li class="@tabClass"><a data-toggle="tab" href="#photo-profile"><span id="PhotosCount">0</span> <br />@UserWebResource.LB_PHOTO</a></li>
+                @if (isOwner)
+                {
+                    <li class="@tabClass"><a data-toggle="tab" href="#save-profile"><span id="SavedCount">0</span> <br />@UserWebResource.LB_SAVED</a></li>
+                }
+
+            </ul>
+
+            <div class="tab-content">
+                <input type="hidden" id="PostedCounter" value="1" />
+                <input type="hidden" id="UploadedImagesCounter" value="1" />
+                <input type="hidden" id="SavedCounter" value="1" />
+                <div id="trip-post-profile" class="tab-pane fade in active">
+                    @*<ul class="category-profile">
+                        <li class="active"><a href="#">All</a></li>
+                        <li><a href="#">See</a></li>
+                        <li><a href="#">Eat</a></li>
+                        <li><a href="#">Sleep</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Food & Drink</a></li>
+                        <li><a href="#">Play</a></li>
+                    </ul>*@
+
+                    <div>
+                        <div class="post-overlay">
+                            @Html.Partial("_PostLoading")
+                            @Html.Partial("_PostLoading")
+                            @Html.Partial("_PostLoading")
+                        </div>
+
+                        <div class="new-feeds mb15" id="PF_Posted">
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+
+                <div id="photo-profile" class="tab-pane fade">
+                    @*<ul class="category-profile">
+                        <li class="active"><a href="#">All</a></li>
+                        <li><a href="#">See</a></li>
+                        <li><a href="#">Eat</a></li>
+                        <li><a href="#">Sleep</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Food & Drink</a></li>
+                        <li><a href="#">Play</a></li>
+                    </ul>*@
+
+                    <div>
+                        <div class="post-overlay">
+                            @Html.Partial("_PostLoading")
+                            @Html.Partial("_PostLoading")
+                            @Html.Partial("_PostLoading")
+                        </div>
+
+                        <div class="list-img" id="PF_UploadedImages">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="save-profile" class="tab-pane fade">
+                    @*<ul class="category-profile">
+                        <li class="active"><a href="#">All</a></li>
+                        <li><a href="#">Favorites</a></li>
+                        <li><a href="#">Stared  Places</a></li>
+                        <li><a href="#">Want to go</a></li>
+                        <li><a href="#">News</a></li>
+                    </ul>*@
+                    <div>
+                        <div>
+                            <div class="post-overlay">
+                                @Html.Partial("_PostLoading")
+                                @Html.Partial("_PostLoading")
+                                @Html.Partial("_PostLoading")
+                            </div>
+
+                            <div class="new-feeds mb15" id="PF_Saved">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 col-sm-5 hidden-xs">
+            @Html.Partial("~/Views/Widgets/_MenuLeftItem.cshtml")
+        </div>
+    </div>
+</div>

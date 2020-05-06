@@ -1,0 +1,227 @@
+﻿@using Manager.WebApp.Resources
+@using Newtonsoft.Json;
+@model Manager.WebApp.Models.UserViewModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_USER_MANAGE;
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            <div class="col-md-12">
+                @if (AccountHelper.CurrentUserIsAgency())
+                {
+                    <div class="clearfix operation">
+                        <a class="btn btn-white btn-sm btn-info" href="@Url.Action("Create", "UsersAdmin")" title="@ManagerResource.LB_ADD_NEW"><i class="fa fa-plus"></i> @ManagerResource.LB_ADD_NEW</a>
+                    </div>
+                }
+            </div>
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>@ManagerResource.LB_USER_CODE</th>
+                                    <th>@ManagerResource.LB_FULL_NAME</th>
+                                    <th>@ManagerResource.LB_ROLE</th>
+                                    @*<th>@ManagerResource.LB_EMAIL</th>
+                                        <th>@ManagerResource.LB_PHONE</th>*@
+                                    <th>@ManagerResource.LB_CREATED_DATE</th>
+                                    <th class="action-4">@ManagerResource.LB_ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResult != null && Model.SearchResult.Count > 0)
+                                {
+                                    var isAdmin = AccountHelper.CurrentUserIsAdmin();
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResult)
+                                    {
+                                        if (!isAdmin)
+                                        {
+                                            if (record.UserName == "admin" || record.UserName == "bangvl")
+                                            {
+                                                if (Model.Total > 1)
+                                                {
+                                                    continue;
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td colspan="11">
+                                                            @ManagerResource.LB_NO_RECORD
+                                                        </td>
+                                                    </tr>
+                                                    break;
+                                                }
+                                            }
+                                        }
+
+                                        stt++;
+                                        <tr>
+                                            <td>@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                            <td>
+                                                @if (record.LockoutEndDateUtc == null)
+                                                {
+                                                    @record.UserName
+                                                }
+                                                else if (record.LockoutEndDateUtc != null)
+                                                {
+                                                    if (record.LockoutEnabled)
+                                                    {
+                                                        <b class="text-danger">@record.UserName (@ManagerResource.LB_LOCKED)</b>
+                                                    }
+                                                    else
+                                                    {
+                                                        @record.UserName
+                                                    }
+                                                }
+                                            </td>
+                                            <td>@record.FullName</td>
+                                            <td>
+                                                @if (record.Roles != null)
+                                                {
+                                                    @String.Join(", ", record.Roles.ToArray());
+                                                }
+                                            </td>
+                                            @*<td>@record.Email</td>
+                                                <td>@record.PhoneNumber</td>*@
+                                            @*<td>@record.CreatedDateUtc.ToLocalTime()</td>*@
+                                            <td>
+                                                @{
+                                                    var localTime = record.CreatedDateUtc;
+                                                }
+                                                <span class="local-time" data-time="@localTime.ToString("MM/dd/yyyy HH:mm:ss")"></span>
+                                            </td>
+                                            <td class="">
+                                                @{
+                                                    var assignLink = SecurityHelper.GenerateSecureLink("Company", "AssignToCompany", new { id = record.StaffId });
+                                                }
+                                                <input type="hidden" id="hdName_@record.Id" value="@record.Id" />
+
+                                                <div class="dropdown">
+                                                    <a href="javascript:;" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                                        <i class="la la-ellipsis-h"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        @*<a class="dropdown-item btn m-btn m-btn--hover-info" data-href="@assignLink" data-modal="" title="@ManagerResource.LB_MANAGER_COMPANY">
+                                                                <i class="fa fa-building"></i>
+                                                                @ManagerResource.LB_MANAGER_COMPANY
+                                                            </a>*@
+
+                                                        @*<a class="dropdown-item btn m-btn m-btn--hover-info" href="@Url.Action("Details", "UsersAdmin", new { id = record.Id,SearchExec = 'Y',Page = Model.CurrentPage,Email = Model.Email, RoleId = Model.RoleId, IsLocked = Model.IsLocked })" title="@ManagerResource.LB_VIEW_PROFILE">
+                                                                <i class="fa fa-eye"></i>
+                                                                @ManagerResource.LB_VIEW_PROFILE
+                                                            </a>*@
+
+                                                        <a class="dropdown-item btn m-btn m-btn--hover-info" href="@Url.Action("Edit", "UsersAdmin", new { id = record.Id, SearchExec = 'Y', Page = Model.CurrentPage, Email = Model.Email, RoleId = Model.RoleId, IsLocked = Model.IsLocked })" title="@ManagerResource.LB_EDIT">
+                                                            <i class="la la-pencil"></i>
+                                                            @ManagerResource.LB_EDIT
+                                                        </a>
+
+                                                        <a class="dropdown-item btn m-btn m-btn--hover-info" data-size="default" data-href="@Url.Action("DeleteUser", "UsersAdmin", new { id = record.Id })" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                            <i class="la la-trash"></i>
+                                                            @ManagerResource.LB_DELETE
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @RenderPaging()
+                    </div>
+                </div>
+                <div class="col-md-12">
+
+                    @if (Model.SearchResult != null && Model.SearchResult.Count > 0)
+                    {
+                        if (AccountHelper.CurrentUserIsAgency())
+                        {
+                            <div class="separator">ボタンの説明</div>
+                            <div class="pt-3">
+                                ※<a class="btn btn-white btn-sm btn-info" href="javascript:;" title="追加"><i class="fa fa-plus"></i> 追加</a>：新規ユーザを追加する。
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="separator">ボタンの説明</div>
+                        <div>
+                            <span>従業員様専用のアカウント「追加」のボタンをクリックして発給しましょう。</span>
+                        </div>
+                    }
+
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+
+</div>
+
+@helper RenderPaging()
+{
+    if (Model.SearchResult != null && Model.Total > 1)
+    {
+        <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+            <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "UsersAdmin",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         IsLocked = Model.IsLocked,
+                         RoleId = Model.RoleId,
+                         Email = Model.Email
+                     }),
+                     Model.Total, pageSize: Model.PageSize, numberOfLinks: 10)
+            </div>
+        </div>
+    }
+}
+
+@section PageInlineScripts
+{
+    <!-- inline scripts related to this page -->
+    <script type="text/javascript">
+        $('#frmCompanies').on('shown.bs.modal', function (e) {
+            $(".selectpicker").selectpicker('refresh');
+        });
+
+        function CreateUser() {
+            $('#frmCreate').modal('show');
+        }
+    </script>
+}
+
+
+
+
+
+

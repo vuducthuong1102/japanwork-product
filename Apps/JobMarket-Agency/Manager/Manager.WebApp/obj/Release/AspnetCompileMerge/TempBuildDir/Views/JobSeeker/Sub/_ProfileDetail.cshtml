@@ -1,0 +1,297 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobSeekerUpdateProfileModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<input type="hidden" id="address_country_id" value="@((Model.address != null) ? Model.address.country_id : 0)" />
+<input type="hidden" id="address_region_id" value="@((Model.address != null) ? Model.address.region_id : 0)" />
+<input type="hidden" id="address_prefecture_id" value="@((Model.address != null) ? Model.address.prefecture_id : 0)" />
+<input type="hidden" id="address_city_id" value="@((Model.address != null) ? Model.address.city_id : 0)" />
+<input type="hidden" id="address_train_line_id" value="@((Model.address != null) ? Model.address.train_line_id : 0)" />
+<input type="hidden" id="address_station_id" value="@((Model.address != null) ? Model.address.station_id : 0)" />
+
+<input type="hidden" id="address_contact_country_id" value="@((Model.address_contact != null) ? Model.address_contact.country_id : 0)" />
+<input type="hidden" id="address_contact_region_id" value="@((Model.address_contact != null) ? Model.address_contact.region_id : 0)" />
+<input type="hidden" id="address_contact_prefecture_id" value="@((Model.address_contact != null) ? Model.address_contact.prefecture_id : 0)" />
+<input type="hidden" id="address_contact_city_id" value="@((Model.address_contact != null) ? Model.address_contact.city_id : 0)" />
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-3">
+        <label>
+            @ManagerResource.LB_IMAGE
+        </label>
+        @{
+            var currentImgFullPath = string.Empty;
+            if (Model.Extensions != null && !string.IsNullOrEmpty(Model.image))
+            {
+                currentImgFullPath = Model.Extensions.image_full.ToString();
+            }
+        }
+        <div class="upload-portfolio mb10">
+            <div class="profile-photo" id="uploadbox">
+                <img class="file-upload-btn thumbImg img-full-center @((string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)" src="@currentImgFullPath" />
+                @*<label for="file-upload" class="custom-file-upload file-upload-icon @((!string.IsNullOrEmpty(currentImgFullPath)) ? "hidden" : string.Empty)">
+                        <i class="la la-cloud-upload"></i> <span>@ManagerResource.BT_UPLOAD_PHOTO</span>
+                    </label>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-9">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label>
+                            @ManagerResource.LB_FULL_NAME:
+                        </label>
+                        @Model.fullname
+                    </div>
+                    <div class="col-lg-3">
+                        <label>
+                            @ManagerResource.LB_BIRTHDAY:
+                        </label>
+                        @Model.birthday
+                    </div>
+                    <div class="col-lg-4">
+                        <label>
+                            @ManagerResource.LB_GENDER:
+                        </label>
+                        @if (Model.gender == 1)
+                        {
+                            @ManagerResource.LB_MALE
+                        }
+                        else
+                        {
+                            @ManagerResource.LB_WOMEN
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mt10">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label>
+                            @ManagerResource.LB_FULL_NAME_FURIGANA:
+                        </label>
+                        @Model.fullname_furigana
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label>
+                            @ManagerResource.LB_PHONE:
+                        </label>
+                        @Model.phone
+                    </div>
+                    <div class="col-lg-7">
+                        <label>
+                            @ManagerResource.LB_EMAIL:
+                        </label>
+                        @Model.email
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label class="pf-title">@ManagerResource.LB_PERSON_CHARGE:</label>
+                        @RenderUser()
+                    </div>
+                    <div class="col-lg-3">
+                        <label>
+                            @ManagerResource.LB_DEPENDENT_NUM:
+                        </label>
+                        @Model.dependent_num
+                    </div>
+                    <div class="col-lg-4">
+                        <label>
+                            @ManagerResource.LB_MARRIAGE_STATUS:
+                        </label>
+                        @if (Model.marriage == 1)
+                        {
+                            @ManagerResource.LB_MARRIAGE_MARRIED
+                        }
+                        else
+                        {
+                            @ManagerResource.LB_MARRIAGE_SINGLE
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <label class="pf-title">@ManagerResource.LB_JAPANESE_LEVEL:</label>
+                        @if (Model.JapaneseLevels.HasData())
+                        {
+                            foreach (var item in Model.JapaneseLevels)
+                            {
+                                if (item.level_number == Model.japanese_level_number)
+                                {
+                                    @item.level
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="col-lg-3">
+                        <label>
+                            @ManagerResource.LB_QUALIFICATION:
+                        </label>
+                        @if (Model.Qualifications.HasData())
+                        {
+                            foreach (var qualification in Model.Qualifications)
+                            {
+                                if (qualification.id == Model.qualification_id)
+                                {
+                                    var currentQualifiName = string.Empty;
+                                    if (qualification.LangList.HasData())
+                                    {
+                                        currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                                    }
+                                    else
+                                    {
+                                        currentQualifiName = qualification.qualification;
+                                    }
+                                    @currentQualifiName
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<hr />
+<div class="row pr30 mt15">
+    @Html.HiddenFor(m => m.address.id)
+    <div class="col-lg-6">
+        <h4 class="m-form__heading-title">
+            <i class="fa fa-map-marker fz-20 text-danger"></i> @ManagerResource.LB_ADDRESS
+        </h4>
+    </div>
+</div>
+<div class="form-group m-form__group row mt15">
+    <div class="col-lg-12 row">
+        <div class="col-lg-6">
+            <label>
+                @ManagerResource.LB_ADDRESS_DETAIL:
+            </label>
+            @Model.address.address
+        </div>
+        <div class="col-lg-6">
+            <label>
+                @ManagerResource.LB_ADDRESS_FURIGANA:
+            </label>
+            @Model.address.address_furigana
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group m-form__group row">
+    @{
+        string train_line = "";
+        if (Model.address.train_line_id > 0)
+        {
+            train_line = Model.address.train_line;
+        }
+    }
+    <div class="col-lg-12 row">
+        <div class="col-lg-6">
+            <label>
+                @ManagerResource.LB_TRAIN_LINE:
+            </label>
+            @train_line
+        </div>
+
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_NEAREST_STATION:
+            </label>
+            @if (Model.station_info != null)
+            {
+                @Model.station_info.station
+            }
+        </div>
+        <div class="col-lg-3">
+            <label>
+                @ManagerResource.LB_POSTAL_CODE:
+            </label>
+            @Model.address.postal_code
+        </div>
+    </div>
+</div>
+
+@if (Model.exclude_ct_add == 0)
+{
+    <hr />
+
+    <div class="row pr30 mt15">
+        @Html.HiddenFor(m => m.address_contact.id)
+        <div class="col-lg-6">
+            <h4 class="m-form__heading-title">
+                <i class="fa fa-map-marker fz-20 text-danger"></i>  @ManagerResource.LB_ADDRESS_CONTACT
+            </h4>
+        </div>
+    </div>
+    <div class="form-group m-form__group row mt15">
+        <div class="col-lg-12 row">
+            <div class="col-lg-6">
+                <label>
+                    @ManagerResource.LB_ADDRESS_DETAIL:
+                </label>
+                @Model.address_contact.address
+            </div>
+            <div class="col-lg-6">
+                <label>
+                    @ManagerResource.LB_ADDRESS_FURIGANA:
+                </label>
+                @Model.address_contact.address_furigana
+            </div>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-12 row">
+            <div class="col-lg-3">
+                <label>
+                    @ManagerResource.LB_POSTAL_CODE:
+                </label>
+                @Model.address.postal_code
+            </div>
+        </div>
+    </div>
+}
+
+@helper RenderUser()
+{
+    var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+    if (ListUser != null && ListUser.Count > 0)
+    {
+        foreach (var item in ListUser)
+        {
+            if (item.StaffId == Model.pic_id)
+            {
+                @item.FullName
+            }
+        }
+    }
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    setTimeout(function () {
+        $(".m-select2").select2({ width: 'resolve' });
+    }, 500);
+</script>
+<script src="@Url.VersionedContent("~/Scripts/JobSeeker/profile.js")"></script>

@@ -1,0 +1,149 @@
+﻿@model Manager.WebApp.Models.ManageCvPreviewModel
+<style>
+    table {
+        margin: auto;
+        border-spacing: 0;
+        /*border-bottom: 1px solid #000;
+        border-left: 1px solid #000;*/
+        font-family: msmincho;
+        font-size: 10px;
+    }
+
+    td {
+        padding: 3px 5px;
+        height: 30px;
+        border: 1px #000 solid;
+    }
+
+    .td123 {
+        border-right: none;
+        border-top: none;
+        border-left: 0;
+        padding-left: 15px;
+    }
+
+    body {
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    .circle {
+        border-radius: 50%;
+        border: 1px solid #000;
+        padding: 2px 3px;
+    }
+</style>
+@if (Model != null && Model.CvInfo != null)
+{
+@Html.Partial("~/Views/CV/Partials/_InfoCv.cshtml", Model)
+
+<p style="page-break-before: always">
+    <div style="height: 5px; width:100%">
+    </div>
+    <div style="width:100%">
+        <table width="100%"
+               style="margin-bottom:25px;font-size: 12px;">
+            <tbody>
+                <tr style="text-align: center;">
+                    <td style="width:15% ; border-right: 1px dashed #000;">西暦</td>
+                    <td style="width:8%; border-left:0"> 月</td>
+                    <td colspan="2" style="border-left:0;"> 免許・資格</td>
+                </tr>
+
+                <tr>
+                    <td style="width:12%;border-top:0;border-right: 1px dashed #000;"> </td>
+                    <td style="border-top:0;border-left:0"> </td>
+                    <td colspan="2" style="text-align: center;border-left:0 ; border-top:0 ">なし</td>
+                </tr>
+
+                <tr>
+                    <td style="width:12%;border-top:0;border-right: 1px dashed #000;"> </td>
+                    <td style="border-top:0;border-left:0"> </td>
+                    <td colspan="2" style="border-left:0 ; border-top:0 ;"> </td>
+                </tr>
+
+                <tr>
+                    <td style="width:12%;border-top:0;border-right: 1px dashed #000;"> </td>
+                    <td style="border-top:0;border-left:0"> </td>
+                    <td colspan="2" style="border-left:0 ; border-top:0"> </td>
+                </tr>
+                <tr>
+                    <td style="width:12%;border-top:0;border-right: 1px dashed #000;"> </td>
+                    <td style="border-top:0;border-left:0"> </td>
+                    <td colspan="2" style="border-left:0 ; border-top:0"> </td>
+                </tr>
+
+                <tr>
+                    <td style="width:12%;border-top:0;border-right: 1px dashed #000;"> </td>
+                    <td style="border-top:0;border-left:0"> </td>
+                    <td colspan="2" style="border-left:0 ; border-top:0"> </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%"
+               style=" margin-bottom:25px;font-size: 12px;">
+            <tbody>
+                <tr style="width:100%">
+                    <td style="vertical-align: top;width:420px" rowspan="4">
+                        <div style="height: 200px; width:450px; overflow:hidden; line-height:20px;white-space: normal;">
+                            志望動機・アピールポイントなど<br />
+                            @Model.CvInfo.reason_pr
+                        </div>
+                    </td>
+                    <td style="border-right: none; border-left:0; height: 50px">通勤時間</td>
+                    <td style="border-left: none;">時間 &nbsp; &nbsp; &nbsp; 分</td>
+                </tr>
+                <tr>
+                    <td style="border-right: none; border-left:0; border-top:0;height: 50px">扶養家族 </td>
+                    <td style="border-left: none;border-top:0;">@Model.CvInfo.dependent_num　 &nbsp; &nbsp; &nbsp; 人</td>
+                </tr>
+                <tr>
+                    <td style="border-right: none;border-left:0; border-top:0;height: 50px">配偶者</td>
+                    <td style="border-top: 0;border-left: none;">
+                        <span style="text-align: center;"><span class="@(Model.CvInfo.marriage ? "circle" : "")">有</span> ・ <span class="@(!Model.CvInfo.marriage ? "circle" : "")"> 無</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border-right: none;border-left:0; border-top:0;height: 50px">配偶者の扶養義務</td>
+                    <td style="border-left: none;border-top:0;">
+                        有 ・ <span style="border-radius:50%; border:1px solid #000;padding: 2px 3px;"> 無</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%"
+               style="margin-bottom:25px;font-size: 12px;">
+            <tbody>
+                <tr>
+                    <td>勤務可能時間帯</td>
+                </tr>
+                <tr>
+                    <td style="border-top: none;">
+                        <div style="height: 200px; overflow:hidden;line-height:20px;white-space: normal;">
+                            @Model.CvInfo.time_work
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table width="100%"
+               style="margin-bottom:35px;font-size: 12px;">
+            <tbody>
+                <tr>
+                    <td>本人希望欄（特に給料・職種・勤務時間・勤務地・その他についての希望などがあれば記入）</td>
+                </tr>
+                <tr>
+                    <td style="border-top: none;">
+                        <div style="height: 200px; overflow:hidden;line-height:20px;white-space: normal;">
+                            @Model.CvInfo.aspiration
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</p>
+}

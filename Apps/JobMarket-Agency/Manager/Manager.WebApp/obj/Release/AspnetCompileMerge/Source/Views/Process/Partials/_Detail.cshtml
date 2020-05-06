@@ -1,0 +1,142 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageInterviewProcessModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_DETAIL
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body content-custom">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            <div class="row">
+                <div class="col-sm-12">
+                    <ul class="timeline">
+                        @if (PermissionHelper.CheckPermission("Create", "Process")
+                            && (PermissionHelper.CheckIsPic(Model.pic_id) || PermissionHelper.CheckIsPic(Model.pic_job_id))
+                            && Model.interview_status_id != 27
+                        )
+                        {
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge danger"><i class="fa fa-user"></i></div>
+                                <div class="timeline-panel row">
+                                    <div class="col-md-10">
+                                        @RenderStatus()
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <a href="javascripts:;" id="btn-add" data-modal="" data-href="@Url.Action("Create", "Process", new { candidate_id = Model.Id, status_id = 1 })" class="btn btn-info">
+                                            @ManagerResource.LB_ADD_NEW
+                                        </a>
+
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                        @if (Model.ListInterviewProcess != null && Model.ListInterviewProcess.Count > 0)
+                        {
+                            foreach (var item in Model.ListInterviewProcess)
+                            {
+                                var statusInfo = Model.ProcessStatuses.FirstOrDefault(s => s.id == item.status_id);
+                                var agencyInfo = AccountHelper.GetByStaffId(item.agency_id);
+                                <li class="timeline-inverted">
+                                    <div class="timeline-badge danger"><i class="fa fa-user"></i></div>
+                                    <div class="timeline-date">@item.modified_at.Value.ToString("yyyy/MM/dd")</div>
+                                    <div class="timeline-panel row">
+                                        <div class="timeline-heading col-md-12">
+                                            <h4 class="timeline-title">
+                                                @if (statusInfo != null)
+                                                {
+                                                    <span>@statusInfo.status_name</span>
+                                                }
+                                                @if (PermissionHelper.CheckPermission("Edit", "Process"))
+                                                {
+                                                    var isPermission = PermissionHelper.CheckIsPic(item.staff_id);
+                                                    if (isPermission)
+                                                    {
+                                                        <a href="javascripts:;" data-modal="" data-href="@Url.Action("Edit", "Process", new { id = item.id })"
+                                                           style="float:right" title="@ManagerResource.LB_EDIT">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="javascripts:;" class="btn-error-incorrect-user"
+                                                           style="float:right" title="@ManagerResource.LB_EDIT">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                    }
+                                                }
+                                            </h4>
+                                            <p>
+                                                <i class="fa fa-user"></i>
+                                                @if (agencyInfo != null)
+                                                {
+                                                    var listUsers = CommonHelpers.GetListUser(Model.agency_id);
+                                                    if (listUsers != null && listUsers.Count > 0)
+                                                    {
+                                                        foreach (var user in listUsers)
+                                                        {
+                                                            if (user.StaffId == item.staff_id)
+                                                            {
+                                                                <span>@ManagerResource.LB_PERSON_CHARGE: @user.FullName</span>
+                                                                break;
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            </p>
+                                        </div>
+                                        <hr>
+                                        <div class="timeline-body pl20 col-lg-12">
+                                            <p>@item.note</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@helper RenderStatus()
+{
+    if (Model != null && Model.ProcessStatuses != null && Model.ProcessStatuses.Count > 0)
+    {
+        var checkedText = "selected";
+        <select id="select-status" name="@Html.NameFor(m=>m.status_id)" style="width:100%" data-live-search="true" onchange="ChangeStatus();" class="form-control m-select2 select2-update m-input m-input--square">
+            @foreach (var item in Model.ProcessStatuses)
+            {
+                if (Model.ListInterviewProcess != null && Model.ListInterviewProcess.Count > 0)
+                {
+                    var checkInfo = Model.ListInterviewProcess.FirstOrDefault(s => s.status_id == item.id);
+                    if (checkInfo == null)
+                    {
+                        <option value="@item.id" @((item.id == Model.Id) ? checkedText : "")>
+                            @item.status_name
+                        </option>
+                    }
+                }
+                else
+                {
+                    <option value="@item.id">
+                        @item.status_name
+                    </option>
+                }
+            }
+        </select>
+    }
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

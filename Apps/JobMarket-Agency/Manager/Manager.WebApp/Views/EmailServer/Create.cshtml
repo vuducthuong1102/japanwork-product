@@ -1,0 +1,50 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.EmailServerUpdateModel
+
+@{
+    var title = ManagerResource.LB_ADD_NEW_EMAIL_SERVER;
+    ViewBag.Title = title;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption pl10">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fa fa-cogs fz-20"></i> @ManagerResource.LB_ADD_NEW_EMAIL_SERVER
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+</div>
+<!--end::Portlet-->
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    using (Html.BeginForm("Create", "EmailServer", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="main-form">
+            @Html.Partial("_UpdateForm")
+        </div>
+    }
+    <!--end::Form-->
+}
+
+@section PageInlineStyles{
+
+}
+
+@section PageInlineScripts{
+
+}
+

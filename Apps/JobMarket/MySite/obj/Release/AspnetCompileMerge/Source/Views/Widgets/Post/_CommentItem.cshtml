@@ -1,0 +1,61 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model List<ApiMySiteSocial.DB.Sql.Entities.IdentityComment>
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="comment item item-@item.Id">
+            <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar">
+            <div class="word-break mb5">
+                <span class="text-bold">@item.DisplayName</span>
+                <span class="text-grey-02 fz-12 dlib ml15 livetimestamp" title="@DateHelpers.FormatToString(item.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(item.CreatedDate)"> @DateHelpers.FormatToString(item.CreatedDate)</span>
+                @if (hasLoggedIn)
+                {
+                    <div class="counter counter-in-cmt">
+                        <ul>
+                            @if (item.Like_Count > 0)
+                            {
+                                <li><a href="javascript:;">@NumberHelpers.NumberReformat(item.Like_Count)<i class="i1 il"></i></a></li>
+                            }
+                            else
+                            {
+                                <li><a href="javascript:;"><i class="i1 il"></i></a></li>
+                            }
+                            <li><a href="javascript:;" class="comment-reply reply-count" data-id="@item.Id" data-count="@item.Comment_Count">@NumberHelpers.NumberReformat(item.Comment_Count)<i class="i1 ih"></i></a></li>
+                        </ul>
+
+                    </div>
+                }
+            </div>
+            <div class="word-break comment-content">@item.Content</div>
+            @if (hasLoggedIn)
+            {
+                if (item.Comment_Count > 0)
+                {
+                    <a href="javascript:;" class="load-more reply-load-more" data-id="@item.Id" data-page="1">@UserWebResource.BT_Load_More_Comment <i class="icon icon-arrow_down2"></i></a>
+                }
+                <div class="box-comment hidden" data-id="@item.Id">
+                    <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar">
+                    <div class="input-group">
+                        <input type="text" name="" class="text-comment-reply-@item.Id comment-reply" data-id="@item.Id" placeholder="Reply">
+                        <a href="javascript:;"><i class="i1 iaf"></i></a>
+                        <a href="javascript:;"><i class="i1 id"></i></a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            }
+        </div>
+    }
+}
+

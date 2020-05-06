@@ -1,0 +1,21 @@
+2020-04-21 16:27:48,344 [1] INFO  MySite.Startup - ======================================================
+2020-04-21 16:27:48,356 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-21 16:27:48,357 [1] INFO  MySite.Startup - ======================================================
+2020-04-21 16:27:48,468 [1] INFO  MySite.Startup - ======================================================
+2020-04-21 16:27:48,469 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-21 16:27:48,470 [1] INFO  MySite.Startup - ======================================================
+2020-04-21 16:27:54,815 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-21 16:27:54,891 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-21 16:28:02,095 [20] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-21 16:28:02,101 [20] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-21 16:28:05,288 [20] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-21 16:28:06,316 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-21 16:28:06,322 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-21 16:28:16,867 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-21 16:28:16,872 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-21 16:28:21,250 [28] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-04-21 16:28:21,328 [28] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-04-21 16:28:24,529 [20] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-21 16:28:24,599 [20] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-21 16:28:28,934 [9] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-04-21 16:28:29,004 [9] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request

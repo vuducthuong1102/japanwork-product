@@ -1,0 +1,45 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities
+@using MySite.Helpers
+@using MySite.Resources
+@model List<IdentityUser>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        var displayName = string.IsNullOrEmpty(item.DisplayName) ? item.UserName : item.DisplayName;
+        <div class="item cr-private-msg pointer" id="contact-@item.Id" data-userid="@item.Id">
+            <div class="col-xs-9 contact-item padr0">
+                <div class="avatar">
+                    <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="@displayName" title="@displayName">
+                    <i class="online @((item.IsOnline)? "": "hidden")"></i>
+                </div>
+                <p class="mb0" title="@displayName">@displayName</p>
+            </div>
+            <div class="col-xs-3 folow text-right">
+                @if (item.IsOnline)
+                {
+                    <span class="online-text">@UserWebResource.LB_ONLINE</span>
+                }
+                else
+                {
+                    var timeTitle = (item.LastOnline != null) ? item.LastOnline.Value.ToString("dd/MM/yyyy HH:mm") : string.Empty; 
+                    if (item.LastOnline != null)
+                    {
+                        <span class="online-text livetimestamp-title" title="@timeTitle" data-utime="@EpochTime.GetIntDate(item.LastOnline.Value)">@DateHelpers.FormatToOnlineStringTitle(item.LastOnline.Value)</span>
+                    }
+                    else
+                    {
+                        <span class="online-text livetimestamp-title"></span>
+                    }
+                }
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="hidden contact-minifier-@item.Id">
+                <span class="display-name minifier-item" data-userid="@item.Id">@displayName</span>
+                <i class="icon icon-clear2 fz-20 ui-minifer-close" data-userid="@item.Id"></i>
+            </div>
+        </div>
+    }
+}

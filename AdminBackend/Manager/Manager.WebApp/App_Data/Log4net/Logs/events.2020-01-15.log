@@ -1,0 +1,19 @@
+2020-01-15 10:58:35,380 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-15 10:58:35,382 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-01-15 10:58:35,382 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-15 10:58:35,424 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-15 10:58:35,425 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-01-15 10:58:35,425 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-15 10:58:44,966 [18] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-01-15 10:58:45,125 [18] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-01-15 10:58:45,126 [18] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2020-01-15 10:58:45,209 [18] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2020-01-15 10:58:45,214 [18] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2020-01-15 10:58:45,215 [18] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2020-01-15 10:58:45,239 [18] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2020-01-15 10:58:51,385 [11] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateStatusAsync request
+2020-01-15 10:58:51,406 [11] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/status
+2020-01-15 10:58:51,406 [11] DEBUG Manager.WebApp.Services.JobServices - End UpdateStatusAsync request
+2020-01-15 10:58:52,535 [16] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-01-15 10:58:52,551 [16] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-01-15 10:58:52,552 [16] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request

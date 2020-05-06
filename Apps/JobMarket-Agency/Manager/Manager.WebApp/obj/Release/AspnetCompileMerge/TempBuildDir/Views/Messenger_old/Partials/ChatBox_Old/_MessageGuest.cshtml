@@ -1,0 +1,30 @@
+﻿@using Halo.Helpers
+@using ApiHaloSocial.DB.Sql.Entities
+@model Halo.Models.MessageItemModel
+
+@if (Model != null)
+{
+    if (Model.CurrentUserId == Model.MessageItem.UserOneInfo.Id)
+    {
+        @RenderMessageDetail(Model.MessageItem.UserTwoInfo)
+    }
+    else if (Model.CurrentUserId == Model.MessageItem.UserTwoInfo.Id)
+    {
+        @RenderMessageDetail(Model.MessageItem.UserOneInfo)
+    }
+}
+
+@helper RenderMessageDetail(IdentityUser owner)
+{
+    <div class="chat-box-item chat_message_wrapper">
+        <div class="chat_user_avatar">
+            <a href="@AccountHelper.GetUserProfileUrl(owner)" target="_blank"><img alt="@owner.DisplayName" title="@owner.DisplayName" src="@CdnHelper.CoreGetFullImgPath(owner.Avatar)" class="md-user-image"></a>
+        </div>
+        <ul class="chat_message">
+            <li>
+                <p>@Html.Raw(Model.MessageItem.Content)</p>
+            </li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+}

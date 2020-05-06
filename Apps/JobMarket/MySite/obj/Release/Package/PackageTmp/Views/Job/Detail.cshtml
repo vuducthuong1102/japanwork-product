@@ -1,0 +1,520 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.ShareLibs
+@using MySite.Caching
+@model MySite.Models.JobViewDetailModel
+
+@{
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+    var shareFbUrl = string.Empty;
+    var relativePath = string.Empty;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+    var itemLangInfo = (Model.job_info.Job_translations.HasData()) ? Model.job_info.Job_translations[0] : null;
+    var slug = string.Empty;
+
+    var companyInfo = Model.CompanyInfo;
+    if (itemLangInfo == null)
+    {
+        return;
+    }
+
+    //slug = itemLangInfo.friendly_url;
+    //if (string.IsNullOrEmpty(slug))
+    //{
+    //    slug = UrlFriendly.ConvertToUrlFriendly(itemLangInfo.title);
+    //}
+
+    bool isSaved = Utils.ConvertToBoolean(Model.job_info.Extensions.is_saved);
+    var hasLoggedIn = User.Identity.IsAuthenticated;
+
+    relativePath = Request.Url.AbsoluteUri;
+
+    ViewBag.Title = itemLangInfo.title;
+    ViewBag.OgUrl = relativePath;
+    ViewBag.OgType = "website";
+    ViewBag.OgTitle = itemLangInfo.title;
+
+    shareFbUrl = string.Format("https://www.facebook.com/sharer/sharer.php?u={0}", relativePath);
+
+    if (Model.job_info.company_info != null)
+    {
+        ViewBag.OgDescription = Model.job_info.company_info.company_name;
+        ViewBag.OgImage = Model.job_info.company_info.logo_full_path;
+    }
+}
+
+
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <input type="hidden" id="CurrentItemId" value="@Model.job_info.id" />
+                        <input type="hidden" id="CompanyId" value="@Model.job_info.company_id" />
+                        <h3>@itemLangInfo.title</h3>
+                        <div class="job-statistic">
+                            @if (!string.IsNullOrEmpty(Model.job_info.employment_type_label))
+                            {
+                                <span title="@UserWebResource.LB_EMPLOYMENT_TYPE">@Model.job_info.employment_type_label</span>
+                            }
+                            <p title="@Model.job_info.created_at.DateTimeQuestToString()"><i class="la la-calendar-o"></i>@UserWebResource.LB_POSTED_DATE : @DateHelpers.FormatToStringTitle(Model.job_info.created_at.Value)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 column">
+                    <div class="job-single-sec">
+                        <div class="job-single-head" style="display:flex;">
+                            @if (Model.job_info.company_info != null)
+                            {
+                                var companyAddress = FrontendHelpers.RenderJobCompanyAddress(Model.job_info, Model.CompanyInfo);
+                                <div class="company-logo" style="width:120px;">
+                                    @*@if (!string.IsNullOrEmpty(Model.job_info.company_info.logo_full_path))
+                    {
+                        <img src="@Model.job_info.company_info.logo_full_path" title="@Model.job_info.company_info.company_name" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/themes/default/images/resource/l1.png" alt="" />
+                    }*@
+
+                                    @if (Model.job_info.company_info != null)
+                                    {
+                                        if (!string.IsNullOrEmpty(Model.job_info.company_info.logo_full_path))
+                                        {
+                                            <img src="@Model.job_info.company_info.logo_full_path" title="@Model.job_info.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                                        }
+                                        else
+                                        {
+                                            <img src="@defaultComLogo" title="@Model.job_info.company_info.company_name" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="@defaultComLogo" />
+                                    }
+                                </div>
+                                <div class="job-head-info pl20">
+                                    <h4>@Model.job_info.company_info.company_name</h4>
+                                    @if (!string.IsNullOrEmpty(companyAddress))
+                                    {
+                                        <span><i class="la la-map-marker"></i> @companyAddress</span>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(companyInfo.website) && Model.job_info.view_company)
+                                    {
+                                        <p><i class="la la-unlink"></i> @companyInfo.website</p>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(companyInfo.phone) && Model.job_info.view_company)
+                                    {
+                                        <p><i class="la la-phone"></i> @companyInfo.phone</p>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(companyInfo.email) && Model.job_info.view_company)
+                                    {
+                                        <p><i class="la la-envelope-o"></i> <a href="javascript:;">@companyInfo.email</a></p>
+                                    }
+
+                                </div>
+                            }
+                        </div><!-- Job Head -->
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.work_content))
+                        {
+                            <div class="job-detail" style="">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_DESCRIPTION</h3>
+                                <div class="job-detail-content">
+                                    @*@Html.RawHtmlCustom(itemLangInfo.work_content)*@
+                                    @Html.RawHtmlCustom(itemLangInfo.work_content)
+                                </div>
+                            </div>
+                        }
+
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.requirement))
+                        {
+                            <div class="job-detail" style="">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_REQUIREMENT</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.requirement)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.plus))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_PRIORITY</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.plus)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.paid_holiday))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_PAID_HOLIDAY</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.paid_holiday)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.bonus))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_BONUS</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.bonus)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.subsidy))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_SUBSIDY</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.subsidy)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.welfare))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_WELFARE</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.welfare)
+                                </div>
+                            </div>
+                        }                        
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.training))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_TRAINING</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.training)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.recruitment_procedure))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_RECRUIMENT_PROCEDURE</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.recruitment_procedure)
+                                </div>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(itemLangInfo.remark))
+                        {
+                            <div class="job-detail">
+                                <h3 class="job-detail-title">@UserWebResource.LB_JOB_REMARK</h3>
+                                <div class="job-detail-content">
+                                    @Html.RawHtmlCustom(itemLangInfo.remark)
+                                </div>
+                            </div>
+                        }
+
+                        <div class="clearfix"></div>
+
+                        <div class="share-bar">
+                            <span>@UserWebResource.LB_SHARE_SOCIAL</span>
+                            @*<a data-link="@shareFbUrl" title="@UserWebResource.LB_SHARE_ON_FB" class="fa fa-facebook share-social share_fb pointer" data-id="">
+            </a>*@
+
+                            <!-- Load Facebook SDK for JavaScript -->
+                            <div id="fb-root"></div>
+
+
+                            <!-- Your share button code -->
+                            <div class="fb-share-button mt10"
+                                 data-href="@relativePath"
+                                 data-layout="button_count">
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div class="recent-jobs hidden mt30">
+                            <h3>@UserWebResource.LB_RECENT_JOBS</h3>
+                            <div class="job-list-modern" id="RecentJobs">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 column">
+                    <div class="row">
+                        @if (Model.job_info.status == (int)EnumJobStatus.Published && Model.job_info.closed_time > DateTime.UtcNow)
+                        {
+                            <div class="col-lg-12 col-md-12 mt10">
+                                @if (Model.job_info.Extensions.is_refuse != null)
+                                {
+                                    bool isRefuse = Utils.ConvertToBoolean(Model.job_info.Extensions.is_refuse);
+                                    if (isRefuse)
+                                    {
+                                        <div class="fz-20 btn btn-success disabled full-width">
+                                            <i class="fa fa-check"></i>
+                                            <b>@UserWebResource.LB_JOB_REFUSE</b>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        @RenderApply(hasLoggedIn)
+                                    }
+                                }
+                                else
+                                {
+                                    @RenderApply(hasLoggedIn)
+                                }
+                            </div>
+                            <div class="col-lg-12 col-md-12 mt10">
+                                @if (isSaved)
+                                {
+                                    <div class="fz-20 btn btn-danger disabled full-width"><i class="la la-heart"></i> <b>@UserWebResource.LB_SAVED</b></div>
+                                }
+                                else
+                                {
+                                    <a class="fz-20 btn btn-outline-danger full-width @((hasLoggedIn) ? "btn-save-job-detail" : "unauthorized")" data-id="@Model.job_info.id"><i class="la la-heart-o"></i> <b>@UserWebResource.LB_SAVE_THIS_JOB</b></a>
+                                }
+                            </div>
+                            <div class="col-lg-12 col-md-12 mt10">
+                                @{
+                                    var inviteLink = SecurityHelper.GenerateSecureLink("Job", "InviteFriend", new { id = Model.job_info.id });
+                                }
+                                <a href="javascript:;" class="fz-20 btn btn-outline-danger full-width @((hasLoggedIn) ? "" : "unauthorized")" data-id="@Model.job_info.id" @(hasLoggedIn ? "data-modal=''" : string.Empty) data-href="@inviteLink"><i class="la la-user-plus"></i> <b>@UserWebResource.LB_INVITE_FRIEND_APPLY_JOB</b></a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-lg-12 col-md-12 mt10">
+                                <div class="fz-20 btn btn-danger disabled full-width">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                    <b>@UserWebResource.LB_JOB_EXPIRED</b>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="job-overview">
+                        <h3>@UserWebResource.LB_JOB_OVERVIEW</h3>
+                        <ul>
+                            <li>
+                                <i class="la la-money"></i><h3>@UserWebResource.LB_SALARY</h3>
+                                <span>@FrontendHelpers.RenderRangeIntegerNumber(Model.job_info.salary_min, Model.job_info.salary_max)</span>
+                            </li>
+
+                            <li>
+                                <i class="la la-users"></i><h3>@UserWebResource.LB_JOB_QUANTITY</h3>
+                                @if (Model.job_info.quantity > 0)
+                                {
+                                    <span>@Model.job_info.quantity.FormatWithComma()</span>
+                                }
+                                else
+                                {
+                                    <span>@UserWebResource.LB_UNLIMITED</span>
+                                }
+                            </li>
+
+                            <li>
+                                <i class="la la-mars-double"></i><h3>@UserWebResource.LB_AGE</h3>
+                                <span>@FrontendHelpers.RenderRangeIntegerNumber(Model.job_info.age_min, Model.job_info.age_max)</span>
+                            </li>
+
+                            @if (Model.job_info.work_start_time != null && Model.job_info.work_end_time != null)
+                            {
+                                <li>
+                                    <i class="la la-clock-o"></i><h3>@UserWebResource.LB_WORKING_TIME</h3>
+                                    <span>@Model.job_info.work_start_time.Value.ToString(@"hh\:mm") - @Model.job_info.work_end_time.Value.ToString(@"hh\:mm") @(Model.job_info.flexible_time ? string.Format(" ({0})", UserWebResource.LB_FLEXIBLE) : string.Empty)</span>
+                                </li>
+                            }
+
+                            <li>
+                                <i class="la la-graduation-cap"></i><h3>@UserWebResource.LB_JOB_QUALIFICATION_REQUIRED</h3>
+                                @if (!string.IsNullOrEmpty(Model.job_info.qualification_label))
+                                {
+                                    <span>@Model.job_info.qualification_label</span>
+                                }
+                                else
+                                {
+                                    <span>@UserWebResource.LB_NOT_REQUIRED</span>
+                                }
+                            </li>
+
+                            <li>
+                                <i class="la la-language"></i><h3>@UserWebResource.LB_JAPANESE_LEVEL</h3>
+                                @if (Model.job_info.japanese_level_number > 0)
+                                {
+                                    foreach (var jpLevel in Model.JapaneseLevels)
+                                    {
+                                        if (Model.job_info.japanese_level_number == jpLevel.level_number)
+                                        {
+                                            <span>@UserWebResource.LB_LANGUAGE_LEVEL_HIGHER @jpLevel.level</span>
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    <span>@UserWebResource.LB_NOT_REQUIRED</span>
+                                }
+                            </li>
+
+                            @if (Model.job_info.probation_duration > 0)
+                            {
+                                <li><i class="la la-calendar"></i><h3>@UserWebResource.LB_PROBATION_DURATION</h3><span>@Model.job_info.probation_duration @UserWebResource.LB_MONTHS.ToLower()</span></li>
+                            }
+
+                            <li>
+                                <i class="la la-envelope-o"></i><h3>@UserWebResource.LB_JOB_CV_APPLICATION</h3>
+                                @if (Model.job_info.work_experience_doc_required)
+                                {
+                                    <span>@UserWebResource.LB_JOB_CV_APPLICATION_WORK_HISTORY</span>
+                                }
+                                else
+                                {
+                                    <span>@UserWebResource.LB_JOB_CV_APPLICATION_CV</span>
+                                }
+                            </li>
+
+                            @if (Model.job_info.japanese_only)
+                            {
+                                <li>
+                                    <i class="la la-warning text-danger"></i><h3 class="text-danger mt10">@UserWebResource.LB_JOB_JAPANESE_ONLY</h3>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    @if (Model.job_info.Addresses.HasData())
+                    {
+                        <div class="job-overview full-width">
+                            <h3>@UserWebResource.LB_WORKING_ADDRESS</h3>
+                            <ul>
+                                @foreach (var add in Model.job_info.Addresses)
+                                {
+                                    var workingAddress = FrontendHelpers.RenderJobWorkingAddress(add, Model.job_info.view_company);
+                                    if (!string.IsNullOrEmpty(workingAddress))
+                                    {
+                                        <li class=""><span><i class="la la-map-marker"></i> @workingAddress</span></li>
+                                    }
+
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <div class="extra-job-info full-width">
+                        @if (Model.job_info.duration > 0)
+                        {
+                            <span title="@UserWebResource.LB_JOB_APPLICATION_DURATION" class="pl40"><i class="la la-clock-o"></i><strong>@UserWebResource.LB_JOB_APPLICATION_DURATION: @Model.job_info.duration.FormatWithComma() @UserWebResource.LB_DAYS.ToLower()</strong> </span>
+                        }
+
+                        @*<span class="pl40"><i class="la la-eye"></i><strong>@Model.job_info.view_count.FormatWithComma()</strong> <span>@UserWebResource.LB_JOB_VIEW_TIMES</span></span>*@
+
+                        @if (Model.job_info.Extensions.application_count != null)
+                        {
+                            int appsCount = Utils.ConvertToInt32(Model.job_info.Extensions.application_count);
+                            if (appsCount > 0)
+                            {
+                                <span class="pl40">
+                                    <i class="la la-file-text"></i>
+                                    <strong>@(appsCount.FormatWithComma())</strong> @UserWebResource.LB_JOB_APPLICATIONS
+                                </span>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@helper RenderApply(bool hasLoggedIn)
+{
+    if ((Model.job_info.Extensions.is_applied != null))
+    {
+        bool isApplied = Utils.ConvertToBoolean(Model.job_info.Extensions.is_applied);
+        if (!isApplied)
+        {
+            if (Model.job_info.status == (int)EnumJobStatus.Published)
+            {
+                var applyLink = SecurityHelper.GenerateSecureLink("Job", "ApplyJob", new { id = Model.job_info.id, is_invitation = Model.is_invitation });
+                if (Model.is_invitation == 1)
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="javascript:;" data-href="@applyLink" @((hasLoggedIn) ? "data-modal=''" : string.Empty) class="fz-20 btn btn-outline-info full-width @((hasLoggedIn) ? "btn-apply-job" : "unauthorized")" title=""><i class="fa fa-check"></i> <b>@UserWebResource.BT_ACCEPT</b></a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="javascript:;" data-modal="" data-size="default" data-href="@Url.Action("IgnoreInvitation","Member", new { id = Model.id, job_id = Model.job_info.id })" @((hasLoggedIn) ? "data-modal=''" : string.Empty) class="fz-20 btn btn-outline-danger full-width @((hasLoggedIn) ? "btn-apply-job" : "unauthorized")" title=""><i class="fa fa-hand-paper-o"></i> <b>@UserWebResource.BT_IGNORE</b></a>
+                        </div>
+                    </div>
+                }
+                else if (Model.is_invitation == -1)
+                {
+                    <a href="javascript:;" class="fz-20 btn btn-danger full-width @((hasLoggedIn) ? "btn-apply-job" : "unauthorized")" title=""><i class="fa fa-hand-paper-o"></i> <b>@UserWebResource.LB_IGNORED</b></a>
+                }
+                else
+                {
+                    <a href="javascript:;" data-href="@applyLink" @((hasLoggedIn) ? "data-modal=''" : string.Empty) class="fz-20 btn btn-outline-info full-width @((hasLoggedIn) ? "btn-apply-job" : "unauthorized")" title=""><i class="fa fa-paper-plane"></i> <b>@UserWebResource.LB_JOB_APPLY</b></a>
+                }
+            }
+            else if (Model.job_info.status == (int)EnumJobStatus.Closed)
+            {
+                <div class="fz-20 custom-btn-disabled full-width">
+                    <a href="javascript:;" class="cursor-default">
+                        <i class="la la-lock"></i>
+                        <span title="@((Model.job_info.closed_time != null) ? DateHelpers.FormatToStringTitle(Model.job_info.closed_time.Value) : "")">@EnumResource.JOB_STATUS_CLOSED</span>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            if (Model.is_invitation == 2)
+            {
+                <a href="javascript:;" class="fz-20 btn btn-info full-width @((hasLoggedIn) ? "btn-apply-job" : "unauthorized")" title=""><i class="fa fa-check"></i> <b>@UserWebResource.LB_INTERVIEWING</b></a>
+            }
+            else
+            {
+                <div class="fz-20 btn btn-success disabled full-width">
+                    <i class="fa fa-check"></i>
+                    <b>@UserWebResource.LB_JOB_ALREADY_APPLIED</b>
+                </div>
+            }
+        }
+    }
+}
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Pages/job-detail.js")"></script>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        function reload() {
+            window.location.reload();
+        }
+    </script>
+}

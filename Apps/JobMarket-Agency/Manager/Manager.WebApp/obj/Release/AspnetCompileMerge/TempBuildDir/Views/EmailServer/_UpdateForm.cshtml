@@ -1,0 +1,145 @@
+﻿@using Manager.WebApp.Resources
+@using System.Globalization
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.EmailServerUpdateModel
+
+
+@{
+    var currentLang = CultureInfo.CurrentCulture;
+}
+
+@Html.AntiForgeryToken()
+
+<div class="form-group m-form__group row pl0 pr0">
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Gmail, Yahoo, Yandex,...", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    </div>
+</div>
+
+<!--begin::Section-->
+<div class="m-accordion m-accordion--default m-accordion--toggle-arrow" id="m_smtp" role="tablist">
+    <!--begin::Item-->
+    <div class="m-accordion__item m-accordion__item--info">
+        <div class="m-accordion__item-head collapsed" role="tab" id="m_smtp_head" data-toggle="collapse" href="#m_smtp_body" aria-expanded="false">
+            <span class="m-accordion__item-icon">
+                <i class="fa fa-paper-plane"></i>
+            </span>
+            <span class="m-accordion__item-title">
+                @ManagerResource.LB_EMAIL_SENDING_CONFIG
+            </span>
+            <span class="m-accordion__item-mode"></span>
+        </div>
+
+        <div class="m-accordion__item-body collapse show" id="m_smtp_body" role="tabpanel" aria-labelledby="m_smtp_head" data-parent="#m_edu_history">
+            <div class="m-accordion__item-content">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_SMTP_SERVER
+                        </label>
+
+                        @Html.TextBoxFor(m => m.SendingConfig.SMTPServer, new { @class = "form-control", placeholder = "smtp.gmail.com", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.SendingConfig.SMTPServer, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_PORT_SERVER
+                        </label>
+
+                        @Html.TextBoxFor(m => m.SendingConfig.Port, new { @class = "form-control", placeholder = "587", @autocomplete = "off" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label>&nbsp;</label>
+                        <div class="m-checkbox-inline">
+                            <label class="m-checkbox">
+                                <input type="checkbox" @(((Model.SendingConfig != null && Model.SendingConfig.SSLRequired) || Model.Id == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.SendingConfig.SSLRequired)" value="true">
+                                @ManagerResource.LB_SSL_REQUIRED
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Item-->
+</div>
+<!--end::Section-->
+<!--begin::Section-->
+<div class="m-accordion m-accordion--default m-accordion--toggle-arrow" id="m_pop" role="tablist">
+    <!--begin::Item-->
+    <div class="m-accordion__item m-accordion__item--info">
+        <div class="m-accordion__item-head collapsed" role="tab" id="m_pop_head" data-toggle="collapse" href="#m_pop_body" aria-expanded="false">
+            <span class="m-accordion__item-icon">
+                <i class="fa fa-envelope"></i>
+            </span>
+            <span class="m-accordion__item-title">
+                @ManagerResource.LB_EMAIL_RECEIVING_CONFIG
+            </span>
+            <span class="m-accordion__item-mode"></span>
+        </div>
+
+        <div class="m-accordion__item-body collapse show" id="m_pop_body" role="tabpanel" aria-labelledby="m_pop_head" data-parent="#m_edu_history">
+            <div class="m-accordion__item-content">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_POP_SERVER
+                        </label>
+
+                        @Html.TextBoxFor(m => m.ReceivingConfig.POPServer, new { @class = "form-control", placeholder = "pop.gmail.com", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.ReceivingConfig.POPServer, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_PORT_SERVER
+                        </label>
+
+                        @Html.TextBoxFor(m => m.ReceivingConfig.Port, new { @class = "form-control", placeholder = "995", @autocomplete = "off" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label>&nbsp;</label>
+                        <div class="m-checkbox-inline">
+                            <label class="m-checkbox">
+                                <input type="checkbox" @(((Model.ReceivingConfig != null && Model.ReceivingConfig.SSLRequired) || Model.Id == 0) ? "checked" : string.Empty) name="@Html.NameFor(m=>m.ReceivingConfig.SSLRequired)" value="true">
+                                @ManagerResource.LB_SSL_REQUIRED
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Item-->
+</div>
+<!--end::Section-->
+
+<div class="form-group m-form__group row pl0 pr0">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Status, new { @class = "form-control-label" })
+        <div class="m-checkbox-inline">
+            <label class="m-checkbox">
+                <input name="@Html.NameFor(m => m.Status)" @((Model.Status == 1 || Model.Id == 0) ? "checked" : string.Empty) value="1" type="checkbox">
+                @ManagerResource.LB_ACTIVE_MAIL_SERVER
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group m-form__group row pl0 pr0">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info pull-right">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+        <a class="btn btn-outline-info" href="@Url.Action("Index", "EmailServer")"><i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL</a>
+    </div>
+</div>

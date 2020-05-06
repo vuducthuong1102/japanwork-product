@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="COMMON_CHANGEPWD_SUCCESS" xml:space="preserve">
+    <value>Mật khẩu đã được thay đổi thành công</value>
+  </data>
+  <data name="COMMON_ERROR_AUTH_METHOD_SELECTED" xml:space="preserve">
+    <value>Bạn đang sử dụng phương thức này </value>
+  </data>
+  <data name="COMMON_ERROR_CAPTCHA_INVALID" xml:space="preserve">
+    <value>Bạn đã nhập sai mã Captcha</value>
+  </data>
+  <data name="COMMON_ERROR_CONFIRMPWD_INCORRECT" xml:space="preserve">
+    <value>Xác nhận mật khẩu chưa đúng</value>
+  </data>
+  <data name="COMMON_ERROR_DATA_INVALID" xml:space="preserve">
+    <value>Dữ liệu không hợp lệ</value>
+  </data>
+  <data name="COMMON_ERROR_EMAIL_INVALID" xml:space="preserve">
+    <value>Email không hợp lệ</value>
+  </data>
+  <data name="COMMON_ERROR_EMAIL_NULL" xml:space="preserve">
+    <value>Vui lòng nhập email</value>
+  </data>
+  <data name="COMMON_ERROR_EXTERNALSERVICE_TIMEOUT" xml:space="preserve">
+    <value>Dịch vụ đang bận, vui lòng thử lại sau</value>
+  </data>
+  <data name="COMMON_ERROR_HASH_INCORRECT" xml:space="preserve">
+    <value>Chuỗi mã hóa không đúng</value>
+  </data>
+  <data name="COMMON_ERROR_HASH_NULL" xml:space="preserve">
+    <value>Vui lòng cung cấp chuỗi mã hóa</value>
+  </data>
+  <data name="COMMON_ERROR_INFO_NOTFOUND" xml:space="preserve">
+    <value>Không tìm thấy thông tin</value>
+  </data>
+  <data name="COMMON_ERROR_LESS_6_CHARACTERS" xml:space="preserve">
+    <value>Vui lòng nhập ít nhất 6 ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD1_NOTCORRECT" xml:space="preserve">
+    <value>Mật khẩu cấp 1 không đúng</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD2_NOTCORRECT" xml:space="preserve">
+    <value>Mật khẩu cấp 2 không đúng</value>
+  </data>
+  <data name="COMMON_ERROR_OLDPWD_EQUAL_NEWPWD" xml:space="preserve">
+    <value>Mật khẩu mới trùng với mật khẩu cũ</value>
+  </data>
+  <data name="COMMON_ERROR_OVER_1000_CHARACTERS" xml:space="preserve">
+    <value>Vui lòng nhập không quá 1000 ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_OVER_50_CHARACTERS" xml:space="preserve">
+    <value>Vui lòng nhập không quá 50 ký tự</value>
+  </data>
+  <data name="COMMON_ERROR_PASSWORD_NULL" xml:space="preserve">
+    <value>Vui lòng nhập mật khẩu</value>
+  </data>
+  <data name="COMMON_ERROR_PHONENUMBER_NULL" xml:space="preserve">
+    <value>Vui lòng nhập số điện thoại</value>
+  </data>
+  <data name="COMMON_ERROR_PHONE_INVALID" xml:space="preserve">
+    <value>Số điện thoại không hợp lệ</value>
+  </data>
+  <data name="COMMON_ERROR_RECOVER_METHOD_NULL" xml:space="preserve">
+    <value>Phương thức khôi phục không được để trống</value>
+  </data>
+  <data name="COMMON_ERROR_TIME_INVALID" xml:space="preserve">
+    <value>Thời gian không hợp lệ</value>
+  </data>
+  <data name="COMMON_ERROR_TIME_NULL" xml:space="preserve">
+    <value>Vui lòng nhập vào thời gian</value>
+  </data>
+  <data name="COMMON_ERROR_TOKEN_NULL" xml:space="preserve">
+    <value>Vui lòng cung cấp token</value>
+  </data>
+  <data name="COMMON_ERROR_USERID_NULL" xml:space="preserve">
+    <value>Id tài khoản không được để trống</value>
+  </data>
+  <data name="COMMON_ERROR_USERNAME_NULL" xml:space="preserve">
+    <value>Vui lòng nhập tên đăng nhập</value>
+  </data>
+  <data name="COMMON_ERROR_USERTOKEN_NOTFOUND" xml:space="preserve">
+    <value>Tài khoản không tồn tại hoặc token không hợp lệ</value>
+  </data>
+  <data name="COMMON_EXCEPTION_NOTIF" xml:space="preserve">
+    <value>Hệ thống đang bận, vui lòng thử lại sau</value>
+  </data>
+  <data name="COMMON_OTPCODE_FORMAT" xml:space="preserve">
+    <value>Ma OTP cua ban la {0}</value>
+  </data>
+  <data name="COMMON_SUCCESS_CHANGEPWD2" xml:space="preserve">
+    <value>Mật khẩu cấp 2 đã được thay đổi thành công</value>
+  </data>
+  <data name="COMMON_SUCCESS_OTPCODE_SENT" xml:space="preserve">
+    <value>Mã OTP đã được gửi tới số điện thoại của bạn Vui lòng xác nhận</value>
+  </data>
+  <data name="LOGIN_ERROR_INFO_INVALID" xml:space="preserve">
+    <value>Tên đăng nhập hoặc mật khẩu không đúng</value>
+  </data>
+  <data name="LOGIN_ERROR_TIME_INVALID" xml:space="preserve">
+    <value>Thời gian không hợp lệ</value>
+  </data>
+  <data name="LOGIN_FAILED" xml:space="preserve">
+    <value>Đăng nhập thất bại</value>
+  </data>
+  <data name="LOGIN_SUCCESS" xml:space="preserve">
+    <value>Đăng nhập thành công</value>
+  </data>
+  <data name="OTP_ERROR_OTPCODE_EXPIRED" xml:space="preserve">
+    <value>Mã OTP đã hết hạn</value>
+  </data>
+  <data name="OTP_ERROR_OTPCODE_NOTEXISTS_ORUSED" xml:space="preserve">
+    <value>Mã OTP không tồn tại hoặc đã được sử dụng</value>
+  </data>
+  <data name="OTP_SUCCESS_CREATE" xml:space="preserve">
+    <value>Tạo mã OTP thành công</value>
+  </data>
+  <data name="OTP_SUCCESS_VERIFY" xml:space="preserve">
+    <value>Mã OTTP đã được xác nhận thành công</value>
+  </data>
+  <data name="REGISTER_ERROR_BIRTHDAY_INVALID" xml:space="preserve">
+    <value>Thời gian không hợp lệ. Định dạng: dd/mm/yyyy</value>
+  </data>
+  <data name="REGISTER_ERROR_EMAIL_USED" xml:space="preserve">
+    <value>Email đã được sử dụng</value>
+  </data>
+  <data name="REGISTER_ERROR_IDCARD_USED" xml:space="preserve">
+    <value>Chứng minh thư đã được sử dụng</value>
+  </data>
+  <data name="REGISTER_ERROR_PHONE_USED" xml:space="preserve">
+    <value>Số điện thoại đã được sử dụng</value>
+  </data>
+  <data name="REGISTER_ERROR_USERNAME_USED" xml:space="preserve">
+    <value>Tên tài khoản đã được sử dụng</value>
+  </data>
+  <data name="REGISTER_SUCCESS" xml:space="preserve">
+    <value>Đăng ký thành công</value>
+  </data>
+  <data name="TEXT_ACCOUNT" xml:space="preserve">
+    <value>Tài khoản</value>
+  </data>
+  <data name="TEXT_ALREADY_HAVE_ACC" xml:space="preserve">
+    <value>Đã có tài khoản?</value>
+  </data>
+  <data name="TEXT_CANCEL_BUTTON" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="TEXT_CAPTCHA_NULL" xml:space="preserve">
+    <value>Vui lòng nhập mã Captcha</value>
+  </data>
+  <data name="TEXT_CLICK" xml:space="preserve">
+    <value>Bấm</value>
+  </data>
+  <data name="TEXT_CONFIRM_PASSWORD" xml:space="preserve">
+    <value>Xác nhận mật khẩu</value>
+  </data>
+  <data name="TEXT_CROP_AVATAR_BUTTON" xml:space="preserve">
+    <value>Cắt ảnh</value>
+  </data>
+  <data name="TEXT_DONT_HAVE_ACC" xml:space="preserve">
+    <value>Chưa có tài khoản?</value>
+  </data>
+  <data name="TEXT_EMAIL" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="TEXT_HELP" xml:space="preserve">
+    <value>Trợ giúp</value>
+  </data>
+  <data name="TEXT_LANGUAGE" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="TEXT_LOGIN" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="TEXT_LOGIN_ACCOUNT" xml:space="preserve">
+    <value>Email, tên đăng nhập, số điện thoại</value>
+  </data>
+  <data name="TEXT_LOGIN_BUTTON" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
+  <data name="TEXT_MAXIMUM_SIZE" xml:space="preserve">
+    <value>Kích thước tối đa</value>
+  </data>
+  <data name="TEXT_PASSWORD" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="TEXT_PHONE" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="TEXT_READ_ALLOW" xml:space="preserve">
+    <value>Tôi đã đọc và đồng ý với</value>
+  </data>
+  <data name="TEXT_REFRESH_CAPTCHA_BUTTON" xml:space="preserve">
+    <value>Làm mới</value>
+  </data>
+  <data name="TEXT_REFRESH_CAPTCHA_DESC" xml:space="preserve">
+    <value>Nhập mã Captcha ở trên</value>
+  </data>
+  <data name="TEXT_REGISTER" xml:space="preserve">
+    <value>Đăng ký</value>
+  </data>
+  <data name="TEXT_REMEMBER_ME" xml:space="preserve">
+    <value>Duy trì đăng nhập</value>
+  </data>
+  <data name="TEXT_SUBMIT_BUTTON" xml:space="preserve">
+    <value>Gửi</value>
+  </data>
+  <data name="TEXT_TERM_CONDITION" xml:space="preserve">
+    <value>Các điều khoản và điều kiện chung</value>
+  </data>
+  <data name="TEXT_TO" xml:space="preserve">
+    <value>để</value>
+  </data>
+  <data name="UPDATE_PROFILE_SUCCESS" xml:space="preserve">
+    <value>Cập nhật hồ sơ thành công</value>
+  </data>
+</root>

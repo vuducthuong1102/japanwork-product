@@ -1,0 +1,29 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@model List<IdentityCity>
+
+@{
+    var hasData = Model.HasData();
+}
+
+<option value="0">@ManagerResource.LB_SELECT_CITY</option>
+@if (hasData)
+{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    if (currentLang == "ja-JP")
+    {
+        foreach (var item in Model)
+        {
+            <option value="@item.id">@item.city</option>
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <option value="@item.id">@item.furigana</option>
+        }
+    }
+}

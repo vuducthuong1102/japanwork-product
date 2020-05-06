@@ -1,0 +1,242 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Models;
+@using System.Web.Configuration;
+@using MySite.ShareLibs;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPostDetail
+@{
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+    var shareFbUrl = string.Empty;
+    var relativePath = string.Empty;
+}
+
+@if (Model != null)
+{
+    if (Model.Post != null)
+    {
+        relativePath = baseUrl + PostHelper.GetFriendlyUrl(Model.Post);
+        var firstImageLink = HttpUtility.UrlEncode(baseUrl + PostHelper.GetFirstImage(Model.Post));
+        var encodeDescription = HttpUtility.UrlEncode(PostHelper.ParseDescriptionFromPost(Model.Post));
+
+        ViewBag.Title = Model.Post.Title;
+        ViewBag.OgUrl = relativePath;
+        ViewBag.OgType = "website";
+        ViewBag.OgTitle = Model.Post.Title;
+        ViewBag.OgDescription = HtmlRemoval.StripTagsCharArray(PostHelper.ParseDescriptionFromPost(Model.Post));
+
+        shareFbUrl = string.Format("https://www.facebook.com/sharer/sharer.php?u={0}", relativePath);
+
+        if (Model.PostData != null && Model.PostData.Images != null && Model.PostData.Images.Count > 0)
+        {
+            ViewBag.OgImage = CdnHelper.SocialGetFullImgPath(Model.PostData.Images[0].Url);
+        }
+    }
+}
+
+@{
+    var hasLoggedIn = false;
+    var userInfo = AccountHelper.GetCurrentUser();
+    if (userInfo != null)
+    {
+        hasLoggedIn = true;
+    }
+
+    var locStr = string.Empty;
+    if (Model != null)
+    {
+        if (Model.Post != null && Model.PostData != null)
+        {
+            locStr = PostHelper.ParseTitleMetaFromPost(Model.Post, Model.PostData.TotalLocations);
+        }
+    }
+}
+
+
+<div class="container">
+    <input type="hidden" value="@Model.Post.Id" id="PostId" />
+    @if (hasLoggedIn)
+    {
+        <div class="row">
+            <div class="feed-actions hidden nodisplay">
+                @Html.Partial("~/Views/Widgets/_NewsFeedActions.cshtml", new PostModel())
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            <div class="new-feeds new-feeds-detail mt15">
+                <div class="item mt0">
+                    <div class="head dropdown">
+                        <div class="col-md-6 owner">
+                            <a href="@AccountHelper.GetUserProfileUrl(Model.Post)">
+                                <img src="@CdnHelper.CoreGetFullImgPath(Model.Post.Avatar)" alt="avatar" class="avatar" />
+                            </a>
+                            <a href="@AccountHelper.GetUserProfileUrl(Model.Post)">
+                                <p class="name word-break">
+                                    @PostHelper.ParsePostOwnerInfo(Model.Post)
+                                </p>
+                            </a>
+                            <p class="time livetimestamp-title" title="@DateHelpers.FormatToString(Model.Post.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(Model.Post.CreatedDate)">
+                                @DateHelpers.FormatToStringTitle(Model.Post.CreatedDate)
+                            </p>
+                        </div>
+                        <div class="col-xs-6 text-right padt20">
+                            @if (userInfo != null)
+                            {
+                                if (userInfo.Id == Model.Post.UserId)
+                                {
+                                    <a href="#" class="dropdown-toggle mr5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im-4"></i></a>
+                                    <ul class="dropdown-menu">
+                                        @if (userInfo != null)
+                                        {
+                                            if (userInfo.Id == Model.Post.UserId)
+                                            {
+                                                <li class="text-center"><a href="javascript:;" class="modify-post" data-id="@Model.Post.Id">@UserWebResource.BT_MODIFY</a></li>
+                                                <li class="text-center"><a href="javascript:;" class="remove-post" data-id="@Model.Post.Id">@UserWebResource.BT_DELETE_POST</a></li>
+                                            }
+                                        }
+                                    </ul>
+                                }
+                            }
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="content">
+                        <p class="text-center text-bold fz-16 mb0">@Model.Post.Title</p>
+                        <p class="text-center fz-16 text-semibold mb5">
+                            @locStr
+                            @if (Model.Post.UserRating > 0)
+                            {
+                                <span class="sp-rate-core">
+                                    - @Model.Post.UserRating <span class="icon icon-star fz-16"></span>
+                                </span>
+                            }
+                        </p>
+                        @if (Model.PostLocations != null)
+                        {
+                            <p>
+                                <span class="icon icon-location fz-14 ml10"></span>
+                                <span class="text-grey-03"> - @PostHelper.ParsePostOwnerInfo(Model.Post) đã đến: </span>
+                                <a href="#" class="text-blue"></a>
+                            </p>
+                        }
+                        <div class="wrap-gallery">
+                            @if (!string.IsNullOrEmpty(Model.Post.CategoryName))
+                            {
+                                <span class="category">@Model.Post.CategoryName</span>
+                            }
+                            @Html.Partial("~/Views/Post/Item/_ImageItem.cshtml", Model.PostData.Images)
+                        </div>
+                        @*@RenderMoreImage()*@
+                    </div>
+
+                    <div class="content-details" data-id="@Model.Post.Id">
+                        <div class="desc word-break">
+                            @Html.Raw(PostHelper.ParseDescriptionFromPost(Model.Post, true))
+                        </div>
+                    </div>
+
+                    <div class="footer padt15">
+                        @Html.Partial("~/Views/Post/Item/_ActionItem.cshtml", Model.Post)
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="comments">
+                        @Html.Partial("~/Views/Post/Item/Comment/_BoxComment.cshtml", Model.Post)
+                        <div class="list-comment">
+
+                            @if (Model.PostComment != null && Model.PostComment.Count > 0)
+                            {
+                                @Html.Partial("~/Views/Post/Item/Comment/_ListItem.cshtml", Model.PostComment)
+                            }
+                            @if (hasLoggedIn)
+                            {
+                                <div class="actual-link">
+                                    <div class="action-comment">
+                                        <a href="javascript:;" class="comment-post comment-count hidden" data-id="@Model.Post.Id" data-count="0">@UserWebResource.LB_WRITE_COMMENT...</a>
+                                        @if (Model.PostComment != null && Model.PostComment.Count > 0)
+                                        {
+                                            if (Model.PostComment[0].NextCount > 0)
+                                            {
+                                                <a href="javascript:;" class="load-more comment-load-more" data-postid="@Model.Post.Id" data-page="2">@UserWebResource.LB_VIEW_MORE_COMMENTS <i class="icon icon-arrow_down2"></i></a>
+                                            }
+                                        }
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 hidden-xs">
+            @Html.Partial("~/Views/Widgets/_MenuLeftItem.cshtml")
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal post-detail" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="view-image">
+                <div class="row">
+                    <div class="carousel-wrapper">
+                        <div id="post-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                            <div class="carousel-inner">
+                            </div>
+                            <a class="left carousel-control" href="#post-carousel" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="right carousel-control" href="#post-carousel" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                        <a href="#" class="carousel_back"></a>
+                        <div class="hide-comment"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@helper RenderMoreImage()
+{
+    var images = Model.PostData.Images;
+
+    if (images != null && images.Count() > 4)
+    {
+        <div class="more-image">
+            <h3>
+                @(images.Count() - 4)+
+            </h3>
+        </div>
+    }
+}
+
+@section PagePluginScripts{
+    <script src="~/Scripts/Common/containeditable.js"></script>
+}
+
+@section PageInlineStyles{
+    <link href="~/Content/themes/default/assets/css/frontend/common/custom.css" rel="stylesheet" />
+}
+
+@section PageInlineScripts{
+    @if (hasLoggedIn)
+    {
+        var googleLangParams = LanguagesProvider.GetGoogleMapLanguage();
+
+        var googleMapApi = "https://maps.googleapis.com/maps/api/js?key=AIzaSyCHSvvX38mMDYdNTaUheYyb0-AW2BgOG3M&libraries=places&callback=initLocationAutoComplete" + googleLangParams;
+        <script src="@googleMapApi"
+                async defer></script>
+    }
+
+    <script src="@Url.VersionedContent("~/Scripts/Feed/main.js")"></script>
+}

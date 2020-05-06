@@ -1,0 +1,77 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageJobModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_MANAGE_JOB;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var hasIndustries = Model.Industries.HasData();
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<!-- modal placeholder-->
+<div id='jkModalSelect' class='modal modal-wide fade '>
+    <div class="modal-dialog" style="max-width: 1024px;">
+        <div class="modal-content">
+            <div id='jkModalSelectContent'></div>
+        </div>
+    </div>
+</div>
+<div class="space"></div>
+@Html.Partial("Partials/_JobList", Model)
+@section PageInlineStyles{
+    <style>
+        #SelectedApplicants {
+            float: left;
+        }
+
+        .jk-item {
+            float: left;
+            margin-right: 5px;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+
+        .jk-item-info {
+            float: left;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+        function mouseInHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "1");
+        };
+
+        function mouseOutHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "0");
+        };
+
+        $('.tbl-row-hover tr').hover(mouseInHandler, mouseOutHandler);
+
+        function AfterDelete() {
+            location.reload();
+        }
+
+        function AfterClosed() {
+            location.reload();
+        }
+
+        setTimeout(function () {
+            $(".m-select2").select2();
+        }, 500);
+    </script>
+
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+}

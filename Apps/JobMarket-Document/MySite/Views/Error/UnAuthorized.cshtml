@@ -1,0 +1,26 @@
+﻿@using MySite.Resources;
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1 class="text-danger">
+                    Oops!
+                </h1>
+                <h2 class="text-danger">
+                    401 Unauthorized
+                </h2>
+                <div class="error-details">
+                    <h4>
+                        @UserWebResource.COMMON_ERROR_NO_LOGIN
+                    </h4>
+                </div>
+                <div class="error-actions">
+                    <a href="/webauth/login" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-user"></span>
+                        @UserWebResource.BT_LOGIN
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

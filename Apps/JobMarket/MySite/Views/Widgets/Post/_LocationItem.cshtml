@@ -1,0 +1,9 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities
+@model IdentityPlace
+
+<div class="tag-item">
+    <a href="@Model.GUrl" target="_blank" class="place-item" data-place_id="@Model.GPlaceId" data-id="@Model.Id" title="@Model.GFullName">
+        <span>@Model.GName</span>
+        <span class="tag-close">x</span>
+    </a>
+</div>

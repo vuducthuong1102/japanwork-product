@@ -1,0 +1,137 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ScheduleUpdateModel
+
+<div class="modal-dialog modal-lg" id="updateEventDialog">
+    <div class="modal-content">
+        @if (Model != null)
+        {
+            <form id="frmUpdateSchedule" class="no-margin form-horizontal">
+                <div class="modal-body">
+                    <button type="button" class="close" onclick="$('#updateScheduleModal').modal('hide')" style="margin-top:-10px;">&times;</button>
+                    <h3>@ManagerResource.LB_SCHEDULE_UPDATE &nbsp;</h3>
+                    <hr />
+                    @Html.HiddenFor(m => m.sd_id)
+                    <div style="max-height: calc(100vh - 50vh);overflow: auto !important;">
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.sd_schedule_cat, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                <select data-placeholder="@ManagerResource.LB_SCHEDULE_CAT" data-live-search="true" class="select2 form-control" name="@Html.NameFor(m=>m.sd_schedule_cat)" id="sd_schedule_cat">
+                                    @foreach (var item in Enum.GetValues(typeof(EnumScheduleCategory)))
+                                    {
+                                        var chkItem = (int)item;
+                                        var chkStr = string.Empty;
+                                        if (chkItem == Model.sd_schedule_cat)
+                                        {
+                                            chkStr = "selected";
+                                        }
+                                        <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group hidden ScheduleTitleArea" id="">
+                            @Html.LabelFor(m => m.sd_title, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.sd_title, new { @class = "form-control", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.sd_title, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.sd_pic_id, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                <select data-placeholder="@ManagerResource.LB_PERSON_IN_CHARGE" data-live-search="true" class="select2 form-control" name="@Html.NameFor(m=>m.sd_pic_id)" id="sd_pic_id">
+                                    @if (Model.StaffList.HasData())
+                                    {
+                                        foreach (var st in Model.StaffList)
+                                        {
+                                            <option value="@st.StaffId" @((Model.sd_pic_id == st.StaffId) ? "selected" : "")>@st.FullName</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.sd_start_time, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.sd_start_time, new { @class = "form-control", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.sd_start_time, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.sd_end_time, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextBoxFor(m => m.sd_end_time, new { @class = "form-control", autocomplete = "off" })
+                                @Html.ValidationMessageFor(m => m.sd_end_time, null, new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.sd_content, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-12">
+                                @Html.TextAreaFor(m => m.sd_content, new { @class = "form-control", rows = "5" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger pull-left" data-action="delete"><i class="ace-icon fa fa-trash-o"></i> @ManagerResource.LB_DELETE</button>
+                    <button type="submit" class="btn btn-sm btn-info"><i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE </button>
+                    <button type="button" class="btn btn-sm btn-outline-info" onclick="$('#updateScheduleModal').modal('hide')"><i class="fa fa-times"></i> @ManagerResource.LB_CLOSE</button>
+                </div>
+            </form>
+        }
+        else
+        {
+            <form class="no-margin form-horizontal">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>
+                    <h3>@ManagerResource.LB_SCHEDULE_UPDATE &nbsp;</h3>
+                    <hr />                   
+                    <div class="form-group">                       
+                        <div class="col-sm-12">
+                           <h4><i class="fa fa-warning"></i> @ManagerResource.LB_HAS_NO_DATA</h4>
+                        </div>
+                    </div>                   
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-info" onclick="$('#updateScheduleModal').modal('hide')"><i class="fa fa-times"></i> @ManagerResource.LB_CLOSE</button>
+                </div>
+            </form>
+        }
+
+    </div>
+</div>
+
+<script src="/Scripts/jquery.validate.min.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    jQuery(function ($) {
+        var pickerStartTime = $("#updateEventDialog").find("#@Html.IdFor(m => m.sd_start_time)");
+        var pickerEndTime = $("#updateEventDialog").find("#@Html.IdFor(m => m.sd_end_time)");
+        setupDateTimePicker(pickerStartTime);
+        setupDateTimePicker(pickerEndTime);
+    });
+
+    function setupDateTimePicker(picker) {
+        $(picker).datetimepicker({
+            todayHighlight: !0,
+            autoclose: !0,
+            pickerPosition: "bottom-left",
+            todayBtn: !0,
+            format: "yyyy-mm-dd HH:ii"
+        });
+    }
+
+    $("#sd_schedule_cat").change(function () {
+        if ($(this).val() != "@((int)EnumScheduleCategory.Others)") {
+            $(".ScheduleTitleArea").addClass("hidden");
+        } else {
+            $(".ScheduleTitleArea").removeClass("hidden");
+        }
+    });
+
+    $(function () {
+        $("#sd_schedule_cat").change();
+    })
+</script>

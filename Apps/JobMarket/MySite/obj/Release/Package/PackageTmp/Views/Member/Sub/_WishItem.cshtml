@@ -1,0 +1,170 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@using MySite.Caching
+@using MySite.ShareLibs.Extensions
+@model MySite.Models.JobSeekerWishModel
+
+@{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    Model.EmploymentTypes = CommonHelpers.GetListEmploymentTypes();
+}
+
+
+<div class="profile-title">
+    <h3 class="pl30">@UserWebResource.LB_MY_WISH</h3>
+    <div class="profile-form-edit">
+        <div class="row pl30">
+            <div class="col-lg-5">
+                <span class="pf-title">@UserWebResource.LB_EMPLOYMENT_TYPE</span>
+                <div class="pf-field">
+                    <select title="@UserWebResource.LB_SELECT_EMPLOYMENT_TYPE" class="selectpicker" multiple
+                            data-size="5"
+                            name="@Html.NameFor(m=>m.employment_type_ids)">
+                        @if (Model.EmploymentTypes.HasData())
+                        {
+                            foreach (var emType in Model.EmploymentTypes)
+                            {
+                                var subName = string.Empty;
+                                if (emType.LangList.HasData())
+                                {
+                                    subName = emType.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                                }
+
+                                if (string.IsNullOrEmpty(subName))
+                                {
+                                    subName = emType.employment_type;
+                                }
+                                var selected = string.Empty;
+                                if (Model.employment_type_ids.HasData() && Model.employment_type_ids.FirstOrDefault(s => s == emType.id) > 0)
+                                {
+                                    selected = "selected";
+                                }
+                                <option value="@emType.id" @selected>
+                                    @subName
+                                </option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <span class="pf-title">@UserWebResource.LB_FIELD_FILTER</span>
+                <div class="pf-field">
+                    <select class="selectpicker" data-live-search="true" multiple title="@UserWebResource.LB_SELECT_FIELD"
+                            data-size="7" data-max-options="5"
+                            name="@Html.NameFor(m=>m.sub_field_ids)">
+                        @if (Model.Fields.HasData())
+                        {
+                            foreach (var field in Model.Fields)
+                            {
+                                if (field.Sub_fields.HasData())
+                                {
+                                    var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                                    if (string.IsNullOrEmpty(fieldName))
+                                    {
+                                        fieldName = field.field;
+                                    }
+
+                                    <optgroup label="@fieldName">
+                                        @foreach (var sub in field.Sub_fields)
+                                        {
+                                            var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                                            var selected = "";
+                                            if (string.IsNullOrEmpty(subName))
+                                            {
+                                                subName = sub.sub_field;
+                                            }
+                                            if (Model.sub_field_ids.HasData() && Model.sub_field_ids.FirstOrDefault(s => s == sub.id) > 0)
+                                            {
+                                                selected = "selected";
+                                            }
+                                            <option value="@sub.id" @selected>
+                                                @subName
+                                            </option>
+                                        }
+                                    </optgroup>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <span class="pf-title">@UserWebResource.LB_SALARY</span>
+                <div class="pf-field input-group">
+                    @Html.TextBoxFor(m => m.salary_min, null, new { @class = "brr0", @style="width:100px" })
+                    <div class="input-group-prepend">
+                        <span class="input-group-text b0">
+                            ~
+                        </span>
+                    </div>
+                    @Html.TextBoxFor(m => m.salary_max, null, new { @class = "brl0", @style="width:100px" })
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <span class="pf-title">@UserWebResource.IP_WORK_PLACE</span>
+                <div class="pf-field">
+                    <select class="selectpicker" data-live-search="true" multiple title="@UserWebResource.LB_SELECT_WORK_PLACE"
+                            data-size="5" data-max-options="5"
+                            name="@Html.NameFor(m=>m.prefecture_ids)">
+                        @if (Model.Regions.HasData())
+                        {
+                            foreach (var region in Model.Regions)
+                            {
+                                if (region.Prefectures.HasData())
+                                {
+                                    var regionName = region.region;
+
+                                    if (currentLang != "ja-JP")
+                                    {
+                                        regionName = region.furigana;
+                                    }
+
+                                    <optgroup label="@regionName">
+                                        @foreach (var pre in region.Prefectures)
+                                        {
+                                            var prefectureName = pre.prefecture;
+
+                                            if (currentLang != "ja-JP")
+                                            {
+                                                prefectureName = pre.furigana;
+                                            }
+                                            var selected = "";
+                                          
+                                            if (Model.prefecture_ids.HasData() && Model.prefecture_ids.FirstOrDefault(s => s == pre.id) > 0)
+                                            {
+                                                selected = "selected";
+                                            }
+                                            <option value="@pre.id" @selected>
+                                                @prefectureName
+                                            </option>
+                                        }
+                                    </optgroup>
+                                }
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <span class="pf-title">@UserWebResource.IP_START_DATE</span>
+                <div class="pf-field">
+                    @Html.TextBoxFor(m => m.start_date, null, new { placeholder = "dd-MM-yyyy", @class = "datepicker " })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/typeahead.bundle.min.js"></script>
+
+<script>
+    setTimeout(function () {
+        $(".selectpicker").selectpicker();
+    },200)
+     $(".datepicker").datepicker({
+        format: "dd-mm-yyyy"       
+    });
+
+</script>

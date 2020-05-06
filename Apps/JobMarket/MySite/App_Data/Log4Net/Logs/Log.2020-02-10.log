@@ -1,0 +1,169 @@
+2020-02-10 15:02:00,325 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 15:02:00,340 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-10 15:02:00,341 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 15:02:00,476 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 15:02:00,477 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 15:02:00,477 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 15:02:12,696 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 15:02:12,696 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 15:02:12,774 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 15:02:12,775 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 15:02:18,465 [11] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-02-10 15:02:18,472 [11] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-02-10 15:02:22,603 [11] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-02-10 15:02:23,637 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 15:02:23,644 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 15:02:35,335 [11] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 15:02:35,341 [11] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 16:13:09,276 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:09,289 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-10 16:13:09,289 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:09,405 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:09,406 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 16:13:09,407 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:24,355 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:24,388 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-10 16:13:24,407 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:24,596 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:13:24,597 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 16:13:24,598 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 16:14:51,803 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 16:14:51,899 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 16:15:42,835 [24] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-02-10 16:15:43,134 [24] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-02-10 16:15:45,320 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 16:15:45,333 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 16:16:41,833 [8] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-02-10 16:18:41,899 [8] ERROR MySite.Services.ApplicationServices - Failed when calling api SendCvAsync - http://localhost:3333/api/applications/send_cv because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 105
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-02-10 16:18:41,940 [8] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-02-10 16:18:41,979 [8] ERROR MySite.Controllers.JobController - Failed to exec ApplyJob because: MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySite.Controllers.JobController.<ApplyJob>d__10.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\JobController.cs:line 738
+2020-02-10 16:34:44,978 [98] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 16:34:44,990 [98] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 16:34:54,404 [113] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-02-10 16:36:54,458 [113] ERROR MySite.Services.ApplicationServices - Failed when calling api SendCvAsync - http://localhost:3333/api/applications/send_cv because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 105
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-02-10 16:36:54,499 [113] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-02-10 16:36:54,539 [113] ERROR MySite.Controllers.JobController - Failed to exec ApplyJob because: MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.ApplicationServices.<SendCvAsync>d__2.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\ApplicationServices.cs:line 120
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at MySite.Controllers.JobController.<ApplyJob>d__10.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\JobController.cs:line 738
+2020-02-10 16:40:57,669 [143] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 16:40:57,740 [143] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 16:41:10,270 [143] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-02-10 16:41:22,340 [143] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-02-10 16:41:25,000 [144] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 16:41:25,009 [144] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:07:45,297 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:07:45,310 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-10 17:07:45,310 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:07:45,460 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:07:45,461 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 17:07:45,462 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:07:52,284 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:07:52,369 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:09:34,390 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:09:34,394 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-10 17:09:34,395 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:09:34,497 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:09:34,497 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 17:09:34,498 [1] INFO  MySite.Startup - ======================================================
+2020-02-10 17:09:37,212 [28] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:09:37,298 [28] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:12:45,910 [46] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:12:45,916 [46] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:13:11,321 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:13:11,328 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:15:03,456 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:15:03,464 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:17:43,614 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:17:43,623 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:18:33,858 [33] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:18:33,866 [33] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:19:31,178 [74] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:19:31,187 [74] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:20:52,443 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:20:52,449 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:22:16,931 [77] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:22:16,939 [77] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:22:28,697 [47] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:22:28,702 [47] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:38:22,061 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:38:22,075 [113] INFO  MySite.Startup - MySite is starting up
+2020-02-10 17:38:22,076 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:38:22,196 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:38:22,197 [113] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 17:38:22,198 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:38:31,304 [101] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:38:31,379 [101] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:38:41,942 [104] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:38:43,129 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:38:43,135 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:39:41,959 [38] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:39:42,359 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:39:42,364 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:40:07,894 [38] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:40:08,294 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:40:08,298 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:40:24,611 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:40:24,623 [113] INFO  MySite.Startup - MySite is starting up
+2020-02-10 17:40:24,624 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:40:24,752 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:40:24,753 [113] INFO  MySite.Startup - MySite is successfully configured
+2020-02-10 17:40:24,753 [113] INFO  MySite.Startup - ======================================================
+2020-02-10 17:40:30,924 [93] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:40:32,764 [93] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:40:32,772 [93] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:40:44,570 [38] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:42:11,115 [108] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:42:16,696 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:43:07,087 [107] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:43:07,987 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:43:12,742 [97] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:43:16,309 [107] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:43:16,315 [107] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:43:26,712 [93] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:43:27,241 [93] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:43:27,248 [93] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:44:19,398 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:44:19,412 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:44:37,488 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:44:37,497 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:45:00,588 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:45:00,598 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:45:27,452 [112] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:45:27,459 [112] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:47:45,246 [97] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:47:45,260 [97] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:48:09,786 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:48:09,793 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:48:59,006 [104] ERROR MySite.Services.JobServices - Return code: InternalServerError, message: http://localhost:3333/api/jobs/check_invite
+2020-02-10 17:48:59,664 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:48:59,671 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:50:27,636 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:50:27,649 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:51:43,030 [45] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:51:43,038 [45] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:52:18,276 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:52:18,284 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:52:26,077 [104] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:52:26,149 [104] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-10 17:54:39,177 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-10 17:54:39,185 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

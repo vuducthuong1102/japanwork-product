@@ -1,0 +1,15 @@
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\obj\Release\ApiJobMarket.DB.Sql.csprojAssemblyReference.cache
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.DB.Sql.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.DB.Sql.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.DB.Sql.Entities.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.ShareLibs.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\Newtonsoft.Json.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.DB.Sql.Entities.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\ApiJobMarket.ShareLibs.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\Newtonsoft.Json.xml
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\obj\Release\ApiJobMarket.DB.Sql.csproj.CopyComplete
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\obj\Release\ApiJobMarket.DB.Sql.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\obj\Release\ApiJobMarket.DB.Sql.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\BouncyCastle.Crypto.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\MimeKit.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\bin\Release\MimeKit.xml

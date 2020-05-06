@@ -1,0 +1,337 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.JobSeekerChoosenModel
+
+
+@*<div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;">
+            <i class="la la-user-plus fz-20"></i>@ManagerResource.LB_JOB_SEEKER_LIST
+        </h5>
+
+    </div>*@
+@using (Html.BeginForm("JobChoosenJobSeekerSearch", "Job", FormMethod.Post, new { role = "form", @class = "", id = "frmChoosenJobSeeker" }))
+{
+    <input type="hidden" name="type_job_seeker" id="type_job_seeker" value="@Model.type_job_seeker" />
+    @Html.HiddenFor(m => m.job_id)
+    @Html.HiddenFor(m => m.CurrentPage)
+    @Html.HiddenFor(m => m.SearchExec)
+    <input type="hidden" value="" id="SelectedJkIds" />
+    <div class="modal-body pt-0 tab-custom">
+        <ul class="nav nav-tabs  m-tabs-line m-tabs-line--primary" role="tablist">
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_tabs_6_1" role="tab" data-type="0">
+                    <i class="fa fa-users"></i>
+                    @if (Model.type_job_seeker == 0)
+                    {
+                        @ManagerResource.LB_INVITE_ONLINE_CANDIDATE
+                    }
+                    else
+                    {
+                        @ManagerResource.LB_CANDIDATE_OFFLINE
+                    }
+                </a>
+            </li>
+
+            @*<li class="nav-item m-tabs__item">
+                    <a class="nav-link m-tabs__link @(Model.type_job_seeker==1?"active":"" )" data-toggle="tab" href="#m_tabs_6_2" role="tab" data-type="1">
+                        <i class="fa fa-user-times"></i>
+                        @ManagerResource.LB_CANDIDATE_OFFLINE
+                    </a>
+                </li>*@
+        </ul>
+        <div class="pull-right">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                    ×
+                </span>
+            </button>
+        </div>
+        <div class="tab-content">
+            @*<div class="row form-group">
+                        <label class="col-md-2" for="pic_id">@ManagerResource.LB_PERSON_CHARGE</label>
+                    <div class="col-md-4">
+                        <select id="pic_id" name="pic_id" class="m-bootstrap-select form-control selectpicker-staff">
+                            @if (Model.ListStaffs != null && Model.ListStaffs.Count > 0)
+                            {
+                                foreach (var item in Model.ListStaffs)
+                                {
+                                    <option value="@item.StaffId" @(Model.pic_id == item.StaffId ? "selected" : "")>
+                                        @item.FullName
+                                    </option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>*@
+            @*@if (Model.type_job_seeker == 0)
+                {
+                    <div class="tab-pane active" id="m_tabs_6_1" role="tabpanel">
+                        <div id="dataOnline">
+                            @Html.Partial("~/Views/JobSeeker/Partials/ForIntroduce/_ChoosenJobSeekerList.cshtml", Model)
+                        </div>
+                    </div>
+                }*@
+
+            <div class="tab-pane active" id="m_tabs_6_2" role="tabpanel">
+                <div id="dataJobSeeker">
+                    @Html.Partial("~/Views/JobSeeker/Partials/ForIntroduce/_ChoosenJobSeekerList.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info btn-sm" onclick="AssignmentWork_ListPost();">
+            <i class="fa fa-check"></i> @ManagerResource.BT_INVITE_JOBSEEKER
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+        </button>
+    </div>
+}
+@helper RenderSearchForm()
+{
+    @*<div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <div class="col-lg-3 m-form__group--inline">
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+                </div>
+                <div class="col-lg-2 m-form__group--inline">
+                    <button type="submit" class="btn btn-info btn-sm ">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+                </div>
+            </div>
+        </div>*@
+
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    var list_ids = [];
+    $(".selectpicker-staff").selectpicker();
+    $("#frmChoosenJobSeeker").on("submit", function () {
+        JobChoosenJobSeekerSearch();
+        return false;
+    });
+    $(document).on("click", ".tab-custom .nav-link", function () {
+        $("#type_job_seeker").val($(this).attr("data-type"));
+        $("#SelectedJkIds").val("");
+        $("#CurrentPage").val(1);
+        JobChoosenJobSeekerSearch();
+    })
+    $(document).on("click", ".cbxJkItem", function () {
+        var id = $(this).val();
+        var index = list_ids.indexOf(id);
+        if ($(this).is(":checked")) {
+            if (index == -1) {
+                list_ids.push(id);
+            }
+        }
+        else {
+            if (index > -1) {
+                list_ids.splice(index, 1);
+            }
+        }
+    })
+    function JobChoosenJobSeekerSearchNext(pageNum) {
+        $("#CurrentPage").val(pageNum)
+        JobChoosenJobSeekerSearch();
+    }
+    function AssignmentWork_ListPost() {
+
+        if (list_ids.length > 0) {
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/JobSeeker/AssignmentWork_ListPost";
+            params['requestType'] = "POST";
+            params['data'] = {
+                job_id: $("#job_id").val()
+                , type_job_seeker: $("#type_job_seeker").val()
+                , list_ids: list_ids
+            };
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (data) {
+                var result = JSON.parse(data);
+                if (result.success) {
+                    $.showSuccessMessage(result.title, result.message, function () { return false; });
+                    $("#CurrentPage").val(1);
+                    JobChoosenJobSeekerSearch();
+                }
+            };
+
+            doAjax(params);
+        }
+    }
+    function JobChoosenJobSeekerSearch() {
+        var frmData = $("#frmChoosenJobSeeker").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Job/JobChoosenJobSeekerSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#dataJobSeeker").html(data);
+            InitCbxJkItem();
+
+            MarkCheckedJk();
+        };
+
+        doAjax(params);
+    }
+
+    function MarkCheckedJk() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+
+
+        var hasCheckedData = (selectedJkIds.length > 0);
+
+        $(".cbxJkItem").each(function () {
+            var jkId = parseInt($(this).val());
+            if (hasCheckedData) {
+                for (var key in selectedJkIds) {
+                    if (selectedJkIds[key]["id"] == jkId) {
+                        $(this).prop("checked", true);
+                    }
+                }
+            }
+        });
+    }
+
+    function ReflectCheckedJkItem() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+        var hasCheckedData = (selectedJkIds.length > 0);
+
+        $(".cbxJkItem").each(function () {
+            var jkId = parseInt($(this).val());
+            let itemData = {
+                id: jkId,
+                text: $(this).data("text")
+            };
+
+            if ($(this).is(":checked")) {
+                if (hasCheckedData) {
+                    var matched = false;
+                    for (var key in selectedJkIds) {
+                        if (selectedJkIds[key]["id"] == jkId) {
+                            matched = true;
+
+                            break;
+                        }
+                    }
+                    if (!matched) {
+                        selectedJkIds.push(itemData);
+                    }
+                }
+                else {
+                    selectedJkIds.push(itemData);
+                }
+            } else {
+                if (hasCheckedData) {
+                    for (var key in selectedJkIds) {
+                        if (selectedJkIds[key]["id"] == jkId) {
+                            selectedJkIds.splice(key, 1);
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+
+        $("#SelectedJkIds").val(JSON.stringify(selectedJkIds));
+    }
+
+    function InitCbxJkItem() {
+        $(".cbxJkItem").on('click', function () {
+            ReflectCheckedJkItem();
+            //var selectedStr = $("#SelectedJkIds").val();
+            //var selectedJkIds = [];
+            //if (selectedStr.length > 0) {
+            //    selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+            //}
+            //var hasCheckedData = (selectedJkIds.length > 0);
+
+            //var jkId = parseInt($(this).val());
+            //let itemData = {
+            //    id: jkId,
+            //    text: $(this).data("text")
+            //};
+
+            //if ($(this).is(":checked")) {
+            //    if (hasCheckedData) {
+            //        var matched = false;
+            //        for (var key in selectedJkIds) {
+            //            if (selectedJkIds[key]["id"] == jkId) {
+            //                matched = true;
+            //                break;
+            //            }
+            //        }
+            //        if (!matched) {
+            //            selectedJkIds.push(itemData);
+            //        }
+            //    }
+            //    else {
+            //        selectedJkIds.push(itemData);
+            //    }
+            //} else {
+            //    if (hasCheckedData) {
+            //        for (var key in selectedJkIds) {
+            //            if (selectedJkIds[key]["id"] == jkId) {
+            //                selectedJkIds.splice(key, 1);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //}
+
+            //$("#SelectedJkIds").val(JSON.stringify(selectedJkIds));
+        });
+
+        $("#cbxJkAll").on("click", function () {
+            $(".cbxJkItem").prop("checked", false);
+            if ($(this).is(":checked")) {
+                $(".cbxJkItem").prop("checked", true);
+            }
+
+            ReflectCheckedJkItem();
+        });
+    }
+
+    function AllowChoosenJobSeeker() {
+        var selectedStr = $("#SelectedJkIds").val();
+        var selectedJkIds = [];
+        if (selectedStr.length > 0) {
+            selectedJkIds = JSON.parse($("#SelectedJkIds").val());
+        }
+
+        var callbackFn = $("#CallbackFunction").val();
+        if (callbackFn != "") {
+            // find object
+            var fn = window[callbackFn];
+            // is object a function?
+            if (typeof fn === "function") {
+                window[callbackFn](selectedJkIds);
+            }
+        } else {
+            alert("Please define CallbackFunction");
+        }
+    }
+    $(document).on("change", "#type_job_seeker", function () {
+        $("#CurrentPage").val(1);
+    })
+
+    $(function () {
+        InitCbxJkItem();
+    });
+</script>

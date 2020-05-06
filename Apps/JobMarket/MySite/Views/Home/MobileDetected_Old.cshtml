@@ -1,0 +1,159 @@
+﻿@using MySite.Resources;
+
+@{
+    ViewBag.Title = UserWebResource.LB_MYSITE_TITLE;
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" itemprop="inLanguage" content="vi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.OgDescription" />
+    <meta name="keywords" content="haloplan" />
+    <meta name="news_keywords" content="haloplan" />
+    <meta name="robots" content="index,follow,noodp" />
+    <meta name="robots" content="noarchive">
+
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? UserWebResource.LB_MYSITE_TITLE : ViewBag.Title)</title>
+
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta name="pubdate" itemprop="datePublished" content="@ViewBag.DatePublished" />
+    <meta itemprop="dateModified" content="@ViewBag.DatePublished" />
+
+
+    <link rel="SHORTCUT ICON" href="~/Content/themes/default/assets/images/favicon-32x32.png" type="image/x-icon">
+
+    @Styles.Render("~/bundles/headerstyles")
+
+
+
+    <style>
+        h1, h2, h3 {
+            text-transform: uppercase;
+            color: #444;
+            font-weight: 300;
+        }
+
+        body {
+            background: url('../../Content/Extensions/Image/mobile-detect-bg.png');
+            background-size: cover;
+            
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        #banner {
+            padding-top: 50px;
+        }
+
+        .headings {
+            padding: 5% 0 5% 0;
+            color: #fff;
+        }
+
+        .iphone-hand {
+            padding: 20px 30px 0px 30px;
+        }
+
+        .img_res {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+
+        .headings h1 {
+            font-size: 30px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .headings p {
+            font-size: 18px;
+            font-weight: 100;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+            line-height: 28px;
+            color: #212121;
+        }
+
+        .fadeInLeft {
+            -webkit-animation-name: fadeInLeft;
+            animation-name: fadeInLeft;
+        }
+
+        .fadeInDown {
+            -webkit-animation-name: fadeInDown;
+            animation-name: fadeInDown;
+        }
+
+        .animated {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .btn-store {
+            color: #fff;
+            font-size: 26px;
+            padding: 0px 36px 10px 0px;
+            margin: 0px 0px 20px 0px;
+            transition: 0.4s ease all;
+            border-radius: 4px;
+            text-align: left;
+            font-weight: 400;
+            line-height: 22px;
+            padding: 0;
+        }
+
+        .bounceInUp {
+            -webkit-animation-name: bounceInUp;
+            animation-name: bounceInUp;
+        }
+    </style>
+</head>
+<body>
+
+    <section id="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 hidden-xs hidden-sm">
+                    <div class="hand-container">
+                        <img class="iphone-hand img_res wow animated bounceInUp animated" data-wow-duration="1.2s" src="~/Content/Extensions/Image/mobile.png" alt="" style="visibility: visible; animation-duration: 1.2s; animation-name: bounceInUp;">
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="headings">
+                        <h1 class="wow animated fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
+                            <strong>@UserWebResource.LB_MYSITE_APP</strong>
+                        </h1>
+                        <p class="wow animated fadeInLeft animated" style="visibility: visible; animation-name: fadeInLeft;">
+                            <strong>@UserWebResource.LB_MYSITE_APP_SLOGAN</strong>
+                        </p>
+
+                        <a href="#" class="btn btn-store wow animated bounceInUp animated" style="visibility: visible; animation-name: bounceInUp;">
+                            <img class="img-responsive" style="height:61px" src="~/Content/Extensions/Image/google-store.png" alt="">
+                        </a>
+                        <a href="#" class="btn btn-store wow animated bounceInUp animated" style="visibility: visible; animation-name: bounceInUp;">
+                            <img class="img-responsive" style="height:59px" src="~/Content/Extensions/Image/ios.png">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+

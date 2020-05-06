@@ -1,0 +1,39 @@
+﻿@using Manager.WebApp.Resources
+
+@model Manager.WebApp.Models.JobUpdateStatusModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @if (Model.status == (int)EnumJobStatus.Published)
+        {
+            @ManagerResource.CONFIRM_PUBLISH
+        }
+        else if (Model.status == (int)EnumJobStatus.Closed)
+        {
+            @ManagerResource.CONFIRM_CLOSED
+        }
+        else if (Model.status == (int)EnumJobStatus.Canceled)
+        {
+            @ManagerResource.CONFIRM_CANCELED
+        }
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="status" value="@Model.status" />
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-check"></i> @ManagerResource.LB_YES
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}

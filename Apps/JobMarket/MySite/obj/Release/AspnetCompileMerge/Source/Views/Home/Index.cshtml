@@ -1,0 +1,351 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+
+@using MySite.Caching
+@{
+    ViewBag.Title = UserWebResource.LB_HOME_SLOGAN_TITLE_2;
+    var hasLoggedIn = User.Identity.IsAuthenticated;
+}
+
+<section>
+    <div class="block no-padding">
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="main-featured-sec">
+                        <div class="new-slide">
+                            <img src="~/Content/themes/default/images/resource/vector-1.png">
+                        </div>
+                        <div class="job-search-sec">
+                            <div class="job-search">
+                                <h3 class="hidden-xs-down">@UserWebResource.LB_HOME_SLOGAN_TITLE_1</h3>
+                                <span class="">@UserWebResource.LB_HOME_SLOGAN_TITLE_2</span>
+
+                                <div id="SearchJobBox">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="scroll-to">
+                            <a href="#scroll-here" title=""><i class="la la-arrow-down"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="scroll-here">
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="category_list">
+                    </div>
+                </div>
+                @*<div class="col-lg-12">
+                        <div class="browse-all-cat">
+                            <a href="/job/search" title="">Browse All Categories</a>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block double-gap-top double-gap-bottom">
+        <div data-velocity="-.1" style="background: url(images/resource/parallax1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible layer color"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="simple-text-block">
+                        <h3>@UserWebResource.LB_HOME_MAKE_DIFFERENCE</h3>
+
+                        @if (hasLoggedIn)
+                        {
+                            <span>@UserWebResource.LB_HOME_MAKE_DIFFERENCE_CREATE_NEW_CV</span>
+                            <a data-href="/Cv/CvCreationMethod" data-modal-direct="" title="">@UserWebResource.LB_HOME_MAKE_DIFFERENCE_BT_CREATE_NEW_CV</a>
+                        }
+                        else
+                        {
+                            <span>@UserWebResource.LB_HOME_MAKE_DIFFERENCE_CREATE_ACCOUNT</span>
+                            <a href="/WebAuth/Register" title="">@UserWebResource.BT_REGISTER</a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2>@UserWebResource.LB_HOME_NEWEST_JOBS</h2>
+                        <span>@UserWebResource.LB_HOME_NEWEST_JOBS_DES</span>
+                    </div><!-- Heading -->
+                    <div class="job-listings-sec">
+                        <div id="list-hot-jobs">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="browse-all-cat">
+                        <a href="/job/search" title="" class="fz-18"><i class="la la-search-plus"></i> @UserWebResource.BT_EXPLORER_MORE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block remove-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2>How It Works</h2>
+                        <span>
+                            Each month, more than 7 million Jobhunt turn to website in their search for work, making over <br>160,000 applications every day.
+                        </span>
+                    </div><!-- Heading -->
+                    <div class="how-to-sec style2">
+                        <div class="how-to">
+                            <span class="how-icon"><i class="la la-user"></i></span>
+                            <h3>Register an account</h3>
+                            <p>Post a job to tell us about your project. We'll quickly match you with the right freelancers.</p>
+                        </div>
+                        <div class="how-to">
+                            <span class="how-icon"><i class="la la-file-archive-o"></i></span>
+                            <h3>Specify &amp; search your job</h3>
+                            <p>Browse profiles, reviews, and proposals then interview top candidates. </p>
+                        </div>
+                        <div class="how-to">
+                            <span class="how-icon"><i class="la la-list"></i></span>
+                            <h3>Apply for job</h3>
+                            <p>Use the Upwork platform to chat, share files, and collaborate from your desktop or on the go.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2>Top Company Registered</h2>
+                        <span>Some of the companies we've helped recruit excellent applicants over the years.</span>
+                    </div><!-- Heading -->
+                    <div class="top-company-sec">
+                        <div class="row" id="companies-carousel">
+                            <div class="col-lg-3">
+                                <div class="top-compnay style2">
+                                    <img src="~/Content/images/partners/mirai.png" alt="" />
+                                    <h3><a href="#" title="">Mirai</a></h3>
+                                    <span>Japan</span>
+                                    @*<a href="#" title="">4 Open Positon</a>*@
+                                </div><!-- Top Company -->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="top-compnay style2">
+                                    <img src="images/resource/tc2.jpg" alt="" />
+                                    <h3><a href="#" title="">Symtech</a></h3>
+                                    <span>United States, Los Angeles</span>
+                                    @*<a href="#" title="">4 Open Positon</a>*@
+                                </div><!-- Top Company -->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="top-compnay style2">
+                                    <img src="images/resource/tc3.jpg" alt="" />
+                                    <h3><a href="#" title="">Symtech</a></h3>
+                                    <span>United States, Los Angeles</span>
+                                    @*<a href="#" title="">4 Open Positon</a>*@
+                                </div><!-- Top Company -->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="top-compnay style2">
+                                    <img src="images/resource/tc4.jpg" alt="" />
+                                    <h3><a href="#" title="">Symtech</a></h3>
+                                    <span>United States, Los Angeles</span>
+                                    @*<a href="#" title="">4 Open Positon</a>*@
+                                </div><!-- Top Company -->
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="top-compnay style2">
+                                    <img src="images/resource/tc2.jpg" alt="" />
+                                    <h3><a href="#" title="">Symtech</a></h3>
+                                    <span>United States, Los Angeles</span>
+                                    @*<a href="#" title="">4 Open Positon</a>*@
+                                </div><!-- Top Company -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div data-velocity="-.2" style="background: url(images/resource/parallax7.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="download-sec">
+                        <div class="download-text">
+                            <h3>Download & Enjoy</h3>
+                            <p>Search, find and apply for jobs directly on your mobile device or desktop Manage all of the jobs you have applied to from a convenience secure dashboard.</p>
+                            <ul>
+                                <li>
+                                    <a target="_blank" href="https://apps.apple.com/us/app/japan-work/id1487777803" title="">
+                                        <i class="la la-apple"></i>
+                                        <span>App Store</span>
+                                        <p>Available now on the</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a target="_blank" href="https://play.google.com/store/apps/details?id=com.jinzaitech.jobmarket" title="">
+                                        <i class="la la-android"></i>
+                                        <span>Google Play</span>
+                                        <p>Get in on</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="download-img">
+                            <img src="images/resource/mockup3.png" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<section>
+    <div class="block">
+        <div data-velocity="-.1" style="background: url(images/resource/parallax3.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="heading">
+                        <h2>Quick Career Tips</h2>
+                        <span>Found by employers communicate directly with hiring managers and recruiters.</span>
+                    </div>
+                    <div class="blog-sec">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="my-blog">
+                                    <div class="blog-thumb">
+                                        <a href="#" title=""><img src="~/Content/themes/default/images/resource/b1.jpg" alt="" /></a>
+                                        <div class="blog-metas">
+                                            <a href="#" title="">March 29, 2017</a>
+                                            <a href="#" title="">0 Comments</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-details">
+                                        <h3><a href="#" title="">Attract More Attention Sales And Profits</a></h3>
+                                        <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                                        <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="my-blog">
+                                    <div class="blog-thumb">
+                                        <a href="#" title=""><img src="~/Content/themes/default/images/resource/b2.jpg" alt="" /></a>
+                                        <div class="blog-metas">
+                                            <a href="#" title="">March 29, 2017</a>
+                                            <a href="#" title="">0 Comments</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-details">
+                                        <h3><a href="#" title="">11 Tips to Help You Get New Clients</a></h3>
+                                        <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                                        <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="my-blog">
+                                    <div class="blog-thumb">
+                                        <a href="#" title=""><img src="~/Content/themes/default/images/resource/b3.jpg" alt="" /></a>
+                                        <div class="blog-metas">
+                                            <a href="#" title="">March 29, 2017</a>
+                                            <a href="#" title="">0 Comments</a>
+                                        </div>
+                                    </div>
+                                    <div class="blog-details">
+                                        <h3><a href="#" title="">An Overworked Newspaper Editor</a></h3>
+                                        <p>A job is a regular activity performed in exchange becoming an employee, volunteering, </p>
+                                        <a href="#" title="">Read More <i class="la la-long-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>*@
+
+@*<section>
+        <div class="block no-padding">
+            <div class="container fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="simple-text">
+                            <h3>Gat a question?</h3>
+                            <span>We're here to help. Check out our FAQs, send us an email or call us at 1 (800) 555-5555</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>*@
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id='myModalContent'></div>
+        </div>
+    </div>
+</div>
+
+
+@*<div id="myModal" class="modal post-detail" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>*@
+@Html.Partial("../Widgets/Modals/_SelectStationModal")
+
+@Html.Partial("../Widgets/Modals/_SelectCityModal")
+
+@section PageInlineStyles{
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/FilterSelection/area-filter.css")" />
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/custom/searchbox.css")" />
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/Common/home.js"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Pages/job-detail.js")"></script>
+    <script>
+        MySiteGlobal.initSearchBox();
+        HomeGlobal.init();
+    </script>
+}

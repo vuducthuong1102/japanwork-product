@@ -1,0 +1,80 @@
+﻿@model MySite.Models.WebAccountRegisterModel
+@using MySite.Resources;
+@using reCAPTCHA.MVC
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="acc-page">
+    <div class="frm">
+        <div class="content">
+            @using (Html.BeginForm("Register", "WebAuth", null, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <p class="text-center fz-18 text-bold text-orange mb30">@UserWebResource.BT_REGISTER</p>
+                @Html.Partial("_Notifications")
+                <div class="form-group">
+                    <label for="txtaccount" class="lb">@UserWebResource.IP_EMAILORPHONE</label>
+                    @Html.TextBoxFor(m => m.UserName, new { @id = "txtaccount", @class = "form-control", placeholder = UserWebResource.IP_EMAILORPHONE })
+                    <div class="margin-bottom-20">
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtnickname" class="lb">@UserWebResource.IP_NICKNAME</label>
+                    @Html.TextBoxFor(m => m.Display_Name, new { @id = "txtnickname", @class = "form-control", placeholder = UserWebResource.IP_NICKNAME })
+                    <div class="margin-bottom-20">
+                        @Html.ValidationMessageFor(m => m.Display_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtpassword" class="lb">@UserWebResource.IP_PASSWORD</label>
+                    @Html.PasswordFor(m => m.Password, new { @id = "txtpassword", @class = "form-control", placeholder = UserWebResource.IP_PASSWORD })
+                    <div class="margin-bottom-20">
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="txtconfirmpassword" class="lb">@UserWebResource.IP_CONFIRM_PASSWORD</label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @id = "txtconfirmpassword", @class = "form-control", placeholder = UserWebResource.IP_CONFIRM_PASSWORD })
+                    <div class="margin-bottom-20">
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @*<input id="CaptchaDesc" type="hidden" value="@UserWebResource.LB_REFRESH_CAPTCHA_DESC" />
+                        <div class="margin-bottom-30">
+                            @catpcha
+                        </div>*@
+                    @Html.Recaptcha()
+                    @*@Html.ValidationMessage("ReCaptcha","", new { @class="text-danger" })*@
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block btn-register">@UserWebResource.BT_REGISTER</button>
+                </div>
+
+            }
+            <div class="form-group text-center">
+                @using (Html.BeginForm("ExternalLogin", "WebAuth"))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <button name="provider" type="submit" value="Facebook" class="border-none">
+                            <span class="icon icon-facebook"><span class="path1"></span><span class="path2"></span></span>
+                        </button>
+                        <button name="provider" type="submit" value="Google" class="border-none">
+                            <span class="icon icon-google-plus"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                        </button>
+                    </div>
+                }
+                <div class="form-group register">
+                    <span class="lb">@UserWebResource.LB_ALREADY_HAVE_ACC</span> <a href="/WebAuth/Login">@UserWebResource.BT_SIGN_IN_INSTEAD</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,184 @@
+﻿@model SingleSignOn.Models.WebAuthLoginViewModel
+@using System.Text;
+@using SingleSignOn.Settings;
+@using CaptchaMvc.HtmlHelpers
+@using SingleSignOn.Resources;
+
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <title>@UserWebResource.TEXT_LOGIN</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <!-- Web Fonts -->
+    @*<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>*@
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/css/style.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/plugins/animate.css">
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/plugins/line-icons/line-icons.css">
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- CSS Page Style -->
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/css/pages/page_log_reg_v2.css">
+    <!-- CSS Theme -->
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/css/theme-colors/default.css" id="style_color">
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/css/theme-skins/dark.css">
+    <link href="~/Content/themes/unify/assets/css/headers/header-default.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/themes/unify/assets/plugins/jquery/jquery.min.js"></script>
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="~/Content/themes/unify/assets/css/custom.css">
+
+    <style>
+        .validation-summary-errors > ul {
+            padding: 0;
+            list-style: none;
+        }
+
+            .validation-summary-errors > ul > li {
+                color: #a94442 !important;
+            }
+
+        .input-validation-error {
+            margin-bottom: 5px;
+        }
+
+        #CaptchaImage {
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    @{
+        var capchaNum = new Random().Next(1, 6);
+        var catpcha = Html.Captcha("", "", capchaNum, UserWebResource.TEXT_CAPTCHA_NULL, true);
+    }
+
+    @Html.Partial("_Header")
+
+    <!--=== Content Part ===-->
+    <div class="container">
+        <!--Reg Block-->
+        @using (Html.BeginForm("Login", "WebAuth", null, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="reg-block">
+                <div class="reg-block-header">
+                    <h2>@UserWebResource.TEXT_LOGIN</h2>
+                    <ul class="social-icons text-center">
+                        <li><a class="rounded-x social_facebook" data-original-title="Facebook" href="#"></a></li>
+                        <li><a class="rounded-x social_twitter" data-original-title="Twitter" href="#"></a></li>
+                        <li><a class="rounded-x social_googleplus" data-original-title="Google Plus" href="#"></a></li>
+                        <li><a class="rounded-x social_linkedin" data-original-title="Linkedin" href="#"></a></li>
+                    </ul>
+                    <p>@UserWebResource.TEXT_DONT_HAVE_ACC @UserWebResource.TEXT_CLICK <a class="color-green" href="/WebAuth/Register">@UserWebResource.TEXT_REGISTER</a>.</p>
+                </div>
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                @Html.Partial("_Notifications")
+
+                <input type="hidden" name="@Html.NameFor(m=>m.NumberOfFailedLogins)" value="@((Model != null)? Model.NumberOfFailedLogins.ToString() : "0")" />
+                @Html.HiddenFor(m => m.URLReturn)
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = UserWebResource.TEXT_LOGIN_ACCOUNT })
+                </div>
+
+                <div class="margin-bottom-20">
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = UserWebResource.TEXT_PASSWORD, type = "password" })
+                </div>
+
+                <div class="margin-bottom-20">
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="margin-bottom-20">
+                    @if (Model != null)
+                    {
+                        var failedCount = Convert.ToInt32(Session["LoginTimesFailed"]);
+                        if (failedCount >= SingleSignOnSettings.NumberOfFailedLoginsToShowCaptcha)
+                        {
+                            @catpcha
+                        }
+                    }
+                </div>
+
+                <hr>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox">
+                        <p>@UserWebResource.TEXT_REMEMBER_ME</p>
+                    </label>
+                </div>
+                <input id="CaptchaDesc" type="hidden" value="@UserWebResource.TEXT_REFRESH_CAPTCHA_DESC" />
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <button type="submit" class="btn-u btn-block">@UserWebResource.TEXT_LOGIN_BUTTON</button>
+                    </div>
+                </div>
+            </div>
+        }
+        <!--End Reg Block-->
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+    <!-- JS Global Compulsory -->
+    <script type="text/javascript" src="~/Content/themes/unify/assets/plugins/jquery/jquery-migrate.min.js"></script>
+    <script type="text/javascript" src="~/Content/themes/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <!-- JS Implementing Plugins -->
+    <script type="text/javascript" src="~/Content/themes/unify/assets/plugins/back-to-top.js"></script>
+    <script type="text/javascript" src="~/Content/themes/unify/assets/plugins/backstretch/jquery.backstretch.min.js"></script>
+    <!-- JS Customization -->
+    <script type="text/javascript" src="~/Content/themes/unify/assets/js/custom.js"></script>
+    <!-- JS Page Level -->
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/Extensions/inputmask.min.js"></script>
+    <script type="text/javascript" src="~/Content/themes/unify/assets/js/app.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#CaptchaInputText").addClass("form-control margin-top-20");
+            jQuery("br").remove();
+            jQuery("#CaptchaInputText").attr("placeholder", jQuery("#CaptchaDesc").val());
+            jQuery('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            var refrestBtn = jQuery("a[href='#CaptchaImage']");
+            refrestBtn.addClass("btn btn-default");
+            refrestBtn.css("float", "right");
+            refrestBtn.prepend("<i class='fa fa-icon fa-refresh'></i> ");
+            App.init();
+        });</script>
+    <script type="text/javascript">
+        $.backstretch([
+            "/Content/themes/unify/assets/img/bg/19.jpg",
+            "/Content/themes/unify/assets/img/bg/18.jpg",
+        ], {
+                fade: 1000,
+                duration: 7000
+            });</script>
+    <!--[if lt IE 9]>
+        <script src="~/Content/themes/unify/assets/plugins/respond.js"></script>
+        <script src="~/Content/themes/unify/assets/plugins/html5shiv.js"></script>
+        <script src="~/Content/themes/unify/assets/plugins/placeholder-IE-fixes.js"></script>
+        <![endif]-->
+
+</body>
+</html>

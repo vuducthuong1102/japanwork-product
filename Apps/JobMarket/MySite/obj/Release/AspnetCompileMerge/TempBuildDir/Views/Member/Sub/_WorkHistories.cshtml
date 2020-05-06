@@ -1,0 +1,50 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Models
+
+@model List<JobSeekerWorkHistoryModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @RenderWorkHistoryItem(item)
+    }
+}
+else
+{
+    <div class="edu-history">
+        <i class="la la-train"></i>
+        <div class="edu-hisinfo">
+            <h3>@UserWebResource.LB_NOT_UPDATED</h3>
+        </div>
+    </div>
+}
+
+@helper RenderWorkHistoryItem(JobSeekerWorkHistoryModel item)
+{
+    <div class="edu-history style2">
+        <i></i>
+        <div class="edu-hisinfo">
+            <h3>
+            @item.company
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumWorkStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var chkStr = string.Empty;
+                if (chkItem == item.status)
+                {
+                    chkStr = "selected";
+                    <span>@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+            }
+            </h3>
+            <i>@FrontendHelpers.RenderRangeYear(item.start_date, item.end_date)</i>
+            <p>@item.content_work</p>
+        </div>
+        <ul class="action_job">
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal="" data-href="@Url.Action("UpdateWorkHistory","Member", new { id = item.id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-href="@Url.Action("DeleteWorkHistory","Member", new { id = item.id })" title=""><i class="la la-trash-o"></i></a></li>
+        </ul>
+    </div>    
+}

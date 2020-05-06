@@ -1,0 +1,20 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@model List<MsSql.AspNet.Identity.IdentityUser>
+
+<div class="col-sm-4">
+    <select data-live-search="true" class="select2 form-control sd_monitor_staff_id" name="sd_monitor_staff_id" id="sd_monitor_staff_id">
+        <option value="0">@ManagerResource.LB_SCHEDULE_MYSELF</option>
+        @if (Model.HasData())
+        {
+            foreach (var item in Model)
+            {
+                <option value="@item.StaffId">@item.FullName (@item.UserName)</option>
+            }
+        }
+    </select>
+</div>
+
+
+

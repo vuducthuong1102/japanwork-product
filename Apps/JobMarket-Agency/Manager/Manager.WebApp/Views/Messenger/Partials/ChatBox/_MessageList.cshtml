@@ -1,0 +1,26 @@
+﻿@using MsSql.AspNet.Identity.Entities
+
+@model List<IdentityConversationReply>
+
+@{
+    var userInfo = AccountHelper.GetCurrentUser();
+}
+
+@{
+    var listMessageModel = MessengerHelper.GroupListMessageModel(Model, userInfo.StaffId);
+    if (listMessageModel != null && listMessageModel.Count > 0)
+    {
+        foreach (var item in listMessageModel)
+        {
+            if (item.MessageItem.UserObjectType == (int)EnumMessengerObjectType.Agency && item.MessageItem.UserId == userInfo.StaffId)
+            {
+                @Html.Partial("../Messenger/Partials/ChatBox/_MessageMine", item)
+            }
+            else
+            {
+                @Html.Partial("../Messenger/Partials/ChatBox/_MessageGuest", item)
+            }
+        }
+    }
+
+}

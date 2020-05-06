@@ -1,0 +1,122 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageCompanyNoteModel
+
+<div class="m-section">
+    <div class="m-section__content table-responsive">
+        <table id="sample-table-1" class="table m-table m-table--head-bg-brand">
+            <thead>
+                <tr>
+                    <th>@ManagerResource.LB_CONTACT_FORM</th>
+                    <th>@ManagerResource.LB_CONTENT</th>
+                    <th>@ManagerResource.LB_CREATED_BY</th>
+                    <th>@ManagerResource.LB_DATE_TIME</th>
+                    <th>@ManagerResource.LB_ACTION</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                {
+                    var typeList = CompanyNoteTypeProvider.GetListCompanyNoteType();
+                    var stt = 0;
+                    foreach (var record in Model.SearchResults)
+                    {
+                        stt++;
+                        <tr>
+                            <td>
+                                @if (typeList != null && typeList.Count > 0)
+                                {
+                                    foreach (var item in typeList)
+                                    {
+                                        if (item.id == record.type)
+                                        {
+                                            @item.TypeName
+                                        }
+                                    }
+                                }
+                            </td>
+                            <td class="content-note">
+                                @record.note
+                            </td>
+                            <td>
+                                @if (Model.ListStaffs != null && Model.ListStaffs.Count > 0)
+                                {
+                                    foreach (var item in Model.ListStaffs)
+                                    {
+                                        if (item.StaffId == record.staff_id)
+                                        {
+                                            @item.FullName
+                                        }
+                                    }
+                                }
+                            </td>
+                            <td>@record.created_at.Value.ToString("yyyy/MM/dd HH:mm")</td>
+                            <td>
+                                @{
+                                    var newModel = Model;
+                                    //newModel.Id = record.Id;
+                                    //newModel.SearchExec = "Y";
+                                }
+
+                                @if (PermissionHelper.CheckIsPic(record.staff_id))
+                                {
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-href="@Url.Action("EditNote", "Company", new { id = record.id })" data-modal="" title="@ManagerResource.LB_EDIT">
+                                        <i class="la la-pencil"></i>
+                                    </a>
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-size="default" data-href="@Url.Action("DeleteNote", "Company", new { id = record.id,company_id = record.company_id })" data-modal="" title="@ManagerResource.LB_DELETE">
+                                        <i class="la la-trash"></i>
+                                    </a>
+
+                                }
+                                else
+                                {
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill btn-error-incorrect-user" title="@ManagerResource.LB_EDIT">
+                                        <i class="la la-pencil"></i>
+                                    </a>
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill btn-error-incorrect-user" title="@ManagerResource.LB_DELETE">
+                                        <i class="la la-trash"></i>
+                                    </a>
+
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="11">
+                            @ManagerResource.LB_NO_RECORD
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        @RenderPaging()
+    </div>
+</div>
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                    Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "CompanyNoteSearchNext")
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}

@@ -1,0 +1,70 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var userName = string.Empty;
+    if (currentUser != null)
+    {
+        userName = AccountHelper.ShowDisplayName(currentUser);
+    }
+}
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <h3>@UserWebResource.LB_WELCOME @userName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column border-right hidden-sm-down">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            @Html.Partial("~/Views/Widgets/Items/Profile/_LeftMenu.cshtml", "resume")
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9 column">
+                    <div class="padding-left mb40" id="MemberSubContainer">
+                        <div class="manage-jobs-sec">
+                            <div class="border-title"><h3>@UserWebResource.LB_EDUCATION_HISTORY</h3><a href="javascript:;" data-href="@Url.Action("UpdateEduHistory","Member")" data-modal="" title=""><i class="la la-plus"></i> @UserWebResource.LB_ADD_EDUCATION</a></div>
+                            <div class="edu-history-sec" id="EduHistories">
+
+                            </div>
+
+                            <div class="border-title"><h3>@UserWebResource.LB_CERTIFICATE</h3><a href="javascript:;" data-href="@Url.Action("UpdateCertificate","Member")" data-modal="" title=""><i class="la la-plus"></i> @UserWebResource.LB_ADD_CERTIFICATE</a></div>
+                            <div class="edu-history-sec" id="Certificates">
+
+                            </div>
+
+                            <div class="border-title"><h3>@UserWebResource.LB_WORK_EXPERIENCE</h3><a href="javascript:;" data-href="@Url.Action("UpdateWorkHistory","Member")" data-modal="" title=""><i class="la la-plus"></i> @UserWebResource.LB_ADD_WORK_EXPERIENCE</a></div>
+                            <div class="edu-history-sec" id="WorkHistories">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Pages/Member/resume.js")"></script>
+}

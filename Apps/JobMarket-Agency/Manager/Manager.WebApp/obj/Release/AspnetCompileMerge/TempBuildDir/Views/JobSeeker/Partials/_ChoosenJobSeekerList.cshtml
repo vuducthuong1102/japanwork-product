@@ -1,0 +1,104 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobSeekerChoosenModel
+
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="m-section">
+                    <div class="m-section__content table-responsive" style="max-height:300px;overflow:auto;">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50">
+                                        <label class="m-checkbox m-checkbox--square">
+                                            <input type="checkbox" id="cbxJkAll">
+                                            <span></span>
+                                        </label>
+                                    </th>
+                                    <th class="text-center">@ManagerResource.LB_FULL_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_PHONE</th>
+                                    <th class="text-center">@ManagerResource.LB_EMAIL</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        stt++;
+                                        var disabledItem = false;
+                                        var disabledStr = string.Empty;
+                                        if (record.Extensions != null)
+                                        {
+                                            if (MyObjectExtensions.PropertyExists(record.Extensions, "is_invited"))
+                                            {
+                                                if (record.Extensions.is_invited)
+                                                {
+                                                    disabledItem = true;
+                                                    disabledStr = ManagerResource.LB_INVITATION_SENT;
+                                                }
+                                            }
+                                        }
+
+                                        <tr class="@(disabledItem ? "text-danger" : string.Empty)" data-id="@record.user_id">
+                                            <td class="text-center">                                               
+                                                @if (!disabledItem)
+                                                {
+                                                    <label class="m-checkbox m-checkbox--square" style="margin-bottom: 15px;">
+                                                        <input type="checkbox" value="@record.user_id" class="cbxJkItem" data-text="@record.fullname">
+                                                        <span></span>
+                                                    </label>
+                                                }
+                                            </td>
+                                            <td>
+                                                @record.fullname @((disabledItem && !string.IsNullOrEmpty(disabledStr)) ? string.Format(" ({0})", disabledStr) : string.Empty)
+                                            </td>
+                                            <td>
+                                                <b class="">
+                                                    @record.phone
+                                                </b>
+                                            </td>                                     
+                                            <td>
+                                                <b class="">
+                                                    @record.email
+                                                </b>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @RenderPaging()
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+@helper RenderPaging()
+{
+    if (Model.WasOverRecordsInPage())
+    {
+        <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+            <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "ChoosenJobSeekerSearchNext")
+            </div>
+        </div>
+    }
+}
+

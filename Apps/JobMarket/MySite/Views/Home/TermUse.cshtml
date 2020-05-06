@@ -1,0 +1,54 @@
+﻿@{ 
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Bootstrap TreeView with Checkboxes</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="~/Scripts/Extensions/TreeView/treeview.min.js"></script>
+    <link href="~/Scripts/Extensions/TreeView/treeview.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <button id="btnSave" class="btn btn-default">Save Checked Nodes</button>
+        </div>
+        <div class="row">
+            <div id="treeIndustry"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                var treeIndustry = $('#treeIndustry').tree({
+                    primaryKey: 'id',
+                    uiLibrary: 'bootstrap',
+                    dataSource: '/home/getlist',
+                    checkboxes: true
+                });
+
+                $("body").on("click", ".list-group-item", function (ev) {
+                    var id = $(this).data("id")
+                    var node = treeIndustry.getNodeById(id);
+                    if (!$(this).hasClass("openned")) {                       
+                        treeIndustry.expand(node);
+                        $(this).addClass("openned");
+                    } else {
+                        treeIndustry.collapse(node);
+                        $(this).removeClass("openned");
+                    }
+                });
+
+                $('#btnSave').on('click', function () {
+                    var checkedIds = tree.getCheckedNodes();
+                    $.ajax({ url: '/Locations/SaveCheckedNodes', data: { checkedIds: checkedIds }, method: 'POST' })
+                        .fail(function () {
+                            alert('Failed to save.');
+                        });
+                });
+            });
+    </script>
+</body>
+</html>

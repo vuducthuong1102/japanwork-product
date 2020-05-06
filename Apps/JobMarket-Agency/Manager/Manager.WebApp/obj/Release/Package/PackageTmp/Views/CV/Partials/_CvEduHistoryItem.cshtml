@@ -1,0 +1,45 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.CvEduHistoryModel
+
+<div class="m-widget1__item">
+    <div class="row m-row--no-padding align-items-center">
+        <div class="col-3">
+            <h3 class="m-widget1__title text-info fz-16">
+                <i class="fa fa-graduation-cap fz-16"></i> @Model.school
+            </h3>
+            <div class="m-widget1__desc fz-15 ">
+                @Model.qualification_label -
+                @if (!string.IsNullOrEmpty(Model.major_label))
+                {
+                    @Model.major_label
+                }
+                else
+                {
+                    if (Model.major_id == 0)
+                    {
+                        @Model.major_custom
+                    }
+                }
+            </div>
+            @if (Model.start_date != null)
+            {
+                <div class=" ">
+                    @FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)
+                </div>
+            }            
+        </div>
+        <div class="col-6 m--align-left">
+            <div class="m-widget1__number fz-15">
+                @foreach (var myEnum in Enum.GetValues(typeof(EnumEducationStatus)))
+                {
+                    var chkItem = (int)myEnum;
+                    if (chkItem == Model.status)
+                    {
+                        @EnumExtensions.GetEnumDescription((Enum)myEnum)
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

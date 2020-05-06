@@ -1,0 +1,235 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+@using System.Web.Configuration;
+@using MySite.ShareLibs;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPostDetail
+
+@{
+    var locStr = string.Empty;
+    if (Model != null)
+    {
+        if (Model.Post != null && Model.PostData != null)
+        {
+            locStr = PostHelper.ParseTitleMetaFromPost(Model.Post, Model.PostData.TotalLocations);
+        }
+    }
+
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+<div class="modal-body">
+    <div class="row new-feeds">
+        <div class="carousel-wrapper">
+            <div id="post-carousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner">
+                </div>
+                <a class="left carousel-control" href="#post-carousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#post-carousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+            <a href="#" class="carousel_back"></a>
+            <div class="hide-comment"></div>
+        </div>
+        <div class="col-md-8 item mt0">
+            <div class="footer">
+                <div class="owner">
+                    <a href="@AccountHelper.GetUserProfileUrl(Model.Post)">
+                        <img src="@CdnHelper.CoreGetFullImgPath(Model.Post.Avatar)" alt="avatar" class="avatar" />
+                    </a>
+                    <a href="@AccountHelper.GetUserProfileUrl(Model.Post)">
+                        <p class="name">
+                            @(!string.IsNullOrEmpty(Model.Post.DisplayName) ? Model.Post.DisplayName : Model.Post.UserName)
+                        </p>
+                    </a>
+
+                    <p class="time livetimestamp-title" title="@DateHelpers.FormatToString(Model.Post.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(Model.Post.CreatedDate)">
+                        @DateHelpers.FormatToStringTitle(Model.Post.CreatedDate)
+                    </p>
+                </div>
+            </div>
+            <div class="content popup-detail">
+                @Html.Partial("~/Views/Post/Item/_ImageItem_gallery.cshtml", Model.PostData.Images)
+
+                @*@if (!string.IsNullOrEmpty(Model.Post.CategoryName))
+                {
+                    <span class="category">@Model.Post.CategoryName</span>
+                }*@
+            </div>
+
+            <div class="content-details" data-id="@Model.Post.Id">
+                <p class="title">@Model.Post.Title</p>
+                <p class="sub-title word-break">
+
+                    @if (!string.IsNullOrEmpty(locStr))
+                    {
+                        <span class="fz-16 uppercase fll">@locStr</span>
+                    }
+                    &nbsp;
+
+                    @Html.Partial("~/Views/Post/Item/_RatetingScoreItem.cshtml", Model.Post)
+
+                </p>
+                <div class="desc word-break">
+                    @Html.Raw(PostHelper.ParseDescriptionFromPost(Model.Post, true))
+                </div>
+            </div>
+            @*@RenderMoreImage()*@
+        </div>
+        <div class="col-md-4 item mt0 cmt-col padl30">
+            <div class="footer">
+                <div class="counter">
+                    @Html.Partial("~/Views/Post/Item/_ActionItem.cshtml", Model.Post)
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="wrap-content">
+                <div class="comments" style="border-top:none!important">
+                    @Html.Partial("~/Views/Post/Item/Comment/_BoxComment.cshtml", Model.Post)
+                    <div class="list-comment">
+                        @if (Model.PostComment != null && Model.PostComment.Count > 0)
+                        {
+                            @Html.Partial("~/Views/Post/Item/Comment/_ListItem.cshtml", Model.PostComment)
+                        }
+                        @*<div class="item">
+            <div class="content">
+                <img src="http://45.32.99.243:7070/Content/ShowImage?url=" alt="avatar" class="avatar">
+                <div class="">
+                    <span class="text-bold">PhamNgocTrinh</span>  <span class="time">1h36m</span>
+                    <div class="counter counter-in-cmt">
+                        <ul>
+                            <li><a href="#">123<i class="icon icon-heart-1"></i></a></li>
+                            <li><a href="#">456<i class="icon icon-comment"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="cmt-text">Ok how cheap it is? Because I've got 20 dollars in my pocket, 20 dollars in my pocket.</p>
+                <div class="action-comment dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-edit" role="menuitem">@(UserWebResource.BT_EDIT)...</a></li>
+                        <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-delete" role="menuitem">@(UserWebResource.BT_DELETE)...</a></li>
+                    </ul>
+                </div>
+                <a href="#" class="load-more">Tải thêm bình luận<i class="icon icon-arrow_down2"></i></a>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="content">
+                <img src="http://45.32.99.243:7070/Content/ShowImage?url=" alt="avatar" class="avatar">
+                <div class="">
+                    <span class="text-bold">PhamNgocTrinh</span>  <span class="time">1h36m</span>
+                    <div class="counter counter-in-cmt">
+                        <ul>
+                            <li><a href="#">123<i class="icon icon-heart-1"></i></a></li>
+                            <li><a href="#">456<i class="icon icon-comment"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p class="cmt-text">I love you &lt;3 !</p>
+                <div class="action-comment dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-edit" role="menuitem">@(UserWebResource.BT_EDIT)...</a></li>
+                        <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-delete" role="menuitem">@(UserWebResource.BT_DELETE)...</a></li>
+                    </ul>
+                </div>
+                <div class="box-load-cmt">
+                    <a href="#" class="load-prev">Xem bình luận trước</a>
+                    <a href="#" class="load-more">Ẩn bình luận</a>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="sub-comment item">
+                <div class="content">
+                    <img src="http://45.32.99.243:7070/Content/ShowImage?url=" alt="avatar" class="avatar">
+                    <div class="">
+                        <span class="text-bold">TranQuangDuc</span>  <span class="time">1h36m</span>
+                        <div class="counter counter-in-cmt">
+                            <ul>
+                                <li><a href="#">123<i class="icon icon-heart-1"></i></a></li>
+                                <li><a href="#">456<i class="icon icon-comment"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>I love you so,I love you soI love you soI love you soI love you soI love you soI love you soI love you soI love you soI love you soI love you soI love you </p>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <div class="box-comment reply-comment">
+                <div class="content">
+                    <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar">
+                    <div class="input-group">
+                        <div class="cmt-box">
+                            <div contenteditable="true" class="comment comment-edit" data-id=""></div>
+                            <div class="cmt-attach">
+                                <a href="javascript:;"><i class="icon icon-emoji"></i></a>
+                                <a href="javascript:;"><i class="icon icon-image"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="content">
+                <img src="http://45.32.99.243:7070/Content/ShowImage?url=" alt="avatar" class="avatar">
+                <div class="">
+                    <span class="text-bold">PhamNgocTrinh</span>  <span class="time">1h36m</span>
+                    <div class="counter counter-in-cmt">
+                        <ul>
+                            <li><a href="#">123<i class="icon icon-heart-1"></i></a></li>
+                            <li><a href="#">456<i class="icon icon-comment"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Ok how cheap it is? Because I've got 20 dollars in my pocket.</p>
+                <div class="clearfix"></div>
+            </div>
+        </div>*@
+
+                        @if (hasLoggedIn)
+                        {
+                            <div class="actual-link">
+                                @if (Model.PostComment != null && Model.PostComment.Count > 0)
+                                {
+                                    if (Model.PostComment[0].NextCount > 0)
+                                    {
+                                        <div>
+                                            <a href="javascript:;" class="load-more comment-load-more" data-postid="@Model.Post.Id" data-page="2">@UserWebResource.LB_VIEW_MORE_COMMENTS <i class="icon icon-arrow_down2"></i></a>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@helper RenderMoreImage()
+{
+var images = Model.PostData.Images;
+
+if (images != null && images.Count() > 4)
+{
+        <div class="more-image-detail">
+            <h3>
+                @(images.Count() - 4)+
+            </h3>
+        </div>
+}
+}

@@ -1,0 +1,74 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using ApiJobMarket.DB.Sql.Entities
+@using Manager.WebApp.Caching
+
+@model List<IdentityCompany>
+
+@{ 
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.LB_PLEASE_SELECT_COMPANY_FOR_NEW_JOB
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        <div class="form-group-row">
+            <div class="col-md-12">
+                <select class="form-control company-picker btn-white" id="ddlCompany" name="CompanyId" data-live-search="true">
+                    @if (Model.HasData())
+                    {
+                        foreach (var item in Model)
+                        {
+                            var companyName = string.Empty;
+                            if (item.LangList.HasData())
+                            {
+                                companyName = item.LangList.Where(x => x.language_code == currentLang).Select(x => x.company_name).FirstOrDefault();
+                            }
+
+                            if (string.IsNullOrEmpty(companyName))
+                            {
+                                companyName = item.company_name;
+                            }
+
+                            var createLink = SecurityHelper.GenerateSecureLink("Job", "Create", new { company_id = item.id });
+
+                            <option value="@item.id" data-link="@createLink">@companyName</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info" id="btnAllowChooseCompany">
+            <i class="fa fa-check"></i> @ManagerResource.BT_ALLOW
+        </button>
+        <button type="button" class="btn btn-outline-info" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}
+<script>
+    $(function () {
+        $("#btnAllowChooseCompany").click(function () {
+            var companyId = parseInt($("#ddlCompany").val());
+            if (companyId <= 0) {
+                $.showErrorMessage(LanguageDic['LB_NOTFICATION'], LanguageDic['LB_PLEASE_SELECT_COMPANY_FOR_NEW_JOB'], null);
+            }
+            else {
+                window.location.href = $("#ddlCompany").find(':selected').attr('data-link');
+
+            }
+        });
+    });
+</script>

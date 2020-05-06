@@ -1,0 +1,79 @@
+﻿@using MySite.Resources
+<!-- modal placeholder-->
+<div class="modal fade" id="selectCityModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg" style="max-width:1024px" role="document">
+        <div class="modal-content">
+            <div id='myModalContent'>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">
+                        @UserWebResource.LB_SEARCH_BY_CITY
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                @using (Html.BeginForm())
+                {
+                    <div class="modal-body" style="padding-top: 0px;">
+                        <div class="form-group row selection-area-container">
+                            <div class="col-md-3 item-col ct-area-region">
+                                <div class="item-col-title">
+                                    <div>
+                                        @UserWebResource.LB_REGION
+                                        <a class="btn-area-choose float-right hidden-sm-up ct-choose-prefecture"><i class="la la-arrow-circle-o-right"></i></a>
+                                    </div>                                    
+                                </div>
+                                <div class="item-col-content">
+                                    <div id="ct_filterRegionsList" class="selection-area">
+                                    </div>
+                                </div>                               
+                            </div>
+
+                            <div class="col-md-3 item-col ct-area-prefecture hidden-sm-down">  
+                                <div class="item-col-title">
+                                    <div>
+                                        <a class="btn-area-choose float-left hidden-sm-up ct-choose-region"><i class="la la-arrow-circle-o-left"></i></a>
+                                        @UserWebResource.LB_PREFECTURE
+                                        <a class="btn-area-choose float-right hidden-sm-up ct-choose-city"><i class="la la-arrow-circle-o-right"></i></a>
+                                    </div>
+                                </div>                                
+                                <div class="item-col-content">
+                                    <div id="ct_filterPrefecturesList" class="selection-area">
+                                        <div class="item-col-default ct-prefectures-default">
+                                            @UserWebResource.LB_SELECT_REGION_PLACE_HOLDER
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 item-col ct-area-city hidden-sm-down">
+                                <div class="item-col-title">
+                                    <div>
+                                        <a class="btn-area-choose float-left hidden-sm-up ct-choose-prefecture"><i class="la la-arrow-circle-o-left"></i></a>
+                                        @UserWebResource.LB_CITY
+                                    </div>
+                                </div>                               
+                                <div id="ct_filterCitiesList" class="selection-area">
+                                    <div class="item-col-default cities-default">
+                                        @UserWebResource.LB_SELECT_PREFECTURE_PLACE_HOLDER
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger mr-auto" id="btnClearCityFilter">
+                            <i class="fa fa-eraser"></i> @UserWebResource.LB_UN_SELECT_ALL
+                        </button>
+                        <button type="button" class="btn btn-info" id="btnAllowSelectedCity" data-dismiss="modal" data-clear="">
+                            <i class="la la-check"></i> @UserWebResource.LB_DONE
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

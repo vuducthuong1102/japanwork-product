@@ -1,0 +1,43 @@
+2020-04-30 01:14:45,535 [148] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:14:46,441 [91] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:15:54,455 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:03,445 [43] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:05,449 [152] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:09,473 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:18,456 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:20,458 [79] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,840 [105] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,841 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,843 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,853 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,854 [105] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,857 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,864 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,866 [60] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,867 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,877 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,878 [60] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,880 [118] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,890 [118] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,891 [60] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,894 [143] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,902 [118] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,904 [148] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,905 [60] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,915 [118] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,916 [148] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,917 [105] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:22,925 [118] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:24,239 [55] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:26,251 [119] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 01:16:27,237 [94] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 03:00:40,433 [15] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 03:00:41,431 [134] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 03:00:43,438 [17] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 03:00:55,713 [114] DEBUG Manager.WebApp.Services.A_NotificationServices - Return code: InternalServerError, message: http://localhost:3333/api/A_notifications/unread_count
+2020-04-30 15:15:04,892 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-30 15:15:04,903 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-30 15:15:04,904 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-30 15:15:04,929 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-30 15:15:04,930 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-30 15:15:04,931 [1] INFO  Manager.WebApp.Startup - ======================================================

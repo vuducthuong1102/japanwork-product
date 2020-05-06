@@ -1,0 +1,37 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CvInfoModel
+
+@if (Model != null)
+{
+    var slug = UrlFriendly.ConvertToUrlFriendly(Model.cv_title);
+    var detailLink = SecurityHelper.GenerateSecureLink("Member", "Detail", new { id = Model.id });
+    var previewLink = SecurityHelper.GenerateSecureLink("Member", "Career", new { id = Model.id });
+    var updateLink = SecurityHelper.GenerateSecureLink("Cv", "UpdateCv", new { lr = Model.cv_title, id = Model.id });
+    <tr>
+        <td>
+            <div class="table-list-title">
+                <a data-href="@detailLink" data-id="@Model.id" class="btn-view-detail">@Model.cv_title</a>
+            </div>
+        </td>
+        <td class="text-center">
+            <span title="@DateHelpers.FormatToStringTitle(Model.created_at)">@Model.created_at.DateTimeQuestToString()</span>
+            @if(Model.main_cv > 0)
+            {
+                <br />
+                <strong class="fz-14 text-danger">(@UserWebResource.LB_DEFAULT_MAIN_CV)</strong>
+            }
+        </td>
+        <td class="text-center">
+            <ul class="action_job">
+                <li><a title="@UserWebResource.LB_VIEW_DETAIL" class="fz-20 btn-preview-cv" href="javascript:;" data-id="@Model.id" data-href="@previewLink"><i class="fa fa-file"></i></a></li>
+                @if (Model.main_cv == 0)
+                {
+                    <li><a title="@UserWebResource.BT_SET_MAIN_CV" class="fz-20" href="javascript:;" data-modal="" data-href="@Url.Action("SetMainCv","Member", new { id = Model.id })"><i class="la la-check"></i></a></li>
+                }
+                <li><a title="@UserWebResource.BT_EDIT" class="fz-20" href="@updateLink"><i class="la la-pencil"></i></a></li>
+                <li><a title="@UserWebResource.BT_DELETE" class="fz-20" href="javascript:;" data-modal="" data-href="@Url.Action("DeleteCv","Member", new { id = Model.id })"><i class="la la-trash-o"></i></a></li>
+            </ul>
+        </td>
+    </tr>
+}

@@ -1,0 +1,131 @@
+﻿@using Halo.Resources
+@model Halo.Models.ConversationModel
+
+@*<aside id="private_box_@Model.TargetUser.Id" class="tabbed_sidebar chat_sidebar">
+    <div class="popup-head">
+        <div class="popup-head-left pull-left">
+            <a title="@Model.TargetUser.DisplayName" target="_blank" href="#">
+                <h5 class="popup-head-uname">
+                    @Model.TargetUser.DisplayName
+                </h5>
+            </a>
+        </div>
+        <div class="popup-head-right pull-right">
+            <button class="chat-header-button mini-hidden" type="button" data-control="fvideo"><i class="glyphicon glyphicon-facetime-video"></i></button>
+            <button class="chat-header-button mini-hidden" type="button" data-control="earphone"><i class="glyphicon glyphicon-earphone"></i></button>
+            <div class="btn-group gurdeepoushan mini-hidden">
+                <button class="chat-header-button dropdown" data-control="attachment" data-toggle="dropdown" type="button" aria-expanded="false">
+                    <i class="glyphicon glyphicon-paperclip"></i>
+                </button>
+                <ul role="menu" class="dropdown-menu pull-right">
+                    <li><a href="#" class="attach-control" data-control="picture"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span> Gallery</a></li>
+                    <li><a href="#" class="attach-control" data-control="camera"><span class="glyphicon glyphicon-camera" aria-hidden="true"></span> Photo</a></li>
+                    <li><a href="#" class="attach-control" data-control="fvideo"><span class="glyphicon glyphicon-facetime-video" aria-hidden="true"></span> Video</a></li>
+                    <li><a href="#" class="attach-control" data-control="headphones"><span class="glyphicon glyphicon-headphones" aria-hidden="true"></span> Audio</a></li>
+                    <li><a href="#" class="attach-control" data-control="map-marker"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Location</a></li>
+                    <li><a href="#" class="attach-control" data-control="user"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Contact</a></li>
+                </ul>
+            </div>
+
+            <button data-widget="remove" id="removeClass" class="chat-header-button pull-right remove-box" type="button" data-control="remove"><i class="glyphicon glyphicon-remove"></i></button>
+        </div>
+    </div>
+    <div class="popup-content">
+        <div class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px);">
+            <div class="msgloader"></div>
+            <div class="chat_box touchscroll chat_box_colors_a">
+
+            </div>
+        </div>
+        <div class="option-footer">
+            <div class="chat_submit_box">
+                <div contenteditable="true" placeholder="@(UserWebResource.LB_INPUT_MESSAGE+"...")" class="md-input msg2send" style="outline: none;" id="divdescription" data-id="@Model.TargetUser.Id"></div>
+            </div>
+            <div class="button-option">
+                <button class="chat-header-button mini-hidden" type="button" data-control="fvideo"><i class="glyphicon glyphicon-facetime-video"></i></button>
+                <button class="chat-header-button mini-hidden" type="button" data-control="earphone"><i class="glyphicon glyphicon-earphone"></i></button>
+                <div class="btn-group gurdeepoushan mini-hidden">
+                    <button class="chat-header-button dropdown" data-control="attachment" data-toggle="dropdown" type="button" aria-expanded="false">
+                        <i class="glyphicon glyphicon-paperclip"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>*@
+
+<div class="ui-chat-box private_box_@Model.TargetUser.Id">
+    <div class="ui-chat-box-head">
+        <div class="avatar">
+            <img src="@Model.TargetUser.Avatar" alt="avatar">
+            <i class="online"></i>
+        </div>
+        <a href="#" class="display-name">@Model.TargetUser.DisplayName</a>
+        <i class="icon icon-clear2 fz-20 ui-chat-box-close"></i>
+
+    </div>
+    <div class="ui-chat-box-content">
+        <div class="ui-chat-box-msg scroll-box">
+            <div class="item left-item">
+                <div class="avatar">
+                    <img src="assets/images/img/avatar-none.png" alt="avatar">
+                </div>
+                <div class="content">
+                    <div class="content-item">
+                        <p class="chat-content">Cho tôi biết lịch trình</p>
+                        <span class="time-content">12:30</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="content-item">
+                        <p class="chat-content">Của bạn</p>
+                        <span class="time-content">12:30</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item right-item">
+                <div class="avatar">
+                    <img src="assets/images/img/avatar-none.png" alt="avatar">
+                </div>
+                <div class="content">
+                    <div class="content-item">
+                        <p class="chat-content">
+                            NGÀY 01:  HÀ NỘI - MỘC CHÂU - THĂM BẢN CỦA ĐỒNG BÀO DÂN TỘC H’MONG (Ăn trưa, tối)
+                            06.00 - 6.15: Xe và hướng dẫn viên đón quý khách tại điểm hẹn khởi hành đi Mộc Châu.
+                        </p>
+                        <span class="time-content">12:30</span>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="content-item">
+                        <p class="chat-content">Du lịch Mộc Châu </p>
+                        <span class="time-content">12:30</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="item loading">
+                <div class="avatar">
+                    <img src="assets/images/img/avatar-none.png" alt="avatar">
+                </div>
+                <div class="content">
+                    <div class="content-item">
+                        <p class="chat-content"></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-chat-box-input">
+            <div class="cmt-box">
+                <div contenteditable="true" class="comment" data-id="@Model.TargetUser.Id" id="divdescription" placeholder="@(UserWebResource.LB_INPUT_MESSAGE+"...")"></div>
+                <div class="cmt-attach">
+                    <a href="javascript:;"><i class="icon icon-emoji"></i></a>
+                    <a href="javascript:;"><i class="icon icon-image"></i></a>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

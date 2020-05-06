@@ -1,0 +1,637 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageCandidateModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_APPLICANT_LIST;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var hasCVs = Model.CVs.HasData();
+
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @RenderSearchForm(currentLang)
+    <!--end::Form-->
+</div>
+
+
+@helper RenderSearchForm(string currentLang)
+{
+    var typeList = TypeJobSeekerProvider.GetLists();
+    if (Model.CompanyInfo != null)
+    {
+        Model.company_name = Model.CompanyInfo.company_name;
+        if (Model.CompanyInfo.LangList.HasData())
+        {
+            var companyLang = Model.CompanyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+            if (companyLang == null)
+            {
+                companyLang = Model.CompanyInfo.LangList[0];
+            }
+
+            if (companyLang != null)
+            {
+                Model.company_name = companyLang.company_name;
+            }
+        }
+    }
+
+    using (Html.BeginForm("Index", "Candidate", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+    {
+        @Html.HiddenFor(m => m.SearchExec)
+        <div class="m-portlet__body">
+            <div class="form-group row">
+                <div class="col-md-2 m-form__group--inline">
+                    <label>@ManagerResource.LB_KEYWORD</label>
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input" })
+                </div>
+                <div class="col-md-2 m-form__group--inline">
+                    @Html.LabelFor(m => m.type_job_seeker, new { @class = "form-control-label" })
+                    <select class="form-control company-picker btn-white" id="@Html.IdFor(m=>m.type_job_seeker)" name="@Html.NameFor(m=>m.type_job_seeker)">
+                        @if (typeList.HasData())
+                        {
+                            foreach (var item in typeList)
+                            {
+                                var selected = "selected";
+                                if (item.Id != Model.type_job_seeker)
+                                {
+                                    selected = "";
+                                }
+                                <option value="@item.Id" @selected>@item.TypeName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 m-form__group--inline">
+                    @Html.LabelFor(m => m.company_id, new { @class = "form-control-label" })
+                    <select class="form-control company-picker btn-white" id="@Html.IdFor(m=>m.company_id)" name="@Html.NameFor(m=>m.company_id)" data-live-search="true">
+                        <option value="0">
+                            @ManagerResource.LB_ALL
+                        </option>
+                        @if (Model.ListCompanies.HasData())
+                        {
+                            foreach (var item in Model.ListCompanies)
+                            {
+                                var selected = "selected";
+                                if (item.Value != Model.company_id.ToString())
+                                {
+                                    selected = "";
+                                }
+                                <option value="@item.Value" @selected>@item.Text</option>
+                            }
+                        }
+                    </select>
+                </div>
+                @*<div class="col-md-2 m-form__group--inline">
+                        @Html.LabelFor(m => m.Status, new { @class = "form-control-label" })
+                        <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
+                            <option value="-99">
+                                @ManagerResource.LB_ALL
+                            </option>
+                            @foreach (var item in Enum.GetValues(typeof(EnumCandidateStatus)))
+                            {
+                                var chkItem = (int)item;
+                                var chkStr = string.Empty;
+                                if (chkItem == Model.Status)
+                                {
+                                    chkStr = "selected";
+                                }
+                                <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                            }
+                        </select>
+                    </div>*@
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12">
+
+                    <button type="submit" class="btn btn-info" style="margin-right:10px;">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+
+                    @*<button type="button" class="btn btn-info reset-btn">
+                            <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+                        </button>*@
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            @*<div class="m-portlet__head">
+                    <div class="clearfix m--padding-10">
+                        @if (!string.IsNullOrEmpty(Model.company_name))
+                        {
+                            <h4 class="pull-left">@ManagerResource.LB_APPLICANT_LIST: <span class="text-danger">@Model.company_name</span></h4>
+                        }
+                        else
+                        {
+                            <h4 class="pull-left">@ManagerResource.LB_APPLICANT_LIST</h4>
+                        }
+                    </div>
+                </div>*@
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" colspan="3">@ManagerResource.LB_INFORMATION_CANDIDATE</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults.HasData() && hasCVs)
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        stt++;
+                                        var jobName = string.Empty;
+                                        var currentCv = Model.CVs.Where(x => x.id == record.cv_id).FirstOrDefault();
+
+                                        if (currentCv == null)
+                                        {
+                                            continue;
+                                        }
+
+                                        var jobInfo = record.job_info;
+                                        if (jobInfo == null)
+                                        {
+                                            continue;
+                                        }
+
+                                        if (jobInfo != null && jobInfo.Job_translations.HasData())
+                                        {
+                                            jobName = jobInfo.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                                            if (string.IsNullOrEmpty(jobName))
+                                            {
+                                                jobName = jobInfo.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                                            }
+                                        }
+                                        <tr>
+                                            <td rowspan="3">
+                                                <div>
+                                                    @if (currentCv != null)
+                                                    {
+
+                                                        var previewLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = record.cv_id });
+                                                        <a class="" href="@previewLink" target="_blank" title="@currentCv.fullname">
+                                                            @if (!string.IsNullOrEmpty(currentCv.image_full_path))
+                                                            {
+                                                                <img class="avatar-img" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" src="@currentCv.image_full_path" title="" />
+                                                            }
+                                                            <span class="ml10">
+                                                                <span class="fz-15"> @currentCv.fullname</span><br />
+
+                                                            </span>
+
+                                                        </a>
+                                                        <div class="fz-13" style="margin-left:65px;margin-top:-18px">@currentCv.phone </div>
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td class="ap-info-first-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-5">@ManagerResource.LB_JOB_CODE</div>
+                                                    <div class="col-md-7">
+                                                        @if (jobInfo != null)
+                                                        {
+                                                            <span>@jobInfo.job_code</span>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="ap-info-second-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-3">@ManagerResource.LB_JOB</div>
+                                                    <div class="col-md-9"> @jobName</div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ap-info-first-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-5">@ManagerResource.LB_PERSON_CHARGE</div>
+                                                    <div class="col-md-7">
+                                                        @if (Model.ListStaffs.HasData())
+                                                        {
+                                                            var pic_id = record.pic_id;
+                                                            if (record.job_seeker_info != null)
+                                                            {
+                                                                pic_id = record.job_seeker_info.pic_id;
+                                                            }
+                                                            var staffInfo = Model.ListStaffs.FirstOrDefault(s => s.StaffId == pic_id);
+                                                            if (staffInfo != null)
+                                                            {
+                                                                <span>@staffInfo.FullName</span>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="ap-info-second-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-3">@ManagerResource.LB_COMPANY</div>
+                                                    <div class="col-md-9">
+                                                        @if (hasCompanies)
+                                                        {
+                                                            var companyName = string.Empty;
+                                                            var companyInfo = Model.Companies.Where(x => x.id == record.job_info.company_id).FirstOrDefault();
+                                                            if (companyInfo != null)
+                                                            {
+                                                                companyName = companyInfo.company_name;
+                                                                if (companyInfo.LangList.HasData())
+                                                                {
+                                                                    var companyLang = companyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+                                                                    if (companyLang == null)
+                                                                    {
+                                                                        companyLang = companyInfo.LangList[0];
+                                                                    }
+
+                                                                    if (companyLang != null)
+                                                                    {
+                                                                        companyName = companyLang.company_name;
+                                                                    }
+                                                                }
+                                                            }
+
+                                                            @companyName
+                                                        }
+                                                        else
+                                                        {
+                                                            @Model.company_name
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ap-info-first-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-5">@ManagerResource.LB_APPLIED_DATE</div>
+                                                    <div class="col-md-7">@record.applied_time.DateTimeQuestToLocaleString(currentLang)</div>
+                                                </div>
+                                            </td>
+                                            <td class="ap-info-second-col">
+                                                <div class="col-md-12 row">
+                                                    <div class="col-md-3">@ManagerResource.LB_ACCEPTED_DATE</div>
+                                                    <div class="col-md-9">
+                                                        @record.created_at.DateTimeQuestToLocaleString(currentLang)
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3">
+                                                @{
+                                                    var sendMailLink = string.Empty;
+                                                    if (!string.IsNullOrEmpty(currentCv.email) && Utility.IsEmail(currentCv.email))
+                                                    {
+                                                        sendMailLink = SecurityHelper.GenerateSecureLink("Candidate", "SendEmail", new { job_seeker_id = currentCv.job_seeker_id, receiver = currentCv.email, is_online = 1 });
+                                                    }
+                                                }
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" onclick="ShowNote(@currentCv.job_seeker_id,0)" title="@ManagerResource.LB_NOTE">
+                                                    <i class="la la-plus"></i>&nbsp;@ManagerResource.LB_ADD_NOTE
+                                                </a>
+                                                @if (!string.IsNullOrEmpty(sendMailLink))
+                                                {
+                                                    <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@sendMailLink" data-modal="" title="@ManagerResource.LB_SEND_EMAIL">
+                                                        <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else if (Model.SearchResults.HasData())
+                                {
+                                    @RenderJobSeekerOffline(currentLang, hasCompanies)
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @RenderPaging()
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+@helper RenderJobSeekerOffline(string currentLang, bool hasCompanies)
+{
+    if (Model.SearchResults.HasData())
+    {
+        var stt = 0;
+        foreach (var record in Model.SearchResults)
+        {
+            stt++;
+            var jobName = string.Empty;
+            var jobSeekerInfo = record.job_seeker_info;
+            if (jobSeekerInfo == null)
+            {
+                continue;
+            }
+            var jobInfo = record.job_info;
+            if (jobInfo == null)
+            {
+                continue;
+            }
+
+            if (jobInfo != null && jobInfo.Job_translations.HasData())
+            {
+                jobName = jobInfo.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                if (string.IsNullOrEmpty(jobName))
+                {
+                    jobName = jobInfo.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                }
+            }
+            <tr>
+                <td rowspan="3">
+                    <div>
+                        @if (jobSeekerInfo != null)
+                        {
+                            var age = DateTime.Now.Year - jobSeekerInfo.birthday.Value.Year;
+                            <div style="display:inline-flex">
+                                @if (!string.IsNullOrEmpty(jobSeekerInfo.Extensions.image_full))
+                                {
+                                    <img class="avatar-img" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" src="@jobSeekerInfo.Extensions.image_full" title="" />
+                                }
+
+                                <span class="ml10 mt7">
+                                    <span class="fz-15">@jobSeekerInfo.fullname</span><br />
+                                    @if (age >= 18)
+                                    {
+                                        <span class="fz-13">@(age) @ManagerResource.LB_AGE.ToLower()/ @jobSeekerInfo.phone</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="fz-13">@jobSeekerInfo.phone</span>
+                                    }
+                                </span>
+                            </div>
+                        }
+                    </div>
+                </td>
+                <td class="ap-info-first-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-5">@ManagerResource.LB_JOB_CODE</div>
+                        <div class="col-md-7">
+                            @if (jobInfo != null)
+                            {
+                                <span>@jobInfo.job_code</span>
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td class="ap-info-second-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">@ManagerResource.LB_JOB</div>
+                        <div class="col-md-9"> @jobName</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="ap-info-first-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-5">@ManagerResource.LB_PERSON_CHARGE</div>
+                        <div class="col-md-7">
+                            @if (Model.ListStaffs.HasData())
+                            {
+                                var pic_id = record.pic_id;
+                                if (record.job_seeker_info != null)
+                                {
+                                    pic_id = record.job_seeker_info.pic_id;
+                                }
+                                var staffInfo = Model.ListStaffs.FirstOrDefault(s => s.StaffId == pic_id);
+                                if (staffInfo != null)
+                                {
+                                    <span>@staffInfo.FullName</span>
+                                }
+                            }
+                        </div>
+                    </div>
+                </td>
+                <td class="ap-info-second-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">@ManagerResource.LB_COMPANY</div>
+                        <div class="col-md-9">
+                            @if (hasCompanies)
+                            {
+                                var companyName = string.Empty;
+                                var companyInfo = Model.Companies.Where(x => x.id == record.job_info.company_id).FirstOrDefault();
+                                if (companyInfo != null)
+                                {
+                                    companyName = companyInfo.company_name;
+                                    if (companyInfo.LangList.HasData())
+                                    {
+                                        var companyLang = companyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+                                        if (companyLang == null)
+                                        {
+                                            companyLang = companyInfo.LangList[0];
+                                        }
+
+                                        if (companyLang != null)
+                                        {
+                                            companyName = companyLang.company_name;
+                                        }
+                                    }
+                                }
+
+                                @companyName
+                            }
+                            else
+                            {
+                                @Model.company_name
+                            }
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="ap-info-first-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-5">@ManagerResource.LB_APPLIED_DATE</div>
+                        <div class="col-md-7">@record.applied_time.DateTimeQuestToLocaleString(currentLang)</div>
+                    </div>
+                </td>
+                <td class="ap-info-second-col">
+                    <div class="col-md-12 row">
+                        <div class="col-md-3">@ManagerResource.LB_ACCEPTED_DATE</div>
+                        <div class="col-md-9">
+                            @record.created_at.DateTimeQuestToLocaleString(currentLang)
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @{
+                        var sendMailLink = string.Empty;
+                        if (!string.IsNullOrEmpty(jobSeekerInfo.email))
+                        {
+                            sendMailLink = SecurityHelper.GenerateSecureLink("MyEmail", "ToMyJobSeeker", new { job_seeker_id = jobSeekerInfo.user_id, receiver = jobSeekerInfo.email, is_online = 1 });
+                        }
+                    }
+                    @if (PermissionHelper.CheckPermission("ShowNote", "JobSeeker"))
+                    {
+                        <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" onclick="ShowNote(@jobSeekerInfo.user_id,@Model.type_job_seeker)" title="@ManagerResource.LB_NOTE">
+                            <i class="la la-plus"></i>&nbsp;@ManagerResource.LB_ADD_NOTE
+                        </a>
+                    }
+                    @if (!string.IsNullOrEmpty(sendMailLink) && PermissionHelper.CheckPermission("ToMyJobSeeker", "MyEmail"))
+                    {
+                        if (!string.IsNullOrEmpty(sendMailLink))
+                        {
+                            <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@sendMailLink" data-modal="" title="@ManagerResource.LB_SEND_EMAIL">
+                                <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="javascript:;" class="m-portlet__nav-link btn-email-invalid btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="@ManagerResource.LB_SEND_EMAIL">
+                                <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                            </a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+}
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Candidate",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+@section PageInlineStyles{
+    <link href="~/Content/Timeline/timeline.css" rel="stylesheet" />
+}
+@section PageInlineScripts{
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script>
+        $(function () {
+            InitCompanyPicker();
+        });
+
+        function InitCompanyPicker() {
+            $('.company-picker').selectpicker({
+                actionsBox: true,
+                selectAllText: LanguageDic["LB_SELECT_ALL"],
+                deselectAllText: LanguageDic["LB_DESELECT_ALL"]
+            }).ajaxSelectPicker({
+                ajax: {
+                    // data source
+                    url: '/Master/GetSuggestionCompanies',
+                    // ajax type
+                    type: 'POST',
+                    // data type
+                    dataType: 'json',
+                    // Use "{{{q}}}" as a placeholder and Ajax Bootstrap Select will
+                    // automatically replace it with the value of the search query.
+                    data: {
+                        query: '{{{q}}}',
+                        __RequestVerificationToken: $('input[name = "__RequestVerificationToken"]').val()
+                    }
+                },
+                locale: {
+                    emptyTitle: LanguageDic["LB_KEYWORD_SEARCH"],
+                    statusInitialized: "",
+                    statusSearching: LanguageDic["LB_SEARCHING"],
+                    statusNoResults: LanguageDic["LB_NO_RESULTS_FOUND"]
+                },
+                // function to preprocess JSON data
+                preprocessData: function (data) {
+                    var result = data.data;
+                    var i, l = result.length, array = [];
+                    if (l) {
+                        for (i = 0; i < l; i++) {
+                            array.push($.extend(true, result[i], {
+                                text: result[i].company_name ,
+                                value: result[i].id
+                                //data: {
+                                //    subtext: data[i].station
+                                //}
+                            }));
+                        }
+                    }
+                    return array;
+                }
+
+            });
+        }
+        function ShowNote(id, type_job_seeker) {
+            $.ajax({
+                url: 'JobSeeker/ShowNote',
+                data: {
+                    id: id,
+                    type_job_seeker: type_job_seeker
+                },
+                success: function (result) {
+                    if (result) {
+                        $("#myModalContent").html(result);
+                        $('body').addClass('modal-open');
+
+                        $('#myModal').modal('show');
+                        $(".m-select2").select2();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), function () { });
+                }
+            });
+        }
+    </script>
+}

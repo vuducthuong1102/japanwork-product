@@ -1,0 +1,944 @@
+2020-04-23 00:12:38,131 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:12:38,143 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 00:12:38,144 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:12:38,172 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:12:38,173 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 00:12:38,173 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:28:06,031 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:28:06,045 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 00:28:06,046 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:28:06,080 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:28:06,081 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 00:28:06,082 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 00:28:15,371 [51] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 00:28:15,866 [15] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 00:28:16,372 [24] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 00:28:33,896 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:28:39,827 [45] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-23 00:29:02,486 [15] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:37:37,716 [67] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:37:41,168 [53] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:42:07,242 [41] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:42:11,775 [61] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:42:35,099 [24] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:43:20,701 [67] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:46:41,814 [58] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 00:46:42,134 [58] ERROR Manager.WebApp.MvcApplication - Application Error: Nullable object must have a value.
+System.InvalidOperationException: Nullable object must have a value.
+   at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Nullable`1.get_Value()
+   at ASP._Page_Views_JobSeeker_Partials_ForIntroduce__ChoosenJobSeekerList_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\JobSeeker\Partials\ForIntroduce\_ChoosenJobSeekerList.cshtml:line 44
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.Html.PartialExtensions.Partial(HtmlHelper htmlHelper, String partialViewName, Object model, ViewDataDictionary viewData)
+   at ASP._Page_Views_JobSeeker_Partials_ForIntroduce__ChoosenJobSeeker_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\JobSeeker\Partials\ForIntroduce\_ChoosenJobSeeker.cshtml:line 78
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 00:49:15,135 [45] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 01:03:52,429 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 01:03:52,440 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 01:03:52,441 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 01:03:52,466 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 01:03:52,466 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 01:03:52,467 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:35:52,836 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:35:52,847 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 09:35:52,848 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:35:52,877 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:35:52,878 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 09:35:52,879 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:36:04,880 [72] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 09:36:05,370 [102] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 09:36:07,790 [48] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 09:36:08,553 [103] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 09:38:21,114 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:38:21,126 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 09:38:21,127 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:38:21,160 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:38:21,160 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 09:38:21,161 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:57:21,032 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:57:21,044 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 09:57:21,046 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:57:21,082 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:57:21,083 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 09:57:21,084 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 09:57:32,629 [169] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 09:57:38,452 [51] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 09:58:07,299 [46] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 09:58:21,943 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 09:58:21,943 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 09:58:21,943 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 09:58:55,521 [134] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 09:58:59,760 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 09:59:10,634 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 09:59:10,634 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 09:59:10,644 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:01:29,468 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:01:29,484 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:01:29,485 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:01:29,526 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:01:29,526 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:01:29,527 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:01:37,588 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:01:37,589 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:01:37,601 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:02:21,586 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:02:21,587 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:02:21,593 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:06:44,241 [137] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:06:44,243 [32] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:06:44,250 [140] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:08:05,987 [140] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:08:05,994 [32] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:08:05,997 [5] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:11:38,427 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:11:38,439 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:11:38,440 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:11:38,468 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:11:38,469 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:11:38,469 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:11:49,213 [13] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 10:11:49,711 [87] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 10:11:50,215 [36] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 10:11:52,335 [70] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 10:12:13,555 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 10:12:26,380 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:12:26,380 [70] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:12:26,380 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:13:06,629 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:13:06,640 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:13:06,641 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:13:06,671 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:13:06,672 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:13:06,673 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:13:19,512 [108] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 10:13:21,178 [108] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:13:21,178 [147] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:13:21,178 [124] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:14:45,067 [58] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:14:45,067 [108] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:14:45,076 [124] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:15:41,627 [108] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:15:41,627 [124] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:15:41,634 [58] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:18:44,785 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:18:44,796 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:18:44,797 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:18:44,828 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:18:44,829 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:18:44,830 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:18:56,711 [78] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 10:19:05,712 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 10:19:25,611 [137] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:19:25,611 [102] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:19:25,611 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:20:22,568 [168] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:20:22,573 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:20:22,580 [166] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:20:40,875 [78] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:21:21,772 [78] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:22:43,940 [155] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:22:43,946 [78] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:22:43,951 [160] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:24:47,577 [153] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 10:25:03,114 [156] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:25:03,118 [160] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:25:03,126 [153] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:26:42,744 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:26:42,750 [153] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:26:42,756 [142] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:27:48,268 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:27:48,282 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:27:48,283 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:27:48,325 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:27:48,333 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:27:48,334 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:27:59,937 [139] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 10:28:03,451 [93] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 10:28:03,456 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 10:28:03,475 [153] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 10:31:36,850 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:31:36,863 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:31:36,864 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:31:36,892 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:31:36,893 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:31:36,894 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:55:40,944 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:55:40,959 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 10:55:40,960 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:55:40,992 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:55:40,993 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 10:55:40,994 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 10:55:50,644 [37] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 10:55:51,143 [186] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 10:55:51,651 [117] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 10:56:02,505 [181] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 11:02:44,528 [84] ERROR Manager.WebApp.MvcApplication - Application Error: A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+System.Web.HttpException (0x80004005): A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 11:10:41,325 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:10:41,337 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:10:41,337 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:10:41,367 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:10:41,368 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:10:41,369 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:11:06,162 [128] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:11:25,812 [126] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 11:14:05,488 [69] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 11:17:09,612 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:17:09,623 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:17:09,624 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:17:09,656 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:17:09,657 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:17:09,657 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:17:24,509 [110] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:19:19,185 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:19:19,196 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:19:19,197 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:19:19,227 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:19:19,227 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:19:19,228 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:19:30,703 [69] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:20:02,419 [110] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 11:20:33,207 [115] DEBUG Manager.WebApp.Controllers.JobController - 2
+2020-04-23 11:22:10,609 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:10,620 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:22:10,620 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:10,659 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:10,660 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:22:10,661 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:41,882 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:41,896 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:22:41,897 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:41,933 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:22:41,934 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:22:41,934 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:23:51,054 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:23:51,068 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:23:51,068 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:23:51,093 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:23:51,094 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:23:51,095 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:37:19,174 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:37:19,187 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:37:19,188 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:37:19,216 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:37:19,217 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:37:19,218 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:37:28,958 [20] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 11:37:29,454 [23] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 11:37:29,960 [13] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:38:30,340 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:38:30,354 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:38:30,355 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:38:30,389 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:38:30,389 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:38:30,390 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:38:40,769 [177] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:40:15,840 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:40:15,855 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:40:15,856 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:40:15,896 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:40:15,897 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:40:15,898 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:42:34,859 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:42:34,871 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:42:34,872 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:42:34,906 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:42:34,907 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:42:34,908 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:43:33,768 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:43:33,780 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:43:33,781 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:43:33,815 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:43:33,816 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:43:33,816 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:43:54,710 [52] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:44:48,809 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:44:48,823 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:44:48,824 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:44:48,855 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:44:48,856 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:44:48,857 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:45:17,442 [151] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:47:34,034 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:47:34,047 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:47:34,048 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:47:34,083 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:47:34,084 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:47:34,085 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:48:06,559 [122] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:48:31,197 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:48:31,213 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:48:31,214 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:48:31,246 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:48:31,247 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:48:31,247 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:53:07,314 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:53:07,327 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:53:07,328 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:53:07,364 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:53:07,365 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:53:07,365 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:53:19,331 [95] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:54:52,199 [95] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-23 11:54:52,202 [95] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-23 11:56:06,911 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:56:06,925 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:56:06,926 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:56:06,963 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:56:06,964 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:56:06,965 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:56:28,149 [37] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 11:59:30,179 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:59:30,193 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 11:59:30,194 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:59:30,223 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 11:59:30,224 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 11:59:30,224 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 14:00:51,779 [185] ERROR Manager.WebApp.Controllers.JobController - Failed to display ViewJob [3] because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at Manager.WebApp.Controllers.JobController.Detail(Nullable`1 id, Nullable`1 company_id, String language_code, String tab) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobController.cs:line 495
+2020-04-23 14:02:15,988 [190] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 14:40:58,928 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 14:40:58,944 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 14:40:58,944 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 14:40:58,979 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 14:40:58,980 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 14:40:58,981 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 14:41:08,269 [166] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 14:41:08,768 [198] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 14:41:09,270 [238] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:10:36,514 [65] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 17:10:37,015 [55] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 17:10:38,021 [41] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:11:28,318 [10] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:12:05,411 [65] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:14:50,017 [65] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:16:03,071 [77] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:17:26,230 [62] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-23 17:17:26,234 [62] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-23 17:21:52,305 [84] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:25:20,179 [84] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:26:07,093 [228] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:26:46,205 [137] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:27:16,682 [102] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 17:33:07,862 [182] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 17:33:18,339 [182] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 17:33:30,810 [41] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 17:33:31,808 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 17:33:32,822 [31] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 19:41:25,663 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 19:41:25,676 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 19:41:25,677 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 19:41:25,706 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 19:41:25,708 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 19:41:25,709 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 19:41:35,818 [187] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 19:41:36,315 [241] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 19:41:36,819 [196] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:02:50,164 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:02:50,177 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:02:50,178 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:02:50,213 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:02:50,215 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:02:50,216 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:03:02,230 [38] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:03:13,828 [154] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:11:55,256 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:11:55,267 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:11:55,268 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:11:55,296 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:11:55,297 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:11:55,299 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:21:00,148 [39] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 20:21:00,619 [101] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 20:21:01,125 [134] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:34:38,929 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:34:38,945 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:34:38,946 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:34:38,979 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:34:38,980 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:34:38,981 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:34:49,588 [36] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:35:42,988 [116] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:37:16,014 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:37:16,027 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:37:16,028 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:37:16,066 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:37:16,067 [113] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:37:16,068 [113] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:37:32,252 [36] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:38:27,500 [36] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:41:24,659 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:41:24,674 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:41:24,675 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:41:24,703 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:41:24,703 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:41:24,704 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:41:37,684 [207] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:57:59,839 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:57:59,853 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 20:57:59,854 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:57:59,883 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:57:59,884 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 20:57:59,884 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 20:58:10,514 [28] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 20:58:11,500 [64] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 20:58:11,508 [5] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 20:58:14,153 [147] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 20:58:14,390 [68] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 20:58:14,597 [196] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 20:58:28,560 [62] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 20:59:40,002 [147] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:00:16,985 [68] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:01:23,592 [131] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:01:30,114 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:01:30,128 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 21:01:30,129 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:01:30,163 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:01:30,164 [88] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 21:01:30,165 [88] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:01:43,515 [209] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:02:41,508 [64] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:04:03,010 [127] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:06:52,033 [138] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:10:20,680 [38] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:13:29,599 [141] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:14:38,708 [185] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:15:09,160 [195] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 21:15:28,797 [81] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:15:29,529 [81] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 21:16:54,888 [81] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 21:17:09,918 [72] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 21:25:51,844 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:25:51,857 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 21:25:51,857 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:25:51,884 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:25:51,884 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 21:25:51,885 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:26:02,432 [75] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:26:39,849 [31] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:26:47,758 [41] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:40:09,648 [189] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:40:10,051 [142] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 21:40:10,550 [200] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 21:40:43,664 [10] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:41:03,501 [10] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:42:02,012 [178] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:43:12,562 [186] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:45:52,823 [186] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:45:53,110 [10] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:45:53,387 [161] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:45:53,663 [161] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Process_Partials__Detail_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Process\Partials\_Detail.cshtml:line 49
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-23 21:47:12,257 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:47:12,270 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 21:47:12,271 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:47:12,301 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:47:12,302 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 21:47:12,302 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 21:47:23,512 [20] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:49:33,323 [20] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 21:54:11,127 [197] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:24:31,463 [218] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:25:00,899 [202] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 22:25:01,397 [104] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 22:25:01,900 [34] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:25:03,894 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:25:41,388 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 22:25:41,388 [208] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 22:25:41,391 [202] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 22:26:07,945 [45] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 22:26:23,990 [128] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:27:09,343 [24] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-23 22:27:09,348 [114] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-23 22:27:09,352 [73] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-23 22:27:19,504 [128] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 22:27:42,776 [120] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:27:43,272 [156] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:28:09,925 [128] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:28:10,956 [24] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:33:21,686 [160] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:38:36,214 [191] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:38:59,618 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:38:59,636 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 22:38:59,637 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:38:59,685 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:38:59,686 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 22:38:59,687 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:45:18,898 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:45:18,910 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 22:45:18,911 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:45:18,948 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:45:18,949 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 22:45:18,950 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:45:33,705 [49] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:45:53,938 [175] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:51:02,227 [136] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 22:51:10,434 [178] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 22:51:15,455 [51] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-23 22:51:22,529 [51] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 22:58:52,204 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:58:52,217 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 22:58:52,217 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:58:52,284 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:58:52,285 [123] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 22:58:52,285 [123] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 22:59:03,892 [167] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 22:59:04,422 [103] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 22:59:04,898 [167] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:00:50,859 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:00:50,873 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:00:50,874 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:00:50,902 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:00:50,902 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:00:50,903 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:01:04,522 [54] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:03:35,540 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:03:35,555 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:03:35,556 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:03:35,595 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:03:35,596 [33] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:03:35,596 [33] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:03:48,543 [191] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:04:26,016 [160] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:04:58,946 [54] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:12:01,784 [136] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:12:01,799 [136] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:12:01,800 [136] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:12:01,833 [136] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:12:01,834 [136] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:12:01,835 [136] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:12:14,308 [160] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:13:12,297 [53] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:17:11,931 [12] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:17:18,600 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:17:18,616 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:17:18,617 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:17:18,650 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:17:18,651 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:17:18,652 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:17:44,358 [99] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:40:39,088 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:40:39,102 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:40:39,103 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:40:39,131 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:40:39,132 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:40:39,132 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:42:42,878 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:42:42,889 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-23 23:42:42,890 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:42:42,929 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:42:42,930 [150] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-23 23:42:42,931 [150] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-23 23:43:00,479 [38] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 23:43:00,977 [154] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 23:43:01,486 [198] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:43:09,436 [198] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:44:23,504 [154] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:48:50,354 [110] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-23 23:50:11,909 [108] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:52:27,782 [34] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:52:42,221 [25] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:54:34,658 [69] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-23 23:54:35,156 [26] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-23 23:54:35,661 [26] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-23 23:59:11,389 [114] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request

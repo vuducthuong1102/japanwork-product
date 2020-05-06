@@ -1,0 +1,49 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+
+@{ 
+    var currentUser = AccountHelper.GetCurrentUser();
+    var userName = string.Empty;
+    if(currentUser != null)
+    {
+        userName = AccountHelper.ShowDisplayName(currentUser);
+    }
+}
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <h3>@UserWebResource.LB_WELCOME @userName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column border-right hidden-sm-down">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            @Html.Partial("~/Views/Widgets/Items/Profile/_LeftMenu.cshtml", "job_alert")
+                        </div>
+                    </div>                    
+                </aside>
+                <div class="col-lg-9 column">
+                    <div class="padding-left">
+                        <div class="manage-jobs-sec">
+                            Thông báo việc làm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

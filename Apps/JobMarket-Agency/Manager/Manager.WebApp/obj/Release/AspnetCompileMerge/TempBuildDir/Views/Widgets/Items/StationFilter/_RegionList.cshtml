@@ -1,0 +1,20 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using MySite.Helpers
+@model List<IdentityRegion>
+
+@{
+    var hasData = Model.HasData();
+}
+
+<ul class="item-region custom-scrollbar">
+    @if (hasData)
+    {
+        foreach (var item in Model)
+        {
+            <li class="st-region-select hover-color" data-id="@item.id">
+                <a href="javascript:;">@item.furigana <span class="hidden-md-down">(@item.region)</span></a>
+                <span class="st-region-flag st-region-flag-@item.id float-right @((item.IsSelected) ? "": "hidden")" data-id="@item.id"> <i class="la la-check"></i></span>
+            </li>
+        }
+    }
+</ul>

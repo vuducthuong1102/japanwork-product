@@ -1,0 +1,155 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ScheduleUpdateModel
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        @if (Model != null)
+        {
+            <div class="modal-body">
+                <button type="button" class="close" onclick="$('#updateScheduleModal').modal('hide')" style="margin-top:-10px;">&times;</button>
+                <h3>@ManagerResource.LB_WORKING_SCHEDULE &nbsp;</h3>
+                <hr />
+                 @RenderDetail()
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-outline-info" onclick="$('#updateScheduleModal').modal('hide')"><i class="fa fa-times"></i> @ManagerResource.LB_CLOSE</button>
+            </div>
+           
+        }
+        else
+        {
+            <form class="no-margin form-horizontal">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" style="margin-top:-10px;">&times;</button>
+                    <h3>@ManagerResource.LB_SCHEDULE_UPDATE &nbsp;</h3>
+                    <hr />
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <h4><i class="fa fa-warning"></i> @ManagerResource.LB_HAS_NO_DATA</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-outline-info" onclick="$('#updateScheduleModal').modal('hide')"><i class="fa fa-times"></i> @ManagerResource.LB_CLOSE</button>
+                </div>
+            </form>
+        }
+
+    </div>
+</div>
+
+@helper RenderDetail()
+{
+var isOther = false;
+    <!--begin:: Widgets/Company Summary-->
+    <div class="m-portlet m-portlet--full-height ">
+        <div class="m-portlet__body">
+            <div class="m-widget13">
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        @ManagerResource.LB_SCHEDULE_CAT
+                    </span>
+                    <span class="m-widget13__text m-widget13__text-bolder">
+                        @foreach (var item in Enum.GetValues(typeof(EnumScheduleCategory)))
+                        {
+                            var chkItem = (int)item;
+                            var chkStr = string.Empty;
+                            if (chkItem == Model.sd_schedule_cat)
+                            {
+                                chkStr = "selected";
+
+                                if (chkItem == (int)EnumScheduleCategory.Others)
+                                {
+                                    isOther = true;
+                                }
+
+                                @EnumExtensions.GetEnumDescription((Enum)item)
+                            }
+                        }
+                    </span>
+                </div>
+
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        @ManagerResource.LB_PERSON_IN_CHARGE
+                    </span>
+                    <span class="m-widget13__text m-widget13__text-bolder">
+                        @if (Model.StaffList.HasData())
+                        {
+                            foreach (var st in Model.StaffList)
+                            {
+                                if (Model.sd_pic_id == st.StaffId)
+                                {
+                                    @st.FullName
+                                }
+                            }
+                        }
+                    </span>
+                </div>
+
+                @if (isOther && !string.IsNullOrEmpty(Model.sd_title))
+                {
+                    <div class="m-widget13__item">
+                        <span class="m-widget13__desc m--align-right">
+                            @ManagerResource.LB_TITLE
+                        </span>
+                        <span class="m-widget13__text m-widget13__text-bolder">
+                            @Model.sd_title
+                        </span>
+                    </div>
+                }
+
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        @ManagerResource.LB_FROM_DATE
+                    </span>
+                    <span class="m-widget13__text">
+                        @Model.sd_start_time
+                    </span>
+                </div>
+
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        @ManagerResource.LB_TO_DATE
+                    </span>
+                    <span class="m-widget13__text">
+                        @Model.sd_end_time
+                    </span>
+                </div>
+
+                <div class="m-widget13__item">
+                    <span class="m-widget13__desc m--align-right">
+                        @ManagerResource.SCHEDULE_CONTENT
+                    </span>
+                    <span class="m-widget13__text">
+                        @Html.RawHtmlCustom(Model.sd_content)
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end:: Widgets/Company Summary-->
+}
+
+<script src="/Scripts/jquery.validate.min.js"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    jQuery(function ($) {
+        var pickerStartTime = $("#updateEventDialog").find("#@Html.IdFor(m => m.sd_start_time)");
+        var pickerEndTime = $("#updateEventDialog").find("#@Html.IdFor(m => m.sd_end_time)");
+        setupDateTimePicker(pickerStartTime);
+        setupDateTimePicker(pickerEndTime);
+    });
+
+    function setupDateTimePicker(picker) {
+        $(picker).datetimepicker({
+            todayHighlight: !0,
+            autoclose: !0,
+            pickerPosition: "bottom-left",
+            todayBtn: !0,
+            format: "yyyy-mm-dd HH:ii"
+        });
+    }
+</script>

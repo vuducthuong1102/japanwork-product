@@ -1,0 +1,56 @@
+﻿@using MySite.Resources;
+@*@{ 
+    Layout = "~/Views/Shared/_LayoutError.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1 class="text-danger">
+                    @UserWebResource.LB_OOPS
+                </h1>
+                <h2 class="text-danger">
+                    @UserWebResource.LB_403_FORBIDDEN
+                </h2>
+                <div class="error-details">
+                    <h4>
+                        @UserWebResource.LB_403_FORBIDDEN_DES
+                    </h4>
+                </div>
+                <div class="error-actions">
+                    <a href="~/" class="btn btn-info">
+                        <span class="glyphicon glyphicon-home"></span>
+                        @UserWebResource.LB_HOME_PAGE
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+<div class="theme-layout" id="scrollup">
+    <section>
+        <div class="block no-padding">
+            <div class="container fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="main-featured-sec witherror">
+                            <ul class="main-slider-sec text-arrows">
+                                <li><img src="/Content/themes/default/images/resource/mslider3.jpg" alt="" /></li>
+                                <li><img src="/Content/themes/default/images/resource/mslider2.jpg" alt="" /></li>
+                                <li><img src="/Content/themes/default/images/resource/mslider1.jpg" alt="" /></li>
+                            </ul>
+                            <div class="error-sec">
+                                <div>
+                                    <h3 style="color:#fff;font-size: 120px;">403</h3>
+                                </div>
+                                <span>@UserWebResource.LB_403_FORBIDDEN</span>
+                                <p>@UserWebResource.LB_403_FORBIDDEN_DES</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

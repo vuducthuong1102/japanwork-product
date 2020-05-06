@@ -1,0 +1,145 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+
+@model MySite.Models.JobSearchModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header wform">
+                        <div class="job-search-sec">
+                            <div class="job-search">
+                                <h4>@UserWebResource.LB_SEARCH_SLOGAN_TITLE</h4>
+
+                                <div id="SearchJobBox" style="display:none;">
+                                    @Html.Partial("~/Views/Widgets/_SearchJobBox.cshtml", Model)
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block remove-top">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column" id="FilterLeftCol">
+                    @Html.Partial("_SearchFilterLeft", Model)
+                </aside>
+
+                <div class="col-lg-9 column" id="JobsListContainer">
+                    <div class="modrn-joblist np">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mt30">
+                                    <h5 class="job-searching-state">@UserWebResource.LB_SEARCHING ...</h5>
+                                    <h5 class="job-searching-state job-searching-state-done hidden">@UserWebResource.LB_FOUND <span id="JobSearchCounter">0</span> @UserWebResource.LB_JOBS.ToLower()</h5>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="filterbar">
+                                    <div class="sortby-sec">
+                                        @Html.HiddenFor(m => m.CurrentPage)
+                                        @*<span>@UserWebResource.LB_SORT_BY</span>*@
+                                        <select data-placeholder="@((Model.sorting_date == "asc")? UserWebResource.LB_OLDEST : UserWebResource.LB_NEWEST)" class="chosen searching-element" name="@Html.IdFor(m=>m.sorting_date)" data-control="@Html.IdFor(m=>m.sorting_date)">
+                                            <option value="desc" @((Model.sorting_date == "desc") ? "selected" : "")>@UserWebResource.LB_NEWEST</option>
+                                            <option value="asc" @((Model.sorting_date == "asc") ? "selected" : "")>@UserWebResource.LB_OLDEST</option>
+                                        </select>
+                                        <select data-placeholder="@Model.PageSize @UserWebResource.LB_ITEM_PER_PAGE" class="chosen searching-element" data-control="@Html.IdFor(m=>m.PageSize)">
+                                            @for (int i = 2; i < 6; i++)
+                                            {
+                                                var currentVal = i * 10;
+                                                var strSelected = string.Empty;
+                                                if (currentVal == Model.PageSize)
+                                                {
+                                                    strSelected = "selected";
+                                                }
+                                                <option value="@currentVal" @strSelected>@currentVal @UserWebResource.LB_ITEM_PER_PAGE</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- MOdern Job LIst -->
+                    <div class="job-list-modern" id="JobsList">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<nav class="navbar fixed-bottom navbar-light bg-faded" id="#ApplySearchFilter" style="background-color: #95d618;display:block;">
+        <div class="float-left pl20">
+            <a class="navbar-brand float-left" href="javascript:;" style="color: #222;">@UserWebResource.LB_CHANGE_SEARCH_FILTER_QUEST</a>
+            <button class="btn btn-info btn-sm mt5 mr10 float-left" id="btnApplySearchFilter"> <i class="fa fa-check"></i> @UserWebResource.LB_APPLY</button>
+            <button class="btn btn-info btn-sm mt5 float-left"> <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL</button>
+        </div>
+    </nav>*@
+
+<div class="filterFixBottom" style="display:none;">
+    <div class="filterFixControls bottom-box" style="padding:20px 20px 10px 20px;">
+        <a href="javascript:;" style="top: 0px;position: absolute;right: 5px;" class="btn-close-filter"><i class="fa fa-chevron-circle-down close-filter-icon"></i></a>
+        <b>@UserWebResource.LB_CHANGE_SEARCH_FILTER_QUEST</b>
+        <div class="mt20">
+            <a class="btn btn-sm btn-info btn-apply-filter-search" id="btnApplyFilterSearch" href="javascript:;">
+                <i class="fa fa-search"></i> @UserWebResource.LB_APPLY
+            </a>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../Widgets/Modals/_SelectStationModal")
+
+@Html.Partial("../Widgets/Modals/_SelectCityModal")
+
+@section PageInlineStyles{
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/FilterSelection/area-filter.css")" />
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/custom/searchbox.css")" />
+    <link href="~/Scripts/Extensions/TreeView/treeview.min.css" rel="stylesheet" />
+    <style>
+        .custom-scrollbar {
+            max-height: 300px !important;
+        }
+    </style>
+
+    <style>
+        .filterFixBottom {
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            margin-bottom: 0;
+            z-index: 300;
+            background: none;
+            border: 1px solid #b35757;
+        }
+
+        .filterFixControls.bottom-box {
+            background-color: #95d618;
+            display: block;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/Extensions/TreeView/treeview.min.js"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Pages/search.js")"></script>
+    <script>
+        $(".select2").select2({ width: "100%" });
+    </script>
+}

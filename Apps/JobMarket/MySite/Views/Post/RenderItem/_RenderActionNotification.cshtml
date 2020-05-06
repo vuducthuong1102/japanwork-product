@@ -1,0 +1,18 @@
+﻿
+@using MySite.Helpers;
+
+@model int
+
+@if (Model > 0)
+{
+    <a data-hover="tooltip" data-tooltip-alignh="center" data-tooltip-offsety="-3" href="#" rel="dialog" role="button" class="">
+        <div class="_3t53 UFICommentReactionsBling _4ar- _ipn">
+            <span aria-label="Xem ai đã bày tỏ cảm xúc về nội dung này" class="_3t54">
+                <span class="_3emk _401_">
+                    <span class="_9zc _2p7a _4-op _3uet _4e-m"><i class="active i1 il"></i></span>
+                    <span class="_3chu">@NumberHelpers.NumberReformat(Model)</span>
+                </span>
+            </span><span class="UFICommentLikeButton UFICommentLikedButton UFISutroLikeCount">@NumberHelpers.NumberReformat(Model)</span>
+        </div>
+    </a>
+}

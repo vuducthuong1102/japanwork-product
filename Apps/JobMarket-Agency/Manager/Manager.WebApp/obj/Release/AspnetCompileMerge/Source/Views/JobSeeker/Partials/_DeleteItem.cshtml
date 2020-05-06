@@ -1,0 +1,39 @@
+﻿@using Manager.WebApp.Resources
+
+@model Manager.WebApp.Models.JobSeekerDeleteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    var counter = 0;
+    if (Model.Counter != null)
+    {
+        counter = Model.Counter.Interviewing;
+    }
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="id" value="@Model.id" />
+    <input type="hidden" name="type" value="@Model.type" />
+    <input type="hidden" name="tk" value="@Model.tk" />
+    <div class="modal-body">
+        <div class="mt10">
+            <h5 class="text-danger"> @string.Format(ManagerResource.JOB_SEEKER_DELETE_WARNING, counter)</h5>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-trash"></i> @ManagerResource.LB_YES
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}

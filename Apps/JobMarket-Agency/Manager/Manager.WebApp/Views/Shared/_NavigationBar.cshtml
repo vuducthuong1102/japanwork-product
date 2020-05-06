@@ -1,0 +1,571 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@using Manager.SharedLibs
+
+@using MsSql.AspNet.Identity
+
+@using System.Reflection;
+@{
+    int searchStatus = 0;
+    var Controller = string.Empty;
+    var Action = string.Empty;
+    var searchExec = string.Empty;
+    if (Model != null)
+    {
+        foreach (PropertyInfo prop in Model.GetType().GetProperties())
+        {
+            if (prop.Name == "SearchStatus")
+            {
+                searchStatus = Utils.ConvertToInt32(prop.GetValue(Model));
+            }
+            if (prop.Name == "Controller")
+            {
+                Controller = prop.GetValue(Model);
+            }
+            if (prop.Name == "Action")
+            {
+                Action = prop.GetValue(Model);
+            }
+            if (prop.Name == "SearchExec")
+            {
+                searchExec = prop.GetValue(Model);
+            }
+        }
+    }
+}
+@{
+    var siteName = WebContext.GetSiteSettings().General.SiteName;
+    if (string.IsNullOrEmpty(siteName))
+    {
+        siteName = "Admin";
+    }
+}
+<header id="m_header" class="m-grid__item    m-header " m-minimize-offset="200" m-minimize-mobile-offset="200">
+    <div class="m-container m-container--fluid m-container--full-height">
+        <div class="m-stack m-stack--ver m-stack--desktop">
+            <!-- BEGIN: Brand -->
+            <div class="m-stack__item m-brand  m-brand--skin-dark " style="padding:0">
+                <div class="m-stack m-stack--ver m-stack--general text-center">
+                    <div class="m-stack__item m-stack__item--middle m-brand__logo m--hidden-tablet-and-mobile" style="width:unset !important;">
+                        <a href="/" class="m-brand__logo-wrapper main-color text-center ml10" style="text-decoration:none;">
+                            <img class="img-responsive" src="/Content/images/logo.png" style="object-fit:cover;width:10em;">
+                            @*<h4 style="float: left;margin-top: 20px;margin-left: 10px;">
+                                    @siteName
+                                </h4>*@
+                        </a>
+                    </div>
+
+                    <div class="m-stack__item m-stack__item--middle m-brand__logo m--visible-tablet-and-mobile">
+                        <a href="/" class="m-brand__logo-wrapper main-color" style="text-decoration:none;">
+                            <div class="m--icon-font-size-lg1 m--hidden-desktop m--visible-tablet-and-mobile">
+                                @*<i class="fa fa-globe m--icon-font-size-lg1"></i> @WebContext.GetSiteSettings().General.SiteName*@
+                                <div class="m--icon-font-size-lg1" style="background-color: #FFF;">
+                                    <img class="img-responsive" src="/Content/images/logo.png" style="object-fit:cover;float: left;margin-top: 4px;margin-left:10px;width:11em;">
+                                    @*<h4 style="float: left;margin-top: 20px;margin-left: 10px;">
+                                            @siteName
+                                        </h4>*@
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                        <!-- BEGIN: Left Aside Minimize Toggle -->
+                        <a style="width:20px;margin-left:10px" href="javascript:;" id="m_aside_left_minimize_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-desktop-inline-block" title="@ManagerResource.LB_COLLAPSE">
+                            <span></span>
+                        </a>
+                        <!-- END -->
+                        <!-- BEGIN: Responsive Aside Left Menu Toggler -->
+                        <a href="javascript:;" id="m_aside_left_offcanvas_toggle" class="m-brand__icon m-brand__toggler m-brand__toggler--left m--visible-tablet-and-mobile-inline-block">
+                            <span></span>
+                        </a>
+                        <!-- END -->
+                        <!-- BEGIN: Responsive Header Menu Toggler -->
+                        <a id="m_aside_header_menu_mobile_toggle" href="javascript:;" class="m-brand__icon m-brand__toggler m--visible-tablet-and-mobile-inline-block">
+                            <span></span>
+                        </a>
+                        <!-- END -->
+                        <!-- BEGIN: Topbar Toggler -->
+                        <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+                            <i class="flaticon-more"></i>
+                        </a>
+                        <!-- BEGIN: Topbar Toggler -->
+                    </div>
+                </div>
+            </div>
+            <!-- END: Brand -->
+
+            <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+                <!-- BEGIN: Horizontal Menu -->
+                <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn">
+                    <i class="la la-close"></i>
+                </button>
+                <div id="m_header_menu" class="m-header-menu m-aside-header-menu-mobile m-aside-header-menu-mobile--offcanvas  m-header-menu--skin-light m-header-menu--submenu-skin-light m-aside-header-menu-mobile--skin-dark m-aside-header-menu-mobile--submenu-skin-dark ">
+                    @*@if (Request.IsAuthenticated)
+                        {
+                            @RenderNavList()
+                        }*@
+
+                    <div class="tsb m--hidden-tablet-and-mobile" style="">
+                        <div class="tsb-form" style="float:left;height:50px;margin: 10px 0px 0px 2px;border: 1px solid #ebedf2;border-radius: 8px;">
+                            @{
+                                var searchType = 0;
+                                if ((Controller == "Application" || Controller == "JobSeeker") && Action == "Index") { searchType = 1; }
+                                if (Controller == "Job" && Action == "Index") { searchType = 2; }
+                                if (Controller == "Company" && Action == "Index") { searchType = 3; }
+
+                            }
+                            <input type="hidden" name="SearchStatus" id="SearchStatus" value="@searchStatus" />
+                            @{
+                                var keyWord = string.Empty;
+                                if (searchStatus > 0)
+                                {
+                                    keyWord = Model.Keyword;
+                                }
+                                else
+                                {
+                                    searchType = 1;
+                                }
+                                var urlSearch = "/" + Controller;
+                                if (Action != string.Empty)
+                                {
+                                    urlSearch += "/" + Action;
+                                }
+                                if (searchStatus == 1)
+                                {
+                                    urlSearch = "action=" + urlSearch;
+                                }
+                                else
+                                {
+                                    urlSearch = "";
+                                }
+                                <input type="hidden" name="Controller" id="Controller" value="@Controller" />
+                                <form @urlSearch id="SearchFrm" method="get" style="height:100%">
+                                    <div class="input-group search-advance-control">
+                                        <div class="option" style="background-color:#f2f3f8;padding: 10px 5px 7px 6px;height:100%;border-radius: 8px 0px 0px 8px;">
+                                            <div class="m-radio-inline = hidden-xs pt5">
+                                                <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                                    <input type="radio" value="1" name="type" data-controller="JobSeeker" data-div="search-job-seeker" @(searchType == (int)EnumSearchType.JobSeeker ? "checked class=checked" : "")>
+                                                    @ManagerResource.LB_JOB_SEEKER
+                                                    <span></span>
+                                                </label>
+                                                <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                                    <input type="radio" value="3" name="type" data-controller="Company" data-div="search-company" @(searchType == (int)EnumSearchType.Company ? "checked class=checked" : "")>
+                                                    @ManagerResource.LB_COMPANY
+                                                    <span></span>
+                                                </label>
+                                                <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                                    <input type="radio" value="2" name="type" data-controller="Job" data-div="search-job" @(searchType == (int)EnumSearchType.Job ? "checked class=checked" : "")>
+                                                    @ManagerResource.LB_JOB
+                                                    <span></span>
+                                                </label>
+
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="SearchExec" value="@searchExec" />
+                                        <input type="text" class="form-control input-search @(searchStatus==0? "input-off-enter":"")" style="height:48px;border:0;border-radius: 30px;" autocomplete="off" name="Keyword" value="@keyWord" placeholder="@ManagerResource.LB_KEYWORD_SEARCH" />
+                                    </div>
+                                    <div class="search-advance hidden @(searchStatus==0? "hidden-search":"")">
+                                        @if (searchStatus > 0)
+                                        {
+                                            @Html.Partial("~/Views/" + Controller + "/Partials/_PopupSearch.cshtml")
+                                        }
+                                    </div>
+                                </form>
+                                <div class="search-option hidden">
+                                    @if (searchStatus > 0)
+                                    {
+                                        @Html.Partial("~/Views/" + Controller + "/Partials/_PopupSearch.cshtml")
+                                    }
+                                </div>
+                                <div class="search-job-seeker hidden"></div>
+                                <div class="search-job hidden"></div>
+                                <div class="search-company hidden"></div>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="m--visible-tablet-and-mobile" style="margin-top:3vh;width:100%;">
+                        <form action="/search" method="get">
+                            <div class="float-left" style="background-color:#f2f3f8;padding:5px;width:100%;">
+                                <div class="m-radio-inline = hidden-xs pt5">
+                                    <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                        <input type="radio" value="1" @(searchType == (int)EnumSearchType.JobSeeker ? "checked" : "")>
+                                        @ManagerResource.LB_APPLICANT
+                                        <span></span>
+                                    </label>
+                                    <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                        <input type="radio" value="2" @(searchType == (int)EnumSearchType.Job ? "checked" : "")>
+                                        @ManagerResource.LB_JOB
+                                        <span></span>
+                                    </label>
+                                    <label class="m-radio m-radio--check-bold m-radio--state-brand">
+                                        <input type="radio" value="3" @(searchType == (int)EnumSearchType.Company ? "checked" : "")>
+                                        @ManagerResource.LB_COMPANY
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                                @*<div class="">
+                                        <div class="tsb-form-search form-group">
+                                            <input type="text" class="form-control" style="border: 1px solid #ccc;" name="TsbSearchKeyword" value="@keywordSearch" placeholder="@ManagerResource.LB_KEYWORD_SEARCH" />
+                                        </div>
+                                    </div>*@
+                            </div>
+                        </form>
+                    </div>
+                    <!--BEGIN: Search Results -->
+                </div>
+                <!-- END: Horizontal Menu -->
+                <!-- BEGIN: Topbar -->
+                <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general">
+                    @if (Request.IsAuthenticated)
+                    {
+                        @RenderLoggedInMenu()
+                    }
+                </div>
+                <!-- END: Topbar -->
+            </div>
+
+        </div>
+    </div>
+</header>
+@helper RenderNavList()
+{
+    var hasMenuActive = false;
+
+    <ul class="m-menu__nav  m-menu__nav--submenu-arrow ">
+        @{
+            var menuItems = ViewBag.AdminNavMenu as IEnumerable<IdentityMenu>;
+            if (menuItems != null && menuItems.Count() > 0)
+            {
+                menuItems = MenuHelper.GetCurrentListMenuByLang(menuItems.ToList());
+            }
+        }
+        @if (menuItems != null)
+        {
+            foreach (var mi in menuItems)
+            {
+                if (mi.Visible && (mi.HasChildren || (!string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller)))
+                    )
+                {
+                    var cssOpen = string.Empty;
+                    var cssActive = string.Empty;
+                    if (hasMenuActive == false)
+                    {
+                        if (MenuHelper.CheckCurrentGroupCustom(mi))
+                        {
+                            hasMenuActive = true;
+                            cssOpen = "m-menu__item--open";
+                            cssActive = "m-menu__item--active";
+                        }
+                    }
+                    @RenderTopMenuItem(mi, cssOpen, cssActive);
+                }
+            }
+        }
+    </ul>
+}
+
+@helper RenderLoggedInMenu()
+{
+
+    var langList = LanguagesProvider.GetListLanguages();
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+
+    <div class="m-stack__item m-topbar__nav-wrapper">
+        <ul class="m-topbar__nav m-nav m-nav--inline">
+            <li class="m-nav__item" title="@ManagerResource.LB_EMAIL">
+                <a href="/MyEmail" id="btnViewEmail" class="m-nav__link">
+                    <span class="m-nav__link-badge"></span>
+                    <span class="m-nav__link-icon">
+                        <i class="flaticon-email"></i>
+                    </span>
+                </a>
+            </li>
+
+            <li class="m-nav__item" title="@ManagerResource.LB_WORKING_SCHEDULE">
+                <a href="javascript:;" id="btnViewSchedule" class="m-nav__link">
+                    @*<span class="m-nav__link-badge m-badge m-badge--dot m-badge--dot-small m-badge--danger"></span>*@
+                    <span class="m-nav__link-icon">
+                        <i class="flaticon-calendar-3"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
+                <a href="javascript:;" class="m-nav__link m-dropdown__toggle" id="btnViewNotification">
+                    <span class="m-nav__link-badge"></span>
+                    <span class="m-nav__link-icon">
+                        <i class="flaticon-music-2"></i>
+                    </span>
+                </a>
+                <div class="m-dropdown__wrapper" style="right:-5px;left:unset;">
+                    <span class="m-dropdown__arrow m-dropdown__arrow--right" style="color:#fff;"></span>
+                    <div class="m-dropdown__inner">
+                        <div class="m-dropdown__header m--align-center" style="padding:5px;border-bottom: 1px solid #ccc;margin-bottom: 10px;">
+                            <span class="m-dropdown__header-title" style="color:#212121">
+                                @ManagerResource.LB_NOTIFICATION
+                                <span class="count-noti count-noti-str hidden">0</span>
+                            </span>
+                        </div>
+                        <div class="m-dropdown__body" style="padding:0;">
+                            <div class="m-dropdown__content">
+                                <div class="m-scrollable box-noti-container" data-scrollable="true" data-max-height="250" data-mobile-max-height="200">
+                                    <div class="box-noti">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            @if (langList.HasData())
+            {
+                var currentLangInfo = langList.FirstOrDefault(s => s.LanguageCultureName == currentLang);
+
+                if (currentLangInfo != null)
+                {
+                    <li class="m-nav__item m-nav__item--accent m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1" aria-expanded="true">
+                        <a href="#" class="m-nav__link m-dropdown__toggle">
+                            <span class="m-nav__link-icon">
+                                <span class="m-nav__link-icon-wrapper" title="@currentLangInfo.LanguageFullName">
+                                    <img class="image-lang" src="~/Content/images/flags/@(currentLangInfo.LanguageCultureName).png" />
+                                </span>
+                            </span>
+                        </a>
+                        <div class="m-dropdown__wrapper dropdown-custom">
+                            <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                            <div class="m-dropdown__inner">
+                                <div class="m-dropdown__body">
+                                    <div class="m-dropdown__content">
+                                        <ul class="m-menu__subnav">
+
+                                            @foreach (var item in langList)
+                                            {
+                                                <li class="m-menu__item @((currentLang == item.LanguageCultureName) ? "m-menu__item--active" : string.Empty)" aria-haspopup="true">
+                                                    <a href="~/home/changelanguage?lang=@item.LanguageCultureName" class="m-menu__link " style="display:flex">
+                                                        <div class="m-menu__link-icon" style="width:30px">
+                                                            <img class="image-lang" src="~/Content/images/flags/@(item.LanguageCultureName).png" />
+                                                        </div>
+                                                        <span class="m-menu__link-text" style="padding-left:10px">
+                                                            @{
+                                                                var array = item.LanguageCultureName.Split('-');
+                                                                if (array.Length == 2)
+                                                                {
+                                                                    @array[1];
+                                                                }
+                                                            }
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                }
+            }
+            @*<li class="m-nav__item m-menu__item--submenu m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
+                    <a href="javascript:;" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon fa fa-language"></i>
+                        <span class="m-menu__link-text">
+                            @ManagerResource.LB_LANGUAGE
+                        </span>
+                        <i class="m-menu__hor-arrow la la-angle-down"></i>
+                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                        <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                        <ul class="m-menu__subnav">
+                            @if (langList.HasData())
+                            {
+                                foreach (var item in langList)
+                                {
+                                    <li class="m-menu__item @((currentLang == item.LanguageCultureName)? "active": string.Empty)" aria-haspopup="true">
+                                        <a href="~/home/changelanguage?lang=@item.LanguageCultureName" class="m-menu__link ">
+                                            <div class="m-menu__link-icon" style="width:30px">
+                                                <img style="width:100%;height:auto;" src="~/Content/images/flags/@(item.LanguageCultureName).png" />
+                                            </div>
+
+                                            <span class="m-menu__link-text" style="padding-left:10px">
+                                                @item.LanguageFullName
+                                            </span>
+                                        </a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </li>*@
+            @*<li class="m-nav__item" style="padding-top: 25px;">
+                    <b class="dynamic-timer">@DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")</b>
+                </li>*@
+            @*<li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+                    m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
+                    <a href="#" class="m-nav__link m-dropdown__toggle">
+                        <span class="m-nav__link-icon">
+                            <i class="flaticon-search-1"></i>
+                        </span>
+                    </a>
+                    <div class="m-dropdown__wrapper">
+                        <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                        <div class="m-dropdown__inner ">
+                            <div class="m-dropdown__header">
+                                <form class="m-list-search__form">
+                                    <div class="m-list-search__form-wrapper">
+                                        <span class="m-list-search__form-input-wrapper">
+                                            <input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
+                                        </span>
+                                        <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
+                                            <i class="la la-remove"></i>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="m-dropdown__body">
+                                <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-max-height="300" data-mobile-max-height="200">
+                                    <div class="m-dropdown__content"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>*@
+
+            <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+                @Html.Partial("_LoginPartial")
+            </li>
+            @*<li id="m_quick_sidebar_toggle" class="m-nav__item">
+                    <a href="#" class="m-nav__link m-dropdown__toggle">
+                        <span class="m-nav__link-icon">
+                            <i class="flaticon-grid-menu"></i>
+                        </span>
+                    </a>
+                </li>*@
+        </ul>
+    </div>
+}
+
+@helper RenderTopMenuItem(IdentityMenu mi, string cssOpen, string cssActive)
+{
+    var cssParent = mi.HasVisbleChildren ? "m-menu__item--submenu" : "";
+    var cssLink = mi.HasVisbleChildren ? "m-menu__toggle" : "";
+
+    var itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ?
+                        Url.Action(mi.Action, mi.Controller) : "javascript:;";
+
+    <li class="m-menu__item  @cssParent @cssOpen @cssActive m-menu__item--rel" m-menu-submenu-toggle="click" m-menu-link-redirect="1" aria-haspopup="true">
+        <a href="@itemUrl" class="m-menu__link @cssLink">
+            <i class="m-menu__link-icon @mi.IconCss"></i>
+            <span class="m-menu__link-title">
+                <span class="m-menu__link-wrap">
+                    <span class="m-menu__link-text">
+                        @mi.CurrentTitleLang
+                    </span>
+                    @*<span class="m-menu__link-badge">
+                            <span class="m-badge m-badge--brand m-badge--wide">
+                                new
+                            </span>
+                        </span>*@
+                </span>
+            </span>
+            @if (mi.HasVisbleChildren)
+            {
+                <i class="m-menu__hor-arrow la la-angle-down"></i>
+            }
+            @*<i class="m-menu__ver-arrow la la-angle-right"></i>*@
+        </a>
+        @if (mi.HasVisbleChildren)
+        {
+            <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                <ul class="m-menu__subnav">
+                    @foreach (var smi in mi.SubMenu)
+                    {
+                        if (smi.Visible)
+                        {
+                            @RenderSubMenuItem(smi);
+                        }
+                    }
+                </ul>
+            </div>
+        }
+    </li>
+}
+
+@helper RenderSubMenuItem(IdentityMenu mi)
+{
+    var cssParent = MenuHelper.CheckCurrentActionCustom(mi) ? "m-menu__item--active" : "";
+
+    var cssLink = mi.HasVisbleChildren ? "m-menu__toggle" : "";
+
+    var itemUrl = !string.IsNullOrEmpty(mi.Action) && !string.IsNullOrEmpty(mi.Controller) ? Url.Action(mi.Action, mi.Controller) : "javascript:;";
+    if (PermissionHelper.CheckPermission(mi.Action, mi.Controller))
+    {
+        <li class="m-menu__item @cssParent" m-menu-link-redirect="1" aria-haspopup="true">
+            <a href="@itemUrl" class="m-menu__link @cssLink" title="@mi.FullDesc">
+                @if (!string.IsNullOrEmpty(mi.IconCss))
+                {
+                    <i class="m-menu__link-icon @mi.IconCss"></i>
+                }
+                else
+                {
+                    <i class="m-menu__link-bullet m-menu__link-bullet--dot"><span></span></i>
+                }
+
+                <span class="m-menu__link-text">
+                    @mi.CurrentTitleLang
+                </span>
+                @if (mi.HasVisbleChildren)
+                {
+                    <i class="m-menu__ver-arrow la la-angle-right"></i>
+                }
+            </a>
+            @if (mi.HasVisbleChildren)
+            {
+                <div class="m-menu__submenu m-menu__submenu--classic m-menu__submenu--left">
+                    <span class="m-menu__arrow m-menu__arrow--adjust"></span>
+                    <ul class="m-menu__subnav">
+                        @foreach (var smi in mi.SubMenu)
+                        {
+                            if (smi.Visible)
+                            {
+                                @RenderSubMenuItem(smi);
+                            }
+                        }
+                    </ul>
+                </div>
+            }
+        </li>
+    }
+}
+
+<script type="text/javascript">
+    function handleEmploymentTypeChange(elem) {
+        var employment_type = $(elem).val();
+        var params = $.extend({}, doAjax_params_default);
+
+        params['url'] = '/Master/GetFieldsByEmploymentType';
+        params['requestType'] = 'POST';
+        params['data'] = {
+            employment_type: employment_type,
+            form: 1,
+        };
+        params['showloading'] = false;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (result) {
+            var selectField = $(elem).closest('.search-advance.show').find('.select-field select');
+            selectField.html(result);
+            selectField.val(0);
+            selectField.selectpicker("refresh");
+            var btnDropdown = selectField.next();
+            var lengthOption = selectField.find("option").length;
+            checkSubList(btnDropdown, lengthOption);
+        };
+        doAjax(params);
+    }
+</script>

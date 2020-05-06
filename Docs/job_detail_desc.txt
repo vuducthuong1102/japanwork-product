@@ -1,0 +1,29 @@
+"subsidy": Trợ cấp
+"paid_holiday": Chế độ nghỉ phép
+"bonus": Thưởng
+"certificate": Chứng chỉ, bằng cấp
+"work_content": Mô tả công việc
+"requirement": Yêu cầu
+"plus": Đối tượng ưu tiên
+"welfare": Phúc lợi
+"training": Đào tạo
+"recruitment_procedure": Quy trình tuyển dụng
+"remark": Thông tin thêm, 
+
+Thời gian làm việc (Linh hoạt)
+Yêu cầu học vấn
+Hồ sơ ứng tuyển : + CV
+				  + Quá trình công tác
+				  
+				  
+
+----------------
+Tiêu đề
+Nội dung công việc (Mô tả công việc)
+Yêu cầu	  
+Đối tượng ưu tiên
+Ngày nghỉ (Chế độ nghỉ phép)
+Chế độ ( Thưởng, Trợ cấp, Phúc lợi)
+Chế độ đào tạo
+Quy trình tuyển dụng
+Thông tin thêm

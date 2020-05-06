@@ -1,0 +1,524 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageJobSeekerModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_JOB_SEEKER_LIST;
+    var hasPrefectures = Model.Prefectures.HasData();
+
+    var canUpdate = PermissionHelper.CheckPermission("Update", "JobSeeker");
+    var canAssign = PermissionHelper.CheckPermission("AssignmentWork", "JobSeeker");
+    var canDelete = PermissionHelper.CheckPermission("Delete", "JobSeeker");
+    var canSendMail = PermissionHelper.CheckPermission("SendEmail", "JobSeeker");
+    var hasQualifications = Model.Qualifications.HasData();
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+@*@Html.Partial("../Widgets/Modals/_DefaultModal")*@
+
+
+<div class="space"></div>
+
+<div class="m-portlet">
+    <div class="col-sm-12">
+        <div class="clearfix d-flex operation">
+            @if (PermissionHelper.CheckPermission("Create", "JobSeeker"))
+            {
+                <a class="btn btn-white btn-sm btn-info" href="/JobSeeker/Create" title="@ManagerResource.BT_ADD"><i class="fa fa-plus"></i> @ManagerResource.BT_ADD</a>
+            }
+
+            @if (canSendMail)
+            {
+                <a class="btn btn-white btn-secondary btn-sm btn-check disabled" id="btnBatchSendEmail" href="javascript:;" title="@ManagerResource.LB_SEND_EMAIL">
+                    <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                </a>
+            }
+
+            @if (canDelete)
+            {
+                <a class="btn btn-white btn-secondary btn-sm btn-check disabled" href="javascript:;" data-size="default" data-href="@Url.Action("Delete", "JobSeeker",new {ids="0" })" data-link="@Url.Action("Delete", "JobSeeker")" data-value="type=@Model.type_job_seeker" data-modal="" title="@ManagerResource.LB_DELETE">
+                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                </a>
+            }
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <!--end::Section-->
+        <input type="hidden" value="" id="SelectedIds" />
+
+        <!--begin::Section-->
+        <div class="m-section">
+            <div class="m-section__content table-responsive">
+                <table id="sample-table-1" class="tbl-row-hover table m-table m-table--head-bg-brand table-bordered custom-border custom-checkbox custom-label">
+                    <thead>
+                        <tr>
+                            <th class="text-center align-middle" width="50">
+                                @if (Model.TotalCount > 0)
+                                {
+                                    <span style="width: 50px;">
+                                        <label class="m-checkbox m-checkbox--single m-checkbox-custom-all m-checkbox--all m-checkbox--solid m-checkbox--brand">
+                                            <input type="checkbox" id="cbxAll" /><span></span>
+                                        </label>
+                                    </span>
+                                }
+                            </th>
+                            <th class="text-center align-middle text-info" colspan="3">@ManagerResource.LB_INFORMATION_JOB_SEEKER</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.SearchResults.HasData())
+                        {
+                            foreach (var record in Model.SearchResults)
+                            {
+                                var age = DateTime.Now.Year - record.birthday.Value.Year;
+                                int objectId = record.id;
+                                if (Model.type_job_seeker == 0)
+                                {
+                                    objectId = record.cv_id;
+                                }
+                                var detailLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = objectId, status = (int)EnumApplicationStatus.Interview, type_job_seeker = Model.type_job_seeker, show_more = 1, ctl_active = "JobSeeker", act_active = "Index" });
+                                <tr data-id="@objectId">
+                                    <td rowspan="4" class="text-center">
+                                        <span style="width: 50px;">
+                                            <label class="m-checkbox m-checkbox--single m-checkbox--solid m-checkbox--brand">
+                                                <input type="checkbox" value="1" class="m-checkbox-item cbxItem" data-id="@record.id" data-email="@record.email" data-displayname="@record.fullname" id="@record.id"><span></span>
+                                            </label>
+                                        </span>
+                                    </td>
+                                    <td rowspan="3" class="width-4">
+                                        <div class="display-flex">
+                                            <a href="@detailLink" target="_blank">
+                                                <div style="display:inline-flex">
+                                                    <span class="ml10 mt7">
+                                                        <span class="fz-15">@record.fullname</span><br />
+                                                        <span class="fz-13 job--code">@record.code</span>
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="width-2">
+                                        <label>@ManagerResource.LB_GENDER</label>
+                                        @(record.gender == 1 ? ManagerResource.LB_MALE : ManagerResource.LB_FEMALE)
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_MAJOR</label>
+                                        @record.major
+                                    </td>
+                                </tr>
+                                <tr data-id="@objectId">
+                                    <td>
+                                        <label>@ManagerResource.LB_PREFECTURE</label>
+                                        @{
+                                            if (record.Addresses.HasData() && hasPrefectures)
+                                            {
+                                                var currentPrefectId = record.Addresses[0].prefecture_id;
+                                                var matchedPre = Model.Prefectures.Where(x => x.id == currentPrefectId).FirstOrDefault();
+                                                if (matchedPre != null)
+                                                {
+                                                    @matchedPre.prefecture
+                                                }
+                                            }
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_JAPANESE_LEVEL</label>
+                                        @if (Model.JapaneseLevels.HasData())
+                                        {
+                                            foreach (var item in Model.JapaneseLevels)
+                                            {
+                                                if (item.level_number == record.japanese_level_number)
+                                                {
+                                                    @item.level
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                                <tr data-id="@objectId">
+                                    <td>
+                                        <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                        @if (Model.Staffs.HasData())
+                                        {
+                                            var picInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                            if (picInfo != null)
+                                            {
+                                                @picInfo.FullName
+                                            }
+                                        }
+                                    </td>
+                                    <td>
+                                        <label>@ManagerResource.LB_QUALIFICATION</label>
+                                        @if (hasQualifications)
+                                        {
+                                            foreach (var qualification in Model.Qualifications)
+                                            {
+                                                if (qualification.id == record.qualification_id)
+                                                {
+                                                    var currentQualifiName = string.Empty;
+                                                    if (qualification.LangList.HasData())
+                                                    {
+                                                        currentQualifiName = qualification.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                                                    }
+                                                    else
+                                                    {
+                                                        currentQualifiName = qualification.qualification;
+                                                    }
+                                                    @currentQualifiName
+                                                }
+                                            }
+                                        }
+                                        @record.qualification
+                                    </td>
+                                </tr>
+                                <tr data-id="@objectId">
+                                    <td colspan="3" class="custom-td row-control row-control-@objectId" style="opacity:0">
+
+                                        @{
+                                            var id = record.id;
+                                            var job_seeker_id = record.id;
+                                            if (Model.type_job_seeker == 0)
+                                            {
+                                                job_seeker_id = record.user_id;
+                                            }
+                                            var updateLink = SecurityHelper.GenerateSecureLink("JobSeeker", "Update", new { id = id, hide_pf = 0 });
+                                            var full_name_Undercode = HttpUtility.UrlEncode(record.fullname);
+                                            var assignmentLink = SecurityHelper.GenerateSecureLink("JobSeeker", "AssignmentWork", new { id = job_seeker_id, type_job_seeker = Model.type_job_seeker, full_name = full_name_Undercode });
+                                            var sendMailLink = string.Empty;
+                                            if (!string.IsNullOrEmpty(record.email) && Utility.IsEmail(record.email))
+                                            {
+                                                sendMailLink = SecurityHelper.GenerateSecureLink("JobSeeker", "SendEmail", new { job_seeker_id = job_seeker_id, receiver = record.email, is_online = 0 });
+                                            }
+                                            var noteLink = SecurityHelper.GenerateSecureLink("JobSeeker", "ShowNote", new { job_seeker_id = job_seeker_id, type_job_seeker = Model.type_job_seeker });
+                                            var hasPic = PermissionHelper.CheckIsPic(record.pic_id);
+                                        }
+
+                                        <input type="hidden" id="JKEmail_@record.id" value="@record.email" />
+
+                                        @if (Model.type_job_seeker == 1 && canUpdate)
+                                        {
+                                            if (hasPic)
+                                            {
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="@updateLink" title="@ManagerResource.LB_EDIT">
+                                                    <i class="la la-pencil"></i>&nbsp;@ManagerResource.LB_EDIT
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user">
+                                                    <i class="la la-pencil"></i>&nbsp;@ManagerResource.LB_EDIT
+                                                </a>
+                                            }
+                                        }
+
+                                        <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@job_seeker_id" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="@ManagerResource.LB_ADD_NOTE">
+                                            <i class="la la-plus"></i> @ManagerResource.LB_ADD_NOTE
+                                        </a>
+
+                                        @if (canAssign)
+                                        {
+                                            if (hasPic)
+                                            {
+                                                <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-modal-direct="" data-href="@assignmentLink" title="@ManagerResource.LB_ASSIGNMENT_WORK_DESCRIPTION">
+                                                    <i class="la la-user-plus"></i>&nbsp;@ManagerResource.LB_ASSIGNMENT_WORK
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" title="@ManagerResource.LB_ASSIGNMENT_WORK_DESCRIPTION">
+                                                    <i class="la la-user-plus"></i>&nbsp;@ManagerResource.LB_ASSIGNMENT_WORK
+                                                </a>
+                                            }
+                                        }
+
+                                        @if (!string.IsNullOrEmpty(sendMailLink))
+                                        {
+                                            <a href="javascript:;" data-href="@sendMailLink" data-modal="" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="@ManagerResource.LB_SEND_EMAIL">
+                                                <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="javascript:;" class="m-portlet__nav-link btn-email-invalid btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="@ManagerResource.LB_SEND_EMAIL">
+                                                <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                            </a>
+                                        }
+
+                                        @if (canDelete)
+                                        {
+                                            if (hasPic)
+                                            {
+                                                <a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="javascript:;" data-href="@Url.Action("DeleteItem", "JobSeeker",new {id=record.id, type=Model.type_job_seeker })" data-size="default" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="javacript:;" class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon btn-error-incorrect-user" title="@ManagerResource.LB_DELETE">
+                                                    <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                                                </a>
+                                            }
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="11">
+                                    @ManagerResource.LB_PROCESS_HAS_NO_JOBSEEKER
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            @RenderPaging()
+        </div>
+        <div class="col-md-12">
+            <div class="separator">ボタンの説明</div>
+            <div class="mb-1 pt-3">
+                ※<a class="btn btn-white btn-sm btn-info" href="javascript:;" title="新規求職者を登録します"><i class="fa fa-plus"></i> 追加</a>：新規求職者を登録します。
+            </div>
+            <div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="登録した求職者の情報を編集/更新します">
+                    <i class="la la-pencil"></i>&nbsp;編集
+                </a>：登録した求職者の情報を編集/更新します。
+            </div>
+            <div class="mb-1">
+                ※<a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="対応を確認/追加します">
+                    <i class="la la-plus"></i> 対応を確認/追加
+                </a> : 求職者とのやり取りをメモして頂けます。
+            </div>
+            <div class="mb-1">
+                ※<a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="この人材に仕事を紹介する">
+                    <i class="la la-user-plus"></i>&nbsp;マッチング(自社)
+                </a>：登録されている全求人情報がポップアップで表示されます、任意の求人情報のチェックボックスをクリックし、「マッチング」ボタンを押すと当該求人情報が進捗状況に表示されます。
+            </div>
+            <div class="mb-1">
+                ※<a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="メールする">
+                    <i class="la la-envelope"></i> メールする
+                </a>：設定したメールで求職者に連絡することができます。
+            </div>
+            <div class="mb-1">
+                ※<a class="btn btn-white btn-danger m-portlet__nav-link btn-sm m-btn m-btn m-btn--icon" href="javascript:;" title="削除">
+                    <i class="fa fa-trash"></i> 削除
+                </a>：登録した求職者の情報を削除することができます、さらにチェックボックスを使って複数の求職者情報も削除することができます。
+            </div>
+        </div>
+
+        <!--end::Section-->
+    </div>
+    <!--end::Form-->
+</div>
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "JobSeeker",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status,
+                         type_job_seeker = Model.type_job_seeker,
+                         gender = Model.gender,
+                         major_id = Model.major_id,
+                         japanese_level_number = Model.japanese_level_number,
+                         employment_type_id = Model.employment_type_id,
+                         qualification_id = Model.qualification_id,
+                         staff_id = Model.staff_id,
+                         age_min = Model.age_min,
+                         age_max = Model.age_max,
+                         has_process = Model.has_process,
+                         prefecture_id = Model.prefecture_id,
+                         sub_field_id = Model.sub_field_id
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10);
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@section PageInlineStyles{
+    <style>
+        #ReceiversList {
+            float: left;
+        }
+
+        .jk-item {
+            float: left;
+            margin-right: 5px;
+            border-radius: 2px;
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            padding: 5px;
+        }
+
+        .jk-item-info {
+            float: left;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+        $("body").on("click", ".btn-email-invalid", function () {
+            $.showErrorMessage(LanguageDic["LB_NOTIFICATION"], LanguageDic["ERROR_EMAIL_IS_EMPTY"]);
+        });
+
+        function mouseInHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "1");
+        };
+
+        function mouseOutHandler() {
+            var id = $(this).data("id");
+            $(".row-control-" + id).css("opacity", "0");
+        };
+
+        $('.tbl-row-hover tr').hover(mouseInHandler, mouseOutHandler);
+
+        $(".m-select2").select2();
+        function ShowNote(id) {
+
+            $(".show-note").each(function () {
+                if ($(this).data("id") == id) {
+                    $(this).click();
+                }
+            })
+        }
+
+        $("body").on("click", ".jk-remove", function () {
+            var objId = $(this).data("id");
+            var hasCheckedData = (SelectedObjects.length > 0);
+            if (hasCheckedData) {
+                for (var key in SelectedObjects) {
+                    if (SelectedObjects[key]["object_id"] == objId) {
+                        SelectedObjects.splice(key, 1);
+                        break;
+                    }
+                }
+            }
+
+            $("#jk-item-" + objId).remove();
+
+            $("#SelectedObjects").val(JSON.stringify(SelectedObjects));
+
+            var jkCount = 0;
+            $(".jk-remove").each(function () {
+                jkCount++;
+            });
+
+            if (jkCount <= 1) {
+                $(".jk-remove").remove();
+                return false;
+            }
+        });
+
+        function ReflectCheckBoxItem() {
+            var hasCheckedData = (SelectedObjects.length > 0);
+            $(".cbxItem").each(function () {
+                var objId = parseInt($(this).data("id"));
+                let itemData = {
+                    object_id: objId,
+                    email: $(this).data("email"),
+                    display_name: $(this).data("displayname")
+                };
+
+                if ($(this).is(":checked")) {
+                    if (hasCheckedData) {
+                        var matched = false;
+                        for (var key in SelectedObjects) {
+                            if (SelectedObjects[key]["object_id"] == objId) {
+                                matched = true;
+
+                                break;
+                            }
+                        }
+                        if (!matched) {
+                            SelectedObjects.push(itemData);
+                        }
+                    }
+                    else {
+                        SelectedObjects.push(itemData);
+                    }
+                } else {
+                    if (hasCheckedData) {
+                        for (var key in SelectedObjects) {
+                            if (SelectedObjects[key]["object_id"] == objId) {
+                                SelectedObjects.splice(key, 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+
+            //$("#SelectedIds").val(JSON.stringify(selectedIds));
+        }
+
+        function InitCbxItem() {
+            $("body").on('click', ".cbxItem", function () {
+                ReflectCheckBoxItem();
+            });
+
+            $("#cbxAll").on("click", function () {
+                $(".cbxItem").prop("checked", false);
+                if ($(this).is(":checked")) {
+                    $(".cbxItem").prop("checked", true);
+                }
+
+                ReflectCheckBoxItem();
+            });
+        }
+
+        $(function () {
+            InitCbxItem();
+        });
+
+        $(document).on("change", "#type_job_seeker", function () {
+            $("#btnSearch").click();
+        });
+
+        $("#btnBatchSendEmail").on("click", function () {
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/JobSeeker/BatchSendEmail';
+            params['requestType'] = 'POST';
+            params['data'] = { SelectedObjects: SelectedObjects };
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (result) {
+                $("#myModalContent").html(result);
+                $("#myModal").modal("show");
+            };
+
+            doAjax(params);
+        });
+    </script>
+}

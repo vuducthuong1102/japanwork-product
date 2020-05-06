@@ -1,0 +1,114 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@model MySite.Models.JobSearchModel
+
+<div class="widget border">
+    <h3 class="sb-title open">@UserWebResource.LB_JAPANESE_LEVEL</h3>
+    <div class="posted_widget">
+        @if (Model.JapaneseLevels.HasData())
+        {
+            var totalLevels = Model.JapaneseLevels.Count;
+            for (int i = 0; i < totalLevels; i++)
+            {
+                <input class="searching-element" @((Model.japanese_level_number == Model.JapaneseLevels[i].level_number) ? "checked" : "") data-control="@Html.IdFor(m=>m.japanese_level_number)" type="radio" id="jp_level_@Model.JapaneseLevels[i].id.ToString()" name="@Html.IdFor(m=>m.japanese_level_number)" @((Model.japanese_level_number == Model.JapaneseLevels[i].level_number)? "checked": "") value="@Model.JapaneseLevels[i].level_number"><label for="jp_level_@Model.JapaneseLevels[i].id.ToString()">@UserWebResource.LB_LANGUAGE_LEVEL_HIGHER @Model.JapaneseLevels[i].level</label><br />
+            }
+        }
+
+        @*<input class="searching-element" data-control="@Html.IdFor(m=>m.japanese_level_number)" type="radio" id="jp_level_0" @((Model.japanese_level_number == 0 || Model.japanese_level_number == -1)? "checked": "") name="@Html.IdFor(m=>m.japanese_level_number)" value="0"><label for="jp_level_0">@UserWebResource.LB_ALL</label><br />*@
+    </div>
+</div>
+
+<div class="widget border">
+    <h3 class="sb-title open">@UserWebResource.LB_SALARY</h3>
+    <div class="posted_widget">
+        <div id="ddlSalaryByMonth" class="@(Model.calculate_by == (int)EnumEmploymentCalculateBy.Month ? "" : "hidden")">
+            <input class="filter-salary-month" @((Model.salary_id == 1) ? "checked" : "") name="filter-salary-month" data-id="1" data-min="0" data-max="15" type="radio" id="filter_salary_1" value="1"><label for="filter_salary_1">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_LESS_FORMAT, 15)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 2) ? "checked" : "") name="filter-salary-month" data-id="2" data-min="15" data-max="0" type="radio" id="filter_salary_2" value="2"><label for="filter_salary_2">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 15)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 3) ? "checked" : "") name="filter-salary-month" data-id="3" data-min="18" data-max="0" type="radio" id="filter_salary_3" value="3"><label for="filter_salary_3">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 18)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 4) ? "checked" : "") name="filter-salary-month" data-id="4" data-min="20" data-max="0" type="radio" id="filter_salary_4" value="4"><label for="filter_salary_4">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 20)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 5) ? "checked" : "") name="filter-salary-month" data-id="5" data-min="23" data-max="0" type="radio" id="filter_salary_5" value="5"><label for="filter_salary_5">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 23)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 6) ? "checked" : "") name="filter-salary-month" data-id="6" data-min="25" data-max="0" type="radio" id="filter_salary_6" value="6"><label for="filter_salary_6">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 25)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 7) ? "checked" : "") name="filter-salary-month" data-id="7" data-min="28" data-max="0" type="radio" id="filter_salary_7" value="7"><label for="filter_salary_7">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 28)</label><br />
+            <input class="filter-salary-month" @((Model.salary_id == 8) ? "checked" : "") name="filter-salary-month" data-id="8" data-min="30" data-max="0" type="radio" id="filter_salary_8" value="8"><label for="filter_salary_8">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 30)</label><br />
+        </div>
+
+        <div id="ddlSalaryByHour" class="@(Model.calculate_by == (int)EnumEmploymentCalculateBy.Hour ? "" : "hidden")">
+            <input class="filter-salary-hour" @((Model.salary_id == 100) ? "checked" : "") name="filter-salary-hour" data-id="100" data-min="750" data-max="0" type="radio" id="filter_salary_100" value="100"><label for="filter_salary_100">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 750)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 101) ? "checked" : "") name="filter-salary-hour" data-id="101" data-min="800" data-max="0" type="radio" id="filter_salary_101" value="101"><label for="filter_salary_101">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 800)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 102) ? "checked" : "") name="filter-salary-hour" data-id="102" data-min="900" data-max="0" type="radio" id="filter_salary_102" value="102"><label for="filter_salary_102">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 900)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 103) ? "checked" : "") name="filter-salary-hour" data-id="103" data-min="1000" data-max="0" type="radio" id="filter_salary_103" value="103"><label for="filter_salary_103">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1000)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 104) ? "checked" : "") name="filter-salary-hour" data-id="104" data-min="1100" data-max="0" type="radio" id="filter_salary_104" value="104"><label for="filter_salary_104">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1100)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 105) ? "checked" : "") name="filter-salary-hour" data-id="105" data-min="1300" data-max="0" type="radio" id="filter_salary_105" value="105"><label for="filter_salary_105">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1300)</label><br />
+            <input class="filter-salary-hour" @((Model.salary_id == 106) ? "checked" : "") name="filter-salary-hour" data-id="106" data-min="1500" data-max="0" type="radio" id="filter_salary_106" value="106"><label for="filter_salary_106">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1500)</label><br />            
+        </div>
+    </div>
+</div>
+
+<div class="widget border">
+    <h3 class="sb-title open">@UserWebResource.LB_FIELD_FILTER</h3>
+    <div class="simple-checkbox custom-scrollbar" id="treeField">
+    </div>
+</div>
+
+@*<div class="widget border">
+    <h3 class="sb-title open">Job Type</h3>
+    <div class="type_widget">
+        <p class="flchek"><input type="checkbox" name="choosetype" id="33r"><label for="33r">Freelance (9)</label></p>
+        <p class="ftchek"><input type="checkbox" name="choosetype" id="dsf"><label for="dsf">Full Time (8)</label></p>
+        <p class="ischek"><input type="checkbox" name="choosetype" id="sdd"><label for="sdd">Internship (8)</label></p>
+        <p class="ptchek"><input type="checkbox" name="choosetype" id="sadd"><label for="sadd">Part Time (5)</label></p>
+        <p class="tpchek"><input type="checkbox" name="choosetype" id="assa"><label for="assa">Temporary (5)</label></p>
+        <p class="vtchek"><input type="checkbox" name="choosetype" id="ghgf"><label for="ghgf">Volunteer (8)</label></p>
+    </div>
+</div>*@
+<div class="widget border">
+    <h3 class="sb-title open">@UserWebResource.LB_INDUSTRY_FILTER</h3>
+    <div class="specialism_widget">
+        @*<div class="field_w_search">
+            <input type="text" placeholder="Search Spaecialisms" />
+        </div>*@
+        <!-- Search Widget -->
+        <div class="simple-checkbox custom-scrollbar" id="treeIndustry">
+            @*<p><input type="checkbox" name="spealism" id="as"><label for="as">Accountancy (2)</label></p>
+            <p><input type="checkbox" name="spealism" id="asd"><label for="asd">Banking (2)</label></p>
+            <p><input type="checkbox" name="spealism" id="errwe"><label for="errwe">Charity & Voluntary (3)</label></p>
+            <p><input type="checkbox" name="spealism" id="fdg"><label for="fdg">Digital & Creative (4)</label></p>
+            <p><input type="checkbox" name="spealism" id="sc"><label for="sc">Estate Agency (3)</label></p>
+            <p><input type="checkbox" name="spealism" id="aw"><label for="aw">Graduate (2)</label></p>
+            <p><input type="checkbox" name="spealism" id="ui"><label for="ui">IT Contractor (7)</label></p>
+            <p><input type="checkbox" name="spealism" id="saas"><label for="saas">Charity & Voluntary (3)</label></p>
+            <p><input type="checkbox" name="spealism" id="rrrt"><label for="rrrt">Digital & Creative (4)</label></p>
+            <p><input type="checkbox" name="spealism" id="eweew"><label for="eweew">Estate Agency (3)</label></p>
+            <p><input type="checkbox" name="spealism" id="bnbn"><label for="bnbn">Graduate (2)</label></p>
+            <p><input type="checkbox" name="spealism" id="ffd"><label for="ffd">IT Contractor (7)</label></p>*@
+        </div>
+    </div>
+</div>
+@*<div class="widget border">
+    <h3 class="sb-title closed">@UserWebResource.LB_Category</h3>
+    <div class="specialism_widget">
+        <div class="simple-checkbox">
+            <p><input type="checkbox" name="smplechk" id="1"><label for="1">10k - 20k</label></p>
+            <p><input type="checkbox" name="smplechk" id="2"><label for="2">20k - 30k</label></p>
+            <p><input type="checkbox" name="smplechk" id="3"><label for="3">30k - 40k</label></p>
+            <p><input type="checkbox" name="smplechk" id="4"><label for="4">40k - 50k</label></p>
+        </div>
+    </div>
+</div>*@
+
+
+@*<div class="banner_widget">
+    <a href="#" title=""><img src="~/Content/themes/default/images/resource/banner.png" alt="" /></a>
+</div>*@
+
+<div class="widget border text-center filterApplyTempBox" >
+    <div class="mt0">        
+        <b>@UserWebResource.LB_CHANGE_SEARCH_FILTER_QUEST</b>
+        <div class="mt20">
+            <a class="btn btn-sm btn-info btn-apply-filter-search" id="btnApplyFilterSearch" href="javascript:;">
+                <i class="fa fa-search"></i> @UserWebResource.LB_APPLY
+            </a>
+        </div>
+    </div>
+</div>
+

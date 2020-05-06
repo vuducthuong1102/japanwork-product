@@ -1,0 +1,99 @@
+﻿@using Halo.Resources;
+@using System.Linq;
+@using Halo.ShareLibs.Common;
+@using Halo.Helpers;
+@using ApiHaloSocial.DB.Sql.Entities;
+@model  List<IdentityFriendRequest>
+
+@if (Model != null)
+{
+    if (Model != null && Model.Count > 0)
+    {
+       
+        @RenderFriendRequest(Model)
+    }
+    else
+    {
+        <div class="no-notif"></div>
+    }
+}
+
+@helper RenderFriendRequest(List<IdentityFriendRequest> requests)
+{
+    if (requests != null && requests.Count > 0)
+    {
+        foreach (var item in requests)
+        {
+            var urlRdirect = "/account/notifdetail/" + item.Id;
+            <div class="item" onclick="window.location.href='@urlRdirect'; ">
+                <div class="avatar"><img src="@item.Avatar" alt="@item.DisplayName" /></div>
+                <div class="content">
+                    <a href="javascript:;" class="btn btn-none  btn-primary-hl" onclick="unfollow(this);" data-user="1">Confirm</a>
+
+                    <a href="javascript:;" class="btn btn-none btn-primary-hl" onclick="unfollow(this);" data-user="1">Delete</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        }
+    }
+}
+
+@helper RenderNotifContent(IdentityNotification item)
+{
+    var itemDes = (!string.IsNullOrEmpty(item.Description)) ? ": " + HtmlHelpers.ShowHtmlTextByLimit(item.Description) : string.Empty;
+    string result = "";
+    if (item.ActionType == CommonAction.Follow)
+    {
+        result = @UserWebResource.LB_FOLLOWING_YOU;
+    }
+    else if (item.ActionType == CommonAction.Like)
+    {
+        if (item.ObjectType == CommonObject.Comment)
+        {
+            result = @UserWebResource.LB_LIKE_COMMENT + @itemDes;
+        }
+        else if (item.ObjectType == CommonObject.Post)
+        {
+            result = @UserWebResource.LB_LIKED_YOUR_POST;
+        }
+    }
+    else if (item.ActionType == CommonAction.Comment)
+    {
+        result = @UserWebResource.LB_COMMENTED_ON_POST;
+
+    }
+    else if (item.ActionType == CommonAction.CommentReply)
+    {
+
+        result = @UserWebResource.LB_REPLIED_COMMENT + @itemDes;
+    }
+    else if (item.ActionType == CommonAction.Share)
+    {
+
+        result = @UserWebResource.LB_SHARED_YOUR_POST;
+    }
+    <p class="mb0">
+        <span class="bo">@item.ActorDisplayName</span> @result
+    </p>
+}
+
+@helper RenderNotifIcon(IdentityNotification item)
+{
+    if (!item.IsRead && !item.IsViewed)
+    {
+        @*<span>@UserWebResource.LB_NEW</span>*@
+    }
+    else
+    {
+
+        if (item.ActionType == CommonAction.Like)
+        {
+            <i class="icon icon-heart_active mr5 fz-16 fll"></i>
+        }
+        else
+        {
+            <i class="icon icon-comment mr5 text-blue fz-16 fll"></i>
+        }
+    }
+}
+

@@ -1,0 +1,108 @@
+﻿@using Manager.SharedLibs
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@model List<ScheduleWidgetModel>
+
+    <div class="m-widget2">
+        @if (Model.HasData())
+        {
+            foreach (var item in Model)
+            {
+                var clsStr = "brand";
+                if (item.data.schedule_cat == (int)EnumScheduleCategory.Meeting)
+                {
+                    clsStr = "danger";
+                }
+                else if (item.data.schedule_cat == (int)EnumScheduleCategory.Guest)
+                {
+                    clsStr = "primary";
+                }
+                else if (item.data.schedule_cat == (int)EnumScheduleCategory.Sales)
+                {
+                    clsStr = "warning";
+                }
+                <div class="m-widget2__item m-widget2__item--@clsStr">
+                    <div class="m-widget2__checkbox">
+                        @*<label class="m-checkbox m-checkbox--solid m-checkbox--single m-checkbox--@clsStr">
+                            <input type="checkbox">
+                            <span></span>
+                        </label>*@
+                    </div>
+                    <div class="m-widget2__desc">
+                        <span class="m-widget2__text">
+                            <b>@item.title</b>
+                            @if (!string.IsNullOrEmpty(item.data.content))
+                            {
+                                <span>: @item.data.content</span>
+                            }
+                        </span>
+                        <br>
+                        <span class="m-widget2__user-name">
+                            <a href="#" class="m-widget2__link">
+                                <span title="@item.data.start_time.DateTimeQuestToString("HH:mm dd/MM/yyyy", false)">@item.data.start_time.DateTimeQuestToStringNow("HH:mm dd/MM/yyyy", false)</span>
+                                -
+                                <span title="@item.data.end_time.DateTimeQuestToString("HH:mm dd/MM/yyyy", false)">@item.data.end_time.DateTimeQuestToStringNow("HH:mm dd/MM/yyyy", false)</span>
+                            </a>
+                        </span>
+                    </div>
+                    @*<div class="m-widget2__actions">
+                        <div class="m-widget2__actions-nav">
+                            <div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover">
+                                <a href="#" class="m-dropdown__toggle">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <div class="m-dropdown__wrapper">
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+                                    <div class="m-dropdown__inner">
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__content">
+                                                <ul class="m-nav">
+                                                    <li class="m-nav__item">
+                                                        <a href="" class="m-nav__link">
+                                                            <i class="m-nav__link-icon flaticon-share"></i>
+                                                            <span class="m-nav__link-text">
+                                                                Activity
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="m-nav__item">
+                                                        <a href="" class="m-nav__link">
+                                                            <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                                            <span class="m-nav__link-text">
+                                                                Messages
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="m-nav__item">
+                                                        <a href="" class="m-nav__link">
+                                                            <i class="m-nav__link-icon flaticon-info"></i>
+                                                            <span class="m-nav__link-text">
+                                                                FAQ
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="m-nav__item">
+                                                        <a href="" class="m-nav__link">
+                                                            <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                            <span class="m-nav__link-text">
+                                                                Support
+                                                            </span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                </div>
+            }
+        }
+        else
+        {
+            <div class="pb10"><i class="fa fa-info-circle"></i> @ManagerResource.LB_HAS_NO_TODAY_TASK</div>
+        }
+
+    </div>

@@ -1,0 +1,23 @@
+﻿@using MySite.Resources
+
+@model string
+
+<ul class="member-menu">
+    <li class="@((Model == "profile") ? "active" : string.Empty)"><a href="/member/myprofile" title=""><i class="la la-file-text"></i>@UserWebResource.LB_MY_PROFILE</a></li>
+    <li class="@((Model == "resume") ? "active" : string.Empty)"><a href="/member/resume" title=""><i class="la la-briefcase"></i>@UserWebResource.LB_MY_RESUME</a></li>
+    <li class="@((Model == "job_applied") ? "active" : string.Empty)"><a href="/member/applied" title=""><i class="la la-money"></i>@UserWebResource.LB_APPLIED_JOBS</a></li>
+    @*<li class="@((Model == "job_alert") ? "active" : string.Empty)"><a href="/member/jobalert" title=""><i class="la la-user"></i>@UserWebResource.LB_JOB_ALERTS</a></li>*@
+    <li class="@((Model == "cv") ? "active" : string.Empty)"><a href="/member/mycv" title=""><i class="la la-file-text"></i>@UserWebResource.LB_CV_AND_COVER_LETTER</a></li>
+    <li class="@((Model == "changepwd") ? "active" : string.Empty)"><a href="/member/changepwd" title=""><i class="la la-flash"></i>@UserWebResource.BT_CHANGE_PWD</a></li>
+    <li class="@((Model == "logout") ? "active" : string.Empty)"><a href="/WebAuth/Logout" title=""><i class="la la-sign-out"></i>@UserWebResource.BT_LOGOUT</a></li>
+</ul>
+
+@*<ul class="member-menu">
+    <li class="member-left-menu-item @((Model == "profile") ? "active" : string.Empty)" data-href="/member/myprofile" data-name="profile"><a href="javascript:;" title=""><i class="la la-file-text"></i>@UserWebResource.LB_MY_PROFILE</a></li>
+    <li class="member-left-menu-item @((Model == "resume") ? "active" : string.Empty)" data-href="/member/resume" data-name="resume"><a href="javascript:;" title=""><i class="la la-briefcase"></i>@UserWebResource.LB_MY_RESUME</a></li>
+    <li class="member-left-menu-item @((Model == "job_applied") ? "active" : string.Empty)" data-href="/member/applied" data-name="job_applied"><a href="javascript:;" title=""><i class="la la-money"></i>@UserWebResource.LB_APPLIED_JOBS</a></li>
+    <li class="member-left-menu-item @((Model == "job_alert") ? "active" : string.Empty)" data-href="/member/jobalert" data-name="job_alert"><a href="javascript:;" title=""><i class="la la-user"></i>@UserWebResource.LB_JOB_ALERTS</a></li>
+    <li class="member-left-menu-item @((Model == "cv") ? "active" : string.Empty)" data-href="/member/mycv" data-name="cv"><a href="javascript:;" title=""><i class="la la-file-text"></i>@UserWebResource.LB_CV_AND_COVER_LETTER</a></li>
+    <li class="member-left-menu-item @((Model == "changepwd") ? "active" : string.Empty)" data-href="/member/changepwd" data-name="changepwd"><a href="javascript:;" title=""><i class="la la-flash"></i>@UserWebResource.BT_CHANGE_PWD</a></li>
+    <li class="@((Model == "logout") ? "active" : string.Empty)"><a href="/WebAuth/Logout" title=""><i class="la la-sign-out"></i>@UserWebResource.BT_LOGOUT</a></li>
+</ul>*@

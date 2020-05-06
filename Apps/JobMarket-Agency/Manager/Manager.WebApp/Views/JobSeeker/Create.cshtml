@@ -1,0 +1,85 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.JobSeekerUpdateProfileModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_ADDNEW;
+
+    var profileTkLink = SecurityHelper.GenerateSecureLink("JobSeeker", "MyProfilePartial", new { id = Model.job_seeker_id, exclude_ct_add = 0 });
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<!--begin::Portlet-->
+<div class="m-portlet mb-0 form-input">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    <i class="fa fa-user-plus"></i> @ManagerResource.LB_JOB_SEEKER_CREATE
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!--begin::Form-->
+    @using (Html.BeginForm("Create", "JobSeeker", FormMethod.Post, new { id = "frmProfile", enctype = "multipart/form-data", @class = "m-form m-form--fit", role = "form", @onkeydown = "return event.key !='Enter';" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" value="@profileTkLink" id="ProfileTk" />
+        <div class="m-portlet__body">
+            <div id="MemberSubContainer">
+
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <div class="form-group m-form__group hidden" id="btnControls">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <a class="btn btn-outline-info btn-back btn-sm" href="@Url.Action("Index", "JobSeeker",new {type_job_seeker = 1 })"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+                    <button type="submit" class="btn btn-outline-info pull-right btn-sm">
+                        @ManagerResource.LB_SAVE_AND_CONTINUE <i class="fa fa-forward"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+    <!--end::Form-->
+</div>
+<!--end::Portlet-->
+
+@section PagePluginStyles
+{
+    <link href="@Url.VersionedContent("~/Content/Page/JobSeeker/main.css")" rel="stylesheet" />
+}
+
+@section PageInlineStyles{
+    <style>
+        .repeater-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+}
+
+@section PagePluginScripts
+ {
+    <script>
+        $(function () {
+            showItemLoading("#MemberSubContainer");
+            setTimeout(function () {
+                var url_tk = $("#ProfileTk").val();
+                $('#MemberSubContainer').load(url_tk, function (response, status, xhr) {
+                    hideItemLoading("#MemberSubContainer");
+                    $("#btnControls").removeClass("hidden");
+                });
+            }, 300);
+        });
+        $(".number-format").each(function (e) {
+            alert(1);
+            var input = $(e.target).val();
+            var rs = FormatNumber(input);
+            $(e.target).val(rs);
+        });
+    </script>
+}

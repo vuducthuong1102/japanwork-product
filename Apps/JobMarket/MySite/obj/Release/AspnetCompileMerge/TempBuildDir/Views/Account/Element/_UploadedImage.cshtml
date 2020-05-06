@@ -1,0 +1,15 @@
+﻿@using MySite.Helpers
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityImage
+
+@if (Model != null)
+{
+    var imgPath = CdnHelper.SocialGetFullImgPath(Model.Url);
+
+    <div class="item" data-id="@Model.Id">
+        <div class="content">
+            <a href="#">
+                <img src="@imgPath" data-fancybox="gallery" class="lazy img-responsive" data-src="@imgPath" />
+            </a>
+        </div>
+    </div>
+}

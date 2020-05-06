@@ -1,0 +1,33 @@
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csproj.CoreCompileInputs.cache
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb
+D:\Working\Pfood\SoureCode\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojResolveAssemblyReference.cache
+E:\Git\Pfood\Boom\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+E:\Git\Pfood\Boom\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+E:\Git\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojResolveAssemblyReference.cache
+E:\Git\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+E:\Git\Pfood\Boom\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojAssemblyReference.cache
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csproj.CoreCompileInputs.cache
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+D:\Working\JobMarket\Apps\JobMarket\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb
+D:\Project\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+D:\Project\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+D:\Project\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojAssemblyReference.cache
+D:\Project\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+D:\Project\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojAssemblyReference.cache
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csproj.CoreCompileInputs.cache
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+D:\Working\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb
+C:\Jobmarket Project\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.dll
+C:\Jobmarket Project\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\bin\Debug\MySite.ShareLibs.pdb
+C:\Jobmarket Project\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.csprojAssemblyReference.cache
+C:\Jobmarket Project\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.dll
+C:\Jobmarket Project\JobMarket\Apps\JobMarket-Document\MySite.ShareLibs\obj\Debug\MySite.ShareLibs.pdb

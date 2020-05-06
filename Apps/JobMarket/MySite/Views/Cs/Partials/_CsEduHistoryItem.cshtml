@@ -1,0 +1,55 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CsEduHistoryModel
+
+<div class="edu-history edu-history-item mb5" id="edu_item_@Model.id">
+    <i class="la la-graduation-cap"></i>
+    <div class="edu-hisinfo">
+        <h3>@Model.qualification_label</h3>
+        <input type="hidden" class="edu-prop" name="" data-prop="id" value="@Model.id" />
+        <input type="hidden" class="edu-prop" name="" data-prop="school" value="@Model.school" />
+        <input type="hidden" class="edu-prop" name="" data-prop="address" value="@Model.address" />
+        <input type="hidden" class="edu-prop" name="" data-prop="start_date_str" value="@Model.start_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="edu-prop" name="" data-prop="end_date_str" value="@Model.end_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="edu-prop" name="" data-prop="qualification_id" value="@Model.qualification_id" />
+        <input type="hidden" class="edu-prop" name="" data-prop="major_id" value="@Model.major_id" />
+        <input type="hidden" class="edu-prop" name="" data-prop="status" value="@Model.status" />
+
+        <i>@FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)</i>
+        <span>
+            @Model.school
+            @if (!string.IsNullOrEmpty(Model.major_label))
+            {
+                <i>@Model.major_label</i>
+            }
+            else
+            {
+                if (Model.major_id == 0)
+                {
+                    <i>@Model.major_custom</i>
+                }
+            }
+        </span>
+        @foreach (var myEnum in Enum.GetValues(typeof(EnumEducationStatus)))
+        {
+            var chkItem = (int)myEnum;
+            var chkStr = string.Empty;
+            if (chkItem == Model.status)
+            {
+                chkStr = "selected";
+                <p>@EnumExtensions.GetEnumDescription((Enum)myEnum)</p>
+            }
+        }
+    </div>
+    @*<ul class="action_job float-right">
+        @if (Model.isDefault)
+        {
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal-direct="" data-href="@Url.Action("UpdateCsEduHistory","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-size="default" data-href="@Url.Action("DeleteCsEduHistory","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-trash-o"></i></a></li>
+        }
+        else
+        {
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" class="dl-cs-edu fz-20" title=""><i class="la la-trash-o"></i></a></li>
+        }
+    </ul>*@
+</div>

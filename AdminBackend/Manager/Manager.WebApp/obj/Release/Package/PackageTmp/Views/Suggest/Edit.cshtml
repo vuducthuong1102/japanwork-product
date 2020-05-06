@@ -1,0 +1,70 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.SuggestEditModel
+
+@{
+    var title = ManagerResource.LB_UPDATE_INFO;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    @ManagerResource.LB_UPDATE_INFO
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+}
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    using (Html.BeginForm("Edit", "Suggest", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.id)
+        @Html.Partial("_SuggestUpdateForm")
+    }
+
+    <!--end::Form-->
+}
+
+@section PageInlineScripts{
+    <script>
+         function GetListTypeSuggests() {
+            var form_id = $("#form").val();
+            $("#type").empty();
+            $.ajax({
+                type: "GET",
+                datatype: "Json",
+                url: "/Suggest/GetListTypeSuggests",
+                data: { form_id: form_id },
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#type').append('<option value="' + item.id + '">' + item.type + '</option>');
+                    });
+                    $('#type').selectpicker('refresh', {
+                        style: "btn-white"
+                    });
+                }
+            });
+        }   
+    </script>
+}

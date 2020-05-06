@@ -1,0 +1,31 @@
+﻿@using Manager.WebApp.Models
+@using Manager.WebApp.Resources
+
+@model CompanyNoteDeleteModel
+@{
+    var noteLink = SecurityHelper.GenerateSecureLink("Company", "ShowNote", new { id = Model.company_id });
+}
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+        @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="Id" value="@Model.id" />
+    @Html.HiddenFor(s=>s.company_id)
+    <div class="modal-footer">
+        <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@Model" class="btn btn-secondary">
+            @ManagerResource.LB_NO
+        </a>
+        <button type="submit" class="btn btn-primary">
+            @ManagerResource.LB_YES
+        </button>
+    </div>
+}

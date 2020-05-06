@@ -1,0 +1,128 @@
+﻿@using MySite.Helpers
+
+@model MySite.Models.Cv.ManageCvPreviewModel
+<table width="100%" style="border:0">
+    <tbody>
+        <tr>
+            <td colspan="2" style="padding:  0;border:0;text-align:right">No.</td>
+        </tr>
+        <tr>
+            <td style="padding:  0;border:0;"><h2 style="margin: 0;font-weight: 400;font-size: 14px;">履歴書</h2></td>
+            <td style="padding:  0;border:0;text-align:right; padding-right: 20%;">@(Model.CvInfo.date.Value.Year + "年" + Model.CvInfo.date.Value.Month + "月" + Model.CvInfo.date.Value.Day + "日 現在")</td>
+        </tr>
+    <tbody>
+</table>
+
+<table width="100%" style="margin-bottom:25px;font-size: 12px;line-height:25px;">
+    <tbody>
+        <tr>
+            <td colspan="5" style="margin: 10px 0 20px;border-bottom-style: dotted;">
+                <div class="one-line">
+                    <span style="display: inline-block;margin-right: 10px;">フリガナ</span> @(Model.CvInfo.fullname_furigana)
+                </div>
+            </td>
+            <td rowspan="4" style="width:20%;border-top:0; border-right:0; border-left: 0;">
+                <div style="width:113.4px;height:151.2px;margin-left:20px;background-color:rgba(0,0,0,0.15);position: relative; overflow: hidden;">
+                    <img class="cv-image"
+                         src="@Model.CvInfo.image_full_path"
+                         onerror="this.onerror=null;this.src='/Content/Avatars/profile-pic.jpg';">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border-top: 0;">
+                氏名
+                <br>
+                <h2 style="text-align: center;margin: 10px 0 20px; font-family: Times New Roman !important; font-size: 1.5em ;font-weight: bold;">
+                    <div class="one-line">
+                        @(Model.CvInfo.fullname)
+                    </div>
+                </h2>
+            </td>
+        </tr>
+        <tr>
+            <td width="10%" style="border-top:0;text-align: left;">生年月日</td>
+            <td colspan="3" width="50%" style="border-top: 0;border-left:0 ;text-align: center">
+                @(Model.CvInfo.birthday.Value.ToString("yyyy年MM月dd日生")) (満@(DateTime.Now.Year - Model.CvInfo.birthday.Value.Year)歳)
+            </td>
+            <td style="text-align: center;border-top: 0; border-left:0">
+                <span class="@(Model.CvInfo.gender == 1 ? "gender-check" : "")">男</span>
+                ・<span class="@(Model.CvInfo.gender == 0 ? "gender-check" : "")">女</span>
+            </td>
+        </tr>
+        <tr style="text-align: center;">
+            <td width="10%" style="border-top:0;text-align: left;">携帯電話</td>
+            <td width="25%" style="border-top:0;border-left:0;">
+                <div style="
+                                        height: 20px;
+                                        overflow: hidden;
+                                    ">
+                    <div class="one-line">
+                        @(Model.CvInfo.phone)
+                    </div>
+                </div>
+            </td>
+            <td width="10%" style="border-top:0;border-left:0;">E-MAIL</td>
+            <td colspan="2" style="border-top:0;border-left:0;">
+                <div style="height: 20px; overflow: hidden;">
+                    <div class="one-line">
+                        @(Model.CvInfo.email)
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border-bottom: 0.5px dotted #000;border-top:0">
+                <div class="one-line">
+                    フリガナ @(Model.address != null ? Model.address.AddressInfo.furigana : "")
+                </div>
+            </td>
+            <td style="border-bottom: 0.5px dotted #000; border-left:0; border-top: 0;">電話</td>
+        </tr>
+        <tr>
+            <td colspan="5" rowspan="2" style="border-top: 0;border-top:0;">
+                <div style="height:20px;overflow: hidden;">
+                    <div class="one-line">
+                        現住所〒 @(Model.address != null ? Model.address.AddressInfo.postal_code : "")
+                    </div>
+                </div>
+                <div style="height:30px;overflow: hidden;">
+                    <div class="one-line">
+                        @FrontendHelpers.GenerateCvDetailAddressPrint(Model.address)
+                    </div>
+                </div>
+            </td>
+            <td style="border-top: 0;border-left:0; border-bottom:0">FAX</td>
+        </tr>
+        <tr>
+            <td style="border-top: 0; border-left:0"></td>
+        </tr>
+        <tr>
+            <td colspan="5" style="border-bottom: 0.5px dotted #000;border-top:0">
+                <div style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
+                    フリガナ @(Model.address_contact != null ? (Model.CvInfo.check_address ? "" : Model.address_contact.AddressInfo.furigana) : "")
+                </div>
+            </td>
+            <td style="border-bottom: 0.5px dotted #000;border-top:0; border-left:0">電話</td>
+        </tr>
+        <tr>
+            <td colspan="5" rowspan="2" style="border-top: 0;border-top: 0;">
+                <div style="height:20px;overflow: hidden; ">
+                    <div class="one-line">
+                        連絡先〒 @(Model.address_contact != null ? (Model.CvInfo.check_address ? "" : Model.address_contact.AddressInfo.postal_code) : "")
+                    </div>
+                </div>
+                <div style="height:20px;overflow: hidden;">
+                    <div class="one-line">
+                        @(Model.CvInfo.check_address ? "同上" : @FrontendHelpers.GenerateCvDetailAddressPrint(Model.address))
+                    </div>
+                </div>
+            </td>
+            <td style="border-top: 0;border-left:0;border-bottom: 0;">FAX</td>
+        </tr>
+        <tr>
+            <td style="border-top: 0; border-left:0;"></td>
+        </tr>
+
+    </tbody>
+</table>

@@ -1,0 +1,215 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+
+@model MySite.Models.JobSearchModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var selectedCitiesCount = (!string.IsNullOrEmpty(Model.city_ids)) ? Model.city_ids.Split(',').Count() : 0;
+    var selectedStationsCount = (!string.IsNullOrEmpty(Model.station_ids)) ? Model.station_ids.Split(',').Count() : 0;
+    var placePlhd = (selectedCitiesCount > 0) ? string.Format("{0} {1}", selectedCitiesCount.FormatWithComma(), UserWebResource.LB_PLACES) : UserWebResource.LB_SELECT_PLACE;
+    var stationPlhd = (selectedStationsCount > 0) ? string.Format("{0} {1}", selectedStationsCount.FormatWithComma(), UserWebResource.LB_STATIONS) : UserWebResource.LB_SELECT_STATION;
+}
+
+<form action="/job/search" method="get" id="frmJobSearch" class="search-form">
+    @Html.HiddenFor(m => m.city_ids)
+    @Html.HiddenFor(m => m.station_ids)
+    @Html.HiddenFor(m => m.st_prefecture_ids)
+    @Html.HiddenFor(m => m.st_region_ids)
+    @Html.HiddenFor(m => m.ct_prefecture_ids)
+    @Html.HiddenFor(m => m.ct_region_ids)
+    @Html.HiddenFor(m => m.PageSize)
+    @Html.HiddenFor(m => m.CurrentPage)
+    @Html.HiddenFor(m => m.sorting_date)
+    @Html.HiddenFor(m => m.japanese_level_number)
+    @Html.HiddenFor(m => m.sub_industry_ids)
+    @Html.HiddenFor(m => m.sub_field_ids)
+    @Html.HiddenFor(m => m.salary_min)
+    @Html.HiddenFor(m => m.salary_max)
+    @Html.HiddenFor(m => m.calculate_by)
+    @Html.HiddenFor(m => m.salary_id)
+    <div class="row">
+        <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12">
+            <div class="job-field">
+                @Html.TextBoxFor(m => m.keyword, new { @placeholder = UserWebResource.LB_SEARCH_KEYWORD, @autocomplete = "off" })
+                <i class="la la-keyboard-o"></i>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+            <div class="job-field">
+                <select data-placeholder="@UserWebResource.LB_EMPLOYMENT_TYPE" id="ddlEmploymentType" class="chosen" name="@Html.IdFor(m=>m.employment_type_id)">
+                    @if (Model.EmploymentTypes.HasData())
+                    {
+                        foreach (var employType in Model.EmploymentTypes)
+                        {
+                            var currentName = string.Empty;
+                            if (employType.LangList.HasData())
+                            {
+                                currentName = employType.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                            }
+                            else
+                            {
+                                currentName = employType.employment_type;
+                            }
+                            <option value="@employType.id" data-calculate="@employType.calculate_by" data-showtrains="@employType.show_trains" @((Model.employment_type_id == employType.id) ? "selected" : "")>@currentName</option>
+                        }
+                    }
+                </select>
+                <i class="la la-clock-o"></i>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+            <div class="job-field">
+                <select data-placeholder="@UserWebResource.LB_FIELD_FILTER" id="ddlField" class="" name="@Html.IdFor(m=>m.field_id)">
+                    <option value="0" data-employment="0" data-subfields="">@UserWebResource.LB_SELECT_FIELD</option>
+                    @if (Model.FieldLists.HasData())
+                    {
+                        foreach (var field in Model.FieldLists)
+                        {
+
+                            var currentName = string.Empty;
+                            var subFieldIds = string.Empty;
+                            if (field.LangList.HasData())
+                            {
+                                currentName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                            }
+
+                            if (string.IsNullOrEmpty(currentName))
+                            {
+                                currentName = field.field;
+                            }
+
+                            if (field.Sub_fields.HasData())
+                            {
+                                subFieldIds = string.Join(",", field.Sub_fields.Select(x => x.id));
+                            }
+
+                            <option class="@(field.employment_type != 0 ? "hidden" : string.Empty)" data-employment="@field.employment_type" value="@field.id" data-subfields="@subFieldIds" @((Model.field_id == field.id) ? "selected" : "")>@currentName</option>
+                        }
+                    }
+                </select>
+
+                <select class="hidden">
+                    @if (Model.FieldLists.HasData())
+                    {
+                        foreach (var field in Model.FieldLists)
+                        {
+                            var currentName = string.Empty;
+                            var subFieldIds = string.Empty;
+                            if (field.LangList.HasData())
+                            {
+                                currentName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                            }
+
+                            if (string.IsNullOrEmpty(currentName))
+                            {
+                                currentName = field.field;
+                            }
+
+                            if (field.Sub_fields.HasData())
+                            {
+                                subFieldIds = string.Join(",", field.Sub_fields.Select(x => x.id));
+                            }
+
+                            <option class="@(field.employment_type != 0 ? "hidden" : string.Empty)" data-employment="@field.employment_type" value="@field.id" data-subfields="@subFieldIds" @((Model.field_id == field.id) ? "selected" : "")>@currentName</option>
+                        }
+                    }
+                </select>
+                <i class="la la-wrench"></i>
+            </div>
+        </div>
+
+        @*<div class="col-lg-2 col-md-6 col-sm-12 col-xs-12">
+            <div class="job-field">
+                <select data-placeholder="@UserWebResource.LB_SALARY" id="ddlSalaryByMonth" class="chosen hidden">
+                    <option value="" @((Model.salary_id == 1) ? "selected" : string.Empty) data-id="1" data-min="0" data-max="15">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_LESS_FORMAT, 15)</option>
+                    <option value="" @((Model.salary_id == 2) ? "selected" : string.Empty) data-id="2" data-min="15" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 15)</option>
+                    <option value="" @((Model.salary_id == 3) ? "selected" : string.Empty) data-id="3" data-min="18" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 18)</option>
+                    <option value="" @((Model.salary_id == 4) ? "selected" : string.Empty) data-id="4" data-min="20" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 20)</option>
+                    <option value="" @((Model.salary_id == 5) ? "selected" : string.Empty) data-id="5" data-min="23" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 23)</option>
+                    <option value="" @((Model.salary_id == 6) ? "selected" : string.Empty) data-id="6" data-min="25" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 25)</option>
+                    <option value="" @((Model.salary_id == 7) ? "selected" : string.Empty) data-id="7" data-min="28" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 28)</option>
+                    <option value="" @((Model.salary_id == 8) ? "selected" : string.Empty) data-id="8" data-min="30" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 30)</option>
+                </select>
+
+                <select data-placeholder="@UserWebResource.LB_SALARY" id="ddlSalaryByHour" class="chosen hidden">
+                    <option value="" @((Model.salary_id == 100) ? "selected" : string.Empty) data-id="100" data-min="750" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 750)</option>
+                    <option value="" @((Model.salary_id == 101) ? "selected" : string.Empty) data-id="101" data-min="800" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 800)</option>
+                    <option value="" @((Model.salary_id == 102) ? "selected" : string.Empty) data-id="102" data-min="900" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 900)</option>
+                    <option value="" @((Model.salary_id == 103) ? "selected" : string.Empty) data-id="103" data-min="1000" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1000)</option>
+                    <option value="" @((Model.salary_id == 104) ? "selected" : string.Empty) data-id="104" data-min="1100" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1100)</option>
+                    <option value="" @((Model.salary_id == 105) ? "selected" : string.Empty) data-id="105" data-min="1300" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1300)</option>
+                    <option value="" @((Model.salary_id == 106) ? "selected" : string.Empty) data-id="106" data-min="1500" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1500)</option>
+                </select>
+                <i class="la la-money"></i>
+            </div>
+        </div>*@
+
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12" id="btnFilterCity">
+            <div class="job-field">
+                <a class="btn btn-info text-left" id="btnSelectCity" data-toggle="modal" data-target="#selectCityModal" style="border-radius: 8px;font-size: 13px;height: 61px;width: 100%;color: #888888;background-color: #fff;padding: 19px 30px 18px 30px;">
+                    <span>@placePlhd</span> <i class="la la-map"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-12 col-xs-12" id="btnFilterStation">
+            <div class="job-field">
+                <a class="btn btn-info text-left" id="btnSelectStation" data-toggle="modal" data-target="#selectStationModal" style="border-radius: 8px;font-size: 13px;height: 61px;width: 100%;color: #888888;background-color: #fff;padding: 19px 30px 18px 30px;">
+                    <span>@stationPlhd</span> <i class="la la-train"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-lg-1 col-md-12 col-sm-12 col-xs-12">
+            <button type="submit"><i class="la la-search"></i></button>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col-md-10">
+
+        </div>
+        <div class="col-md-2 text-right">
+            <a href="javascript:;" id="JobSearchAdvanceBtn" style="color:#fff;text-decoration:underline"><i class="la la-cogs"></i> <span id="JobSearchAdvanceLabel">@UserWebResource.LB_SHOW_ADVANCE_SEACH</span><i id="JobSearchAdvanceArrow" class="la la-arrow-down"></i></a>
+        </div>
+    </div>*@
+    @*<div id="JobSearchAdvance" style="display:none;">
+        <div class="row mt5" style="">
+            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="job-field">
+                    <select data-placeholder="@UserWebResource.LB_SALARY" id="ddlSalaryByMonth" class="chosen hidden">
+                        <option value="" @((Model.salary_id == 1) ? "selected" : string.Empty) data-id="1" data-min="0" data-max="15">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_LESS_FORMAT, 15)</option>
+                        <option value="" @((Model.salary_id == 2) ? "selected" : string.Empty) data-id="2" data-min="15" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 15)</option>
+                        <option value="" @((Model.salary_id == 3) ? "selected" : string.Empty) data-id="3" data-min="18" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 18)</option>
+                        <option value="" @((Model.salary_id == 4) ? "selected" : string.Empty) data-id="4" data-min="20" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 20)</option>
+                        <option value="" @((Model.salary_id == 5) ? "selected" : string.Empty) data-id="5" data-min="23" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 23)</option>
+                        <option value="" @((Model.salary_id == 6) ? "selected" : string.Empty) data-id="6" data-min="25" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 25)</option>
+                        <option value="" @((Model.salary_id == 7) ? "selected" : string.Empty) data-id="7" data-min="28" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 28)</option>
+                        <option value="" @((Model.salary_id == 8) ? "selected" : string.Empty) data-id="8" data-min="30" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_MONTH_OVER_FORMAT, 30)</option>
+                    </select>
+
+                    <select data-placeholder="@UserWebResource.LB_SALARY" id="ddlSalaryByHour" class="chosen hidden">
+                        <option value="" @((Model.salary_id == 100) ? "selected" : string.Empty) data-id="100" data-min="750" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 750)</option>
+                        <option value="" @((Model.salary_id == 101) ? "selected" : string.Empty) data-id="101" data-min="800" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 800)</option>
+                        <option value="" @((Model.salary_id == 102) ? "selected" : string.Empty) data-id="102" data-min="900" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 900)</option>
+                        <option value="" @((Model.salary_id == 103) ? "selected" : string.Empty) data-id="103" data-min="1000" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1000)</option>
+                        <option value="" @((Model.salary_id == 104) ? "selected" : string.Empty) data-id="104" data-min="1100" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1100)</option>
+                        <option value="" @((Model.salary_id == 105) ? "selected" : string.Empty) data-id="105" data-min="1300" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1300)</option>
+                        <option value="" @((Model.salary_id == 106) ? "selected" : string.Empty) data-id="106" data-min="1500" data-max="0">@string.Format(UserWebResource.FILTER_SALARY_BY_HOUR_OVER_FORMAT, 1500)</option>
+                    </select>
+                    <i class="la la-money"></i>
+                </div>
+            </div>
+        </div>       
+    </div>*@
+
+</form>
+
+<div class="tags-bar" id="filter_cities">
+    <div class="action-tags hidden">
+        <a href="javascript:;" class="btn-clean-filter" title=""><i class="la la-trash-o"></i> @UserWebResource.BT_DELETE</a>
+    </div>
+</div><!-- Tags Bar -->

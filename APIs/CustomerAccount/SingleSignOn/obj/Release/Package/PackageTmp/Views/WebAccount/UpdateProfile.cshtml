@@ -1,0 +1,141 @@
+﻿@model SingleSignOn.Models.WebAccountUpdateProfileModel
+@using SingleSignOn.Resources;
+@using CaptchaMvc.HtmlHelpers;
+@using SingleSignOn.Helpers;
+
+
+<div class="space"></div>
+
+<br />
+
+@{
+    var catpcha = Html.Captcha(UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON, UserWebResource.TEXT_REFRESH_CAPTCHA_DESC, 5, UserWebResource.TEXT_CAPTCHA_NULL, true);
+}
+
+@Html.Partial("_Notifications")
+
+<div class="row">
+    <div class="col-md-6">
+        <form action="/WebAccount/UpdateProfile" method="post">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.UserId)
+                        @Html.HiddenFor(m => m.TokenKey)
+                        @Html.LabelFor(m => m.Address)
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Full_Name)
+                        @Html.TextBoxFor(m => m.Full_Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Full_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Display_Name)
+                        @Html.TextBoxFor(m => m.Display_Name, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Display_Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Birthday)
+                        @Html.TextBoxFor(m => m.Birthday, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Birthday, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Sex)
+                        <select name="@Html.NameFor(m=>m.Sex)" id="@Html.IdFor(m=>m.Sex)" class="form-control">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-xs-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Note)
+                        @Html.TextAreaFor(m => m.Note, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Note, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    @Html.LabelFor(m => m.Avatar)
+                    @Html.HiddenFor(m => m.Avatar)
+                    @{ Html.RenderPartial("_Upload"); }
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @catpcha
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    @*<button type="submit" class="width-35 btn btn-primary" onclick="Submit();">
+                    <i class="ace-icon fa fa-key"></i>
+                    <span class="bigger-110">@UserWebResource.TEXT_SUBMIT_BUTTON</span>
+                </button>*@
+                    <button type="submit" class="width-35 btn btn-primary">
+                        <i class="ace-icon fa fa-key"></i>
+                        <span class="bigger-110">@UserWebResource.TEXT_SUBMIT_BUTTON</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section PagePluginScripts{
+    @catpcha.RenderScript()
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var refreshBtn = $('a[href="#CaptchaImage"]');
+            refreshBtn.html('<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-repeat" ></span > @UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON</button >');
+            refreshBtn.prev("br").remove();
+            $("#CaptchaInputText").addClass("form-control");
+            $('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            $('span[data-valmsg-for="CaptchaInputText"]').prev("br").remove();
+
+            var avatar = '@Model.Avatar';
+            if (avatar !== '') {
+                $('#avatar-result img').attr('src', '@(CdnHelper.GetFullImgPath(Model.Avatar))');
+                $('#avatar-result').removeClass("hidden");
+                $("#Avatar").val("@Model.Avatar");
+            }           
+        });
+
+         jQuery(function($){
+             $("#@Html.IdFor(m=>m.Birthday)").mask("99/99/9999", { placeholder: "__/__/____" });
+
+             $("#@Html.IdFor(m=>m.Sex)").val("@Model.Sex");
+        });
+
+         //function Submit() {
+         //    $("#frmUpdate").submit();
+         //}
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/bundles/jcrop")
+    @Scripts.Render("~/bundles/avatar")
+    @Styles.Render("~/Content/jcrop")
+    @Styles.Render("~/Content/avatar")
+}

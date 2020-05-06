@@ -1,0 +1,56 @@
+2020-01-18 11:17:29,199 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 11:17:29,210 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2020-01-18 11:17:29,211 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 11:17:29,358 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 11:17:29,359 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2020-01-18 11:17:29,359 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 11:17:30,395 [8] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 11:17:30,458 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":201,"Msg":"Tài kho?n ho?c m?t kh?u không dúng","TokenKey":null,"Data":{"Id":0,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 11:17:30,459 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 11:17:36,360 [7] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 11:17:36,363 [10] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":201,"Msg":"Tài kho?n ho?c m?t kh?u không dúng","TokenKey":null,"Data":{"Id":0,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 11:17:36,364 [10] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 11:17:56,605 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - Begin REGISTER-API request
+2020-01-18 11:17:56,628 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - REGISTER-API Returned Model encrypted = {"Code":104,"Msg":"Tài kho?n dã du?c s? d?ng","TokenKey":null,"Data":0}
+2020-01-18 11:17:56,629 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - Ended REGISTER-API request
+2020-01-18 11:18:07,761 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - Begin REGISTER-API request
+2020-01-18 11:18:09,773 [19] ERROR SingleSignOn.Controllers.BaseApiController - Failed when sending email due to System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at SingleSignOn.Helpers.EmailHelper.SendEmail(EmailModel model) in C:\Project\APIs\SingleSignOn\SingleSignOn\Helpers\EmailHelper.cs:line 60
+2020-01-18 11:18:09,797 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - REGISTER-API Returned Model encrypted = {"Code":-1,"Msg":"L?i khi th?c hi?n g?i email","TokenKey":null,"Data":1004108}
+2020-01-18 11:18:09,797 [19] DEBUG SingleSignOn.Controllers.ApiAccountController - Ended REGISTER-API request
+2020-01-18 11:19:08,312 [10] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 11:19:08,351 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","Data":{"Id":1,"Email":"bangkhmt3@gmail.com","PhoneNumber":"0966722466","UserName":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=Avatars/1/1539328575.jpg","TokenKey":"d3a203fd68561e58b7e32fe3e05200f7","TokenCreatedDate":"2020-01-18T11:19:08.3334861+07:00","TokenExpiredDate":"2020-01-19T03:59:08.3334861+07:00","LoginDurations":1000,"OTPType":"","Birthday":"1991-08-12T00:00:00","Sex":1,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":0,"LoginDate":"2020-01-18T11:19:08.3194884+07:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 11:19:08,352 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 14:56:42,971 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 14:56:42,973 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2020-01-18 14:56:42,974 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 14:56:43,069 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 14:56:43,070 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2020-01-18 14:56:43,071 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-18 14:56:43,929 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 14:56:43,964 [8] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":201,"Msg":"Tài kho?n ho?c m?t kh?u không dúng","TokenKey":null,"Data":{"Id":0,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 14:56:43,965 [8] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 14:56:48,646 [12] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 14:56:48,649 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":201,"Msg":"Tài kho?n ho?c m?t kh?u không dúng","TokenKey":null,"Data":{"Id":0,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 14:56:48,651 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 14:56:50,388 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 14:56:50,392 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":201,"Msg":"Tài kho?n ho?c m?t kh?u không dúng","TokenKey":null,"Data":{"Id":0,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 14:56:50,392 [11] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 14:57:16,316 [9] ERROR SingleSignOn.Controllers.BaseApiController - Failed when sending email due to System.Net.Mail.SmtpException: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+   at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at SingleSignOn.Helpers.EmailHelper.SendEmail(EmailModel model) in C:\Project\APIs\SingleSignOn\SingleSignOn\Helpers\EmailHelper.cs:line 60
+2020-01-18 14:57:16,318 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - RESEND EMAIL-API Returned Model encrypted = {"Code":-1,"Msg":"L?i khi th?c hi?n g?i email","TokenKey":null,"Data":null}
+2020-01-18 14:57:16,319 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended RESEND EMAIL-API request
+2020-01-18 14:59:21,646 [19] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 14:59:21,653 [19] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":113,"Msg":"Tài kho?n c?a b?n chua du?c kích ho?t","TokenKey":null,"Data":{"Id":1003097,"Email":null,"PhoneNumber":null,"UserName":null,"FullName":null,"DisplayName":null,"Avatar":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null,"Birthday":null,"Sex":0,"Address":null,"IDCard":null,"Note":null,"EmailConfirmed":0,"PhoneNumberConfirmed":0,"LoginDate":"0001-01-01T00:00:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 14:59:21,654 [19] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-01-18 15:00:03,155 [27] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-18 15:00:03,201 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"14f514c1cfc83565d81dbd83c18c5de6","Data":{"Id":1003097,"Email":"vuducthuong1102@gmail.com","PhoneNumber":"","UserName":"vuducthuong1102@gmail.com","FullName":"","DisplayName":"vuducthuong1102@gmail.com","Avatar":"","TokenKey":"14f514c1cfc83565d81dbd83c18c5de6","TokenCreatedDate":"2020-01-18T15:00:03.1790737+07:00","TokenExpiredDate":"2020-01-19T07:40:03.1790737+07:00","LoginDurations":1000,"OTPType":"OTPSMS","Birthday":"2019-09-24T12:43:24.77","Sex":0,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":0,"LoginDate":"2020-01-18T15:00:03.159118+07:00","SocialProviderId":0,"IsNew":0}}
+2020-01-18 15:00:03,202 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request

@@ -1,0 +1,896 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using System.Globalization
+@using Manager.WebApp.Models
+@using Manager.WebApp.Settings
+
+@model Manager.WebApp.Models.ManageCvPreviewModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_CV_INFORMATION;
+    var currentLang = CultureInfo.CurrentCulture.ToString();
+}
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+@if (Model.CvInfo != null)
+{
+    var id = Model.CvInfo.job_seeker_id;
+    var profileTkParms = string.Format("id={0}&tk={1}&type={2}", id, SecurityHelper.GenerateUrlToken("Cv", "CvProfilePartial", new { id = id, type = Model.type_job_seeker }), Model.type_job_seeker);
+    var eduTkParms = string.Format("id={0}&tk={1}&type={2}", id, SecurityHelper.GenerateUrlToken("Cv", "EduHistories", new { id = id, type = Model.type_job_seeker }), Model.type_job_seeker);
+    var workTkParms = string.Format("id={0}&tk={1}&type={2}", id, SecurityHelper.GenerateUrlToken("Cv", "WorkHistories", new { id = id, type = Model.type_job_seeker }), Model.type_job_seeker);
+    var cerTkParms = string.Format("id={0}&tk={1}&type={2}", id, SecurityHelper.GenerateUrlToken("Cv", "Certificates", new { id = id, type = Model.type_job_seeker }), Model.type_job_seeker);
+
+    var emailModel = new ManageEmailBusinessModel();
+    emailModel.job_seeker_id = Model.CvInfo.job_seeker_id;
+    emailModel.is_online = (Model.type_job_seeker == 1) ? 0 : 1;
+    emailModel.CurrentPage = 1;
+
+    //var mailTkParms = string.Format("job_seeker_id={0}&is_online={1}&tk={2}",Model.CvInfo.job_seeker_id, 1, SecurityHelper.GenerateUrlToken("MyEmail", "JobSeekerMailBox", new { job_seeker_id = Model.CvInfo.job_seeker_id, is_online = 1 }));
+    var mailTkLink = SecurityHelper.GenerateSecureLink("MyEmail", "JobSeekerMailBox", emailModel);
+
+    @Html.Partial("_Notifications")
+
+    @Html.AntiForgeryToken()
+    <input type="hidden" value="@profileTkParms" id="CvProfileTk" />
+    <input type="hidden" value="@eduTkParms" id="CvEduTk" />
+    <input type="hidden" value="@workTkParms" id="CvWorkTk" />
+    <input type="hidden" value="@cerTkParms" id="CvCerTk" />
+    <input type="hidden" value="@mailTkLink" id="CvMailTk" />
+
+    @RenderUserInfo(currentLang)
+}
+
+@helper RenderUserInfo(string currentLang)
+{
+    var avatarUrl = string.Empty;
+    var moreInfoCount = 0;
+
+    if (Model.CvInfo != null && Model.CvInfo.jobseeker != null)
+    {
+        if (Model.CvInfo.jobseeker.Extensions != null)
+        {
+            if (MyObjectExtensions.PropertyExists(Model.CvInfo.jobseeker.Extensions, "image_full"))
+            {
+                avatarUrl = Model.CvInfo.jobseeker.Extensions.image_full;
+            }
+        }
+    }
+
+    //avatarUrl = Model.CvInfo.image_full_path;
+
+    if (string.IsNullOrEmpty(avatarUrl))
+    {
+        avatarUrl = "/assets/app/media/img/users/default-avatar.jpg";
+    }
+    <div class="m-portlet m-portlet--full-height m-portlet--tabs  ">
+        <div class="m-portlet__head">
+            <div class="m-portlet__head-tools">
+                <ul class="nav nav-tabs m-tabs m-tabs-line   m-tabs-line--left m-tabs-line--primary" role="tablist">
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_user_profile_tab_1" role="tab">
+                            <i class="fa fa-user"></i>
+                            @ManagerResource.LB_CV_INFORMATION
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_2" role="tab">
+                            <i class="fa fa-graduation-cap"></i>
+                            @ManagerResource.LB_CV_EDUCATION
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_3" role="tab">
+                            <i class="fa fa-black-tie"></i>
+                            @ManagerResource.LB_CV_WORKING_EXPERIENCE
+                        </a>
+                    </li>
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_4" role="tab">
+                            <i class="fa fa-certificate"></i>
+                            @ManagerResource.LB_CV_CERTIFICATE
+                        </a>
+                    </li>
+                    @if (Model.type_job_seeker == 0)
+                    {
+                        <li class="nav-item m-tabs__item">
+                            <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_user_profile_tab_5" role="tab">
+                                <i class="fa fa-info-circle"></i>
+                                @ManagerResource.LB_CV_OTHER_INFO
+                            </a>
+                        </li>
+                    }
+                    <li class="nav-item m-tabs__item">
+                        <a class="nav-link m-tabs__link MailBoxTab" data-toggle="tab" href="#JobSeekerEmailHistories" role="tab">
+                            <i class="fa fa-envelope"></i>
+                            @ManagerResource.LB_EMAIL
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="tab-content tab-content-custom">
+            <div class="tab-pane active" id="m_user_profile_tab_1">
+                <div class="m-form m-form--fit m-form--label-align-left">
+                    <div class="m-portlet__body">
+                        <div class="row">
+                            <div class="col-md-3 col-responsive-left form-group">
+                                <div class="float-lg-right mt10 text-center">
+                                    <div style="width:150px;height:120px;margin:0 auto;" class="">
+                                        @if (Model.Cvs.HasData() && Model.Cvs.Count > 1)
+                                        {
+                                            <div class="mb-3">
+                                                <select class="form-control selectpicker change-cv" data-live-search="true" data-size="5">
+                                                    @foreach (var cv in Model.Cvs)
+                                                    {
+                                                        int show_more = 0;
+                                                        if (cv.status == (int)EnumApplicationStatus.Interview)
+                                                        {
+                                                            show_more = 1;
+                                                        }
+                                                        var previewLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = cv.id, status = cv.status, show_more = Model.show_more, ctl_active = "Application", act_active = "Index" });
+
+                                                        var selected = "";
+                                                        if (cv.id == Model.CvInfo.id)
+                                                        {
+                                                            selected = "selected";
+                                                        }
+                                                        <option value="@cv.id" data-link="@previewLink" @selected>@cv.cv_title</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        }
+                                        <div class="img-thumb-sm" style="width:100%;height:100%;">
+                                            <img src="@avatarUrl" alt="" onerror="this.onerror=null;this.src='/Content/Avatars/profile-pic.jpg';"
+                                                 style="object-fit:contain">
+                                        </div>
+                                    </div>
+                                    <button type="button" id="btn-view" class="btn btn-info btn-sm mt-3">
+                                        <i class="fa fa-info-circle" aria-hidden="true"></i> @ManagerResource.LB_PREVIEW
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-9 col-responsive-right pr0">
+                                <fieldset class="mb20 pt0 pb20">
+                                    <legend class="legend-ctrl">
+                                        @ManagerResource.LB_JOBSEEKER_BASIC_INFORMATION <i class="fa fa-angle-up"></i>
+                                    </legend>
+                                    <div class="fieldset-content">
+                                        <div class="">
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_FULL_NAME
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @Model.CvInfo.fullname
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_FULL_NAME_FURIGANA
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @Model.CvInfo.fullname_furigana
+                                                </div>
+                                            </div>
+
+                                            @if (Model.show_more == 1 || Model.type_job_seeker == 1)
+                                            {
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_PHONE
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @Model.CvInfo.phone
+                                                    </div>
+                                                </div>
+
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_EMAIL
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @Model.CvInfo.email
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_BIRTHDAY
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @Model.CvInfo.birthday.DateTimeQuestToString("dd-MM-yyyy")
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_GENDER
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @(Model.CvInfo.gender == 1 ? ManagerResource.LB_MALE : ManagerResource.LB_FEMALE)
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_MARRIAGE
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @(Model.CvInfo.marriage ? ManagerResource.LB_MARRIAGE_MARRIED : ManagerResource.LB_MARRIAGE_SINGLE)
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_DEPENDENT_NUM
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @Model.CvInfo.dependent_num
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_QUALIFICATION
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @Model.qualification_label
+                                                </div>
+                                            </div>
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_ADDRESS
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @if (Model.type_job_seeker == 0)
+                                                    {
+                                                        if (Model.show_more == 1)
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(FrontendHelpers.GenerateCvDetailAddressFull(Model.address))
+                                                        }
+                                                        else
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(FrontendHelpers.GenerateCvDetailAddress(Model.address))
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (Model.address != null)
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(Model.address.address_full)
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            <div class="row info-item">
+                                                <div class="col-md-3 info-label">
+                                                    @ManagerResource.LB_ADDRESS_CONTACT
+                                                </div>
+                                                <div class="col-md-9 info-text">
+                                                    @if (Model.type_job_seeker == 0)
+                                                    {
+                                                        if (Model.show_more == 1)
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(FrontendHelpers.GenerateCvDetailAddressFull(Model.address_contact))
+                                                        }
+                                                        else
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(FrontendHelpers.GenerateCvDetailAddress(Model.address_contact))
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        if (Model.address_contact != null)
+                                                        {
+                                                            @FrontendHelpers.SubstringBracket(Model.address_contact.address_full)
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+
+                                            @if (Model.CvInfo.nationality_id > 0)
+                                            {
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_NATIONALITY
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @if (Model.Countries.HasData())
+                                                        {
+                                                            var countyInfo = Model.Countries.FirstOrDefault(s => s.id == Model.CvInfo.nationality_id);
+                                                            if (countyInfo != null)
+                                                            {
+                                                                if (currentLang != "ja-JP")
+                                                                {
+                                                                    @countyInfo.furigana
+                                                                }
+                                                                else
+                                                                {
+                                                                    @countyInfo.furigana
+                                                                }
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            @if (Model.CvInfo.visa_id > 0)
+                                            {
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_VISA
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        <div>
+                                                            @if (Model.Visas.HasData())
+                                                            {
+                                                                var visaInfo = Model.Visas.FirstOrDefault(s => s.id == Model.CvInfo.visa_id);
+                                                                if (visaInfo != null)
+                                                                {
+                                                                    var visaLang = visaInfo.LangList.FirstOrDefault(s => s.language_code == currentLang);
+                                                                    if (visaLang != null)
+                                                                    {
+                                                                        @visaLang.visa
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @visaInfo.visa
+                                                                    }
+                                                                }
+                                                            }
+                                                        </div>
+
+                                                        @if (Model.CvInfo.duration_visa != null)
+                                                        {
+                                                            <div>
+                                                                <span>
+                                                                    @ManagerResource.LB_DURATION_VISA: @Model.CvInfo.duration_visa.DateTimeQuestToString("dd/MM/yyyy", false)
+                                                                </span>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            @if (!string.IsNullOrEmpty(Model.CvInfo.religion_detail))
+                                            {
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_RELIGION
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @Model.CvInfo.religion_detail
+                                                    </div>
+                                                </div>
+                                            }
+
+                                            @if (Model.type_job_seeker == 1 && Model.staff_info != null)
+                                            {
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_CREATE_PERSON
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @Model.staff_info.FullName
+                                                    </div>
+                                                </div>
+                                                <div class="row info-item">
+                                                    <div class="col-md-3 info-label">
+                                                        @ManagerResource.LB_CREATED_DATE
+                                                    </div>
+                                                    <div class="col-md-9 info-text">
+                                                        @Model.created_at.DateTimeQuestToLocaleString(currentLang)
+                                                    </div>
+                                                </div>
+                                            }
+                                            @*@if (Model.WishInfo != null)
+                        {
+                            <div class="row info-item">
+                                <div class="col-md-3 info-label">
+                                    @ManagerResource.LB_JOB_EMPLOYMENT_TYPE
+                                </div>
+                                @RenderEmploymentType(currentLang)
+                            </div>
+                            <div class="row info-item">
+                                <div class="col-md-3 info-label">
+                                    @ManagerResource.IP_START_DATE
+                                </div>
+                                <div class="col-md-9 info-text">
+                                    @Model.WishInfo.start_date.DateTimeQuestToLocaleString(currentLang)
+                                </div>
+                            </div>
+                            <div class="row info-item">
+                                <div class="col-md-3 info-label">
+                                    @ManagerResource.LB_SALARY
+                                </div>
+                                <div class="col-md-9 info-text">
+                                    @if (Model.WishInfo.salary_min > 0)
+                                    {
+                                        @Model.WishInfo.salary_min.ToString("#,##")
+                                        if (Model.WishInfo.salary_max > 0)
+                                        {
+                                            @(" ~ ")
+                                        }
+                                    }
+                                    @if (Model.WishInfo.salary_max > 0)
+                                    {
+                                        @(Model.WishInfo.salary_max.ToString("#,##") + " " + ManagerResource.LB_YEN)
+                                    }
+                                </div>
+                            </div>
+                            <div class="row info-item">
+                                <div class="col-md-3 info-label">
+                                    @ManagerResource.LB_WORK_PLACE
+                                </div>
+                                <div class="col-md-9 info-text">
+                                    @if (Model.Prefectures.HasData())
+                                    {
+                                        var prefectureName = string.Join(",", Model.Prefectures.Select(s => s.furigana));
+                                        if (currentLang == "ja-JP")
+                                        {
+                                            prefectureName = string.Join(",", Model.Prefectures.Select(s => s.prefecture));
+                                        }
+                                        @prefectureName
+                                    }
+                                </div>
+                            </div>
+
+                            <div class="row info-item">
+                                <div class="col-md-3 info-label">
+                                    @ManagerResource.LB_JOB_FIELD
+                                </div>
+                                @RenderSubField(currentLang)
+                            </div>
+                        }*@
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                @if (Model.WishList.HasData())
+                                {
+                                    var count = 0;
+                                    foreach (var item in Model.WishList)
+                                    {
+                                        count++;
+
+                                        <fieldset class="mb20 pt0 pb20">
+                                            <legend class="legend-ctrl">
+                                                @ManagerResource.LB_WISH @count <i class="fa fa-angle-up"></i>
+                                            </legend>
+                                            <div class="fieldset-content">
+                                                <div class="">
+                                                    <div class="row info-item">
+                                                        <div class="col-md-3 info-label">
+                                                            @ManagerResource.LB_JOB_EMPLOYMENT_TYPE
+                                                        </div>
+                                                        @RenderEmploymentType(currentLang, item.employment_type_id)
+                                                    </div>
+                                                    <div class="row info-item">
+                                                        <div class="col-md-3 info-label">
+                                                            @ManagerResource.IP_START_DATE
+                                                        </div>
+                                                        <div class="col-md-9 info-text">
+                                                            @item.start_date.DateTimeQuestToLocaleString(currentLang)
+                                                        </div>
+                                                    </div>
+                                                    <div class="row info-item">
+                                                        <div class="col-md-3 info-label">
+                                                            @ManagerResource.LB_SALARY
+                                                        </div>
+                                                        <div class="col-md-9 info-text">
+                                                            @if (item.salary_min > 0)
+                                                            {
+                                                                @item.salary_min.ToString("#,##")
+                                                                if (item.salary_max > 0)
+                                                                {
+                                                                    @(" ~ ")
+                                                                }
+                                                            }
+                                                            @if (item.salary_max > 0)
+                                                            {
+                                                                @(item.salary_max.ToString("#,##") + " " + ManagerResource.LB_YEN)
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="row info-item">
+                                                        <div class="col-md-3 info-label">
+                                                            @ManagerResource.LB_WORK_PLACE
+                                                        </div>
+                                                        @RenderPrefectures(currentLang, item.prefecture_ids)
+                                                    </div>
+
+                                                    <div class="row info-item">
+                                                        <div class="col-md-3 info-label">
+                                                            @ManagerResource.LB_JOB_FIELD
+                                                        </div>
+                                                        @RenderSubField(currentLang, item.sub_field_ids)
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    }
+                                }
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="m_user_profile_tab_2">
+                <div class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                        <div class="m-widget1 nopadding" id="EduHistories">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="m_user_profile_tab_3">
+                <div class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                        <div class="m-widget1 nopadding" id="WorkHistories">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="m_user_profile_tab_4">
+                <div class="m-form m-form--fit m-form--label-align-right">
+                    <div class="m-portlet__body">
+                        <div class="m-widget1 nopadding" id="Certificates">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @if (Model.type_job_seeker == 0 && Model.CvInfo != null)
+            {
+                <div class="tab-pane" id="m_user_profile_tab_5">
+                    <div class="m-form m-form--fit m-form--label-align-right">
+                        <div class="m-portlet__body">
+                            @if (!string.IsNullOrEmpty(Model.CvInfo.hobby_skills))
+                            {
+                                moreInfoCount++;
+                                <div class="row">
+                                    <div class="col-2">
+                                        <h3 class="text-info fz-16">
+                                            @ManagerResource.LB_CV_HOBBIES_SKILLS
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.Nl2Br(Model.CvInfo.hobby_skills)
+                                    </div>
+                                </div>
+                            }
+
+                            @if (moreInfoCount > 0)
+                            {
+                                <div class="m-portlet__body-separator"></div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.CvInfo.pr))
+                            {
+                                moreInfoCount++;
+                                <div class="row">
+                                    <div class="col-2">
+                                        <h3 class="text-info fz-16">
+                                            @ManagerResource.LB_CV_PR_YOURSELF
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.Nl2Br(Model.CvInfo.pr)
+                                    </div>
+                                </div>
+                            }
+
+                            @if (moreInfoCount > 0)
+                            {
+                                <div class="m-portlet__body-separator"></div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.CvInfo.reason))
+                            {
+                                moreInfoCount++;
+                                <div class="row">
+                                    <div class="col-2">
+                                        <h3 class="text-info fz-16">
+                                            @ManagerResource.LB_CV_REASON_FOR_APPLYING
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.Nl2Br(Model.CvInfo.reason)
+                                    </div>
+                                </div>
+                            }
+
+                            @if (moreInfoCount > 0)
+                            {
+                                <div class="m-portlet__body-separator"></div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.CvInfo.time_work))
+                            {
+                                moreInfoCount++;
+                                <div class="row mb10">
+                                    <div class="col-2">
+                                        <h3 class="text-info fz-16">
+                                            @ManagerResource.LB_CV_TIME_CAN_WORK
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.Nl2Br(Model.CvInfo.time_work)
+                                    </div>
+                                </div>
+                            }
+
+                            @if (moreInfoCount > 0)
+                            {
+                                <div class="m-portlet__body-separator"></div>
+                            }
+
+                            @if (!string.IsNullOrEmpty(Model.CvInfo.aspiration))
+                            {
+                                moreInfoCount++;
+                                <div class="row mb10">
+                                    <div class="col-2">
+                                        <h3 class="text-info fz-16">
+                                            @ManagerResource.LB_CV_ASPIRATION
+                                        </h3>
+                                    </div>
+                                    <div class="col-9">
+                                        @Html.Nl2Br(Model.CvInfo.aspiration)
+                                    </div>
+                                </div>
+                            }
+
+                            @if (moreInfoCount == 0)
+                            {
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="fz-14 text-info">
+                                            <i class="fa fa-info-circle fz-14"></i> @ManagerResource.LB_INFO_NOT_UPDATED
+                                        </h5>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div class="tab-pane" id="JobSeekerEmailHistories">
+                <form id="MailBoxFrm">
+                    <div class="m-form m-form--fit">
+                        <div class="m-portlet__body">
+                            <input type="hidden" value="1" id="CurrentMailBoxPageIdx" name="CurrentMailBoxPageIdx" />
+                            <input type="hidden" value="@(Model.type_job_seeker == 1 ? 0 : 1)" id="is_online" name="is_online" />
+                            <input type="hidden" value="@(Model.CvInfo != null ? Model.CvInfo.job_seeker_id : 0)" name="job_seeker_id" />
+                            <div class="m-widget1 nopadding" id="MailBoxHistories">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="m-portlet__foot">
+            <div class="col-lg-12 col-md-12 col-sm-12 form-group pt-3">
+                @if (Model.hide_pf == 0)
+                {
+                    <a class="btn btn-outline-info btn-back btn-sm" href="javascript:;" onclick="window.close();"><i class="fa fa-close"></i> @ManagerResource.LB_CLOSE_TAB</a>
+                }
+                else
+                {
+                    <a class="btn btn-outline-info btn-back btn-sm" href="/JobSeeker"><i class="la la-backward"></i> @ManagerResource.LB_GOBACK</a>
+
+                }
+                @if (Model.type_job_seeker == 1 && PermissionHelper.CheckPermission("Update", "JobSeeker"))
+                {
+                    if (Model.CvInfo != null)
+                    {
+                        var editLink = SecurityHelper.GenerateSecureLink("JobSeeker", "Update", new { id = Model.CvInfo.job_seeker_id, hide_pf = 0 });
+                        <a class="btn btn-warning btn-sm" href="@editLink"> <i class="la la-pencil"></i>&nbsp;@ManagerResource.LB_EDIT</a>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div id='myCvDetailModal' class="modal fade" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" style="max-width:918px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">
+                            &times;
+                        </span>
+                    </button>
+                </div>
+                <div id='myCvDetailContent' style="padding:50px">
+                    <div id="printContent">
+                        @if (Model.CvInfo != null)
+                        {
+                            if (Model.CvInfo.form == 0)
+                            {
+                                @Html.Partial("~/Views/CV/Partials/_FullTime.cshtml", Model)
+                            }
+                            else
+                            {
+                                @Html.Partial("~/Views/CV/Partials/_PartTime.cshtml", Model)
+                            }
+                        }
+                    </div>
+                    <div id="editor"></div>
+                    <div class="text-center modal-footer">
+                        <button id="btn-print" class="btn btn-info">
+                            <i class="fa fa-print" aria-hidden="true"></i> @ManagerResource.BT_PRINT
+                        </button>
+                        @if (Model.type_job_seeker == 0)
+                        {
+                            var printLink = SecurityHelper.GenerateSecureLink("Cv", "PrintPDF", new { id = Model.CvInfo.id });
+                            <a id="btn-export-pdf" class="btn btn-info" href="@printLink">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i> @ManagerResource.BT_EXPORT_PDF
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@helper RenderSubField(string currentLang, string sub_field_ids)
+{
+    <div class="col-md-9 info-text">
+        @if (Model.SubFields.HasData())
+        {
+            var subFieldName = string.Empty;
+            var listIds = Utils.ConvertStringToListInt(sub_field_ids);
+            if (listIds.HasData())
+            {
+                for (int i = 0; i < listIds.Count; i++)
+                {
+                    foreach (var subField in Model.SubFields)
+                    {
+                        if (listIds[i] == subField.id)
+                        {
+                            var subName = string.Empty;
+                            if (subField.LangList.HasData())
+                            {
+                                subName = subField.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                            }
+
+                            if (string.IsNullOrEmpty(subName))
+                            {
+                                subName = subField.sub_field;
+                            }
+                            if (subFieldName == string.Empty)
+                            {
+                                subFieldName = subName;
+                            }
+                            else
+                            {
+                                subFieldName += ", " + subName;
+                            }
+                        }
+                    }
+                }
+                @subFieldName
+            }
+        }
+    </div>
+}
+
+@helper RenderPrefectures(string currentLang, string prefecture_ids)
+{
+    <div class="col-md-9 info-text">
+        @if (Model.Prefectures.HasData())
+        {
+            var prefecturesName = string.Empty;
+            var listIds = Utils.ConvertStringToListInt(prefecture_ids);
+            if (listIds.HasData())
+            {
+                for (int i = 0; i < listIds.Count; i++)
+                {
+                    var count = 0;
+                    foreach (var prefecture in Model.Prefectures)
+                    {
+                        if (listIds[i] == prefecture.id)
+                        {
+                            var prefectureName = Model.Prefectures[count].furigana;
+                            if (currentLang == "ja-JP")
+                            {
+                                prefectureName = Model.Prefectures[count].prefecture;
+                            }
+
+                            if (prefecturesName == string.Empty)
+                            {
+                                prefecturesName = prefectureName;
+                            }
+                            else
+                            {
+                                prefecturesName += ", " + prefectureName;
+                            }
+                        }
+                        count++;
+                    }
+                }
+                @prefecturesName
+            }
+        }
+    </div>
+}
+
+@helper RenderEmploymentType(string currentLang, int employment_type_id)
+{
+    <div class="col-md-9 info-text">
+        @if (Model.EmploymentTypes.HasData())
+        {
+            var employmentName = string.Empty;
+            if (employment_type_id > 0)
+            {
+                foreach (var emType in Model.EmploymentTypes)
+                {
+                    if (emType.id == employment_type_id)
+                    {
+                        var subName = string.Empty;
+                        if (emType.LangList.HasData())
+                        {
+                            subName = emType.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                        }
+
+                        if (string.IsNullOrEmpty(subName))
+                        {
+                            subName = emType.employment_type;
+                        }
+                        if (employmentName == string.Empty)
+                        {
+                            employmentName = subName;
+                        }
+                        else
+                        {
+                            employmentName += ", " + subName;
+                        }
+                    }
+                }
+
+                @employmentName
+            }
+        }
+    </div>
+}
+
+@section PageInlineStyles{
+    <style>
+        .info-item {
+            padding: 7px 0px 5px 0px;
+            margin-left: 0px;
+            border-bottom: 1px dotted #ccc;
+            width: 100%;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script>
+        $(document).ready(function () {
+            $(document).on("click", "#btn-view", function () {
+                $('#myCvDetailModal').modal('show');
+            });
+        })
+        $('#btn-print').click(function () {
+            var divToPrint = document.getElementById('printContent');
+            var newWin = window.open('', 'Print-Window');
+            newWin.document.open();
+            newWin.document.write('<html><body onload="window.print()">' + divToPrint.innerHTML + '</body></html>');
+            newWin.document.close();
+            setTimeout(function () { newWin.close(); }, 10);
+        });
+    </script>
+    <script src="@Url.VersionedContent("~/Scripts/Cv/preview.js")"></script>
+
+}

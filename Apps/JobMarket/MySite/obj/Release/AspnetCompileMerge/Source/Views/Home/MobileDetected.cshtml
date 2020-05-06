@@ -1,0 +1,89 @@
+﻿@using MySite.Resources;
+
+@{
+    ViewBag.Title = UserWebResource.LB_MYSITE_TITLE;
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" itemprop="inLanguage" content="vi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.OgDescription" />
+    <meta name="keywords" content="haloplan" />
+    <meta name="news_keywords" content="haloplan" />
+    <meta name="robots" content="index,follow,noodp" />
+    <meta name="robots" content="noarchive">
+
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? UserWebResource.LB_MYSITE_TITLE : ViewBag.Title)</title>
+
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta name="pubdate" itemprop="datePublished" content="@ViewBag.DatePublished" />
+    <meta itemprop="dateModified" content="@ViewBag.DatePublished" />
+
+
+    <link rel="SHORTCUT ICON" href="~/Content/themes/default/assets/images/favicon-32x32.png" type="image/x-icon">
+
+    @Styles.Render("~/bundles/headerstyles")
+    <link href="~/Content/mobile-detect.css" rel="stylesheet" />
+
+    <style>
+        .section {
+            /*padding: 50% 0 !important;*/
+        }
+
+        .box-icon {
+            width: unset !important;
+            box-shadow: unset;
+            background-color: unset;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .bg-gradient {
+            background-image: linear-gradient( 135deg, rgb(182, 235, 255) 0%, rgb(48, 103, 194) 100%);
+            background-image: -moz-linear-gradient( 135deg, rgb(182, 235, 255) 0%, rgb(48, 103, 194) 100%);
+            background-image: -webkit-linear-gradient( 135deg, rgb(182, 235, 255) 0%, rgb(48, 103, 194) 100%);
+            background-image: -ms-linear-gradient( 135deg, rgb(182, 235, 255) 0%, rgb(48, 103, 194) 100%);
+        }
+
+        .call-to-action .tagline{ color:#fff !important;}
+        .text-primary{color:#fff !important;}
+    </style>
+    <style>
+        
+    </style>
+</head>
+<body class="bg-gradient">
+
+    <div class="">
+        <div class="container">
+            <div class="call-to-action">
+
+                <div class="box-icon">
+                    <img src="~/Content/Extensions/Image/mobile.png" class="img-responsive" />
+                </div>
+                <h2>@UserWebResource.LB_MYSITE_APP</h2>
+                <p class="tagline">@UserWebResource.LB_MYSITE_APP_SLOGAN </p>
+                <div class="my-4">
+                    <a href="https://itunes.apple.com/us/app/halo-mạng-xã-hội-du-lịch/id1448453161?ls=1&mt=8" class="btn btn-light"><img src="~/Content/Extensions/Image/appleicon.png" alt="icon"> App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.travel.haloplan" class="btn btn-light"><img src="~/Content/Extensions/Image/playicon.png" alt="icon"> Google play</a>
+                </div>
+                <p class="text-primary"><span><i>*Works on iOS 10.0.5+, Android Kitkat and above. </i></span></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+

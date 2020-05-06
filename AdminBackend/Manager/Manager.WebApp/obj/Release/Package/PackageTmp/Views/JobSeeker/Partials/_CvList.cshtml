@@ -1,0 +1,118 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageJobSeekerCvModel
+
+<div class="m-portlet__body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="m-section">
+                <div class="m-section__content table-responsive" style="max-height:50vh;overflow:auto;">
+                    <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="50">#</th>
+                                <th class="text-center">@ManagerResource.LB_TITLE</th>
+                                <th class="text-center">@ManagerResource.LB_PHONE</th>
+                                <th class="text-center">@ManagerResource.LB_EMAIL</th>
+                                <th class="text-center">@ManagerResource.LB_STATISTICS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                            {
+                                var stt = 0;
+                                foreach (var record in Model.SearchResults)
+                                {
+                                    stt++;
+                                    var disabledItem = false;
+                                    var disabledStr = string.Empty;
+
+                                    <tr class="@(disabledItem ? "text-danger" : string.Empty)" data-id="@record.id">
+                                        <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                        <td>
+                                            @{
+                                                var cvName = (!string.IsNullOrEmpty(record.cv_title) ? record.cv_title : record.fullname);
+                                                var previewLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = record.id });
+                                            }
+
+                                            <a class="" href="@previewLink" target="_blank" title="@cvName">
+                                                @if (!string.IsNullOrEmpty(record.image_full_path))
+                                                {
+                                                    <img class="avatar-img" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" src="@record.image_full_path" title="@cvName" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="avatar-img" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" src="/Content/images/no-image.png" title="@cvName" />
+                                                }
+
+                                                <span class="ml10">@cvName</span>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @record.phone
+                                        </td>
+                                        <td>
+                                            @record.email
+                                        </td>
+                                        <td>
+                                            @{
+                                                int appCount = Utils.ConvertToInt32(record.Extensions.application_count);
+                                                int codeCount = Utils.ConvertToInt32(record.Extensions.pdf_code_count);
+                                            }
+                                            <ul style="list-style:none;display:inline-block" class="text-info">
+                                                @if (appCount > 0)
+                                                {
+                                                    <li><i class="fa fa-hand-o-right fz-13"></i> @ManagerResource.LB_APPLICATION_TOTAL: <span>@appCount.FormatWithComma()</span></li>
+                                                }
+
+                                                @if (codeCount > 0)
+                                                {
+                                                    <li><i class="fa fa-hand-o-right fz-13"></i> @ManagerResource.LB_PRINT_CODE_TOTAL: <span>@codeCount.FormatWithComma()</span></li>
+                                                }
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="11">
+                                        @ManagerResource.LB_NO_RECORD
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                @RenderPaging()
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "CvSearchNext")
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_DISPLAYING @Model.StartCount() @ManagerResource.LB_TO @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_OF @Model.TotalCount @ManagerResource.LB_RECORDS
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+

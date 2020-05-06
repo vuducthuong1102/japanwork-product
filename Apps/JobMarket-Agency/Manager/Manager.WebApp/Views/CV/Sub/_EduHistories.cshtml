@@ -1,0 +1,19 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using Manager.WebApp.Models
+
+@model List<CvEduHistoryModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("Partials/_CvEduHistoryItem", item)
+    }
+}
+else
+{
+    <h5 class="fz-14 text-info">
+        <i class="fa fa-info-circle fz-14"></i> @ManagerResource.LB_INFO_NOT_UPDATED
+    </h5>
+}

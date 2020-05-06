@@ -1,0 +1,169 @@
+﻿@using Manager.WebApp.Resources
+@using System.Globalization
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageEmailSettingsModel
+
+
+@{
+    var currentLang = CultureInfo.CurrentCulture;
+}
+
+@if (!Model.EmailServers.HasData())
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h5 class="text-danger"><i class="fa fa-warning"></i> <a href="~/Settings/Email" class="text-danger"> @EmailResource.LB_LINK_TO_CONFIG_EMAIL_SERVER</a></h5>
+        </div>
+    </div>
+
+    return;
+}
+
+@Html.AntiForgeryToken()
+
+<!--begin::Section-->
+<div class="m-accordion m-accordion--default m-accordion--toggle-arrow" id="m_outgoing" role="tablist">
+    <!--begin::Item-->
+    <div class="m-accordion__item m-accordion__item--info">
+        <div class="m-accordion__item-head collapsed" role="tab" id="m_outgoing_head" data-toggle="collapse" href="#m_outgoing_body" aria-expanded="false">
+            <span class="m-accordion__item-icon">
+                <i class="fa fa-paper-plane"></i>
+            </span>
+            <span class="m-accordion__item-title">
+                @ManagerResource.LB_EMAIL_OUTGOING_SETTINGS
+            </span>
+            <span class="m-accordion__item-mode"></span>
+        </div>
+
+        <div class="m-accordion__item-body collapse show" id="m_outgoing_body" role="tabpanel" aria-labelledby="m_outgoing_head" data-parent="#m_edu_history">
+            <div class="m-accordion__item-content">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_EMAIL
+                        </label>
+
+                        @Html.TextBoxFor(m => m.OutGoing.Email, new { @class = "form-control", placeholder = "name@your-mail.com", @autocomplete = "on" })
+                        @Html.ValidationMessageFor(m => m.OutGoing.Email, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_PASSWORD
+                        </label>
+
+                        @Html.TextBoxFor(m => m.OutGoing.EmailPassword, new { @class = "form-control setting-pwd", @type = "password", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.OutGoing.EmailPassword, null, new { @class = "text-danger" })
+                        @Html.HiddenFor(m => m.OutGoing.PasswordChanged, new { @class = "setting-change-pwd-flag" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_EMAIL_TYPE
+                        </label>
+                        <select class="form-control select2" data-live-search="true" name="@Html.NameFor(m=>m.OutGoing.EmailServerId)">
+                            @if (Model.EmailServers.HasData())
+                            {
+                                foreach (var item in Model.EmailServers)
+                                {
+                                    <option value="@item.Id" @(Model.OutGoing.EmailServerId == item.Id ? "selected": string.Empty)>@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    @Html.HiddenFor(m=>m.OutGoing.TestingSuccessed)                  
+
+                    @if (Model.OutGoing.TestingSuccessed)
+                    {
+                        <div class="col-lg-3 col-sm-12">
+                            <label class="full-width">&nbsp;</label>
+                            <span class="fa fa-check-circle-o text-info fz-20"> @ManagerResource.LB_TEST_DONE</span>
+                        </div>
+                    }
+                </div>
+
+                @*<div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-sm-12">
+                        <button class="btn btn-sm btn-info btnTestEmail" data-type="@((int)EnumEmailSettingTypes.OutGoing)"><i class="fa fa-check-circle"></i> @ManagerResource.LB_TEST</button>
+                    </div>
+                </div>*@
+            </div>
+        </div>
+    </div>
+    <!--end::Item-->
+</div>
+<!--end::Section-->
+<!--begin::Section-->
+<div class="m-accordion m-accordion--default m-accordion--toggle-arrow" id="m_incoming" role="tablist">
+    <!--begin::Item-->
+    <div class="m-accordion__item m-accordion__item--info">
+        <div class="m-accordion__item-head collapsed" role="tab" id="m_incoming_head" data-toggle="collapse" href="#m_incoming_body" aria-expanded="false">
+            <span class="m-accordion__item-icon">
+                <i class="fa fa-envelope"></i>
+            </span>
+            <span class="m-accordion__item-title">
+                @ManagerResource.LB_EMAIL_INCOMING_SETTINGS
+            </span>
+            <span class="m-accordion__item-mode"></span>
+        </div>
+
+        <div class="m-accordion__item-body collapse show" id="m_incoming_body" role="tabpanel" aria-labelledby="m_incoming_head" data-parent="#m_edu_history">
+            <div class="m-accordion__item-content">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_EMAIL
+                        </label>
+
+                        @Html.TextBoxFor(m => m.InComing.Email, new { @class = "form-control", placeholder = "name@your-mail.com", @autocomplete = "on" })
+                        @Html.ValidationMessageFor(m => m.InComing.Email, null, new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_PASSWORD
+                        </label>
+
+                        @Html.TextBoxFor(m => m.InComing.EmailPassword, new { @class = "form-control setting-pwd", @type = "password", @autocomplete = "off" })
+                        @Html.ValidationMessageFor(m => m.InComing.EmailPassword, null, new { @class = "text-danger" })
+                        @Html.HiddenFor(m => m.InComing.PasswordChanged, new { @class = "setting-change-pwd-flag" })
+                    </div>
+
+                    <div class="col-lg-3 col-sm-12">
+                        <label class="">
+                            @ManagerResource.LB_EMAIL_TYPE
+                        </label>
+                        <select class="form-control select2" data-live-search="true" name="@Html.NameFor(m=>m.InComing.EmailServerId)">
+                            @if (Model.EmailServers.HasData())
+                            {
+                                foreach (var item in Model.EmailServers)
+                                {
+                                    <option value="@item.Id" @(Model.InComing.EmailServerId == item.Id ? "selected": string.Empty)>@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    @Html.HiddenFor(m => m.InComing.TestingSuccessed)
+
+                    @if (Model.InComing.TestingSuccessed)
+                    {
+                        <div class="col-lg-3 col-sm-12">
+                            <label class="full-width">&nbsp;</label>
+                            <span class="fa fa-check-circle-o text-info fz-20"> @ManagerResource.LB_TEST_DONE</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end::Item-->
+</div>
+<!--end::Section-->
+
+<div class="form-group m-form__group row pl0 pr0">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info btn-sm pull-right">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>        
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CsWorkHistoryModel
+
+<div class="edu-history style2 work-history work-history-item" id="work_history_item_@Model.idx">
+    <i></i>
+    <div class="edu-hisinfo">
+        <input type="hidden" class="work-prop" name="" data-prop="id" value="@Model.id" />
+        <input type="hidden" class="work-prop" name="" data-prop="company" value="@Model.company" />
+        <input type="hidden" class="work-prop" name="" data-prop="address" value="@Model.address" />
+        <input type="hidden" class="work-prop" name="" data-prop="content_work" value="@Model.content_work" />
+        <input type="hidden" class="work-prop" name="" data-prop="start_date_str" value="@Model.start_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="work-prop" name="" data-prop="end_date_str" value="@Model.end_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="work-prop" name="" data-prop="status" value="@Model.status" />
+        <input type="hidden" class="work-prop" name="" data-prop="json_obj" id="work_history_idx_@Model.idx" value="@Model.json_obj" />
+        <div>
+            @Model.company
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumWorkStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var chkStr = string.Empty;
+                if (chkItem == Model.status)
+                {
+                    chkStr = "selected";
+                    <span class="work-history-status">@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+            }
+        </div>
+        <i>@FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)</i>
+        @*<p>@Model.content_work</p>*@
+    </div>
+    <ul class="action_job float-right">
+        @if (Model.isDefault)
+        {
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal-direct="" class="" data-href="@Url.Action("UpdateCsWorkHistory","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-size="default" class="" data-href="@Url.Action("DeleteCsWorkHistory","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-trash-o"></i></a></li>
+        }
+        else
+        {
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" class=" up-cs-work-default" title="" data-idx="@Model.idx"><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" class="dl-cs-work" title=""><i class="la la-trash-o"></i></a></li>
+        }
+    </ul>
+</div>

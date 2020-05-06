@@ -1,0 +1,19 @@
+﻿@using Manager.WebApp.Resources
+@model int
+
+@if (Model == (int)(EnumApplicationStatus.Applied))
+{
+    <span class="m-badge m-badge--wide m-badge--info"><i class="fa fa-send"></i> @ManagerResource.LB_APPLICATION_STATUS_AWAITING</span>
+}
+else if (Model == (int)(EnumApplicationStatus.Interview))
+{
+    <span class="m-badge m-badge--wide m-badge--success"><i class="fa fa-check"></i> @ManagerResource.LB_APPLICATION_STATUS_AWAITING_INTERVIEW</span>
+}
+else if (Model == (int)(EnumApplicationStatus.Ignore))
+{
+    <span class="m-badge m-badge--wide m-badge--danger"><i class="fa fa-hand-stop-o"></i> @ManagerResource.LB_APPLICATION_STATUS_IGNORE</span>
+}
+else if (Model == (int)(EnumApplicationStatus.Cancelled))
+{
+    <span class="m-badge m-badge--wide m-badge--danger"><i class="fa fa-unlink"></i> @ManagerResource.LB_APPLICATION_STATUS_CANCELED</span>
+}

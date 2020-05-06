@@ -1,0 +1,399 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageInvitationModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_APPLICANT_LIST;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="modal fade" id="myModalNote" role="dialog" aria-labelledby="" aria-hidden="true" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id='myModalContentNote'>
+                <div class="modal-header">
+                    <h5 class="modal-title fz-16" id="exampleModalLabel">
+                        <i class="fa fa-wechat fz-20"></i> @ManagerResource.LB_MESSAGE_NOTE
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <div class="col-md-12" id="myModalNoteText">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+                        <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@helper RenderSearchForm(string currentLang)
+{
+    if (Model.CompanyInfo != null) {
+        Model.company_name = Model.CompanyInfo.company_name;
+        if (Model.CompanyInfo.LangList.HasData())
+        {
+            var companyLang = Model.CompanyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+            if (companyLang == null)
+            {
+                companyLang = Model.CompanyInfo.LangList[0];
+            }
+
+            if (companyLang != null)
+            {
+                Model.company_name = companyLang.company_name;
+            }
+        }
+    }
+
+    using (Html.BeginForm("History", "Invitation", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+    {
+        @Html.HiddenFor(m => m.SearchExec)
+        <div class="m-portlet__body">
+            <div class="form-group row">
+                <div class="col-md-2 m-form__group--inline">
+                    <label>@ManagerResource.LB_KEYWORD</label>
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input" })
+                </div>
+                <div class="col-md-2 m-form__group--inline">
+                    @Html.LabelFor(m => m.company_id, new { @class = "form-control-label" })
+                    <select class="form-control company-picker btn-white" id="@Html.IdFor(m=>m.company_id)" name="@Html.NameFor(m=>m.company_id)" data-live-search="true">
+                        <option value="0">
+                            @ManagerResource.LB_ALL
+                        </option>
+                        @if (Model.CompanyInfo != null)
+                        {                          
+                            <option value="@Model.CompanyInfo.id" selected>@Model.company_name</option>
+                        }
+                    </select>
+                </div>
+                @*<div class="col-md-2 m-form__group--inline">
+                    @Html.LabelFor(m => m.Status, new { @class = "form-control-label" })
+                    <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
+                        <option value="-99">
+                            @ManagerResource.LB_ALL
+                        </option>
+                        @foreach (var item in Enum.GetValues(typeof(EnumInvitationStatus)))
+                        {
+                            var chkItem = (int)item;
+                            var chkStr = string.Empty;
+                            if (chkItem == Model.Status)
+                            {
+                                chkStr = "selected";
+                            }
+                            <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                        }
+                    </select>
+                </div>*@
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12">
+
+                    <button type="submit" class="btn btn-info" style="margin-right:10px;">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+
+                    @*<button type="button" class="btn btn-info reset-btn">
+                        <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+                    </button>*@
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            @*<div class="m-portlet__head">
+                <div class="clearfix m--padding-10">
+                    @if (!string.IsNullOrEmpty(Model.company_name))
+                    {
+                        <h4 class="pull-left">@ManagerResource.LB_INVITATION_HISTORY: <span class="text-danger">@Model.company_name</span></h4>
+                    }
+                    else
+                    {
+                        <h4 class="pull-left">@ManagerResource.LB_INVITATION_HISTORY</h4>
+                    }
+                </div>
+            </div>*@
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50"></th>
+                                    <th class="text-center">@ManagerResource.LB_JOB_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_COMPANY_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_SENT_DATE</th>
+                                    <th class="text-center">@ManagerResource.LB_RECEIVER_COUNT</th>
+                                    <th class="text-center">@ManagerResource.LB_MESSAGE</th>
+                                    @*<th class="text-center">@ManagerResource.LB_STATUS</th>
+                        <th class="text-center">@ManagerResource.LB_ACTION</th>*@
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults.HasData())
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        stt++;
+                                        var jobName = string.Empty;
+
+                                        var jobInfo = record.job_info;
+                                        if (jobInfo == null)
+                                        {
+                                            continue;
+                                        }
+
+                                        if (jobInfo != null && jobInfo.Job_translations.HasData())
+                                        {
+                                            jobName = jobInfo.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                                            if (string.IsNullOrEmpty(jobName))
+                                            {
+                                                jobName = jobInfo.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                                            }
+                                        }
+                                        <tr>
+                                            <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                            <td>
+                                                @jobName
+                                            </td>
+                                            <td>
+                                                @if (hasCompanies)
+                                                {
+                                                    var companyName = string.Empty;
+                                                    var companyInfo = Model.Companies.Where(x => x.id == record.job_info.company_id).FirstOrDefault();
+                                                    if (companyInfo != null)
+                                                    {
+                                                        companyName = companyInfo.company_name;
+                                                        if (companyInfo.LangList.HasData())
+                                                        {
+                                                            var companyLang = companyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+                                                            if (companyLang == null)
+                                                            {
+                                                                companyLang = companyInfo.LangList[0];
+                                                            }
+
+                                                            if (companyLang != null)
+                                                            {
+                                                                companyName = companyLang.company_name;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    @companyName
+                                                }
+                                                else
+                                                {
+                                                    @Model.company_name
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @record.request_time.DateTimeQuestToLocaleString(currentLang)
+                                            </td>
+                                            <td class="text-right">
+                                                @if (record.invitation_count > 0)
+                                                {
+                                                    var receiverLink = SecurityHelper.GenerateSecureLink("Invitation", "GetReceivers", new { invite_id = record.id });
+                                                    <a href="javascript:;" data-modal-direct="" data-href="@receiverLink" class="bt-invitation-receivers">
+                                                        @record.invitation_count.FormatWithComma()
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <span>0</span>
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @if (!string.IsNullOrEmpty(record.note))
+                                                {
+                                                    <div class="hidden" id="invite-note-@record.id">
+                                                        @Html.RawHtmlCustom(record.note)
+                                                    </div>
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill invite-msg" title="@ManagerResource.LB_VIEW_MESSAGE_NOTE" href="javascript:;" data-id="@record.id">
+                                                        <i class="fa fa-wechat"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                            @*<td class="text-center">
+                                    @Html.Partial("Partials/_Status", record.status)
+                                </td>*@
+                                            @*<td class="text-center">
+                                    @Html.Partial("Partials/_Status", record.status)
+                                </td>
+                                <td class="text-center">
+                                    @{
+                                        var newModel = Model;
+                                        newModel.company_id = record.job_info.company_id;
+                                        newModel.Id = record.id;
+                                        newModel.SearchExec = "Y";
+                                    }
+
+                                    @if (record.status >= 0)
+                                    {
+                                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("Ignore", "Invitation", new { id = record.id, cv_id = record.cv_id })" title="@ManagerResource.BT_APPLICATION_IGNORE">
+                                            <i class="fa fa-hand-stop-o"></i>
+                                        </a>
+
+                                        if (record.status == (int)EnumInvitationStatus.Applied)
+                                        {
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("Accept", "Invitation", new { id = record.id, cv_id = record.cv_id })" title="@ManagerResource.BT_APPLICATION_ACCEPT">
+                                                <i class="fa fa-check"></i>
+                                            </a>
+                                        }
+                                    }
+                                </td>*@
+
+                                            @*<td>
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Preview", "CV", new { id = record.cv_id })" title="@ManagerResource.LB_CLICK_VIEW_DETAIL">
+                                        <i class="fa fa-eye"></i>
+                                    </a>
+                                </td>*@
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    @RenderPaging()
+                </div>
+                <!--end::Section-->
+                @*<div class="row">
+                        <div class="col-sm-12">
+                            <a class="btn btn-outline-info" href="/Company"><i class="fa fa-building"></i> @ManagerResource.LB_COMPANY_MANAGEMENT</a>
+                        </div>
+                    </div>*@
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("History", "Invitation",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script>
+        $(function () {
+            InitCompanyPicker();
+        });
+
+        function InitCompanyPicker() {
+            $('.company-picker').selectpicker({
+                actionsBox: true,
+                selectAllText: LanguageDic["LB_SELECT_ALL"],
+                deselectAllText: LanguageDic["LB_DESELECT_ALL"]
+            }).ajaxSelectPicker({
+                ajax: {
+                    // data source
+                    url: '/Master/GetSuggestionCompanies',
+                    // ajax type
+                    type: 'POST',
+                    // data type
+                    dataType: 'json',
+                    // Use "{{{q}}}" as a placeholder and Ajax Bootstrap Select will
+                    // automatically replace it with the value of the search query.
+                    data: {
+                        query: '{{{q}}}',
+                        __RequestVerificationToken: $('input[name = "__RequestVerificationToken"]').val()
+                    }
+                },
+                locale: {
+                    emptyTitle: LanguageDic["LB_KEYWORD_SEARCH"],
+                    statusInitialized: "",
+                    statusSearching: LanguageDic["LB_SEARCHING"],
+                    statusNoResults: LanguageDic["LB_NO_RESULTS_FOUND"]
+                },
+                // function to preprocess JSON data
+                preprocessData: function (data) {
+                    var result = data.data;
+                    var i, l = result.length, array = [];
+                    if (l) {
+                        for (i = 0; i < l; i++) {
+                            array.push($.extend(true, result[i], {
+                                text: result[i].company_name ,
+                                value: result[i].id
+                                //data: {
+                                //    subtext: data[i].station
+                                //}
+                            }));
+                        }
+                    }
+                    return array;
+                }
+
+            });
+        }
+
+        $("body").on("click", ".invite-msg", function () {
+            var id = $(this).data("id");
+            var htmlNote = $("#invite-note-" + id).html();
+
+            $("#myModalNoteText").html(htmlNote);
+            $("#myModalNote").modal("show");
+        });
+    </script>
+}

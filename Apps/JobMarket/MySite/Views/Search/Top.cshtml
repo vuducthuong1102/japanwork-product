@@ -1,0 +1,108 @@
+﻿@using MySite.Resources;
+@using MySite.Caching;
+@using MySite.Helpers;
+@model MySite.Models.BannerSearchModel
+
+@Html.Partial("~/Views/Search/Item/_BannerSearchItem.cshtml", Model)
+<div class="clearfix"></div>
+<div class="content-search">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-8">
+                <div class="mt15">
+                    <div class="people-group _5d09 hidden">
+                        <div class="_274e _5dwa _4-u3 header">
+                            <span role="heading" aria-level="3" itemcomponent="span" class="_38ae">
+                                <div class="izd"></div>
+                                <span>@UserWebResource.LB_People</span>
+                                <span class="_c1c">
+                                </span>
+                            </span><span class="_5d80">
+                                <a href="javascript:;" data-url="/search/people" class="view-all">@UserWebResource.LB_VIEW_ALL</a>
+                            </span>
+                            <div class="_3s3-">
+                            </div>
+                        </div>
+                        <div class="_6d01 people-item">
+                        </div>
+                    </div>
+                    <div class="category-group _5d09 hidden">
+                        <div class="_274e _5dwa _4-u3 header">
+                            <span role="heading" aria-level="3" itemcomponent="span" class="_38ae">
+                                <div class="izc"></div>
+                                <span>@UserWebResource.LB_Category</span>
+                                <span class="_c1c">
+                                </span>
+                            </span><span class="_5d80">
+                                <a href="javascript:;" data-url="/search/category" class="view-all">@UserWebResource.LB_VIEW_ALL</a>
+                            </span>
+                            <div class="_3s3-">
+                            </div>
+                        </div>
+                        <div class="_6d01 category-item">
+                        </div>
+                    </div>
+                    <div class="destination-group _5d09 hidden">
+                        <div class="_274e _5dwa _4-u3 header">
+                            <span role="heading" aria-level="3" itemcomponent="span" class="_38ae">
+                                <div class="izb"></div>
+                                <span>@UserWebResource.LB_Destination</span>
+                                <span class="_c1c">
+                                </span>
+                            </span><span class="_5d80">
+                                <a href="javascript:;" data-url="/search/destination" class="view-all">@UserWebResource.LB_VIEW_ALL</a>
+                            </span>
+                            <div class="_3s3-">
+                            </div>
+                        </div>
+                        <div class="_6d01 destination-item">
+                        </div>
+                    </div>
+                    <div class="place-group _5d09 hidden">
+                        <div class="_274e _5dwa _4-u3 header">
+                            <span role="heading" aria-level="3" itemcomponent="span" class="_38ae">
+                                <div class="ize"></div>
+                                <span>@UserWebResource.LB_PLACE</span>
+                                <span class="_c1c">
+                                </span>
+                            </span><span class="_5d80">
+                                <a href="javascript:;" data-url="/search/place" class="view-all">@UserWebResource.LB_VIEW_ALL</a>
+                            </span>
+                            <div class="_3s3-">
+                            </div>
+                        </div>
+                        <div class="_6d01 place-item">
+                        </div>
+                    </div>
+                    <div class="post-group _5d09 hidden">
+                        <div class="_274e _5dwa _4-u3 header">
+                            <span role="heading" aria-level="3" itemcomponent="span" class="_38ae">
+                                <div class="iza"></div>
+                                <span>@UserWebResource.LB_POST</span>
+                                <span class="_c1c">
+                                </span>
+                            </span><span class="_5d80">
+                                <a href="javascript:;" data-url="/search/post" class="view-all">@UserWebResource.LB_VIEW_ALL</a>
+                            </span>
+                            <div class="_3s3-">
+                            </div>
+                        </div>
+                        <div class="_6d01 post-item">
+                        </div>
+                    </div>
+                    @*<div class="_4a4b"><hr class="_end"><div class="_31a"><div class="_32a">End of Results</div></div></div>*@
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4 hidden-xs">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section PagePluginScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Search/search.js")"></script>
+
+}

@@ -1,0 +1,152 @@
+﻿@model MySite.Models.PostModel
+@using MySite.Helpers
+@using MySite.Resources
+
+@{
+    var userLogin = AccountHelper.GetCurrentUser();
+    var hasLoggedIn = false;
+    if (userLogin != null)
+    {
+        hasLoggedIn = true;
+    }
+
+}
+
+@if (hasLoggedIn)
+{
+    <div class="add-feed-bg"></div>
+    <div class="add-feed">
+        <div class="close-post"><a href="javascript:void(0)"><i class="icon icon-clear2 fz-20"></i></a></div>
+        <div class="avatar">
+            <a href="@AccountHelper.GetUserProfileUrl(userLogin)" title="@userLogin.DisplayName">
+                <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar" />
+            </a>
+        </div>
+        @using (Html.BeginForm("SavePost", "Post", null, FormMethod.Post, new { role = "form", enctype = "multipart/form-data", id = "FrmAddPost" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="option">
+                <div class="input-group">
+                    <div class="pad15">
+                        <div class="title">
+                            @Html.HiddenFor(m => m.PostId)
+                            @Html.HiddenFor(m => m.RemovingImages)
+                            @Html.TextBoxFor(m => m.Title, new { @class = "fz-18 text-semibold", @placeholder = UserWebResource.IP_TITLE, @onkeyup = "countChar(this, 80)" })
+                            <p class="count">(<span>0</span>/80)</p>
+                        </div>
+                        <div class="margin-bottom-20">
+                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="days">
+                            @Html.HiddenFor(m => m.Days)
+                            <input type="hidden" value="@userLogin.Id" id="UserId" name="UserId" />
+                            @*<input type="hidden" class="days-values" />*@
+                            <p class="fz-14 text-semibold dropdown-toggle days-values" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@((Model.Days > 0) ? Model.Days.ToString() : "") @UserWebResource.LB_HOW_LONG</p>
+                            <i class="icon icon-arrow-down2 fz-8"></i>
+                            <ul class="dropdown-menu">
+                                @for (int i = 1; i <= 10; i++)
+                                {
+                                    <li><a href="javascript:;" onclick="Days(@i);">@i @UserWebResource.LB_DAYS</a></li>
+                                }
+                            </ul>
+                            <div class="margin-bottom-20">
+                                @Html.ValidationMessageFor(m => m.Days, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="content post-description">
+                            @Html.HiddenFor(m => m.Description)
+                            @if (string.IsNullOrEmpty(Model.Description))
+                            {
+                                <div class="text-semibold" contenteditable="true" placeholder="@UserWebResource.IP_DESCRIPTION" style="outline: none;" id="divdescription"></div>
+                            }
+                            else
+                            {
+                                <div class="text-semibold" contenteditable="true" placeholder="@UserWebResource.IP_DESCRIPTION" style="outline: none;" id="divdescription">@Html.Raw(Model.Description)</div>
+                            }
+                            <div class="margin-bottom-20">
+                                @Html.ValidationMessageFor(m => m.Description, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+                        <div class="check-in-list row">
+                            <div class="col-md-6" id="FeedLocations">
+                                @Html.HiddenFor(m => m.Locations)
+                                <p><span class="icon icon-location fz-15 mr5"></span>@UserWebResource.LB_YOU_VISITED: </p>
+
+                                @if (Model.CurrentLocations != null && Model.CurrentLocations.Count > 0)
+                                {
+                                    foreach (var item in Model.CurrentLocations)
+                                    {
+                                        @Html.Partial("../Widgets/Post/_LocationItem", item);
+                                    }
+                                }
+                            </div>
+                            <div class="col-md-6 search-location">
+                                <div class="content">
+                                    <input type="text" class="form-control dropdown-toggle locations" id="SearchLocation" @*onclick="$('#LocationList').hide();"*@ @*data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"*@ placeholder="@UserWebResource.LB_SEARCH_PLACE">
+                                    <ul class="dropdown-menu" id="LocationList"></ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="list-img">
+                        <div class="progress upload-progress hidden">
+                            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                                0%
+                            </div>
+                        </div>
+                        <div class="content">
+                            @if (Model.CurrentImages != null && Model.CurrentImages.Count > 0)
+                            {
+                                foreach (var item in Model.CurrentImages)
+                                {
+                                    @Html.Partial("../Widgets/Post/_ImageItem", item);
+                                }
+                            }
+
+                            <div class="item imgs-upload">
+                                <span class="imageThumb"><img src="~/Content/themes/default/assets/images/img/add-photo.jpg" title=""></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="UploadedImages" class="hidden">
+
+                    </div>
+                </div>
+                <input type="file" id="imgs-upload" name="files[]" multiple accept="image/x-png,image/png,image/jpeg,image/jpg" />
+                <ul class="feed-top-actions">
+                    <li class="share-your-trip">
+                        <a href="javascript:;" class="text-semibold fz-13">
+                            @UserWebResource.BT_SHARE_YOUR_TRIP
+                        </a>
+                    </li>
+                    <li class="upload-photo">
+                        <a href="javascript:;" class="text-semibold imgs-upload">
+                            <i class="icon icon-upload-a-photo">
+                                <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span>
+                            </i> @UserWebResource.BT_UPLOAD_PHOTO
+                        </a>
+                    </li>
+                    <li class="add-locations">
+                        <a href="javascript:;" class="text-semibold add-location">
+                            <i class="icon icon-add-a-location">
+                                <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+                            </i> @UserWebResource.BT_ADD_LOCATION
+                        </a>
+                    </li>
+                    <li class="post-btn">
+                        <button type="button" id="btnCreatePost" class="btn btn-primary-hl" data-loading-text="@UserWebResource.LB_PROCESSING...">@UserWebResource.BT_POST</button>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+@if (hasLoggedIn)
+{
+    <script src="@Url.VersionedContent("~/Scripts/Feed/action-box.js")"></script>
+}

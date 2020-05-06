@@ -1,0 +1,45 @@
+2019-08-13 14:17:27,522 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:17:27,537 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2019-08-13 14:17:27,538 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:17:27,656 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:17:27,657 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2019-08-13 14:17:27,657 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:19:20,404 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:19:21,591 [15] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:19:21,592 [15] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:19:24,661 [13] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:19:24,732 [7] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:19:24,733 [7] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:19:48,289 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:19:48,358 [10] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:19:48,358 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:23:57,695 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:23:57,702 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2019-08-13 14:23:57,703 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:23:57,835 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:23:57,836 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2019-08-13 14:23:57,836 [1] INFO  SingleSignOn.Startup - ======================================================
+2019-08-13 14:23:58,851 [7] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:23:59,154 [8] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:23:59,157 [8] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:24:11,570 [8] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:24:11,637 [7] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:24:11,637 [7] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:24:42,397 [11] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:24:42,465 [10] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:24:42,465 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:25:26,811 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:25:26,881 [7] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:25:26,882 [7] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:25:54,826 [10] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:26:23,514 [11] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:26:23,523 [11] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:26:35,027 [11] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:26:42,617 [11] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:26:42,618 [11] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:27:43,088 [23] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:30:51,296 [7] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":201,"Msg":"Your Username or Password are incorrect","TokenKey":null,"URLReturn":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-08-13 14:30:51,297 [7] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request
+2019-08-13 14:30:57,883 [11] DEBUG SingleSignOn.Controllers.WebAuthController - Begin LOGIN-WEB request
+2019-08-13 14:31:05,244 [29] DEBUG SingleSignOn.Controllers.WebAuthController - LOGIN-WEB Returned Model encrypted = {"Code":1,"Msg":"Login successfully","TokenKey":"7ba98ef183378095442e5302f87bfe5a","URLReturn":null,"Data":{"Id":2,"UserName":"tester@gmail.com","Email":"tester@gmail.com","FullName":"Nguy?n Van A","DisplayName":"Mr Nguyen","Avatar":"Avatars/2_1526366296.jpg","PhoneNumber":"0123456789","CreatedDateUtc":null,"TokenKey":"7ba98ef183378095442e5302f87bfe5a","TokenCreatedDate":"2019-08-13T14:31:04.9427648+07:00","TokenExpiredDate":"2019-08-14T07:11:04.9427648+07:00","LoginDurations":1000,"OTPType":""}}
+2019-08-13 14:31:05,264 [29] DEBUG SingleSignOn.Controllers.WebAuthController - Ended LOGIN-WEB request

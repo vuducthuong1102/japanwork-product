@@ -1,0 +1,51 @@
+﻿@using MySite.Resources
+@model MySite.Models.WebAuthLoginViewModel
+
+<style>
+    .summary-notification{padding:10px; border: 1px solid #ccc;}
+</style>
+<div class="account-popup-area signin-popup-box">    
+    <div class="account-popup">
+        <span class="close-popup"><i class="la la-close"></i></span>
+        <h3>@UserWebResource.LB_SINGLE_SIGN_ON_LOGIN</h3>
+        @*<span>Click To Login With Demo User</span>
+        <div class="select-user">
+            <span>Candidate</span>
+            <span>Employer</span>
+        </div>*@
+        @using (Html.BeginForm("Login", "WebAuth", null, FormMethod.Post, new { role = "form", id = "frmQuickLogin" }))
+        {
+            @Html.Partial("_Notifications")
+
+            <a href="/WebAuth/ResendEmailActive" class="btn-send-email-active hidden fz-13">
+                <i class="fa fa-envelope"></i> @UserWebResource.LB_RESEND_EMAIL_ACTIVE_ACCOUNT
+            </a>
+
+            @Html.AntiForgeryToken()
+            <div class="cfield">
+                @Html.TextBoxFor(m => m.UserName, new { @id = "txtaccount", @class = "form-control", placeholder = UserWebResource.LB_USER_NAME })
+                <i class="la la-user"></i>
+            </div>
+            @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%" })
+            <div class="cfield">
+                @Html.TextBoxFor(m => m.Password, new { @id = "txtpassword", @type = "password", @class = "form-control", placeholder = UserWebResource.LB_PASSWORD })
+                <i class="la la-key"></i>
+            </div>
+            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%;" })
+
+            <p class="remember-label">
+                <input type="checkbox" name="@Html.IdFor(m=>m.RememberMe)" value="true" id="@Html.IdFor(m=>m.RememberMe)"><label for="@Html.IdFor(m=>m.RememberMe)">@UserWebResource.LB_REMEMBER_ME</label>
+            </p>
+            <a href="/WebAuth/RecoverPassword" title="">@UserWebResource.LB_FORGOT_PASSWORD</a>
+            <button type="submit">@UserWebResource.BT_LOGIN</button>
+        }
+        <div class="extra-login">
+            @*<span>@UserWebResource.LB_OR</span>*@
+            <div class="login-social">
+                <a title="" style="color:#fb236a;" href="/WebAuth/Register"><i class="la la-key"></i> @UserWebResource.LB_REGISTER_BY_CLICK</a>
+                @*<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
+                <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>*@
+            </div>
+        </div>
+    </div>
+</div><!-- LOGIN POPUP -->

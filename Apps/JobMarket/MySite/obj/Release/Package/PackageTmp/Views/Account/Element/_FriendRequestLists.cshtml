@@ -1,0 +1,93 @@
+﻿@using MySite.Resources;
+@using System.Linq;
+@using MySite.ShareLibs.Common;
+@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@model  IdentityNotifFriend
+
+@if (Model != null)
+{
+    if (Model.ListNoti != null && Model.ListNoti.Count > 0)
+    {
+        @RenderNotifFriend(Model.ListNoti)
+    }
+
+    if (Model.ListInvite != null && Model.ListInvite.Count > 0)
+    {
+        @RenderFriendRequest(Model.ListInvite)
+    }
+    if (Model.ListInvite != null && Model.ListInvite.Count == 0 && Model.ListNoti != null && Model.ListNoti.Count == 0)
+    {
+        <div class="no-notif">Hiện tại chưa có lời kết bạn nào</div>
+    }
+    else
+    {
+        <div class="no-notif hidden">Hiện tại chưa có lời kết bạn nào</div>
+    }
+}
+else
+{
+    <div class="no-notif">Hiện tại chưa có lời kết bạn nào</div>
+}
+@helper RenderFriendRequest(List<IdentityFriendRequest> requests)
+{
+    <div class="box-friend">
+        <div class="head mt5">
+            <p>@UserWebResource.LB_FRIEND_REQUEST</p>
+            <a href="/account/viewinvitefriend">@UserWebResource.LB_VIEW_ALL</a>
+        </div>
+        <div>
+            <div class="box-friend-noti">
+                @foreach (var item in requests)
+                {
+                    <div class="item item-@item.Id active" title="@item.DisplayName">
+                        <div class="avatar"><a href="@AccountHelper.GetUserProfileUrl(item)"><img src="@item.Avatar" alt="@item.DisplayName" /></a></div>
+                        <div class="content">
+                            <div class="dltable">
+                                <div class="dltable-cell">
+                                    <p class="mb0"><span class="text-bold">@item.DisplayName</span></p>
+                                </div>
+                                <div class="dltable-cell text-right" data-id="@item.Id">
+                                    <a href="javascript:;" class="text-bold text-blue dlib btn-confirm-request">@UserWebResource.BT_CONFIRM</a>
+                                    <a href="javascript:;" class="padl0 flr btn-delete-request" title="@UserWebResource.BT_DELETE"><span class="icon icon-trash"><span class="path1"></span><span class="path2"></span><span class="path3"></span></span></a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+@helper RenderNotifFriend(List<IdentityNotification> listNotif)
+{
+    <div class="accept-box">
+        <div class="head mt5">
+            <p>@UserWebResource.LB_ACCEPT_REQUESTS</p>
+        </div>
+        <div>
+            <div class="box-friend box-friend-noti">
+                @foreach (var item in listNotif)
+                {
+                    <div class="item active">
+                        <div class="avatar"><a href="@AccountHelper.GetUserProfileUrl(item)"><img src="@item.ActorAvatar" alt="@item.ActorDisplayName" /></a></div>
+                        <div class="content">
+                            <div class="dltable">
+                                <div class="dltable-cell">
+                                    <p class="mb0"><span class="text-bold">@item.ActorDisplayName</span> @UserWebResource.LB_ACCEPTED_REQUEST.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+

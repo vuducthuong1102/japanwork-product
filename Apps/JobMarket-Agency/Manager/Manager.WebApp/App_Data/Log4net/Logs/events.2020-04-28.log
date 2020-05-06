@@ -1,0 +1,559 @@
+2020-04-28 00:00:27,995 [150] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:01:14,591 [113] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:02:44,702 [103] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:03:07,393 [229] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:03:23,189 [150] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:03:43,265 [150] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:03:52,249 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 00:05:49,933 [103] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 00:05:49,938 [103] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 00:07:34,811 [135] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:07:34,825 [135] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 00:07:34,825 [135] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:07:34,851 [135] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:07:34,852 [135] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 00:07:34,853 [135] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:12:14,913 [206] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:12:14,930 [206] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 00:12:14,931 [206] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:12:14,976 [206] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 00:12:14,976 [206] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 00:12:14,977 [206] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 05:15:02,298 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 05:15:02,308 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 05:15:02,309 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 05:15:02,334 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 05:15:02,335 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 05:15:02,336 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:53:15,590 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:53:15,602 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 08:53:15,602 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:53:15,630 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:53:15,631 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 08:53:15,632 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:53:25,519 [64] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-28 08:53:26,012 [83] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-28 08:53:26,520 [192] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 08:55:05,230 [174] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 08:55:05,236 [174] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 08:56:13,559 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:56:13,571 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 08:56:13,572 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:56:13,604 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:56:13,606 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 08:56:13,607 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 08:56:25,137 [43] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 09:01:57,198 [65] ERROR Manager.WebApp.Services.JobServices - Failed when calling api GetDetailAsync - http://localhost:3333/api/admin/jobs/9 because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.JobServices.<Admin_GetDetailAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 49
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:01:57,256 [65] ERROR Manager.WebApp.Controllers.JobController - Failed to display EditJob [9] because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<Admin_GetDetailAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 63
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.JobController.Language(Nullable`1 id, Nullable`1 company_id, Nullable`1 status, Nullable`1 translate_status) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobController.cs:line 1174
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<Admin_GetDetailAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 63<---
+
+2020-04-28 09:02:03,095 [64] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:02:05,417 [64] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:02:05,430 [65] ERROR Manager.WebApp.MvcApplication - Application Error: Value cannot be null.
+Parameter name: source
+System.ArgumentNullException: Value cannot be null.
+Parameter name: source
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at ASP._Page_Views_Job_Language_cshtml.Execute() in c:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Views\Job\Language.cshtml:line 38
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy()
+   at System.Web.Mvc.WebViewPage.ExecutePageHierarchy()
+   at System.Web.WebPages.StartPage.ExecutePageHierarchy()
+   at System.Web.WebPages.WebPageBase.ExecutePageHierarchy(WebPageContext pageContext, TextWriter writer, WebPageRenderingBase startPage)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-28 09:02:35,623 [43] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:02:40,140 [43] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:02:40,176 [65] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:02:40,245 [65] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:02:45,771 [71] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:02:45,832 [71] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:05:50,687 [64] ERROR Manager.WebApp.Services.JobServices - Failed when calling api CreateAsync - http://localhost:3333/api/jobs because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.JobServices.<CreateAsync>d__6.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 325
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:05:50,753 [64] ERROR Manager.WebApp.Controllers.JobController - Failed to CreateJob because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<CreateAsync>d__6.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 340
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.JobController.Create_Job(JobEditModel model) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobController.cs:line 295
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<CreateAsync>d__6.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 340<---
+
+2020-04-28 09:05:52,170 [17] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:05:52,228 [17] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:05:53,873 [28] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:05:53,938 [28] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:06:20,811 [64] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 09:06:20,869 [64] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 09:09:03,400 [64] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 09:09:03,439 [64] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 09:20:25,791 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 09:20:25,804 [39] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 09:20:25,805 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 09:20:25,842 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 09:20:25,843 [39] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 09:20:25,843 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 09:20:39,322 [109] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 12:08:05,004 [88] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 12:09:55,454 [185] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 12:09:56,461 [83] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 12:09:57,477 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 12:10:07,446 [192] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 12:10:08,462 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 12:10:09,465 [185] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 12:10:15,170 [16] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 12:10:16,173 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 12:10:17,205 [171] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:18:56,014 [45] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:18:57,535 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:18:59,064 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:25:16,078 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:25:17,094 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:25:18,112 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:26:57,384 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:26:58,405 [82] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:26:59,424 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:28:20,088 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:28:21,097 [118] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:28:22,110 [114] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:28:42,503 [179] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-28 15:28:43,002 [79] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-28 15:28:43,521 [114] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 15:28:50,616 [79] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 15:28:52,426 [179] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 15:29:07,676 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:29:07,682 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:29:07,686 [179] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:29:47,399 [49] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:29:47,399 [78] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:29:47,407 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:31:21,923 [108] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:31:21,928 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:31:21,934 [179] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:33:57,917 [35] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:33:57,921 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:33:57,924 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:36:13,149 [25] ERROR Manager.WebApp.Services.A_JobSeekerServices - Failed when calling api GetDetailForUpdateAsync - http://localhost:3333/api/A_job_seekers/detail_for_update because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_JobSeekerServices.<GetDetailForUpdateAsync>d__5.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_JobSeekerServices.cs:line 266
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:13,208 [25] ERROR Manager.WebApp.Controllers.JobSeekerController - Failed when display Update Page because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_JobSeekerServices.<GetDetailForUpdateAsync>d__5.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_JobSeekerServices.cs:line 280
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.JobSeekerController.Update(Nullable`1 id, Nullable`1 next_step) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobSeekerController.cs:line 1023
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_JobSeekerServices.<GetDetailForUpdateAsync>d__5.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_JobSeekerServices.cs:line 280<---
+
+2020-04-28 15:36:13,759 [35] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:13,835 [35] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 15:36:13,876 [86] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:13,949 [86] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 15:36:43,342 [181] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:43,408 [181] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 15:36:44,009 [79] ERROR Manager.WebApp.Services.StationServices - Failed when calling api to GetListAsync - http://localhost:3333/api/stations/11101/get_list_by_position because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.StationServices.<GetListByPositionAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\StationServices.cs:line 137
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:44,081 [79] ERROR Manager.WebApp.Controllers.MasterController - Failed to GetSuggestionStations because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.StationServices.<GetListByPositionAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\StationServices.cs:line 151
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.MasterController.GetSuggestionStationByTrainLines() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\MasterController.cs:line 337
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.StationServices.<GetListByPositionAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\StationServices.cs:line 151<---
+
+2020-04-28 15:36:44,120 [35] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 15:36:44,186 [35] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 15:36:47,094 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:36:47,096 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:36:47,162 [42] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:37:07,048 [64] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:37:07,052 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:37:07,059 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:37:21,180 [82] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:37:21,180 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:37:21,233 [35] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:37:34,901 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:37:34,903 [181] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:37:34,905 [25] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 15:37:44,881 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 15:45:55,558 [112] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 15:45:55,566 [175] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 15:45:55,574 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:01:33,377 [48] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-28 16:01:33,889 [20] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-28 16:01:34,380 [50] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 16:01:47,153 [44] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 16:02:12,303 [127] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 16:02:12,316 [127] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 16:02:12,317 [127] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 16:02:12,353 [127] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 16:02:12,354 [127] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 16:02:12,355 [127] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 16:02:24,566 [44] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:02:24,567 [48] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:02:24,566 [123] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:02:26,162 [13] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-28 16:06:16,798 [8] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:06:16,803 [9] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:06:16,810 [79] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:10:16,094 [59] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 16:11:41,376 [139] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:11:41,377 [34] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:11:41,377 [116] ERROR Manager.WebApp.Services.A_JobSeekerServices - Failed when calling api UpdateProfileAsync - http://localhost:3333/api/A_job_seekers/update_profile because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_JobSeekerServices.<UpdateProfileAsync>d__4.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_JobSeekerServices.cs:line 211
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:11:41,572 [139] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 16:11:41,601 [34] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 16:11:41,602 [116] ERROR Manager.WebApp.Controllers.JobSeekerController - Failed to exec CreateProfile because: Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_JobSeekerServices.<UpdateProfileAsync>d__4.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_JobSeekerServices.cs:line 225
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Manager.WebApp.Controllers.JobSeekerController.<UpdateProfile>d__19.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobSeekerController.cs:line 925
+2020-04-28 16:12:11,807 [116] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:12:11,807 [132] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:12:11,847 [139] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 16:12:12,005 [116] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 16:12:12,044 [132] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 16:12:12,046 [139] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 16:12:51,278 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 16:14:12,448 [29] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:14:12,452 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:14:12,459 [16] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:14:36,459 [16] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:14:36,461 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:14:36,463 [186] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:15:04,364 [186] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 16:15:15,899 [43] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:15:15,901 [186] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:15:15,902 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:15:24,181 [186] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:15:24,184 [116] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:15:24,187 [37] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:38:18,612 [111] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 16:38:18,650 [111] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-28 16:38:19,942 [121] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 16:38:41,005 [184] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:38:41,006 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:38:41,006 [121] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:39:01,063 [184] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:39:01,066 [17] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:39:01,068 [121] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:39:39,359 [118] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:39:39,402 [17] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:39:39,405 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:41:30,238 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:41:30,238 [118] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:41:30,238 [17] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:42:07,875 [27] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:42:07,875 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:42:08,060 [118] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:46:15,045 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:46:15,045 [45] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:46:15,252 [158] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:50:59,730 [172] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:50:59,730 [67] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:50:59,913 [67] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:56:16,288 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:56:16,291 [113] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:56:16,470 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:56:26,098 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:56:26,099 [154] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 16:56:26,098 [113] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:56:38,966 [113] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 16:56:38,966 [124] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 16:56:39,010 [177] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 17:04:23,378 [116] ERROR Manager.WebApp.Services.A_NotificationServices - Failed when calling api GetUnreadNotifCountAsync - http://localhost:3333/api/A_notifications/unread_count because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 52
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-28 17:04:23,437 [116] ERROR Manager.WebApp.Controllers.AuthedGlobalController - Failed when trying GetNotifCount because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.AuthedGlobalController.GetNotifCount() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\AuthedGlobalController.cs:line 37
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.A_NotificationServices.<GetUnreadNotifCountAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\Agency\A_NotificationServices.cs:line 66<---
+
+2020-04-28 17:11:58,119 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 17:11:58,133 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 17:11:58,133 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 17:11:58,158 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 17:11:58,159 [178] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 17:11:58,159 [178] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 21:48:19,208 [124] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 21:56:41,648 [50] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 21:56:52,392 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 21:56:52,393 [92] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 21:56:52,393 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 21:57:25,607 [44] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 21:57:25,608 [92] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 21:57:25,614 [26] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 21:59:15,446 [75] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 21:59:15,473 [15] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 21:59:15,500 [23] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 21:59:52,458 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 21:59:52,458 [30] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 21:59:52,468 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 22:00:04,054 [30] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-28 22:00:04,058 [132] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-28 22:00:04,068 [182] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-28 22:06:13,170 [22] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 22:06:23,519 [50] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-28 22:06:36,653 [95] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-28 22:06:36,658 [95] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-28 22:15:38,988 [36] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 22:15:39,004 [36] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-28 22:15:39,005 [36] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 22:15:39,040 [36] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-28 22:15:39,041 [36] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-28 22:15:39,042 [36] INFO  Manager.WebApp.Startup - ======================================================

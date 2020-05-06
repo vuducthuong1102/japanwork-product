@@ -1,0 +1,95 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityComment
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var currentId = AccountHelper.GetCurrentUserId();
+}
+@if (Model != null)
+{
+    var item = Model;
+    <div class="comment-it">
+        <a href="@AccountHelper.GetUserProfileUrl(item)">
+            <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar avatar-comment">
+        </a>
+        <div class="UFIImageBlockContent _42ef">
+            <input type="hidden" name="comment-id" value="@item.Id" />
+            <div class="UFICommentContentBlock">
+                <div class="UFICommentContent">
+                    <div class="_26f8">
+                        <div class="_10la @HtmlHelpers.CheckMaxLengthReturnClass(item.Content)">
+                            <span class="UFICommentActorAndBody">
+                                <span>
+                                    <a class="UFICommentActorName" href="@AccountHelper.GetUserProfileUrl(item)">
+                                        @item.DisplayName
+                                    </a>
+                                </span>
+                                <span>
+                                    <span>
+                                        <span>
+                                            <span>
+                                                <span class="UFICommentBody">
+                                                    @Html.Raw(item.Content)
+                                                </span>
+                                            </span>
+                                        </span>
+                                    </span>
+                                </span>
+                            </span>
+
+                            <div class="_10lo @HtmlHelpers.CheckLikeCountReturnClass(item.Like_Count)" tabindex="-1">
+                                @Html.Partial("~/Views/Post/RenderItem/_RenderActionNotification.cshtml", item.Like_Count)
+                            </div>
+                        </div>
+                        @if (item.UserId == currentId)
+                        {
+                            <div class="padl5 op">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im"></i></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-edit" role="menuitem">@(UserWebResource.BT_EDIT)...</a></li>
+                                    <li><a href="#" class="text-black comment-menu" data-textid="comment-menu-delete" role="menuitem">@(UserWebResource.BT_DELETE)...</a></li>
+                                </ul>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="fsm fwn fcg UFICommentActions">
+                    @if (hasLoggedIn)
+                    {
+                        <span class="_6a _3-me">
+                            <span class="_khz _4sz1 _4rw5 _3wv2">
+                                @{
+
+                                    var IsActive = "";
+                                    var dataislike = 0;
+                                    if (item.IsLike)
+                                    {
+                                        IsActive = "active";
+                                        dataislike = 1;
+                                    }
+                                }
+                                <a aria-pressed="false" class="UFILikeLink UFIReactionLink like-comment @IsActive" data-id="@item.Id" data-like="@item.Like_Count" data-islike="@dataislike" href="javascript:;" role="button" tabindex="0">@UserWebResource.BT_LIKE</a>
+                            </span>
+                        </span>
+                        <span aria-hidden="true" role="presentation"> · </span>
+                        <a class="UFIReplyLink _460i comment-reply" href="javascript:;" role="button" data-id="@item.Id">@UserWebResource.LB_REPLY</a>
+                        <span aria-hidden="true" role="presentation"> · </span>
+                    }
+                    <span>
+                        <span class="UFISutroCommentTimestamp livetimestamp" title="@DateHelpers.FormatToString(item.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(item.CreatedDate)">
+                            @DateHelpers.FormatToString(item.CreatedDate)
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,74 @@
+2020-05-06 09:34:25,880 [140] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:34:25,884 [140] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:34:25,886 [140] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:34:34,178 [38] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:35:20,409 [48] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:44:56,700 [6] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:44:56,701 [6] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:44:56,702 [6] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:45:03,516 [29] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:45:42,025 [29] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 09:46:00,100 [166] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-05-06 09:46:15,762 [15] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:46:15,762 [130] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 09:46:15,762 [140] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:50:45,656 [151] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:50:45,657 [166] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:50:45,776 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 09:51:00,681 [118] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 09:51:00,692 [118] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-05-06 09:51:00,693 [118] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 09:51:00,716 [118] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 09:51:00,717 [118] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-05-06 09:51:00,717 [118] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 09:51:07,441 [140] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:51:07,502 [121] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:51:07,542 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 09:54:54,709 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:54:54,710 [15] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:54:54,711 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 09:55:51,315 [38] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:55:51,316 [130] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:55:51,319 [6] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 09:57:32,170 [166] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 09:57:32,202 [38] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 09:57:32,209 [171] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 10:04:46,737 [151] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 10:04:46,737 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 10:04:46,905 [46] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 10:07:39,049 [46] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-05-06 10:07:39,111 [48] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-05-06 10:07:39,128 [130] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-05-06 10:10:34,092 [15] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-05-06 10:10:41,445 [149] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-05-06 10:16:13,580 [125] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 10:16:13,584 [125] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 10:16:13,586 [125] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 266
+2020-05-06 10:54:33,543 [140] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-05-06 10:54:36,378 [38] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-05-06 13:44:42,336 [107] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:44:42,347 [107] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-05-06 13:44:42,348 [107] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:44:42,372 [107] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:44:42,372 [107] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-05-06 13:44:42,372 [107] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:47:28,139 [41] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:47:28,150 [41] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-05-06 13:47:28,151 [41] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:47:28,173 [41] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 13:47:28,174 [41] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-05-06 13:47:28,174 [41] INFO  Manager.WebApp.Startup - ======================================================
+2020-05-06 14:00:07,275 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request

@@ -1,0 +1,104 @@
+﻿@model MySite.Models.JobSearchModel
+@using MySite.Helpers
+@using MySite.Resources
+
+@if (Model != null)
+{
+    var hasLoggedIn = User.Identity.IsAuthenticated;
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+    if (Model.JobLists != null && Model.JobLists.Count > 0)
+    {
+        for (int i = 0; i < Model.JobLists.Count; i++)
+        {
+            var item = Model.JobLists[i];
+            var slug = string.Empty;
+            if (item.job_info.Job_translations.HasData())
+            {
+                slug = item.job_info.Job_translations[0].friendly_url;
+                if (string.IsNullOrEmpty(slug))
+                {
+                    slug = UrlFriendly.ConvertToUrlFriendly(item.job_info.Job_translations[0].title);
+                }
+            }
+            var listEmployments = CommonHelpers.GetListEmploymentTypes();
+            var detailLink = SecurityHelper.GenerateSecureLink("job", "detail", new { lr = slug, id = item.id });
+            <div class="job-listing" data-href="@detailLink">
+
+                <div class="job-title-sec">
+                    <div class="c-logo">
+                        <a href="@detailLink" class="company-logo">
+                            @if (item.job_info.company_info != null)
+                            {
+                                if (!string.IsNullOrEmpty(item.job_info.company_info.logo_full_path))
+                                {
+                                    <img class="lazy" src="@defaultComLogo" data-original="@item.job_info.company_info.logo_full_path" title="@item.job_info.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />                                    
+                                }
+                                else
+                                {
+                                    <img src="@defaultComLogo" title="@item.job_info.company_info.company_name" />
+                                }
+                            }
+                            else
+                            {
+                                <img src="@defaultComLogo" alt="" style="object-fit:cover;" />
+                            }
+                            @*<img src="@item.job_info.company_info.logo_full_path" alt="" style="max-height:50px;object-fit:cover;" onerror="this.onerror=null;this.src='/Content/themes/default/images/resource/profile.jpg';">*@
+                        </a>
+                    </div>
+                    <h3 class="mt10"><a href="@detailLink" title="">@item.job_info.Job_translations[0].title</a></h3>
+
+                    @if (item.job_info.company_info != null)
+                    {
+                        <span class="float-left"><a href="@detailLink" title="">@item.job_info.company_info.company_name</a></span>
+                    }
+                </div>
+                <span class="job-lctn"></span>
+                @*<span class="job-lctn">
+                    @if (item.job_info.Addresses != null)
+                    {
+                        var workingAddress = FrontendHelpers.RenderJobWorkingAddress(item.job_info.Addresses.FirstOrDefault(), item.job_info.view_company);
+                        if (!string.IsNullOrEmpty(workingAddress))
+                        {
+                            <i class="la la-map-marker"></i>@workingAddress
+                        }
+                    }
+                </span>*@
+                
+                @if (item.is_saved)
+                {
+                    <span class="fav-job" title="@UserWebResource.LB_SAVED">
+                        <a href="javascript:;" class="btn-save-job" data-id="@item.job_info.id">
+                            <i class="la @((item.is_saved) ? "la-heart text-danger": "la-heart la-heart-o")"></i>
+                        </a>
+                    </span>
+                }
+                else
+                {
+                    <span class="fav-job">
+                        <a class="@((hasLoggedIn) ? "btn-save-job" : "unauthorized")" data-id="@item.job_info.id" title="@UserWebResource.LB_SAVE_THIS_JOB">
+                            <i class="la @((item.is_saved) ? "la-heart text-danger": "la-heart la-heart-o")"></i>
+                        </a>
+                    </span>
+                }
+                @{
+                    var employmentType = listEmployments.Where(x => x.id == item.job_info.employment_type_id).FirstOrDefault();
+                    if (employmentType != null)
+                    {
+                        var className = "";
+                        if (employmentType.id == 1)
+                        {
+                            className = "pt";
+                        }
+                        else if (employmentType.id == 2)
+                        {
+                            className = "ft";
+                        }
+                        <span class="job-is @className">
+                            @employmentType.employment_type
+                        </span>
+                    }
+                }
+            </div><!-- Job -->
+        }
+    }
+}

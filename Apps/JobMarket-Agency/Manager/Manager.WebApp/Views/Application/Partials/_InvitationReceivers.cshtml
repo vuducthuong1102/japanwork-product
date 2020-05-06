@@ -1,0 +1,103 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageInvitationModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var hasCVs = Model.CVs.HasData();
+}
+
+@using (Html.BeginForm("GetReceiversSearch", "Invitation", FormMethod.Post, new { role = "form", @class = "", id = "frmReceiversSearch" }))
+{
+    <div class="modal-body">
+        <div class="m-portlet">
+            <!--begin::Form-->
+            @RenderSearchForm()
+            <!--end::Form-->
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+        </button>
+    </div>
+}
+
+@helper RenderSearchForm()
+{
+    using (Html.BeginForm("GetReceivers", "Invitation", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed", @id = "frmSearch" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.SearchExec)        
+        @Html.HiddenFor(m => m.CurrentPage, new { @id= "CurrentPagePopup" })
+        @Html.HiddenFor(m => m.invite_id)
+        @Html.HiddenFor(m => m.job_id)
+        <div class="m-portlet__body">
+            <div class="form-group m-form__group row">
+                <div class="col-lg-3 m-form__group--inline">
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input", placeholder = ManagerResource.LB_KEYWORD_SEARCH })
+                </div>
+                <div class="col-md-3 m-form__group--inline">
+                    <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
+                        <option value="-99">
+                            @ManagerResource.LB_SELECT_STATUS
+                        </option>
+                        @foreach (var item in Enum.GetValues(typeof(EnumApplicationInvitationStatus)))
+                        {
+                            var chkItem = (int)item;
+                            var chkStr = string.Empty;
+                            if (chkItem == Model.Status)
+                            {
+                                chkStr = "selected";
+                            }
+                            <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-lg-2 m-form__group--inline">
+                    <button type="submit" class="btn btn-info">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="ReceiversList">
+            @Html.Partial("~/Views/Invitation/Partials/_ReceiversList.cshtml", Model)
+        </div>
+    }
+}
+
+<script>
+
+    $("#myModal").on('shown.bs.modal', function () {
+        $(".selectpicker").selectpicker();
+    });
+
+    $("#frmReceiversSearch").on("submit", function () {
+        GetReceiversSearch();
+        return false;
+    });
+
+    function GetReceiversSearchNext(pageNum) {
+        $("#CurrentPagePopup").val(pageNum)
+        GetReceiversSearch();
+    }
+
+    function GetReceiversSearch() {
+        var frmData = $("#frmReceiversSearch").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Invitation/GetReceiversSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#ReceiversList").html(data);
+        };
+
+        doAjax(params);
+    }
+</script>

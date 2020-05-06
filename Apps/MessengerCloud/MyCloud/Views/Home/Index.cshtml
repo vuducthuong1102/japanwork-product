@@ -1,0 +1,63 @@
+﻿@*@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/signalr/hubs/"></script>
+    
+    <script type="text/javascript">
+        var userInfo = {
+            user_name: "bangvl",
+            id: 1,
+            device_id: "453d346xa235457vv",
+            registration_id: "335xqdpvjj_1-daf16459da3a",
+            device_type: 0,
+            language_code: "vi-VN"
+        };
+
+        $(function () {
+            // Declare a proxy to reference the hub.
+            var commonGateHub = $.connection.commonGateHub;
+            $.connection.hub.url = "http://localhost:3535/signalr/hubs/";
+            $.connection.hub.start().done(function () {
+                console.log('Connected to MyCloud server successfully');
+
+                registerEvents(commonGateHub);
+
+            }).fail(function (error) {
+                console.log("Cannot connect to MyCloud server because: " + error);
+            });
+
+            //Register all client methods
+            registerClientMethods(commonGateHub);
+        });
+
+        function registerEvents(commonGateHub) {
+            commonGateHub.server.connect(userInfo);
+            console.log(userInfo);
+
+            $("#btnCheck").click(function () {
+                commonGateHub.server.sendMessage();
+            });
+        }
+
+        function registerClientMethods(commonGateHub) {
+            // Calls when user successfully logged in
+            commonGateHub.client.onConnected = function (connectionId) {
+                console.log("Your current ConnectionId: " + connectionId);
+            }
+
+            // On New User Connected
+            commonGateHub.client.onNewUserConnected = function (id, name) {
+                console.log(name + " connected to MyCloud. ConnectionId: " + id);
+            }
+
+            // On User Disconnected
+            commonGateHub.client.onUserDisconnected = function (id, userName) {
+
+            }
+
+            // On New User Connected
+            commonGateHub.client.updateNotification = function () {
+                alert('Received new notification. Press F5 now');
+            }
+        }
+    </script>
+}*@

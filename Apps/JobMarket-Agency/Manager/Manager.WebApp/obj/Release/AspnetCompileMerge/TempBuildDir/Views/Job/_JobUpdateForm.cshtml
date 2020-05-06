@@ -1,0 +1,732 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.JobEditModel
+
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var langList = LanguagesProvider.GetListLanguages();
+    var languageCode = Model.language_code;
+    if (string.IsNullOrEmpty(languageCode))
+    {
+        languageCode = currentLang;
+    }
+}
+
+@Html.AntiForgeryToken()
+@Html.HiddenFor(m => m.id)
+@Html.HiddenFor(m => m.status)
+<input type="hidden" name="language_code" id="LanguageCode" value="@languageCode" />
+@if (Model.Companies.HasData())
+{
+    var companyInfo = Model.Companies.FirstOrDefault(s => s.id == Model.company_id);
+    if (companyInfo != null)
+    {
+        Model.sub_industry_id = companyInfo.sub_industry_id;
+    }
+}
+<div class="form-group m-form__group row">
+    <div class="col-lg-9 col-sm-12 fz-16">
+        @if (!hasCompanies)
+        {
+            <span class="text-danger"> @ManagerResource.LB_COMPANY_EMPTY_WARNING_MESSAGE_BEGIN</span><a href="/Company/Create"> @ManagerResource.BT_CLICK_HERE </a><span class="text-danger"> @ManagerResource.LB_COMPANY_EMPTY_WARNING_MESSAGE_END</span>
+        }
+        else
+        {
+            <label class="text-bold">
+                @ManagerResource.LB_COMPANY (<span class="required-input">*</span>)
+            </label>
+            <select class="form-control selectpicker btn-white" id="company_id" name="company_id" data-live-search="true" data-size="7">
+
+                @{
+                    if (Model.sub_industry_id == 0)
+                    {
+                        var companyInfo = Model.Companies.FirstOrDefault(s => s.id == Model.company_id);
+                        if (companyInfo != null)
+                        {
+                            Model.sub_industry_id = companyInfo.sub_industry_id;
+                        }
+
+                    }
+                    foreach (var item in Model.Companies)
+                    {
+                        var selected = "";
+                        var companyName = string.Empty;
+                        if (item.LangList.HasData())
+                        {
+                            companyName = item.LangList.Where(x => x.language_code == currentLang).Select(x => x.company_name).FirstOrDefault();
+                        }
+
+                        if (string.IsNullOrEmpty(companyName))
+                        {
+                            companyName = item.company_name;
+                        }
+                        if (item.id == Model.company_id)
+                        {
+                            selected = "selected";
+                        }
+                        <option value="@item.id" @selected data-sub-industry-id="@item.sub_industry_id">@companyName</option>
+                    }
+                }
+            </select>
+        }
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_TITLE (<span class="required-input">*</span>)
+        </label>
+
+        @Html.TextBoxFor(m => m.title, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.title, null, new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-4 col-sm-12 form-group">
+        <label class="text-bold">@ManagerResource.LB_JOB_INDUSTRY</label>
+        <select class="form-control selectpicker select-field" name="sub_industry_id" data-live-search="true" data-size="7">
+            @if (Model.Industries.HasData())
+            {
+                foreach (var industry in Model.Industries)
+                {
+                    if (industry.Sub_industries.HasData())
+                    {
+                        var industryName = industry.LangList.Where(x => x.language_code == currentLang).Select(x => x.industry).FirstOrDefault();
+                        if (string.IsNullOrEmpty(industryName))
+                        {
+                            industryName = industry.industry;
+                        }
+
+                        <optgroup label="@industryName">
+                            @foreach (var sub in industry.Sub_industries)
+                            {
+                                var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_industry).FirstOrDefault();
+                                if (string.IsNullOrEmpty(subName))
+                                {
+                                    subName = sub.sub_industry;
+                                }
+
+                                <option value="@sub.id" @(sub.id == Model.sub_industry_id ? "selected" : string.Empty)
+                                        data-subtext="@industryName" class="text-muted-hidden">
+                                    @subName
+                                </option>
+                            }
+                        </optgroup>
+                    }
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-lg-4 col-sm-12 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_EMPLOYMENT_TYPE
+        </label>
+
+        <select class="form-control selectpicker select-employment-type" name="@Html.NameFor(m=>m.employment_type_id)">
+            @if (Model.EmploymentTypes.HasData())
+            {
+                foreach (var item in Model.EmploymentTypes)
+                {
+                    var calculateLabel = string.Empty;
+                    var typeName = string.Empty;
+                    if (item.calculate_by == (int)EnumEmploymentCalculateBy.Month)
+                    {
+                        calculateLabel = ManagerResource.LB_SALARY_BY_MONTH;
+                    }
+                    else
+                    {
+                        calculateLabel = ManagerResource.LB_SALARY_BY_HOUR;
+                    }
+
+                    if (item.LangList.HasData())
+                    {
+                        typeName = item.LangList.Where(x => x.language_code == currentLang).Select(x => x.employment_type).FirstOrDefault();
+                    }
+
+                    if (string.IsNullOrEmpty(typeName))
+                    {
+                        typeName = item.employment_type;
+                    }
+
+                    <option value="@item.id" data-calculate="@calculateLabel" @(item.id == Model.employment_type_id ? "selected" : string.Empty)> @typeName</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="col-lg-4 col-sm-12 form-group">
+        <label class="text-bold">@ManagerResource.LB_JOB_FIELD</label>
+        <div class="select-job-field">
+            <select class="form-control selectpicker" name="sub_field_id" data-live-search="true" data-size="7">
+                @if (Model.Fields.HasData())
+                {
+                    foreach (var field in Model.Fields)
+                    {
+                        if (field.Sub_fields.HasData())
+                        {
+                            var fieldName = field.LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                            if (string.IsNullOrEmpty(fieldName))
+                            {
+                                fieldName = field.field;
+                            }
+
+                            <optgroup label="@fieldName">
+                                @foreach (var sub in field.Sub_fields)
+                                {
+                                    var subName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_field).FirstOrDefault();
+                                    if (string.IsNullOrEmpty(subName))
+                                    {
+                                        subName = sub.sub_field;
+                                    }
+
+                                    <option value="@sub.id" @(sub.id == Model.sub_field_id ? "selected" : string.Empty)
+                                            data-subtext="@fieldName" class="text-muted-hidden">
+                                        @subName
+                                    </option>
+                                }
+                            </optgroup>
+                        }
+                    }
+                }
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_WORK_CONTENT
+        </label>
+
+        @Html.TextAreaFor(m => m.work_content, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_REQUIREMENT
+        </label>
+
+        @Html.TextAreaFor(m => m.requirement, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_PLUS
+        </label>
+
+        @Html.TextAreaFor(m => m.plus, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-2 col-sm-12 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_QUANTITY
+        </label>
+
+        @Html.TextBoxFor(m => m.quantity, new { @class = "form-control text-right", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.quantity, null, new { @class = "text-danger" })
+    </div>
+    <div class="col-lg-3 col-sm-12 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_PROBATION_DURATION (<i>@ManagerResource.LB_MONTHS.ToLower()</i>)
+        </label>
+        @Html.TextBoxFor(m => m.probation_duration, new { @class = "form-control text-right" })
+        @Html.ValidationMessageFor(m => m.probation_duration, null, new { @class = "text-danger" })
+
+    </div>
+    <div class="col-lg-4 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_AGE_RANGE
+        </label>
+        <div class="input-group">
+            @Html.TextBoxFor(m => m.age_min, new { @class = "form-control m-input text-right", style = "max-width:100px", type = "number", maxlength = 2 })
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ~
+                </span>
+            </div>
+            @Html.TextBoxFor(m => m.age_max, new { @class = "form-control m-input text-right", style = "max-width:100px", type = "number", maxlength = 2 })
+        </div>
+        @Html.ValidationMessageFor(m => m.age_max, null, new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.age_min, null, new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-5 col-sm-12 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JAPANESE_LEVEL
+        </label>
+
+        <select class="form-control m-select2 select-japanese-level-number" name="@Html.NameFor(m=>m.japanese_level_number)">
+            @if (Model.JapaneseLevels.HasData())
+            {
+                foreach (var item in Model.JapaneseLevels)
+                {
+                    <option value="@item.level_number" @(item.level_number == Model.japanese_level_number ? "selected" : string.Empty)> @item.level</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-lg-5 col-sm-12 form-group">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_QUALIFICATION
+        </label>
+
+        <select class="form-control m-select2 select-qualification-type" name="@Html.NameFor(m=>m.qualification_id)">
+            @if (Model.Qualifications.HasData())
+            {
+                foreach (var item in Model.Qualifications)
+                {
+                    var qualifiName = item.qualification;
+                    qualifiName = item.LangList.Where(x => x.language_code == currentLang).Select(x => x.qualification).FirstOrDefault();
+                    if (string.IsNullOrEmpty(qualifiName))
+                    {
+                        qualifiName = item.qualification;
+                    }
+
+                    <option value="@item.id" @(item.id == Model.qualification_id ? "selected" : string.Empty)> @qualifiName</option>
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-5 form-group">
+        <label class="text-bold">
+            @if (Model.EmploymentTypes.HasData())
+            {
+                var currentEmployment = Model.EmploymentTypes.Where(x => x.id == Model.employment_type_id).FirstOrDefault();
+                var currentCalcuate = string.Empty;
+                if (currentEmployment != null)
+                {
+                    if (currentEmployment.calculate_by == (int)EnumEmploymentCalculateBy.Month)
+                    {
+                        currentCalcuate = ManagerResource.LB_SALARY_BY_MONTH;
+                    }
+                    else
+                    {
+                        currentCalcuate = ManagerResource.LB_SALARY_BY_HOUR;
+                    }
+                }
+                else
+                {
+                    currentCalcuate = ManagerResource.LB_SALARY_BY_MONTH;
+                }
+                <span id="SalaryBy">@currentCalcuate</span>
+            }
+        </label>
+        <div class="input-group">
+            @Html.TextBoxFor(m => m.salary_min, new { @class = "form-control m-input text-right number-format", style = "max-width:130px" })
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ~
+                </span>
+            </div>
+            @Html.TextBoxFor(m => m.salary_max, new { @class = "form-control m-input text-right number-format", style = "max-width:130px" })
+            <div class="m-checkbox-inline pl-2">
+                @ManagerResource.LB_YEN
+            </div>
+        </div>
+        @Html.ValidationMessageFor(m => m.salary_min, null, new { @class = "text-danger" })
+        @Html.ValidationMessageFor(m => m.salary_max, null, new { @class = "text-danger" })
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <label class="text-bold">@ManagerResource.LB_JOB_WORKING_TIME</label>
+        <div class="input-group">
+            @Html.TextBoxFor(m => m.work_start_time, new { @class = "form-control timepicker text-right", @readonly = "readonly", style = "max-width:80px" })
+            <div class="input-group-prepend">
+                <span class="input-group-text">
+                    ~
+                </span>
+            </div>
+            @Html.TextBoxFor(m => m.work_end_time, new { @class = "form-control timepicker-end text-right", @readonly = "readonly", style = "max-width:80px" })
+            <div class="m-checkbox-inline pl-2">
+                <label class="m-checkbox">
+                    <input type="checkbox" @(Model.flexible_time ? "checked" : string.Empty) name="@Html.NameFor(m=>m.flexible_time)" value="true">
+                    @ManagerResource.LB_JOB_FLEXIBLE_TIME
+                    <span></span>
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<div class="form-group m-form__group row">
+        <div class="col-lg-12 col-sm-12">
+            <label class="text-bold">
+                @ManagerResource.LB_TAGS
+            </label>
+
+            <select class="form-control select-tag" name="TagIds[]" multiple>
+                @if (Model.SelectedTags.HasData())
+                {
+                    foreach (var item in Model.SelectedTags)
+                    {
+                        <option value="@item.tag_id" selected>@item.tag</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>*@
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">@ManagerResource.LB_WORKING_ADDRESS</label>
+        <select id="DefaultRegion" class="hidden"></select>
+        <div class="Addresses">
+            <div data-repeater-list="Addresses">
+                @if (Model.SelectedAddresses.HasData())
+                {
+                    for (int i = 0; i < Model.SelectedAddresses.Count; i++)
+                    {
+                        var currentAdd = Model.SelectedAddresses[i];
+                        var hasStations = currentAdd.Stations.HasData();
+                        var disabledStr = (currentAdd.id > 0 ? "" : string.Empty);
+
+                        <div data-repeater-item class="m--margin-bottom-10 repeater-item new-rpt">
+                            <input type="hidden" value="@currentAdd.id" name="id" class="hdCurrentAddId" />
+                            <div class="row mb10">
+                                <div class="col-lg-9">
+                                    <label><i style="vertical-align:top;" class="la la-plus"></i> @ManagerResource.LB_WORKING_ADDRESS : <span class="add-idx">@(i + 1)</span></label>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div data-repeater-delete="" class="btn btn-danger m-btn m-btn--icon m-btn--icon-only pull-right">
+                                        <i class="la la-remove"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 form-group">
+                                <div class="row">
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map-marker"></i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control select-repeater select-country" counter="0" data-current="@currentAdd.country_id" @disabledStr name="country_id">
+                                                @if (Model.Countries.HasData())
+                                                {
+                                                    foreach (var item in Model.Countries)
+                                                    {
+                                                        <option value="@item.id" @(currentAdd.country_id == item.id ? "selected" : string.Empty)> @item.country</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map-o"></i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control select-repeater select-region" counter="0" data-current="@currentAdd.region_id" @disabledStr name="region_id">
+                                                <option value="0" @(currentAdd.region_id == 0 ? "selected" : string.Empty)>@ManagerResource.LB_SELECT_REGION</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map-pin"></i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control select-repeater select-prefecture" counter="0" data-current="@currentAdd.prefecture_id" @disabledStr name="prefecture_id">
+                                                <option value="0" @(currentAdd.prefecture_id == 0 ? "selected" : string.Empty)>@ManagerResource.LB_SELECT_PREFECTURE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map"></i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control select-repeater select-city" counter="0" data-current="@currentAdd.city_id" @disabledStr name="city_id" data-size="5" data-live-search="true">
+                                                <option value="0" @(currentAdd.city_id == 0 ? "selected" : string.Empty)>@ManagerResource.LB_SELECT_CITY</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-6 form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map-signs"></i>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="form-control m-input" @disabledStr placeholder="@ManagerResource.LB_ADDRESS_DETAIL" name="detail" value="@Model.SelectedAddresses[i].detail">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-subway"></i>
+                                                </span>
+                                            </div>
+                                            <div class="m-typeahead">
+                                                <input type="text" class="form-control m-input select-train-line" counter="0" value="@currentAdd.train_line" />
+                                                <input type="hidden" class="train-line-selected" name="train_line_id" data-current="@currentAdd.train_line_id" value="0" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="input-group m-input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="la la-map-signs"></i>
+                                                </span>
+                                            </div>
+                                            <select class="form-control select-repeater select-station" counter="0" data-current="@(string.Join(",", currentAdd.Stations.Select(x=>x.station_id).ToList()))" @disabledStr name="StationsIds" title="@ManagerResource.LB_SELECT_STATION" data-size="5" data-live-search="true">
+                                                <option value="0" @(currentAdd.Stations.HasData() == false ? "selected" : string.Empty)>@ManagerResource.LB_SELECT_STATION</option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <div data-repeater-create="" class="btn btn btn-info m-btn m-btn--icon btn-repeater-add">
+                        <span>
+                            <i class="la la-plus"></i>
+                            <span>
+                                @ManagerResource.LB_ADD_WORKING_ADDRESS
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_SUBSIDY
+        </label>
+
+        @Html.TextAreaFor(m => m.subsidy, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_PAID_HOLIDAY
+        </label>
+
+        @Html.TextAreaFor(m => m.paid_holiday, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_BONUS
+        </label>
+
+        @Html.TextAreaFor(m => m.bonus, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_CERTIFICATE
+        </label>
+
+        @Html.TextAreaFor(m => m.certificate, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_WELFARE
+        </label>
+
+        @Html.TextAreaFor(m => m.welfare, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_TRAINING
+        </label>
+
+        @Html.TextAreaFor(m => m.training, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_RECRUIMENT_PROCEDURE
+        </label>
+
+        @Html.TextAreaFor(m => m.recruitment_procedure, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_CV_APPLICATION
+        </label>
+
+        <div class="m-radio-inline">
+            <label class="m-radio">
+                <input type="radio" @(Model.work_experience_doc_required ? "checked" : string.Empty) name="@Html.NameFor(m=>m.work_experience_doc_required)" value="true">
+                @ManagerResource.LB_JOB_CV_APPLICATION_WORK_HISTORY
+                <span></span>
+            </label>
+            <label class="m-radio">
+                <input type="radio" @(!Model.work_experience_doc_required ? "checked" : string.Empty) name="@Html.NameFor(m=>m.work_experience_doc_required)" value="false">
+                @ManagerResource.LB_JOB_CV_APPLICATION_CV
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_REMARK
+        </label>
+
+        @Html.TextAreaFor(m => m.remark, new { @class = "form-control summernote hidden", @autocomplete = "off", rows = "10" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+
+    <div class="col-lg-4 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_JOB_APPLICATION_DURATION
+        </label>
+        <div class="input-group">
+            <input type="text" id="closed_time" name="closed_time" class="form-control m-input datepicker" style="max-width:200px" autocomplete="off" value="@Model.closed_time" />
+            <div class="input-group-append">
+                <span class="input-group-text">
+                    <i class="la la-calendar-check-o"></i>
+                </span>
+            </div>
+            @Html.ValidationMessageFor(m => m.closed_time, null, new { @class = "text-danger" })
+        </div>
+        @*<label class="text-bold">
+                @ManagerResource.LB_JOB_APPLICATION_DURATION
+            </label>
+            @Html.TextBoxFor(m => m.duration, new { @class = "form-control text-right" })*@
+    </div>
+    <div class="col-lg-3 col-sm-12">
+        <label class="text-bold">
+            @ManagerResource.LB_PERSON_CHARGE
+        </label>
+        @RenderUser()
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="m-checkbox-inline">
+            <label class="m-checkbox">
+                <input type="checkbox" @(Model.hide_company_info ? "checked" : string.Empty) name="@Html.NameFor(m=>m.hide_company_info)" value="true">
+                @ManagerResource.LB_HIDE_COMPANY_INFO
+                <span></span>
+            </label>
+        </div>
+        <i class="text-danger">@ManagerResource.LB_HIDE_COMPANY_INFO_DES</i>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-sm-12">
+        <div class="m-checkbox-inline">
+            <label class="m-checkbox">
+                <input type="checkbox" @(Model.japanese_only ? "checked" : string.Empty) name="@Html.NameFor(m=>m.japanese_only)" value="true">
+                @ManagerResource.LB_JOB_JAPANESE_ONLY
+                <span></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <a class="btn btn-outline-info btn-back" href="/Job"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+        @if (hasCompanies)
+        {
+            <button type="submit" class="btn btn-outline-danger pull-right" onclick="ChangeStatus(@((int)EnumJobStatus.Draft))">
+                <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE_SEND_ADMIN
+            </button>
+            <button type="submit" class="btn btn-outline-info pull-right mr-2" onclick="ChangeStatus(@((int)EnumJobStatus.Saved))">
+                <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+            </button>
+        }
+        else
+        {
+            <button type="button" class=" btn btn-white btn-sm pull-right">
+                <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE_SEND_ADMIN
+            </button>
+            <button type="button" class=" btn btn-white btn-sm pull-right mr-2">
+                <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+            </button>
+        }
+
+    </div>
+</div>
+
+
+@helper RenderUser()
+{
+    var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+    if (ListUser != null && ListUser.Count > 0)
+    {
+        var checkedText = "selected";
+        <select id="@Html.IdFor(m=>m.pic_id)" name="@Html.NameFor(m=>m.pic_id)" data-live-search="true" class="form-control m-select2 m-input m-input--square">
+            @foreach (var item in ListUser)
+            {
+                <option value="@item.StaffId" @((item.StaffId == Model.pic_id) ? checkedText : "")>
+                    @item.FullName
+                </option>
+            }
+        </select>
+    }
+}
+<script>
+    function ChangeStatus(status) {
+        $("#status").val(status);
+    }
+    setTimeout(function () {
+        $(".m-select2").select2({ width: 'resolve' });
+    }, 500);
+</script>

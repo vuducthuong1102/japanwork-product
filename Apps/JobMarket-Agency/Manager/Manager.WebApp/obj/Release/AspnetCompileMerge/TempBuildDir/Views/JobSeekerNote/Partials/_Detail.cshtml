@@ -1,0 +1,64 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageJobSeekerNoteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_JOOBSEEKER_NOTE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@{
+    var typeList = JobSeekerNoteTypeProvider.GetListJobSeekerNoteType();
+    var addNoteLink = SecurityHelper.GenerateSecureLink("JobSeeker", "CreateNote", new { job_seeker_id = Model.job_seeker_id, type_job_seeker = Model.type_job_seeker });
+}
+@using (Html.BeginForm("JobSeekerNoteSearch", "Job", FormMethod.Post, new { role = "form", @class = "", id = "frmNote" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.job_seeker_id)
+    @Html.HiddenFor(m => m.type_job_seeker)
+    @Html.HiddenFor(m => m.CurrentPage)
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-12 pull-right">
+                    <a href="javascripts:;" id="btn-add" data-modal="" data-href="@addNoteLink" class="btn btn-info pull-right btn-sm mb10">
+                        <i class="fa fa-pencil-square-o"></i> @ManagerResource.LB_ADD_NEW
+                    </a>
+                </div>
+
+                <div id="JobSeekerNote" class="col-sm-12">
+                    @Html.Partial("~/Views/JobSeekerNote/Partials/_DetailItem.cshtml", Model)
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section PageInlineStyles{
+}
+<script>
+    function JobSeekerNoteSearchNext(pageNum) {
+        $("#frmNote").find("input[name=CurrentPage]").val(pageNum);
+        JobSeekerNoteSearch();
+    }
+    function JobSeekerNoteSearch() {
+        var frmData = $("#frmNote").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/JobSeeker/NoteSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#JobSeekerNote").html(data);
+        };
+
+        doAjax(params);
+    }
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

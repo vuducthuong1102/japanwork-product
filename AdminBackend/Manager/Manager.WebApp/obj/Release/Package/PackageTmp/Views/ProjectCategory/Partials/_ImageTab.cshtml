@@ -1,0 +1,93 @@
+﻿@using Manager.WebApp.Settings
+@using Manager.WebApp.Resources
+@using Manager.WebApp.Helpers
+@model Manager.WebApp.Models.ProjectEditModel
+
+<div class="portlet light portlet-fit bordered">
+    <div class="portlet-body">
+        <input type="hidden" id="ImgFromLib" value="1" />
+        <div class="row img-row" id="UploadedImages">           
+            @if (Model.Images.HasData())
+            {
+                @Html.Partial("Partials/_Images", Model.Images)
+            }           
+        </div>
+        <div class="clearfix"></div>
+
+        <form action="/upload-handling-script" class="dropzone" style="border:unset !important;">
+            <div class="fallback">
+                <input name="files" type="file" multiple />
+                
+            </div>
+
+            <div id="actions" class="row">
+                <div class="col-lg-7 padt5">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <button class="btn btn-sm btn-info fileinput-button" type="button">
+                        <i class="fa fa-plus"></i>
+                        <span>@ManagerResource.LB_ADD_IMAGE</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-info start">
+                        <i class="fa fa-upload"></i>
+                        <span>@ManagerResource.LB_START_UPLOAD</span>
+                    </button>
+                    <a data-toggle="modal" class="btn btn-info btn-sm myBrowserBtn" data-control="ImgFromLib" href="javascript:;" data-target="#fileModal">
+                        <i class="fa fa-sellsy"></i> @ManagerResource.LB_LIBRARY
+                    </a>
+                    <button type="button" class="btn btn-sm btn-secondary" onclick="RefreshImageList();">
+                        <i class="fa fa-refresh"></i>
+                        <span>@ManagerResource.LB_REFRESH</span>
+                    </button>
+                    <button type="reset" class="btn btn-sm btn-secondary cancel">
+                        <i class="fa fa-remove"></i>
+                        <span>@ManagerResource.LB_CANCEL</span>
+                    </button>                    
+                </div>
+
+                <div class="col-lg-5">
+                    <!-- The global file processing state -->
+                    <div class="fileupload-process hidden">
+                        <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr style="margin-top:5px !important;" />
+
+            <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <div class="table table-striped files row" id="previews">
+                        <div id="template" class="file-row col-md-3 col-sm-4 col-xs-6 mb10">
+                            <div class="preivew-item">
+                                <!-- This is used as the file preview template -->
+                                <div class="preview pd10 left"><img data-dz-thumbnail /></div>
+                                <div class="text-content left" style="padding-top: 5px;" >
+                                    <div class="name" data-dz-name style="margin-left:10px;"></div>
+                                    <div class="size" data-dz-size style="margin-left:10px;"></div>
+                                    <strong class="error text-danger" data-dz-errormessage></strong>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                                </div>
+                                <div class="pd10">
+                                    <button class="btn btn-info btn-sm start" type="button" title="@ManagerResource.LB_START_UPLOAD">
+                                        <i class="fa fa-upload"></i>
+                                    </button>
+                                    <button data-dz-remove class="btn btn-secondary btn-sm cancel" type="button" title="@ManagerResource.LB_CANCEL">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@using MySite.Helpers
+@using MySite.Settings
+
+@section PageInlineStyles{
+    <link href="~/Content/Messenger/chatbox/chat.css" rel="stylesheet" />
+    <link href="~/Content/Messenger/chatbox/item.css" rel="stylesheet" />
+    <link href="~/Content/Messenger/chatbox/ChatStyle.css" rel="stylesheet" />
+    <link href="~/Content/Messenger/chatbox/messenger.css" rel="stylesheet" />
+}
+
+@section PagePluginScripts{
+    @{
+        var userInfo = AccountHelper.GetCurrentUser();
+        if (userInfo != null)
+        {
+            <input type="hidden" id="CurrentUser" value="@userInfo.Id" />
+            <script src="~/Scripts/Common/jquery.signalR-2.2.2.min.js"></script>
+            <script src="@MyCloudSettings.MyCloudServer/signalr/hubs/"></script>
+            <script type="text/javascript">
+            var _myCloudServer = '@MyCloudSettings.MyCloudServer';
+            var _currentUserInfo = {
+                UserName: "@userInfo.UserName",
+                DisplayName: "@Html.Raw(userInfo.DisplayName)",
+                UserId: "@userInfo.Id",
+                Avatar: "@CdnHelper.CoreGetFullImgPath(userInfo.Avatar)"
+            };
+            </script>
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/chatbox/messengercloud.js")"></script>
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/chatbox/chatbox.js")"></script>
+        }
+    }
+}
+
+@Html.AntiForgeryToken()
+<div class="container">
+    <div class="chat-sidebar">
+    </div>
+</div>
+
+<div id="ui-chat-container">
+    <div class="more-chat-box dropdown ">
+        <a href="javascript:void(0)" class="icon icon-messenger-hover dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+            <span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span><span class="path6"></span><span class="path7"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <span class="display-name">Trần Quang Đức</span>
+                <i class="icon icon-clear2 fz-20 ui-chat-box-close"></i>
+            </li>
+            <li>
+                <span class="display-name">Trần Quang Đức</span>
+                <i class="icon icon-clear2 fz-20 ui-chat-box-close"></i>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    $('body').on('click', '.ui-chat-box-close', function () {
+        $(this).closest('.ui-chat-box').remove();
+    });
+    $('body').on('click', '.ui-chat-box-head', function (e) {
+        if (e.target !== this)
+            return;
+        $(this).closest('.ui-chat-box').toggleClass('minimize');
+        var boxMsg = $(this).closest('.ui-chat-box').find('.ui-chat-box-msg');
+        var height = boxMsg[0].scrollHeight;
+        boxMsg.scrollTop(height);
+    });
+</script>

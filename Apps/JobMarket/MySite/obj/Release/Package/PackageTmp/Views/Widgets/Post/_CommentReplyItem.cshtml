@@ -1,0 +1,32 @@
+﻿@using MySite.Helpers;
+@using MySite.ShareLibs;
+@using MySite.Settings;
+@model  List<ApiMySiteSocial.DB.Sql.Entities.IdentityCommentReply>
+
+@if (Model != null&&Model.Count>0)
+{
+    foreach (var item in Model)
+    {
+    <div class="sub-comment item">
+        <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar">
+        <p class="word-break">
+            <span class="text-bold">@item.DisplayName</span>  <span class="text-grey-02 fz-12 dlib ml15 livetimestamp" title="@DateHelpers.FormatToString(item.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(item.CreatedDate)"> @DateHelpers.FormatToString(item.CreatedDate)</span>
+        </p>
+        <p class="word-break">@item.Content</p>
+        <div class="counter">
+            <ul>
+                @if (item.Like_Count > 0)
+                {
+                    <li><a href="javascript:;">@item.Like_Count<i class="i1 il"></i></a></li>
+                }
+                else
+                {
+                    <li><a href="javascript:;"><i class="i1 il"></i></a></li>
+                }
+                <li><a href="javascript:;" class="comment-reply" data-id="@item.PostCommentId"><i class="i1 ih"></i></a></li>
+            </ul>
+        </div>
+    </div>
+    }
+}
+

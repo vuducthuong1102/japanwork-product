@@ -1,0 +1,74 @@
+﻿@using MsSql.AspNet.Identity
+@using Manager.SharedLibs
+
+@{
+    var menuParentList = new List<IdentityMenu>();
+
+    var currentMenuItem = MenuHelper.GetCurrentMenuItemCustom();
+    var listMenuTemp = new List<IdentityMenu>();
+
+    IdentityMenu parentMenuItem = null;
+    if (currentMenuItem != null && currentMenuItem.ParentId != null)
+    {
+        listMenuTemp.Add(currentMenuItem);
+
+        listMenuTemp = MenuHelper.GetCurrentListMenuByLang(listMenuTemp);
+
+        if(listMenuTemp.HasData())
+        {
+            currentMenuItem = listMenuTemp[0];
+        }
+
+        parentMenuItem = MenuHelper.GetMenuItemByIDCustom(currentMenuItem.ParentId.Value);
+    }
+
+    while (parentMenuItem != null)
+    {
+        menuParentList.Insert(0, parentMenuItem);
+
+        if (parentMenuItem.ParentId == null)
+        {
+            parentMenuItem = null;
+        }
+        else
+        {
+            parentMenuItem = MenuHelper.GetMenuItemByIDCustom(parentMenuItem.ParentId.Value);
+        }
+    }
+
+    if (menuParentList.HasData())
+    {
+        menuParentList = MenuHelper.GetCurrentListMenuByLang(menuParentList);
+    }
+}
+
+
+<div class="m-subheader ">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            @if (currentMenuItem != null)
+            {
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @currentMenuItem.CurrentTitleLang
+                </h3>             
+            }
+
+            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+                @foreach (var pmi in menuParentList)
+                {
+
+                    var itemUrl = !string.IsNullOrEmpty(pmi.Action) && !string.IsNullOrEmpty(pmi.Controller) ?
+                                  Url.Action(pmi.Action, pmi.Controller) : "javascript:;";
+                    <li class="m-nav__item">
+                        <a href="@itemUrl" class="m-nav__link">
+                            <span class="m-nav__link-text">
+                                @pmi.CurrentTitleLang
+                            </span>
+                        </a>
+                    </li> 
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+

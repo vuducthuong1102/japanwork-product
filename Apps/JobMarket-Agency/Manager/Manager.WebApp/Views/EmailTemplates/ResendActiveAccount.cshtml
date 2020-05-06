@@ -1,0 +1,32 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.AgencyRequestSendEmailActiveModel
+
+@{
+    Layout = null;
+}
+
+<html>
+<body style="color:grey; font-size:15px;">
+    <font face="Helvetica, Arial, sans-serif" />
+
+    <!--<div style="position:absolute; height:100px; width:600px; background-color:#0d1d36; padding:30px;">
+        <img src="logo" />
+    </div>
+
+    <br />
+    <br />-->
+
+    <div style="background-color: #ece8d4; padding:30px;">
+
+        <h3>@EmailResource.LB_BODY_HELLO</h3>
+        <p>@EmailResource.LB_ACCOUNT_INFO:</p>
+        <ul>
+            <li>@EmailResource.LB_EMAIL: @Model.Email</li>
+            <li>@EmailResource.LB_CONFIRM_LINK: <a href="@Model.ActiveLink" target="_blank">@EmailResource.LB_IN_HERE</a></li>
+        </ul>
+
+        <p>@EmailResource.LB_ACTIVE_ACCOUNT_DES</p>
+    </div>
+</body>
+
+</html>

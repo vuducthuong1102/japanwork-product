@@ -1,0 +1,364 @@
+2019-12-20 10:23:23,905 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:23:23,921 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2019-12-20 10:23:23,922 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:23:23,976 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:23:23,977 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2019-12-20 10:23:23,978 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:24:27,800 [6] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2019-12-20 10:24:49,872 [8] ERROR Manager.WebApp.MvcApplication - Application Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.UserRepository`1.GetByName(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\UserRepository.cs:line 141
+   at MsSql.AspNet.Identity.UserStore`1.FindByNameAsync(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\UserStore.cs:line 99
+   at Microsoft.AspNet.Identity.UserManager`2.<FindAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Manager.WebApp.Controllers.AccountController.<Login>d__12.MoveNext() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\System\AccountController.cs:line 158
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2019-12-20 10:25:04,540 [7] ERROR Manager.WebApp.Controllers.HomeController - Failed when get Report By Week for Dashboard because: Manager.SharedLibs.CustomSQLException: Failed to execute Report_GetStatisticsInWeek. Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at MsSql.AspNet.Identity.Repositories.RpsReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\Business\RpsReport.cs:line 195
+   at MsSql.AspNet.Identity.MsSqlStores.StoreReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\Business\StoreReport.cs:line 37
+   at Manager.WebApp.Controllers.HomeController.GetStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 182
+   at Manager.WebApp.Controllers.HomeController.DashBoardStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 140
+2019-12-20 10:25:04,543 [10] ERROR Manager.WebApp.Controllers.HomeController - Failed when get Report for Dashboard because: Manager.SharedLibs.CustomSQLException: Failed to execute Report_GetStatisticsForDashBoard. Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at MsSql.AspNet.Identity.Repositories.RpsReport.GetStatisticsForDashBoard(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\Business\RpsReport.cs:line 164
+   at MsSql.AspNet.Identity.MsSqlStores.StoreReport.GetStatisticsForDashBoard(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\Business\StoreReport.cs:line 32
+   at Manager.WebApp.Controllers.HomeController.GetStatisticsByYear() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 87
+   at Manager.WebApp.Controllers.HomeController.DashBoardStatistics() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 42
+2019-12-20 10:26:24,177 [15] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:26:24,192 [15] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2019-12-20 10:26:24,193 [15] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:26:24,255 [15] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:26:24,256 [15] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2019-12-20 10:26:24,257 [15] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-20 10:26:34,591 [10] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:26:34,947 [10] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:26:34,948 [10] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:26:35,050 [10] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-20 10:26:35,106 [10] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-20 10:26:35,107 [10] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-20 10:26:35,191 [10] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:26:40,606 [9] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:26:40,787 [9] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:26:40,788 [9] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:26:40,808 [9] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:26:40,852 [9] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:26:40,853 [9] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:26:40,869 [9] DEBUG Manager.WebApp.Services.QualificationServices - Begin GET GetListAsync request
+2019-12-20 10:26:40,913 [9] DEBUG Manager.WebApp.Services.QualificationServices - Return code: OK, message: http://localhost:3333/api/qualifications
+2019-12-20 10:26:40,914 [9] DEBUG Manager.WebApp.Services.QualificationServices - End GetListAsync request
+2019-12-20 10:26:40,933 [9] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Begin GET GetListAsync request
+2019-12-20 10:26:40,989 [9] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Return code: OK, message: http://localhost:3333/api/japanese_levels
+2019-12-20 10:26:40,990 [9] DEBUG Manager.WebApp.Services.JapaneseLevelServices - End GetListAsync request
+2019-12-20 10:26:41,007 [9] DEBUG Manager.WebApp.Services.FieldServices - Begin GET GetListAsync request
+2019-12-20 10:26:41,052 [9] DEBUG Manager.WebApp.Services.FieldServices - Return code: OK, message: http://localhost:3333/api/fields
+2019-12-20 10:26:41,053 [9] DEBUG Manager.WebApp.Services.FieldServices - End GetListAsync request
+2019-12-20 10:26:41,085 [9] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Begin GET GetListAsync request
+2019-12-20 10:26:41,129 [9] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Return code: OK, message: http://localhost:3333/api/employment_types
+2019-12-20 10:26:41,130 [9] DEBUG Manager.WebApp.Services.EmploymentTypeServices - End GetListAsync request
+2019-12-20 10:26:41,196 [9] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:26:44,901 [10] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:26:45,089 [10] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:26:45,090 [10] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:26:45,092 [10] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:26:45,134 [10] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:26:45,135 [10] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:26:45,179 [10] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:26:46,973 [8] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:26:47,148 [8] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:26:47,148 [8] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:26:47,150 [8] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:26:47,189 [8] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:26:47,190 [8] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:26:47,235 [8] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:27:19,598 [8] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 10:27:19,716 [8] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 10:27:19,717 [8] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request
+2019-12-20 10:27:24,983 [19] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:27:25,150 [19] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:27:25,151 [19] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:27:25,152 [19] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:27:25,189 [19] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:27:25,190 [19] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:27:25,228 [19] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:27:26,492 [7] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:27:26,658 [7] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:27:26,658 [7] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:27:26,660 [7] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:27:26,696 [7] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:27:26,697 [7] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:27:26,736 [7] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:28:08,107 [11] ERROR Manager.WebApp.MvcApplication - Application Error: Server cannot set status after HTTP headers have been sent.
+System.Web.HttpException (0x80004005): Server cannot set status after HTTP headers have been sent.
+   at System.Web.HttpResponse.set_StatusCode(Int32 value)
+   at System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-12-20 10:28:26,474 [11] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:28:26,718 [11] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:28:26,719 [11] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:28:26,764 [11] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:28:47,896 [11] ERROR Manager.WebApp.MvcApplication - Application Error: The provided anti-forgery token was meant for a different claims-based user than the current user.
+System.Web.Mvc.HttpAntiForgeryException (0x80004005): The provided anti-forgery token was meant for a different claims-based user than the current user.
+   at System.Web.Helpers.AntiXsrf.TokenValidator.ValidateTokens(HttpContextBase httpContext, IIdentity identity, AntiForgeryToken sessionToken, AntiForgeryToken fieldToken)
+   at System.Web.Helpers.AntiXsrf.AntiForgeryWorker.Validate(HttpContextBase httpContext)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeAuthorizationFilters(ControllerContext controllerContext, IList`1 filters, ActionDescriptor actionDescriptor)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__19(AsyncCallback asyncCallback, Object asyncState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.BeginInvokeAction(ControllerContext controllerContext, String actionName, AsyncCallback callback, Object state)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1c(AsyncCallback asyncCallback, Object asyncState, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecuteCore(AsyncCallback callback, Object state)
+   at Manager.WebApp.Controllers.AccountController.BeginExecuteCore(AsyncCallback callback, Object state) in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\System\AccountController.cs:line 40
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.Controller.BeginExecute(RequestContext requestContext, AsyncCallback callback, Object state)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__4(AsyncCallback asyncCallback, Object asyncState, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallBeginDelegate(AsyncCallback callback, Object callbackState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncResultBase`1.Begin(AsyncCallback callback, Object state, Int32 timeout)
+   at System.Web.Mvc.MvcHandler.BeginProcessRequest(HttpContextBase httpContext, AsyncCallback callback, Object state)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-12-20 10:28:57,621 [10] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:28:57,734 [10] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:28:57,735 [10] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:28:57,774 [10] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:28:58,553 [45] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:28:58,662 [45] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:28:58,663 [45] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:28:58,703 [45] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:39,505 [31] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:39,619 [31] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:39,620 [31] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:39,659 [31] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:40,706 [34] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:40,813 [34] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:40,814 [34] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:40,853 [34] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:41,023 [32] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:41,134 [32] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:41,135 [32] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:41,173 [32] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:41,345 [34] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:41,446 [34] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:41,447 [34] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:41,487 [34] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:41,603 [37] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:41,711 [37] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:41,712 [37] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:41,752 [37] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:41,862 [34] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:41,965 [34] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:41,966 [34] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:42,003 [34] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:31:42,171 [32] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:31:42,281 [32] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:31:42,282 [32] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:31:42,347 [32] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:37:55,279 [65] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 10:37:55,397 [65] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 10:37:55,397 [65] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 10:37:55,399 [65] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-20 10:37:55,512 [65] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-20 10:37:55,513 [65] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-20 10:37:55,552 [65] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 10:37:57,322 [56] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:37:57,492 [56] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:37:57,493 [56] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:37:57,494 [56] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:37:57,545 [56] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:37:57,546 [56] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:37:57,548 [56] DEBUG Manager.WebApp.Services.QualificationServices - Begin GET GetListAsync request
+2019-12-20 10:37:57,653 [56] DEBUG Manager.WebApp.Services.QualificationServices - Return code: OK, message: http://localhost:3333/api/qualifications
+2019-12-20 10:37:57,654 [56] DEBUG Manager.WebApp.Services.QualificationServices - End GetListAsync request
+2019-12-20 10:37:57,655 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Begin GET GetListAsync request
+2019-12-20 10:37:57,758 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Return code: OK, message: http://localhost:3333/api/japanese_levels
+2019-12-20 10:37:57,759 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - End GetListAsync request
+2019-12-20 10:37:57,760 [56] DEBUG Manager.WebApp.Services.FieldServices - Begin GET GetListAsync request
+2019-12-20 10:37:57,932 [56] DEBUG Manager.WebApp.Services.FieldServices - Return code: OK, message: http://localhost:3333/api/fields
+2019-12-20 10:37:57,933 [56] DEBUG Manager.WebApp.Services.FieldServices - End GetListAsync request
+2019-12-20 10:37:57,936 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Begin GET GetListAsync request
+2019-12-20 10:37:58,046 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Return code: OK, message: http://localhost:3333/api/employment_types
+2019-12-20 10:37:58,047 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - End GetListAsync request
+2019-12-20 10:37:58,086 [56] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:41:09,491 [56] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:41:09,675 [56] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:41:09,676 [56] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:41:09,678 [56] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:41:09,719 [56] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:41:09,720 [56] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:41:09,768 [56] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 10:42:37,208 [56] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 10:42:37,393 [56] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 10:42:37,394 [56] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 10:53:00,109 [56] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,199 [56] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 10:53:00,200 [56] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 10:53:00,201 [56] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,246 [56] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-20 10:53:00,247 [56] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-20 10:53:00,249 [56] DEBUG Manager.WebApp.Services.QualificationServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,288 [56] DEBUG Manager.WebApp.Services.QualificationServices - Return code: OK, message: http://localhost:3333/api/qualifications
+2019-12-20 10:53:00,289 [56] DEBUG Manager.WebApp.Services.QualificationServices - End GetListAsync request
+2019-12-20 10:53:00,290 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,329 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Return code: OK, message: http://localhost:3333/api/japanese_levels
+2019-12-20 10:53:00,330 [56] DEBUG Manager.WebApp.Services.JapaneseLevelServices - End GetListAsync request
+2019-12-20 10:53:00,331 [56] DEBUG Manager.WebApp.Services.FieldServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,382 [56] DEBUG Manager.WebApp.Services.FieldServices - Return code: OK, message: http://localhost:3333/api/fields
+2019-12-20 10:53:00,383 [56] DEBUG Manager.WebApp.Services.FieldServices - End GetListAsync request
+2019-12-20 10:53:00,387 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Begin GET GetListAsync request
+2019-12-20 10:53:00,428 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Return code: OK, message: http://localhost:3333/api/employment_types
+2019-12-20 10:53:00,429 [56] DEBUG Manager.WebApp.Services.EmploymentTypeServices - End GetListAsync request
+2019-12-20 10:53:00,468 [56] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:13:10,350 [165] ERROR Manager.WebApp.MvcApplication - Application Error: Server cannot set status after HTTP headers have been sent.
+System.Web.HttpException (0x80004005): Server cannot set status after HTTP headers have been sent.
+   at System.Web.HttpResponse.set_StatusCode(Int32 value)
+   at System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-12-20 11:13:41,655 [165] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-20 11:13:41,904 [165] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-20 11:13:41,905 [165] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-20 11:13:41,938 [165] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-20 11:13:41,987 [165] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-20 11:13:41,988 [165] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-20 11:13:42,027 [165] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2019-12-20 11:13:49,847 [177] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:13:50,018 [177] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:13:50,019 [177] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:13:50,020 [177] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:13:50,060 [177] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:13:50,061 [177] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:13:50,063 [177] DEBUG Manager.WebApp.Services.QualificationServices - Begin GET GetListAsync request
+2019-12-20 11:13:50,107 [177] DEBUG Manager.WebApp.Services.QualificationServices - Return code: OK, message: http://localhost:3333/api/qualifications
+2019-12-20 11:13:50,109 [177] DEBUG Manager.WebApp.Services.QualificationServices - End GetListAsync request
+2019-12-20 11:13:50,111 [177] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Begin GET GetListAsync request
+2019-12-20 11:13:50,152 [177] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Return code: OK, message: http://localhost:3333/api/japanese_levels
+2019-12-20 11:13:50,153 [177] DEBUG Manager.WebApp.Services.JapaneseLevelServices - End GetListAsync request
+2019-12-20 11:13:50,155 [177] DEBUG Manager.WebApp.Services.FieldServices - Begin GET GetListAsync request
+2019-12-20 11:13:50,199 [177] DEBUG Manager.WebApp.Services.FieldServices - Return code: OK, message: http://localhost:3333/api/fields
+2019-12-20 11:13:50,200 [177] DEBUG Manager.WebApp.Services.FieldServices - End GetListAsync request
+2019-12-20 11:13:50,205 [177] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Begin GET GetListAsync request
+2019-12-20 11:13:50,247 [177] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Return code: OK, message: http://localhost:3333/api/employment_types
+2019-12-20 11:13:50,248 [177] DEBUG Manager.WebApp.Services.EmploymentTypeServices - End GetListAsync request
+2019-12-20 11:13:50,291 [177] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:14:06,870 [182] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 11:14:07,108 [182] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 11:14:07,109 [182] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request
+2019-12-20 11:16:10,249 [185] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:16:10,486 [185] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:16:10,487 [185] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:16:10,489 [185] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:16:10,595 [185] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:16:10,596 [185] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:16:10,637 [185] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:16:15,814 [185] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 11:16:15,922 [185] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 11:16:15,922 [185] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request
+2019-12-20 11:16:24,588 [185] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:16:24,791 [185] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:16:24,795 [185] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:16:24,806 [185] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:16:24,858 [185] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:16:24,859 [185] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:16:24,904 [185] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:16:25,820 [187] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:16:25,991 [187] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:16:25,992 [187] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:16:25,993 [187] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:16:26,029 [187] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:16:26,029 [187] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:16:26,071 [187] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:16:27,820 [182] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 11:16:27,925 [182] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 11:16:27,926 [182] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request
+2019-12-20 11:24:40,659 [138] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:24:41,096 [138] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:24:41,097 [138] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:24:41,099 [138] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,162 [138] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:24:41,163 [138] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:24:41,164 [138] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,205 [138] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-20 11:24:41,206 [138] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-20 11:24:41,208 [138] DEBUG Manager.WebApp.Services.QualificationServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,249 [138] DEBUG Manager.WebApp.Services.QualificationServices - Return code: OK, message: http://localhost:3333/api/qualifications
+2019-12-20 11:24:41,249 [138] DEBUG Manager.WebApp.Services.QualificationServices - End GetListAsync request
+2019-12-20 11:24:41,250 [138] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,292 [138] DEBUG Manager.WebApp.Services.JapaneseLevelServices - Return code: OK, message: http://localhost:3333/api/japanese_levels
+2019-12-20 11:24:41,293 [138] DEBUG Manager.WebApp.Services.JapaneseLevelServices - End GetListAsync request
+2019-12-20 11:24:41,312 [138] DEBUG Manager.WebApp.Services.FieldServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,368 [138] DEBUG Manager.WebApp.Services.FieldServices - Return code: OK, message: http://localhost:3333/api/fields
+2019-12-20 11:24:41,368 [138] DEBUG Manager.WebApp.Services.FieldServices - End GetListAsync request
+2019-12-20 11:24:41,372 [138] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Begin GET GetListAsync request
+2019-12-20 11:24:41,411 [138] DEBUG Manager.WebApp.Services.EmploymentTypeServices - Return code: OK, message: http://localhost:3333/api/employment_types
+2019-12-20 11:24:41,412 [138] DEBUG Manager.WebApp.Services.EmploymentTypeServices - End GetListAsync request
+2019-12-20 11:24:41,454 [138] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:24:44,463 [153] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 11:24:44,574 [153] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 11:24:44,574 [153] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request
+2019-12-20 11:25:35,204 [139] DEBUG Manager.WebApp.Services.JobServices - Begin PUT GetDetailAsync request
+2019-12-20 11:25:35,390 [139] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/1
+2019-12-20 11:25:35,391 [139] DEBUG Manager.WebApp.Services.JobServices - End GetDetailAsync request
+2019-12-20 11:25:35,393 [139] DEBUG Manager.WebApp.Services.CountryServices - Begin GET GetListAsync request
+2019-12-20 11:25:35,437 [139] DEBUG Manager.WebApp.Services.CountryServices - Return code: OK, message: http://localhost:3333/api/countries
+2019-12-20 11:25:35,438 [139] DEBUG Manager.WebApp.Services.CountryServices - End GetListAsync request
+2019-12-20 11:25:35,480 [139] DEBUG Manager.WebApp.Services.StationServices - Return code: OK, message: http://localhost:3333/api/stations
+2019-12-20 11:25:37,242 [131] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateTranslationAsync request
+2019-12-20 11:25:37,359 [131] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/jobs/update_translation
+2019-12-20 11:25:37,361 [131] DEBUG Manager.WebApp.Services.JobServices - End UpdateTranslationAsync request

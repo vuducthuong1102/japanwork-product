@@ -1,0 +1,63 @@
+﻿@using MySite.Resources
+@model MySite.Models.ConversationModel
+
+@{     
+    var displayName = string.Empty;
+    if (Model != null && Model.TargetUser != null)
+    {
+        displayName = string.IsNullOrEmpty(Model.TargetUser.DisplayName) ? Model.TargetUser.UserName : Model.TargetUser.DisplayName;
+
+        @RenderChatBoxTemp(displayName)
+    }
+}
+
+@helper RenderChatBoxTemp(string displayName) { 
+<div class="ui-chat-box" id="private_box_@Model.TargetUser.Id" data-userid="@Model.TargetUser.Id">
+    <div class="ui-chat-box-head">
+        <div class="avatar">
+            <img src="@Model.TargetUser.Avatar" alt="avatar" title="@displayName">
+            @*<i class="online box-online-@Model.TargetUser.Id @((Model.TargetUser.IsOnline)? string.Empty: "hidden")"></i>*@
+        </div>
+        <a href="#" class="display-name">@Model.TargetUser.DisplayName</a>
+        <i class="icon icon-clear2 fz-20 ui-chat-box-close" data-userid="@Model.TargetUser.Id"></i>
+
+    </div>
+    <div class="ui-chat-box-content">
+        <div class="msgloader"></div>
+        <div class="ui-chat-box-msg scroll-box">
+            <div class="ui-chat-msglist">
+
+            </div>
+            <div class="item loading user-typing hidden">
+                <div class="avatar">
+                    <img src="@Model.TargetUser.Avatar" alt="avatar" title="@Model.TargetUser.DisplayName">
+                </div>
+                <div class="content">
+                    <div class="content-item">
+                        <p class="chat-content"></p>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-chat-box-input">
+            <div class="cmt-box emoji-picker-container" data-userid="@Model.TargetUser.Id">
+                <div data-emojiable="true" data-emoji-input="unicode" contenteditable="true" class="comment msg2send" placeholder="@(UserWebResource.LB_INPUT_MESSAGE+"...")"></div>
+                @*<div class="cmt-attach">
+                    <a href="javascript:;"><i class="icon icon-emoji"></i></a>
+                    <a href="javascript:;"><i class="icon icon-image"></i></a>
+                </div>*@
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="hidden box-hiding-@Model.TargetUser.Id" data-id="@Model.TargetUser.Id">
+            <span class="display-name" title="@displayName">@displayName</span>
+            <i class="icon icon-clear2 fz-20 ui-chat-box-close"></i>
+        </div>
+    </div>
+</div>
+}
+
+

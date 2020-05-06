@@ -1,0 +1,64 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageCompanyNoteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_UPDATE_INFO
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    var typeList = CompanyNoteTypeProvider.GetListCompanyNoteType();
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+            @Html.HiddenFor(m => m.company_id)
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_CONTACT_FORM
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <select id="@Html.IdFor(m=>m.type)" name="@Html.NameFor(m=>m.type)" class="form-control selectpicker">
+                        @foreach (var item in typeList)
+                        {
+                            <option value="@item.id" @(Model.type == item.id ? "selected":"")>
+                                @item.TypeName
+                            </option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_CONTENT
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        @Html.TextAreaFor(m => m.note, new { @class = "form-control", rows = "4" })
+                        @Html.ValidationMessageFor(m => m.note, "", new { @class = "m--font-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">
+            @ManagerResource.LB_SAVE
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="ShowNote(@Model.company_id)">
+            @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}
+<script>
+    $(".selectpicker").selectpicker();
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

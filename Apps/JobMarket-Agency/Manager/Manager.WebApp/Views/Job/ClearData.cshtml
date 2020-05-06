@@ -1,0 +1,139 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.JobClearDataModel
+
+@{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    var jobName = string.Empty;
+    var noProcesssDel = Model.Counter.GetTotal() == 0;
+    if (Model.JobInfo != null && Model.JobInfo.Job_translations.HasData())
+    {
+        var nameByLang = Model.JobInfo.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+        if (!string.IsNullOrEmpty(nameByLang))
+        {
+            jobName = nameByLang;
+        }
+
+        if (string.IsNullOrEmpty(jobName))
+        {
+            jobName = Model.JobInfo.Job_translations[0].title;
+        }
+    }
+
+    //var totalJobs = ((Model.Counter != null && Model.Counter.JobCounter != null) ? Model.Counter.JobCounter.GetTotal() : 0);
+
+    //var noJobsDel = ((totalJobs - Model.Counter.JobCounter.Closed) <= 0);
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h2 class="pt10 pb10" style="font-size: 1.7rem;">
+                    <i class="fa fa-recycle fz-20"></i> @ManagerResource.CONFIRM_DELETE
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        <!--begin::Form-->
+        @using (Html.BeginForm("Delete", "Job", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmDelete", encType = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.id)
+            @Html.HiddenFor(m => m.tk)
+            <div class="">
+                @if (Model.JobInfo != null)
+                {
+                    <div class="m-section__content float-left full-width mb10">
+                        @*<div class="float-left">
+                                <a href="javascript:;" class="logo-sm mr10" style="width:90px;height:60px;display:flex">
+                                    <img src="@Model.CompanyIno.logo_full_path" />
+                                </a>
+                            </div>*@
+                        <div class="float-left mt20">
+                            <h5 class="text-info fz-15">@jobName</h5>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="mt10">
+                <h5 class="text-danger">@ManagerResource.LB_WARN_DEL_RELATED</h5>
+            </div>
+            <hr />
+            <div class="m-widget1 m-widget1--paddingless">
+                <div class="m-widget1__item pt0">
+                    <div class="row m-row--no-padding align-items-center">
+                        <div class="col-md-4">
+                            <h3 class="m-widget1__title mb10">
+                                Tiến độ người tìm việc
+                            </h3>
+
+                            <div class="pl20">
+                                <ul>
+                                    <li>
+                                        Đang phỏng vấn : @Model.Counter.Interviewing
+                                    </li>
+                                    <li>
+                                        Đã tuyển dụng: @Model.Counter.Recruitmented
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 m--align-left">
+                            <span class="m-widget1__number m--font-danger fz-15">
+                                @ManagerResource.LB_TOTAL:  @Model.Counter.GetTotal()
+                            </span>
+                        </div>
+                        <div class="col-md-4 m--align-left">
+                            @{
+                                var delAllProcesss = SecurityHelper.GenerateSecureLink("Job", "DeleteAllProcesss", new { id = Model.id });
+                            }
+
+                            @if (!noProcesssDel)
+                            {
+                                <a class="btn btn-outline-danger" data-href="@delAllProcesss" data-size="default" href="javascript:;" data-link="@delAllProcesss" data-modal="" title="@ManagerResource.LB_DELETE">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-separator m-separator--fit"></div>
+            <div class="m-widget1 m-widget1--paddingless row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <a class="btn btn-outline-info btn-back" href="@Url.Action("Index", "Job")"><i class="fa fa-close"></i> @ManagerResource.LB_CANCEL</a>
+                    @if (noProcesssDel)
+                    {
+                        <button type="submit" class="btn btn-danger pull-right">
+                            <i class="fa fa-trash"></i> @ManagerResource.LB_DELETE
+                        </button>
+                    }
+                </div>
+            </div>
+        }
+        <!--end::Form-->
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+
+}
+
+@section PageInlineScripts{
+
+}

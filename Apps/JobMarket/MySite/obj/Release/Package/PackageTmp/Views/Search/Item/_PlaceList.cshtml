@@ -1,0 +1,25 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Resources;
+@using MySite.Caching;
+@using MySite.Helpers;
+@model List<IdentityPlace>
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <a href="/destination/@(UrlFriendly.ConvertToUrlFriendly(item.GName) + "." + item.Id)" title="@item.GName" class="_2ait">
+            <img src="@item.Icon" alt="avatar" class="avatar">
+        </a>
+        <div class="_6dc _2anb">
+            <div class="_2anb">
+                <a href="/destination/@(UrlFriendly.ConvertToUrlFriendly(item.GName) + "." + item.Id)" title="@item.GName" class="_2ana">
+                    @item.GName
+                </a>
+            </div>
+            <span class="fz-13">
+                <a href="/destination/@(UrlFriendly.ConvertToUrlFriendly(item.GName) + "." + item.Id)" class="text-dark"><span class="follower text-grey-03"><span id="FollowersCount">@item.PostCount</span>  @UserWebResource.LB_POST.ToLower()</span></a>
+            </span>
+        </div>
+    </div>
+}
+

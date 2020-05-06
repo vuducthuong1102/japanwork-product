@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+
+@{ Html.RenderPartial("_Upload"); }
+
+@section PagePluginScripts{
+    @Scripts.Render("~/bundles/jqueryform")
+    @Scripts.Render("~/bundles/jcrop")
+    @Scripts.Render("~/bundles/avatar")
+    @Styles.Render("~/Content/jcrop")
+    @Styles.Render("~/Content/avatar")
+}

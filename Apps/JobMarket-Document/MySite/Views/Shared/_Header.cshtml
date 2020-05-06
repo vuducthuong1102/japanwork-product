@@ -1,0 +1,190 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var displayName = AccountHelper.ShowDisplayName(currentUser);
+    var gadientHeader = (ViewBag.GadientHeader != null) ? "gradient" : string.Empty;
+}
+
+@if (currentUser != null)
+{
+    <div class="profile-sidebar">
+        <span class="close-profile"><i class="la la-close"></i></span>
+        <div class="can-detail-s">
+            <div class="cst"><img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar" /></div>
+            <h3>@displayName</h3>
+            @if (!string.IsNullOrEmpty(currentUser.Email))
+            {
+                <p>
+                    @currentUser.Email
+                </p>
+            }
+
+            <p>@currentUser.Birthday.DateTimeQuestToString("dd/MM/yyyy")</p>
+            @* <p><i class="la la-map-marker"></i>Istanbul / Turkey</p>*@
+        </div>
+        <div class="tree_widget-sec">
+            <ul>
+                @RenderMemberMenuItems()
+            </ul>
+        </div>
+    </div><!-- Profile Sidebar -->
+}
+
+<div class="responsive-header">
+    <div class="responsive-menubar">
+        <div class="res-logo"><a href="/" title=""><img src="~/Content/themes/default/images/resource/logo.png" alt="" /></a></div>
+        <div class="menu-resaction">
+            <div class="res-openmenu">
+                <img src="~/Content/themes/default/images/icon.png" alt="" /> Menu
+            </div>
+            <div class="res-closemenu">
+                <img src="~/Content/themes/default/images/icon2.png" alt="" /> Close
+            </div>
+        </div>
+    </div>
+    <div class="responsive-opensec custom-scrollbar" style="height:620px;max-height:unset;">
+        @if (currentUser == null)
+        {
+            <div class="btn-extars">
+               @* <a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>@UserWebResource.LB_POST_JOB</a>*@
+                <ul class="account-btns">
+                    <li class=""><a title="" href="/WebAuth/Register"><i class="la la-key"></i> @UserWebResource.BT_REGISTER</a></li>
+                    <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> @UserWebResource.BT_LOGIN</a></li>
+                </ul>
+            </div><!-- Btn Extras -->
+        }
+        else
+        {
+            <div class="my-profiles-sec mb10">
+                <div>
+                    <img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar">
+                    @displayName
+                </div>
+            </div>
+
+            <div class="btn-extars res-mode">
+                <ul class="account-btns res-mode">
+                    @RenderMemberMenuItems()
+                </ul>
+            </div><!-- Btn Extras -->
+        }
+        @*<form class="res-search">
+                <input type="text" placeholder="Job title, keywords or company name" />
+                <button type="submit"><i class="la la-search"></i></button>
+            </form>*@
+        <div class="responsivemenu">
+            <ul>
+                @RenderMenu()
+
+                @RenderLanguagesDropdown()
+            </ul>
+        </div>
+    </div>
+</div>
+
+<header class="@gadientHeader @(string.IsNullOrEmpty(gadientHeader) ? "stick-top forsticky" : "")">
+    <div class="menu-sec">
+        <div class="container">
+            <div class="logo">
+                <a href="/" title=""><img class="hidesticky" src="~/Content/themes/default/images/resource/logo.png" alt="" /><img class="showsticky" src="~/Content/themes/default/images/resource/logo10.png" alt="" /></a>
+            </div><!-- Logo -->
+
+            @if (currentUser == null)
+            {
+                <div class="btn-extars">
+                    @*<a href="#" title="" class="post-job-btn"><i class="la la-plus"></i>@UserWebResource.LB_POST_JOB</a>*@
+
+                    <ul class="account-btns">
+                        <li class=""><a title="" href="/WebAuth/Register"><i class="la la-key"></i> @UserWebResource.BT_REGISTER</a></li>
+                        <li class="signin-popup"><a title=""><i class="la la-external-link-square"></i> @UserWebResource.BT_LOGIN</a></li>
+                    </ul>
+                </div><!-- Btn Extras -->
+            }
+            else
+            {
+                <div class="my-profiles-sec">
+                    <span>
+                        <img src="@((!string.IsNullOrEmpty(currentUser.Avatar)) ? currentUser.Avatar: "/Content/images/default-avatar.png")" alt="Avatar">
+                        @displayName
+                        <i class="la la-bars"></i>
+                    </span>
+                </div>
+            }
+
+            <nav>
+                <ul>
+                    @RenderMenu()
+
+                    @RenderLanguagesDropdown()
+                </ul>
+            </nav><!-- Menus -->
+        </div>
+    </div>
+</header>
+
+@helper RenderMemberMenuItems()
+{
+    <li><a href="/member/myprofile" title=""><i class="la la-file-text"></i>@UserWebResource.LB_MY_PROFILE</a></li>
+    <li><a href="/member/resume" title=""><i class="la la-briefcase"></i>@UserWebResource.LB_MY_RESUME</a></li>
+    <li><a href="/member/applied" title=""><i class="la la-paper-plane"></i>@UserWebResource.LB_APPLIED_JOBS</a></li>
+    @*<li><a href="/member/jobalert" title=""><i class="la la-user"></i>@UserWebResource.LB_JOB_ALERTS</a></li>*@
+    <li><a href="/member/mycv" title=""><i class="la la-file-text"></i>@UserWebResource.LB_CV_AND_COVER_LETTER</a></li>
+    <li><a href="/member/changepwd" title=""><i class="la la-flash"></i>@UserWebResource.BT_CHANGE_PWD</a></li>
+    <li><a href="/WebAuth/Logout" title=""><i class="la la-sign-out"></i>@UserWebResource.BT_LOGOUT</a></li>
+}
+
+@helper RenderLanguagesDropdown()
+{
+    <li class="nav-item dropdown">
+        @{
+            var langList = LanguagesProvider.GetListLanguages();
+            var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+            var hasLangData = langList.HasData();
+        }
+
+        <a class="nav-link dropdown-toggle pl0" href="javascript:;" id="dropdownlang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            @if (hasLangData)
+            {
+                foreach (var item in langList)
+                {
+                    if ((currentLang == item.LanguageCultureName))
+                    {
+                        <img class="lang-item-flag" src="~/Content/images/flags/@(item.LanguageCultureName).png" /> @item.LanguageFullName
+                    }
+                }
+            }
+        </a>
+
+        <div class="dropdown-menu dropdown-lang" aria-labelledby="dropdownlang">
+            @{
+                if (hasLangData)
+                {
+                    foreach (var item in langList)
+                    {
+                        <a class="lang-item @((currentLang == item.LanguageCultureName)? "active": string.Empty)" style="@((currentLang == item.LanguageCultureName)? "color:#fff !important": string.Empty)" href="@((currentLang != item.LanguageCultureName) ? "/home/changelanguage?lang=" + item.LanguageCultureName: "javascript:;")">
+                            <img class="lang-item-flag" src="~/Content/images/flags/@(item.LanguageCultureName).png" /> @item.LanguageFullName
+                        </a>
+                    }
+                }
+            }
+
+        </div>
+    </li>
+}
+
+@helper RenderMenu()
+{
+    <li class="">
+        <a href="/" title="">@UserWebResource.LB_HOME_PAGE</a>
+    </li>
+    <li class="">
+        <a href="/" title="">Blog</a>
+    </li>
+    <li class="">
+        <a href="/" title="">Liên hệ</a>
+    </li>
+
+}

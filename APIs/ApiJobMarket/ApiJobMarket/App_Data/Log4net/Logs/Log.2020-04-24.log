@@ -1,0 +1,151 @@
+2020-04-24 00:24:33,122 [195] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 00:24:33,137 [195] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 00:24:33,138 [195] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 00:24:33,271 [195] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 00:24:33,272 [195] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 00:24:33,272 [195] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 10:51:06,005 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 10:51:06,017 [82] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 10:51:06,017 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 10:51:06,143 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 10:51:06,144 [82] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 10:51:06,144 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:36:06,102 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:36:06,114 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 14:36:06,115 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:36:06,241 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:36:06,242 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 14:36:06,243 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:42:10,781 [164] ERROR ApiCompanyMarket.Helpers.CompanyHelpers - Could not GetBaseInfoCompany: System.ObjectDisposedException: Instances cannot be resolved and nested lifetimes cannot be created from this LifetimeScope as it has already been disposed.
+   at Autofac.Core.Lifetime.LifetimeScope.CheckNotDisposed()
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at ApiCompanyMarket.Helpers.CompanyHelpers.GetBaseInfoCompany(Int32 id) in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Helpers\Business\CompanyHelpers.cs:line 26
+2020-04-24 14:42:10,879 [164] ERROR ApiCompanyMarket.Helpers.CompanyHelpers - Could not GetBaseInfoCompany: System.ObjectDisposedException: Instances cannot be resolved and nested lifetimes cannot be created from this LifetimeScope as it has already been disposed.
+   at Autofac.Core.Lifetime.LifetimeScope.CheckNotDisposed()
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at ApiCompanyMarket.Helpers.CompanyHelpers.GetBaseInfoCompany(Int32 id) in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Helpers\Business\CompanyHelpers.cs:line 26
+2020-04-24 14:42:17,254 [164] ERROR ApiJobMarket.Helpers.CachingHelpers - Could not ClearCacheByKey: System.ObjectDisposedException: Instances cannot be resolved and nested lifetimes cannot be created from this LifetimeScope as it has already been disposed.
+   at Autofac.Core.Lifetime.LifetimeScope.CheckNotDisposed()
+   at Autofac.Core.Lifetime.LifetimeScope.ResolveComponent(IComponentRegistration registration, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Autofac.ResolutionExtensions.Resolve[TService](IComponentContext context, IEnumerable`1 parameters)
+   at ApiJobMarket.Helpers.CachingHelpers.ClearCacheByKey(String key) in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Helpers\Master\CachingHelpers.cs:line 19
+2020-04-24 14:49:06,007 [50] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:49:06,010 [50] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 14:49:06,011 [50] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:49:06,099 [50] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:49:06,100 [50] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 14:49:06,101 [50] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:59:09,651 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:59:09,664 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 14:59:09,665 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:59:09,811 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 14:59:09,812 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 14:59:09,813 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 16:36:36,677 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 16:36:36,689 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 16:36:36,690 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 16:36:36,820 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 16:36:36,821 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 16:36:36,822 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:22:35,543 [26] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:22:35,555 [26] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 22:22:35,556 [26] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:22:35,684 [26] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:22:35,684 [26] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 22:22:35,685 [26] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:28:50,189 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:28:50,204 [59] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 22:28:50,205 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:28:50,340 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:28:50,341 [59] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 22:28:50,341 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:29:39,777 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:29:39,789 [47] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 22:29:39,789 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:29:39,943 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 22:29:39,943 [47] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 22:29:39,944 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:02:16,519 [37] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+ApiJobMarket.ShareLibs.Exceptions.CustomSQLException: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 289
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:07:04,736 [21] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+ApiJobMarket.ShareLibs.Exceptions.CustomSQLException: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 289
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:11:23,134 [7] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+ApiJobMarket.ShareLibs.Exceptions.CustomSQLException: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 289
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:12:06,159 [89] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+ApiJobMarket.ShareLibs.Exceptions.CustomSQLException: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 289
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:12:44,274 [22] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+ApiJobMarket.ShareLibs.Exceptions.CustomSQLException: Failed to execute A_Notification_GetListByStaff. Error: Procedure or function 'A_Notification_GetListByStaff' expects parameter '@is_update_view', which was not supplied.
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 289
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:12:58,958 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:12:58,970 [59] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 23:12:58,971 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:12:59,101 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:12:59,101 [59] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 23:12:59,102 [59] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:13:11,934 [39] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+   at CallSite.Target(Closure , CallSite , Object )
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute1[T0,TRet](CallSite site, T0 arg0)
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 229
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute4[T0,T1,T2,T3,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2, T3 arg3)
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at System.Dynamic.UpdateDelegates.UpdateAndExecute4[T0,T1,T2,T3,TRet](CallSite site, T0 arg0, T1 arg1, T2 arg2, T3 arg3)
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:13:14,850 [23] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+   at CallSite.Target(Closure , CallSite , Object )
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 229
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:13:32,500 [164] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+   at CallSite.Target(Closure , CallSite , Object )
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 229
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:14:28,913 [90] ERROR ApiJobMarket.Controllers.A_ApiNotificationController - Failed for A_Notifications-GetList request: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException: 'System.Dynamic.ExpandoObject' does not contain a definition for 'is_update_view'
+   at CallSite.Target(Closure , CallSite , Object )
+   at ApiJobMarket.DB.Sql.Repositories.RpsAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Repositories\Master\RpsAgencyNotification.cs:line 229
+   at ApiJobMarket.DB.Sql.Stores.StoreAgencyNotification.GetListByStaff(Object filter, Int32 currentPage, Int32 pageSize) in C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql\Stores\Master\StoreAgencyNotification.cs:line 62
+   at ApiJobMarket.Controllers.A_ApiNotificationController.<GetListNotification>d__3.MoveNext() in C:\Project\APIs\ApiJobMarket\ApiJobMarket\Controllers\Agency\A_ApiNotificationController.cs:line 157
+2020-04-24 23:14:57,778 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:14:57,798 [68] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 23:14:57,799 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:14:57,940 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:14:57,941 [68] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 23:14:57,942 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:42:17,061 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:42:17,097 [47] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 23:42:17,110 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:42:17,272 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:42:17,273 [47] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 23:42:17,275 [47] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:44:36,748 [259] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:44:36,761 [259] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-24 23:44:36,763 [259] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:44:36,877 [259] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-24 23:44:36,877 [259] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-24 23:44:36,878 [259] INFO  ApiJobMarket.Startup - ======================================================

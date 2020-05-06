@@ -1,0 +1,88 @@
+﻿@using MySite.Models
+@using MySite.Helpers
+@using MySite.Resources
+@model List<JobSeekerNotificationModel>
+
+@{
+    var hasData = Model.HasData();
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+}
+
+@if (hasData)
+{
+    foreach (var item in Model)
+    {
+        if (item.NotifInfo != null)
+        {
+            var notifMsg = string.Empty;
+            var cssColor = "info";
+            if (item.NotifInfo.target_type == (int)EnumNotifTargetType.Job)
+            {
+                if (item.JobInfo != null)
+                {
+
+                    if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForJobSeeker.Application_Accepted)
+                    {
+                        notifMsg = UserWebResource.NOTIF_APPLICATION_ACCEPTED;
+                    }
+                    else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForJobSeeker.Application_Rejected)
+                    {
+                        cssColor = "danger";
+                        notifMsg = UserWebResource.NOTIF_APPLICATION_IGNORED;
+                    }
+                    else if (item.NotifInfo.action_type == (int)EnumNotifActionTypeForJobSeeker.Invitation_Received)
+                    {
+                        notifMsg = UserWebResource.NOTIF_APPLICATION_INVITE_RECEIVED;
+                    }
+                    <li class="box-noti-item @(item.NotifInfo.is_read ? "read" : "unread") @cssColor">
+                        <div class="col-md-3 col-sm-3 col-xs-3" title="@(item.JobInfo.company_info != null ? item.JobInfo.company_info.company_name : "")">
+                            <div class="notify-img" style="background-color:#fff;">
+                                @*<img src="@item.JobInfo.company_info.logo_full_path" alt="@item.JobInfo.company_info.company_name">*@
+                                @if (item.JobInfo.company_info != null)
+                                {
+                                    if (!string.IsNullOrEmpty(item.JobInfo.company_info.logo_full_path))
+                                    {
+                                        <img src="@item.JobInfo.company_info.logo_full_path" title="@item.JobInfo.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@defaultComLogo" title="@item.JobInfo.company_info.company_name" />
+                                    }
+                                }
+                                else
+                                {
+                                    <img src="@defaultComLogo" title="@item.JobInfo.company_info.company_name" />
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-9 col-xs-9 pd-l0">
+                            @{
+                                var dtLink = SecurityHelper.GenerateSecureLink("Member", "ReadNotif", new { id = item.NotifInfo.notification_id });
+                                var jobTitle = string.Empty;
+                                if (item.JobInfo != null)
+                                {
+                                    if (item.JobInfo.Job_translations.HasData())
+                                    {
+                                        jobTitle = item.JobInfo.Job_translations.FirstOrDefault().title;
+                                    }
+                                }
+                            }
+                            <a href="@dtLink" target="_blank">
+                                <span class="box-noti-item-title" title="@jobTitle">@HtmlHelpers.ShowHtmlTextByLimit(jobTitle, 50)</span>
+                                <p class="notif-msg @cssColor">
+                                    @notifMsg
+                                </p>
+                                <hr>
+                                @{
+                                    var localTime = item.NotifInfo.created_at != null ? item.NotifInfo.created_at.Value.ToLocalTime() : DateTime.UtcNow.ToLocalTime();
+                                }
+                                <p class="time" title="@localTime.ToString("HH:mm dd/MM/yyyy")">@DateHelpers.FormatToStringTitle(localTime, false)</p>
+                            </a>
+                        </div>
+                    </li>
+                }
+            }
+        }
+
+    }
+}

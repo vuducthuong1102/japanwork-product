@@ -1,0 +1,124 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityPost
+
+@{
+    var baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+    var shareFbUrl = string.Empty;
+    var relativePath = string.Empty;
+
+    var hasLoggedIn = false;
+    var userInfo = AccountHelper.GetCurrentUser();
+    if (userInfo != null)
+    {
+        hasLoggedIn = true;
+    }
+    var ClassLike = "icon icon-heart-1 fz-18";
+    var IsActive = "";
+    var dataislike = 0;
+    if (Model.IsLike)
+    {
+        ClassLike = "icon icon-heart_active fz-18 active";
+        IsActive = "active";
+        dataislike = 1;
+    }
+
+    if (Model != null)
+    {
+        relativePath = baseUrl + PostHelper.GetFriendlyUrl(Model);
+        shareFbUrl = string.Format("https://www.facebook.com/sharer/sharer.php?u={0}", relativePath);
+    }
+}
+<div class="col-md-4 col-xs-4 col-sm-4 col-lg-4 counter">
+    <ul class="fll">
+        @if (Model != null)
+        {
+            <li class="ml0">
+                <a href="javascript:;" class="comment-post post-count-comment" title="@UserWebResource.LB_COMMENT" target="_blank" data-id="@Model.Id" data-count="@Model.Comment_Count">
+                    <i class="icon icon-comment fz-18"></i>
+                    @NumberHelpers.NumberReformat(Model.Comment_Count)
+                </a>
+            </li>
+        }
+        @*else
+            {
+                <li class="ml0">
+                    <a href="javascript:;" class="comment-post" title="@UserWebResource.LB_COMMENT" target="_blank" data-count="@Model.Comment_Count">
+                        <i class="icon icon-comment fz-18"></i>
+                        @NumberHelpers.NumberReformat(Model.Comment_Count)
+                    </a>
+                </li>
+            }*@
+    </ul>
+</div>
+<div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 counter">
+    <ul>
+        @if (hasLoggedIn)
+        {
+            <li><a href="javascript:;" title="@UserWebResource.LB_LIKE" class="like-post @IsActive" data-id="@Model.Id" data-like="@Model.Like_Count" data-islike="@dataislike">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+            <li class="dropdown">
+                <a href="javascript:;" class="dropdown-toggle" title="@UserWebResource.LB_SHARE_SOCIAL" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <span class="share_count">@NumberHelpers.NumberReformat(Model.Share_Count)</span>
+                    <i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span>
+                </a>
+                <ul class="dropdown-menu share">
+                    <li class="text-center"><a href="javascript:;">@UserWebResource.LB_SHARE_SOCIAL</a></li>
+                    <li class="share text-center">
+                        @*<a href="@shareFbUrl" title="@UserWebResource.LB_SHARE_ON_FB" target="_blank">
+                            <span class="icon icon-facebook"><span class="path1"></span><span class="path2"></span></span>
+                        </a>*@
+                        <a data-link="@relativePath" title="@UserWebResource.LB_SHARE_ON_FB" class="share-social share_fb pointer" data-id="@Model.Id">
+                            <span class="icon icon-facebook"><span class="path1"></span><span class="path2"></span></span>
+                        </a>
+                        <a href="https://plus.google.com/share?url=@HttpUtility.UrlEncode(relativePath)" title="@UserWebResource.LB_SHARE_ON_GOOGLE" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                            <span class="icon icon-google-plus"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" title="@UserWebResource.LB_SAVED" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    @NumberHelpers.NumberReformat(Model.Saved_Count)
+                    <i class="icon icon-share"></i>
+                    <span class="icon icon-arrow-down2"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:;" data-id="@Model.Id" title="@UserWebResource.BT_SAVEPOST" class="action-save-post">@UserWebResource.BT_SAVEPOST</a></li>
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_LIKE">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_SHARE_SOCIAL">@NumberHelpers.NumberReformat(Model.Share_Count)<i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span></a></li>
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')" title="@UserWebResource.LB_SAVED">@NumberHelpers.NumberReformat(Model.Saved_Count)<i class="icon icon-share"></i><span class="icon icon-arrow-down2"></span></a></li>
+        }
+    </ul>
+</div>
+
+
+@*<ul>
+        @if (hasLoggedIn)
+        {
+            <li><a href="javascript:;" class="like-post @IsActive" data-id="@Model.Id" data-like="@Model.Like_Count" data-islike="@dataislike">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+            <li><a href="javascript:;" class="comment-post comment-count" data-id="@Model.Id" data-count="@Model.Comment_Count">@NumberHelpers.NumberReformat(Model.Comment_Count)<i class="icon icon-comment fz-18"></i></a></li>
+            <li><a href="javascript:;">@NumberHelpers.NumberReformat(Model.Share_Count)<i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span></a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@NumberHelpers.NumberReformat(Model.Saved_Count)<i class="icon icon-share"></i><span class="icon icon-arrow-down2"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:;" data-id="@Model.Id" class="action-save-post">@UserWebResource.BT_SAVEPOST</a></li>
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')">@NumberHelpers.NumberReformat(Model.Like_Count)<i class="@ClassLike"></i></a></li>
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')">@NumberHelpers.NumberReformat(Model.Comment_Count)<i class="icon icon-comment fz-18"></i></a></li>
+            <li><a href="javascript:;" onclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')">@NumberHelpers.NumberReformat(Model.Share_Count)<i class="icon icon-networking fz-16"></i><span class="icon icon-arrow-down2"></span></a></li>
+            <li class="dropdown">
+                <a href="#" nclick="ConfirmFirst(NeedToLogin, '@UserWebResource.COMMON_ERROR_NO_LOGIN')"><i class="icon icon-share"></i><span class="icon icon-arrow-down2"></span></a>
+            </li>
+        }
+    </ul>*@

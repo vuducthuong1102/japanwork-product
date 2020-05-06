@@ -1,0 +1,572 @@
+2020-02-20 08:51:22,068 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:22,079 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 08:51:22,080 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:22,214 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:22,215 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 08:51:22,215 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:28,937 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 08:51:29,015 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 08:51:33,945 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 08:51:34,018 [12] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 08:51:44,766 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:44,769 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 08:51:44,770 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:44,870 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:44,871 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 08:51:44,871 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 08:51:50,516 [13] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 08:51:50,588 [13] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 08:53:55,398 [11] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 08:53:55,466 [11] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 08:58:08,507 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 08:58:08,577 [12] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 08:58:41,840 [39] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 08:58:41,898 [39] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 08:58:46,250 [40] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 08:58:46,319 [40] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:00:05,269 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:00:05,275 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:00:09,712 [39] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:00:09,781 [39] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:05:33,659 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:05:33,730 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:05:38,084 [30] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:05:38,154 [30] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:06:46,456 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:06:46,461 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:06:50,936 [10] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:06:51,005 [10] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:08:41,167 [51] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:08:41,173 [51] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:08:45,616 [45] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:08:45,685 [45] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:09:01,081 [39] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:09:01,086 [39] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:09:05,432 [29] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:09:05,501 [29] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:09:17,579 [33] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:09:17,583 [33] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:09:21,925 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:09:21,995 [12] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:12:12,794 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:12:12,799 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:12:17,238 [65] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:12:17,308 [65] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:12:58,862 [43] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:12:58,867 [43] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:13:03,304 [68] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:13:03,374 [68] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:13:44,509 [33] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:13:44,513 [33] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:13:48,945 [43] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:13:49,014 [43] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:14:13,428 [64] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:14:13,433 [64] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:14:17,873 [51] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:14:17,943 [51] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:15:50,564 [33] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:15:50,635 [33] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:15:55,133 [33] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:15:55,203 [33] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:16:28,744 [33] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:16:28,750 [33] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:16:33,192 [29] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:16:33,262 [29] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:19:16,160 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 09:19:16,161 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 09:19:16,161 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 09:19:16,250 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 09:19:16,251 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 09:19:16,253 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 09:19:19,206 [73] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:19:19,212 [73] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:23:42,364 [44] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:23:42,433 [44] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:28:20,002 [65] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:28:20,074 [65] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:28:24,576 [65] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:28:24,646 [65] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:29:30,273 [65] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:29:30,281 [65] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:29:34,735 [65] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:29:34,804 [65] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:32:14,165 [25] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:32:14,171 [25] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:32:18,632 [11] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:32:18,701 [11] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:36:25,301 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:36:25,308 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:36:29,775 [50] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:36:29,844 [50] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:39:24,575 [69] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:39:24,647 [69] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:39:29,107 [42] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:39:29,179 [42] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:41:14,071 [50] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:41:14,076 [50] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:41:18,558 [87] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:41:18,626 [87] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:41:43,238 [90] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:41:43,242 [90] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:41:47,685 [58] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:41:47,755 [58] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:42:09,338 [48] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:42:09,342 [48] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:42:13,795 [90] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:42:13,864 [90] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:42:38,552 [58] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:42:38,556 [58] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:42:42,897 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:42:42,968 [12] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:43:32,664 [67] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:43:32,680 [67] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:43:37,042 [58] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:43:37,111 [58] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:43:52,097 [36] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:43:52,103 [36] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:43:56,560 [86] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:43:56,628 [86] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:44:55,089 [48] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:44:55,094 [48] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:44:59,540 [48] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:44:59,610 [48] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:45:06,054 [67] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:45:06,060 [67] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:45:10,407 [86] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:45:10,478 [86] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:45:13,643 [90] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:45:13,647 [90] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:45:18,010 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:45:18,081 [12] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:47:24,076 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:47:24,082 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:47:28,424 [67] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:47:28,494 [67] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:48:12,005 [12] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:48:12,011 [12] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:48:16,356 [65] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:48:16,426 [65] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:57:20,370 [29] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:57:20,442 [29] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:57:24,901 [83] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:57:24,969 [83] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 09:58:34,957 [30] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 09:58:34,962 [30] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 09:58:39,686 [30] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 09:58:39,756 [30] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:01:39,541 [30] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:01:39,549 [30] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:01:43,914 [45] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:01:43,984 [45] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:08:04,595 [45] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:08:04,667 [45] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:08:09,130 [39] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:08:09,200 [39] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:08:40,186 [94] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:08:40,191 [94] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:08:44,648 [95] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:08:44,717 [95] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:11:19,436 [95] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:11:19,443 [95] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:11:23,903 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:11:23,972 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:14:28,506 [95] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:14:28,516 [95] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:14:32,972 [39] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:14:33,041 [39] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:20:11,702 [94] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:20:11,773 [94] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:20:16,573 [73] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:20:16,643 [73] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:23:21,425 [55] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:23:21,431 [55] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:23:25,893 [46] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:23:25,962 [46] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:34:30,103 [60] INFO  MySite.Startup - ======================================================
+2020-02-20 10:34:30,115 [60] INFO  MySite.Startup - MySite is starting up
+2020-02-20 10:34:30,116 [60] INFO  MySite.Startup - ======================================================
+2020-02-20 10:34:30,220 [60] INFO  MySite.Startup - ======================================================
+2020-02-20 10:34:30,221 [60] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 10:34:30,222 [60] INFO  MySite.Startup - ======================================================
+2020-02-20 10:34:35,874 [41] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:34:35,981 [41] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:34:40,886 [46] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:34:40,956 [46] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:35:20,313 [95] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:35:20,319 [95] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:35:24,775 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:35:24,844 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:35:53,601 [45] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:35:53,606 [45] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:35:58,043 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:35:58,111 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:37:51,420 [101] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:37:51,425 [101] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:37:55,908 [70] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:37:55,977 [70] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 10:38:19,285 [45] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 10:38:19,289 [45] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 10:38:23,734 [111] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 10:38:23,804 [111] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:05:10,022 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:05:10,034 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 11:05:10,035 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:05:10,150 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:05:10,150 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 11:05:10,151 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:05:20,606 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:05:20,683 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:05:25,320 [20] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:05:25,395 [20] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:07:27,611 [27] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:07:27,673 [27] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:07:32,142 [33] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:07:32,210 [33] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:10:46,270 [31] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:10:46,275 [31] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:10:50,753 [34] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:10:50,821 [34] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:13:40,464 [39] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:13:40,471 [39] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:13:44,922 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:13:44,990 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:13:59,296 [29] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:13:59,301 [29] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:14:03,758 [33] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:14:03,826 [33] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:16:54,929 [34] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:16:55,002 [34] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:16:59,490 [39] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:16:59,560 [39] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:17:19,770 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:17:19,775 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:17:24,221 [41] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:17:24,289 [41] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:18:41,775 [19] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:18:41,781 [19] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:18:46,235 [26] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:18:46,304 [26] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:22:07,123 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:22:07,130 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:22:11,619 [39] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:22:11,688 [39] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:26:44,181 [32] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:26:44,186 [32] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:26:48,545 [33] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:26:48,620 [33] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:27:31,938 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:27:31,951 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 11:27:31,951 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:27:32,069 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:27:32,070 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 11:27:32,070 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 11:27:37,541 [26] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:27:37,650 [26] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:27:42,313 [19] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:27:42,380 [19] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:28:31,337 [34] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:28:31,342 [34] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:28:35,846 [27] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:28:35,914 [27] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:29:47,049 [43] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:29:47,056 [43] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:29:51,549 [32] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:29:51,618 [32] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:31:06,045 [38] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:31:06,050 [38] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:31:10,501 [20] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:31:10,570 [20] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:31:25,076 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:31:25,145 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:31:29,496 [37] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:31:29,563 [37] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:32:04,056 [26] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:32:04,064 [26] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:32:08,410 [34] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:32:08,478 [34] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:34:57,573 [47] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:34:57,578 [47] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:35:02,019 [7] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:35:02,088 [7] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:37:40,370 [46] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:37:40,443 [46] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:37:44,880 [19] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:37:44,948 [19] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:38:04,305 [40] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:38:04,310 [40] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:38:08,786 [42] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:38:08,854 [42] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:40:26,250 [66] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:40:26,256 [66] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:40:30,709 [47] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:40:30,777 [47] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:44:02,415 [88] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:44:02,421 [88] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:44:06,869 [66] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:44:06,937 [66] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:46:12,225 [79] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:46:12,230 [79] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:46:16,691 [85] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:46:16,763 [85] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:46:49,177 [73] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:46:49,181 [73] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:46:53,638 [76] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:46:53,707 [76] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:47:14,388 [73] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:47:14,392 [73] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:47:18,857 [86] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:47:18,926 [86] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:52:06,030 [46] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:52:06,102 [46] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:52:10,559 [18] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:52:10,626 [18] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:52:11,747 [18] ERROR MySite.WebApiApplication - Application Error: c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_WishItem.cshtml(20): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_EMPLOYMENT_TYPE'
+System.Web.HttpCompileException (0x80004005): c:\Project\Apps\JobMarket\MySite\Views\Member\Sub\_WishItem.cshtml(20): error CS0117: 'MySite.Resources.UserWebResource' does not contain a definition for 'LB_SELECT_EMPLOYMENT_TYPE'
+   at System.Web.Compilation.AssemblyBuilder.Compile()
+   at System.Web.Compilation.BuildProvidersCompiler.PerformBuild()
+   at System.Web.Compilation.BuildManager.CompileWebFile(VirtualPath virtualPath)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultInternal(VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVPathBuildResultWithNoAssert(HttpContext context, VirtualPath virtualPath, Boolean noBuild, Boolean allowCrossApp, Boolean allowBuildInPrecompile, Boolean throwIfNotFound, Boolean ensureIsUpToDate)
+   at System.Web.Compilation.BuildManager.GetVirtualPathObjectFactory(VirtualPath virtualPath, HttpContext context, Boolean allowCrossApp, Boolean throwIfNotFound)
+   at System.Web.Compilation.BuildManager.GetCompiledType(VirtualPath virtualPath)
+   at System.Web.Mvc.BuildManagerCompiledView.Render(ViewContext viewContext, TextWriter writer)
+   at System.Web.Mvc.ViewResultBase.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultFilterRecursive(IList`1 filters, Int32 filterIndex, ResultExecutingContext preContext, ControllerContext controllerContext, ActionResult actionResult)
+   at System.Web.Mvc.ControllerActionInvoker.InvokeActionResultWithFilters(ControllerContext controllerContext, IList`1 filters, ActionResult actionResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-02-20 11:53:07,133 [96] INFO  MySite.Startup - ======================================================
+2020-02-20 11:53:07,147 [96] INFO  MySite.Startup - MySite is starting up
+2020-02-20 11:53:07,147 [96] INFO  MySite.Startup - ======================================================
+2020-02-20 11:53:07,278 [96] INFO  MySite.Startup - ======================================================
+2020-02-20 11:53:07,278 [96] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 11:53:07,279 [96] INFO  MySite.Startup - ======================================================
+2020-02-20 11:53:17,647 [64] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:53:17,718 [64] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:56:37,605 [58] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:56:37,612 [58] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:56:42,091 [78] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:56:42,160 [78] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 11:57:41,097 [58] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 11:57:41,102 [58] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 11:57:45,552 [34] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 11:57:45,620 [34] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:01:46,566 [91] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:01:46,572 [91] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:01:51,051 [29] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:01:51,120 [29] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:05:07,659 [28] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:05:07,728 [28] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:05:12,188 [63] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:05:12,257 [63] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:05:41,762 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:05:41,767 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:05:46,220 [19] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:05:46,288 [19] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:06:38,164 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:06:38,169 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:06:42,643 [76] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:06:42,711 [76] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:07:39,503 [50] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:07:39,508 [50] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:07:43,953 [76] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:07:44,021 [76] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 12:11:15,350 [24] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 12:11:15,356 [24] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 12:11:19,814 [92] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 12:11:19,882 [92] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 13:56:29,768 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 13:56:29,780 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 13:56:29,781 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 13:56:29,911 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 13:56:29,911 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 13:56:29,912 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 13:56:36,432 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 13:56:36,509 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 13:56:41,550 [19] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 13:56:41,625 [19] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 13:57:11,149 [5] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 13:57:11,208 [5] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 13:57:15,693 [5] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 13:57:15,763 [5] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 13:58:04,687 [29] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 13:58:04,755 [29] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:12:28,474 [79] INFO  MySite.Startup - ======================================================
+2020-02-20 14:12:28,486 [79] INFO  MySite.Startup - MySite is starting up
+2020-02-20 14:12:28,487 [79] INFO  MySite.Startup - ======================================================
+2020-02-20 14:12:28,619 [79] INFO  MySite.Startup - ======================================================
+2020-02-20 14:12:28,619 [79] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 14:12:28,620 [79] INFO  MySite.Startup - ======================================================
+2020-02-20 14:12:36,758 [77] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:12:40,180 [77] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:12:44,890 [66] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:12:44,964 [66] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:14:09,716 [18] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:14:09,783 [18] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:14:33,687 [20] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:14:33,755 [20] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:14:49,936 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:14:49,948 [64] INFO  MySite.Startup - MySite is starting up
+2020-02-20 14:14:49,949 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:14:50,091 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:14:50,092 [64] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 14:14:50,093 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:14:52,498 [7] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:14:52,545 [7] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:14:57,238 [9] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:14:57,308 [9] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:15:05,437 [67] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:15:05,511 [67] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:15:12,643 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:15:12,644 [64] INFO  MySite.Startup - MySite is starting up
+2020-02-20 14:15:12,645 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:15:12,757 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:15:12,758 [64] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 14:15:12,759 [64] INFO  MySite.Startup - ======================================================
+2020-02-20 14:15:14,088 [66] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:15:14,161 [66] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:15:37,284 [19] ERROR MySite.Controllers.MemberController - Failed to exec UpdateWish because: System.ArgumentNullException: Value cannot be null.
+Parameter name: values
+   at System.String.Join[T](String separator, IEnumerable`1 values)
+   at MySite.Controllers.MemberController.ExtractFormData(JobSeekerWishModel model) in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 3039
+   at MySite.Controllers.MemberController.<UpdateWish>d__25.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 1083
+2020-02-20 14:15:48,687 [19] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:15:48,757 [19] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:17:35,688 [18] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:17:37,084 [18] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:18:41,984 [28] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:18:42,063 [28] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:20:03,663 [57] ERROR MySite.Controllers.MemberController - Failed to exec UpdateWish because: System.ArgumentNullException: Value cannot be null.
+Parameter name: values
+   at System.String.Join[T](String separator, IEnumerable`1 values)
+   at MySite.Controllers.MemberController.ExtractFormData(JobSeekerWishModel model) in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 3039
+   at MySite.Controllers.MemberController.<UpdateWish>d__25.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 1083
+2020-02-20 14:20:46,217 [43] INFO  MySite.Startup - ======================================================
+2020-02-20 14:20:46,261 [43] INFO  MySite.Startup - MySite is starting up
+2020-02-20 14:20:46,262 [43] INFO  MySite.Startup - ======================================================
+2020-02-20 14:20:46,403 [43] INFO  MySite.Startup - ======================================================
+2020-02-20 14:20:46,404 [43] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 14:20:46,405 [43] INFO  MySite.Startup - ======================================================
+2020-02-20 14:20:55,615 [18] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:20:55,687 [18] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:21:02,315 [57] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:21:04,254 [57] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:22:07,735 [37] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:22:07,815 [37] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:22:12,425 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:22:12,504 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:22:33,825 [28] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:22:38,601 [28] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:23:48,320 [5] INFO  MySite.Startup - ======================================================
+2020-02-20 14:23:48,336 [5] INFO  MySite.Startup - MySite is starting up
+2020-02-20 14:23:48,337 [5] INFO  MySite.Startup - ======================================================
+2020-02-20 14:23:48,488 [5] INFO  MySite.Startup - ======================================================
+2020-02-20 14:23:48,489 [5] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 14:23:48,489 [5] INFO  MySite.Startup - ======================================================
+2020-02-20 14:23:52,438 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:23:52,537 [38] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:25:22,524 [38] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:25:32,252 [38] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:26:01,464 [36] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:26:01,547 [36] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:34:00,834 [52] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:34:00,917 [52] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:34:05,670 [60] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:34:05,743 [60] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:34:47,873 [60] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:34:47,881 [60] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:34:52,364 [27] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:34:52,435 [27] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:34:55,479 [60] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:34:55,554 [60] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:35:42,870 [78] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:35:42,877 [78] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:35:47,352 [78] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:35:47,424 [78] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:36:03,883 [78] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:36:03,890 [78] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:36:08,356 [78] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:36:08,427 [78] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:36:15,278 [78] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:36:15,353 [78] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:38:15,757 [63] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:38:15,766 [63] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:38:20,234 [63] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:38:20,307 [63] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:38:22,917 [52] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:38:22,991 [52] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:39:35,292 [47] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:39:35,300 [47] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:39:39,795 [47] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:39:39,868 [47] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:39:44,526 [63] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:39:44,622 [63] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:40:40,843 [26] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:40:40,854 [26] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:40:45,309 [63] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:40:45,380 [63] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:40:53,933 [9] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:40:54,007 [9] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:40:55,738 [63] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:40:55,811 [63] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:41:02,185 [47] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:41:02,263 [47] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 14:41:41,301 [26] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:41:41,310 [26] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:41:45,699 [54] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:41:45,773 [54] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:42:31,426 [54] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 14:42:31,433 [54] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 14:42:35,916 [65] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 14:42:35,988 [65] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 14:42:38,149 [71] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 14:42:38,227 [71] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 15:06:25,772 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:06:25,783 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 15:06:25,784 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:06:25,895 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:06:25,896 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 15:06:25,897 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:06:35,635 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 15:06:35,711 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 15:06:40,406 [8] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 15:06:40,485 [8] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 15:53:39,496 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:53:39,508 [1] INFO  MySite.Startup - MySite is starting up
+2020-02-20 15:53:39,508 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:53:39,636 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:53:39,637 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-02-20 15:53:39,638 [1] INFO  MySite.Startup - ======================================================
+2020-02-20 15:53:45,214 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 15:53:45,286 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 15:53:49,969 [15] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 15:53:50,042 [15] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 15:54:28,945 [12] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 15:54:29,026 [12] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 15:55:32,788 [31] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT UpdateAsync request
+2020-02-20 15:55:32,858 [31] DEBUG MySite.Services.JobSeekerWishServices - End UpdateAsync request
+2020-02-20 15:58:30,830 [15] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 15:58:30,899 [15] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 15:58:35,267 [15] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 15:58:35,338 [15] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 15:59:09,125 [44] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 15:59:09,133 [44] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 15:59:13,488 [14] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 15:59:13,556 [14] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request
+2020-02-20 15:59:20,532 [46] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-02-20 15:59:20,601 [46] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-02-20 15:59:24,947 [61] DEBUG MySite.Services.JobSeekerWishServices - Begin PUT GetDetailAsync request
+2020-02-20 15:59:25,015 [61] DEBUG MySite.Services.JobSeekerWishServices - End GetDetailAsync request

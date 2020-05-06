@@ -1,0 +1,41 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Caching;
+@model MySite.Models.Account.ProfileModel
+@if (Model != null)
+{
+    if (Model.UserInfo != null)
+    {
+        @Html.AntiForgeryToken();
+        @Html.HiddenFor(m => m.UserInfo.Id, new { @id = "ProfileId" })
+
+        @Html.Partial("../Account/Element/_UserInfo", Model)
+
+        @RenderFollowing()
+    }
+}
+@helper RenderFollowing()
+ {
+        <div class="container mt15">
+            <div class="box mb30 padb15">
+                <div class="box-header text-center text-bold fz-16">@UserWebResource.LB_FOLLOWING</div>
+                <div class="box-content">
+                    @for (int i = 0; i < 20; i++)
+                    {
+                        <div class="col-md-6 following-overlay">
+                            @Html.Partial("_ElementLoading")
+                        </div>
+                    }
+
+                    <div class="folow hidden" id="FollowingList">
+
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+}
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Account/following.js")"></script>
+}

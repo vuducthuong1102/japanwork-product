@@ -1,0 +1,13 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Models
+
+@model List<JobSeekerWorkHistoryModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @Html.Partial("Partials/_CvWorkHistoryItem", item)
+    }
+}

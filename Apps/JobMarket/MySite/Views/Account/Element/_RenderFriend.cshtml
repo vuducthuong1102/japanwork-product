@@ -1,0 +1,85 @@
+﻿@using MySite.Resources;
+@using MySite.Models.Account;
+@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Helpers;
+@model ProfileModel
+
+@if (Model != null && Model.UserInfo != null)
+{
+
+
+    var currentUserId = AccountHelper.GetCurrentUserId();
+
+    @RenderFriend(Model, currentUserId);
+}
+
+@helper RenderFriend(ProfileModel model, int currentUserId)
+{
+    var ownerId = model.OwnerId;
+    var userFriendId = model.UserFriendId;
+    var isFriend = model.UserInfo.IsFriend;
+    var userSend = model.UserSendId;
+    var requestFriendId = model.UserInfo.RequestFriendId;
+    if (isFriend)
+    {
+        <div class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle mt0 btn btn-none btn-primary-hl" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                <span class="txt-menu">@UserWebResource.LB_FRIENDS</span>
+            </a>
+            <ul class="dropdown-menu">
+                <li class="lang dropdown dropdown-submenu">
+                    <a href="javascript:;" class="btn-unfriend" data-userfriendid="@userFriendId">@UserWebResource.BT_UNFRIEND</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+    }
+    else
+    {
+        if (!model.UserInfo.IsBlock)
+        {
+            if (requestFriendId > 0)
+            {
+                if (model.IsOwnerRequest)
+                {
+                    <div class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle mt0 btn btn-none btn-primary-hl" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <span class="txt-menu">@UserWebResource.LB_FRIEND_REQUEST_SENT</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="lang dropdown dropdown-submenu">
+                                <a href="javascript:;" class="btn-cancel-request" data-requestid="@requestFriendId" data-userfriendid="@userFriendId">@UserWebResource.BT_CANCEL_REQUEST</a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                }
+                else
+                {
+                    <div class="dropdown">
+                        <a href="javascript:;" class="dropdown-toggle mt0 btn btn-none btn-primary-hl" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            <span class="txt-menu">@UserWebResource.LB_RESPOND_FRIEND_REQUEST</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="lang dropdown dropdown-submenu" data-id="@requestFriendId">
+                                <a href="javascript:;" class="btn-confirm-request">@UserWebResource.BT_CONFIRM</a>
+                                <a href="javascript:;" class="btn-delete-request" data-userfriendid="@userFriendId">@UserWebResource.BT_DELETE_REQUEST</a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            }
+            else
+            {
+                <a href="javascript:;" class="btn btn-none btn-primary-hl btn-add-friend" data-userfriendid="@userFriendId">@UserWebResource.BT_ADD_FRIEND</a>
+            }
+        }
+        else
+        {
+            <a href="javascript:;" class="btn btn-none btn-primary-hl btn-add-friend" data-userfriendid="@userFriendId">@UserWebResource.BT_ADD_FRIEND</a>
+        }
+    }
+
+}

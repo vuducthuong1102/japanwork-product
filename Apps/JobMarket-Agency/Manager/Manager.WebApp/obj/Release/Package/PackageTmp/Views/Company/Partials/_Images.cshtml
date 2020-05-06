@@ -1,0 +1,61 @@
+﻿@using MsSql.AspNet.Identity.Entities
+@using Manager.WebApp.Helpers
+@model List<IdentityProjectImage>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        var imgUrl = SocialCdnHelper.GetFullImgPath(item.Url);
+
+        @*<div class="col-md-3 col-sm-4 col-xs-6" id="project_img_@item.Id">
+            <div class="mt-card-item ">
+                <div class="mt-card-avatar mt-overlay-1 box-img img-height-250">
+                    <img src="@imgUrl">
+                    <div class="mt-overlay">
+                        <ul class="mt-info">
+                            <li>
+                                <a class="btn default btn-outline fancybox" data-fancybox="gallery" data-src="@imgUrl" rel="gallery1" href="#">
+                                    <i class="icon-magnifier"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn default btn-outline" href="javascript:;" onclick="RemoveImage(this);" data-id="@item.Id">
+                                    <i class="fa fa-close"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <p class="txt-white"></p>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>*@
+
+        @*<div class="col-md-3" id="project_img_@item.Id">
+            <div>
+                <a class="btn default btn-outline fancybox" data-fancybox="gallery" data-src="@imgUrl" rel="gallery1" href="#">
+                    <i class="icon-magnifier"></i>
+                    <img src="@imgUrl">
+                </a>
+                <a class="btn default btn-outline" href="javascript:;" onclick="RemoveImage(this);" data-id="@item.Id">
+                    <i class="fa fa-close"></i>
+                </a>
+            </div>
+        </div>*@
+
+        <div class="img-column" id="project_img_@item.Id" title="@item.Name">
+            <div style="padding:15px;">
+                <div style="text-align: right;background-color: #a5b1b5;">
+                    <a href="javascript:;" style="margin-right:5px;color:#fff" onclick="RemoveImage(this);" data-id="@item.Id"> <i class="fa fa-remove"></i> </a>
+                </div>
+                <div>
+                    <a class="fancybox" data-fancybox="gallery" data-src="@imgUrl" rel="gallery1" href="#">
+                        <img src="@imgUrl" alt="@item.Name" style="width:100%">
+                    </a> 
+                </div>
+            </div>          
+        </div>
+    }
+}
+

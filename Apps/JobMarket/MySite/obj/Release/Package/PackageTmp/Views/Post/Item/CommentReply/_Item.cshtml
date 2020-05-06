@@ -1,0 +1,73 @@
+﻿@using MySite.Helpers;
+@using MySite.ShareLibs;
+@using MySite.Settings;
+@using MySite.Resources;
+@using MySite.Caching;
+@model  ApiMySiteSocial.DB.Sql.Entities.IdentityCommentReply
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var currentId = AccountHelper.GetCurrentUserId();
+    var item = Model;
+}
+@if (Model != null)
+{
+    <div class="sub-comment item">
+        <div class="content">
+            <a href="@AccountHelper.GetUserProfileUrl(item)">
+                <img src="@CdnHelper.CoreGetFullImgPath(item.Avatar)" alt="avatar" class="avatar">
+            </a>
+            <div class="">
+                <input type="hidden" name="reply-id" value="@item.Id" />
+                <span class="text-bold">
+                    <a href="@AccountHelper.GetUserProfileUrl(item)">
+                        @item.DisplayName
+                    </a>
+                </span>
+                <span class="time livetimestamp" title="@DateHelpers.FormatToString(item.CreatedDate, EnumFormatDate.DDMMYYYHHMM)" data-utime="@EpochTime.GetIntDate(item.CreatedDate)">
+                    @DateHelpers.FormatToString(item.CreatedDate)
+                </span>
+                <div class="counter counter-in-cmt">
+                    <ul>
+                        @if (hasLoggedIn)
+                        {
+                            var IsActive = "";
+                            var dataislike = 0;
+                            var IsLikeClass = "icon-heart-1";
+                            if (item.IsLike)
+                            {
+                                IsActive = "active";
+                                dataislike = 1;
+                                IsLikeClass = "icon-heart_active";
+                            }
+                            <li><a href="javascript:;" class="like-comment-reply @IsActive" data-id="@item.Id" data-like="@item.Like_Count" data-islike="@dataislike"><span>@item.Like_Count</span><i class="icon @IsLikeClass"></i></a></li>
+                            <li><a href="javascript:;" class="comment-reply" data-id="@item.Id"><i class="icon icon-comment"></i></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="javascript:;">@item.Like_Count<i class="icon icon-heart-1"></i></a></li>
+                            <li><a href="javascript:;"><i class="icon icon-comment"></i></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <p class="cmt-text">@Html.Raw(item.Content) </p>
+            @if (item.UserId == currentId)
+            {
+                <div class="action-subcomment dropdown op">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="i1 im"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="text-black sub-menu" data-textid="reply-menu-edit" role="menuitem">@(UserWebResource.BT_EDIT)...</a></li>
+                        <li><a href="#" class="text-black sub-menu" data-textid="reply-menu-delete" role="menuitem">@(UserWebResource.BT_DELETE)...</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix"></div>
+            }
+        </div>
+    </div>
+}
+

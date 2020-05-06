@@ -1,0 +1,179 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.InvitationInfoModel
+
+@{
+    var title = string.Empty;
+    var slug = string.Empty;
+    var shortTitle = string.Empty;
+    var job_info = Model.job_info;
+    var isExpried = false;
+    if (job_info.Job_translations.HasData())
+    {
+        title = job_info.Job_translations[0].title;
+        slug = job_info.Job_translations[0].friendly_url;
+        shortTitle = HtmlHelpers.ShowHtmlTextByLimit(title, 30);
+        if (job_info.status == (int)EnumJobStatus.Closed || job_info.closed_time <= DateTime.UtcNow)
+        {
+            isExpried = true;
+        }
+    }
+    var defaultComLogo = "/Content/images/default-company-logo.png";
+    var hasAddress = job_info.Addresses.HasData();
+
+    var detailLink = SecurityHelper.GenerateSecureLink("job", "detail", new { lr = slug, id = job_info.id });
+
+}
+
+<tr>
+    <td class="pt10">
+        @if (job_info.company_info != null)
+        {
+            <div class="table-list-title">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="@detailLink" target="_blank" class="company-logo" style="width:80px;height:60px">
+                            @if (!string.IsNullOrEmpty(job_info.company_info.logo_full_path))
+                            {
+                                <img src="@job_info.company_info.logo_full_path" title="@job_info.company_info.company_name" onerror="this.onerror=null;this.src='@defaultComLogo';" />
+                            }
+                            else
+                            {
+                                <img src="@defaultComLogo" title="@job_info.company_info.company_name" alt="" />
+                            }
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="">
+                            <a href="@detailLink" title="@job_info.company_info.company_name" target="_blank"><i class="job-company-name">@job_info.company_info.company_name</i></a><br>
+                            <div class="job-company-address" title="@UserWebResource.LB_WORKING_ADDRESS">
+                                @{
+                                    if (hasAddress)
+                                    {
+                                        var totalAddress = job_info.Addresses.Count();
+                                        var workAddress = (job_info.Addresses.HasData()) ? job_info.Addresses[0] : null;
+                                        var workStations = (job_info.Addresses.HasData()) ? job_info.Addresses[0].Stations : null;
+                                        var addressDetail = FrontendHelpers.RenderJobWorkingAddress(workAddress, job_info.view_company);
+                                        var stationDetail = string.Empty;
+                                        <div>
+                                            <i class="la la-map-marker"></i>
+                                            @if (!string.IsNullOrEmpty(addressDetail))
+                                            {
+                                                if (totalAddress > 1)
+                                                {
+                                                    <span>@addressDetail - </span><span><b class="text-danger">(@totalAddress @UserWebResource.LB_ADDRESSES.ToLower())</b></span>
+                                                }
+                                                else
+                                                {
+                                                    @addressDetail
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @("---")
+                                            }
+                                        </div>
+
+                                        if (Model.employment_type_show_trains)
+                                        {
+                                            if (workStations.HasData())
+                                            {
+                                                stationDetail = string.Join(", ", workStations.Select(x => x.furigana));
+                                                <div>
+                                                    <i class="la la-train"></i>
+                                                    @if (!string.IsNullOrEmpty(stationDetail))
+                                                    {
+                                                        @stationDetail
+                                                    }
+                                                    else
+                                                    {
+                                                        @("---")
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <i class="la la-map-marker">---</i>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </td>
+    <td class="pt0">
+        <div class="table-list-title">
+            <h3>
+                <a href="@detailLink" target="_blank" title="@title">
+                    @shortTitle <br />
+                    @if (!string.IsNullOrEmpty(Model.employment_type_label))
+                    {
+                        <i class="fz-13">(@Model.employment_type_label)</i>
+                    }
+                </a>
+            </h3>
+        </div>
+    </td>
+    <td class="pt0 text-center">
+        <div class="">
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumApplicationInvitationStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var statusClass = "default";
+                if (chkItem == (int)EnumApplicationInvitationStatus.Awating)
+                {
+                    statusClass = "info";
+
+                    if (isExpried)
+                    {
+                        <span title="@UserWebResource.LB_STATUS" class="fz-12 job-application-status badge badge-danger">@UserWebResource.LB_JOB_EXPIRED</span>
+                        break;
+                    }
+                }
+                else if (chkItem == (int)EnumApplicationInvitationStatus.Accepted)
+                {
+                    statusClass = "success";
+                }
+                else
+                {
+                    statusClass = "danger";
+                }
+
+                if (chkItem == Model.status)
+                {
+                    <span title="@UserWebResource.LB_STATUS" class="fz-12 job-application-status badge badge-@statusClass">@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+
+            }
+            @*<span class="fz-14" title="@UserWebResource.LB_CREATED_DATE : @DateHelpers.FormatToStringTitle(Model.request_time.Value)">@Model.request_time.DateTimeQuestToString()</span>*@
+        </div>
+    </td>
+    <td class="pt0">
+        <ul class="dp-flex">
+            @if (!string.IsNullOrEmpty(Model.note))
+            {
+                <li class="invite-msg" data-id="@Model.id">
+                    <div class="hidden" id="invite-note-@Model.id">
+                        @Html.RawHtmlCustom(Model.note)
+                    </div>
+
+                    <a class="btn-info fz-15 btn-sm mr5" href="javascript:;" data-id="@Model.id" title="@UserWebResource.LB_VIEW_MESSAGE_NOTE"><i class="fa fa-wechat"></i></a>
+                </li>
+            }
+            @if (Model.status == (int)EnumApplicationInvitationStatus.Awating && !isExpried)
+            {
+                var applyLink = SecurityHelper.GenerateSecureLink("Job", "ApplyJob", new { id = Model.job_info.id, is_invitation = 1 });
+                <li>
+                    <a title="@UserWebResource.BT_ACCEPT" class="btn-info fz-15 btn-sm mr5" href="javascript:;" data-modal="" data-href="@applyLink"><i class="fa fa-check"></i></a>
+                </li>
+                <li>
+                    <a title="@UserWebResource.BT_IGNORE" class="btn-danger fz-15 btn-sm" href="javascript:;" data-modal="" data-size="default" data-href="@Url.Action("IgnoreInvitation","Member", new { id = Model.id, job_id = Model.job_id })"><i class="fa fa-hand-paper-o"></i></a>
+                </li>
+            }
+        </ul>
+    </td>
+</tr>

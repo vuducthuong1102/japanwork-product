@@ -1,0 +1,32 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Resources;
+@using MySite.Caching;
+@using MySite.Helpers;
+@model List<IdentityCategory>
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+
+@foreach (var item in Model)
+{
+    <div class="item">
+        <a href="/discover/@item.UrlFriendly" title="@item.Name" class="_2ait">
+            <img src="@item.Icon" alt="avatar" class="avatar">
+        </a>
+        <div class="_6dc _2anb">
+            <div class="_2anb">
+                <a href="/discover/@item.UrlFriendly" title="@item.Name" class="_2ana">
+                    @item.Name
+                </a>
+            </div>
+            <span class="fz-13">
+                <a href="/discover/@item.UrlFriendly" class="text-dark"><span class="follower text-grey-03"><span id="FollowersCount">@item.PostsCount</span>  @UserWebResource.LB_POST.ToLower()</span></a>
+            </span>
+        </div>
+    </div>
+}
+

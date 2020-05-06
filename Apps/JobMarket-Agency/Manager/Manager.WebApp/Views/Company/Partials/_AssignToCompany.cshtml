@@ -1,0 +1,47 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.AssignStaffToCompanyModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="">
+       <i class="fa fa-building"></i> @ManagerResource.LB_MANAGEMENT_ASSIGNED_COMPANIES
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.staff_id)
+    <div class="modal-body">
+        <div class="m-form__group form-group row">
+            @if (Model.allCompanies.HasData())
+            {
+                foreach (var item in Model.allCompanies)
+                {
+                    <div class="col-lg-3">
+                        <div class="m-checkbox-inline">
+                            <label class="m-checkbox">
+                                <input type="checkbox" value="@item.Value" name="selectCompany" @(item.Selected ? "checked" : string.Empty)>
+                                @item.Text
+                                <span></span>
+                            </label>
+                        </div>
+                    </div>                 
+                }
+            }
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}

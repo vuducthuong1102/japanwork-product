@@ -1,0 +1,281 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ProjectEditModel
+
+@{
+    var title = ManagerResource.LB_EDIT;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h3 class="m-portlet__head-text">
+                    @ManagerResource.LB_EDIT
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+                <a href="#tab_1_1" class="nav-link active" data-toggle="tab"><i class="fa fa-cogs"></i> @ManagerResource.LB_GENERAL</a>
+            </li>
+            <li class="nav-item">
+                <a href="#tab_1_2" class="nav-link" data-toggle="tab"><i class="fa fa-image"></i> @ManagerResource.LB_IMAGE</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_1_1" role="tabpanel">
+                @RenderBaseForm()
+            </div>
+            <div class="tab-pane" id="tab_1_2" role="tabpanel">
+
+                @Html.Partial("Partials/_ImageTab", Model)
+
+                <hr />
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <a href="/Admin/Project" class="btn btn-secondary">
+                            <i class="fa fa-remove"></i>
+                            @ManagerResource.LB_GOBACK
+                        </a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+
+    
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+<link href="~/Content/Extensions/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+    <style>
+        /* Three image containers (use 25% for four, and 50% for two, etc) */
+        .img-column {
+            float: left;
+            width: 20%;
+            padding: 5px;
+        }
+
+        .dropzone {
+            padding:5px;
+        }
+
+
+        /* Clear floats after image containers */
+        .img-row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .img-row img {
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+    </style>
+}
+
+@helper RenderBaseForm(){
+     <!--begin::Form-->
+    using (Html.BeginForm("Edit", "Project", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.Partial("_ProjectComposerForm")
+    }
+
+    <!--end::Form-->
+}
+
+@section PageInlineScripts{
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <script src="~/Scripts/Project/composer.js"></script>
+    <script src="~/Scripts/Common/common.mediaselect.js"></script>
+    <script src="~/Content/Extensions/fancybox/jquery.fancybox.min.js"></script>
+    <script type="text/javascript">
+        var BootstrapDatepicker = {
+            init: function () {
+                $(".datepicker-input").datepicker({
+                    todayBtn: "linked",
+                    clearBtn: !0,
+                    todayHighlight: !0,
+                    format: 'dd/mm/yyyy',
+                    templates: {
+                        leftArrow: '<i class="la la-angle-left"></i>',
+                        rightArrow: '<i class="la la-angle-right"></i>'
+                    }
+                })
+            }
+        };
+        jQuery(document).ready(function () {
+            BootstrapDatepicker.init()
+        });        
+    </script>
+    <script>
+        // Choose what buttons to display by default
+        $.fancybox.defaults.buttons = [
+            'slideShow',
+            'fullScreen',
+            'thumbs',
+            //'zoom',
+            'close'
+        ];
+
+
+        $('[data-fancybox]').fancybox({
+            onInit: function (instance) {
+
+                // Make zoom icon clickable
+                instance.$refs.toolbar.find('.fancybox-zoom').on('click', function () {
+                    if (instance.isScaledDown()) {
+                        instance.scaleToActual();
+
+                    } else {
+                        instance.scaleToFit();
+                    }
+
+                });
+            }
+        });
+
+        $("#ImgFromLib").change(function () {
+            PickImageFromLib();
+        });
+
+        function PickImageFromLib() {
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/Project/Upload";
+            params['requestType'] = "POST";
+            params['data'] = { Id: @Model.Id, Url: $("#ImgFromLib").val() };
+            params['dataType'] = "json";
+
+            params['successCallbackFunction'] = function (data) {
+                if (data) {
+                    if (data.success) {
+                        RefreshImageList();
+                    } else {
+                        bootbox.alert(data.errorMessage);
+                    }
+                }
+            };
+            doAjax(params);
+        }
+
+        function RemoveImage(btn) {
+            var currentControl = $(btn);
+            var id = currentControl.data("id");
+
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/Project/RemoveImage";
+            params['requestType'] = "POST";
+            params['data'] = { Id: id, Url: currentControl.data("url"), ProjectId: @Model.Id };
+            params['dataType'] = "json";
+
+            params['successCallbackFunction'] = function (data) {
+                if (data) {
+                    if (data.success) {
+                        $("#project_img_" + id).remove();
+                    } else {
+                        bootbox.alert(data.errorMessage);
+                    }
+                }
+            };
+            doAjax(params);
+        }
+
+        function RefreshImageList() {
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = "/Project/RefreshImageList";
+            params['requestType'] = "POST";
+            params['data'] =  { Id: @Model.Id };
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (data) {
+                if (data) {
+                    $("#UploadedImages").html(data);
+                }
+            };
+            doAjax(params);
+        }
+    </script>
+    <script>
+          Dropzone.autoDiscover = false;
+
+          // Get the template HTML and remove it from the doument
+          var previewNode = document.querySelector("#template");
+          previewNode.id = "";
+          var previewTemplate = previewNode.parentNode.innerHTML;
+          previewNode.parentNode.removeChild(previewNode);
+
+          var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+            url: "/Project/Upload", // Set the url
+            thumbnailWidth: 80,
+            thumbnailHeight: 80,
+            parallelUploads: 20,
+            previewTemplate: previewTemplate,
+            autoQueue: false, // Make sure the files aren't queued until manually added
+            previewsContainer: "#previews", // Define the container to display the previews
+            clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    //append more data here
+                    formData.append("Id", "@Model.Id");
+                });
+
+                this.on("success", function (file, responseText) {
+                    if (responseText) {
+                        if (!responseText.success) {
+                            bootbox.alert(responseText.errorMessage);
+                        }
+                    }
+                });
+            }
+          });
+
+          myDropzone.on("addedfile", function(file) {
+            // Hookup the start button
+            file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
+          });
+
+          // Update the total progress bar
+          myDropzone.on("totaluploadprogress", function(progress) {
+            document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+          });
+
+          myDropzone.on("sending", function(file) {
+            // Show the total progress bar when upload starts
+            document.querySelector("#total-progress").style.opacity = "1";
+            // And disable the start button
+              file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+              $(".fileupload-process").removeClass("hidden");
+            });
+
+          // Hide the total progress bar when nothing's uploading anymore
+            myDropzone.on("queuecomplete", function (progress) {
+                $(".file-row").remove();
+                document.querySelector("#total-progress").style.opacity = "0";
+                $(".fileupload-process").addClass("hidden");
+                RefreshImageList();
+          });
+
+          // Setup the buttons for all transfers
+          // The "add files" button doesn't need to be setup because the config
+          // `clickable` has already been specified.
+          document.querySelector("#actions .start").onclick = function() {
+            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+          };
+          document.querySelector("#actions .cancel").onclick = function() {
+            myDropzone.removeAllFiles(true);
+          };
+    </script>
+}

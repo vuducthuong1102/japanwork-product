@@ -1,0 +1,60 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+@using MySite.Models;
+@using MySite.Settings;
+@model MySite.Models.HomeModel
+
+@{
+    ViewBag.Title = UserWebResource.LB_MYSITE_TITLE;
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+}
+@Html.AntiForgeryToken()
+<div class="container mt15">
+    <div class="row">
+        <div class="col-md-8 notif-container">
+            <div>
+                <div class="post-overlay notif-overlay">
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                </div>
+
+                <div class="notif-list">
+                    <div class="head">
+                        <p>@UserWebResource.LB_NOTIFICATION</p>
+                    </div>
+                    <div>
+                        <div id="ListNotifs" class="hidden">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-5 hidden-xs">
+            @Html.Partial("~/Views/Widgets/_MenuLeftItem.cshtml")
+        </div>
+    </div>
+</div>
+
+<div id="myModal" class="modal post-detail" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+
+@section PagePluginScripts{
+
+}
+
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Account/notification.js")"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Common/features-right.js")"></script>
+}

@@ -1,0 +1,114 @@
+﻿@using MySite.Helpers
+@using MySite.Settings
+@using System.Resources
+@using MySite.Resources
+@using System.Globalization
+@using System.Text
+
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" xmlns:og="http://opengraphprotocol.org/schema/">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="content-language" itemprop="inLanguage" content="vi">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.OgDescription" />
+    <meta name="keywords" content="mysite" />
+    <meta name="news_keywords" content="mysite" />
+    <meta name="robots" content="index,follow,noodp" />
+    <meta name="robots" content="noarchive">
+
+    <title>@(string.IsNullOrEmpty(ViewBag.Title) ? UserWebResource.LB_MYSITE_TITLE : ViewBag.Title)</title>
+
+
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="vi_VN" />
+    <meta property="fb:app_id" content="@SocialSettings.FBAppId" />
+    <meta name="pubdate" itemprop="datePublished" content="@ViewBag.DatePublished" />
+    <meta itemprop="dateModified" content="@ViewBag.DatePublished" />
+
+    <meta property="og:url" content="@((string.IsNullOrEmpty(ViewBag.OgUrl)? "http://boom.pfood.vn": ViewBag.OgUrl))" />
+    <meta property="og:type" content="@((string.IsNullOrEmpty(ViewBag.OgType)? "Website": ViewBag.OgType))" />
+    <meta property="og:title" content="@((string.IsNullOrEmpty(ViewBag.OgTitle)? UserWebResource.LB_MYSITE_TITLE : ViewBag.OgTitle))" />
+    <meta property="og:description" content="@((string.IsNullOrEmpty(ViewBag.OgDescription)? "Chia sẻ những lần bị khách bỏ bom để cùng nhau tránh bom": ViewBag.OgDescription))" />
+
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="400" />
+    <meta property="og:image:height" content="300" />
+
+    <link rel="SHORTCUT ICON" href="~/favicon-32x32.png" type="image/x-icon">
+
+    @Styles.Render("~/bundles/headerstyles")
+
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Site.css")" />
+
+    @RenderSection("PageInlineStyles", required: false)
+
+    @Scripts.Render("~/bundles/headerscripts")
+
+    @*<script src="~/Content/themes/default/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>*@
+</head>
+<body class="wt-login">
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Preloader Start -->
+    @*<div class="preloader-outer">
+            <div class="loader"></div>
+        </div>*@
+
+    @*<div id="wt-wrapper" class="wt-wrapper">
+            <!-- Content Wrapper Start -->
+            <div class="wt-contentwrapper">
+                <!--Header-->
+                @Html.Partial("_NavigationMenu")
+                <!--End header-->
+                <!--Body-->
+                @RenderBody()
+                <!--End body-->
+                <!--Footer-->
+                @Html.Partial("_Footer")
+                <!--Footer-->
+            </div>
+            <!--Content Wrapper End-->
+        </div>
+        <!--Wrapper End-->*@
+
+    @RenderBody()
+
+    <script type="text/jscript" class="RemovalScripts">
+        @{
+            ResourceSet resourceSet = UserWebResource.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            var sbInitial = " var LanguageDic = {";
+            var sb = new StringBuilder(sbInitial);
+            var resEnum = resourceSet.GetEnumerator();
+            while (resEnum.MoveNext())
+            {
+                if (sb.ToString() != sbInitial)
+                {
+                    sb.Append(",");
+                }
+                sb.Append("\"" + resEnum.Key + "\":\"" + resEnum.Value.ToString().Replace("\r\n", "").Replace("\"", "\\\"") + "\"");
+            }
+            sb.Append("}");
+        }
+        @(Html.Raw( sb.ToString()));
+    </script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @RenderSection("PagePluginScripts", required: false)
+
+    @RenderSection("PageInlineScripts", required: false)
+
+    <script src="@Url.VersionedContent("~/Scripts/Common/core.js")"></script>
+    <script src="@Url.VersionedContent("~/Content/themes/default/js/main.js")"></script>
+    @*<script src="@Url.VersionedContent("~/Content/themes/default/js/custom.js")"></script>*@
+
+    <script>
+        $(function () {
+            $(".RemovalScripts").remove();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+﻿@{
+    ViewBag.Title = "Schedule";
+}
+
+<!--begin::Portlet-->
+<div class="m-portlet" id="m_portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <span class="m-portlet__head-icon">
+                    <i class="flaticon-map-location"></i>
+                </span>
+                <h3 class="m-portlet__head-text">
+                    Basic Calendar
+                </h3>
+            </div>
+        </div>
+        <div class="m-portlet__head-tools">
+            <ul class="m-portlet__nav">
+                <li class="m-portlet__nav-item">
+                    <a href="#" class="btn btn-accent m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">
+                        <span>
+                            <i class="la la-plus"></i>
+                            <span>
+                                Add Event
+                            </span>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="m-portlet__body">
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-sm btn-primary pull-right" type="button" onclick="RefetchFullCalendar(); return false;">
+                    <i class="fa fa-refresh"></i>
+                    Refresh
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="m_calendar"></div>
+            </div>
+        </div>        
+    </div>
+</div>
+<!--end::Portlet-->
+
+<div id='editScheduleModal' class='modal fade' data-url='@Url.Action("EditSchedulePartial")'>
+
+</div>
+
+<div id='createScheduleModal' class='modal fade' data-url='@Url.Action("CreateSchedulePartial")'>
+
+</div>
+
+@section PagePluginStyles{
+    <link href="/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+}
+
+@section PageInlineScripts{
+    <script src="/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var dateFormat = "YYYY-MM-DD";
+        var datetimeFormat = "YYYY-MM-DD HH:mm:00";
+        jQuery(function ($) {
+            //InitDragableEvents();
+
+            SetupFullCalendar();
+        });
+
+        function ClearFullCalendar() {
+            var calendar = $('#m_calendar');
+            calendar.fullCalendar('removeEvents', function (event) {
+                return true;
+            });
+        }
+
+        function RenderFullCalendar(events) {
+            var calendar = $('#m_calendar');
+            calendar.fullCalendar('renderEvents', events);
+        }
+
+        function RefetchFullCalendar() {
+            //Refetches events from all sources and rerenders them on the screen.
+            var calendar = $('#m_calendar');
+            calendar.fullCalendar('refetchEvents')
+        }
+
+        function GetEventsFromAjax(callback) {
+            var events = [];
+
+            $.ajax({
+                url: "/DemoJobProcess/GetSchedules",
+                type: 'GET',
+                //data: jsonObj,
+                //contentType: "application/json",
+                //async: false, //Sync vs Async
+                success: function (data) {
+                    var msg = "";
+                    if (data.hasOwnProperty('message') && data.message != null && data.message.length > 0)
+                        msg += data.message;
+
+                    if (!data.success) {
+                        $.showErrorMessage('Error message', msg, null);
+                    }
+                    else {
+                        events = data.events;
+                    }
+                    callback(events);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                    callback(events);
+
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), null);
+                }
+            });
+        }
+
+        function CreateSchedule(title, start, end, approved, callback) {
+            var jsonObj = JSON.stringify({
+                Title: title,
+                StartTime: start,
+                EndTime: end,
+                Approved: approved
+            });
+
+            $.ajax({
+                url: "/DemoJobProcess/CreateSchedule",
+                type: 'POST',
+                data: jsonObj,
+                contentType: "application/json",
+                //async: false, //Sync vs Async
+                success: function (data) {
+                    var msg = "";
+                    if (data.hasOwnProperty('message') && data.message != null && data.message.length > 0)
+                        msg += data.message;
+
+                    if (!data.success) {
+                        $.showErrorMessage('Error message', msg, null);
+                    } else {
+                        if (data.eventid) {
+                            callback(data.eventid);
+                            $.showSuccessMessage('Success notice', 'A new schedule is created successfully', function () { return; });
+                        }
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), null);
+                }
+            });
+        }
+
+        function UpdateSchedule(id, title, start, end, approved, callback) {
+            var jsonObj = JSON.stringify({
+                EventId: id,
+                Title: title,
+                StartTime: start,
+                EndTime: end,
+                Approved: approved
+            });
+
+            $.ajax({
+                url: "/DemoJobProcess/UpdateSchedule",
+                type: 'POST',
+                data: jsonObj,
+                contentType: "application/json",
+                //async: false, //Sync vs Async
+                success: function (data) {
+                    var msg = "";
+                    if (data.hasOwnProperty('message') && data.message != null && data.message.length > 0)
+                        msg += data.message;
+
+                    if (!data.success) {
+                        $.showErrorMessage('Error message', msg, null);
+                    } else {
+                        callback(data.success);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), null);
+                }
+            });
+        }
+
+        function DeleteSchedule(id, callback) {
+            var jsonObj = JSON.stringify({
+                EventId: id
+            });
+
+            $.ajax({
+                url: "/DemoJobProcess/DeleteSchedule",
+                type: 'POST',
+                data: jsonObj,
+                contentType: "application/json",
+                //async: false, //Sync vs Async
+                success: function (data) {
+                    var msg = "";
+                    if (data.hasOwnProperty('message') && data.message != null && data.message.length > 0)
+                        msg += data.message;
+
+                    if (!data.success) {
+                        $.showErrorMessage('Error message', msg, null);
+                    } else {
+                        callback(data.success);
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    var responseTitle = "Error encountered"
+                    $.showErrorMessage('Error message', $(responseTitle).text() + "\n" + formatErrorMessage(jqXHR, errorThrown), null);
+                }
+            });
+        }
+
+        function InitDragableEvents() {
+            var todayDate = moment().startOf('day');
+            var YM = todayDate.format('YYYY-MM');
+            var YESTERDAY = todayDate.clone().subtract(1, 'day').format('YYYY-MM-DD');
+            var TODAY = todayDate.format('YYYY-MM-DD');
+            var TOMORROW = todayDate.clone().add(1, 'day').format('YYYY-MM-DD');
+
+            $('#external-events div.external-event').each(function () {
+                var eventObject = {
+                    id: $(this).data("eventid"),
+                    title: $.trim($(this).text()), // use the element's text as the event title
+                    start: TODAY + 'T10:30:00',
+                    end: TODAY + 'T12:30:00'
+                };
+
+                // store the Event Object in the DOM element so we can get to it later
+                $(this).data('eventObject', eventObject);
+
+                // make the event draggable using jQuery UI
+                $(this).draggable({
+                    zIndex: 999,
+                    revert: true,      // will cause the event to go back to its
+                    revertDuration: 0  //  original position after the drag
+                });
+
+            });
+        }
+
+        function SetupFullCalendar() {
+            var todayDate = moment().startOf('day');
+            var YM = todayDate.format('YYYY-MM');
+            var TODAY = todayDate.format(dateFormat);
+            var calendar = $('#m_calendar');
+
+            calendar.fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'agendaDay,agendaWeek,month,listDay,listWeek,listMonth'
+                },
+
+                // customize the button names,
+                // otherwise they'd all just say "list"
+                views: {
+                    listDay: { buttonText: 'list day' },
+                    listWeek: { buttonText: 'list week' },
+                    listMonth: { buttonText: 'list month' }
+                },
+
+                defaultView: 'month',
+                defaultDate: TODAY,
+                navLinks: true, // can click day/week names to navigate views
+                eventLimit: true, // allow "more" link when too many events
+                editable: true, //allow event can be editable, if false so cannot drag or point to events on calendar
+                events: function (start, end, timezone, callback) {
+
+                    ClearFullCalendar();
+
+                    GetEventsFromAjax(callback);
+                },
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function (date, allDay) {
+                    // this function is called when something is dropped
+                }
+                ,
+                selectable: true,
+                selectHelper: true,
+                select: function (start, end, allDay) {
+                    $("#gritter-notice-wrapper").remove();
+                    var eventStart = '';
+                    if (start)
+                        eventStart = start.format(datetimeFormat);
+
+                    var eventEnd = '';
+                    if (end)
+                        eventEnd = end.format(datetimeFormat);
+
+                    var url = $('#createScheduleModal').data('url');
+                    var params = $.extend({}, doAjax_params_default);
+                    params['url'] = url;
+                    params['requestType'] = 'GET';
+                    params['data'] = { };
+                    params['dataType'] = "html";
+
+                    params['successCallbackFunction'] = function (result) {
+                        $('#createScheduleModal').html(result);
+                        var modal = $('#createScheduleModal');
+                        var modal = $('#createScheduleModal');
+                        modal.modal('show').on('hidden', function () {
+                            modal.remove();
+                        })
+                            .on('shown.bs.modal', function () {
+                                //alert('Modal shown');
+                                var defaultTitle = "New big event title here";
+                                $(this).find("#Title").val(defaultTitle);
+                                $(this).find("#StartTime").val(eventStart);
+                                $(this).find("#EndTime").val(eventEnd);
+                            })
+                            ;
+
+                        var $form = modal.find('form');
+                        $form.on('submit', function (ev) {
+                            ev.preventDefault();
+
+                            if (!$form.valid()) {
+                                return false;
+                            }
+
+                            var title = $(this).find("#Title").val();
+                            var starttime = $(this).find("#StartTime").val();
+                            var endtime = $(this).find("#EndTime").val();
+
+                            var startMoment = moment(starttime, datetimeFormat);
+                            var endMoment = moment(endtime, datetimeFormat);
+                            var approved = $(this).find("#Approved").is(":checked") ? true : false;
+
+                            //var color = approved ? "#3a87ad" : "#ff5e00";
+
+                            //Begin add new
+                            CreateSchedule(title, starttime, endtime, approved, function (eventid) {
+                                if (eventid) {
+                                    calendar.fullCalendar('renderEvent',
+                                        {
+                                            id: eventid,
+                                            title: title,
+                                            start: startMoment,
+                                            end: endMoment,
+                                            approved: approved,
+                                            //color: color
+                                        },
+                                        true // make the event "stick"
+                                    );
+                                    modal.modal("hide");
+                                } else {
+                                    $.showErrorMessage('Error message', "Cannot create new schedule. Please try again !", null);
+                                }
+
+                            });
+
+                        });
+                    };
+
+                    doAjax(params);
+                    
+                    calendar.fullCalendar('unselect');
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    $("#gritter-notice-wrapper").remove();
+                    var url = $('#editScheduleModal').data('url');
+                    var eventId = calEvent.id;
+                    var eventTitle = calEvent.title;
+                    var eventStart = '';
+                    if (calEvent.start)
+                        eventStart = calEvent.start.format(datetimeFormat);
+
+                    var eventEnd = '';
+                    if (calEvent.end)
+                        eventEnd = calEvent.end.format(datetimeFormat);
+
+                    var eventApproved = calEvent.approved;
+
+                    var params = $.extend({}, doAjax_params_default);
+                    params['url'] = url;
+                    params['requestType'] = 'GET';
+                    params['data'] = { id: eventId, title: eventTitle, stime: eventStart, etime: eventEnd, eApproved: eventApproved };
+                    params['dataType'] = "html";
+
+                    params['successCallbackFunction'] = function (result) {
+                        $('#editScheduleModal').html(result);
+                        var modal = $('#editScheduleModal');
+
+                        modal.modal('show').on('hidden', function () {
+                            modal.remove();
+                        })
+                            .on('shown.bs.modal', function () {
+                                //alert('Modal shown');
+                            })
+                            ;
+
+                        var $form = modal.find('form');
+                        $form.on('submit', function (ev) {
+                            ev.preventDefault();
+
+                            if (!$form.valid()) {
+                                return false;
+                            }
+
+                            calEvent.id = $(this).find("#EventId").val();
+                            calEvent.title = $(this).find("#Title").val();
+                            calEvent.start = $(this).find("#StartTime").val();
+                            calEvent.end = $(this).find("#EndTime").val();
+                            calEvent.approved = $(this).find("#Approved").is(":checked") ? true : false;
+
+                            //Begin update schedule
+                            UpdateSchedule(calEvent.id, calEvent.title, calEvent.start, calEvent.end, calEvent.approved, function (result) {
+                                //calEvent.color = calEvent.approved ? "#3a87ad" : "#ff5e00";
+                                if (result) {
+                                    calendar.fullCalendar('updateEvent', calEvent);
+                                    modal.modal("hide");
+                                    $.showSuccessMessage('Success notice', 'The Schedule is updated successfully', function () { return; });
+                                }
+
+                            });
+
+                        });
+
+
+                        modal.find('button[data-action=delete]').on('click', function () {
+                            modal.modal("hide");
+                            bootbox.confirm("Are you sure to delete this event ?", function (confirmed) {                                
+                                if (confirmed) {
+                                    //Begin delete bigevent
+                                    DeleteSchedule(calEvent._id, function (result) {
+                                        if (result) {
+                                            calendar.fullCalendar('removeEvents', function (ev) {
+                                                return (ev._id == calEvent._id);
+                                            })
+                                            modal.modal("hide");
+                                            //$.showSuccessMessage('Success notice', 'The Schedule is deleted successfully', function () { return; });
+                                        }
+                                    });
+                                } else {
+                                    modal.modal("show");
+                                }
+                            });
+                        });
+                    };
+
+                    doAjax(params);                   
+
+                },
+                eventDrop: function(event, delta, revertFunc) {                    
+                    //if (!confirm("Are you sure you want to change this one ?")) {
+                    //    revertFunc();
+                    //} else {
+                    //    //Update here
+                    //    console.log(event.id);
+                    //    console.log(event.start.toISOString());
+                    //}
+
+                    bootbox.confirm("Are you sure you want to change this one ?", function (confirmed) {
+                        if (confirmed) {
+                            //Update here
+                            console.log(event.id);
+                            console.log(event.start.toISOString());
+                        } else {
+                            revertFunc();
+                        }
+                    });
+                },
+                eventRender: function (event, element) {
+                    event.editable = true;
+                },
+                eventResize: function (event, delta, revertFunc) {
+                    //if (!confirm("Allow to resize this one ?")) {
+                    //    revertFunc();
+                    //} else {
+                    //   //Update here
+                    //}
+
+                    bootbox.confirm("Allow to resize this one ?", function (confirmed) {
+                        if (confirmed) {
+                            //Update here
+                        } else {
+                            revertFunc();
+                        }
+                    });
+                }
+            });
+        }
+
+    </script>
+}

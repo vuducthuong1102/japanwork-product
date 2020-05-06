@@ -1,0 +1,204 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.AgencyRegisterModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    ViewBag.Title = ManagerResource.LB_AGENCY_REGISTER_LABEL;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title" style="margin:0 auto;">
+                        <h3 class="m-portlet__head-text">
+                           <i class="fa fa-registered"></i> @ManagerResource.LB_AGENCY_REGISTER_LABEL
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <!--begin::Form-->
+            <form class="m-form" method="post">
+                @Html.AntiForgeryToken()
+                @Html.Partial("_Notifications")
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Company)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-building"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Company, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Company, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Name)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-user"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Address)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-map"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Email)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-at"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Phone)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-phone"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Website)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-chain"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Website, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Website, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Password)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-lock"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control m-input", @type="password" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.ConfirmPassword)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-lock"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control m-input", @type = "password" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        @*<div class="m-form__group form-group row">
+            <label class="col-lg-3 col-form-label">
+                Communication:
+            </label>
+            <div class="col-lg-9">
+                <div class="m-checkbox-inline">
+                    <label class="m-checkbox">
+                        <input type="checkbox">
+                        Email
+                        <span></span>
+                    </label>
+                    <label class="m-checkbox">
+                        <input type="checkbox">
+                        SMS
+                        <span></span>
+                    </label>
+                    <label class="m-checkbox">
+                        <input type="checkbox">
+                        Phone
+                        <span></span>
+                    </label>
+                </div>
+            </div>
+        </div>*@
+                    </div>
+                </div>
+                <div class="m-portlet__foot m-portlet__foot--fit row">
+                    <div class="m-form__actions m-form__actions text-center" style="width:100%">
+                        <button type="submit" class="btn btn-info" style="width:50%;height:60px;">
+                            <i class="la la-floppy-o"></i> @ManagerResource.BT_REGISTER
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+@section PageInlineScripts{
+
+}

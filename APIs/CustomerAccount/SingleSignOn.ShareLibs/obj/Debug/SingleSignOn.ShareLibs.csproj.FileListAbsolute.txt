@@ -1,0 +1,12 @@
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.dll
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.pdb
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csprojAssemblyReference.cache
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csproj.CoreCompileInputs.cache
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.dll
+D:\Working\JobMarket\APIs\SingleSignOn\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.pdb
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.dll
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\bin\Debug\SingleSignOn.ShareLibs.pdb
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csprojAssemblyReference.cache
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.csproj.CoreCompileInputs.cache
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.dll
+D:\Working\JobMarket\APIs\CustomerAccount\SingleSignOn.ShareLibs\obj\Debug\SingleSignOn.ShareLibs.pdb

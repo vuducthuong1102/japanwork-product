@@ -1,0 +1,348 @@
+2020-04-29 08:40:09,672 [129] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:40:09,683 [129] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 08:40:09,684 [129] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:40:09,714 [129] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:40:09,715 [129] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 08:40:09,716 [129] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:40:19,205 [65] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-29 08:40:19,696 [92] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-29 08:40:20,201 [74] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-29 08:40:49,137 [159] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-29 08:41:00,020 [74] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-29 08:41:08,601 [182] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:41:08,606 [182] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:41:08,610 [182] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:41:26,296 [53] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:41:47,230 [15] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-29 08:46:15,236 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:15,237 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:15,239 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:44,108 [45] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:44,110 [45] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:44,112 [45] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:46:54,319 [53] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:47:10,070 [132] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:48:05,938 [95] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-29 08:50:58,443 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:50:58,455 [39] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 08:50:58,456 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:50:58,487 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:50:58,488 [39] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 08:50:58,489 [39] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 08:53:52,900 [53] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 08:53:52,905 [53] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 08:53:52,913 [53] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 09:59:52,806 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 09:59:52,809 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 09:59:52,812 [23] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 10:00:27,237 [30] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 10:00:27,241 [30] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 10:00:27,244 [30] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 10:15:03,317 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 10:15:03,329 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 10:15:03,330 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 10:15:03,363 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 10:15:03,364 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 10:15:03,365 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 14:23:00,878 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 14:23:18,621 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:23:18,621 [76] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:23:19,455 [76] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:23:59,835 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:23:59,835 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:24:00,699 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:25:03,538 [111] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:25:03,538 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:25:03,547 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:25:16,847 [40] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:25:16,847 [73] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:25:16,919 [73] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:25:39,728 [20] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:25:39,728 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:25:39,730 [90] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:25:46,628 [76] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:25:46,631 [76] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:25:46,634 [76] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:25:54,683 [73] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:27:08,161 [32] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:27:08,163 [32] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:27:08,164 [32] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:27:14,359 [111] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:27:40,204 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 14:27:46,973 [20] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:28:01,937 [63] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:30:52,036 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 14:31:05,305 [87] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:31:05,379 [42] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:31:05,453 [42] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:34:06,721 [73] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:34:06,792 [64] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:34:06,863 [64] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:34:23,246 [86] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 14:34:23,317 [87] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 14:34:23,387 [109] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 14:35:20,675 [86] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:35:20,677 [86] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:35:20,678 [86] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 274
+2020-04-29 14:42:25,599 [73] ERROR Manager.WebApp.MvcApplication - Application Error: A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+System.Web.HttpException (0x80004005): A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-29 14:48:32,381 [124] ERROR Manager.WebApp.Services.JobServices - Failed when calling api GetDetailAsync - http://localhost:3333/api/jobs/15 because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Services.JobServices.<GetDetailAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 172
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2020-04-29 14:48:32,450 [124] ERROR Manager.WebApp.Controllers.JobController - Failed to display ViewJob [15] because: System.AggregateException: One or more errors occurred. ---> Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<GetDetailAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 186
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Manager.WebApp.Controllers.JobController.Detail(Nullable`1 id, Nullable`1 company_id, String language_code, String tab) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Controllers\JobMarket\JobController.cs:line 482
+---> (Inner Exception #0) Manager.ShareLibs.CustomSystemException: H? th?ng dang b?n, vui lòng th? l?i sau
+   at Manager.WebApp.Services.JobServices.<GetDetailAsync>d__3.MoveNext() in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Services\JobMarket\JobServices.cs:line 186<---
+
+2020-04-29 15:00:45,696 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 15:02:44,546 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 15:03:50,676 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:03:50,773 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:03:50,860 [101] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:04:06,549 [97] ERROR Manager.WebApp.MvcApplication - Application Error: A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+System.Web.HttpException (0x80004005): A public action method 'RobotDetected' was not found on controller 'Manager.WebApp.Controllers.ErrorController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-04-29 15:04:15,123 [126] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:04:15,201 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:04:18,084 [68] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:07:13,242 [90] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:07:13,893 [68] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:07:14,940 [41] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:07:38,845 [40] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-29 15:07:39,307 [41] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-29 15:07:39,811 [90] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-29 15:07:44,046 [40] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 15:07:52,707 [40] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListByPageAsync request
+2020-04-29 15:08:10,014 [44] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:08:10,015 [90] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:08:10,020 [126] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:08:10,261 [40] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:08:10,262 [90] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:08:10,303 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:15:50,777 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:15:50,780 [62] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:15:50,855 [81] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:16:33,516 [62] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:16:33,601 [62] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:16:33,602 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:17:26,258 [46] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:17:26,259 [56] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:17:26,278 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:17:35,129 [85] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:17:35,132 [56] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:17:35,136 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:18:45,607 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:18:45,609 [95] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:18:45,691 [63] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:19:45,273 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:19:45,276 [95] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:19:45,358 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:20:39,615 [46] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:20:39,618 [117] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:20:39,624 [73] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:22:36,430 [31] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:22:36,434 [84] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:22:36,435 [44] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:25:13,932 [69] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:25:13,934 [63] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:25:13,935 [85] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:26:38,973 [63] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:26:38,976 [106] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:26:39,060 [6] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:26:51,195 [106] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:26:51,198 [54] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:26:51,280 [6] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:28:24,669 [34] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:28:24,671 [63] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:28:24,674 [75] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:29:15,934 [106] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:29:15,936 [91] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:29:16,011 [40] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:29:25,116 [99] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:29:25,118 [106] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:29:25,125 [91] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:29:47,705 [44] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:29:47,705 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:29:47,705 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:29:55,517 [77] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetEduHistoryAsync request
+2020-04-29 15:29:55,520 [13] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetWorkHistoryAsync request
+2020-04-29 15:29:55,522 [68] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetCertificateAsync request
+2020-04-29 15:32:36,936 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:36,947 [99] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 15:32:36,948 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:36,986 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:36,987 [99] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 15:32:36,988 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:47,256 [68] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:47,257 [68] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 15:32:47,258 [68] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:47,293 [68] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:32:47,294 [68] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 15:32:47,296 [68] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:33:48,208 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:33:48,224 [99] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-29 15:33:48,225 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:33:48,261 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 15:33:48,262 [99] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-29 15:33:48,262 [99] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-29 17:36:08,381 [19] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:36,519 [80] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:36,603 [160] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:42,438 [144] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:45,614 [20] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:49,596 [14] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:48:54,583 [152] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:01,616 [124] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:06,423 [14] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:06,935 [132] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:32,366 [124] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:36,655 [20] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:37,146 [152] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:42,380 [13] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:45,472 [124] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:49,439 [13] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:49:55,521 [132] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:50:02,102 [14] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:50:06,606 [80] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:50:06,925 [56] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:50:14,674 [80] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 19:50:17,674 [121] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:36,380 [71] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:36,625 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:45,428 [134] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:45,633 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:50,136 [57] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:41:56,675 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:03,674 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:06,578 [134] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:07,053 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:13,150 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:15,433 [134] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:19,395 [61] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:24,594 [55] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:31,637 [57] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:36,394 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:37,323 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:42,579 [55] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:45,617 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:49,612 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:42:55,177 [55] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:01,677 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:06,596 [134] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:07,683 [81] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:13,382 [79] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:15,625 [71] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:20,188 [61] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:24,585 [134] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:32,142 [71] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:37,160 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:37,161 [81] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:43,152 [81] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:46,324 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:49,435 [61] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:43:54,622 [106] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:02,403 [55] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:06,457 [81] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:07,115 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:12,701 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:17,721 [71] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+2020-04-29 20:44:21,691 [6] ERROR Manager.WebApp.Controllers.MyEmailController - Could not GetMailBoxCounterFromMailServer because: Unable to read data from the transport connection: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.

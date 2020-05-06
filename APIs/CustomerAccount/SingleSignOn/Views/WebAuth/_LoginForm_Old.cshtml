@@ -1,0 +1,86 @@
+﻿@model SingleSignOn.Models.WebAuthLoginViewModel
+@using SingleSignOn.Settings;
+@using CaptchaMvc.HtmlHelpers
+@using SingleSignOn.Resources;
+
+
+
+<div class="space"></div>
+
+<br />
+@{
+    var catpcha = Html.Captcha(UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON, UserWebResource.TEXT_REFRESH_CAPTCHA_DESC, 5, UserWebResource.TEXT_CAPTCHA_NULL, true);
+}
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("Login", "WebAuth", null, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <input type="hidden" name="@Html.NameFor(m=>m.NumberOfFailedLogins)" value="@((Model != null)? Model.NumberOfFailedLogins.ToString() : "0")" />
+                @Html.HiddenFor(m=>m.URLReturn)
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName)
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.UserName) })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password)
+                        @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = Html.DisplayNameFor(m => m.Password), type = "password" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="col-sm-12 col-xs-12">
+                        <label class="inline" for="@Html.IdFor(m=>m.RememberMe)">
+                            <input type="checkbox" class="ace" id="@Html.IdFor(m=>m.RememberMe)" value="true" name="@Html.NameFor(m=>m.RememberMe)" />
+                            <span class="lbl"> @Html.DisplayNameFor(m => m.RememberMe)</span>
+                        </label>
+                    </div>*@
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @if (Model != null)
+                        {
+                            var failedCount = Convert.ToInt32(Session["LoginTimesFailed"]);
+                            if (failedCount >= SingleSignOnSettings.NumberOfFailedLoginsToShowCaptcha)
+                            {
+                                @catpcha
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="width-35 btn btn-sm btn-primary">
+                        <i class="ace-icon fa fa-key"></i>
+                        <span class="bigger-110">@UserWebResource.TEXT_LOGIN_BUTTON</span>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section PagePluginScripts{
+    @if (Model != null)
+    {
+        var failedCount = Convert.ToInt32(Session["LoginTimesFailed"]);
+        if (failedCount >= SingleSignOnSettings.NumberOfFailedLoginsToShowCaptcha)
+        {
+            @catpcha.RenderScript()
+        }
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var refreshBtn = $('a[href="#CaptchaImage"]');
+            refreshBtn.html('<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-repeat" ></span > @UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON</button >');
+            refreshBtn.prev("br").remove();
+            $("#CaptchaInputText").addClass("form-control");
+            $('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            $('span[data-valmsg-for="CaptchaInputText"]').prev("br").remove();
+        });
+    </script>
+}

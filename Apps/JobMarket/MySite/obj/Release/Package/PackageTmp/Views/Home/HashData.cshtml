@@ -1,0 +1,52 @@
+﻿@model MySite.Models.HashDataModel
+
+@{
+    ViewBag.Title = "Generate hash string";
+}
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+       @using (Html.BeginForm("HashData", "Home", null, FormMethod.Post, new { role = "form" }))
+       {
+        <div class="row">
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.UserName)
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.PasswordHash)
+                    @Html.TextBoxFor(m => m.PasswordHash, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Time)
+                    @Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-sm-12 col-xs-12">
+                <div class="form-group">
+                    @if (Model != null && !string.IsNullOrEmpty(Model.Result))
+                    {
+                        @Html.LabelFor(m => m.Result, new { @class="text-danger" })
+                        <textarea class="form-control">@Model.Result</textarea>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button type="submit" class="width-35 btn btn-sm btn-primary">
+                    <i class="ace-icon fa fa-key"></i>
+                    <span class="bigger-110">Generate</span>
+                </button>
+            </div>
+        </div>
+       }
+    </div>
+</div>

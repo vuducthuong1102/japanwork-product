@@ -1,0 +1,23 @@
+2020-03-18 17:30:00,748 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-03-18 17:30:00,749 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-03-18 17:30:00,750 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-03-18 17:30:00,774 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-03-18 17:30:00,775 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-03-18 17:30:00,775 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-03-18 17:30:06,959 [14] DEBUG Manager.WebApp.Services.MyAgencyServices - Return code: OK, message: http://localhost:6060/api/user/operators
+2020-03-18 17:30:13,845 [8] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-03-18 17:30:14,431 [8] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-03-18 17:30:14,432 [8] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2020-03-18 17:30:14,469 [8] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2020-03-18 17:30:14,491 [8] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2020-03-18 17:30:14,491 [8] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2020-03-18 17:30:14,514 [8] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2020-03-18 17:30:16,566 [9] DEBUG Manager.WebApp.Services.MyAgencyServices - Return code: OK, message: http://localhost:6060/api/user/operators
+2020-03-18 17:30:20,406 [8] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateStatusAsync request
+2020-03-18 17:30:20,571 [8] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/status
+2020-03-18 17:30:20,572 [8] DEBUG Manager.WebApp.Services.JobServices - End UpdateStatusAsync request
+2020-03-18 17:30:21,776 [9] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-03-18 17:30:21,990 [9] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-03-18 17:30:21,991 [9] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2020-03-18 17:30:22,000 [9] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2020-03-18 17:30:26,296 [5] DEBUG Manager.WebApp.Services.MyAgencyServices - Return code: OK, message: http://localhost:6060/api/user/operators

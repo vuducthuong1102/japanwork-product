@@ -1,0 +1,85 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities;
+@using MySite.Resources;
+@using System.Text.RegularExpressions;
+@using MySite.Helpers;
+@model List<IdentityPost>
+
+
+@foreach (var item in Model)
+{
+    var firstImageUrl = "";
+    if (item.Images != null && item.Images.Count > 0)
+    {
+        firstImageUrl = CdnHelper.SocialGetFullImgPath(item.Images[0].Url);
+    }
+    <div class="item">
+
+        <div class="_6dc _2anb">
+            <div class="_2anb">
+                <a href="@PostHelper.GetFriendlyUrl(item)" title="@item.Title" class="_2ana">
+                    @Html.Raw(HtmlHelpers.ShowHtmlTextByLimit(item.Title, 50))
+                </a>
+            </div>
+            <span class="fz-13">
+                <a href="#" class="text-dark"><span class="follower text-grey-03"><span id="FollowersCount">@item.Like_Count</span>  @UserWebResource.LB_LIKE.ToLower()</span></a>
+            </span>
+
+            @GetSuggestContent(item)
+        </div>
+        <a href="@PostHelper.GetFriendlyUrl(item)" title="@item.Title">
+            <img src="@firstImageUrl" alt="@item.Title" class="avatar">
+        </a>
+    </div>
+}
+
+@helper GetSuggestContent(IdentityPost item)
+    {
+        var content = HtmlRemoval.StripTagsRegex(item.Description);
+        var keyword = ViewBag.Keyword;
+        var searches = keyword.Split(' ');
+        var regex = @"(" + String.Join("|", searches) + @")";
+
+        var result = string.Empty;
+        var sentences = content.Split(new Char[] { '.',',', '\n' });
+        var isContains = false;
+        if (sentences != null && sentences.Length > 0)
+        {
+            for (int i = 0; i < sentences.Length; i++)
+            {
+                var matchNum = 0;
+                foreach (var mykey in searches)
+                {
+                    if (sentences[i].Contains(mykey))
+                    {
+                        isContains = true;
+                        matchNum++;
+                    }
+
+                    if (matchNum == 1)
+                    {
+                        result += Regex.Replace(sentences[i], regex, @"<b>$1</b>", RegexOptions.IgnoreCase);
+                        var resultCount = result.Split(' ').Count();
+                        if (i < sentences.Length - 1 && resultCount < 20)
+                        {
+                            result += ". " + Regex.Replace(sentences[i + 1], regex, @"<b>$1</b>", RegexOptions.IgnoreCase);
+                        }
+
+                        break;
+                    }
+                }
+
+                if (matchNum == 1) { isContains = true; break; }
+            }
+        }
+
+        <p>
+            @if (isContains)
+            {
+                @(Html.Raw(result)) @(" ...")
+            }
+            else
+            {
+                @Html.Raw(HtmlHelpers.ShowHtmlTextByLimit(item.Description, 150))
+            }
+        </p>
+}

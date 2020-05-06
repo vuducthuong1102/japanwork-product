@@ -1,0 +1,18 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model List<ApiMySiteSocial.DB.Sql.Entities.IdentityComment>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="comment-item comment item item-@item.Id">
+            @Html.Partial("~/Views/Post/Item/Comment/_Item.cshtml", item)
+          
+            @Html.Partial("~/Views/Post/Item/CommentReply/_BoxComment.cshtml", item)
+        </div>
+    }
+}
+

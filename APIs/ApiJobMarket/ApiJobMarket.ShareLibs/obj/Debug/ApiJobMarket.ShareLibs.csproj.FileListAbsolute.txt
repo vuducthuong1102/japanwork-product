@@ -1,0 +1,9 @@
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\bin\Debug\ApiJobMarket.ShareLibs.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\bin\Debug\ApiJobMarket.ShareLibs.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\obj\Debug\ApiJobMarket.ShareLibs.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\obj\Debug\ApiJobMarket.ShareLibs.pdb
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\obj\Debug\ApiJobMarket.ShareLibs.csprojAssemblyReference.cache
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\bin\Debug\BouncyCastle.Crypto.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\bin\Debug\MimeKit.dll
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\bin\Debug\MimeKit.xml
+C:\Project\APIs\ApiJobMarket\ApiJobMarket.ShareLibs\obj\Debug\ApiJobMarket.ShareLibs.csproj.CopyComplete

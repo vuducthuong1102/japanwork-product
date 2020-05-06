@@ -1,0 +1,146 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageEmailViewModel
+
+<div class="modal-header">
+    <h4 class="modal-title text-info" id="">
+       <i class="fa fa-envelope-open"></i> @ManagerResource.LB_DETAIL
+    </h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="modal-body">
+        <div class="row form-group">
+            <div class="col-lg-2">
+                <span class="text-info"><i class="fa fa-file-word-o"></i> @ManagerResource.LB_TITLE: </span>
+            </div>
+            <div class="col-lg-10">
+                <span>@Model.Subject</span>
+            </div>
+        </div>
+
+        <div class="row form-group">
+            <div class="col-lg-2">
+                <span class="text-info"><i class="fa fa-user"></i> @ManagerResource.LB_SENDER: </span>
+            </div>
+            <div class="col-lg-10">
+                @if (Model.Sender != null)
+                {
+                    <a href="javascript:;">@Model.Sender.DisplayName (@Model.Sender.Address)</a>
+                }
+            </div>
+        </div>
+
+        @if (Model.Cc.HasData())
+        {
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <span class="text-info"><i class="fa fa-user-secret"></i> Cc: </span>
+                </div>
+                <div class="col-lg-10">
+                    <ul class="email-cc-list email-add-list pd0">
+                        @foreach (var item in Model.Cc)
+                        {
+                            <li>
+                                <a href="javascript:;">@item.DisplayName (@item.Address)</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+        @if (Model.AttachFiles.HasData())
+        {
+            <div class="row form-group">
+                <div class="col-lg-2">
+                    <span class="text-info"><i class="fa fa-file-archive-o"></i> @ManagerResource.LB_ATTACHMENT_FILE: </span>
+                </div>
+                <div class="col-lg-10">
+                    <ul class="file-list pd0">
+                        @foreach (var item in Model.AttachFiles)
+                        {
+                            <li>
+                                <a href="/@item.FilePath" download=""><i class="fa fa-download"></i> @item.FileName (@FileUploadHelper.ToSize(Utils.ConvertToInt64(item.FileSize, 0), SizeUnits.KB) @SizeUnits.KB.ToString())</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>            
+        }
+
+        <div class="row mb10">
+            <div class="col-lg-2">
+                <span class="text-info"><i class="fa fa-file"></i> @ManagerResource.LB_CONTENT: </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="email-content-container">
+                    @if (Model.MessageParts.HasData())
+                    {
+                        foreach (var item in Model.MessageParts)
+                        {
+                            <div class="text-center pb10 pt10"><b>@item.CreatedDate.DateTimeQuestToString("yyyy/MM/dd HH:mm"): @item.Subject</b></div>
+                            if (item.AttachedFiles.HasData())
+                            {
+                                <div class="row form-group">
+                                    <div class="col-lg-2">
+                                        <span class="text-info"><i class="fa fa-file-archive-o"></i> @ManagerResource.LB_ATTACHMENT_FILE: </span>
+                                    </div>
+                                    <div class="col-lg-10">
+                                        <ul class="file-list pd0">
+                                            @foreach (var attPart in item.AttachedFiles)
+                                            {
+                                                <li>
+                                                    <a href="/@attPart.FilePath" download=""><i class="fa fa-download"></i> @attPart.FileName (@FileUploadHelper.ToSize(Utils.ConvertToInt64(attPart.FileSize, 0), SizeUnits.KB) @SizeUnits.KB.ToString())</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            <div class="email-content mb10">
+                                @if (!string.IsNullOrEmpty(item.Message))
+                                {
+                                    @Html.Raw(item.Message)
+                                }
+                            </div>
+                        }
+                    }
+
+                    <div class="email-content">
+                        <div class="text-center"><b>@Model.CreatedDateStr: @Model.Subject</b></div>
+                        @if (!string.IsNullOrEmpty(Model.Message))
+                        {
+                            @Html.Raw(Model.Message)
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+        </button>
+    </div>
+}
+
+<script>
+    $(function () {
+        $(".email-content").each(function () {
+            var blockQuote = $(this).find("blockquote").first();
+            var parentQuote = blockQuote.parent();
+            parentQuote.addClass("hidden");
+            parentQuote.after("<a href='javascript:;' class='quote-btn'>\"@ManagerResource.LB_SHOW_QUOTE\"</a>");
+        });
+    });  
+</script>

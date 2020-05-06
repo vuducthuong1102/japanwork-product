@@ -1,0 +1,28 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.JobSeekerCertificateModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-close fz-16"></i> @ManagerResource.CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.id)
+    @Html.HiddenFor(m=>m.job_seeker_id)
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_NO
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-check"></i> @ManagerResource.BT_ALLOW
+        </button>
+    </div>
+}

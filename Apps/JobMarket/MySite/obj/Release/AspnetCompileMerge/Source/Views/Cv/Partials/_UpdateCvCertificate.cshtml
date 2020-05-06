@@ -1,0 +1,156 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Caching
+@model MySite.Models.CvCertificateModel
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="la la-certificate fz-16"></i> @UserWebResource.LB_UPDATE_CERTIFICATE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("UpdateCvCertificate", "Cv", FormMethod.Post, new { @id = "frmUpdateCvCertificate" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.id, new { id = "currentCertificateId" })
+    @Html.HiddenFor(m => m.cv_id)
+    <div class="modal-body">
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_CERTIFICATE_NAME</label>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_EDUCATION_STATUS</label>
+            </div>
+            <div class="col-md-8">
+                <select data-placeholder="@UserWebResource.LB_EDUCATION_STATUS" id="CertificateStatus" data-live-search="true" class="select2" name="@Html.NameFor(m=>m.pass)">
+                    @foreach (var item in Enum.GetValues(typeof(EnumCertificateStatus)))
+                    {
+                        var chkItem = (int)item;
+                        var chkStr = string.Empty;
+                        if (chkItem == Model.pass)
+                        {
+                            chkStr = "selected";
+                        }
+                        <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row" id="PointArea">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_POINT</label>
+            </div>
+            <div class="col-md-8">
+                @Html.TextBoxFor(m => m.point, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_DATE_OF_LICENSE</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.start_date_str, new { @class = "form-control datepicker" })
+            </div>
+        </div>
+
+        @*<div class="form-group row">
+            <div class="col-md-4">
+                <label class="base-label">@UserWebResource.LB_TO_DATE</label>
+            </div>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m => m.end_date_str, new { @class = "form-control datepicker" })
+            </div>
+        </div>*@
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.BT_CANCEL
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-floppy-o"></i> @UserWebResource.BT_SAVE
+        </button>
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $('.select2').select2({
+        width: '100%'
+    });
+
+    $(".datepicker").mask("99-99-9999");
+    $(".datepicker").datepicker({
+        format: "dd-mm-yyyy"
+    });
+
+    $("#CertificateStatus").change(function () {
+        var status = parseInt($('#CertificateStatus').val());
+        if (status <= 0) {
+            $("#PointArea").addClass("hidden");
+        } else {
+            $("#PointArea").removeClass("hidden");
+        }
+    });
+
+    $("#frmUpdateCvCertificate").submit(function (ev) {
+        ev.preventDefault();
+        var currentCertificateId = parseInt($("#currentCertificateId").val());
+
+        if ($("#frmUpdateCvCertificate").valid()) {
+            var data = new FormData(this);
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Cv/UpdateCvCertificate';
+            params['requestType'] = 'POST';
+            params['data'] = data;
+            params['processData'] = false;
+            params['contentType'] = false;
+            params['dataType'] = "json";
+            params['context'] = "#frmUpdateCvCertificate";
+
+            params['successCallbackFunction'] = function (result) {
+                if (result) {
+                    if (result.success) {
+                        $('#myModal').modal('hide');
+                        if (currentCertificateId > 0) {
+                            MemberGlobal.certificates();
+                        } else {
+                            if (result.html) {
+                                $("#Certificates").append(result.html);
+                            }                            
+                        }                        
+                    } else {
+                        CatchAjaxResponseWithNotif(result);
+                    }
+                }
+            };
+            doAjax(params);
+        }
+        return false;
+    });
+
+    $(function () {
+        $("#CertificateStatus").change();
+    });
+</script>

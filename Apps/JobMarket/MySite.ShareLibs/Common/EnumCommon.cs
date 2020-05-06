@@ -1,0 +1,5 @@
+﻿
+namespace MySite.ShareLibs.Common
+{
+
+}

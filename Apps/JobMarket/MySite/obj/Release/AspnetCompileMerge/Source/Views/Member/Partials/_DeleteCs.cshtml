@@ -1,0 +1,28 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@model MySite.Models.ApiCsModel
+
+<div class="modal-header">
+    <h5 class="modal-title fz-16" id="exampleModalLabel">
+        <i class="fa fa-close fz-16"></i> @UserWebResource.LB_CONFIRM_DELETE
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.id)
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-info mr-auto" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @UserWebResource.LB_NO
+        </button>
+        <button type="submit" class="btn btn-info">
+            <i class="fa fa-check"></i> @UserWebResource.BT_ALLOW
+        </button>
+    </div>
+}

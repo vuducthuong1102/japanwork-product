@@ -1,0 +1,37 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using MySite.Helpers
+@using MySite.Resources
+@model List<IdentityCity>
+
+@{
+    var hasData = Model.HasData();
+    var currentPrefectureId = 0;
+    if (hasData)
+    {
+        currentPrefectureId = Model[0].prefecture_id;
+    }
+}
+
+<ul class="filter-cities item-city has-child custom-scrollbar" id="ct_filter_cities_@currentPrefectureId">
+    @if (hasData)
+    {
+        <li class="sub-item" data-id="@currentPrefectureId" id="city_by_prefecture_@currentPrefectureId">
+            <div class="">
+                <a href="javascript:;">
+                    <input type="checkbox" class="city-cbx-all" data-prefecture="@currentPrefectureId" value="@currentPrefectureId" id="city_all_@currentPrefectureId"> <label for="city_all_@currentPrefectureId"> @UserWebResource.LB_SELECT_ALL</label>
+                </a>
+            </div>
+        </li>
+
+        foreach (var item in Model)
+        {
+            <li class="sub-item" data-id="@item.id" id="city_by_prefecture_@currentPrefectureId">
+                <div class="">
+                    <a href="javascript:;">
+                        <input type="checkbox" class="city-by-prefecture-cbx" @((item.IsSelected) ? "checked" : "") data-prefecture="@currentPrefectureId" value="@item.id" id="city_@item.id"> <label for="city_@item.id"> @item.furigana (@item.city)</label>
+                    </a>
+                </div>
+            </li>
+        }
+    }
+</ul>

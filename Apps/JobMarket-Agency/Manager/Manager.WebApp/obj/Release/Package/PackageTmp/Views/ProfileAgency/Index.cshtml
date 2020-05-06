@@ -1,0 +1,160 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.AgencyEditModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_UPDATE_INFO;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="m-portlet">
+            @*<div class="m-portlet__head">
+                <div class="m-portlet__head-caption">
+                    <div class="m-portlet__head-title" style="margin:0 auto;">
+                        <h3 class="m-portlet__head-text text-info">
+                            <i class="fa fa-info-circle fz-18"></i> @ManagerResource.LB_UPDATE_INFO
+                        </h3>
+                    </div>
+                </div>
+            </div>*@
+            <!--begin::Form-->
+            <form class="m-form" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                @Html.Partial("_Notifications")
+                <div class="m-portlet__body">
+                    <div class="m-form__section m-form__section--first">
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.LogoPath)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="upload-portfolio mb10">
+                                    <div class="uploadbox" id="uploadbox">
+                                        <img class="file-upload-btn thumbImg img-full-center pointer @((string.IsNullOrEmpty(Model.LogoFullPath)) ? "hidden" : string.Empty)" src="@Model.LogoFullPath" />
+                                        <label for="file-upload" class="custom-file-upload file-upload-icon @((!string.IsNullOrEmpty(Model.LogoFullPath)) ? "hidden" : string.Empty)">
+                                            <i class="la la-cloud-upload"></i> <span>@ManagerResource.LB_UPLOAD_COMPANY_LOGO</span>
+                                        </label>
+                                        @Html.HiddenFor(m => m.LogoPath)
+                                        <input id="file-upload" class="file-upload-storage hidden" name="@Html.NameFor(m=>m.image_file_upload)" type="file" data-preview="uploadbox">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Company) 
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-building"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Company, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Company, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Name)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-user"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Address)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-map"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Address, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Phone)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-phone"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Phone, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                        <div class="form-group m-form__group row pt0 pb5">
+                            <label class="col-lg-3 col-form-label">
+                                @Html.DisplayNameFor(m => m.Website)
+                            </label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="la la-chain"></i>
+                                        </span>
+                                    </div>
+                                    @Html.TextBoxFor(m => m.Website, new { @class = "form-control m-input" })
+
+                                </div>
+                                @Html.ValidationMessageFor(m => m.Website, null, new { @class = "m-form__help text-danger fz-14" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (PermissionHelper.CheckPermission("UpdateProfileAgency", "Settings"))
+                {
+                    <div class="m-portlet__foot m-portlet__foot--fit row">
+                        <div class="m-form__actions m-form__actions" style="width:100%">
+                            <button type="submit" class="btn btn-info pull-right">
+                                <i class="la la-floppy-o"></i> @ManagerResource.LB_SAVE
+                            </button>
+                        </div>
+                    </div>
+                }
+            </form>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+@section PagePluginStyles
+{
+    <link href="@Url.VersionedContent("~/Content/Page/Agency/main.css")" rel="stylesheet" />
+}
+
+@section PageInlineScripts{
+    <script>
+        $(function () {
+            $(".file-upload-storage").change(function () {
+                PreviewImageFromBrowseDialog(this);
+            });
+        });
+    </script>
+}

@@ -1,0 +1,30 @@
+﻿@using ApiMySiteMessenger.DB.Sql.Entities
+@using MySite.Helpers
+@using MySite.Models
+@model List<IdentityConversationReply>
+
+@{
+    var userInfo = AccountHelper.GetCurrentUser();
+}
+
+@if (userInfo != null && Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        if (userInfo.Id == item.UserId)
+        {
+            @Html.Partial("../Messenger/Partials/ChatBox/_MessageMine", item)
+        }
+        else
+        {
+            item.UserOneInfo = Model[0].UserOneInfo;
+            item.UserTwoInfo = Model[0].UserTwoInfo;
+
+            var itemModel = new MessageItemModel();
+            itemModel.CurrentUserId = userInfo.Id;
+            itemModel.MessageItem = item;
+
+            @Html.Partial("../Messenger/Partials/ChatBox/_MessageGuest", itemModel)
+        }
+    }
+}

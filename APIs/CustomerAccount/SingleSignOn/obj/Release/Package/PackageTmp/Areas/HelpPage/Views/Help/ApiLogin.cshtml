@@ -1,0 +1,45 @@
+﻿<br />
+<br />
+<div>
+    <pre>
+    <code>
+            <b>Link: http://192.168.2.25:8080/api/user/login </b>
+
+            1. Correct data:
+            UserName: abcd@gmail.com
+            Password(MD5 of Abcd@1234): 0b3bc9ce555f07d127c6da44337e364f
+            Time: 20170728080253
+            Hash (MD5 of UserName|Password|Time): 36b7ae0ec055b04cce4a084b17523f97  (abcd@gmail.com|0b3bc9ce555f07d127c6da44337e364f|20170728080253)
+
+
+            ==> Json data:
+            { 
+             "UserName": "abcd@gmail.com",
+             "Password": "0b3bc9ce555f07d127c6da44337e364f",
+             "Time": "20170728080253",
+             "Hash": "36b7ae0ec055b04cce4a084b17523f97"
+            }
+
+            **Note: Your time could not be less than 24 hours (Compare with current datetime)
+            _____________________________________________________________________________________
+
+            2. Incorrect data:
+            UserName: abcd@gmail.com
+            Password(MD5 of Abcd@1234567): 5d36c5d9e94e4a7a09f9e4c9bbab453d     => Password incorrect
+            Time: 20170728080253
+            Hash (MD5 of UserName|Password|Time: e5f9eadd0e81cd911b2763a1dd6f4da9 (abcd@gmail.com|5d36c5d9e94e4a7a09f9e4c9bbab453d|20170728080253)
+
+
+            ==> Json data:
+            {
+            "UserName": "abcd@gmail.com",
+            "Password": "5d36c5d9e94e4a7a09f9e4c9bbab453d",
+            "Time": "20170728080253",
+            "Hash": "e5f9eadd0e81cd911b2763a1dd6f4da9"
+            }
+
+            **Note: Your time could not be less than 24 hours (Compare with current datetime)
+        </code>
+</pre>
+    <h3>Click to get another hash token: <a href="/home/hashdata" target="_blank" class="btn btn-sm btn-default">Generate token</a></h3>
+</div>

@@ -1,0 +1,33 @@
+2019-12-21 11:03:31,360 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-21 11:03:31,371 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2019-12-21 11:03:31,372 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-21 11:03:31,418 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-21 11:03:31,419 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2019-12-21 11:03:31,419 [1] INFO  Manager.WebApp.Startup - ======================================================
+2019-12-21 11:03:32,049 [7] ERROR Manager.WebApp.MvcApplication - Application Error: Server cannot set status after HTTP headers have been sent.
+System.Web.HttpException (0x80004005): Server cannot set status after HTTP headers have been sent.
+   at System.Web.HttpResponse.set_StatusCode(Int32 value)
+   at System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-12-21 11:03:44,906 [9] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-21 11:03:49,492 [9] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2019-12-21 11:03:49,493 [9] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-21 11:03:54,999 [9] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2019-12-21 11:03:55,437 [9] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=-1&translate_status=-1
+2019-12-21 11:03:55,438 [9] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2019-12-21 11:03:55,465 [9] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2019-12-21 11:03:55,553 [9] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2019-12-21 11:03:55,554 [9] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2019-12-21 11:03:55,705 [9] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids

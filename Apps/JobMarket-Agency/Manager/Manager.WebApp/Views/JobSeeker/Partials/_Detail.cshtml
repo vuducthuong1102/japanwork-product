@@ -1,0 +1,116 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageJobSeekerNoteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_DETAIL
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    var typeList = JobSeekerNoteTypeProvider.GetListJobSeekerNoteType();
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.job_seeker_id)
+            @Html.HiddenFor(m => m.type_job_seeker)
+
+            <div class="row">
+                <div class="col-sm-12 pull-right">
+                    <a href="javascripts:;" id="btn-add" data-modal="" data-href="@Url.Action("CreateNote","JobSeeker", new { job_seeker_id = Model.job_seeker_id,type_job_seeker = Model.type_job_seeker})" class="btn btn-info pull-right btn-sm mb10">
+                        <i class="fa fa-sticky-note">@ManagerResource.LB_ADD_NEW</i>
+                    </a>
+                </div>
+                <div class="col-sm-12">
+                    <div class="m-section">
+                        <div class="m-section__content table-responsive">
+                            <table id="sample-table-1" class="table m-table m-table--head-bg-brand">
+                                <thead>
+                                    <tr>
+                                        <th>@ManagerResource.LB_CONTACT_FORM</th>
+                                        <th>@ManagerResource.LB_CONTENT</th>
+                                        <th>@ManagerResource.LB_CREATED_BY</th>
+                                        <th>@ManagerResource.LB_DATE_TIME</th>
+                                        <th>@ManagerResource.LB_ACTION</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                                    {
+                                        var stt = 0;
+                                        foreach (var record in Model.SearchResults)
+                                        {
+                                            stt++;
+                                            <tr>
+                                                <td>
+                                                    @if (typeList != null && typeList.Count > 0)
+                                                    {
+                                                        foreach (var item in typeList)
+                                                        {
+                                                            if (item.id == record.type)
+                                                            {
+                                                                @item.TypeName
+                                                            }
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    @record.note
+                                                </td>
+                                                <td>
+                                                    @if (Model.ListStaffs != null && Model.ListStaffs.Count > 0)
+                                                    {
+                                                        foreach (var item in Model.ListStaffs)
+                                                        {
+                                                            if (item.StaffId == record.staff_id)
+                                                            {
+                                                                @item.FullName
+                                                            }
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>@record.created_at.Value.ToString("yyyy/MM/dd HH:mm")</td>
+                                                <td>
+                                                    @{
+                                                        var newModel = Model;
+                                                        //newModel.Id = record.Id;
+                                                        //newModel.SearchExec = "Y";
+                                                    }
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-href="@Url.Action("EditNote", "JobSeeker", new { id = record.id })" data-modal="" title="@ManagerResource.LB_EDIT">
+                                                        <i class="la la-pencil"></i>
+                                                    </a>
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-href="@Url.Action("DeleteNote", "JobSeeker", new { id = record.id })" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                        <i class="la la-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="11">
+                                                @ManagerResource.LB_NO_RECORD
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                            @*@RenderPaging()*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

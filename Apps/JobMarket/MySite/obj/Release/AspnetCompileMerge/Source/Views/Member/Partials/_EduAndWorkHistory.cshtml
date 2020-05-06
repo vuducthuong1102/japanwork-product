@@ -1,0 +1,198 @@
+﻿@using MySite.Helpers
+
+@model MySite.Models.Cv.ManageCvPreviewModel
+<table width="100%" style="margin-bottom:25px;font-size: 12px;line-height:25px;">
+    <tbody>
+        <tr style="text-align: center;">
+            <td style="border-right-style: dashed;width:15%;">西暦</td>
+            <td style="border-left: 0;width:8%;"> 月</td>
+            <td colspan="4" style="border-left:0;"> 学歴･職歴（各項目ごとにまとめて書く）</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td style="border-top:0;border-right-style: dashed;width: 15%;"></td>
+            <td style="border-top:0;border-left: 0;width: 8%;"> </td>
+            <td colspan="4" style="border-top:0;border-left: 0;">学 歴</td>
+        </tr>
+        @{
+        var lineCount = 2;
+        var listEduHistory = Model.CvInfo.edu_history;
+        if (listEduHistory.Count > 3)
+        {
+        listEduHistory = listEduHistory.GetRange(0, 3);
+        }
+        lineCount += listEduHistory.Count * 2;
+        }
+        @if (listEduHistory != null && listEduHistory.Count > 0)
+        {
+        foreach (var item in listEduHistory)
+        {
+        var school = item.school.Length > 28 ? (item.school.Substring(0, 29) + "...") : item.school;
+        var address = item.address.Length > 6 ? (item.address.Substring(0, 7) + "...") : item.address;
+
+        string majorText = "";
+        if (item.major_custom != null && !string.IsNullOrEmpty(item.major_custom))
+        {
+        majorText = item.major_custom;
+        }
+        else if (Model.Majors != null && Model.Majors.Count > 0)
+        {
+        var major = Model.Majors.Where(x => x.id == item.major_id).FirstOrDefault();
+
+        if (major != null && major.LangList != null && major.LangList.Count() > 0)
+        {
+        var majorJPLangList = major.LangList.Where(x => x.language_code == "ja-JP").FirstOrDefault();
+
+        if (majorJPLangList != null)
+        {
+        majorText = majorJPLangList.major;
+        }
+        }
+        }
+
+        <tr>
+            <td style="border-right-style: dashed;border-top:0;text-align:center;width: 15%;">@item.start_date.Value.Year</td>
+            <td style="border-left: 0; border-top:0;text-align:center;width: 8%;">@item.start_date.Value.Month</td>
+            <td style="border-left:0;border-top:0;border-right: 0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    @school.Trim()
+                </div>
+            </td>
+            <td style="width:10%;border-left:0;border-top:0;border-right: 0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    @majorText.Trim()
+                </div>
+            </td>
+            <td style="width:10%;border-left:0;border-top:0;border-right: 0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    入学
+                </div>
+            </td>
+            <td style="width:25%;border-left:0;border-top:0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    @address.Trim()
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-right-style: dashed;border-top:0;text-align:center;width: 15%;">@item.end_date.Value.Year</td>
+            <td style="border-left: 0;border-top:0;text-align:center;width: 8%;">@item.end_date.Value.Month</td>
+            <td style="border-left:0;border-top:0;border-right: 0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    @school.Trim()
+                </div>
+            </td>
+            <td style="width:10%;border-left:0;border-top:0;border-right: 0;"></td>
+            <td style="width:10%;border-left:0;border-top:0;border-right: 0;">
+                <div style="height: 20px; overflow: hidden; line-height:20px;text-align:left;">
+                    @if (item.status == 1)
+                    {
+                    @("卒業");
+                    }
+                    else if (item.status == 2)
+                    {
+                    @("退学");
+                    }
+                    else
+                    {
+                    @("卒業見込");
+                    }
+                </div>
+            </td>
+            <td style="width:25%;border-left:0;border-top:0;">
+                <div style="overflow:hidden;line-height:20px;height:20px;text-align:left;">
+
+                </div>
+            </td>
+        </tr>
+        }
+        }
+        <tr style="text-align: center">
+            <td style="border-right-style: dashed;border-top:0;width: 15%;"></td>
+            <td style="border-left: 0;border-top:0;width: 8%;"> </td>
+            <td colspan="4" style="border-top:0;border-left: 0;">職 歴</td>
+        </tr>
+        @{
+        var listWorkHistory = Model.CvInfo.work_history;
+        if (listWorkHistory.Count > 3)
+        {
+        listWorkHistory = listWorkHistory.GetRange(0, 4);
+        }
+        lineCount += listWorkHistory.Count * 2;
+        }
+        @if (!Model.CvInfo.check_work && listWorkHistory != null && listWorkHistory.Count > 0)
+        {
+        foreach (var item in listWorkHistory)
+        {
+        var _form_text = "";
+        if (item.form == 0)
+        {
+        _form_text += " 正社員";
+        }
+        else if (item.form == 1)
+        {
+        _form_text += " 契約社員";
+        }
+        else if (item.form == 2)
+        {
+        _form_text += " アルバイト";
+        }
+        else
+        {
+        _form_text += " 入社";
+        }
+
+        var company = item.company.Length > 15 ? (item.company.Substring(0, 15)) : item.company;
+        var content_work = item.content_work.Length > 30 ? (item.content_work.Substring(0, 30)) : item.content_work;
+
+        <tr>
+            <td style="border-right-style: dashed;border-top:0;text-align:center;width: 15%;">@item.start_date.Value.Year</td>
+            <td style="border-left: 0;border-top:0;border-left:0;text-align:center;width: 8%;">@item.start_date.Value.Month</td>
+            <td colspan="4" style=";border-top:0;border-left:0;">
+                <div style=" height: 20px; overflow: hidden; line-height:20px">
+                    @company @_form_text ( @content_work )
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td style="border-right-style: dashed;border-top:0;text-align:center;width: 15%;">@(item.status == 0 ? item.end_date.Value.Year.ToString() : "")</td>
+            <td style="border-left: 0;border-top:0;text-align:center;width: 8%;">@(item.status == 0 ? item.end_date.Value.Month.ToString() : "")</td>
+            <td colspan="4" style=";border-top:0;border-left:0;">
+                <div style=" height: 20px; overflow: hidden; line-height:20px">
+                    @(item.status != 0 ? "現在に至る" : (company + "　退職"))
+                </div>
+            </td>
+        </tr>
+        }
+        }
+        else
+        {
+        lineCount += 1;
+
+        <tr>
+            <td style="border-top: 0;border-right-style: dashed;width: 15%;"></td>
+            <td style="border-top: 0;border-left: 0;width: 8%;"></td>
+            <td colspan="4" style="border-top: 0;text-align:center;border-left: 0">なし</td>
+        </tr>
+        }
+
+        @if (lineCount < 17)
+        {
+        for (int i = lineCount; i < 17; i++)
+        {
+        <tr>
+            <td style="border-right-style: dashed;border-top:0;width: 15%;"></td>
+            <td style="border-left: 0;border-top:0;width: 8%;"> </td>
+            @if (i == lineCount)
+            {
+            <td colspan="4" style="text-align: right; border-left:0; border-top:0; padding-right: 15%;">以上</td>
+            }
+            else
+            {
+            <td colspan="4" style="text-align:right;border-left: 0;border-top:0"></td>
+            }
+        </tr>
+
+        }
+        }
+    </tbody>
+</table>

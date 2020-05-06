@@ -1,0 +1,39 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.CvCertificateModel
+
+<div class="m-widget1__item">
+    <div class="row m-row--no-padding align-items-center">
+        <div class="col-3">
+            <h3 class="m-widget1__title text-info fz-16">
+                <i class="fa fa-certificate fz-16"></i> @Model.name
+            </h3>
+            <div class="">
+                @if (Model.start_date != null)
+                {
+                    <span>@string.Format("{0}: {1}", ManagerResource.LB_DATE_OF_LICENSE, Model.start_date.DateTimeQuestToString("dd-MM-yyyy"))</span>
+                }
+            </div>
+            <div class="m-widget1__desc fz-15">
+                @if (Model.pass == (int)EnumCertificateStatus.Passed)
+                {
+                    if (!string.IsNullOrEmpty(Model.point))
+                    {
+                        @(ManagerResource.LB_POINT + ": ") @(Model.point)
+                    }
+                }
+            </div>
+
+        </div>      
+        <div class="col-6">
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumCertificateStatus)))
+            {
+                var chkItem = (int)myEnum;
+                if (chkItem == Model.pass)
+                {
+                    <div class="m-widget1__number fz-15">@EnumExtensions.GetEnumDescription((Enum)myEnum)</div>
+                }
+            }
+        </div>
+    </div>
+</div>

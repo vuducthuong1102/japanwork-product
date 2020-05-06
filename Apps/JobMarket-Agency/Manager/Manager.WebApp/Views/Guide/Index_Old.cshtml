@@ -1,0 +1,831 @@
+﻿@using Manager.WebApp.Resources
+
+@{
+    ViewBag.Title = ManagerResource.LB_DOCUMENTATION;
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <div class="container-narrow">
+                    <div id="BodyContent">
+                        <div class="masthead">
+                            <h4>1. 画面イメージ</h4>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a class="btn btn-sm btn-info" href="javascript:void(0);" onclick="startIntro();"><i class="fa fa-search"></i> システム全体像</a>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="masthead">
+                        <h4>2. メニュー紹介</h4>
+                    </div>
+
+                    <hr>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            メニュー紹介
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-center">メニュー</th>
+                                                <th class="text-center">サブメニュー</th>
+                                                <th class="text-center">画面情報</th>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="2">進捗状況</td>
+                                                <td>求職者別進捗</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者別にステータス情報を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 進捗情報の「新規追加」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>求人別進捗</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者別にステータス情報を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 進捗情報の「新規追加」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td rowspan="3">求職者</td>
+                                                <td>求職者リスト</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者のリスト表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者の「追加」、「対応を確認/追加」「マッチング」「メールする」「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>応募者リスト</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 応募者のリスト表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 応募者の「対応を確認/追加」「メールする」「担当者」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>スカウト履歴</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者別のスカウト履歴情報を表示
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td rowspan="2">求人会社</td>
+                                                <td>求人会社リスト</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求人会社のリスト表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求人会社の「追加」、「編集」、「対応を確認/追加」、「メールする」、「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>求人リスト</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求人案件のリスト表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求人案件の「追加」、「招待する」、「クローズ」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td rowspan="7">設定</td>
+                                                <td>ユーザリスト</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 登録ユーザーを表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> ユーザーの「追加」、「編集」「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>役割名</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 登録役割名を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 役割の「追加」、「編集」「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>役割定義</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 役割の権限を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 役割の権限の「確認」、「追加」、「編集」「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>自社情報</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 自社情報を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 自社情報の「編集」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>メール設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> メール設定（初期設定サポートで対応）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>メールサーバ設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> メールサーバ設定（初期設定サポートで対応）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>進捗ステータス設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 進捗ステータス項目を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 進捗ステータス項目の「追加」、「編集」、「削除」のアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <br />
+                    <br />
+                    <div class="masthead">
+                        <h4>3. ユーザ利用ガイド</h4>
+                    </div>
+
+                    <hr>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            1 初期設定
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="7">初期設定</td>
+                                                <td>ユーザの登録</td>
+                                                <td style="width:80%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「設定」→「ユーザリスト」画面、右上の「新規追加」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「新規追加」画面から、ユーザ情報を入力する（メール、氏名、パスワード２回、役割名チェックボックスにチェック）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→ユーザ登録される
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 設定したユーザは、画面右の「オプション」→「担当会社」、「プロフィール」、「編集」、「削除」で設定内容の閲覧、編集、削除可能
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>役割名の設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「設定」→「役割名」画面、右上の「新規追加」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> ポップアップ「役割名を変更／追加」から、「役割名」を入力する
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→役割名が設定される
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 必要な役割名を全て設定する
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 設定した役割名は、画面右の「オプション」→「編集」、「削除」で編集、削除可能
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>役割の定義</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「設定」→「役割定義」画面、ドロップボックス「役割を選択してください」から役割を選択
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 選択した役割の定義選択
+                                                            （「進捗ステータス」、「進捗」、「人材」、「会社」、「求人」、「応募」、
+                                                            「応募者の履歴書」、「ユーザ管理」、「役割管理」、「役割定義」、「設定」
+                                                            の詳細権限選択チェックボックスにチェックする）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→役割毎の権限が設定される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>自社情報の設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「設定」→「自社情報」画面から、「ロゴ」、「会社名」、「担当」、「住所」、「電話番号」、「HP」を入力
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→「会社情報」が保存される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>メール設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求職者や企業担当者とのやり取りする際に使うメールアドレスを設定
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> メールアドレス、パスワードとメールサーバーを入力し保存
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>メールサーバ設定</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> メールのPOPサーバーとSMTPサーバーを設定
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> メールサーバーの設定はJinzai Techの技術者がサポート
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>進捗ステータス</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「マッチング」から「内定」に至る進捗ステータス項目を設定
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> デフォルトの各項目の画面右の「オプション」→「編集」、「削除」から利用する場合はポップアップから順位を設定、しない場合は削除を選択、<span class="text-danger">ドラッグ&ドロップ</span>
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> デフォルトにない項目は、「新規追加」画面から、項目名、順位を入力する
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            2 情報登録
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="6">情報登録</td>
+                                                <td>求人会社の登録</td>
+                                                <td style="width:60%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人会社」→「求人会社リスト」画面から、右上の「新規追加」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「新規追加」画面から、「会社情報」を入力する
+                                                            <br />（画像、会社名、設立年、会社の規模ドロップボックス、業種ドロップボックス、メールボックス、ホームページ、電話番号、FAX、滞在、地域、都道府県、市町村、住所の詳細、追加情報、担当者）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→求人会社が登録される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求人会社情報のアクション（編集、確認／追加、メール送付、削除）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人会社」→「求人会社リスト」画面から、登録した求人会社情報の「編集」
+                                                            <br />「+対応を確認/追加」、「メールする」、「削除」で編集、対応情報の確認／追加、メール送付、削除のアクションが可能
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求人情報の登録</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人会社」→「求人リスト」画面、右上の「新規追加」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「新規追加」画面から、「求人情報」を入力する
+                                                            <br />（会社ドロップボックス、タイトル、業種ドロップボックス、職種ドロップボックス、雇用形態DP、仕事内容、対象となる方、出来れば必要な資格・経験、人数、雇用期間（月）、日本語レベルDB、学歴DP、年齢、月給、勤務時間、フレックス有無CB、タッグ、住所（複数入力可能）、手当、休日、賞与、資格・免許、福利厚生、研修制度、選考、応募情報CB（履歴書、職務経歴書）、備考、応募期限、担当者、企業情報を隠すCB、日本人労働者のみを募集CB）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→求人会社が登録される
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「公開申請」ボタンを押す→JWが公開承認→公開される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求人情報のアクション（編集、削除、招待する、クローズ）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人会社」→「求人リスト」画面から、登録した求人情報の「編集」、「削除」、「招待する」、「クローズ」、で編集、削除、招待メール送付、クローズのアクションが可能
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求職者の登録（自社からの登録）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者」→「求職者リスト」画面から、右上の「新規追加」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「新規追加」画面から、「求職者情報」を入力する
+                                                            <br /> （画像、氏名、フリガナ、性別、生年月日、電話番号、メールボックス、結婚有無、担当者、日本語レベルDB、学歴DB、配偶者、国籍DB、在留資格、在留資格期限カレンダー、宗教、追加情報ボタン？：　希望（雇用形態DB、働く日カレンダー、給料、地域、職種）、住所（滞在、郵便番号、地域、都道府県、市町村、住所詳細、フリガナ、路線、最寄り駅）、連絡先（滞在、郵便番号、地域、都道府県、市町村、住所詳細、フリガナ）、
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「保存」ボタンを押す→求職者が登録される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求職者のアクション（対応の確認／追加、マッチング、メール送付、削除）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者」→「求職者リスト」画面から、登録した求職者情報の、「+対応を確認/追加」、「マッチング」、「メールする」、「削除」で対応の確認／追加、マッチング、メール送付、削除のアクションが可能
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            3 情報検索・ﾏｯﾁﾝｸﾞ 応募案内
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="3">情報検索、マッチング、応募案内</td>
+                                                <td>自主的な応募者の検索</td>
+                                                <td style="width:60%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者」→「応募者リスト」画面に表示される「応募者」を閲覧する
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求人に適合する求職者の洗い出し（マッチング）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人会社」→「求人リスト」画面、該当求人情報の「招待する」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> ポップアップ「オンライン登録者」、「オフライン登録者」画面に、それぞれ適合者がリスト表示される
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 招待したい求職者にチェックボックスチェックを入れ、「OK」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 自動で求職者に通知？がいく（リストから削除される）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 同時に「進捗状況」→「求職者別」、「求人別」に表示される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>求職者に適合する求人の洗い出し（マッチング）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者社」→「求職者リスト」画面、該当求職者情報の「マッチング」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 適合する「求人情報」ポップアップが表示される
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 招待したい求職者にチェックボックスチェックを入れ、「OK」ボタンを押す
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 自動で求職者に通知？がいく（リストから削除される）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 同時に「進捗状況」→「求職者別」、「求人別」に表示される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            4 応募受付
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="2">応募受付</td>
+                                                <td>自主的な応募者への対応（紹介可否</td>
+                                                <td style="width:60%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者」→「応募者リスト」画面に表示される「応募者」の「+対応を確認/追加」、「メールする」、「担当者」でアクションを選択（承認）
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> アクション後、「進捗状況」→「求職者別」、「求人別」に表示される
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>招待した応募者への対応（紹介可否）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「進捗状況」→「求職者別」、「求人別」に表示されている、招待した応募者に「+対応を確認/追加」、「メールする」、「担当者」でアクションを選択（承認）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            5 紹介・選考進捗管理
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td rowspan="5">紹介・選考、進捗管理</td>
+                                                <td>求人会社への紹介</td>
+                                                <td style="width:60%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 求人会社にメール等で求職者を紹介する
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 進捗を「+対応を確認/追加」、「メールする」、「担当者」でアクションを選択
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>面接、選考</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> オフラインで面接、選考を実施（メール以外のJapan Workの機能は活用しない）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>進捗状況の更新</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「進捗状況」→「求職者別」、「求人別」の進捗情報を入力する（自社設定したステータス項目。マッチング、案件紹介、会社内推薦、書類、筆記、１次、1次合格、2次、2次合格、最終面接、内定など）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>進捗管理（求職者別）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「進捗管理」→「求職者別進捗」にて「求職者リスト」を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者リスト」から「求職者」を選択、アクティブなステータス項目をクリックし、「新規追加」から更新情報を入力
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>進捗管理（求人別）</td>
+                                                <td>
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「進捗管理」→「求人別進捗」にて「求人リスト」を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求人リスト」から「求人」を選択、「求職者リスト」を表示
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i>「求職者リスト」から「求職者」を選択、アクティブなステータス項目をクリックし、「新規追加」から更新情報を入力
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="mb20">
+                        <legend class="legend-ctrl">
+                            6 雇用準備・手続き
+                        </legend>
+                        <div class="fieldset-content">
+                            <div class="row info-item">
+                                <div class="col-md-12">
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                            <tr>
+                                                <td>紹介・選考、進捗管理</td>
+                                                <td>手続き</td>
+                                                <td style="width:60%">
+                                                    <ul class="ul-intro">
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> 雇用準備・手続き
+                                                        </li>
+                                                        <li>
+                                                            <i class="fa fa-circle"></i> オフラインで雇用準備、手続きを実施（メール以外のJapan Workの機能は活用しない）
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+@section PagePluginStyles{
+    <link href="~/Content/Extensions/intro/introjs.css" rel="stylesheet" />
+    <style>
+        .introjs-helperNumberLayer {
+            right: 10px;
+            left: unset;
+            top: 5px;
+        }
+        /*.introjs-fixParent{position:relative !important}*/
+        @@media screen and (-webkit-min-device-pixel-ratio:0) {
+            /*.introjs-fixParent {
+            position: absolute !important;
+          }*/
+        }
+
+        .introjs-fixParent {
+            z-index: auto !important;
+            opacity: 1.0 !important;
+            -webkit-transform: none !important;
+            -moz-transform: none !important;
+            -ms-transform: none !important;
+            -o-transform: none !important;
+            transform: none !important;
+        }
+
+        /*.m-body .m-content{height:unset;}*/
+        .ab-item {
+            position: absolute !important;
+        }
+
+        .intro-desc{font-size:1.2rem;font-weight:bold;}
+        .ul-intro{list-style:none;padding:0;margin:0;}
+        .ul-intro li{padding:3px;}
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Content/Extensions/intro/intro.js"></script>
+    <script type="text/javascript">
+
+        function startIntro() {
+            var intro = introJs();
+            intro.setOptions({                
+                steps: [
+                    {
+                        element: '#SearchFrm',
+                        intro: '<div class="intro-desc">ヘッダー / 検索バー</div>',
+                        position: 'bottom'
+                    },
+                    {
+                        element: '#m_header_topbar',
+                        intro: '<div class="intro-desc">ヘッダー / アイコン</div>',
+                        position: 'left'
+                    },
+                    {
+                        element: '#m_ver_menu',
+                        intro: '<div class="intro-desc">メニューバー</div>',
+                        position: 'right'
+                    },                   
+                    {
+                        element: '#BodyContent',
+                        intro: '<div class="intro-desc">ボディ / コンテンツ</div>',
+                        position: 'bottom'
+                    },
+                    {
+                        element: document.querySelector('#m_support_pop'),
+                        intro: '<div class="intro-desc">ユーザサポートチャットアイコン</div>',
+                        position: 'top'
+                    }                    
+                ]
+            });
+
+            intro.onbeforechange(function (target) {                
+                $(".ab-item").removeClass("ab-item");               
+                switch (this._currentStep) {
+                    case 0:
+                        $("#m_header").toggleClass("ab-item");
+                        break;
+                    case 1:
+                        $("#m_header").toggleClass("ab-item");
+                        break;
+                    case 2:
+                        $("#m_ver_menu").css("background-color", "#36a3ca");
+                        $("#m_aside_left").toggleClass("ab-item");
+                        break;
+                    case 3:                        
+                       
+                        break;
+                    case 4:        
+                        $(".ab-item").removeClass("ab-item");
+                        //$("#m_support_pop").toggleClass("ab-item");
+                        break;
+                    default:
+                    // code block
+                }               
+            });
+           
+            //intro.setOption('tooltipPosition', 'auto');
+            //intro.setOption('positionPrecedence', ['right', 'bottom', 'top', 'left']);
+            //intro.setOption('showBullets', false);
+            intro.setOption('nextLabel', '次 &rarr;');
+            intro.setOption('prevLabel', '&larr; 前');
+            intro.setOption('skipLabel', 'スキップ');
+            intro.setOption('doneLabel', '終わった');
+            intro.start();
+            intro.onexit(function (target) {
+                $(".ab-item").removeClass("ab-item");
+            });
+        }
+
+    </script>
+}

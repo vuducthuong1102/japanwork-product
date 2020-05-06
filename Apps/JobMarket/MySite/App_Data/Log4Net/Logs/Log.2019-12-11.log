@@ -1,0 +1,199 @@
+2019-12-11 10:25:27,457 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 10:25:27,475 [1] INFO  MySite.Startup - MySite is starting up
+2019-12-11 10:25:27,482 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 10:25:27,813 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 10:25:27,833 [1] INFO  MySite.Startup - MySite is successfully configured
+2019-12-11 10:25:27,833 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 10:27:34,758 [19] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:27:34,767 [19] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:27:55,811 [19] ERROR MySite.Services.AccountServices - Failed when calling api to LOGIN - http://192.168.1.135:3030/api/user/login because: System.AggregateException: One or more errors occurred. ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.AccountServices.<LoginAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Account\AccountServices.cs:line 51
+---> (Inner Exception #0) System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---<---
+
+2019-12-11 10:27:55,814 [19] ERROR MySite.Controllers.WebAuthController - Failed for LOGIN-WEB request: {"UserName":"bangkhmt3@gmail.com","Password":"123456","ReturnUrl":null,"NumberOfFailedLogins":0,"RememberMe":false} because: D?ch v? dang b?n, vui lòng th? l?i sau
+2019-12-11 10:27:55,815 [19] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:28:04,105 [36] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:28:04,106 [36] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:28:25,118 [36] ERROR MySite.Services.AccountServices - Failed when calling api to LOGIN - http://192.168.1.135:3030/api/user/login because: System.AggregateException: One or more errors occurred. ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.AccountServices.<LoginAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Account\AccountServices.cs:line 51
+---> (Inner Exception #0) System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---<---
+
+2019-12-11 10:28:25,119 [36] ERROR MySite.Controllers.WebAuthController - Failed for LOGIN-WEB request: {"UserName":"bangkhmt3@gmail.com","Password":"123456","ReturnUrl":null,"NumberOfFailedLogins":0,"RememberMe":false} because: D?ch v? dang b?n, vui lòng th? l?i sau
+2019-12-11 10:28:25,120 [36] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:33:33,173 [15] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:33:33,174 [15] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:33:54,179 [15] ERROR MySite.Services.AccountServices - Failed when calling api to LOGIN - http://192.168.1.135:3030/api/user/login because: System.AggregateException: One or more errors occurred. ---> System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.AccountServices.<LoginAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Account\AccountServices.cs:line 51
+---> (Inner Exception #0) System.Net.Http.HttpRequestException: An error occurred while sending the request. ---> System.Net.WebException: Unable to connect to the remote server ---> System.Net.Sockets.SocketException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond 192.168.1.135:3030
+   at System.Net.Sockets.Socket.InternalEndConnect(IAsyncResult asyncResult)
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- End of inner exception stack trace ---
+   at System.Net.HttpWebRequest.EndGetRequestStream(IAsyncResult asyncResult, TransportContext& context)
+   at System.Net.Http.HttpClientHandler.GetRequestStreamCallback(IAsyncResult ar)
+   --- End of inner exception stack trace ---<---
+
+2019-12-11 10:33:54,180 [15] ERROR MySite.Controllers.WebAuthController - Failed for LOGIN-WEB request: {"UserName":"bangkhmt3@gmail.com","Password":"123456","ReturnUrl":null,"NumberOfFailedLogins":0,"RememberMe":false} because: D?ch v? dang b?n, vui lòng th? l?i sau
+2019-12-11 10:33:54,181 [15] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:37:08,786 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:37:08,798 [34] INFO  MySite.Startup - MySite is starting up
+2019-12-11 10:37:08,799 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:37:08,919 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:37:08,920 [34] INFO  MySite.Startup - MySite is successfully configured
+2019-12-11 10:37:08,921 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:37:09,381 [19] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:37:09,499 [19] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:37:24,373 [19] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:37:24,375 [19] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:38:11,696 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:38:11,709 [34] INFO  MySite.Startup - MySite is starting up
+2019-12-11 10:38:11,710 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:38:11,875 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:38:11,876 [34] INFO  MySite.Startup - MySite is successfully configured
+2019-12-11 10:38:11,877 [34] INFO  MySite.Startup - ======================================================
+2019-12-11 10:38:36,689 [36] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:38:36,696 [36] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:38:51,113 [36] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:38:51,115 [36] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:43:25,814 [25] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:43:25,816 [25] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:43:41,401 [25] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:43:41,402 [25] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:44:00,992 [71] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:44:00,993 [71] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:44:15,719 [71] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:44:15,720 [71] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:45:02,698 [37] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:45:02,699 [37] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:45:17,353 [37] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:45:17,354 [37] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:47:02,970 [57] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:47:02,972 [57] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:47:17,626 [57] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:47:17,626 [57] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:50:03,347 [73] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:50:03,349 [73] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:50:18,033 [73] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:50:18,037 [73] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:50:25,257 [18] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:50:25,259 [18] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:50:39,922 [18] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:50:39,923 [18] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:54:30,068 [97] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:54:30,069 [97] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:54:44,738 [97] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:54:44,739 [97] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:55:20,286 [99] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:55:20,289 [99] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:55:34,961 [99] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:55:34,962 [99] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:55:54,396 [96] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:55:54,398 [96] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:56:09,082 [96] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:56:09,083 [96] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:56:17,800 [100] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:56:17,801 [100] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:56:32,444 [100] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:56:32,445 [100] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 10:56:46,695 [134] INFO  MySite.Startup - ======================================================
+2019-12-11 10:56:46,696 [134] INFO  MySite.Startup - MySite is starting up
+2019-12-11 10:56:46,697 [134] INFO  MySite.Startup - ======================================================
+2019-12-11 10:56:46,814 [134] INFO  MySite.Startup - ======================================================
+2019-12-11 10:56:46,815 [134] INFO  MySite.Startup - MySite is successfully configured
+2019-12-11 10:56:46,816 [134] INFO  MySite.Startup - ======================================================
+2019-12-11 10:56:54,655 [89] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 10:56:54,819 [89] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 10:57:09,699 [89] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 10:57:09,701 [89] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:00:02,208 [89] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:00:02,210 [89] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:00:16,915 [89] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:00:16,916 [89] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:02:15,761 [89] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:02:15,764 [89] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:02:33,722 [89] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:02:33,723 [89] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:02:51,129 [142] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:02:51,130 [142] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:03:07,047 [142] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:03:07,048 [142] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:03:23,233 [155] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:03:23,233 [155] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:03:38,809 [155] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:03:38,810 [155] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:03:46,840 [148] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:03:46,842 [148] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:04:05,459 [148] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:04:05,460 [148] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:04:10,341 [148] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:04:10,342 [148] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:05:18,756 [148] ERROR MySite.Services.AccountServices - Return code: InternalServerError, message: http://localhost:3030/api/user/login
+2019-12-11 11:05:18,757 [148] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:05:59,080 [168] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-11 11:05:59,085 [168] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-11 11:06:17,023 [168] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-11 11:08:23,468 [162] ERROR MySite.Controllers.MemberController - Failed when trying get InvitationJobs because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at MySite.Controllers.MemberController.<GetInvitations>d__14.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 476
+2019-12-11 11:08:50,851 [160] ERROR MySite.Controllers.MemberController - Failed when trying get InvitationJobs because: System.NullReferenceException: Object reference not set to an instance of an object.
+   at MySite.Controllers.MemberController.<GetInvitations>d__14.MoveNext() in C:\Project\Apps\JobMarket\MySite\Controllers\Business\MemberController.cs:line 476
+2019-12-11 15:58:02,905 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 15:58:02,915 [1] INFO  MySite.Startup - MySite is starting up
+2019-12-11 15:58:02,916 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 15:58:03,059 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 15:58:03,060 [1] INFO  MySite.Startup - MySite is successfully configured
+2019-12-11 15:58:03,061 [1] INFO  MySite.Startup - ======================================================
+2019-12-11 16:00:04,409 [9] ERROR MySite.Services.NavigationServices - Failed when calling api GetListAsync - http://localhost:3333/api/navigations because: System.AggregateException: One or more errors occurred. ---> System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Services.NavigationServices.<GetListAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\NavigationServices.cs:line 48
+---> (Inner Exception #0) System.Threading.Tasks.TaskCanceledException: A task was canceled.<---
+
+2019-12-11 16:00:04,410 [9] ERROR MySite.Helpers.FrontendHelpers - Could not GetAllNavigations: System.AggregateException: One or more errors occurred. ---> MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.NavigationServices.<GetListAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\NavigationServices.cs:line 63
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at MySite.Helpers.FrontendHelpers.GetAllNavigations() in C:\Project\Apps\JobMarket\MySite\Helpers\Business\FrontendHelpers.cs:line 255
+---> (Inner Exception #0) MySite.ShareLibs.Exceptions.CustomSystemException: D?ch v? dang b?n, vui lòng th? l?i sau
+   at MySite.Services.NavigationServices.<GetListAsync>d__1.MoveNext() in C:\Project\Apps\JobMarket\MySite\Services\Business\NavigationServices.cs:line 63<---
+

@@ -1,0 +1,8 @@
+2019-12-16 08:41:26,300 [1] INFO  MySite.Startup - ======================================================
+2019-12-16 08:41:26,312 [1] INFO  MySite.Startup - MySite is starting up
+2019-12-16 08:41:26,312 [1] INFO  MySite.Startup - ======================================================
+2019-12-16 08:41:26,450 [1] INFO  MySite.Startup - ======================================================
+2019-12-16 08:41:26,451 [1] INFO  MySite.Startup - MySite is successfully configured
+2019-12-16 08:41:26,452 [1] INFO  MySite.Startup - ======================================================
+2019-12-16 08:41:29,155 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-16 08:41:29,167 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

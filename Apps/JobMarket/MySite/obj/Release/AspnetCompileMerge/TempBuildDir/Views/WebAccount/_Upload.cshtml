@@ -1,0 +1,31 @@
+﻿@using MySite.Resources;
+<div class="upload-box">
+    <section id="avatar-upload-box">
+        <input type="file" name="files" id="files" /><br>
+        <div class="upload-file-notice">@UserWebResource.TEXT_MAXIMUM_SIZE: <span id="avatar-max-size"></span> MB</div>      
+        <div class="upload-progress col-md-6 hidden">
+            <div class="upload-percent-value pull-left">0%</div>
+            <div class="upload-percent-bar pull-left"></div>
+        </div>
+        <div id="upload-status"></div>
+    </section>
+    <section id="avatar-crop-box" class="hidden"></section>
+    <div id="avatar-result" class="hidden">
+        <img src="" id="avatar-img" alt="Final Image" />
+        <input type="hidden" value="" id="Avatar" name="Avatar" />
+    </div>
+    <section id="avatar-crop-box-temp" class="hidden">
+        <p>
+            <img src="" id="crop-avatar-target" alt="Uploaded image" />
+            <div id="preview-pane">
+                <div class="preview-container">
+                    <img src="" class="jcrop-preview" alt="Preview" />
+                </div>
+            </div>
+        </p>
+        <p>
+            <button class="btn btn-default btn-sm" type="button" onclick="saveAvatar()">@UserWebResource.TEXT_CROP_AVATAR_BUTTON</button>
+            <button class="btn btn-default btn-sm" type="button" onclick="clearCropBox()">@UserWebResource.TEXT_CANCEL_BUTTON</button>
+        </p>
+    </section>
+</div>

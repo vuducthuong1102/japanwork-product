@@ -1,0 +1,154 @@
+2020-01-18 11:19:02,939 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:19:02,951 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-01-18 11:19:02,951 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:19:03,001 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:19:03,002 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-01-18 11:19:03,003 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:19:18,616 [6] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:19:18,617 [8] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:19:36,564 [6] ERROR Manager.WebApp.Controllers.HomeController - Failed when get Report By Week for Dashboard because: Manager.SharedLibs.CustomSQLException: Failed to execute Report_GetStatisticsInWeek. Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at MsSql.AspNet.Identity.Repositories.RpsReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\Business\RpsReport.cs:line 195
+   at MsSql.AspNet.Identity.MsSqlStores.StoreReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\Business\StoreReport.cs:line 37
+   at Manager.WebApp.Controllers.HomeController.GetStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 182
+   at Manager.WebApp.Controllers.HomeController.DashBoardStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 140
+2020-01-18 11:19:37,551 [10] ERROR Manager.WebApp.Controllers.HomeController - Failed when get Report for Dashboard because: Manager.SharedLibs.CustomSQLException: Failed to execute Report_GetStatisticsForDashBoard. Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at MsSql.AspNet.Identity.Repositories.RpsReport.GetStatisticsForDashBoard(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\Business\RpsReport.cs:line 164
+   at MsSql.AspNet.Identity.MsSqlStores.StoreReport.GetStatisticsForDashBoard(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\Business\StoreReport.cs:line 32
+   at Manager.WebApp.Controllers.HomeController.GetStatisticsByYear() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 87
+   at Manager.WebApp.Controllers.HomeController.DashBoardStatistics() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 42
+2020-01-18 11:19:44,923 [6] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:19:45,587 [17] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:19:45,799 [15] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:19:45,998 [9] ERROR Manager.WebApp.Helpers.AccountHelper - Could not GetUserById: System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.IdentityRepository.GetById(String userId) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\IdentityRepository.cs:line 113
+   at MsSql.AspNet.Identity.IdentityStore.GetUserByID(String Id) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\IdentityStore.cs:line 49
+   at Manager.WebApp.Helpers.AccountHelper.GetUserById(String userId) in C:\Project\AdminBackend\Manager\Manager.WebApp\Helpers\Business\AccountHelper.cs:line 30
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:20:01,536 [8] ERROR Manager.WebApp.Controllers.HomeController - Failed when get Report By Week for Dashboard because: Manager.SharedLibs.CustomSQLException: Failed to execute Report_GetStatisticsInWeek. Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+   at MsSql.AspNet.Identity.Repositories.RpsReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\Business\RpsReport.cs:line 195
+   at MsSql.AspNet.Identity.MsSqlStores.StoreReport.GetStatisticsInWeek(ReportFilter filter) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\Business\StoreReport.cs:line 37
+   at Manager.WebApp.Controllers.HomeController.GetStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 182
+   at Manager.WebApp.Controllers.HomeController.DashBoardStatisticsByWeek() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\Business\HomeController.cs:line 140
+2020-01-18 11:20:03,213 [17] ERROR Manager.WebApp.MvcApplication - Application Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.UserRepository`1.GetByName(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\UserRepository.cs:line 141
+   at MsSql.AspNet.Identity.UserStore`1.FindByNameAsync(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\UserStore.cs:line 99
+   at Microsoft.AspNet.Identity.UserManager`2.<FindAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Manager.WebApp.Controllers.AccountController.<Login>d__12.MoveNext() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\System\AccountController.cs:line 158
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:20:14,522 [18] ERROR Manager.WebApp.MvcApplication - Application Error: A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+System.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server) ---> System.ComponentModel.Win32Exception (0x80004005): The system cannot find the file specified
+   at MsSql.AspNet.Identity.MsSqlHelper.ExecuteReader(SqlConnection conn, CommandType cmdType, String cmdText, Dictionary`2 cmdParms) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlHelper.cs:line 66
+   at MsSql.AspNet.Identity.Repositories.UserRepository`1.GetByName(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\Repositories\System\UserRepository.cs:line 141
+   at MsSql.AspNet.Identity.UserStore`1.FindByNameAsync(String userName) in C:\Project\AdminBackend\Manager\MsSql.AspNet.Identity\MsSqlStores\System\UserStore.cs:line 99
+   at Microsoft.AspNet.Identity.UserManager`2.<FindAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Manager.WebApp.Controllers.AccountController.<Login>d__12.MoveNext() in C:\Project\AdminBackend\Manager\Manager.WebApp\Controllers\System\AccountController.cs:line 158
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Web.Mvc.Async.TaskAsyncActionDescriptor.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass37.<BeginInvokeAsynchronousActionMethod>b__36(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethod(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3d()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.AsyncInvocationWithFilters.<>c__DisplayClass46.<InvokeActionMethodFilterAsynchronouslyRecursive>b__3f()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeActionMethodWithFilters(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<>c__DisplayClass2b.<BeginInvokeAction>b__1c()
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:2,State:0,Class:20
+2020-01-18 11:21:22,834 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:21:22,845 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-01-18 11:21:22,847 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:21:22,872 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:21:22,873 [11] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-01-18 11:21:22,874 [11] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-18 11:21:31,159 [14] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-01-18 11:21:31,252 [14] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-01-18 11:21:31,253 [14] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request
+2020-01-18 11:21:31,366 [14] DEBUG Manager.WebApp.Services.IndustryServices - Begin GET GetListAsync request
+2020-01-18 11:21:31,375 [14] DEBUG Manager.WebApp.Services.IndustryServices - Return code: OK, message: http://localhost:3333/api/industries
+2020-01-18 11:21:31,376 [14] DEBUG Manager.WebApp.Services.IndustryServices - End GetListAsync request
+2020-01-18 11:21:31,405 [14] DEBUG Manager.WebApp.Services.CompanyServices - Return code: OK, message: http://localhost:3333/api/companies/get_list_by_ids
+2020-01-18 11:21:38,063 [14] DEBUG Manager.WebApp.Services.JobServices - Begin PUT UpdateStatusAsync request
+2020-01-18 11:21:38,119 [14] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs/status
+2020-01-18 11:21:38,120 [14] DEBUG Manager.WebApp.Services.JobServices - End UpdateStatusAsync request
+2020-01-18 11:21:39,912 [9] DEBUG Manager.WebApp.Services.JobServices - Begin GET M_GetJobsAsync request
+2020-01-18 11:21:39,920 [9] DEBUG Manager.WebApp.Services.JobServices - Return code: OK, message: http://localhost:3333/api/admin/jobs?agency_id=7&company_id=0&keyword=&page_index=1&page_size=20&status=0&translate_status=-1
+2020-01-18 11:21:39,921 [9] DEBUG Manager.WebApp.Services.JobServices - End M_GetJobsAsync request

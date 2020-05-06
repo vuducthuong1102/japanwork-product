@@ -1,0 +1,94 @@
+﻿@using System.Globalization
+@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@model Manager.WebApp.Models.ManageEmailBusinessModel
+
+@{
+    var currentLang = CultureInfo.CurrentCulture.ToString();
+}
+
+<div class="m-portlet__body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="m-section">
+                <div class="m-section__content table-responsive" style="max-height:300px;overflow:auto;">
+                    <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered fz-16">
+                        <thead>
+                            <tr>
+                                <th class="text-center" width="50"></th>
+                                <th class="text-center">@ManagerResource.LB_SENDER</th>
+                                <th class="text-center">@ManagerResource.LB_RECEIVER</th>
+                                <th class="text-center">@ManagerResource.LB_TITLE</th>
+                                <th class="text-center">@ManagerResource.LB_CONTENT</th>
+                                <th class="text-center">@ManagerResource.LB_SENT_DATE</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model.SearchResults.HasData())
+                            {
+                                var stt = 0;
+                                foreach (var record in Model.SearchResults)
+                                {
+                                    stt++;
+                                    <tr>
+                                        <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize)</td>
+                                        <td class="text-center">
+                                            <a href="javascript:;">@record.Sender</a>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="javascript:;">@record.Receiver</a>
+                                        </td>
+                                        <td class="text-center">@record.Subject</td>
+                                        <td class="text-center">@HtmlHelpers.ShowHtmlTextByLimit(record.Message, 30)</td>
+                                        <td class="text-center">@record.CreatedDateStr</td>
+                                        <td class="text-center">
+                                            <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@record.DetailTk" title="@ManagerResource.LB_CLICK_VIEW_DETAIL">
+                                                <i class="la la-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="11">
+                                        @ManagerResource.LB_NO_RECORD
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    @RenderPaging()
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@helper RenderPaging()
+{
+<div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+    <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+        @if (Model.WasOverRecordsInPage())
+        {
+            @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+             Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "JobSeekerMailBox")
+        }
+
+        @if (Model.TotalCount > 0)
+        {
+            <div class="m-datatable__pager-info">
+                <span class="m-datatable__pager-detail">
+                    @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                </span>
+            </div>
+        }
+    </div>
+</div>
+}
+

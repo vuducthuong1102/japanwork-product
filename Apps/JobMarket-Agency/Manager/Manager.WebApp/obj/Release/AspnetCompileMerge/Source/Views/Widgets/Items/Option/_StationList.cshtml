@@ -1,0 +1,29 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@using Manager.WebApp.Resources
+@model List<IdentityStation>
+
+@{
+    var hasData = Model.HasData();
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+@if (hasData)
+{
+    <option value="0">@ManagerResource.LB_SELECT_STATION</option>
+    if (currentLang == "ja-JP")
+    {
+        foreach (var item in Model)
+        {
+            <option value="@item.id">@item.station</option>
+        }
+    }
+    else
+    {
+        foreach (var item in Model)
+        {
+            <option value="@item.id">@item.furigana</option>
+        }
+    }
+}

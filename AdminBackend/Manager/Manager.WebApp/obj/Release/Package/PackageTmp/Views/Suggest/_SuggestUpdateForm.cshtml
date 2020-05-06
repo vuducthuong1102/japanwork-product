@@ -1,0 +1,85 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.SuggestEditModel
+
+
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+@Html.AntiForgeryToken()
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_TITLE
+        </label>
+
+        @Html.TextBoxFor(m => m.title, new { @class = "form-control", @autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.title, null, new { @class = "text-danger" })
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_FORM
+        </label>
+        <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.form)" name="@Html.NameFor(m=>m.form)" data-live-search="true" onchange="GetListTypeSuggests()">
+            @foreach (var item in Enum.GetValues(typeof(EnumFormCv)))
+            {
+                var chkItem = (int)item;
+                var chkStr = string.Empty;
+                if (chkItem == Model.form)
+                {
+                    chkStr = "selected";
+                }
+                <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group m-form__group row">
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_TYPESUGGEST
+        </label>
+        <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.type)" name="@Html.NameFor(m=>m.type)" data-live-search="true">
+            @if (Model.ListTypeSuggests.HasData())
+            {
+                foreach (var item in Model.ListTypeSuggests)
+                {
+                    if (item.form_id == Model.form)
+                    {
+                        var chkStr = string.Empty;
+                        if (item.id == Model.type)
+                        {
+                            chkStr = "selected";
+                        }
+                        <option value="@item.id" @chkStr>@item.type</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+</div>
+<div class="form-group m-form__group row">
+
+    <div class="col-lg-6 col-sm-12">
+        <label class="">
+            @ManagerResource.LB_CONTENT
+        </label>
+
+        @Html.TextAreaFor(m => m.content, new { @class = "form-control", @autocomplete = "off", rows = "5" })
+    </div>
+</div>
+
+<div class="form-group m-form__group row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <a class="btn btn-outline-info btn-back" href="@Url.Action("Index", "Suggest")"><i class="fa fa-backward"></i> @ManagerResource.LB_GOBACK</a>
+
+        <button type="submit" class="btn btn-outline-info pull-right">
+            <i class="fa fa-floppy-o"></i> @ManagerResource.LB_SAVE
+        </button>
+    </div>
+</div>

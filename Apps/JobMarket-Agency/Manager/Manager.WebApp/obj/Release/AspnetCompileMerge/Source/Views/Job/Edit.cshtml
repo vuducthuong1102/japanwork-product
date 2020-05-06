@@ -1,0 +1,122 @@
+﻿@using Manager.SharedLibs
+@using Manager.WebApp.Caching
+@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.JobEditModel
+
+@{
+    var title = ManagerResource.LB_UPDATE_INFO;
+    ViewBag.Title = title;
+    ViewBag.HideSubHeader = true;
+    var langList = LanguagesProvider.GetListLanguages();
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title full-width">
+                <h3 class="m-portlet__head-text" style="line-height:40px">
+                    <span class="col-lg-9">@ManagerResource.LB_JOB_EDIT</span>
+                    <span class="col-lg-3 pull-right display-flex">
+                        <label class="text-bold mr-3 fz-13">
+                            @ManagerResource.LB_LANGUAGE
+                        </label>
+                        <span style="width:150px;display:block">
+                            <select class="form-control selectpicker btn-white" id="language_code" name="language_code">
+                                @{
+                                    if (langList.HasData())
+                                    {
+                                        if (Model.Companies.HasData())
+                                        {
+                                            var companyInfo = Model.Companies.FirstOrDefault(s => s.id == Model.company_id);
+                                            if (companyInfo != null)
+                                            {
+                                                Model.sub_industry_id = companyInfo.sub_industry_id;
+                                            }
+                                        }
+
+                                    }
+                                    var selectLange = Model.language_code;
+                                    if (string.IsNullOrEmpty(selectLange))
+                                    {
+                                        selectLange = currentLang;
+                                    }
+                                    foreach (var item in langList)
+                                    {
+                                        var selected = "";
+                                        var dataLink = "";
+                                        if (item.LanguageCultureName == selectLange)
+                                        {
+                                            selected = "selected";
+                                        }
+                                        if (Model.id > 0)
+                                        {
+                                            dataLink = SecurityHelper.GenerateSecureLink("Job", "Edit", new { id = Model.id, language_code = item.LanguageCultureName });
+                                        }
+                                        <option value="@item.LanguageCultureName" data-link="@dataLink" @selected>@item.LanguageFullName</option>
+                                    }
+                                }
+                            </select>
+                        </span>
+                    </span>
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@helper RenderBaseForm()
+{
+    var detailLink = SecurityHelper.GenerateSecureLink("Job", "Detail", new { id = Model.id, company_id = Model.company_id });
+    <!--begin::Form-->
+    <form id="frmUpdateJob" enctype="multipart/form-data" action="/Job/Edit" class="m-form m-form--fit" onkeydown="return event.key !='Enter';">
+        @Html.Partial("_Notifications")
+        @Html.Partial("_JobUpdateForm", Model)
+        <input type="hidden" id="hdfDetailLink" value="@detailLink" />
+    </form>
+    <!--end::Form-->
+}
+
+@section PageInlineStyles{
+    <style>
+        .repeater-item {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+}
+
+@section PageInlineScripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/ajax-bootstrap-select.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datetimepicker({
+                format: "yyyy/mm/dd",
+                autoclose: !0, startView: 2, minView: 2
+            });
+        })
+        $(document).on("change", "#company_id", function () {
+            var sub_id = $(this).find("option:selected").attr("data-sub-industry-id");
+            $("select[name=sub_industry_id]").val(sub_id);
+            $("select[name=sub_industry_id]").trigger('change');
+        })
+        $(document).on("change", "#language_code", function () {
+            window.location.href = $(this).find("option:selected").attr("data-link");
+        })
+    </script>
+
+    <script src="@Url.VersionedContent("~/Scripts/Job/update.js")"></script>
+}

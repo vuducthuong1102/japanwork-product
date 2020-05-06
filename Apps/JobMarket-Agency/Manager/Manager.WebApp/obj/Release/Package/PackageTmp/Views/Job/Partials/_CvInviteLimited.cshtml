@@ -1,0 +1,224 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+
+@model Manager.WebApp.Models.CvInviteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel" style="font-size:20px;">
+       <i class="la la-user-plus fz-20"></i> @ManagerResource.LB_APPLICATION_INVITATION
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            <input type="hidden" id="CurrentJob" name="@Html.NameFor(m=>m.job_id)" value="@Model.job_id" />
+            <input type="hidden" id="InvitationLmt" value="@Model.invitation_limit" />
+
+            @if (!string.IsNullOrEmpty(Model.job_name))
+            {
+                <div class="form-group m-form__group row">
+                    <label class="col-lg-2">
+                        @ManagerResource.LB_JOB_NAME
+                    </label>
+                    <div class="col-lg-6">
+                        @if (Model.invited_count > 0)
+                        {
+                            var receiverLink = SecurityHelper.GenerateSecureLink("Invitation", "GetReceivers", new { job_id = Model.job_id });
+                            <b>@Model.job_name (<a href="javascript:;" data-modal-direct="" data-href="@receiverLink"><span class="text-danger" id="">@ManagerResource.LB_INVITATION_SENT :<span id="InvitedCounter"> @Model.invited_count</span> / <span>@Model.invitation_limit</span></span></a>)</b>
+                        }
+                        else
+                        {
+                            <b>@Model.job_name (<span class="text-danger" id="">@ManagerResource.LB_INVITATION_SENT :<span id="InvitedCounter"> @Model.invited_count</span> / <span>@Model.invitation_limit</span></span>)</b>
+                        }
+                    </div>
+                </div>
+            }
+
+            <div class="form-group m-form__group row">               
+                <div class="col-lg-12">
+                   <b class="text-danger">@ManagerResource.ERROR_INVITATION_OVER</b>
+                </div>               
+            </div>                        
+        </div>
+    </div>
+    <div class="modal-footer" style="display:block;">
+        <button type="button" class="btn btn-outline-info" data-dismiss="modal">
+            <i class="fa fa-remove"></i> @ManagerResource.LB_CLOSE
+        </button>
+        <br />
+    </div>
+}
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        if (!$("#myModal").hasClass("re-show")) {
+            $('#JkSearch').focus();
+            $(".tt-menu").hide();
+        } else {
+            $('#JkSearch').blur();
+        }
+    });    
+
+    $("body").on("click", ".jk-remove", function () {
+        var id = $(this).data("id");
+        $("#jk-item-" + id).remove();     
+
+        RefreshSelectedJk();
+    });
+
+    function OpenChoosenCv(callback) {
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Master/ChoosenCv";
+        params['requestType'] = "GET";
+        params['data'] = { job_id: $("#CurrentJob").val(), callbackfunction: callback };
+        params['dataType'] = "html";
+        params['showloading'] = true;
+
+        params['successCallbackFunction'] = function (data) {
+            $("#jkModalSelectContent").html(data);
+            $('body').addClass('modal-open');
+            $('.modal-backdrop').show();
+            $('#jkModalSelect').modal('show');
+            $('#myModal').modal('hide');
+
+            return false;
+        };
+        doAjax(params);
+    }
+
+    function CvChooseForInvitation(selectedItems) {
+        if (selectedItems != null && selectedItems.length > 0) {
+            for (var key in selectedItems) {
+                //if (selectedJkIds[key]["id"] == jkId) {
+                //    selectedJkIds.splice(key, 1);
+                //    break;
+                //}
+                var matched = false;
+                $(".jk-item").each(function () {
+                    var jkId = parseInt($(this).data("id"));
+                    if (jkId == selectedItems[key]["id"]) {
+                        matched = true;
+                    }                     
+                });
+
+                if (!matched) {
+                    var itemHtml = RenderSelectedJkElement(selectedItems[key]["id"], selectedItems[key]["text"]);
+                    $('#SelectedApplicants').append(itemHtml);
+                }                
+            }
+        }
+
+        $('#jkModalSelect').modal('hide');
+        $('#myModal').modal('show');
+
+        RefreshSelectedJk();
+    }
+
+    $(function () {
+        $("#btnSearch").click(function () {
+            OpenChoosenCv("CvChooseForInvitation");
+        });
+
+        $('#jkModalSelect').on('hidden.bs.modal', function () {
+            $('body').addClass('modal-open');
+            $('.modal-backdrop').show();
+            $('#myModal').modal('show');
+        });
+    });
+
+    $('#JkSearch').typeahead({
+            highlight: true,
+            minLength: 1,
+            hint: false,
+            delay: 2000
+        },
+        {
+            source: function (query, process) {
+                var params = $.extend({}, doAjax_params_default);
+                params['url'] = '/Master/GetListCvInDropdown';
+                params['requestType'] = 'POST';
+                params['data'] = { query: query, job_id: $("#CurrentJob").val() };
+                params['dataType'] = "json";
+                params['async'] = false;
+                params['showloading'] = false;
+
+                params['successCallbackFunction'] = function (result) {
+                    process(result.data);
+                };
+                doAjax(params);
+            },
+            display: 'fullname',
+            templates: {
+                suggestion: function (data) {
+                    var nameStr = data.fullname;
+                    if (data.fullname_furigana != '') {
+                        nameStr += ' (' + data.fullname_furigana + ')';
+                    }
+
+                    if (data.is_invited) {
+                        nameStr += " - <span class='text-danger'>" + LanguageDic["LB_INVITATION_SENT"] + "</span>";
+                    }
+
+                    return "<div class='ac-item' data-id='" + data.id + "'><i class='fa fa-user'></i> " + nameStr + "</div>";
+                }
+            }            
+        });
+
+    function RefreshSelectedJk() {       
+        var arrSelectedJk = []; 
+
+        $(".jk-item").each(function () {
+            var jkId = $(this).data("id");
+            arrSelectedJk.push(jkId);         
+        });
+
+        $("#applicant").val(arrSelectedJk);
+
+        if (arrSelectedJk.length > 0) {
+            $("#SelectedArea").removeClass("hidden");
+        } else {
+            $("#SelectedArea").addClass("hidden");
+        } 
+
+        $("#SelectedCounter").html(arrSelectedJk.length);
+    }
+
+    function RenderSelectedJkElement(id, text) {
+        var itemHtml = "<div class='jk-item' data-id='" + id + "' id='jk-item-" + id + "'><div class='jk-item-info'>" + text + "</div><span class='jk-remove ml5 pointer text-danger' data-id='" + id + "'><i class='fa fa-remove'></span></div>";
+        return itemHtml;
+    }
+
+    $("#JkSearch").on('typeahead:selected', function (evt, item) {
+        if (item.is_invited) {
+            $("#JkSearch").typeahead('val', '');
+            return false;
+        }
+
+        var arrSelectedJk = [];
+
+        $(".jk-item").each(function () {
+            var jkId = $(this).data("id");
+            arrSelectedJk.push(jkId);      
+        });
+
+        if (!arrSelectedJk.includes(item.id)) {
+            var itemHtml = RenderSelectedJkElement(item.id, item.fullname);
+            
+            $('#SelectedApplicants').append(itemHtml);
+
+            RefreshSelectedJk();
+        }   
+
+        $("#JkSearch").typeahead('val', '');
+    });
+</script>

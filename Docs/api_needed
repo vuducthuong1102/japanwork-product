@@ -1,0 +1,38 @@
+app.get("/jobs/:id", jobCtrl.getJob.bind(jobCtrl));
+app.get("/jobs/:id/applications", jobCtrl.getAllApplications.bind(jobCtrl));
+app.get("/jobs/:id/candidates", jobCtrl.getAllCandidates.bind(jobCtrl));
+app.get("/regions", staticCtrl.getAllRegions.bind(staticCtrl));
+app.get("/regions/:id", staticCtrl.getRegion.bind(staticCtrl));
+app.get("/prefectures", staticCtrl.getAllPrefectures.bind(staticCtrl));
+app.get("/prefectures/:id", staticCtrl.getPrefecture.bind(staticCtrl));
+app.get("/cities", staticCtrl.getAllCities.bind(staticCtrl));
+app.get("/cities/:id", staticCtrl.getCity.bind(staticCtrl));
+app.get("/stations", staticCtrl.getAllStations.bind(staticCtrl));
+app.get("/stations/:id", staticCtrl.getStation.bind(staticCtrl));
+app.get("/train_lines", staticCtrl.getAllTrainLines.bind(staticCtrl));
+app.get("/train_lines/:id", staticCtrl.getTrainLine.bind(staticCtrl));
+app.get("/employment_types", staticCtrl.getAllEmploymentTypes.bind(staticCtrl));
+app.get("/locations/train_lines", staticCtrl.getAllTrainLinesGroupByLocation.bind(staticCtrl));
+app.get("/salary_types", staticCtrl.getAllSalaryTypes.bind(staticCtrl));
+app.get("/qualifications", staticCtrl.getAllQualifications.bind(staticCtrl));
+app.get("/fields", staticCtrl.getAllFields.bind(staticCtrl));
+app.get("/industries", staticCtrl.getAllIndustries.bind(staticCtrl));
+app.get("/prefectures-by-region", staticCtrl.getPrefecturesByRegion.bind(staticCtrl));
+app.get("/city-by-prefecture", staticCtrl.getCityByPrefecture.bind(staticCtrl));
+app.get("/train-line-by-prefecture", staticCtrl.getTrainLineByPrefecture.bind(staticCtrl));
+// Agency and Company
+app.get("/agencies/:id/companies", agencyCtrl.getAllCompanies.bind(agencyCtrl));
+app.get("/companies/:id", companyCtrl.getCompany.bind(companyCtrl));
+app.delete("/companies/:id", companyCtrl.deleteCompany.bind(companyCtrl));
+app.get("/companies/:id/jobs", companyCtrl.getAllJobs.bind(companyCtrl));
+app.put("/companies/:id", uploadLogo.single('logo'), companyCtrl.updateCompany.bind(companyCtrl));
+app.get("/companies/:id", companyCtrl.getCompany.bind(companyCtrl));
+app.delete("/companies/:id", companyCtrl.deleteCompany.bind(companyCtrl));
+app.get("/companies/:id/jobs", companyCtrl.getAllJobs.bind(companyCtrl));
+app.get("/applications/:job_id/:job_seeker_id", applicationCtrl.getApplication.bind(applicationCtrl));
+app.get("/job_seekers/:id/applications", applicationCtrl.getAllApplications.bind(applicationCtrl));
+
+//saved jobs
+app.get("/saved_jobs/:job_id/:job_seeker_id", savedJobCtrl.getSavedJob.bind(savedJobCtrl));
+app.get("/job_seekers/:id/saved_jobs", savedJobCtrl.getAllSavedJobs.bind(savedJobCtrl));
+app.delete("/saved_jobs/:job_id/:job_seeker_id", savedJobCtrl.deleteSavedJob.bind(savedJobCtrl));

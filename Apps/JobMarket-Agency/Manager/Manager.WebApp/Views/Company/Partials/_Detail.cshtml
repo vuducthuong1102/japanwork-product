@@ -1,0 +1,57 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.ManageCompanyNoteModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_DETAIL
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm("CompanyNoteSearch", "Job", FormMethod.Post, new { role = "form", @class = "", id = "frmNote" }))
+{
+    var typeList = CompanyNoteTypeProvider.GetListCompanyNoteType();
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.company_id)
+            @Html.HiddenFor(m => m.CurrentPage)
+            <div class="row">
+                <div class="col-sm-12 pull-right">
+                    <a href="javascripts:;" id="btn-add" data-modal="" data-href="@Url.Action("CreateNote","Company", new { company_id = Model.company_id})" class="btn btn-info pull-right btn-sm">
+                        @ManagerResource.LB_ADD_NEW
+                    </a>
+                </div>
+                <div id="CompanyNote" class="col-sm-12">
+                    @Html.Partial("~/Views/Company/Partials/_DetailItem.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    function JobSeekerNoteSearchNext(pageNum) {
+        $("#frmNote").find("input[name=CurrentPage]").val(pageNum);
+        JobSeekerNoteSearch();
+    }
+    function JobSeekerNoteSearch() {
+        var frmData = $("#frmNote").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Company/NoteSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#CompanyNote").html(data);
+        };
+
+        doAjax(params);
+    }
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

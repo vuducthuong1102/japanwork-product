@@ -1,0 +1,68 @@
+﻿@using MySite.Resources
+@model MySite.Models.RequestSendEmailActiveModel
+@using CaptchaMvc.HtmlHelpers;
+@{
+    ViewBag.GadientHeader = true;
+    ViewBag.Title = UserWebResource.LB_RESEND_EMAIL_ACTIVE_ACCOUNT;
+
+    var catpcha = Html.Captcha(UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON, "", 5, UserWebResource.TEXT_CAPTCHA_NULL, true);
+}
+
+<section>
+    <div class="block remove-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="account-popup-area signin-popup-box static">
+                        <div class="account-popup">
+                            <h5>@UserWebResource.LB_INPUT_EMAIL_FOR_ACTIVATION</h5>
+
+                            @using (Html.BeginForm("ResendEmailActive", "WebAuth", null, FormMethod.Post, new { role = "form", id = "" }))
+                            {
+                                @Html.Partial("_Notifications")
+                                <div class="cfield">
+                                    @Html.TextBoxFor(m => m.Email, new { @id = "", @class = "form-control", placeholder = UserWebResource.IP_EMAIL })
+                                    <i class="la la-envelope"></i>
+                                </div>
+
+                                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%" })
+
+                                <div class="clearfix"></div>
+                                <div class="row">
+                                    @*@Html.Recaptcha()*@
+
+                                    <div class="col-lg-12" id="recaptcha-wrapper">
+                                        @*@Html.Recaptcha()*@
+                                        <div class="text-left captcha-container">
+                                            @catpcha
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="clearfix"></div>
+                                <button type="submit"><i class="fa fa-envelope"></i> @UserWebResource.BT_SEND</button>
+                            }
+
+                        </div>
+                    </div><!-- LOGIN POPUP -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section PagePluginScripts{
+    @catpcha.RenderScript()
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var refreshBtn = $('a[href="#CaptchaImage"]');
+            refreshBtn.html('<a class="btn btn-outline-info btn-sm ml20"><span class="fa fa-repeat" ></span > @UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON</a >');
+            refreshBtn.prev("br").remove();
+            $("#CaptchaInputText").addClass("form-control");
+            $('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            $('span[data-valmsg-for="CaptchaInputText"]').prev("br").remove();
+            $('#CaptchaImage').prev("br").remove();
+        });
+    </script>
+}

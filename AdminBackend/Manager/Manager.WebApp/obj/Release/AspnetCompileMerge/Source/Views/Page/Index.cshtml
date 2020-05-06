@@ -1,0 +1,196 @@
+﻿@using MsSql.AspNet.Identity.Entities;
+@using Manager.WebApp.Helpers;
+@using Manager.WebApp.Resources;
+@model Manager.WebApp.Models.ManagePageModel
+
+@{
+    ViewBag.Title = "Quản lý trang";
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @RenderSearchForm()
+    <!--end::Form-->
+</div>
+
+@helper RenderSearchForm()
+    {
+        using (Html.BeginForm("Index", "Page", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+        {
+            @Html.HiddenFor(m => m.SearchExec)
+
+            <div class="m-portlet__body">
+                <div class="form-group row">
+                    <div class="col-lg-3 m-form__group--inline">
+                        @Html.LabelFor(m => m.Status)
+                        <select class="form-control selectpicker" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)">
+                            <option value="-1">
+                                @ManagerResource.LB_ALL
+                            </option>
+                            <option value="1" @(Model.Status == 1 ? "selected" : string.Empty)>
+                                @ManagerResource.LB_ACTIVATED
+                            </option>
+                            <option value="0" @(Model.Status == 0 ? "selected" : string.Empty)>
+                                @ManagerResource.LB_LOCKED
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3">
+                        <label>@ManagerResource.LB_KEYWORD</label>
+                        @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input", placeholder=ManagerResource.LB_KEYWORD_SEARCH })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+
+                        <button type="submit" class="btn btn-info" style="margin-right:10px;">
+                            <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                        </button>
+
+                        <button type="button" class="btn btn-info reset-btn">
+                            <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+}
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="clearfix pull-right">
+            <a class="btn btn-white btn-info" href="@Url.Action("Create", "Page")" title="@ManagerResource.LB_ADDNEW">
+            <i class="fa fa-plus"></i> @ManagerResource.LB_ADDNEW
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div class="m-portlet">
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50">#</th>
+                                    @*<th class="text-center">@ManagerResource.LB_CODE</th>*@
+                                    <th class="text-center">@ManagerResource.LB_TITLE</th>
+                                    <th class="text-center">@ManagerResource.LB_URL_FRIENDLY</th>
+                                    <th class="text-center">@ManagerResource.LB_CREATED_DATE</th>
+                                    <th class="text-center">@ManagerResource.LB_STATUS</th>
+                                    <th class="text-center">@ManagerResource.LB_ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        IdentityPageLang langData = null;
+                                        if (record.MyLanguages.HasData())
+                                        {
+                                            langData = record.MyLanguages[0];
+                                        }
+
+                                        stt++;
+                                        <tr>
+                                            <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                            @*<td>
+                                                @record.Code
+                                            </td>*@ 
+                                            <td>
+                                                @if (langData != null)
+                                                {
+                                                    @langData.Title
+                                                }
+                                                else
+                                                {
+                                                    @record.Title
+                                                }
+                                            </td>             
+                                            <td>
+                                                @if (langData != null)
+                                                {
+                                                    @langData.UrlFriendly
+                                                }
+                                            </td>
+                                            <td class="text-center">@((record.CreatedDate != null) ? record.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm") : string.Empty)</td>
+                                            <td class="text-center">
+                                                @Html.Partial("../Widgets/_Status", record.Status)
+                                            </td>
+                                            <td class="text-center">
+                                                @{ 
+                                                    var newModel = Model;
+                                                    newModel.Id = record.Id;
+                                                    newModel.SearchExec = "Y";
+                                                }
+                                                <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Edit", "Page", new { id = record.Id,SearchExec = 'Y',Page = Model.CurrentPage,Keyword = Model.Keyword,Status=Model.Status })" title="@ManagerResource.LB_EDIT">
+                                                    <i class="la la-pencil"></i>
+                                                </a>
+                                                <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-href="@Url.Action("Delete", "Page", new { id = record.Id })" data-modal="" title="@ManagerResource.LB_DELETE">
+                                                    <i class="la la-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @RenderPaging()
+                    </div>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+
+</div>
+
+@helper RenderPaging()
+    {
+        if (Model.WasOverRecordsInPage())
+        {
+            <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+                <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                    @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Page",
+                         new
+                         {
+                             Page = index,
+                             SearchExec = "Y",
+                             Keyword = Model.Keyword,
+                             Status = Model.Status               
+                         }),
+                         Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+                </div>
+            </div>
+        }
+}
+
+
+
+
+
+

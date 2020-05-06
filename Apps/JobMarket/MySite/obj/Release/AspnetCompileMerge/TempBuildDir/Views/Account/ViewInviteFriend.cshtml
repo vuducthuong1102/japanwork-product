@@ -1,0 +1,48 @@
+﻿@using MySite.Resources;
+@using MySite.Helpers;
+@using MySite.Caching;
+@using MySite.Models;
+@using MySite.Settings;
+@model MySite.Models.HomeModel
+
+@{
+    ViewBag.Title = UserWebResource.LB_MYSITE_TITLE;
+}
+@Html.AntiForgeryToken()
+<div class="container mt15">
+    <div class="row">
+        <div class="col-md-8 notif-container">
+            <div>
+                <div class="post-overlay notif-overlay">
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                    @Html.Partial("_PostLoading")
+                </div>
+
+                <div class="request-friend-list">
+                    <div class="head">
+                        <p>@UserWebResource.LB_ADD_FRIEND</p>
+                    </div>
+                    <div>
+                        <div id="ListFriendRequests" class="hidden">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-5 hidden-xs">
+            @Html.Partial("~/Views/Widgets/_MenuLeftItem.cshtml")
+        </div>
+    </div>
+</div>
+
+@section PagePluginScripts{
+
+}
+
+@section PageInlineScripts{
+    <script src="@Url.VersionedContent("~/Scripts/Account/friend.js")"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Common/features-right.js")"></script>
+}

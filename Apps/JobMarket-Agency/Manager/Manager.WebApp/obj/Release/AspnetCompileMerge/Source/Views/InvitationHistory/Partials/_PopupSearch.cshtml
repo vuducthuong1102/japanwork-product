@@ -1,0 +1,18 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageInvitationModel
+@{
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+}
+<input type="hidden" class="title-search" value="@ManagerResource.PH_SEARCH_JOB" />
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" class="btn btn-info float-right btn-sm">
+            <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+        </button>
+        <button type="button" class="btn btn-warning float-left btn-sm mr-3 reset-btn">
+            <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+        </button>
+    </div>
+</div>

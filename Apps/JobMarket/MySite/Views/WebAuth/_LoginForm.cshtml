@@ -1,0 +1,56 @@
+﻿@model MySite.Models.WebAuthLoginViewModel
+@using MySite.Resources;
+
+@using (Html.BeginForm("Login", "WebAuth", null, FormMethod.Post, new { role = "form", id = "" }))
+{
+    @Html.Partial("_Notifications")
+
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m=>m.ReturnUrl)
+    <div class="cfield">
+        @Html.TextBoxFor(m => m.UserName, new { @id = "txtaccount", @class = "form-control", placeholder = UserWebResource.LB_USER_NAME })
+        <i class="la la-user"></i>
+    </div>
+    @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%" })
+    <div class="cfield">
+        @Html.TextBoxFor(m => m.Password, new { @id = "txtpassword", @type = "password", @class = "form-control", placeholder = UserWebResource.LB_PASSWORD })
+        <i class="la la-key"></i>
+    </div>
+    @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger float-left text-left mb10", @style = "margin-top: -15px;width:100%;" })
+
+    <p class="remember-label">
+        <input type="checkbox" name="@Html.IdFor(m=>m.RememberMe)" @((Model.RememberMe)? "checked": string.Empty) value="true" id="@Html.IdFor(m=>m.RememberMe)"><label for="@Html.IdFor(m=>m.RememberMe)">@UserWebResource.LB_REMEMBER_ME</label>
+    </p>
+    <a href="/WebAuth/RecoverPassword" title="">@UserWebResource.LB_FORGOT_PASSWORD</a>
+    <button type="submit">@UserWebResource.BT_LOGIN</button>
+}
+
+<div class="extra-login">
+    <span></span>
+    <div class="login-social">
+        <a title="" href="/WebAuth/Register" class="text-danger"><i class="la la-key"></i> @UserWebResource.BT_REGISTER</a>
+        @*<a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
+        <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>*@
+    </div>
+</div>
+@*<div class="extra-login">
+        @using (Html.BeginForm("ExternalLogin", "WebAuth"))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" value="@Model.ReturnUrl" name="URLReturn" />
+            <div class="form-group">
+                <button name="provider" type="submit" value="Facebook" class="border-none">
+                    <span class="icon icon-facebook"><span class="path1"></span><span class="path2"></span></span>
+                </button>
+                <button name="provider" type="submit" value="Google" class="border-none">
+                    <span class="icon icon-google-plus"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></span>
+                </button>
+            </div>
+            <span>Or</span>
+            <input type="hidden" value="@Model.ReturnUrl" name="URLReturn" />
+            <div class="login-social">
+                <a class="fb-login" href="#" title=""><i class="fa fa-facebook"></i></a>
+                <a class="tw-login" href="#" title=""><i class="fa fa-twitter"></i></a>
+            </div>
+        }
+    </div>*@

@@ -1,0 +1,155 @@
+﻿
+
+<!--Main Start-->
+<main id="wt-main" class="wt-main wt-haslayout wt-innerbgcolor">
+    <div class="wt-main-section wt-paddingtopnull wt-haslayout">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+                    <div class="wt-checkoutformhold">
+                        <div class="wt-checkoutformmain">
+                            <div class="wt-joinforms">
+                                <form class="wt-formtheme wt-formcheckout">
+                                    <fieldset class="wt-checkoutformgroup wt-checkoutformgroup--step1">
+                                        <ul class="wt-formcheckout__step">
+                                            <li class="active"><a href="/Payment?CurrentStep=1">1</a><span>Chọn phương thức</span></li>
+                                            <li class="active"><a href="/Payment?CurrentStep=2">2</a><span>Điền thông tin</span></li>
+                                            <li class="active"><a href="javascript:;">3</a><span>Hoàn tất</span></li>
+                                        </ul>
+                                        <h4 class="wt-formcheckout__title">
+                                            Bước 3: Hoàn tất thanh toán
+                                        </h4>
+                                        <div class="form-confirm">
+                                            <div>
+                                                <table>
+                                                    <tr>
+                                                        <td>Hình thức</td>
+                                                        <td>Thanh toán Momo</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Mức nạp</td>
+                                                        <td>Vip Bạc 200K</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            <div class="o-payment-notice o-payment-notice--process hidden">
+                                                <h5 class="o-payment-notice__title">
+                                                    <i class="fa fa-sync-alt fa-w-16 fa-spin"></i>
+                                                    <span>Chúng tôi đang xử lý giao dịch, xin vui lòng chờ!</span>
+                                                </h5>
+                                            </div>                                            
+                                        </div>
+
+                                        <div class="o-payment-notice o-payment-notice--success hidden">
+                                            <h3 class="o-payment-notice__title">
+                                                <i class="fa fa-check-circle"></i>
+                                                <span>Giao dịch thành công!</span>
+                                            </h3>
+                                        </div>
+                                        @*<div class="o-payment-notice o-payment-notice--fail hidden">
+                                            <h3 class="o-payment-notice__title">
+                                                <i class="fa fa-exclamation-circle"></i>
+                                                <span>Giao dịch thất bại!</span>
+                                            </h3>
+                                            <em>Lý do: Thông tin giao dịch không hợp lệ, vui lòng kiểm tra lại!</em>
+                                        </div>*@
+
+                                        <div class="form-group text-right">
+                                            <button type="button" class="btn" id="btnPaymentConfirm">Xác nhận</button>
+                                        </div>
+                                        
+                                        <div class="o-table-quydoi" style="display: none;">
+                                            <h3 class="wt-formcheckout__label text-center">Tỷ giá quy đổi</h3>
+                                            <div class="table-responsive-sm">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Mức nạp</th>
+                                                            <th>ATM/Visa</th>
+                                                            <th>MoMo</th>
+                                                            <th>Thẻ game</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>200k(VIP thường)</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>250k(VIP bạc)</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>300k(VIP vàng)</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>500k(VIP bạch kim)</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>1000k(VIP kim cương)</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                            <td>200k</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>                                       
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main End-->
+
+
+<script>
+    $("#btnPaymentConfirm").click(function () {
+        CreatePaymentRequest();
+    });
+
+    function CreatePaymentRequest() {
+        
+        var processContainer = $(".o-payment-notice--process");
+        processContainer.addClass("popup-processing").removeClass("hidden");
+        var title = processContainer.find(".o-payment-notice__title");
+        showLoading();
+
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = '/Payment/CreatePaymentRequest';
+        params['requestType'] = 'POST';
+        params['data'] = { };
+        params['dataType'] = "json";
+        params['showloading'] = false;
+
+        params['successCallbackFunction'] = function (data) {
+            setTimeout(function () {
+                title.addClass("text-success");
+                title.find("span").text("Đã xác nhận yêu cầu, đang chuyển hướng...");
+                title.find("i").removeClass("fa-spin fa-sync-alt").addClass("fa-check");
+
+                setTimeout(function () {
+                    if (data.returnUrl)
+                        window.location.href = data.returnUrl;
+                }, 2000);
+            }, 1000)
+        };
+
+        doAjax(params);
+    }
+</script>

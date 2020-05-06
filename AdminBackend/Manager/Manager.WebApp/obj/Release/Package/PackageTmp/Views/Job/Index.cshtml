@@ -1,0 +1,343 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageJobModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_MANAGE_JOB;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasCompanies = Model.Companies.HasData();
+    var hasIndustries = Model.Industries.HasData();
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_DefaultModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @RenderSearchForm()
+    <!--end::Form-->
+</div>
+
+
+@helper RenderSearchForm()
+{
+    using (Html.BeginForm("Index", "Job", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+    {
+        @Html.HiddenFor(m => m.SearchExec)
+        @Html.HiddenFor(m => m.company_id)
+        <div class="m-portlet__body">
+            <div class="form-group row">
+                <div class="col-md-2 m-form__group--inline">
+                    <label>@ManagerResource.LB_KEYWORD</label>
+                    @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input" })
+                </div>
+                <div class="col-md-2 m-form__group--inline">
+                    @Html.LabelFor(m => m.Status, new { @class = "form-control-label" })
+                    <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
+                        <option value="-1">
+                            @ManagerResource.LB_ALL
+                        </option>
+                        @foreach (var item in Enum.GetValues(typeof(EnumJobStatus)))
+                        {
+                            var chkItem = (int)item;
+                            var chkStr = string.Empty;
+                            if (chkItem == Model.Status)
+                            {
+                                chkStr = "selected";
+                            }
+                            <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-2 m-form__group--inline">
+                    @Html.LabelFor(m => m.TranslateStatus, new { @class = "form-control-label" })
+                    <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.TranslateStatus)" name="@Html.NameFor(m=>m.TranslateStatus)" data-live-search="true">
+                        <option value="-1">
+                            @ManagerResource.LB_ALL
+                        </option>
+                        @foreach (var item in Enum.GetValues(typeof(EnumTranslateStatus)))
+                        {
+                            var chkItem = (int)item;
+                            var chkStr = string.Empty;
+                            if (chkItem == Model.TranslateStatus)
+                            {
+                                chkStr = "selected";
+                            }
+                            <option value="@chkItem" @chkStr>@EnumExtensions.GetEnumDescription((Enum)item)</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12">
+
+                    <button type="submit" class="btn btn-info" style="margin-right:10px;">
+                        <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
+                    </button>
+
+                    <button type="button" class="btn btn-info reset-btn">
+                        <i class="fa fa-eraser"></i> @ManagerResource.BT_CLEAR
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            <div class="m-portlet__head">
+                <div class="clearfix m--padding-10">
+                    @if (!string.IsNullOrEmpty(Model.company_name))
+                    {
+                        <h4 class="pull-left">@ManagerResource.LB_JOB_LIST: <span class="text-danger">@Model.company_name</span></h4>
+                    }
+                    else
+                    {
+                        <h4 class="pull-left">@ManagerResource.LB_JOB_LIST</h4>
+                    }
+
+                    @*<a class="btn btn-white btn-info pull-right" href="@Url.Action("Create", "Job", new { company_id = Model.company_id })" title="@ManagerResource.LB_ADDNEW">
+                            <i class="fa fa-plus"></i> @ManagerResource.LB_ADDNEW
+                        </a>*@
+                </div>
+            </div>
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50">#</th>
+                                    <th class="text-center">@ManagerResource.LB_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_COMPANY_NAME</th>
+                                    <th class="text-center">@ManagerResource.LB_JOB_INDUSTRY</th>
+                                    <th class="text-center">@ManagerResource.LB_APPLICATION_COUNT</th>
+                                    @*<th class="text-center">@ManagerResource.LB_COVER</th>*@
+                                    <th class="text-center">@ManagerResource.LB_CREATED_DATE</th>
+                                    <th class="text-center">@ManagerResource.LB_STATUS</th>
+                                    <th class="text-center">@ManagerResource.LB_ACTION</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                                {
+                                    var stt = 0;
+                                    foreach (var record in Model.SearchResults)
+                                    {
+                                        stt++;
+                                        var jobName = string.Empty;
+                                        if (record.Job_translations.HasData())
+                                        {
+                                            jobName = record.Job_translations.Where(x => x.language_code == currentLang).Select(x => x.title).FirstOrDefault();
+                                            if (string.IsNullOrEmpty(jobName))
+                                            {
+                                                jobName = record.Job_translations.Where(x => x.language_code != currentLang).Select(x => x.title).FirstOrDefault();
+                                            }
+                                        }
+                                        <tr>
+                                            <td class="text-center">@(stt + (Model.CurrentPage - 1) * Model.PageSize) </td>
+                                            <td>
+                                                @jobName
+                                            </td>
+                                            <td>
+                                                @if (hasCompanies)
+                                                {
+                                                    var companyName = string.Empty;
+                                                    var companyInfo = Model.Companies.Where(x => x.id == record.company_id).FirstOrDefault();
+                                                    if (companyInfo != null)
+                                                    {
+                                                        companyName = companyInfo.company_name;
+                                                        if (companyInfo.LangList.HasData())
+                                                        {
+                                                            var companyLang = companyInfo.LangList.Where(x => x.language_code == currentLang).FirstOrDefault();
+                                                            if (companyLang == null)
+                                                            {
+                                                                companyLang = companyInfo.LangList[0];
+                                                            }
+
+                                                            if (companyLang != null)
+                                                            {
+                                                                companyName = companyLang.company_name;
+                                                            }
+                                                        }
+                                                    }
+
+                                                    @companyName
+                                                }
+                                                else
+                                                {
+                                                    @Model.company_name
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (hasIndustries)
+                                                {
+                                                    var subIndustryName = string.Empty;
+                                                    foreach (var item in Model.Industries)
+                                                    {
+                                                        if (item.Sub_industries != null)
+                                                        {
+                                                            var sub = item.Sub_industries.Where(x => x.id == record.sub_industry_id).FirstOrDefault();
+                                                            if (sub != null)
+                                                            {
+                                                                if (sub.LangList.HasData())
+                                                                {
+                                                                    subIndustryName = sub.LangList.Where(x => x.language_code == currentLang).Select(x => x.sub_industry).FirstOrDefault();
+                                                                    if (string.IsNullOrEmpty(subIndustryName))
+                                                                    {
+                                                                        subIndustryName = sub.LangList[0].sub_industry;
+                                                                    }
+                                                                }
+
+                                                                if (string.IsNullOrEmpty(subIndustryName))
+                                                                {
+                                                                    subIndustryName = sub.sub_industry;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                    @subIndustryName
+                                                }
+                                            </td>
+                                            <td class="text-right">
+                                                @record.Extensions.application_count
+                                            </td>
+                                            <td class="text-center">
+                                                @record.created_at.DateTimeQuestToString()
+                                            </td>
+                                            <td class="text-center">
+                                                @if (record.status == (int)EnumJobStatus.Published && record.closed_time <= DateTime.Now)
+                                                {
+                                                    @Html.Partial("Partials/_Status", (int)EnumJobStatus.Closed)
+                                                }
+                                                else
+                                                {
+                                                    @Html.Partial("Partials/_Status", record.status)
+                                                }
+                                            </td>
+                                            <td class="text-center">
+                                                @{
+                                                    var newModel = Model;
+                                                    newModel.company_id = record.company_id;
+                                                    newModel.Id = record.id;
+                                                    newModel.SearchExec = "Y";
+                                                }
+                                                @if (PermissionHelper.CheckPermission("UpdateStatus", "Job"))
+                                                {
+                                                    if (record.status == (int)EnumJobStatus.Draft && record.closed_time > DateTime.Now)
+                                                    {
+                                                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("UpdateStatus", "Job", new { status = (int)EnumJobStatus.Published, jobid = record.id })" title="@ManagerResource.LB_PUBLISHED">
+                                                            <i class="la la-level-up"></i>
+                                                        </a>
+                                                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("UpdateStatus", "Job", new { status = (int)EnumJobStatus.Canceled, jobid = record.id })" title="@ManagerResource.BT_REFUSE">
+                                                            <i class="la la-close"></i>
+                                                        </a>
+                                                    }
+                                                    if (record.status == (int)EnumJobStatus.Published && record.closed_time > DateTime.Now)
+                                                    {
+                                                        <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("UpdateStatus", "Job", new { jobid = record.id, status = (int)EnumJobStatus.Closed })" title="@ManagerResource.LB_CLOSE">
+                                                            <i class="la la-close"></i>
+                                                        </a>
+                                                    }
+                                                }
+                                                @if (PermissionHelper.CheckPermission("Language", "Job"))
+                                                {
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Language", "Job", new { id = record.id, company_id = Model.company_id, SearchExec = 'Y',Page = Model.CurrentPage,Keyword = Model.Keyword,Status=Model.Status,translate_status=Model.TranslateStatus })" title="@ManagerResource.LB_LANGUAGE">
+                                                        <i class="la la-language  @(record.translate_status==(int)EnumTranslateStatus.NotTranslatedYet?"lb_danger":"")"></i>
+                                                    </a>
+                                                }
+                                                @if (PermissionHelper.CheckPermission("Edit", "Job"))
+                                                {
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" href="@Url.Action("Edit", "Job", new { id = record.id, company_id = Model.company_id, SearchExec = 'Y', Page = Model.CurrentPage, Keyword = Model.Keyword, Status = Model.Status, translate_status = Model.TranslateStatus })" title="@ManagerResource.LB_EDIT">
+                                                        <i class="la la-pencil"></i>
+                                                    </a>
+                                                }
+                                                @if (PermissionHelper.CheckPermission("Delete", "Job"))
+                                                {
+                                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("Delete", "Job", new { id = record.id })" title="@ManagerResource.LB_DELETE">
+                                                        <i class="la la-trash"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="11">
+                                            @ManagerResource.LB_NO_RECORD
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        @RenderPaging()
+                    </div>
+                </div>
+                <!--end::Section-->
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <a class="btn btn-outline-info" href="/Company"><i class="fa fa-building"></i> @ManagerResource.LB_COMPANY_MANAGEMENT</a>
+                    </div>
+                </div>
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+</div>
+
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => Url.Action("Index", "Job",
+                     new
+                     {
+                         Page = index,
+                         SearchExec = "Y",
+                         Keyword = Model.Keyword,
+                         Status = Model.Status,
+                         TranslatedStatus = Model.TranslateStatus,
+                         company_id = Model.company_id
+                     }),
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10)
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_DISPLAYING @Model.StartCount() @ManagerResource.LB_TO @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_OF @Model.TotalCount @ManagerResource.LB_RECORDS
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+
+@section PageInlineScripts{
+    <script>
+        function AfterUpdate() {
+            location.reload();
+        }
+    </script>
+}

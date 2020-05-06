@@ -1,0 +1,47 @@
+2019-12-26 08:56:19,561 [1] INFO  MySite.Startup - ======================================================
+2019-12-26 08:56:19,572 [1] INFO  MySite.Startup - MySite is starting up
+2019-12-26 08:56:19,572 [1] INFO  MySite.Startup - ======================================================
+2019-12-26 08:56:19,709 [1] INFO  MySite.Startup - ======================================================
+2019-12-26 08:56:19,710 [1] INFO  MySite.Startup - MySite is successfully configured
+2019-12-26 08:56:19,710 [1] INFO  MySite.Startup - ======================================================
+2019-12-26 08:56:23,796 [14] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-26 08:56:23,797 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-26 08:56:23,826 [14] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-26 08:56:23,826 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-26 08:56:30,250 [8] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2019-12-26 08:56:30,257 [8] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2019-12-26 08:56:33,893 [8] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2019-12-26 08:56:34,921 [13] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-26 08:56:34,928 [13] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-26 08:56:46,613 [8] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-26 08:56:46,617 [8] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-26 09:17:58,248 [125] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2019-12-26 09:17:58,257 [125] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2019-12-26 09:18:07,309 [110] ERROR MySite.WebApiApplication - Application Error: A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+System.Web.HttpException (0x80004005): A public action method 'GetSuggestionTrainLineByCitys' was not found on controller 'MySite.Controllers.MasterController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2019-12-26 09:18:09,385 [130] ERROR MySite.WebApiApplication - Application Error: A public action method 'GetSuggestionStationByTrainLines' was not found on controller 'MySite.Controllers.MasterController'.
+System.Web.HttpException (0x80004005): A public action method 'GetSuggestionStationByTrainLines' was not found on controller 'MySite.Controllers.MasterController'.
+   at System.Web.Mvc.Controller.HandleUnknownAction(String actionName)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)

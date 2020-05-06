@@ -1,0 +1,49 @@
+﻿@model SingleSignOn.Models.WebAuthLoginViewModel
+@using SingleSignOn.Settings;
+@using SingleSignOn.DB.Sql.Entities;
+@using CaptchaMvc.HtmlHelpers
+@using SingleSignOn.Resources;
+@using SingleSignOn.Caching;
+@using Newtonsoft.Json;
+@using SingleSignOn.Models;
+@using SingleSignOn.Helpers;
+
+@{
+    ViewBag.Title = "User information";
+}
+
+@{
+    if (UserCookieManager.IsAuthenticated())
+    {
+        var userLogin = UserCookieManager.GetCookie<UserCookieModel>(SingleSignOnSettings.SSOCommonUserKey);
+        if (userLogin != null)
+        {
+            @RenderUserInformation(userLogin)
+        }
+    }
+}
+
+@helper RenderUserInformation(UserCookieModel record)
+{
+    <div class="space"></div>
+    <br />
+    <div class="panel panel-primary">
+        <div class="panel-heading">User information</div>
+        <div class="panel-body">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><b>User Id: </b></td>
+                        <td>@record.UserId</td>
+                    </tr>
+                    <tr>
+                        <td><b>Current token: </b></td>
+                        <td>@record.TokenKey</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+            <a href="/WebAuth/Logout" class="btn btn-sm btn-primary">Logout</a>
+        </div>
+    </div>
+}

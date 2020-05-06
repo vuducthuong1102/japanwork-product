@@ -1,0 +1,29 @@
+2020-01-13 08:05:23,539 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:05:23,540 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-01-13 08:05:23,540 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:05:23,587 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:05:23,588 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-01-13 08:05:23,588 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:05:24,687 [7] ERROR Manager.WebApp.MvcApplication - Application Error: Server cannot set status after HTTP headers have been sent.
+System.Web.HttpException (0x80004005): Server cannot set status after HTTP headers have been sent.
+   at System.Web.HttpResponse.set_StatusCode(Int32 value)
+   at System.Web.Mvc.HttpStatusCodeResult.ExecuteResult(ControllerContext context)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.<>c__DisplayClass21.<BeginInvokeAction>b__1e(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncControllerActionInvoker.EndInvokeAction(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.<BeginExecuteCore>b__1d(IAsyncResult asyncResult, ExecuteCoreState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecuteCore(IAsyncResult asyncResult)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.Controller.EndExecute(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.<BeginProcessRequest>b__5(IAsyncResult asyncResult, ProcessRequestState innerState)
+   at System.Web.Mvc.Async.AsyncResultWrapper.WrappedAsyncVoid`1.CallEndDelegate(IAsyncResult asyncResult)
+   at System.Web.Mvc.MvcHandler.EndProcessRequest(IAsyncResult asyncResult)
+   at System.Web.HttpApplication.CallHandlerExecutionStep.System.Web.HttpApplication.IExecutionStep.Execute()
+   at System.Web.HttpApplication.ExecuteStepImpl(IExecutionStep step)
+   at System.Web.HttpApplication.ExecuteStep(IExecutionStep step, Boolean& completedSynchronously)
+2020-01-13 08:59:29,741 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:59:29,742 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-01-13 08:59:29,743 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:59:29,779 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-01-13 08:59:29,780 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-01-13 08:59:29,781 [1] INFO  Manager.WebApp.Startup - ======================================================

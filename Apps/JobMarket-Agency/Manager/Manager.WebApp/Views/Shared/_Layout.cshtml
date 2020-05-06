@@ -1,0 +1,250 @@
+﻿@using Microsoft.AspNet.Identity
+@using System.Security.Claims
+@using System.Resources
+@using Manager.WebApp.Resources
+@using System.Globalization
+@using Manager.WebApp.Caching;
+@using System.Text
+@using Manager.WebApp.Settings
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/images/favicon-32x32.png" />
+    <link rel="shortcut icon" href="~/Content/images/favicon-32x32.png" type="image/x-icon">
+
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--begin::Web font -->
+    <script src="~/Scripts/Common/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <!--end::Web font -->
+    <!--begin::Base Styles -->
+
+    <link href="~/assets/vendors/base/vendors.bundle.css" rel="stylesheet" />
+    <link href="~/assets/demo/default/base/style.bundle.css" rel="stylesheet" />
+    <!--end::Base Styles -->
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Messenger/messenger.css")" />
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/emoji/lib/css/emoji.css")" />
+
+    <link href="@Url.VersionedContent("~/Content/Site.css")" rel="stylesheet" />
+
+    <!-- page specific plugin styles -->
+    @RenderSection("PagePluginStyles", required: false)
+
+    <!-- page inline plugin styles -->
+    @RenderSection("PageInlineStyles", required: false)
+</head>
+<!-- end::Head -->
+<!-- end::Body -->
+<body class="m-page--fluid @UserCookieManager.GetCurrentLanguageOrDefault() m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--fixed m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <div class="page-loading">
+        <img src="/Content/images/loader.gif" />
+    </div>
+
+    <div class="common-loading">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    <div class="common-loading-item">
+        <div class="lds-css"><div style="width:100%;height:100%;" class="lds-ripple"><div></div><div></div></div></div>
+    </div>
+
+    @Html.Partial("../Widgets/Modals/_SelectFileModal")
+
+    @Html.Partial("../Widgets/Modals/_ScheduleCalendarModal")
+    <!-- begin:: End File Browser -->
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- BEGIN: Header -->
+
+        @Html.Partial("_NavigationBar")
+
+        <!-- END: Header -->
+        <!-- begin::Body -->
+
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <!-- BEGIN: Left Aside -->
+
+            @Html.Partial("_LeftSideBar")
+
+            <!-- END: Left Aside -->
+            @*m-wrapper*@
+            <div class="m-grid__item m-grid__item--fluid">
+                <!-- BEGIN: Subheader -->
+                @if (ViewBag.HideSubHeader == null)
+                {
+                    @Html.Partial("_SubHeader")
+                }
+                <!-- END: Subheader -->
+                <div class="m-content">
+                    <!--Begin::Section-->
+                    @RenderBody()
+                    <!--End::Section-->
+                </div>
+            </div>
+        </div>
+
+        <!-- end:: Body -->
+        <!-- begin::Footer -->
+        @*@Html.Partial("_Footer")*@
+
+        <!-- end::Footer -->
+    </div>
+    <!-- end:: Page -->
+    <!-- begin::Quick Sidebar -->
+
+    @Html.Partial("_QuickSideBar")
+
+    <!-- end::Quick Sidebar -->
+    <!-- begin::Scroll Top -->
+    <div id="m_scroll_top" class="m-scroll-top">
+        <i class="la la-arrow-up"></i>
+    </div>
+    <!-- end::Scroll Top -->
+    <div class="cr-private-msg m-support-pop" id="contact-11" data-userid="11" data-t="2" title="@ManagerResource.LB_SUPPORT">
+        <div style="border-radius:50%;background-color:#fff;border:1px solid #ccc;">
+            <img src="~/Content/images/messenger.png" style="border-radius:unset;border:0 none;width:4em;padding:5px;" />
+        </div>
+    </div>
+
+    @*<div id="m_support_pop" class="m-support-pop" title="@ManagerResource.LB_SUPPORT">
+            <div style="border-radius:50%;background-color:#fff;border:1px solid #ccc;">
+                <img src="~/Content/images/messenger.png" style="border-radius:unset;border:0 none;width:4em;padding:5px;"/>
+            </div>
+        </div>*@
+
+    @Html.Partial("../Widgets/Modals/_SupportModal")
+
+    <div id="ui-chat-container">
+
+    </div>
+
+    <!--begin::Base Scripts -->
+    <script class="RemovalScripts">
+        var LanguageDic = [];
+        var SelectedObjects = [];
+        var CurrentVersion = "1.0.127";
+        var CurrentLang = "@CultureInfo.CurrentUICulture";
+    </script>
+
+    <script src="~/assets/vendors/base/vendors.bundle.js"></script>
+    <script src="~/assets/demo/default/base/scripts.bundle.js"></script>
+    <script src="~/Scripts/Plugins/bootbox.js"></script>
+
+    <script src="@Url.VersionedContent("~/Scripts/Common/common.modalform.js")"></script>
+    @*<script src="@Url.VersionedContent("~/Scripts/Common/common.mediaselect.js")"></script>*@
+
+    <script src="@Url.VersionedContent("~/Scripts/Common/common.core.js")"></script>
+    <script src="@Url.VersionedContent("~/Scripts/Common/common.notifications.js")"></script>
+
+    @Scripts.Render("~/bundles/emoji")
+
+    <!--end::Base Scripts -->
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        var _fileManagerUrl ='@Url.Content("~/filemanager")';
+        var current = Cookies.get("sidebar_toggle_state");
+        if (current == "on") {
+            $("body").addClass("m-brand--minimize m-aside-left--minimize");
+            $("#m_aside_left_minimize_toggle").addClass("m-brand__toggler--active");
+        } else {
+            $("body").removeClass("m-brand--minimize m-aside-left--minimize");
+            $("#m_aside_left_minimize_toggle").removeClass("m-brand__toggler--active");
+        }
+
+        $("#m_aside_left_minimize_toggle").length && (l = new mToggle("m_aside_left_minimize_toggle", {
+            target: "body",
+            targetState: "m-brand--minimize m-aside-left--minimize",
+            togglerState: "m-brand__toggler--active"
+        })).on("toggle", function (e) {
+            Cookies.set("sidebar_toggle_state", e.getState())
+        })
+    </script>
+
+    <!--end::Page Snippets -->
+    <!-- plugin scripts related to this page -->
+    @RenderSection("PagePluginScripts", false)
+
+    <!-- inline scripts related to this page -->
+    @RenderSection("PageInlineScripts", false)
+
+    <script>
+        var _defaultCountry = @((int)EnumCountry.Japan);
+        $(function () {
+            changeLocalTimezone();
+
+            var title = $(".CurrentPageTitle").html();
+            if (title !== "" && title !== null) {
+                document.title = title;
+            }
+
+            //setTimeout(function () {
+            //    $(".m-alert").not(".alway-show").fadeOut();
+            //}, 2000)
+        })
+    </script>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="@Url.VersionedContent("~/Scripts/Common/site-global.js")"></script>
+        <script>
+            $(function () {
+
+                setInterval(function () {
+                    AuthenticatedGlobal.getNotifCounter();
+                }, 10000);
+
+                setTimeout(function () {
+                    setInterval(function () {
+                        AuthenticatedGlobal.getMailBoxCounter();
+                    }, 30000);
+                }, 1000);
+            });
+        </script>
+
+        var userInfo = AccountHelper.GetCurrentUser();
+        if (userInfo != null)
+        {
+            <input type="hidden" value="@userInfo.StaffId" id="CurrentUser" />
+            <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+            <script src="@SystemSettings.MessengerCloud/signalr/hubs/"></script>
+            <script type="text/javascript">
+            var _myCloudServer = '@SystemSettings.MessengerCloud';
+            var _uInfo = {
+                id: "@userInfo.StaffId",
+                t: "@((int)EnumMessengerObjectType.Agency)"
+            };
+            </script>
+
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/messengercloud.js")"></script>
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/messenger-events.js")"></script>
+        }
+    }
+    <script src="@Url.VersionedContent("~/Scripts/Common/common.end.js")"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-71251472-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-71251472-5');
+    </script>
+
+</body>
+<!-- end::Body -->
+</html>

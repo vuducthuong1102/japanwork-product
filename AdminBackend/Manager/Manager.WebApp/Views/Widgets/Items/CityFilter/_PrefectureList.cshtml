@@ -1,0 +1,25 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using MySite.Helpers
+@model List<IdentityPrefecture>
+
+@{ 
+    var hasData = Model.HasData();
+    var currentRegionId = 0;
+    if (hasData)
+    {
+        currentRegionId = Model[0].region_id;
+    }
+}
+
+<ul class="ct-filter-prefectures item-prefecture custom-scrollbar" id="ct_filter_prefectures_@currentRegionId">
+    @if (hasData)
+    {
+        foreach (var item in Model)
+        {
+            <li class="ct-prefecture-select hover-color" data-id="@item.id" data-region="@currentRegionId">
+                <a href="javascript:;">@item.furigana <span class="hidden-md-down">(@item.prefecture)</span></a>
+                <span class="ct-prefecture-flag ct-prefecture-flag-@item.id float-right @((item.IsSelected) ? "": "hidden")" data-region="@currentRegionId" data-id="@item.id"> <i class="la la-check"></i></span>
+            </li>
+        }
+    }   
+</ul>

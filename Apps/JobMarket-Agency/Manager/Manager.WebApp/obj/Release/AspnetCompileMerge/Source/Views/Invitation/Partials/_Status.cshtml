@@ -1,0 +1,15 @@
+﻿@using Manager.WebApp.Resources
+@model int
+
+@if (Model == (int)(EnumApplicationInvitationStatus.Awating))
+{
+    <span class="m-badge m-badge--wide m-badge--info"><i class="fa fa-send"></i> @ManagerResource.INVITATION_STATUS_AWAITING</span>
+}
+else if (Model == (int)(EnumApplicationInvitationStatus.Accepted))
+{
+    <span class="m-badge m-badge--wide m-badge--success"><i class="fa fa-check"></i> @ManagerResource.INVITATION_STATUS_ACCEPTED</span>
+}
+else if (Model == (int)(EnumApplicationInvitationStatus.Ignore))
+{
+    <span class="m-badge m-badge--wide m-badge--danger"><i class="fa fa-hand-stop-o"></i> @ManagerResource.INVITATION_STATUS_IGNORED</span>
+}

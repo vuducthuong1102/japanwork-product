@@ -1,0 +1,91 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.WebAccountChangePasswordModel
+@{
+    var currentUser = AccountHelper.GetCurrentUser();
+    var userName = string.Empty;
+    var isSocialAcc = !string.IsNullOrEmpty(currentUser.SocialProvider);
+    if (currentUser != null)
+    {
+        userName = AccountHelper.ShowDisplayName(currentUser);
+    }
+}
+
+<section class="overlape">
+    <div class="block no-padding">
+        <div data-velocity="-.1" style="background: url(/Content/themes/default/images/resource/mslider1.jpg) repeat scroll 50% 422.28px transparent;" class="parallax scrolly-invisible no-parallax"></div><!-- PARALLAX BACKGROUND IMAGE -->
+        <div class="container fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="inner-header">
+                        <h3>@UserWebResource.LB_WELCOME @userName</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="block no-padding">
+        <div class="container">
+            <div class="row no-gape">
+                <aside class="col-lg-3 column border-right hidden-sm-down">
+                    <div class="widget">
+                        <div class="tree_widget-sec">
+                            @Html.Partial("~/Views/Widgets/Items/Profile/_LeftMenu.cshtml", "changepwd")
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-lg-9 column">
+                    <div class="padding-left">
+                        <div class="manage-jobs-sec mt10">
+                            @if (!isSocialAcc)
+                            {
+                                <h3>@UserWebResource.LB_CHANGE_PASSWORD</h3>
+                                <div class="change-password">
+                                    <form method="post">
+                                        @Html.AntiForgeryToken()
+                                        @Html.Partial("_Notifications")
+                                        <div class="row mb20">
+                                            <div class="col-lg-6">
+                                                <span class="pf-title">@UserWebResource.LB_OLD_PASSWORD</span>
+                                                <div class="pf-field">
+                                                    @Html.TextBoxFor(m => m.OldPassword, new { @type = "password" })
+                                                    @Html.ValidationMessageFor(m => m.OldPassword, null, new { @class = "text-danger fz-13" })
+                                                </div>
+                                                <span class="pf-title">@UserWebResource.LB_NEW_PASSWORD</span>
+                                                <div class="pf-field">
+                                                    @Html.TextBoxFor(m => m.NewPassword, new { @type = "password" })
+                                                    @Html.ValidationMessageFor(m => m.NewPassword, null, new { @class = "text-danger fz-13" })
+                                                </div>
+                                                <span class="pf-title">@UserWebResource.LB_CONFIRM_NEW_PASSWORD</span>
+                                                <div class="pf-field">
+                                                    @Html.TextBoxFor(m => m.ConfirmNewPassword, new { @type = "password" })
+                                                    @Html.ValidationMessageFor(m => m.ConfirmNewPassword, null, new { @class = "text-danger fz-13" })
+                                                </div>
+                                                <button type="submit" class="btn-danger-custom"><i class="fa fa-lock"></i> @UserWebResource.BT_CHANGE_PWD</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            }
+                            else {
+                                <div class="row mt30">
+                                    <div class="col-md-12">
+                                        <span class="text-danger">
+                                            <i class="fa fa-warning"></i> <b>@UserWebResource.LB_CHANGE_PWD_SOCIAL_NOT_PROVIDED</b>
+                                        </span>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

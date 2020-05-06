@@ -1,0 +1,173 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Caching
+@model Manager.WebApp.Models.InterviewProcessInsertModel
+
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">
+        @ManagerResource.LB_ADD_NEW
+    </h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">
+            &times;
+        </span>
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="modal-body content-custom">
+        <div class="form-group">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.candidate_id)
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_CANDIDATE
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" disabled="disabled" id="candidate_name" value="@Model.full_name" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_COMPANY
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" disabled="disabled" id="company_name" value="@Model.company_name" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_JOB
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" disabled="disabled" id="job_title" value="@Model.job_name" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_NEXT_STEP
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        @RenderStatus()
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_PERSON_CHARGE
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        @RenderUser()
+                    </div>
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_TIME_PROCESS
+                </label>
+                <div class="col-lg-4 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        <input type="text" id="modified_at" name="modified_at" class="form-control m-input datepicker" autocomplete="off" value="@Model.modified_at" />
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="la la-calendar-check-o"></i>
+                            </span>
+                        </div>
+                    </div>
+                    @*<span class="m-form__help">
+                    Select a date
+                </span>*@
+                </div>
+            </div>
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-3 col-sm-12">
+                    @ManagerResource.LB_DETAIL_PROCESS
+                </label>
+                <div class="col-lg-9 col-md-9 col-sm-12">
+                    <div class="input-group">
+                        @Html.TextAreaFor(m => m.note, new { @class = "form-control", rows = "4" })
+                        @Html.ValidationMessageFor(m => m.note, "", new { @class = "m--font-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="submit" onclick='$("#LangCode").removeAttr("disabled");' class="btn btn-info">
+            @ManagerResource.LB_SAVE
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="ShowInterviewProcess(@Model.candidate_id)">
+            @ManagerResource.LB_CANCEL
+        </button>
+    </div>
+}
+@helper RenderStatus()
+{
+    if (Model != null && Model.ProcessStatuses != null && Model.ProcessStatuses.Count > 0)
+    {
+        var checkedText = "selected";
+        <select id="@Html.IdFor(m=>m.status_id)" name="@Html.NameFor(m=>m.status_id)" data-live-search="true" onchange="ChangeStatus();" class="form-control m-select2 m-input m-input--square">
+            @foreach (var item in Model.ProcessStatuses)
+            {
+                if (Model.ListInterviewProcess != null && Model.ListInterviewProcess.Count > 0)
+                {
+                    var checkInfo = Model.ListInterviewProcess.FirstOrDefault(s => s.status_id == item.id);
+                    if (checkInfo == null)
+                    {
+                        <option value="@item.id" @((item.id == Model.status_id) ? checkedText : "")>
+                            @item.status_name
+                        </option>
+                    }
+                }
+                else
+                {
+                    <option value="@item.id">
+                        @item.status_name
+                    </option>
+                }
+            }
+        </select>
+    }
+}
+
+@helper RenderUser()
+{
+    var ListUser = CommonHelpers.GetListUser(Model.agency_id);
+    if (ListUser != null && ListUser.Count > 0)
+    {
+        var checkedText = "selected";
+        <select id="@Html.IdFor(m=>m.agency_id)" name="@Html.NameFor(m=>m.agency_id)" data-live-search="true" class="form-control m-select2 m-input m-input--square">
+            @foreach (var item in ListUser)
+            {
+                <option value="@item.StaffId" @((item.StaffId == Model.agency_id) ? checkedText : "")>
+                    @item.FullName
+                </option>
+            }
+        </select>
+    }
+}
+<script>
+    $(document).ready(function () {
+        $('.datepicker').datetimepicker({
+            format: "yyyy/mm/dd hh:ii"
+        });
+    })
+     setTimeout(function () {
+            $(".m-select2").select2({ width: 'resolve' });
+        }, 500);
+    getInterviewProcessInfo();
+    function getInterviewProcessInfo() {
+        
+    }
+</script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

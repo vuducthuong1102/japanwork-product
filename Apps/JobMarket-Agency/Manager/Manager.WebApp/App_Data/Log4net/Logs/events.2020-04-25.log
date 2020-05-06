@@ -1,0 +1,14 @@
+2020-04-25 09:08:19,060 [22] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-25 09:08:19,549 [29] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-25 09:08:20,159 [32] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-25 09:10:10,050 [39] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-25 09:10:24,584 [59] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-25 09:10:39,976 [32] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-25 09:41:58,818 [53] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-25 09:41:59,328 [14] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-25 09:41:59,824 [31] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-25 09:44:00,063 [49] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-25 09:44:13,791 [14] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-25 09:44:19,304 [31] DEBUG Manager.WebApp.Services.A_JobSeekerServices - Begin GetListAssignmenWorkByPageAsync request
+2020-04-25 09:45:59,015 [14] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-25 09:46:26,510 [101] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request

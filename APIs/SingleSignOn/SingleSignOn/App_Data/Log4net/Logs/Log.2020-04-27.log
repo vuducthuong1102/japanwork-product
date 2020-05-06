@@ -1,0 +1,21 @@
+2020-04-27 10:26:56,580 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 10:26:56,581 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2020-04-27 10:26:56,581 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 10:26:56,667 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 10:26:56,668 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2020-04-27 10:26:56,668 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 10:26:57,937 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-04-27 10:26:58,055 [13] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"6ea11f6c47f94751a89557987147375c","Data":{"Id":1,"Email":"bangkhmt3@gmail.com","PhoneNumber":"0966722466","UserName":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=Avatars/1/1539328575.jpg","TokenKey":"6ea11f6c47f94751a89557987147375c","TokenCreatedDate":"2020-04-27T01:56:22.983","TokenExpiredDate":"2020-04-27T18:36:22.983","LoginDurations":1000,"OTPType":"","Birthday":"1991-08-12T00:00:00","Sex":1,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":1,"LoginDate":"2020-04-27T10:26:58.0215958+07:00","SocialProviderId":0,"IsNew":0}}
+2020-04-27 10:26:58,056 [13] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-04-27 15:07:01,787 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 15:07:01,789 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2020-04-27 15:07:01,790 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 15:07:01,881 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 15:07:01,882 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2020-04-27 15:07:01,883 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-04-27 15:07:03,240 [12] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-04-27 15:07:03,521 [15] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"cdf7c2d323aa955444484a8ffe5d7e78","Data":{"Id":19,"Email":"minhnv54@gmail.com","PhoneNumber":"","UserName":"minhnv54@gmail.com","FullName":"","DisplayName":"","Avatar":"","TokenKey":"cdf7c2d323aa955444484a8ffe5d7e78","TokenCreatedDate":"2020-04-27T15:07:03.4844417+07:00","TokenExpiredDate":"2020-04-28T07:47:03.4844417+07:00","LoginDurations":1000,"OTPType":"OTPSMS","Birthday":"2019-09-14T17:24:13.18","Sex":0,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":0,"LoginDate":"2020-04-27T15:07:03.325867+07:00","SocialProviderId":0,"IsNew":0}}
+2020-04-27 15:07:03,522 [15] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request
+2020-04-27 15:08:01,518 [13] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-04-27 15:08:01,587 [8] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"cdf7c2d323aa955444484a8ffe5d7e78","Data":{"Id":19,"Email":"minhnv54@gmail.com","PhoneNumber":"","UserName":"minhnv54@gmail.com","FullName":"","DisplayName":"","Avatar":"","TokenKey":"cdf7c2d323aa955444484a8ffe5d7e78","TokenCreatedDate":"2020-04-27T17:07:04.347","TokenExpiredDate":"2020-04-28T09:47:04.347","LoginDurations":1000,"OTPType":"OTPSMS","Birthday":"2019-09-14T17:24:13.18","Sex":0,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":0,"LoginDate":"2020-04-27T15:08:01.587528+07:00","SocialProviderId":0,"IsNew":0}}
+2020-04-27 15:08:01,588 [8] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request

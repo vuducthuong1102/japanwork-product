@@ -1,0 +1,58 @@
+﻿@using MySite.Resources
+@using MySite.Helpers
+@using MySite.Models
+
+@model List<JobSeekerCertificateModel>
+
+@if (Model.HasData())
+{
+    foreach (var item in Model)
+    {
+        @RenderCertificateItem(item)
+    }
+}
+else {
+    <div class="edu-history">
+        <i class="la la-certificate"></i>
+        <div class="edu-hisinfo">
+            <h3>@UserWebResource.LB_NOT_UPDATED</h3>           
+        </div>
+    </div>
+}
+
+@helper RenderCertificateItem(JobSeekerCertificateModel item)
+{
+    <div class="edu-history mb5">
+        <i class="la la-certificate"></i>
+        <div class="edu-hisinfo">
+            <h3>@item.name</h3>
+            @*<i>@FrontendHelpers.RenderRangeYear(item.start_date, item.end_date)</i>*@
+            @if (item.start_date != null)
+            {
+                <i>@UserWebResource.LB_DATE_OF_LICENSE: @item.start_date.DateTimeQuestToString("dd-MM-yyyy")</i>
+            }
+            @foreach (var myEnum in Enum.GetValues(typeof(EnumCertificateStatus)))
+            {
+                var chkItem = (int)myEnum;
+                var chkStr = string.Empty;
+                if (chkItem == item.pass)
+                {
+                    chkStr = "selected";
+                    <span>@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                }
+            }
+
+            @if (item.pass == (int)EnumCertificateStatus.Passed)
+            {
+                if (!string.IsNullOrEmpty(item.point))
+                {
+                    <p>@UserWebResource.LB_POINT: @item.point</p>
+                }
+            }
+        </div>
+        <ul class="action_job">
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal="" data-href="@Url.Action("UpdateCertificate","Member", new { id = item.id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-href="@Url.Action("DeleteCertificate","Member", new { id = item.id })" title=""><i class="la la-trash-o"></i></a></li>
+        </ul>
+    </div>
+}

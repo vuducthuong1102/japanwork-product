@@ -1,0 +1,47 @@
+﻿@using Manager.WebApp.Settings
+@using Manager.WebApp.Resources
+
+
+@Html.Partial("~/Views/Messenger/Container.cshtml")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    <div class="m-portlet__body">
+        <div class="row contact">
+            <div class="col-md-12 list-contact scroll-box friends-list">
+
+            </div>
+        </div>
+    </div>
+    <!--end::Form-->
+</div>
+
+@section PageInlineStyles{
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Messenger/messenger.css")" />
+    <link rel="stylesheet" href="@Url.VersionedContent("~/Content/Extensions/emoji/lib/css/emoji.css")" />
+}
+
+@section PageInlineScripts{
+    @Scripts.Render("~/bundles/emoji")
+
+    @{
+        var userInfo = AccountHelper.GetCurrentUser();
+        if (userInfo != null)
+        {
+            <input type="hidden" value="@userInfo.StaffId" id="CurrentUser" />
+            <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+            <script src="@SystemSettings.MessengerCloud/signalr/hubs/"></script>
+            <script type="text/javascript">
+            var _myCloudServer = '@SystemSettings.MessengerCloud';
+            var _uInfo = {
+                id: "@userInfo.StaffId",
+                u: "@userInfo.UserName",
+                t: "@((int)EnumMessengerObjectType.Admin)"
+            };
+            </script>
+
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/messengercloud.js")"></script>
+            <script src="@Url.VersionedContent("~/Scripts/Messenger/messenger-events.js")"></script>
+        }
+    }
+}

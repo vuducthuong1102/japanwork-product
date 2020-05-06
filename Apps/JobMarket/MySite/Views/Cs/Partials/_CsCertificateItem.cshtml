@@ -1,0 +1,52 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CsCertificateModel
+
+<div class="edu-history mb5 certificate-item">
+    <i class="la la-certificate"></i>
+    <div class="edu-hisinfo">
+        <h3>@Model.name</h3>
+
+        <input type="hidden" class="cer-prop" name="" data-prop="id" value="@Model.id" />
+        <input type="hidden" class="cer-prop" name="" data-prop="name" value="@Model.name" />
+        <input type="hidden" class="cer-prop" name="" data-prop="start_date_str" value="@Model.start_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="cer-prop" name="" data-prop="end_date_str" value="@Model.end_date.DateTimeQuestToString("yyyy-MM-dd")" />
+        <input type="hidden" class="cer-prop" name="" data-prop="pass" value="@Model.pass" />
+        <input type="hidden" class="cer-prop" name="" data-prop="point" value="@Model.point" />
+
+        @*<i>@FrontendHelpers.RenderRangeYear(Model.start_date, Model.end_date)</i>*@
+        @if (Model.start_date != null)
+        {
+            <i>@UserWebResource.LB_DATE_OF_LICENSE: @Model.start_date.DateTimeQuestToString("dd-MM-yyyy")</i>
+        }
+        @foreach (var myEnum in Enum.GetValues(typeof(EnumCertificateStatus)))
+        {
+            var chkItem = (int)myEnum;
+            var chkStr = string.Empty;
+            if (chkItem == Model.pass)
+            {
+                chkStr = "selected";
+                <span>@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+            }
+        }
+
+        @if (Model.pass == (int)EnumCertificateStatus.Passed)
+        {
+            if (!string.IsNullOrEmpty(Model.point))
+            {
+                <p>@UserWebResource.LB_POINT: @Model.point</p>
+            }
+        }
+    </div>
+    @*<ul class="action_job float-right">
+        @if (Model.isDefault)
+        {
+            <li><span>@UserWebResource.BT_EDIT</span><a href="javascript:;" data-modal-direct="" data-href="@Url.Action("UpdateCsCertificate","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-pencil"></i></a></li>
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" data-modal="" data-size="default" data-href="@Url.Action("DeleteCsCertificate","Cs", new { id = Model.id, cs_id = Model.cs_id })" title=""><i class="la la-trash-o"></i></a></li>
+        }
+        else
+        {
+            <li><span>@UserWebResource.BT_DELETE</span><a href="javascript:;" class="dl-cs-cer fz-20" title=""><i class="la la-trash-o"></i></a></li>
+        }  
+    </ul>*@
+</div>

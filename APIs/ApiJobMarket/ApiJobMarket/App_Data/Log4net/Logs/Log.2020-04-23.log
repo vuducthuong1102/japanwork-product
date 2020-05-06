@@ -1,0 +1,60 @@
+2020-04-23 00:17:07,619 [119] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 00:17:07,633 [119] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 00:17:07,634 [119] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 00:17:07,755 [119] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 00:17:07,756 [119] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 00:17:07,756 [119] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:01,886 [78] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:01,899 [78] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 01:03:01,900 [78] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:02,026 [78] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:02,027 [78] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 01:03:02,028 [78] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:11,777 [67] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:11,789 [67] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 01:03:11,790 [67] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:11,899 [67] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 01:03:11,900 [67] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 01:03:11,900 [67] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 09:36:06,048 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 09:36:06,061 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 09:36:06,061 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 09:36:06,200 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 09:36:06,201 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 09:36:06,202 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 11:24:23,358 [99] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 11:24:23,377 [99] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 11:24:23,378 [99] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 11:24:23,537 [99] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 11:24:23,538 [99] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 11:24:23,539 [99] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 17:20:55,886 [21] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 17:20:55,900 [21] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 17:20:55,900 [21] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 17:20:56,021 [21] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 17:20:56,022 [21] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 17:20:56,022 [21] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 20:11:31,457 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 20:11:31,473 [68] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 20:11:31,474 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 20:11:31,609 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 20:11:31,610 [68] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 20:11:31,611 [68] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:38:58,283 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:38:58,299 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 22:38:58,300 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:38:58,502 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:38:58,503 [1] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 22:38:58,504 [1] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:45:28,059 [63] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:45:28,073 [63] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 22:45:28,074 [63] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:45:28,235 [63] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:45:28,236 [63] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 22:45:28,237 [63] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:58:34,567 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:58:34,580 [82] INFO  ApiJobMarket.Startup - ApiJobMarket is starting up
+2020-04-23 22:58:34,581 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:58:34,709 [82] INFO  ApiJobMarket.Startup - ======================================================
+2020-04-23 22:58:34,710 [82] INFO  ApiJobMarket.Startup - ApiJobMarket is successfully configured
+2020-04-23 22:58:34,711 [82] INFO  ApiJobMarket.Startup - ======================================================

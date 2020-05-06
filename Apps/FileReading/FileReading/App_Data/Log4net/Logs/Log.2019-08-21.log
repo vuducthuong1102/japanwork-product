@@ -1,0 +1,70 @@
+2019-08-21 11:18:09,956 [1] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:18:10,074 [1] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:18:10,085 [1] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:18:10,121 [1] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:18:10,122 [1] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:18:10,123 [1] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:23:16,801 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:23:16,843 [31] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:23:16,844 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:23:16,855 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:23:16,856 [31] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:23:16,859 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:24:01,358 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:24:01,372 [14] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:24:01,373 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:24:01,380 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:24:01,381 [14] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:24:01,381 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:27:04,501 [17] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at FileReading.Helpers.FileUploadHelper.Base64ToImage(String base64String) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 64
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 235
+2019-08-21 11:29:09,945 [17] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at FileReading.Helpers.FileUploadHelper.Base64ToImage(String base64String) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 64
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 235
+2019-08-21 11:32:28,701 [17] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at FileReading.Helpers.FileUploadHelper.Base64ToImage(String base64String) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 64
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 235
+2019-08-21 11:33:16,344 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:33:16,360 [14] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:33:16,361 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:33:16,369 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:33:16,370 [14] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:33:16,370 [14] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:33:48,842 [23] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at FileReading.Helpers.FileUploadHelper.Base64ToImage(String base64String) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 69
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 240
+2019-08-21 11:34:06,078 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:34:06,091 [31] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:34:06,092 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:34:06,099 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:34:06,100 [31] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:34:06,100 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:34:21,577 [11] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.NotSupportedException: The given path's format is not supported.
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.Security.Permissions.FileIOPermission.QuickDemand(FileIOPermissionAccess access, String fullPath, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.Path.GetFullPath(String path)
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 271
+2019-08-21 11:35:44,786 [17] ERROR FileReading.Helpers.FileUploadHelper - Failed for UploadPostedFile: System.NotSupportedException: The given path's format is not supported.
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.Security.Permissions.FileIOPermission.QuickDemand(FileIOPermissionAccess access, String fullPath, Boolean checkForDuplicates, Boolean needFullPath)
+   at System.IO.Path.GetFullPath(String path)
+   at FileReading.Helpers.FileUploadHelper.UploadFrombase64(String file, String folderName, Boolean includeDatePath) in D:\Working\JobMarket\Apps\FileReading\FileReading\Helpers\FileUploadHelpers.cs:line 271
+2019-08-21 11:36:03,983 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:36:04,009 [31] INFO  FileReading.Startup - FileReading is starting up
+2019-08-21 11:36:04,015 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:36:04,027 [31] INFO  FileReading.Startup - ======================================================
+2019-08-21 11:36:04,028 [31] INFO  FileReading.Startup - FileReading is successfully configured
+2019-08-21 11:36:04,029 [31] INFO  FileReading.Startup - ======================================================

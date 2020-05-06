@@ -1,0 +1,49 @@
+﻿@using ApiJobMarket.DB.Sql.Entities
+@using MySite.Helpers
+@model List<IdentityTrainLine>
+
+@{
+    var hasData = Model.HasData();
+    var currentPrefectureId = 0;
+    if (hasData)
+    {
+        currentPrefectureId = Model[0].prefecture_id;
+    }
+}
+
+<ul class="filter-train-lines item-train-line has-child custom-scrollbar" id="st_filter_train_lines_@currentPrefectureId">
+    @if (hasData)
+    {
+        foreach (var item in Model)
+        {
+            var hasStations = (item.Stations.HasData());
+            var uniId = string.Format("{0}_{1}", currentPrefectureId, item.id);
+            if (hasStations)
+            {
+                <li class="sub-item train-line-item" data-id="@item.id" id="train_by_prefecture_@uniId">
+                    <div class="">
+                        <a href="javascript:;">
+                            <input type="checkbox" class="train-by-prefecture-cbx" data-id="@item.id" data-prefecture="@currentPrefectureId" value="@item.id" id="train_line_@uniId">  <label for="train_line_@uniId"> @item.train_line</label>
+                        </a>
+                        @if (hasStations)
+                        {
+                            <span class="st-item-control float-right" data-id="@item.id" data-prefecture="@currentPrefectureId"><i class="la la-chevron-down"></i></span>
+                            <span class="st-train-flag st-train-flag-@item.id float-right mr10 @((item.IsSelected) ? "": "hidden")" data-id="@item.id" data-prefecture="@currentPrefectureId"> <i class="la la-check"></i></span>
+                        }
+                    </div>
+                    @if (hasStations)
+                    {
+                        <ul class="item-station hidden" data-id="@item.id" data-prefecture="@currentPrefectureId">
+                            @foreach (var station in item.Stations)
+                            {
+                                <li><div><a href="javascript:;"><input type="checkbox" class="sub-item-cbx-station" @((station.IsSelected) ? "checked" : "") data-train="@station.train_line_id" data-prefecture="@currentPrefectureId" value="@station.id" id="station_@station.id">  <label for="station_@station.id"> @station.furigana (@station.station)</label></a></div></li>
+                            }
+
+                        </ul>
+                    }
+                </li>
+            }
+
+        }
+    }
+</ul>

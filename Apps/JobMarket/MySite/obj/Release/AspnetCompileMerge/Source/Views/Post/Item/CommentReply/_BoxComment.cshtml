@@ -1,0 +1,54 @@
+﻿@using MySite.Helpers;
+@using System.Collections.Generic;
+@using MySite.Caching;
+@using MySite.Resources;
+@model ApiMySiteSocial.DB.Sql.Entities.IdentityComment
+
+@{
+    var hasLoggedIn = false;
+    if (UserCookieManager.IsAuthenticated())
+    {
+        hasLoggedIn = true;
+    }
+    var item = Model;
+    var showHiddenBox = "hidden";
+    if (item.CommentReplys != null && item.CommentReplys.Count > 0)
+    {
+        showHiddenBox = "";
+    }
+    if (item.PostId == 0)
+    {
+        showHiddenBox = "";
+    }
+    @*@(item.PostId > 0 ? "hidden" : "")"*@
+}
+@if (Model != null)
+{
+    if (hasLoggedIn)
+    {
+        <div class="box-comment reply-comment @showHiddenBox">
+            <div class="content">
+                <img src="@CdnHelper.CoreGetFullImgPath(AccountHelper.GetCurrentUserAvatar())" alt="avatar" class="avatar">
+                <div class="input-group">
+                    <div class="cmt-box">
+
+                        @if (item.PostId > 0)
+                        {
+                            <div contenteditable="true" class="notranslate _5rpu text-comment-reply-@item.Id comment-reply comment-reply-add" data-owner="@item.UserId" data-id="@item.Id" data-post="@item.PostId"></div>
+                        }
+                        else
+                        {
+                            <div contenteditable="true" class="notranslate _5rpu  comment-reply comment-reply-edit" data-id="@item.Id">@Html.Raw(item.Content)</div>
+                        }
+                        <div class="cmt-attach">
+                            <a href="javascript:;"><i class="icon icon-emoji"></i></a>
+                            <a href="javascript:;"><i class="icon icon-image"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    }
+}
+

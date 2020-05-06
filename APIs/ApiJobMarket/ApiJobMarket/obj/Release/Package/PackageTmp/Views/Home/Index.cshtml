@@ -1,0 +1,17 @@
+﻿@model ApiJobMarket.Models.ResponseWebAuthLoginModel
+
+<div class="jumbotron">
+    <h1>Welcome to Api Portal</h1>        
+    <br />
+    @if(Model != null && !string.IsNullOrEmpty(Model.TokenKey))
+    {
+        <pre>
+            <code>
+               + Login successfully.Your current token key is: @Model.TokenKey
+               + URLReturn: @Model.URLReturn
+            </code>
+        </pre>
+    }
+
+</div>
+

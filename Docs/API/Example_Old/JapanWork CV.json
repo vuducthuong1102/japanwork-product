@@ -1,0 +1,677 @@
+{
+	"id": "ebbb9045-39af-29dd-56d1-d311f321c764",
+	"name": "JapanWork CV",
+	"description": "",
+	"order": [
+		"cdc92351-b998-5bc9-c1a5-b7bd7fbc2fc9",
+		"598ca467-ffb1-bde0-9c17-1ff144430b54",
+		"cf07acda-23fa-bcd0-ff94-15a7b6dff17a",
+		"91c7fb80-a096-df9a-8d25-c372178b04a3",
+		"8e9ea8d4-62c4-28f6-a947-2741fb987dc8"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1566013717303,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "598ca467-ffb1-bde0-9c17-1ff144430b54",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8089/cv?cv_id=8",
+			"queryParams": [
+				{
+					"key": "cv_id",
+					"value": "8",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1566025993014,
+			"name": "get cv detail",
+			"description": "get cv detail",
+			"collectionId": "ebbb9045-39af-29dd-56d1-d311f321c764",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 63,
+					"headers": [
+						{
+							"name": "access-control-allow-credentials",
+							"key": "access-control-allow-credentials",
+							"value": "true",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "http://localhost:3000",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "2450",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sat, 17 Aug 2019 07:36:47 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"992-GrC0MBBswB+3gw7atBkeCgrxhX4\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Origin",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"status\":200,\"message\":\"successfully\",\"value\":{\"cv\":{\"id\":8,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"fullname_furigana\":\"Bssnnsn\",\"gender\":0,\"birthday\":\"1970-01-01T00:00:00.000Z\",\"email\":\"minhittduc@gmail.com\",\"phone\":\"096083783\",\"marriage\":0,\"dependent_num\":1,\"highest_edu\":1,\"pr\":\"Y giỏi ko cần pr\\n\",\"hobby_skills\":\"ăn\\n\",\"reason\":\"Ko có lý do\",\"time_work\":null,\"aspiration\":null,\"form\":0,\"image\":\"public\\\\file_upload\\\\1201981710329608.jpg\",\"pdf\":null,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\",\"reason_pr\":null,\"contact_phone\":null,\"check_address\":0,\"check_work\":0,\"check_ceti\":0,\"check_timework\":1,\"check_aspiration\":1,\"main_cv\":null,\"address_id\":16333,\"contact_address_id\":16332,\"station_id\":null,\"train_line_id\":null},\"work_history\":[{\"id\":3,\"cv_id\":8,\"company\":\"It\",\"content_work\":\"Code\\n\",\"form\":0,\"start_date\":\"1999-09-09T00:00:00.000Z\",\"end_date\":\"2019-01-30T00:00:00.000Z\",\"status\":0,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\",\"address\":\"It\"}],\"edu_history\":[{\"id\":3,\"cv_id\":8,\"school\":\"Bạck khoa\",\"start_date\":\"1999-09-09T00:00:00.000Z\",\"end_date\":\"2019-01-30T00:00:00.000Z\",\"status\":1,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\",\"address\":\"Ha nôi\",\"qualification_id\":1}],\"certification\":[{\"id\":3,\"cv_id\":8,\"name\":\"Toeic\",\"start_date\":\"1999-09-09T00:00:00.000Z\",\"status\":null,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\",\"point\":\"0\",\"pass\":0}],\"address\":{\"id\":16333,\"region_id\":null,\"prefecture_id\":null,\"city_id\":null,\"detail\":\"Dbdnnx\",\"furigana\":\"Dbdndmmd\",\"postal_code\":\"1h18923\",\"station_1_id\":null,\"station_1_vehicle\":null,\"station_1_time\":null,\"station_2_id\":null,\"station_2_vehicle\":null,\"station_2_time\":null,\"station_3_id\":null,\"station_3_vehicle\":null,\"station_3_time\":null,\"lat\":null,\"lng\":null,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\"},\"address_contact\":{\"id\":16332,\"region_id\":4,\"prefecture_id\":19,\"city_id\":802,\"detail\":\"Bdns\",\"furigana\":\"Dndndnd\",\"postal_code\":\"1\",\"station_1_id\":null,\"station_1_vehicle\":null,\"station_1_time\":null,\"station_2_id\":null,\"station_2_vehicle\":null,\"station_2_time\":null,\"station_3_id\":null,\"station_3_vehicle\":null,\"station_3_time\":null,\"lat\":null,\"lng\":null,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\"}}}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "get cv detail",
+					"id": "92a9686e-087d-922d-16f0-4659a19c0c19",
+					"request": {
+						"url": "http://localhost:8089/cv?cv_id=8",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [
+							{
+								"key": "cv_id",
+								"value": "8",
+								"equals": true,
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headers": "Content-Type: application/json\n",
+						"data": "{\r\n\t\"cv\": {\r\n\t\t\"id\": 1,\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": \"1\",\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"reason_pr\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"address\": \"It\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"form\": 0,\r\n\t\t\"status\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"qualification_id\": 1,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"status\": 1,\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"pass\": 0,\r\n\t\t\"point\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\"\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": 1\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}",
+						"method": "GET",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "{\r\n\t\"cv\": {\r\n\t\t\"id\": 1,\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": \"1\",\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"reason_pr\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"address\": \"It\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"form\": 0,\r\n\t\t\"status\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"qualification_id\": 1,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"status\": 1,\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"pass\": 0,\r\n\t\t\"point\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\"\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": 1\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}"
+		},
+		{
+			"id": "8e9ea8d4-62c4-28f6-a947-2741fb987dc8",
+			"headers": "",
+			"headerData": [],
+			"url": "localhost:8089/cv_progress_list?user_id=1",
+			"queryParams": [
+				{
+					"key": "user_id",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "ebbb9045-39af-29dd-56d1-d311f321c764",
+			"data": null,
+			"dataMode": "params",
+			"name": "get all cv of user",
+			"description": "get all cv of user",
+			"descriptionFormat": "html",
+			"time": 1566027392625,
+			"version": 2,
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 200,
+					"headers": [
+						{
+							"name": "access-control-allow-credentials",
+							"key": "access-control-allow-credentials",
+							"value": "true",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "http://localhost:3000",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "1534",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sat, 17 Aug 2019 07:36:05 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"5fe-XzQqngJY+M0RvxeFskeBt3fX6Tc\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Origin",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"error\":false,\"message\":\"get list cv_progress\",\"user_id\":\"1\",\"cv\":[{\"id\":6,\"job_seeker_id\":1,\"cv_title\":\"CV chính thức 2\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":null,\"form\":0,\"created_at\":\"2019-08-17T04:50:08.000Z\",\"updated_at\":\"2019-08-17T04:51:27.000Z\",\"pdf\":null},{\"id\":7,\"job_seeker_id\":1,\"cv_title\":\"CV chính thức 3\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":null,\"form\":0,\"created_at\":\"2019-08-17T04:51:30.000Z\",\"updated_at\":\"2019-08-17T04:51:53.000Z\",\"pdf\":null},{\"id\":8,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"form\":0,\"created_at\":\"2019-08-17T06:59:45.000Z\",\"updated_at\":\"2019-08-17T06:59:45.000Z\",\"pdf\":null},{\"id\":9,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"form\":0,\"created_at\":\"2019-08-17T07:03:52.000Z\",\"updated_at\":\"2019-08-17T07:30:06.000Z\",\"pdf\":null},{\"id\":10,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"form\":0,\"created_at\":\"2019-08-17T07:06:09.000Z\",\"updated_at\":\"2019-08-17T07:06:09.000Z\",\"pdf\":null},{\"id\":11,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"form\":0,\"created_at\":\"2019-08-17T07:29:24.000Z\",\"updated_at\":\"2019-08-17T07:29:24.000Z\",\"pdf\":null},{\"id\":12,\"job_seeker_id\":1,\"cv_title\":\"CV duc\",\"date\":\"2019-08-17T00:00:00.000Z\",\"fullname\":\"Ta minh duc\",\"form\":0,\"created_at\":\"2019-08-17T07:29:28.000Z\",\"updated_at\":\"2019-08-17T07:29:28.000Z\",\"pdf\":null}],\"progress\":[]}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "get all cv of user",
+					"id": "e68bc701-fa7d-e77a-ee72-02c44cbdaa31",
+					"request": {
+						"url": "localhost:8089/cv_progress_list?user_id=1",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [
+							{
+								"key": "user_id",
+								"value": "1",
+								"equals": true,
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headerData": [],
+						"headers": "",
+						"data": null,
+						"method": "GET",
+						"dataMode": "params"
+					}
+				}
+			],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "91c7fb80-a096-df9a-8d25-c372178b04a3",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8089/cv",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1566027004792,
+			"name": "update cv",
+			"description": "create or update cv ",
+			"collectionId": "ebbb9045-39af-29dd-56d1-d311f321c764",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 323,
+					"headers": [
+						{
+							"name": "access-control-allow-credentials",
+							"key": "access-control-allow-credentials",
+							"value": "true",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "http://localhost:3000",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "66",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sat, 17 Aug 2019 07:30:06 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"42-0IJ0VdcAa9U9ZKdO2PIluh8YT1E\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Origin",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"status\":200,\"message\":\"update successful\",\"value\":[{\"cv_id\":9}]}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "update cv",
+					"id": "d2b9f1e7-7dfa-ac1b-9a2d-03846e11d135",
+					"request": {
+						"url": "localhost:8089/cv",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headers": "Content-Type: application/json\n",
+						"data": "{\r\n\t\"cv\": {\r\n\t\t\"id\": 9,\r\n\t\t\"job_seeker_id\": 1,\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17T00:00:00.000Z\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01T00:00:00.000Z\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": 1,\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"pdf\": null,\r\n\t\t\"reason_pr\": null,\r\n\t\t\"contact_phone\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"main_cv\": null,\r\n\t\t\"address_id\": 16335,\r\n\t\t\"contact_address_id\": 16334,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"form\": 0,\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"end_date\": \"2019-01-30T00:00:00.000Z\",\r\n\t\t\"status\": 0,\r\n\t\t\"address\": \"It\"\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"end_date\": \"2019-01-30T00:00:00.000Z\",\r\n\t\t\"status\": 1,\r\n\t\t\"created_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"updated_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"qualification_id\": 1\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"status\": null,\r\n\t\t\"created_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"updated_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"point\": \"0\",\r\n\t\t\"pass\": 0\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": 16335,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\",\r\n\t\t\"station_1_id\": null,\r\n\t\t\"station_1_vehicle\": null,\r\n\t\t\"station_1_time\": null,\r\n\t\t\"station_2_id\": null,\r\n\t\t\"station_2_vehicle\": null,\r\n\t\t\"station_2_time\": null,\r\n\t\t\"station_3_id\": null,\r\n\t\t\"station_3_vehicle\": null,\r\n\t\t\"station_3_time\": null,\r\n\t\t\"lat\": null,\r\n\t\t\"lng\": null\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": 16334,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": \"1\",\r\n\t\t\"station_1_id\": null,\r\n\t\t\"station_1_vehicle\": null,\r\n\t\t\"station_1_time\": null,\r\n\t\t\"station_2_id\": null,\r\n\t\t\"station_2_vehicle\": null,\r\n\t\t\"station_2_time\": null,\r\n\t\t\"station_3_id\": null,\r\n\t\t\"station_3_vehicle\": null,\r\n\t\t\"station_3_time\": null,\r\n\t\t\"lat\": null,\r\n\t\t\"lng\": null\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}",
+						"method": "POST",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "{\r\n\t\"cv\": {\r\n\t\t\"id\": 9,\r\n\t\t\"job_seeker_id\": 1,\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17T00:00:00.000Z\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01T00:00:00.000Z\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": 1,\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"pdf\": null,\r\n\t\t\"reason_pr\": null,\r\n\t\t\"contact_phone\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"main_cv\": null,\r\n\t\t\"address_id\": 16335,\r\n\t\t\"contact_address_id\": 16334,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"form\": 0,\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"end_date\": \"2019-01-30T00:00:00.000Z\",\r\n\t\t\"status\": 0,\r\n\t\t\"address\": \"It\"\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"end_date\": \"2019-01-30T00:00:00.000Z\",\r\n\t\t\"status\": 1,\r\n\t\t\"created_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"updated_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"qualification_id\": 1\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"id\": 4,\r\n\t\t\"cv_id\": 9,\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09T00:00:00.000Z\",\r\n\t\t\"status\": null,\r\n\t\t\"created_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"updated_at\": \"2019-08-17T07:03:52.000Z\",\r\n\t\t\"point\": \"0\",\r\n\t\t\"pass\": 0\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": 16335,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\",\r\n\t\t\"station_1_id\": null,\r\n\t\t\"station_1_vehicle\": null,\r\n\t\t\"station_1_time\": null,\r\n\t\t\"station_2_id\": null,\r\n\t\t\"station_2_vehicle\": null,\r\n\t\t\"station_2_time\": null,\r\n\t\t\"station_3_id\": null,\r\n\t\t\"station_3_vehicle\": null,\r\n\t\t\"station_3_time\": null,\r\n\t\t\"lat\": null,\r\n\t\t\"lng\": null\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": 16334,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": \"1\",\r\n\t\t\"station_1_id\": null,\r\n\t\t\"station_1_vehicle\": null,\r\n\t\t\"station_1_time\": null,\r\n\t\t\"station_2_id\": null,\r\n\t\t\"station_2_vehicle\": null,\r\n\t\t\"station_2_time\": null,\r\n\t\t\"station_3_id\": null,\r\n\t\t\"station_3_vehicle\": null,\r\n\t\t\"station_3_time\": null,\r\n\t\t\"lat\": null,\r\n\t\t\"lng\": null\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}"
+		},
+		{
+			"id": "cdc92351-b998-5bc9-c1a5-b7bd7fbc2fc9",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "localhost:8089/cv",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1566026970616,
+			"name": "create cv",
+			"description": "create or update cv ",
+			"collectionId": "ebbb9045-39af-29dd-56d1-d311f321c764",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 422,
+					"headers": [
+						{
+							"name": "access-control-allow-credentials",
+							"key": "access-control-allow-credentials",
+							"value": "true",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "http://localhost:3000",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "67",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sat, 17 Aug 2019 07:06:09 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"43-Kxs47JW421gDibmU940b0LrKSRc\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Origin",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"status\":200,\"message\":\"create successful\",\"value\":[{\"cv_id\":10}]}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "create cv",
+					"id": "9b0d3c18-b95f-4899-511c-30f0f94ac6e7",
+					"request": {
+						"url": "localhost:8089/cv",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headers": "Content-Type: application/json\n",
+						"data": "{\r\n\t\"cv\": {\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": \"1\",\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"reason_pr\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"address\": \"It\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"form\": 0,\r\n\t\t\"status\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"qualification_id\": 1,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"status\": 1,\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"pass\": 0,\r\n\t\t\"point\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\"\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": 1\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}",
+						"method": "POST",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "{\r\n\t\"cv\": {\r\n\t\t\"cv_title\": \"CV duc\",\r\n\t\t\"date\": \"2019-08-17\",\r\n\t\t\"fullname\": \"Ta minh duc\",\r\n\t\t\"fullname_furigana\": \"Bssnnsn\",\r\n\t\t\"gender\": 0,\r\n\t\t\"birthday\": \"1970-01-01\",\r\n\t\t\"email\": \"minhittduc@gmail.com\",\r\n\t\t\"phone\": \"096083783\",\r\n\t\t\"marriage\": 0,\r\n\t\t\"dependent_num\": \"1\",\r\n\t\t\"highest_edu\": 1,\r\n\t\t\"pr\": \"Y giỏi ko cần pr\\n\",\r\n\t\t\"hobby_skills\": \"ăn\\n\",\r\n\t\t\"reason\": \"Ko có lý do\",\r\n\t\t\"time_work\": null,\r\n\t\t\"aspiration\": null,\r\n\t\t\"form\": 0,\r\n\t\t\"image\": \"public\\\\file_upload\\\\1201981710329608.jpg\",\r\n\t\t\"reason_pr\": null,\r\n\t\t\"check_address\": 0,\r\n\t\t\"check_work\": 0,\r\n\t\t\"check_ceti\": 0,\r\n\t\t\"check_timework\": 1,\r\n\t\t\"check_aspiration\": 1,\r\n\t\t\"station_id\": null,\r\n\t\t\"train_line_id\": null\r\n\t},\r\n\t\"work_history\": [{\r\n\t\t\"company\": \"It\",\r\n\t\t\"content_work\": \"Code\\n\",\r\n\t\t\"address\": \"It\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"form\": 0,\r\n\t\t\"status\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"edu_history\": [{\r\n\t\t\"qualification_id\": 1,\r\n\t\t\"school\": \"Bạck khoa\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"end_date\": \"2019-01-30\",\r\n\t\t\"status\": 1,\r\n\t\t\"address\": \"Ha nôi\",\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"certification\": [{\r\n\t\t\"name\": \"Toeic\",\r\n\t\t\"start_date\": \"1999-09-09\",\r\n\t\t\"pass\": 0,\r\n\t\t\"point\": 0,\r\n\t\t\"id\": null\r\n\t}],\r\n\t\"address\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": null,\r\n\t\t\"prefecture_id\": null,\r\n\t\t\"city_id\": null,\r\n\t\t\"detail\": \"Dbdnnx\",\r\n\t\t\"furigana\": \"Dbdndmmd\",\r\n\t\t\"postal_code\": \"1h18923\"\r\n\t},\r\n\t\"address_contact\": {\r\n\t\t\"id\": null,\r\n\t\t\"region_id\": 4,\r\n\t\t\"prefecture_id\": 19,\r\n\t\t\"city_id\": 802,\r\n\t\t\"detail\": \"Bdns\",\r\n\t\t\"furigana\": \"Dndndnd\",\r\n\t\t\"postal_code\": 1\r\n\t},\r\n\t\"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJhZ2VuY3lfaWQiOm51bGwsImpvYl9zZWVrZXJfaWQiOjEsImVtYWlsIjoibWluaGl0dGR1Y0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYSQxMCQ1UTdtQjZIUkQ5RGZ1MDNQYzE5bXdPSnhnZVFBdmRmcDBDeUd0MXlDS0hnangwNzA2cGlleSIsImZhY2Vib29rX2lkIjoibG9jYWwiLCJnb29nbGVfaWQiOiJsb2NhbCIsImFkbWluIjpudWxsLCJpYXQiOjE1NjU5NjY2MDF9.jOtq76O5MRHVY5KL4aYSJ6wKQWCcR_lpdjCRciwLo0M\"\r\n}"
+		},
+		{
+			"id": "cf07acda-23fa-bcd0-ff94-15a7b6dff17a",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://job-market.jp:8089/cv?cv_id=8",
+			"queryParams": [
+				{
+					"key": "cv_id",
+					"value": "8",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "DELETE",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1566025381238,
+			"name": "delete cv",
+			"description": "delete cv ",
+			"collectionId": "ebbb9045-39af-29dd-56d1-d311f321c764",
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK",
+						"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+					},
+					"time": 169,
+					"headers": [
+						{
+							"name": "access-control-allow-credentials",
+							"key": "access-control-allow-credentials",
+							"value": "true",
+							"description": "Indicates whether or not the response to the request can be exposed when the credentials flag is true. When used as part of a response to a preflight request, this indicates whether or not the actual request can be made using credentials."
+						},
+						{
+							"name": "access-control-allow-origin",
+							"key": "access-control-allow-origin",
+							"value": "http://localhost:3000",
+							"description": "Specifies a URI that may access the resource. For requests without credentials, the server may specify '*' as a wildcard, thereby allowing any origin to access the resource."
+						},
+						{
+							"name": "connection",
+							"key": "connection",
+							"value": "keep-alive",
+							"description": "Options that are desired for the connection"
+						},
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "57",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "content-type",
+							"key": "content-type",
+							"value": "application/json; charset=utf-8",
+							"description": "The mime type of this content"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Sat, 17 Aug 2019 07:39:39 GMT",
+							"description": "The date and time that the message was sent"
+						},
+						{
+							"name": "etag",
+							"key": "etag",
+							"value": "W/\"39-eWuE6LLKyMCwyVdIsLXp+4fRi2M\"",
+							"description": "An identifier for a specific version of a resource, often a message digest"
+						},
+						{
+							"name": "vary",
+							"key": "vary",
+							"value": "Origin",
+							"description": "Tells downstream proxies how to match future request headers to decide whether the cached response can be used rather than requesting a fresh one from the origin server."
+						},
+						{
+							"name": "x-powered-by",
+							"key": "x-powered-by",
+							"value": "Express",
+							"description": "Specifies the technology (ASP.NET, PHP, JBoss, e.g.) supporting the web application (version details are often in X-Runtime, X-Version, or X-AspNet-Version)"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "{\"status\":200,\"message\":\"delete successful\",\"value\":null}",
+					"language": "json",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "delete cv",
+					"id": "e4913b80-e7d1-d915-36a9-8a82c82b30f3",
+					"request": {
+						"url": "http://localhost:8089/cv",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": "",
+								"enabled": true
+							}
+						],
+						"headers": "Content-Type: application/json\n",
+						"data": "{\n\t\"cv_id\" : 6\n}",
+						"method": "DELETE",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "{\n\t\"cv_id\" : 5\n}"
+		}
+	]
+}

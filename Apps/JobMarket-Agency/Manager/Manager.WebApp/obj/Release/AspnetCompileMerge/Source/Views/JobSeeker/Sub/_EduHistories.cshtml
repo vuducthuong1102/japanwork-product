@@ -1,0 +1,103 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using Manager.WebApp.Models
+
+@model List<JobSeekerEduHistoryModel>
+
+@{
+    var isDetail = false;
+    if (Model.HasData())
+    {
+        isDetail = Model[0].is_detail;
+    }
+}
+<div class="form-group m-form__group row mt10">
+    <div class="col-md-12 table-responsive">
+        <table class="table table-bordered table-responsive-lg">
+            <thead>
+                <tr>
+                    <th class="text-center" width="50"></th>
+                    <th class="text-center">@ManagerResource.LB_QUALIFICATION</th>
+                    <th class="text-center">@ManagerResource.LB_SCHOOL_NAME</th>
+                    <th class="text-center">@ManagerResource.LB_MAJOR</th>
+                    <th class="text-center">@ManagerResource.LB_EDUCATION_START</th>
+                    <th class="text-center">@ManagerResource.LB_TO_DATE</th>
+                    <th class="text-center">@ManagerResource.LB_EDUCATION_STATUS</th>
+                    @if (!isDetail)
+                    {
+                        <th class="text-center"></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.HasData())
+                {
+                    var stt = 0;
+                    foreach (var record in Model)
+                    {
+                        stt++;
+                        <tr>
+                            <td class="text-center">@stt</td>
+                            <td>@record.qualification_label</td>
+                            <td>
+                                <b>
+                                    @record.school
+                                </b>
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(record.major_label))
+                                {
+                                    <span>@record.major_label</span>
+                                }
+                                else
+                                {
+                                    if (record.major_id == 0)
+                                    {
+                                        <span>@record.major_custom</span>
+                                    }
+                                }
+                            </td>
+                            <td class="text-center">
+                                @record.start_date.DateTimeQuestToString("MM-yyyy")
+                            </td>
+                            <td class="text-center">
+                                @record.end_date.DateTimeQuestToString("MM-yyyy")
+                            </td>
+                            <td class="text-center">
+                                @foreach (var myEnum in Enum.GetValues(typeof(EnumEducationStatus)))
+                                {
+                                    var chkItem = (int)myEnum;
+                                    var chkStr = string.Empty;
+                                    if (chkItem == record.status)
+                                    {
+                                        chkStr = "selected";
+                                        <span class="label label-info">@EnumExtensions.GetEnumDescription((Enum)myEnum)</span>
+                                    }
+                                }
+                            </td>
+                            @if (!isDetail)
+                            {
+                                <td class="text-center">
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-info m-btn--icon m-btn--icon-only m-btn--pill" data-modal="" data-href="@Url.Action("UpdateEduHistory", "JobSeeker", new { id = record.id, job_seeker_id = record.job_seeker_id })" title="@ManagerResource.LB_EDIT">
+                                        <i class="la la-pencil"></i>
+                                    </a>
+                                    <a class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" href="javascript:;" data-modal="" data-size="default" data-href="@Url.Action("DeleteEduHistory", "JobSeeker", new { id = record.id, job_seeker_id = record.job_seeker_id })" title="@ManagerResource.LB_DELETE">
+                                        <i class="la la-trash"></i>
+                                    </a>
+                                </td>
+                            }
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="20">
+                            <span class="text-danger"><i class="fa fa-warning"></i> @ManagerResource.LB_NOT_UPDATED</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

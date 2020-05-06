@@ -1,0 +1,21 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.WebApp.Models
+@model MediaFileViewModel
+
+<input type="file" name="@Model.FieldName" id="@Model.FieldName" class="hidden FilePreviewChange" data-preview="thumb-@Model.FieldName" />
+<div id="thumb-@Model.FieldName">
+    @if (!string.IsNullOrEmpty(Model.FieldValue))
+    {
+        <img class="img-res thumbImg img-thum-preview pointer" src="@((string.IsNullOrEmpty(Model.FullPath)) ? SocialCdnHelper.GetFullImgPath(Model.FieldValue) : Model.FullPath)" onerror="this.onerror=null;this.src='/Content/images/no-image.png';" width="100" height="120" />
+    }
+    else
+    {
+        <img class="img-res thumbImg img-thum-preview pointer" src="/Content/images/no-image.png" width="100" height="120" />
+    }
+</div>
+
+<button class="btn btn-outline-info btn-sm" type="button" onclick="return $('#@Model.FieldName').click();"><i class="fa fa-cloud-upload"></i> @ManagerResource.LB_UPLOAD_IMAGE</button>
+@*<a data-toggle="modal" class="btn btn-info btn-sm myBrowserBtn" data-control="@Model.StorageElementName" href="javascript:;" data-target="#fileModal">
+    <i class="fa fa-sellsy"></i> @ManagerResource.LB_LIBRARY
+</a>*@
+<input type="hidden" value="@Model.FieldValue" id="@Model.StorageElementName" name="@Model.StorageElementName" data-preview="thumb-@Model.FieldName" />

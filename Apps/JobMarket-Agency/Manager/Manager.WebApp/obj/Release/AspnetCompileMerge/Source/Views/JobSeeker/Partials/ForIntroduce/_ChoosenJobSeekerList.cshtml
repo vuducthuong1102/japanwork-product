@@ -1,0 +1,165 @@
+﻿@using Manager.WebApp.Resources
+@using Manager.SharedLibs
+@using  Manager.WebApp.Caching
+@model Manager.WebApp.Models.JobSeekerChoosenModel
+@{
+    var hasJapanseLevel = false;
+    var hasCountries = false;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    if (Model.JapanseLevels.HasData())
+    {
+        hasJapanseLevel = true;
+    }
+    if (Model.Countries.HasData())
+    {
+        hasCountries = true;
+    }
+}
+<div class="m-portlet__body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="m-section mb-0">
+                <div class="m-section__content table-responsive" style="max-height:300px;overflow:auto;">
+                    <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered hover-table">
+                        <tbody>
+                            @if (Model.SearchResults != null && Model.SearchResults.Count > 0)
+                            {
+                                var stt = 0;
+                                foreach (var record in Model.SearchResults)
+                                {
+                                    stt++;
+                                    var disabledItem = false;
+                                    var disabledStr = string.Empty;
+                                    if (record.Extensions != null)
+                                    {
+                                        if (MyObjectExtensions.PropertyExists(record.Extensions, "is_invited"))
+                                        {
+                                            if (record.Extensions.is_invited)
+                                            {
+                                                disabledItem = true;
+                                                disabledStr = ManagerResource.LB_INVITATION_SENT;
+                                            }
+                                        }
+                                    }
+                                    var age = DateTime.Now.Year - record.birthday.Value.Year;
+                                    int objectId = record.id;
+                                    if (Model.type_job_seeker == 0)
+                                    {
+                                        objectId = record.cv_id;
+                                    }
+                                    var detailLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = objectId, status = (int)EnumApplicationStatus.Interview, type_job_seeker = Model.type_job_seeker });
+
+                                    <tr class="@(disabledItem ? "text-success" : string.Empty)" data-id="@record.id">
+                                        <td height="80">
+                                            <div class="row col-md-12">
+                                                <div class="col-md-5">
+                                                    <span class="check-item">
+                                                        @if (!disabledItem)
+                                                        {
+                                                            <label class="m-checkbox m-checkbox--square" style="margin-bottom: 15px;">
+                                                                <input type="checkbox" value="@record.id" class="cbxJkItem" data-text="@record.fullname">
+                                                                <span></span>
+                                                            </label>
+                                                        }
+                                                    </span>
+                                                    @*<span>
+                                                        @if (hasCountries)
+                                                        {
+                                                            var countryInfo = Model.Countries.FirstOrDefault(s => s.id == record.nationality_id);
+                                                            if (countryInfo != null)
+                                                            {
+                                                                <img class="image-lang" src="/Content/images/flags/@(countryInfo.code).png" width="26">
+                                                            }
+                                                        }
+
+                                                    </span>*@
+                                                    <a href="@detailLink" target="_blank">
+                                                        <span class="ml10">
+                                                            <span class="fz-15 @(disabledItem ? "text-success" : string.Empty)">@record.fullname</span>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    @ManagerResource.LB_MAJOR:
+                                                    @record.major
+                                                </div>
+                                               
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <div class="col-md-5 pl-3">
+                                                    @if (record.gender == 1)
+                                                    {
+                                                        <span class="ml-5 ml-rs">
+                                                            <i class='fa fa-mars text-success' aria-hidden='true'></i> @ManagerResource.LB_MALE
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="ml-5 ml-rs">
+                                                            <i class='fa fa-venus text-danger' aria-hidden='true'></i> @ManagerResource.LB_FEMALE
+                                                        </span>
+                                                    }
+                                                    @if (age < 10)
+                                                    {
+                                                        <span class="ml-5">&nbsp; @(age) @ManagerResource.LB_AGE.ToLower()</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="ml-5">@(age) @ManagerResource.LB_AGE.ToLower()</span>
+                                                    }
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    @ManagerResource.LB_JOB_QUALIFICATION:
+                                                    @record.qualification
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span>@ManagerResource.LB_JAPANESE_LEVEL</span>:
+                                                    @if (hasJapanseLevel)
+                                                    {
+                                                        var item = Model.JapanseLevels.FirstOrDefault(s => s.id == record.japanese_level_number);
+                                                        if (item != null)
+                                                        {
+                                                            @item.level
+                                                        }
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="11">
+                                        @ManagerResource.LB_NO_RECORD
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                    @RenderPaging()
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@helper RenderPaging()
+{
+    if (Model.WasOverRecordsInPage())
+    {
+        <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+            <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                     Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "JobChoosenJobSeekerSearchNext")
+            </div>
+        </div>
+    }
+}
+

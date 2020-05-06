@@ -1,0 +1,68 @@
+﻿@model MySite.Models.JobSearchModel
+@using MySite.Helpers
+@using MySite.Resources
+
+@if (Model != null)
+{
+    if (Model.FieldLists != null && Model.FieldLists.Count > 0)
+    {
+        Model.FieldLists = Model.FieldLists.Where(x => x.employment_type == 0).ToList();
+        var totalCount = Model.FieldLists.Sum(s => s.count_num);
+        var totalCountAddToDay = Model.FieldLists.Sum(s => s.count_add_today);
+        <div class="heading">
+            <h2>@UserWebResource.LB_POPULAR_FIELDS</h2>
+            <span>@totalCount @UserWebResource.LB_JOBS @(totalCountAddToDay > 0 ? "- " + totalCountAddToDay + " " + UserWebResource.LB_NEW_JOB.ToLower() : "")</span>
+        </div><!-- Heading -->
+        var count = Model.FieldLists.Count;
+        if (count <= 4)
+        {
+            @RenderItem(0, count)
+        }
+        else
+        {
+            @RenderItem(0, 4)
+        }
+        if (count > 4 && count <= 8)
+        {
+            @RenderItem(4, count)
+        }
+        else
+        {
+            @RenderItem(4, 8)
+        }
+    }
+}
+
+@helper RenderItem(int start, int end)
+{
+    var currentLang = CommonHelpers.GetCurrentLangageCode();
+    <div class="cat-sec">
+        <div class="row no-gape">
+            @for (int i = start; i < end; i++)
+            {
+                var childIds = string.Join(",", Model.FieldLists[i].Sub_fields.Select(s => s.id));
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="p-category">
+                        <a href="/job/search?CurrentPage=1&sorting_date=desc&sub_field_ids=@childIds&salary_min=0&salary_max=0&calculate_by=0&salary_id=0&keyword=&employment_type_id=2" title="">
+                            <i class="@Model.FieldLists[i].icon"></i>
+                            @{ 
+                                var fieldName = string.Empty;
+                                if (Model.FieldLists[i].LangList.HasData())
+                                {
+                                    fieldName = Model.FieldLists[i].LangList.Where(x => x.language_code == currentLang).Select(x => x.field).FirstOrDefault();
+                                }
+
+                                if (string.IsNullOrEmpty(fieldName))
+                                {
+                                    fieldName = Model.FieldLists[i].field;
+                                }
+                            }
+                            <span>@fieldName</span>
+                            <p>(@Model.FieldLists[i].count_num @UserWebResource.LB_OPENNING_POSITIONS)</p>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}

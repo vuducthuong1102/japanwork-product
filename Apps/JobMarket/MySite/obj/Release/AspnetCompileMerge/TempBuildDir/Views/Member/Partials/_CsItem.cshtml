@@ -1,0 +1,37 @@
+﻿@using MySite.Helpers
+@using MySite.Resources
+@model MySite.Models.CsInfoModel
+
+@if (Model != null)
+{
+    var slug = UrlFriendly.ConvertToUrlFriendly(Model.cs_title);
+    var detailLink = SecurityHelper.GenerateSecureLink("Member", "Detail", new { id = Model.id });
+    var previewLink = SecurityHelper.GenerateSecureLink("Member", "Career", new { id = Model.id });
+    var updateLink = SecurityHelper.GenerateSecureLink("Cs", "UpdateCs", new { lr = Model.cs_title, id = Model.id });
+    <tr>
+        <td>
+            <div class="table-list-title">
+                <a data-href="@detailLink" data-id="@Model.id" class="btn-view-detail">@Model.cs_title</a>
+            </div>
+        </td>
+        <td class="text-center">
+            <span title="@DateHelpers.FormatToStringTitle(Model.created_at)">@Model.created_at.DateTimeQuestToString()</span>
+            @*@if(Model.main_cs > 0)
+            {
+                <br />
+                <strong class="fz-14 text-danger">(@UserWebResource.LB_DEFAULT_MAIN_CS)</strong>
+            }*@
+        </td>
+        <td class="text-center">
+            <ul class="action_job">
+                @*<li><span>Xem CS</span><a class="fz-20 btn-preview-cs" href="javascript:;" data-id="@Model.id" data-href="@previewLink" title=""><i class="fa fa-file"></i></a></li>*@
+                @*@if (Model.main_cs == 0)
+                {
+                    <li><span>@UserWebResource.BT_SET_AS_DEFAULT</span><a class="fz-20" href="javascript:;" data-modal="" data-href="@Url.Action("SetMainCs","Member", new { id = Model.id })" title=""><i class="la la-check"></i></a></li>
+                }*@
+                <li><a title="@UserWebResource.BT_EDIT" class="fz-20" href="@updateLink"><i class="la la-pencil"></i></a></li>
+                <li><a title="@UserWebResource.BT_DELETE" class="fz-20" href="javascript:;" data-modal="" data-href="@Url.Action("DeleteCs","Member", new { id = Model.id })"><i class="la la-trash-o"></i></a></li>
+            </ul>
+        </td>
+    </tr>
+}

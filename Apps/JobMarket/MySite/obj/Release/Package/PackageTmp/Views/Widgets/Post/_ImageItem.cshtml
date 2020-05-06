@@ -1,0 +1,12 @@
+﻿@using ApiMySiteSocial.DB.Sql.Entities
+@using MySite.Helpers
+@model IdentityImage
+
+@if (Model != null)
+{
+    <div class="item item-uploaded">
+    <span class="imageThumb">
+        <img src="@CdnHelper.SocialGetFullImgPath(Model.Url)" title="" /></span>
+        <i class="icon-delete_photo i1 ie-2" data-url="@Model.Url" data-id="@Model.Id" data-uploaded="true"></i>
+    </div>
+}

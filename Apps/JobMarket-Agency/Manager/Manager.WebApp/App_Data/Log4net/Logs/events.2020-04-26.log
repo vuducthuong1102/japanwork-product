@@ -1,0 +1,188 @@
+2020-04-26 04:28:28,395 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 04:28:28,410 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-26 04:28:28,411 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 04:28:28,438 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 04:28:28,438 [1] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-26 04:28:28,439 [1] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:37:28,910 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:37:28,915 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:38:00,608 [41] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-26 22:38:01,104 [112] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-26 22:38:01,607 [84] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:38:02,986 [123] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:38:02,988 [123] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:38:30,392 [71] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:38:30,393 [71] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:38:30,395 [71] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:39:53,283 [29] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:39:55,862 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:39:55,863 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:39:55,864 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:40:14,876 [138] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:40:20,946 [29] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:40:20,947 [29] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:40:20,949 [29] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:41:15,467 [138] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:41:18,047 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:41:18,048 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:41:18,049 [137] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 278
+2020-04-26 22:42:16,738 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:16,752 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-26 22:42:16,753 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:16,787 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:16,788 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-26 22:42:16,789 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:57,206 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:57,219 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-26 22:42:57,220 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:57,252 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:42:57,253 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-26 22:42:57,254 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:43:04,241 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:13,382 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:13,415 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:33,593 [118] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:33,623 [118] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:33,654 [118] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:42,116 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:42,145 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:43:42,172 [84] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:44:12,447 [112] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:44:12,479 [112] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:44:12,510 [112] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:46:45,060 [27] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:46:45,091 [27] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:47:47,268 [37] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:47:47,298 [37] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:48:21,558 [112] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:48:21,588 [112] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:48:43,655 [47] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:48:43,684 [47] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:48:43,716 [47] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 22:49:12,178 [102] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:51:40,358 [19] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:51:40,370 [19] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-26 22:51:40,371 [19] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:51:40,400 [19] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:51:40,401 [19] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-26 22:51:40,402 [19] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 22:51:52,151 [92] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:52:47,320 [34] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-26 22:52:47,817 [24] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-26 22:52:48,318 [21] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:58:09,284 [55] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:59:22,046 [50] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 22:59:52,831 [50] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:01:16,076 [54] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:04:13,331 [126] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:04:57,966 [50] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:05:34,095 [65] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:05:34,130 [65] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:05:34,162 [65] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:10:01,577 [110] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:10:08,768 [68] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:10:08,797 [68] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:10:08,827 [68] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:10:52,638 [37] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:11:03,687 [110] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:13:41,855 [118] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:14:58,880 [37] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:14:58,909 [37] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:14:58,940 [37] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:16:37,143 [101] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:20:21,512 [101] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:20:21,545 [101] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:20:21,576 [101] ERROR Manager.WebApp.Helpers.FrontendHelpers - Could not GenerateCompanyAddress: System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at System.String.get_Chars(Int32 index)
+   at Manager.WebApp.Helpers.FrontendHelpers.GenerateCompanyAddress(IdentityCompany model, String currentLang) in C:\Project\Apps\JobMarket-Agency\Manager\Manager.WebApp\Helpers\Business\FrontendHelpers.cs:line 286
+2020-04-26 23:24:53,021 [157] DEBUG Manager.WebApp.Services.A_ReportServices - Begin JobByWeekAsync request
+2020-04-26 23:24:53,520 [157] DEBUG Manager.WebApp.Services.A_ReportServices - Begin ApplicationByWeekAsync request
+2020-04-26 23:24:54,026 [134] DEBUG Manager.WebApp.Services.AgencyServices - Begin GetSchedulesByStaffAsync request
+2020-04-26 23:39:30,596 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 23:39:30,608 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is starting up
+2020-04-26 23:39:30,609 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 23:39:30,638 [89] INFO  Manager.WebApp.Startup - ======================================================
+2020-04-26 23:39:30,639 [89] INFO  Manager.WebApp.Startup - Manager.WebApp is successfully configured
+2020-04-26 23:39:30,640 [89] INFO  Manager.WebApp.Startup - ======================================================

@@ -1,0 +1,58 @@
+﻿@model MySite.Models.WebVerifyOTPModel
+@using MySite.Settings;
+@using CaptchaMvc.HtmlHelpers
+@using MySite.Resources;
+
+
+@Html.Partial("_Notifications")
+
+<div class="row">
+    <div class="col-md-12">
+        @using (Html.BeginForm("VerifyOTP", "WebAccount", null, FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="col-sm-12 col-xs-12">
+                    @Html.HiddenFor(m=>m.UserId)
+                    @Html.HiddenFor(m=>m.TokenKey)
+                    @Html.HiddenFor(m => m.PhoneNumber)
+                    @Html.HiddenFor(m => m.OTPType)
+                    @Html.HiddenFor(m=>m.ActionType)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.OTPCode)
+                        @Html.TextBoxFor(m => m.OTPCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.OTPCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>                
+                <div class="col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        @catpcha
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" class="width-35 btn btn-sm btn-primary">
+                        <i class="ace-icon fa fa-key"></i>
+                        <span class="bigger-110">@UserWebResource.TEXT_SUBMIT_BUTTON</span>
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+@section PagePluginScripts{
+    @catpcha.RenderScript()
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var refreshBtn = $('a[href="#CaptchaImage"]');
+            refreshBtn.html('<button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-repeat" ></span > @UserWebResource.TEXT_REFRESH_CAPTCHA_BUTTON</button >');
+            refreshBtn.prev("br").remove();
+            $("#CaptchaInputText").addClass("form-control");
+            $('span[data-valmsg-for="CaptchaInputText"]').addClass("text-danger");
+            $('span[data-valmsg-for="CaptchaInputText"]').prev("br").remove();
+        });
+    </script>
+}

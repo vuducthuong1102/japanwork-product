@@ -1,0 +1,195 @@
+﻿@using Manager.WebApp.Resources
+@model Manager.WebApp.Models.CompanyEditModel
+
+@{
+    ViewBag.HideSubHeader = true;
+}
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+                <h2 class="" style="padding:10px;">
+                    @ManagerResource.CONFIRM_DELETE
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-portlet__body">
+        @RenderBaseForm()
+    </div>
+
+
+</div>
+<!--end::Portlet-->
+
+@section PageInlineStyles{
+    <link href="~/Content/Extensions/fancybox/jquery.fancybox.min.css" rel="stylesheet" />
+}
+
+@helper RenderBaseForm()
+{
+    <!--begin::Form-->
+    using (Html.BeginForm("Create", "Company", FormMethod.Post, new { role = "form", @class = "m-form m-form--fit", id = "frmCreate", encType = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(m => m.id)
+        <div class="m-section">
+            @*<h2 class="m-section__heading">
+                    Benifits Of Joining
+                </h2>*@
+            <div class="m-section__content">
+                <p>
+                    <h4 class="text-danger">There are many data which related to this item, you need to clear some data before delete it.</h4>
+                </p>
+                <p>
+                    <h5 class="text-danger">Becareful, this action will clear your data (CV Applications, Jobs, ...)</h5>
+                </p>
+            </div>
+        </div>
+        <div class="m-separator m-separator--fit"></div>
+
+        <div class="m-widget1 m-widget1--paddingless">
+            <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                    <div class="col-md-4">
+                        <h3 class="m-widget1__title">
+                            CV Applications
+                        </h3>
+                        <span class="m-widget1__desc">
+                            All applied CVs of job seeker
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-left">
+                        <span class="m-widget1__number m--font-danger">
+                            17,800
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-lef">
+                        <a class="btn btn-outline-danger" title="@ManagerResource.LB_DELETE"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                    <div class="col-md-4">
+                        <h3 class="m-widget1__title">
+                            Jobs
+                        </h3>
+                        <span class="m-widget1__desc">
+                            All Job of this company
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-left">
+                        <span class="m-widget1__number m--font-danger">
+                            1,800
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-lef">
+                        <a class="btn btn-outline-danger" title="@ManagerResource.LB_DELETE"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <div class="m-widget1__item">
+                <div class="row m-row--no-padding align-items-center">
+                    <div class="col-md-4">
+                        <h3 class="m-widget1__title">
+                            Contracts
+                        </h3>
+                        <span class="m-widget1__desc">
+                            All contracts of this company
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-left">
+                        <span class="m-widget1__number m--font-danger">
+                            30
+                        </span>
+                    </div>
+                    <div class="col-md-4 m--align-lef">
+                        <a class="btn btn-outline-danger" title="@ManagerResource.LB_DELETE"><i class="fa fa-trash"></i> </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="m-separator m-separator--fit"></div>
+        <div class="m-widget1 m-widget1--paddingless row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <a class="btn btn-outline-info btn-back" @*data-back="@Url.Action("Index", "Company")"*@ href="@Url.Action("Index", "Company")"><i class="fa fa-close"></i> @ManagerResource.LB_CANCEL</a>
+
+                <button type="submit" class="btn btn-outline-info pull-right">
+                    <i class="fa fa-trash"></i> Delete Company
+                </button>
+            </div>
+        </div>
+    }
+    <!--end::Form-->
+}
+
+@section PageInlineScripts{
+    <script>
+        $(".m-select2").select2({
+
+        });
+
+        $(".select-region").change(function () {
+            var counter = parseInt($("#RegionSelectCounter").val());
+            counter++;
+
+            $("#RegionSelectCounter").val(counter);
+
+            var id = $(this).val();
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Master/GetPrefecturesByRegion';
+            params['requestType'] = 'POST';
+            params['data'] = { id: id };
+            params['showloading'] = false;
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (result) {
+                $(".select-prefecture").html(result);
+                $(".select-city").find('option').not(':first').remove();
+
+                if (counter == 1) {
+                    $(".select-prefecture").val($("#Address_prefecture_id").val());
+                    $(".select-prefecture").change();
+                }
+            };
+            doAjax(params);
+        });
+
+        $(".select-prefecture").change(function () {
+            var counter = parseInt($("#PrefectureSelectCounter").val());
+            counter++;
+
+            $("#PrefectureSelectCounter").val(counter);
+
+            var id = $(this).val();
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Master/GetCitiesByPrefecture';
+            params['requestType'] = 'POST';
+            params['data'] = { id: id };
+            params['showloading'] = false;
+            params['dataType'] = "html";
+
+            params['successCallbackFunction'] = function (result) {
+                $(".select-city").html(result);
+
+                if (counter == 1) {
+                    $(".select-city").val($("#Address_city_id").val());
+                    $(".select-city").change();
+                }
+            };
+
+            doAjax(params);
+        });
+
+        $(function () {
+            $(".select-region").change();
+        });
+    </script>
+}

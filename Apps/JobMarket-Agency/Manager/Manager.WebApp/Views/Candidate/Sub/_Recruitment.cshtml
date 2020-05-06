@@ -1,0 +1,237 @@
+﻿@using Manager.WebApp.Resources;
+@using Manager.WebApp.Caching;
+@using Manager.SharedLibs;
+@model Manager.WebApp.Models.ManageApplicationModel
+
+@{
+    //ViewBag.Title = ManagerResource.LB_APPLICANT_LIST;
+    var currentLang = UserCookieManager.GetCurrentLanguageOrDefault();
+    var hasStaff = Model.Staffs.HasData();
+}
+@using (Html.BeginForm("CandidateRecruitmentSearch", "Job", FormMethod.Post, new { role = "form", @class = "", id = "frmRecruitment" }))
+{
+    <input type="hidden" value="@Model.job_id" name="job_id" />
+    <input type="hidden" value="@Model.CurrentPage" name="CurrentPage" />
+    <input type="hidden" value="@Model.SearchExec" name="SearchExec" />
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="m-portlet">
+                <div class="m-portlet__body">
+                    <!--end::Section-->
+                    <!--begin::Section-->
+                    <div class="m-section">
+                        <div class="m-section__content table-responsive">
+                            <table id="sample-table-1" class="table m-table m-table--head-bg-brand table-bordered custom-border custom-label custom-checkbox">
+                                <tbody>
+                                    @if (Model.SearchResults.HasData())
+                                    {
+                                        var stt = 0;
+                                        foreach (var record in Model.SearchResults)
+                                        {
+                                            stt++;
+                                            var age = 0;
+                                            if (record.birthday != null)
+                                            {
+                                                age = DateTime.Now.Year - record.birthday.Value.Year;
+                                            }
+                                            int show_more = 0;
+                                            if (record.is_show_info)
+                                            {
+                                                show_more = 1;
+                                            }
+                                            <tr>
+                                                <td rowspan="3" class="width-4">
+                                                    <div class="display-flex">
+                                                        @{
+
+                                                            var previewLink = SecurityHelper.GenerateSecureLink("CV", "Preview", new { id = record.cv_id, show_more = show_more, ctl_active = "Job", act_active = "Index" });
+                                                            <a class="" href="@previewLink" target="_blank" title="@record.fullname">
+                                                                <span class="ml10">
+                                                                    <span class="fz-15"> @record.fullname</span><br />
+                                                                    <span class="fz-13 job--code ml-2">@record.code</span>
+                                                                </span>
+
+                                                            </a>
+                                                        }
+                                                    </div>
+                                                </td>
+                                                <td class="width-2">
+                                                    <label>@ManagerResource.LB_GENDER</label>
+                                                    @if (record.gender == 1)
+                                                    {
+                                                        <span>
+                                                            @ManagerResource.LB_MALE
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>
+                                                            @ManagerResource.LB_FEMALE
+                                                        </span>
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <label>@ManagerResource.LB_AGE</label>
+                                                    @if (age < 10)
+                                                    {
+                                                        <span>@(age) @ManagerResource.LB_AGE.ToLower()</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@(age) @ManagerResource.LB_AGE.ToLower()</span>
+                                                    }
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <label>@ManagerResource.LB_PERSON_CHARGE</label>
+                                                    @if (hasStaff)
+                                                    {
+                                                        var picInfo = Model.Staffs.FirstOrDefault(s => s.StaffId == record.pic_id);
+                                                        if (picInfo != null)
+                                                        {
+                                                            @picInfo.FullName
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <label>@ManagerResource.LB_QUALIFICATION</label>
+                                                    @record.qualification
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    @if (record.status != 0)
+                                                    {
+                                                        <label>@ManagerResource.LB_APPROVED_DATE</label>
+                                                        @record.updated_at.DateTimeQuestToLocaleString(currentLang)
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>@ManagerResource.LB_APPLIED_DATE</label>
+                                                        @record.created_at.DateTimeQuestToLocaleString(currentLang)
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <label>@ManagerResource.LB_STATUS</label>
+                                                    @Html.Partial("../Application/Partials/_Status", record.status)
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3">
+                                                    @if (record.status == (int)EnumApplicationStatus.Applied)
+                                                    {
+                                                        if (PermissionHelper.CheckPermission("Accept", "Application"))
+                                                        {
+                                                            <a class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-modal="" data-size="default" data-href="@Url.Action("Accept", "Application", new { id = record.id, cv_id = record.cv_id, pic_id = record.pic_id })" title="@ManagerResource.BT_APPLICATION_ACCEPT">
+                                                                <i class="fa fa-check"></i> @ManagerResource.BT_APPLICATION_ACCEPT
+                                                            </a>
+                                                        }
+
+                                                        if (PermissionHelper.CheckPermission("Ignore", "Application"))
+                                                        {
+                                                            <a class="m-portlet__nav-link btn btn-danger btn-sm m-btn m-btn m-btn--icon" data-size="default" href="javascript:;" data-modal="" data-href="@Url.Action("Ignore", "Application", new { id = record.id, cv_id = record.cv_id })" title="@ManagerResource.BT_APPLICATION_IGNORE">
+                                                                <i class="fa fa-hand-stop-o"></i> @ManagerResource.BT_APPLICATION_IGNORE
+                                                            </a>
+                                                        }
+                                                    }
+
+                                                    @if (record.status == (int)EnumApplicationStatus.Interview)
+                                                    {
+                                                        var noteLink = SecurityHelper.GenerateSecureLink("JobSeeker", "ShowNote", new { job_seeker_id = record.job_seeker_id, type_job_seeker = 0 });
+                                                        var sendMailLink = string.Empty;
+                                                        if (!string.IsNullOrEmpty(record.email) && Utility.IsEmail(record.email))
+                                                        {
+                                                            sendMailLink = SecurityHelper.GenerateSecureLink("Application", "SendEmail", new { job_seeker_id = record.job_seeker_id, receiver = record.email, is_online = 1 });
+                                                        }
+                                                        if (PermissionHelper.CheckPermission("ShowNote", "Application"))
+                                                        {
+                                                            <a href="javascript:;" data-href="@noteLink" data-modal="" data-id="@record.job_seeker_id" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon show-note" title="@ManagerResource.LB_ADD_NOTE">
+                                                                <i class="la la-plus"></i> @ManagerResource.LB_ADD_NOTE
+                                                            </a>
+                                                        }
+
+                                                        if (!string.IsNullOrEmpty(sendMailLink))
+                                                        {
+                                                            <a href="javascript:;" class="m-portlet__nav-link btn btn-warning btn-sm m-btn m-btn m-btn--icon" data-href="@sendMailLink" data-modal="" title="@ManagerResource.LB_SEND_EMAIL">
+                                                                <i class="fa fa-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="javascript:;" class="m-portlet__nav-link btn-email-invalid btn btn-warning btn-sm m-btn m-btn m-btn--icon" title="@ManagerResource.LB_SEND_EMAIL">
+                                                                <i class="la la-envelope"></i> @ManagerResource.LB_SEND_EMAIL
+                                                            </a>
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <tr>
+                                            <td colspan="11">
+                                                @ManagerResource.LB_NO_RECORD
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        @RenderPaging()
+                    </div>
+                    <!--end::Section-->
+                </div>
+                <!--end::Form-->
+            </div>
+        </div>
+    </div>
+}
+@helper RenderPaging()
+{
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--brand m-datatable--loaded">
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            @if (Model.WasOverRecordsInPage())
+            {
+
+                @Html.BootstrapPager(Model.CurrentPage, index => "javascript:;",
+                    Model.TotalCount, pageSize: Model.PageSize, numberOfLinks: 10, onclickEnvent: "CandidateRecruitmentSearchNext")
+            }
+
+            @if (Model.TotalCount > 0)
+            {
+                <div class="m-datatable__pager-info">
+                    <span class="m-datatable__pager-detail">
+                        @ManagerResource.LB_RECORDS_ALL @Model.TotalCount @ManagerResource.LB_RECORDS @Model.StartCount() 〜 @Model.EndCount(Model.SearchResults.Count()) @ManagerResource.LB_RECORDS_DISPLAY
+                    </span>
+                </div>
+            }
+        </div>
+
+    </div>
+}
+@section PageInlineStyles{
+}
+<script>
+    function CandidateRecruitmentSearchNext(pageNum) {
+        $("#frmRecruitment").find("input[name=CurrentPage]").val(pageNum);
+        CandidateRecruitmentSearch();
+    }
+    function CandidateRecruitmentSearch() {
+        var frmData = $("#frmRecruitment").serialize();
+        var params = $.extend({}, doAjax_params_default);
+        params['url'] = "/Candidate/RecruitmentSearch";
+        params['requestType'] = "POST";
+        params['data'] = frmData;
+        params['dataType'] = "html";
+
+        params['successCallbackFunction'] = function (data) {
+            $("#CandidateRecruitments").html(data);
+        };
+
+        doAjax(params);
+    }
+</script>

@@ -1,0 +1,29 @@
+2020-04-07 10:43:00,987 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 10:43:00,999 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-07 10:43:01,000 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 10:43:01,111 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 10:43:01,112 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-07 10:43:01,113 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 10:43:07,102 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 10:43:07,179 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-07 10:43:13,207 [13] DEBUG MySite.Controllers.WebAuthController - Begin QUICK-LOGIN-WEB request
+2020-04-07 10:43:13,214 [13] DEBUG MySite.Controllers.WebAuthController - QUICK-LOGIN-WEB Returned Model encrypted = {"Code":0,"Msg":null,"TokenKey":null,"ReturnUrl":null,"Data":{"Id":0,"UserName":null,"Email":null,"FullName":null,"DisplayName":null,"Avatar":null,"PhoneNumber":null,"CreatedDateUtc":null,"TokenKey":null,"TokenCreatedDate":null,"TokenExpiredDate":null,"LoginDurations":0,"OTPType":null}}
+2020-04-07 10:43:17,311 [13] DEBUG MySite.Controllers.WebAuthController - Ended QUICK-LOGIN-WEB request
+2020-04-07 10:43:18,342 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 10:43:18,350 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-07 10:43:32,781 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 10:43:32,785 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-07 10:43:47,825 [10] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 10:43:47,829 [10] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-07 11:05:52,331 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 11:05:52,343 [1] INFO  MySite.Startup - MySite is starting up
+2020-04-07 11:05:52,344 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 11:05:52,478 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 11:05:52,479 [1] INFO  MySite.Startup - MySite is successfully configured
+2020-04-07 11:05:52,479 [1] INFO  MySite.Startup - ======================================================
+2020-04-07 11:05:54,590 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 11:05:54,665 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request
+2020-04-07 11:06:12,473 [27] DEBUG MySite.Services.ApplicationServices - Begin PUT SendCvAsync request
+2020-04-07 11:06:14,277 [27] DEBUG MySite.Services.ApplicationServices - End SendCvAsync request
+2020-04-07 11:06:15,653 [9] DEBUG MySite.Services.FooterServices - Begin GET GetFooterAsync request
+2020-04-07 11:06:15,660 [9] DEBUG MySite.Services.FooterServices - End GetFooterAsync request

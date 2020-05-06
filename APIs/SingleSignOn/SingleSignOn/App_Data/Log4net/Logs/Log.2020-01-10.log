@@ -1,0 +1,9 @@
+2020-01-10 11:33:26,641 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-10 11:33:26,655 [1] INFO  SingleSignOn.Startup - SingleSignOn is starting up
+2020-01-10 11:33:26,657 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-10 11:33:26,794 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-10 11:33:26,795 [1] INFO  SingleSignOn.Startup - SingleSignOn is successfully configured
+2020-01-10 11:33:26,796 [1] INFO  SingleSignOn.Startup - ======================================================
+2020-01-10 11:33:27,646 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Begin LOGIN-API request
+2020-01-10 11:33:27,755 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - LOGIN-API Returned Model encrypted = {"Code":200,"Msg":"Ðang nh?p thành công","TokenKey":"b20331f643d68b178977df7c5686c674","Data":{"Id":1,"Email":"bangkhmt3@gmail.com","PhoneNumber":"0966722466","UserName":"bangkhmt3@gmail.com","FullName":"Vu Luong B?ng","DisplayName":"B?ng","Avatar":"http://localhost:3434/Content/Media?url=Avatars/1/1539328575.jpg","TokenKey":"b20331f643d68b178977df7c5686c674","TokenCreatedDate":"2020-01-10T11:33:27.7066271+07:00","TokenExpiredDate":"2020-01-11T04:13:27.7066271+07:00","LoginDurations":1000,"OTPType":"","Birthday":"1991-08-12T00:00:00","Sex":1,"Address":"","IDCard":"","Note":"","EmailConfirmed":1,"PhoneNumberConfirmed":0,"LoginDate":"2020-01-10T11:33:27.6806964+07:00","SocialProviderId":0,"IsNew":0}}
+2020-01-10 11:33:27,756 [9] DEBUG SingleSignOn.Controllers.ApiAuthController - Ended LOGIN-API request

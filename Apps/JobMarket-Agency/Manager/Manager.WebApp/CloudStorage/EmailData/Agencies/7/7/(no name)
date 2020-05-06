@@ -1,0 +1,13 @@
+Reporting-MTA: dns; googlemail.com
+Received-From-MTA: dns; registeronly12891@gmail.com
+Arrival-Date: Mon, 02 Dec 2019 01:00:41 -0800 (PST)
+X-Original-Message-ID: <5de4d2b9.1c69fb81.67b66.d0b0@mx.google.com>
+
+Final-Recipient: rfc822; bangkhmt3232323@gmail.com
+Action: failed
+Status: 5.1.1
+Diagnostic-Code: smtp; 550-5.1.1 The email account that you tried to reach does not exist. Please try
+ 550-5.1.1 double-checking the recipient's email address for typos or
+ 550-5.1.1 unnecessary spaces. Learn more at
+ 550 5.1.1  https://support.google.com/mail/?p=NoSuchUser bc11sor22147520plb.15 - gsmtp
+Last-Attempt-Date: Mon, 02 Dec 2019 01:00:41 -0800 (PST)
