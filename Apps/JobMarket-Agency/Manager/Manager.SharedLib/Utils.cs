@@ -493,7 +493,7 @@ namespace Manager.SharedLibs
             {
                 if (!string.IsNullOrEmpty(value.ToString()))
                 {
-                    return Convert.ToInt32(value.ToString().Trim().Replace(",", ""));
+                    return Convert.ToInt32(value.ToString().Trim().Replace(",", "").Replace(".", ""));
                 }
             }
             catch

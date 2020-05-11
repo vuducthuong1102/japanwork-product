@@ -9,3 +9,14 @@ C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\obj\Debug\ApiJobMarket
 C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\BouncyCastle.Crypto.dll
 C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\MimeKit.dll
 C:\Project\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\MimeKit.xml
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\ApiJobMarket.DB.Sql.Entities.dll
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\ApiJobMarket.DB.Sql.Entities.pdb
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\BouncyCastle.Crypto.dll
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\MimeKit.dll
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\Newtonsoft.Json.dll
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\MimeKit.xml
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\bin\Debug\Newtonsoft.Json.xml
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\obj\Debug\ApiJobMarket.DB.Sql.Entities.csprojAssemblyReference.cache
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\obj\Debug\ApiJobMarket.DB.Sql.Entities.csproj.CopyComplete
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\obj\Debug\ApiJobMarket.DB.Sql.Entities.dll
+E:\Working\JobMarket\APIs\ApiJobMarket\ApiJobMarket.DB.Sql.Entities\obj\Debug\ApiJobMarket.DB.Sql.Entities.pdb

@@ -121,11 +121,11 @@ namespace Manager.WebApp.Models
         public string age_max { get; set; }
 
         [MaxLength(8, ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
-        [RegularExpression("^[0-9,]*$", ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
+        [RegularExpression("^[0-9,.]*$", ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
         public string salary_min { get; set; }
 
         [MaxLength(8, ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
-        [RegularExpression("^[0-9,]*$", ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
+        [RegularExpression("^[0-9,.]*$", ErrorMessageResourceType = typeof(ManagerResource), ErrorMessageResourceName = nameof(ManagerResource.COMMON_ERROR_SALARY_MUST_NUMBERIC))]
         public string salary_max { get; set; }
         public int salary_type_id { get; set; }
         public string work_start_time { get; set; }
