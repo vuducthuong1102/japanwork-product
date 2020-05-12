@@ -60,6 +60,7 @@
     <Compile Include="Entities\Master\IdentityJobSeekerNote.cs" />
     <Compile Include="Entities\Master\IdentityCompanyNote.cs" />
     <Compile Include="Entities\Master\IdentityJobSeekerWish.cs" />
+    <Compile Include="Entities\Master\IdentityStatistics.cs" />
     <Compile Include="Entities\Master\IdentityVisa.cs" />
     <Compile Include="Entities\Master\IdentityReport.cs" />
     <Compile Include="Entities\Master\IdentitySchedule.cs" />

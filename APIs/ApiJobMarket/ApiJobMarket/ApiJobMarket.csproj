@@ -317,6 +317,7 @@
     <Compile Include="Controllers\Admin\M_ApiJobSeekerController.cs" />
     <Compile Include="Controllers\Admin\M_ApiJobController.cs" />
     <Compile Include="Controllers\Agency\A_ApiCvController.cs" />
+    <Compile Include="Controllers\Master\ApiStatiscticsController.cs" />
     <Compile Include="Controllers\Agency\A_ApiReportController.cs" />
     <Compile Include="Controllers\Agency\A_ApiNotificationController.cs" />
     <Compile Include="Controllers\Agency\A_ApiAgencyController.cs" />
@@ -434,6 +435,7 @@
     <Compile Include="Models\Master\ApiJobSeekerNoteModel.cs" />
     <Compile Include="Models\Master\ApiCompanyNoteModel.cs" />
     <Compile Include="Models\Master\ApiJobSeekerWishModel.cs" />
+    <Compile Include="Models\Master\ApiStatisticsModel.cs" />
     <Compile Include="Models\Master\ApiReportModel.cs" />
     <Compile Include="Models\Master\ApiScheduleModel.cs" />
     <Compile Include="Models\Master\ApiApplicationModel.cs" />

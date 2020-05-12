@@ -55,6 +55,7 @@ namespace ApiJobMarket.AutofacDI
             builder.RegisterType<StoreAgencyNotification>().As<IStoreAgencyNotification>();
             builder.RegisterType<StoreSchedule>().As<IStoreSchedule>();
             builder.RegisterType<StoreReport>().As<IStoreReport>();
+            builder.RegisterType<StoreStatistics>().As<IStoreStatistics>();
 
             //builder.RegisterType<StoreConversation>().As<IStoreConversation>();
             //builder.RegisterType<StoreConversationReply>().As<IStoreConversationReply>();

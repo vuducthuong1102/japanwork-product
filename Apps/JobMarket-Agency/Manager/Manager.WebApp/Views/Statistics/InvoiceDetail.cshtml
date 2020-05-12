@@ -1,0 +1,167 @@
+﻿@using Manager.WebApp.Resources;
+@using System.Globalization;
+
+@model Manager.WebApp.Models.ManageStatisticsModel
+
+@{
+    ViewBag.Title = ManagerResource.LB_STATISTICS;
+    var currentLang = CultureInfo.CurrentCulture;
+}
+
+
+@Html.Partial("_Notifications")
+
+@Html.Partial("../Widgets/Modals/_LargeModal")
+
+<div class="m-portlet">
+    <!--begin::Form-->
+    @RenderSearchForm()
+    <!--end::Form-->
+</div>
+
+
+@helper RenderSearchForm()
+    {
+        using (Html.BeginForm("GetInvoice", "Statistics", FormMethod.Get, new { role = "form", @class = " m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed" }))
+        {
+            @Html.HiddenFor(m => m.SearchExec)
+            <div class="m-portlet__body">
+                <div class="form-group row">
+                    <div class="col-md-2 m-form__group--inline">
+                        <label>---Chọn năm---</label>
+                        <select class="form-control selectpicker btn-white" id="StatisticsYear" name="@Html.NameFor(m=>m.year)" data-live-search="true">
+                            @{
+                                var yearNow = DateTime.Now.Year;
+                            }
+
+                            @for (int i = yearNow; i > yearNow - 5; i--)
+                            {
+                                var str = string.Empty;
+                                //if (i == Model.Year)
+                                //{
+                                //    str = "selected";
+                                //}
+                                <option value="@i" @str>@i</option>
+                            }                            
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+
+                        <button type="button" class="btn btn-info" id="btnStatistics" style="margin-right:10px;">
+                            <i class="fa fa-file-excel-o"></i> @ManagerResource.LB_STATISTICS
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+<div class="space"></div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="m-portlet">
+            @*<div class="m-portlet__head">
+                <div class="clearfix pull-right m--padding-10">
+                    <a class="btn btn-white btn-info" href="@Url.Action("Create", "EmailServer")" title="@ManagerResource.LB_ADD_NEW">
+                        <i class="fa fa-plus"></i> @ManagerResource.LB_ADD_NEW
+                    </a>
+                </div>
+            </div>*@
+            <div class="m-portlet__body">
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="m-section">
+                    <div class="m-section__content table-responsive">
+                        <table id="StatisticsTable" class="table m-table m-table--head-bg-brand table-bordered">
+                            <thead>
+                                <tr>
+                                    <td class="text-center">小項目</td>
+                                    <td class="text-center">大項目</td>
+                                    <td class="text-center">単位</td>
+                                    <td class="text-center">2020年1月</td>
+                                    <td class="text-center">2020年2月</td>
+                                    <td class="text-center">2020年3月</td>
+                                    <td class="text-center">2020年4月</td>
+                                    <td class="text-center">2020年5月</td>
+                                    <td class="text-center">2020年6月</td>
+                                    <td class="text-center">2020年7月</td>
+                                    <td class="text-center">2020年8月</td>
+                                    <td class="text-center">2020年9月</td>
+                                    <td class="text-center">2020年10月</td>
+                                    <td class="text-center">2020年11月</td>
+                                    <td class="text-center">2020年12月</td>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="StatTime">
+                                    <td class="text-left">初期費用</td>
+                                    <td class="text-left">初期設定サポート</td>
+                                    <td class="text-left">/回</td>
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <td class="text-right"></td>
+                                    }
+                                </tr>
+                                <tr class="PublishedJobByYear">
+                                    @*<td class="text-left" rowspan="7">
+                                        月次利用料
+                                    </td>
+                                    <td>
+                                        求人票登録料（1～10件）
+                                    </td>
+                                    <td>/3ケ月</td>
+                                    @for (int i = 1; i <= 12; i++)
+                                    {
+                                        <td class="text-right"></td>
+                                    }*@
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!--end::Section-->
+            </div>
+            <!--end::Form-->
+        </div>
+    </div>
+
+</div>
+
+
+@section PageInlineStyles{
+
+}
+
+@section PageInlineScripts{
+    <script>
+        var StatisticsGlobal = {
+            publishedJobByYear: function () {
+                PublishedJobByYear();
+            }            
+        };
+
+        $("#btnStatistics").click(function () {
+            StatisticsGlobal.publishedJobByYear();
+        });
+
+        function PublishedJobByYear() {
+            var params = $.extend({}, doAjax_params_default);
+            params['url'] = '/Statistics/PublishedJobByYear';
+            params['requestType'] = 'POST';
+            params['showloading'] = false;
+            params['data'] = { year : $("#StatisticsYear").val() };
+            params['dataType'] = "html";
+            params['successCallbackFunction'] = function (result) {
+                if (result) {
+                    $("#StatisticsTable > tbody > .PublishedJobByYear").html(result);
+                }
+            };
+            doAjax(params);
+        }
+    </script>
+}

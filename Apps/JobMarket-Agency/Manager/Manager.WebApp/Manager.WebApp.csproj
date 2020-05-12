@@ -279,6 +279,7 @@
     <Compile Include="Models\Api\JobMarket\Agency\ApiStatisticsModel.cs" />
     <Compile Include="Models\Api\JobMarket\ApiInterviewProcessModel.cs" />
     <Compile Include="Models\Api\JobMarket\ApiProcessStatusModel.cs" />
+    <Compile Include="Models\Api\JobMarket\ApiStatisticsModel.cs" />
     <Compile Include="Models\Api\JobMarket\Application\ApiApplicationModel.cs" />
     <Compile Include="Models\Api\JobMarket\Cv\ApiCvModel.cs" />
     <Compile Include="Models\Api\JobMarket\JobSeeker\ApiJobSeekerModel.cs" />
@@ -338,7 +339,7 @@
     <Compile Include="Controllers\System\MyAccountController.cs" />
     <Compile Include="Controllers\System\AvatarController.cs" />
     <Compile Include="Controllers\System\FrontEndSystemController.cs" />
-    <Compile Include="Controllers\System\StatisticsController.cs" />
+    <Compile Include="Controllers\JobMarket\StatisticsController.cs" />
     <Compile Include="Controllers\System\DemoController.cs" />
     <Compile Include="Controllers\System\TemplatesController.cs" />
     <Compile Include="Controllers\System\AccessController.cs" />
@@ -391,6 +392,7 @@
     <Compile Include="Models\Common\EmailModels.cs" />
     <Compile Include="Models\Common\SearchModel.cs" />
     <Compile Include="Models\JobMarket\ManagerJobSeekerModel.cs" />
+    <Compile Include="Models\JobMarket\ManageStatisticsModel.cs" />
     <Compile Include="Models\JobMarket\ManageScheduleModel.cs" />
     <Compile Include="Models\System\AccessViewModel.cs" />
     <Compile Include="Models\System\DemoModel.cs" />
@@ -449,6 +451,7 @@
     <Compile Include="Services\JobMarket\CandidateServices.cs" />
     <Compile Include="Services\JobMarket\CompanyNoteServices.cs" />
     <Compile Include="Services\JobMarket\JobSeekerNoteServices.cs" />
+    <Compile Include="Services\JobMarket\StatisticsServices.cs" />
     <Compile Include="Services\JobMarket\SubFieldServices.cs" />
     <Compile Include="Services\JobMarket\ProcessStatusServices.cs" />
     <Compile Include="Services\JobMarket\InterviewProcessServices.cs" />
@@ -1638,6 +1641,8 @@
     <Content Include="Views\Demo\ImageTool_old.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\TableFixed.cshtml" />
+    <Content Include="Views\Statistics\InvoiceDetail.cshtml" />
+    <Content Include="Views\Statistics\Partials\_PublishedJobByYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Log4net\Logs\" />

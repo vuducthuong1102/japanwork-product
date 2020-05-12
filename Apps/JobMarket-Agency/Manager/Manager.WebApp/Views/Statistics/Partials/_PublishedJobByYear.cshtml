@@ -1,0 +1,55 @@
+﻿@using Manager.WebApp.Resources;
+@using System.Globalization;
+
+@model ApiJobMarket.DB.Sql.Entities.IdentityStatisticsJobByYear
+
+@{
+    for (int i = 1; i <= 12; i++)
+    {
+
+    }
+}
+
+    <tr>
+        <td class="text-left" rowspan="7">
+            月次利用料
+        </td>
+        <td>
+            求人票登録料（1～10件）
+        </td>
+        <td>/3ケ月</td>
+        <td class="text-right">@Model.month_1</td>
+        <td class="text-right">@Model.month_2</td>
+        <td class="text-right">@Model.month_3</td>
+        <td class="text-right">@Model.month_4</td>
+        <td class="text-right">@Model.month_5</td>
+        <td class="text-right">@Model.month_6</td>
+        <td class="text-right">@Model.month_7</td>
+        <td class="text-right">@Model.month_8</td>
+        <td class="text-right">@Model.month_9</td>
+        <td class="text-right">@Model.month_10</td>
+        <td class="text-right">@Model.month_11</td>
+        <td class="text-right">@Model.month_12</td>
+    </tr>
+
+    <tr>
+        <td class="text-left" rowspan="7">
+            月次利用料
+        </td>
+        <td>
+            〃 （11～20件）
+        </td>
+        <td>/3ケ月</td>
+        <td class="text-right">@Model.month_1</td>
+        <td class="text-right">@Model.month_2</td>
+        <td class="text-right">@Model.month_3</td>
+        <td class="text-right">@Model.month_4</td>
+        <td class="text-right">@Model.month_5</td>
+        <td class="text-right">@Model.month_6</td>
+        <td class="text-right">@Model.month_7</td>
+        <td class="text-right">@Model.month_8</td>
+        <td class="text-right">@Model.month_9</td>
+        <td class="text-right">@Model.month_10</td>
+        <td class="text-right">@Model.month_11</td>
+        <td class="text-right">@Model.month_12</td>
+    </tr>

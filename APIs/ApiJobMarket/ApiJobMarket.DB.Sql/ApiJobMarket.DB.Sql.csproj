@@ -61,6 +61,7 @@
     <Compile Include="Repositories\Master\RpsFriendInvitation.cs" />
     <Compile Include="Repositories\Master\RpsJobSeekerNote.cs" />
     <Compile Include="Repositories\Master\RpsCompanyNote.cs" />
+    <Compile Include="Repositories\Master\RpsStatistics.cs" />
     <Compile Include="Repositories\Master\RpsVisa.cs" />
     <Compile Include="Repositories\Master\RpsSchedule.cs" />
     <Compile Include="Repositories\Master\RpsCs.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Stores\Master\StoreFriendInvitation.cs" />
     <Compile Include="Stores\Master\StoreJobSeekerNote.cs" />
     <Compile Include="Stores\Master\StoreCompanyNote.cs" />
+    <Compile Include="Stores\Master\StoreStatistics.cs" />
     <Compile Include="Stores\Master\StoreVisa.cs" />
     <Compile Include="Stores\Master\StoreReport.cs" />
     <Compile Include="Stores\Master\StoreSubField.cs" />
