@@ -192,3 +192,4 @@ Apps/JobMarket-Agency/Manager/.vs/
 AdminBackend/Manager/.vs/
 AdminBackend/Manager/WebApp/bin/
 AdminBackend/Manager/WebApp/obj/
+*.ide-wal
