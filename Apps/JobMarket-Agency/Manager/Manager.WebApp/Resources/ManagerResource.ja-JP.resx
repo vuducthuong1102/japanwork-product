@@ -368,7 +368,7 @@
     <value>無効な電話番号です</value>
   </data>
   <data name="ERROR_PROCESS_END" xml:space="preserve">
-    <value>Tiến độ đã kết thúc không thể thêm tiến độ mới</value>
+    <value>終了に変更した進捗はステータスを変更することができません！</value>
   </data>
   <data name="ERROR_PRODUCT_ITEM_CODE_NOTFOUND_FORMAT" xml:space="preserve">
     <value> [{0}]アイテムが見つかりません。再度ご確認ください</value>

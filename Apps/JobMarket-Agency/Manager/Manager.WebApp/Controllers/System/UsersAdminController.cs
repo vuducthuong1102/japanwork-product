@@ -421,7 +421,7 @@ namespace Manager.WebApp.Controllers
 
                 model.User = applicationUser;
                 model.Lockout = new LockoutViewModel();
-                var isLocked = await UserManager.IsLockedOutAsync(applicationUser.Id);
+                var isLocked = applicationUser.LockoutEnabled;
                 model.Lockout.Status = isLocked ? LockoutStatus.Locked : LockoutStatus.Unlocked;
                 model.IsActived = !isLocked;
                 if (model.Lockout.Status == LockoutStatus.Locked)
@@ -515,14 +515,16 @@ namespace Manager.WebApp.Controllers
                     }
                     if (!editUser.IsActived)
                     {
-                        var resultLock = await UserManager.LockUserAccount(editUser.Id, 1000 * 1000);
+                        user.LockoutEndDateUtc = DateTime.UtcNow;
+                        user.LockoutEnabled = true;
+                        //var resultLock = await UserManager.LockUserAccount(editUser.Id, 1000 * 1000);
                     }
                     else
                     {
-                        var unLock = await UserManager.UnlockUserAccount(editUser.Id);
+                        user.LockoutEndDateUtc = null;
+                        user.LockoutEnabled = false;
+                        //var unLock = await UserManager.UnlockUserAccount(editUser.Id);
                     }
-                    //user.PhoneNumber = editUser.PhoneNumber;
-                    //user.ProviderId = editUser.ProviderId;
 
                     var userRoles = await UserManager.GetRolesAsync(user.Id);
                     await UserManager.UpdateAsync(user);
