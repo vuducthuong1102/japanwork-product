@@ -36,10 +36,10 @@
         @Html.HiddenFor(m => m.job_id)
         <div class="m-portlet__body">
             <div class="form-group m-form__group row">
-                <div class="col-lg-3 m-form__group--inline">
+                <div class="col-lg-4 m-form__group--inline">
                     @Html.TextBoxFor(m => m.Keyword, new { @class = "form-control m-input", placeholder = ManagerResource.LB_KEYWORD_INVITATION_SEARCH })
                 </div>
-                <div class="col-md-3 m-form__group--inline">
+                <div class="col-md-4 m-form__group--inline">
                     <select class="form-control selectpicker btn-white" id="@Html.IdFor(m=>m.Status)" name="@Html.NameFor(m=>m.Status)" data-live-search="true">
                         <option value="-99">
                             @ManagerResource.LB_SELECT_INVITATION_STATUS
@@ -57,7 +57,7 @@
                     </select>
                 </div>
                 <div class="col-lg-2 m-form__group--inline">
-                    <button type="submit" class="btn btn-info">
+                    <button type="button" class="btn btn-info btn-search-invitation">
                         <i class="fa fa-search"></i> @ManagerResource.LB_SEARCH
                     </button>
                 </div>
@@ -76,7 +76,7 @@
         $(".selectpicker").selectpicker();
     });
 
-    $("#frmReceiversSearch").on("submit", function () {
+   $(document).on("click",".btn-search-invitation", function () {
         GetReceiversSearch();
         return false;
     });

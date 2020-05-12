@@ -2477,7 +2477,7 @@
     <value>Không thực thiện được tính năng này với thông tin user khác phụ trách !</value>
   </data>
   <data name="ERROR_PROCESS_END" xml:space="preserve">
-    <value>Tiến độ đã kết thúc không thể thêm tiến độ mới</value>
+    <value>Ứng viên đã được tuyển không thể thay đổi trang thái !</value>
   </data>
   <data name="LB_COMPANY_NOTE_EMAIL" xml:space="preserve">
     <value>Email</value>
@@ -2505,7 +2505,7 @@
   </data>
   <data name="LB_WORKING_ADDRESS" xml:space="preserve">
     <value>Nơi làm việc</value>
-</data>
+  </data>
   <data name="ERROR_SELECT_SUB_FIELD_EMPTY" xml:space="preserve">
     <value>Chọn hình thức làm việc trước khi chọn ngành nghề</value>
   </data>

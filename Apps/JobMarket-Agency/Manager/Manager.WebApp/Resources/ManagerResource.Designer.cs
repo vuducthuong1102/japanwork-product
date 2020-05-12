@@ -790,7 +790,7 @@ namespace Manager.WebApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tiến độ đã kết thúc không thể thêm tiến độ mới.
+        ///   Looks up a localized string similar to Ứng viên đã được tuyển không thể thay đổi trang thái !.
         /// </summary>
         public static string ERROR_PROCESS_END {
             get {
