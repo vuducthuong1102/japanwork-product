@@ -185,3 +185,10 @@ APIs/ApiJobMarket/packages/MimeKit.2.5.1/MimeKit.2.5.1.nupkg
 Apps/JobMarket-Agency/Manager/Manager.WebApp/ConnectionStrings.config
 Apps/JobMarket-Agency/Manager/Manager.WebApp/Manager.WebApp.csproj.user
 *.config
+
+Apps/JobMarket-Agency/Manager/Manager.WebApp/bin/
+Apps/JobMarket-Agency/Manager/Manager.WebApp/obj/
+Apps/JobMarket-Agency/Manager/.vs/
+AdminBackend/Manager/.vs/
+AdminBackend/Manager/WebApp/bin/
+AdminBackend/Manager/WebApp/obj/
